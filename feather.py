@@ -145,9 +145,9 @@ def main():
 def find_minecraft_versions():
     for filename in os.listdir("mappings"):
         if filename.endswith(".tiny"):
-            yield filename.removesuffix(".tiny")
+            yield filename[:-len(".tiny")]
         elif filename.endswith(".tinydiff"):
-            if len(pair := filename.removesuffix(".tinydiff").split("#")) == 2:
+            if len(pair := filename[:-len(".tinydiff")].split("#")) == 2:
                 yield pair[-1]
 
 
