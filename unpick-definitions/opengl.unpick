@@ -96,6 +96,31 @@ constant gl_logic_op org/lwjgl/opengl/GL11 GL_OR_INVERTED
 constant gl_logic_op org/lwjgl/opengl/GL11 GL_NAND
 constant gl_logic_op org/lwjgl/opengl/GL11 GL_SET
 
+constant gl_tex_target org/lwjgl/opengl/GL11 GL_TEXTURE_2D
+
+constant gl_tex_param org/lwjgl/opengl/GL11 GL_TEXTURE_MAG_FILTER
+constant gl_tex_param org/lwjgl/opengl/GL11 GL_TEXTURE_MIN_FILTER
+constant gl_tex_param org/lwjgl/opengl/GL11 GL_TEXTURE_WRAP_S
+constant gl_tex_param org/lwjgl/opengl/GL11 GL_TEXTURE_WRAP_T
+constant gl_tex_param org/lwjgl/opengl/GL12 GL_TEXTURE_MIN_LOD
+constant gl_tex_param org/lwjgl/opengl/GL12 GL_TEXTURE_MAX_LOD
+constant gl_tex_param org/lwjgl/opengl/GL12 GL_TEXTURE_BASE_LEVEL
+constant gl_tex_param org/lwjgl/opengl/GL12 GL_TEXTURE_MAX_LEVEL
+constant gl_tex_param org/lwjgl/opengl/GL14 GL_TEXTURE_LOD_BIAS
+
+constant gl_tex_value org/lwjgl/opengl/GL11 GL_NEAREST
+constant gl_tex_value org/lwjgl/opengl/GL11 GL_NEAREST_MIPMAP_LINEAR
+constant gl_tex_value org/lwjgl/opengl/GL11 GL_LINEAR
+constant gl_tex_value org/lwjgl/opengl/GL11 GL_LINEAR_MIPMAP_LINEAR
+constant gl_tex_value org/lwjgl/opengl/GL11 GL_CLAMP
+constant gl_tex_value org/lwjgl/opengl/GL11 GL_REPEAT
+
+constant gl_tex_format org/lwjgl/opengl/GL11 GL_RGBA
+
+constant gl_pixel_format org/lwjgl/opengl/GL12 GL_BGRA
+
+constant gl_pixel_type org/lwjgl/opengl/GL12 GL_UNSIGNED_INT_8_8_8_8_REV
+
 target_method org/lwjgl/opengl/GL11 glBlendFunc (II)V
 	param 0 gl_blend_factor
 	param 1 gl_blend_factor
@@ -143,4 +168,29 @@ target_method org/lwjgl/opengl/GL11 glColorMaterial (II)V
 
 target_method org/lwjgl/opengl/GL11 glLogicOp (I)V
 	param 0 gl_logic_op
+
+target_method org/lwjgl/opengl/GL11 glTexParameteri (III)V
+	param 0 gl_tex_target
+	param 1 gl_tex_param
+	param 2 gl_tex_value
+
+target_method org/lwjgl/opengl/GL11 glGetTexParameteri (II)I
+	param 0 gl_tex_target
+	param 1 gl_tex_param
+
+target_method org/lwjgl/opengl/GL11 glTexParameterf (IIF)V
+	param 0 gl_tex_target
+	param 1 gl_tex_param
+	param 2 gl_tex_value
+
+target_method org/lwjgl/opengl/GL11 glTexImage2D (IIIIIIIILjava/nio/IntBuffer;)V
+	param 0 gl_tex_target
+	param 2 gl_tex_format
+	param 6 gl_pixel_format
+	param 7 gl_pixel_type
+
+target_method org/lwjgl/opengl/GL11 glTexSubImage2D (IIIIIIIILjava/nio/IntBuffer;)V
+	param 0 gl_tex_target
+	param 6 gl_pixel_format
+	param 7 gl_pixel_type
 
