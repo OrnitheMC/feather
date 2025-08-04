@@ -101,6 +101,7 @@ def main():
     possible_versions = list(set(find_minecraft_versions()))
     versions = []
     tasks = []
+    options = []
 
     args = sys.argv
 
@@ -114,6 +115,8 @@ def main():
         else:
             if arg in GRADLE_TASKS:
                 tasks.append(arg)
+            elif arg.startswith('--'):
+                options.append(arg)
             else:
                 raise Exception('unrecognized arg ' + arg + '!')
 
@@ -133,6 +136,7 @@ def main():
 
     command = [GRADLEW]
     command.extend(tasks)
+    command.extend(options)
     command.append('--stacktrace')
 
     if len(versions) == 1:
