@@ -2970,10 +2970,10 @@ c	net/minecraft/client/renderer/system/GlStateManager$C_3905646	ColorMask
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/client/renderer/system/GlStateManager$1241808;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/client/renderer/system/GlStateManager$C_3929439	C_3929439	
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_6413526	f_6413526	
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_7146226	f_7146226	
-	f	Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_5783677	f_5783677	
+c	net/minecraft/client/renderer/system/GlStateManager$C_3929439	Profile	
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_6413526	DEFAULT	
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_7146226	PLAYER_SKIN	
+	f	Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_5783677	TRANSPARENT_MODEL	
 	f	[Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	f_5112471	f_5112471	
 	m	()[Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/client/renderer/system/GlStateManager$C_3929439;	valueOf	valueOf	
@@ -3046,7 +3046,7 @@ c	net/minecraft/client/renderer/system/GlStateManager$C_4408755	LogicOp
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/client/renderer/system/GlStateManager$C_4491114	C_4491114	
+c	net/minecraft/client/renderer/system/GlStateManager$C_4491114	StencilFunc	
 	f	I	f_7089620	f_7089620	
 	f	I	f_6749550	f_6749550	
 	f	I	f_9062318	f_9062318	
@@ -3283,8 +3283,8 @@ c	com/mojang/blaze3d/platform/GLX		com/mojang/blaze3d/platform/GLX
 	f	I	f_3113031		f_3113031
 	f	I	f_2897631		f_2897631
 	f	Z	f_3286875		arbMultiTexture
-	f	I	f_4681669		f_4681669
-	f	I	f_8667440		f_8667440
+	f	I	f_4681669		GL_TEXTURE0
+	f	I	f_8667440		GL_TEXTURE1
 	f	I	f_6327402		f_6327402
 	f	Z	f_6295209		arbTextureEnvCombine
 	f	I	f_8439666		f_8439666
@@ -3523,10 +3523,10 @@ c	com/mojang/blaze3d/platform/GLX$C_6669882		FboMode
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
 c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStateManager
-	f	I	f_3129255		f_3129255
-	f	I	f_1205120		f_1205120
-	f	Ljava/nio/FloatBuffer;	f_7694529		f_7694529
-	f	Ljava/nio/FloatBuffer;	f_7875678		f_7875678
+	f	I	f_3129255		LIGHT_COUNT
+	f	I	f_1205120		TEXTURE_COUNT
+	f	Ljava/nio/FloatBuffer;	f_7694529		MATRIX_BUFFER
+	f	Ljava/nio/FloatBuffer;	f_7875678		COLOR_BUFFER
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4886447;	f_9959836		ALPHA_FUNC
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_0463887		CAP_LIGHTING
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_3605801		LIGHTS
@@ -3544,13 +3544,13 @@ c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStat
 	f	I	f_9522414		boundTexture
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$C_4382529;	f_2025854		TEXTURES
 	f	I	f_1544359		shadeModelMode
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_6553592		f_6553592
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_6553592		RESCALE_NORMAL
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3905646;	f_3913131		COLOR_MASK
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_6288580;	f_0525390		COLOR_STATE
-	f	F	f_5549440		f_5549440
+	f	F	f_5549440		DEFAULT_ALPHA_CUTOFF
 	m	()V	<init>		<init>
-	m	()V	m_2181488		m_2181488
-	m	()V	m_9924429		m_9924429
+	m	()V	m_2181488		pushLightingAttributes
+	m	()V	m_9924429		pushTextureAttributes
 	m	()V	m_9774474		pushAttrib
 	m	()V	m_6191982		disableAlphaFunc
 	m	()V	m_2754767		enableAlphaFunc
@@ -3605,9 +3605,9 @@ c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStat
 		p	3			dfactorAlpha
 	m	(I)V	m_7945603		blendEquation
 		p	0			mode
-	m	(I)V	m_8813933		m_8813933
-		p	0			p_0
-	m	()V	m_8667098		m_8667098
+	m	(I)V	m_8813933		setupSolidRenderingTextureCombine
+		p	0			color
+	m	()V	m_8667098		tearDownSolidRenderingTextureCombine
 	m	()V	m_8700923		enableFog
 	m	()V	m_4317267		disableFog
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;)V	m_6959855		setFogMode
@@ -3662,7 +3662,7 @@ c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStat
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$C_9591274;)Lcom/mojang/blaze3d/platform/GlStateManager$C_4182637;	m_2528778		texGenStateFor
 		p	0			mode
 	m	(I)V	m_5186483		activeTexture
-		p	0			p_0
+		p	0			texture
 	m	()V	m_7547086		enableBoundTexture
 	m	()V	m_2090124		disableBoundTexture
 	m	(IILjava/nio/FloatBuffer;)V	m_2581992		texEnv
@@ -3733,8 +3733,8 @@ c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStat
 	m	()V	m_9455273		disableNormalize
 	m	(I)V	m_9665853		shadeModel
 		p	0			mode
-	m	()V	m_6183854		m_6183854
-	m	()V	m_6240595		m_6240595
+	m	()V	m_6183854		enableRescaleNormal
+	m	()V	m_6240595		disableRescaleNormal
 	m	(IIII)V	m_4988587		viewport
 		p	0			x
 		p	1			y
@@ -3812,7 +3812,7 @@ c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStat
 		p	4			z
 	m	(Ljava/nio/FloatBuffer;)V	m_1582721		multMatrix
 		p	0			m
-	m	(Lnet/minecraft/unmapped/C_0495439;)V	m_2937831		m_2937831
+	m	(Lnet/minecraft/unmapped/C_0495439;)V	m_2937831		multMatrix
 		p	0			m
 	m	(FFFF)V	m_3323122		color
 		p	0			r
@@ -3923,10 +3923,10 @@ c	com/mojang/blaze3d/platform/GlStateManager		com/mojang/blaze3d/platform/GlStat
 		p	1			params
 	m	(I)I	m_3003301		getInteger
 		p	0			name
-	m	(Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;)V	m_2544012		m_2544012
-		p	0			p_0
-	m	(Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;)V	m_5532957		m_5532957
-		p	0			p_0
+	m	(Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;)V	m_2544012		setProfile
+		p	0			profile
+	m	(Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;)V	m_5532957		unsetProfile
+		p	0			profile
 	m	(I)[Lcom/mojang/blaze3d/platform/GlStateManager$C_4382529;	m_8725766		m_8725766
 		p	0			p_0
 	m	(I)Lcom/mojang/blaze3d/platform/GlStateManager$C_4382529;	m_9616587		m_9616587
@@ -3952,9 +3952,9 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_1230864		PolygonOffset
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1241808;)V	<init>		<init>
 		p	1			p_1
 c	com/mojang/blaze3d/platform/GlStateManager$C_3553974		CullFace
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_9662669		f_9662669
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_2723445		f_2723445
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_8783907		f_8783907
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_9662669		FRONT
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_2723445		BACK
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_8783907		FRONT_AND_BACK
 	f	I	f_3545004		value
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	f_9137776		f_9137776
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$C_3553974;	values		values
@@ -3963,7 +3963,7 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_3553974		CullFace
 	m	(Ljava/lang/String;II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-		p	3			p_3
+		p	3			value
 	m	()V	<clinit>		<clinit>
 c	com/mojang/blaze3d/platform/GlStateManager$C_3704895		ColorLogicOp
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_3457052		state
@@ -3972,9 +3972,9 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_3704895		ColorLogicOp
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1241808;)V	<init>		<init>
 		p	1			p_1
 c	com/mojang/blaze3d/platform/GlStateManager$C_3773734		FogMode
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_6295406		f_6295406
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_9724391		f_9724391
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_6157648		f_6157648
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_6295406		LINEAR
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_9724391		EXP
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_6157648		EXP2
 	f	I	f_0295722		value
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	f_0186510		f_0186510
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$C_3773734;	values		values
@@ -3983,7 +3983,7 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_3773734		FogMode
 	m	(Ljava/lang/String;II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-		p	3			p_3
+		p	3			value
 	m	()V	<clinit>		<clinit>
 c	com/mojang/blaze3d/platform/GlStateManager$C_3817774		Depth
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_3866935		state
@@ -4000,10 +4000,10 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_3905646		ColorMask
 	m	()V	<init>		<init>
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1241808;)V	<init>		<init>
 		p	1			p_1
-c	com/mojang/blaze3d/platform/GlStateManager$C_3929439		C_3929439
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_6413526		f_6413526
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_7146226		f_7146226
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_5783677		f_5783677
+c	com/mojang/blaze3d/platform/GlStateManager$C_3929439		Profile
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_6413526		DEFAULT
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_7146226		PLAYER_SKIN
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_5783677		TRANSPARENT_MODEL
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	f_5112471		f_5112471
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	values		values
 	m	(Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$C_3929439;	valueOf		valueOf
@@ -4041,8 +4041,8 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_4182637		TexGenCoord
 	f	I	f_8206728		coord
 	f	I	f_3759221		mode
 	m	(II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			coord
+		p	2			cap
 c	com/mojang/blaze3d/platform/GlStateManager$C_4382529		Texture
 	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_8796143;	f_8429272		state
 	f	I	f_6472463		texture
@@ -4050,22 +4050,22 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_4382529		Texture
 	m	(Lcom/mojang/blaze3d/platform/GlStateManager$1241808;)V	<init>		<init>
 		p	1			p_1
 c	com/mojang/blaze3d/platform/GlStateManager$C_4408755		LogicOp
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5003251		f_5003251
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1210711		f_1210711
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1569096		f_1569096
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5294198		f_5294198
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_8318849		f_8318849
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5433537		f_5433537
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_6304550		f_6304550
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_9350210		f_9350210
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5712975		f_5712975
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1516769		f_1516769
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_7545470		f_7545470
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_9670903		f_9670903
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_8189721		f_8189721
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1901352		f_1901352
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1656577		f_1656577
-	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_6253547		f_6253547
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5003251		AND
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1210711		AND_INVERTED
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1569096		AND_REVERSE
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5294198		CLEAR
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_8318849		COPY
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5433537		COPY_INVERTED
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_6304550		EQUIV
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_9350210		INVERT
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_5712975		NAND
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1516769		NOOP
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_7545470		NOR
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_9670903		OR
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_8189721		OR_INVERTED
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1901352		OR_REVERSE
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_1656577		SET
+	f	Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_6253547		XOR
 	f	I	f_8589835		value
 	f	[Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	f_2858393		f_2858393
 	m	()[Lcom/mojang/blaze3d/platform/GlStateManager$C_4408755;	values		values
@@ -4074,9 +4074,9 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_4408755		LogicOp
 	m	(Ljava/lang/String;II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-		p	3			p_3
+		p	3			value
 	m	()V	<clinit>		<clinit>
-c	com/mojang/blaze3d/platform/GlStateManager$C_4491114		C_4491114
+c	com/mojang/blaze3d/platform/GlStateManager$C_4491114		StencilFunc
 	f	I	f_7089620		func
 	f	I	f_6749550		ref
 	f	I	f_9062318		mask
@@ -4225,7 +4225,7 @@ c	com/mojang/blaze3d/platform/GlStateManager$C_8796143		GlState
 	f	I	f_9723007		cap
 	f	Z	f_1587713		enabled
 	m	(I)V	<init>		<init>
-		p	1			p_1
+		p	1			cap
 	m	()V	m_2152392		disable
 	m	()V	m_0191435		enable
 	m	(Z)V	m_3245758		setEnabled
