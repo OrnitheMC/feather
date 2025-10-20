@@ -272,7 +272,7 @@ c	net/minecraft/unmapped/C_1082007		net/minecraft/world/village/VillageDoor
 	f	I	f_0366845		z
 	f	I	f_5501111		indoorsOffsetX
 	f	I	f_2949318		indoorsOffsetZ
-	f	I	f_8482764		lastVillageTick
+	f	I	f_8482764		lastUpdateTick
 	m	(IIIIII)V	<init>		<init>
 		p	1			x
 		p	2			y
@@ -320,52 +320,52 @@ c	net/minecraft/unmapped/C_2780666		net/minecraft/world/village/Village
 		p	1			x
 		p	2			y
 		p	3			z
-	m	(III)Z	m_6936906		getDoor
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(III)Z	m_6936906		hasDoor
+		p	1			x
+		p	2			y
+		p	3			z
 	m	(Lnet/minecraft/unmapped/C_1082007;)V	m_8939910		addDoor
 		p	1			door
-	m	()Z	m_4468287		hasNoDoors
-	m	(I)V	m_5904743		cleanUpDoors
-		p	1			p_1
-	m	(III)Z	m_6802022		isWoodenDoor
+	m	()Z	m_4468287		isEmpty
+	m	(I)V	m_5904743		removeInvalidDoors
+		p	1			ticks
+	m	(III)Z	m_6802022		isDoor
 		p	1			x
 		p	2			y
 		p	3			z
 	m	()V	m_5492613		updateCenterAndRadius
 c	net/minecraft/unmapped/C_3140555		net/minecraft/world/village/SavedVillageData
 	f	Lnet/minecraft/unmapped/C_3906126;	f_9846644		world
-	f	Ljava/util/List;	f_2073905		villagerPositions
-	f	Ljava/util/List;	f_6704070		newDoors
+	f	Ljava/util/List;	f_2073905		pendingUpdates
+	f	Ljava/util/List;	f_6704070		pendingDoors
 	f	Ljava/util/List;	f_4670382		villages
 	f	I	f_1187290		ticks
 	m	(Lnet/minecraft/unmapped/C_3906126;)V	<init>		<init>
 		p	1			world
-	m	(III)V	m_7849469		addVillagerPosition
+	m	(III)V	m_7849469		markForUpdate
 		p	1			x
 		p	2			y
 		p	3			z
 	m	()V	m_0696648		tick
-	m	()V	m_9816504		removeVillagesWithoutDoors
+	m	()V	m_9816504		removeEmptyVillages
 	m	(IIII)Lnet/minecraft/unmapped/C_2780666;	m_0005532		getNearestVillage
 		p	1			x
 		p	2			y
 		p	3			z
 		p	4			range
-	m	()V	m_9070829		removeOldestVillagerPosition
-	m	()V	m_5989544		addDoorsToVillages
-	m	(Lnet/minecraft/unmapped/C_6707278;)V	m_8973128		findDoorsAround
+	m	()V	m_9070829		runPendingUpdate
+	m	()V	m_5989544		addPendingDoors
+	m	(Lnet/minecraft/unmapped/C_6707278;)V	m_8973128		addOrUpdateDoorsAround
 		p	1			pos
-	m	(III)Z	m_4334314		getDoor
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(III)V	m_4256913		addNewDoor
+	m	(III)Z	m_4334314		hasDoor
 		p	1			x
 		p	2			y
 		p	3			z
-	m	(III)Z	m_5142621		hasVillagerPosition
+	m	(III)V	m_4256913		addDoor
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(III)Z	m_5142621		isMarkedForUpdate
 		p	1			x
 		p	2			y
 		p	3			z

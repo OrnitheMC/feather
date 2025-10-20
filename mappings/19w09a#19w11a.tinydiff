@@ -2198,7 +2198,7 @@ c	net/minecraft/unmapped/C_6285024$7880242		7880242
 	m	()V	<init>		<init>
 	m	()Z	m_5896190		m_5896190
 c	net/minecraft/unmapped/C_1082007	net/minecraft/world/village/VillageDoor	
-	f	I	f_8482764	lastVillageTick	
+	f	I	f_8482764	lastUpdateTick	
 	f	Z	f_8209054	isOutsideVillage	
 	f	I	f_2155421	restrictedTicks	
 	f	Lnet/minecraft/unmapped/C_6707278;	f_8027894	pos	
@@ -2233,8 +2233,8 @@ c	net/minecraft/unmapped/C_1082007	net/minecraft/world/village/VillageDoor
 	m	()Lnet/minecraft/unmapped/C_6707278;	m_6127213	getIndoorsPos	
 	m	()I	m_5782668	getIndoorsOffsetX	
 	m	()I	m_8095699	getIndoorsOffsetZ	
-	m	()I	m_5011593	getLastVillageTick	
-	m	(I)V	m_1916900	setLastVillageTick	
+	m	()I	m_5011593	getLastUpdateTick	
+	m	(I)V	m_1916900	setLastUpdateTick	
 		p	1		tick	
 	m	()Z	m_9030415	isOutsideVillage	
 	m	(Z)V	m_7156901	setOutSideVillage	
@@ -2259,12 +2259,12 @@ c	net/minecraft/unmapped/C_2780666	net/minecraft/world/village/Village
 		c	The sum of all door positions - used to calculate the village center.	
 	f	Lnet/minecraft/unmapped/C_6707278;	f_3976699	center	
 	f	I	f_0856957	radius	
-	f	I	f_8146253	lastDoorAddedTicks	
+	f	I	f_8146253	lastUpdateTick	
 	f	I	f_4987368	ticks	
 	f	I	f_6760331	populationSize	
 	f	Ljava/util/List;	f_8476234	attackers	
 	f	I	f_1326360	golems	
-	f	I	f_6757099	ticksOfLastMating	
+	f	I	f_6757099	lastMatingTicks	
 	f	Ljava/util/Map;	f_0938585	playerReputations	
 	f	I	f_7569045	f_7569045	
 	m	(Lnet/minecraft/unmapped/C_3906126;)V	<init>	<init>	
@@ -2275,11 +2275,11 @@ c	net/minecraft/unmapped/C_2780666	net/minecraft/world/village/Village
 	m	()I	m_2265375	getRadius	
 	m	(Lnet/minecraft/unmapped/C_1082007;)V	m_8939910	addDoor	
 		p	1		door	
-	m	()Z	m_4468287	hasNoDoors	
+	m	()Z	m_4468287	isEmpty	
 	m	()V	m_5492613	updateCenterAndRadius	
 	m	()V	m_5632861	updatePopulationSize	
 	m	()I	m_7196341	getDoorCount	
-	m	()I	m_2186475	getTicksSinceDoorAdded	
+	m	()I	m_2186475	getTicksSinceUpdate	
 	m	()I	m_3734191	getPopulationSize	
 	m	()Ljava/util/List;	m_1711157	getDoors	
 	m	()V	m_7897245	updateIronGolemCount	
@@ -2288,7 +2288,7 @@ c	net/minecraft/unmapped/C_2780666	net/minecraft/world/village/Village
 	m	(Lnet/minecraft/unmapped/C_1013763;)Lnet/minecraft/unmapped/C_1013763;	m_8157128	getNearestAttacker	
 		p	1		entity	
 	m	()V	m_1421063	cleanUpAttackers	
-	m	()V	m_5904743	cleanUpDoors	
+	m	()V	m_5904743	removeInvalidDoors	
 	m	(Lnet/minecraft/unmapped/C_1013763;)Lnet/minecraft/unmapped/C_5009044;	m_4978400	getNearestPlayer	
 		p	1		entity	
 	m	(Ljava/lang/String;)I	m_3366108	getReputation	
@@ -2327,7 +2327,7 @@ c	net/minecraft/unmapped/C_2780666	net/minecraft/world/village/Village
 	m	()Lnet/minecraft/unmapped/C_1227692;	m_4758922	m_4758922	
 c	net/minecraft/unmapped/C_2780666$C_4680857	Attacker	
 	f	Lnet/minecraft/unmapped/C_1013763;	f_8378532	attacker	
-	f	I	f_3563588	ticks	
+	f	I	f_3563588	lastUpdateTick	
 	f	Lnet/minecraft/unmapped/C_2780666;	f_1793537	village	
 	m	(Lnet/minecraft/unmapped/C_2780666;Lnet/minecraft/unmapped/C_1013763;I)V	<init>	<init>	
 		p	1		p_1	
@@ -2335,41 +2335,41 @@ c	net/minecraft/unmapped/C_2780666$C_4680857	Attacker
 		p	3		ticks	
 c	net/minecraft/unmapped/C_3140555	net/minecraft/world/village/SavedVillageData	
 	f	Lnet/minecraft/unmapped/C_3906126;	f_9846644	world	
-	f	Ljava/util/List;	f_2073905	villagerPositions	
-	f	Ljava/util/List;	f_6704070	newDoors	
+	f	Ljava/util/List;	f_2073905	pendingUpdates	
+	f	Ljava/util/List;	f_6704070	pendingDoors	
 	f	Ljava/util/List;	f_4670382	villages	
 	f	I	f_1187290	ticks	
 	m	(Lnet/minecraft/unmapped/C_3906126;)V	<init>	<init>	
 		p	1		world	
 	m	()V	m_0696648	tick	
-	m	()V	m_9816504	removeVillagesWithoutDoors	
-	m	()V	m_9070829	removeOldestVillagerPosition	
-	m	()V	m_5989544	addDoorsToVillages	
-	m	(Lnet/minecraft/unmapped/C_6707278;)V	m_8973128	findDoorsAround	
+	m	()V	m_9816504	removeEmptyVillages	
+	m	()V	m_9070829	runPendingUpdate	
+	m	()V	m_5989544	addPendingDoors	
+	m	(Lnet/minecraft/unmapped/C_6707278;)V	m_8973128	addOrUpdateDoorsAround	
 		p	1		pos	
 	m	()Ljava/util/List;	m_4773371	getVillages	
 	m	(Lnet/minecraft/unmapped/C_2800860;)V	m_4638650	m_4638650	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_6707278;)V	m_7849469	addVillagerPosition	
+	m	(Lnet/minecraft/unmapped/C_6707278;)V	m_7849469	markForUpdate	
 		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_6707278;I)Lnet/minecraft/unmapped/C_2780666;	m_0005532	getNearestVillage	
 		p	1		pos	
 		p	2		range	
 	m	(Lnet/minecraft/unmapped/C_6707278;)Lnet/minecraft/unmapped/C_1082007;	m_4334314	getDoor	
 		p	1		pos	
-	m	(Lnet/minecraft/unmapped/C_6707278;)Z	m_5142621	hasVillagerPosition	
+	m	(Lnet/minecraft/unmapped/C_6707278;)Z	m_5142621	isMarkedForUpdate	
 		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_9219192;)Ljava/lang/String;	m_1032726	getId	
 		p	0		dimension	
-	m	(Lnet/minecraft/unmapped/C_6707278;Lnet/minecraft/unmapped/C_3544601;I)I	m_8229707	getDistanceWithSkyAccess	
+	m	(Lnet/minecraft/unmapped/C_6707278;Lnet/minecraft/unmapped/C_3544601;I)I	m_8229707	getDistanceToSkyAccess	
 		p	1		pos	
 		p	2		dir	
-		p	3		limit	
+		p	3		min	
 	m	(Lnet/minecraft/unmapped/C_2800860;)Lnet/minecraft/unmapped/C_2800860;	m_1489858	m_1489858	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_6707278;)V	m_4256913	addNewDoor	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_6707278;)V	m_4256913	addDoor	
+		p	1		state	
+		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5150962	isWoodenDoor	
 		p	1		p_1	
 	m	()V	m_1187681	m_1187681	
