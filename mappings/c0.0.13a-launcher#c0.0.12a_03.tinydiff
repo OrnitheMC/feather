@@ -42,18 +42,25 @@ c	net/minecraft/unmapped/C_3635204
 	f	Lnet/minecraft/unmapped/C_3635204;	f_4620531	f_4620531	
 	f	Lnet/minecraft/unmapped/C_3635204;	f_4189398	f_4189398	
 	m	(Lnet/minecraft/unmapped/C_6495127;IIIII)Z	m_8199947	shouldRenderFace	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		layer	
+		p	6		face	
 	m	(Lnet/minecraft/unmapped/C_0693652;Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8104522
-		p	6		p_6	
-		p	0			p_0
+		p	6		face	
+		p	0			camera
+		p	1		camera	tesselator
+		p	2		tesselator	x
+		p	3		x	y
+		p	4		y	z
+		p	5		z	face
 	m	(III)Lnet/minecraft/unmapped/C_3499172;	m_5049680
-		p	3		p_3	
-		p	0			p_0
+		p	3		z	
+		p	0			x
+		p	1		x	y
+		p	2		y	z
 	m	(Lnet/minecraft/unmapped/C_6495127;IIII)Z	m_8199947		shouldRenderFace
 		p	1			world
 		p	2			x
@@ -133,7 +140,7 @@ c	net/minecraft/client/Minecraft
 	f	Lnet/minecraft/unmapped/C_3172064;	f_8811754	session	
 	f	Lnet/minecraft/unmapped/C_0786431;	f_4327097	screen	
 	f	Lnet/minecraft/unmapped/C_9665058;	f_1737492	worldStorage	
-	f	Lnet/minecraft/unmapped/C_4078372;	f_0254108	f_0254108	
+	f	Lnet/minecraft/unmapped/C_4078372;	f_0254108	worldGenerator	
 	f	Ljava/lang/String;	f_0125064	f_0125064	
 	f	Ljava/lang/String;	f_2284011	f_2284011	
 	m	(Lnet/minecraft/unmapped/C_0786431;)V	m_2721855	openScreen	
@@ -271,10 +278,10 @@ c	net/minecraft/unmapped/C_2334550
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_2454294
-	f	Lnet/minecraft/unmapped/C_6495127;	f_1215536	f_1215536	
-	m	(Lnet/minecraft/unmapped/C_6749951;)V	m_0800255	m_0800255	
-		p	1		p_1	
-	m	()V	m_1634424	m_1634424	
+	f	Lnet/minecraft/unmapped/C_6495127;	f_1215536	world	
+	m	(Lnet/minecraft/unmapped/C_6749951;)V	m_0800255	addParticle	
+		p	1		p	
+	m	()V	m_1634424	tick	
 c	net/minecraft/unmapped/C_2621421	net/minecraft/client/gui/widget/ButtonWidget	
 	f	I	f_9324441	width	
 	f	I	f_2585197	height	
@@ -465,11 +472,11 @@ c	net/minecraft/unmapped/C_6495127
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(III)Z	m_7094397	m_7094397	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()V	m_1688820	m_1688820	
+	m	(III)Z	m_7094397	isSolid	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	()V	m_1688820	doScheduledTicks	
 	m	()F	m_7776963	m_7776963	
 	m	(Lnet/minecraft/unmapped/C_3499172;)Z	m_6309636	m_6309636	
 		p	1		p_1	
@@ -488,8 +495,8 @@ c	net/minecraft/unmapped/C_6495127
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_6749951
-	m	(Lnet/minecraft/unmapped/C_2334550;FFFFFF)V	m_1029224	m_1029224	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_2334550;FFFFFF)V	m_1029224	render	
+		p	1		tesselator	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
@@ -502,7 +509,7 @@ c	net/minecraft/unmapped/C_8146558
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()V	m_7928375	m_7928375	
+	m	()V	m_7928375	remove	
 	m	(FF)V	m_7537009	m_7537009	
 		p	1		p_1	
 		p	2		p_2	

@@ -50,24 +50,27 @@ c	net/minecraft/unmapped/C_3635204
 		p	4		maxX	
 		p	5		maxY	
 		p	6		maxZ	
-	m	()I	m_9474325	getTickRate	
-	m	(Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8901536	m_8901536	
-		p	1		p_1	
+	m	()I	m_9474325	getMaterial	
+	m	(Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8901536	renderFaceSmaller	
+		c	A variation of the {@linkplain renderFace} method that uses slightly lower texture UVs.\nUsed by liquid blocks.	
+		p	1		tesselator	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		p_5	
-	m	()Z	m_9310917	m_9310917	
-	m	(Lnet/minecraft/unmapped/C_0693652;Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8104522	renderFace	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	0		p_0	
+		p	5		face	
+	m	()Z	m_9310917	hasOutline	
+	m	(Lnet/minecraft/unmapped/C_0693652;Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8104522	renderOutlineFace	
+		p	1		tesselator	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		face	
+		p	0		camera	
 	m	(III)Lnet/minecraft/unmapped/C_3499172;	m_5049680
-		p	0		p_0	
+		p	0		x	
 		p	3			z
+		p	1		y	x
+		p	2		z	y
 	m	(Lnet/minecraft/unmapped/C_6495127;IIII)V	m_9130741	neighborChanged	
 		c	Performs a block update. This method is called when a neighboring block has updated\n(i.e. placed, broken, or otherwise changed state).	
 		p	1		world	
@@ -75,8 +78,8 @@ c	net/minecraft/unmapped/C_3635204
 		p	3		y	
 		p	4		z	
 		p	5		neighborBlock	
-	m	(Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8104522		renderFace
-		p	1			tessellator
+	m	(Lnet/minecraft/unmapped/C_2334550;IIII)V	m_8104522		renderOutlineFace
+		p	1			tesselator
 		p	2			x
 		p	3			y
 		p	4			z
@@ -86,7 +89,7 @@ c	net/minecraft/unmapped/C_4078372
 c	net/minecraft/unmapped/C_4558465	net/minecraft/block/LiquidBlock	
 	f	I	f_9509159	sourceBlock	
 	f	I	f_9203262	flowingBlock	
-	f	I	f_4252258	f_4252258	
+	f	I	f_4252258	material	
 	f	I	f_7305690	f_7305690	
 	m	()Z	m_1944525	m_1944525	
 	m	()I	m_9474325	m_9474325	
@@ -184,7 +187,7 @@ c	net/minecraft/unmapped/C_1044273
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-		p	4		p_4	
+		p	4		block	
 	m	()V	m_8326440	m_8326440	
 	m	()V	m_5383151	m_5383151	
 	m	()V	m_2908225	m_2908225	
@@ -347,7 +350,7 @@ c	net/minecraft/unmapped/C_6495127
 	f	Lnet/minecraft/client/Minecraft;	f_7026537	f_7026537	
 	f	[I	f_3421274	f_3421274	
 	f	I	f_5226865		BLOCK_PROCESS_PER_TICK
-	m	(IIII)Z	m_3566243	setBlockButSpecial	
+	m	(IIII)Z	m_3566243	setBlockQuietly	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -358,8 +361,8 @@ c	net/minecraft/unmapped/C_6495127
 		p	3		z	
 		p	4		neighborBlock	
 	m	(Lnet/minecraft/unmapped/C_3499172;I)Z	m_7901152	containsMaterial	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		bounds	
+		p	2		material	
 	m	(Lnet/minecraft/client/Minecraft;III)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -384,8 +387,8 @@ c	net/minecraft/unmapped/C_6495127
 		p	1			x
 		p	2			y
 		p	3			z
-	m	(Lnet/minecraft/unmapped/C_3499172;)Ljava/util/ArrayList;	m_6533345		getBlocksInBox
-		p	1			box
+	m	(Lnet/minecraft/unmapped/C_3499172;)Ljava/util/ArrayList;	m_6533345		getBlocks
+		p	1			bounds
 	m	(III)Z	m_4094026		isSolid
 		p	1			x
 		p	2			y
