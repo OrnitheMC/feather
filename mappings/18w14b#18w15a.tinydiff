@@ -392,7 +392,7 @@ c	net/minecraft/unmapped/C_4718187
 	m	(Lnet/minecraft/unmapped/C_9844932;)Z	m_3712793		m_3712793
 		p	1			p_1
 c	net/minecraft/unmapped/C_4824661
-	f	Ljava/nio/FloatBuffer;	f_4117573	floatBuffer	
+	f	Ljava/nio/FloatBuffer;	f_4117573	colorBuffer	
 	f	F	f_4627807	fogRed	
 	f	F	f_1498815	fogGreen	
 	f	F	f_4930127	fogBlue	
@@ -405,11 +405,11 @@ c	net/minecraft/unmapped/C_4824661
 	f	Lnet/minecraft/unmapped/C_3779718;	f_3993609	lightmapTexture	
 	f	Lnet/minecraft/unmapped/C_0561170;	f_1678977	lightMapTextureLocation	
 	f	Lnet/minecraft/unmapped/C_7131921;	f_6104882	lightMapPixels	
-	f	Lnet/minecraft/unmapped/C_3375805;	f_4152979		f_4152979
-	f	Lnet/minecraft/unmapped/C_6423206;	f_5696282		f_5696282
+	f	Lnet/minecraft/unmapped/C_3375805;	f_4152979		lightMap
+	f	Lnet/minecraft/unmapped/C_6423206;	f_5696282		fogRenderer
 	m	(F)V	m_5635244	setupClearColor	
 		p	1		tickDelta	
-	m	(FFFF)Ljava/nio/FloatBuffer;	m_3807657	getBuffer	
+	m	(FFFF)Ljava/nio/FloatBuffer;	m_3807657	updateColorBuffer	
 		p	1		f1	
 		p	2		f2	
 		p	3		f3	
@@ -420,10 +420,10 @@ c	net/minecraft/unmapped/C_4824661
 	m	()V	m_0217005	tickLightMap	
 	m	(F)V	m_1569906	updateLightMap	
 		p	1		tickDelta	
-	m	()Lnet/minecraft/client/Minecraft;	m_5238221		m_5238221
-	m	(F)F	m_9911456		m_9911456
-		p	1			p_1
-	m	()F	m_5910286		m_5910286
+	m	()Lnet/minecraft/client/Minecraft;	m_5238221		getMinecraft
+	m	(F)F	m_9911456		getSkyDarkness
+		p	1			tickDelta
+	m	()F	m_5910286		getRenderDistance
 c	net/minecraft/unmapped/C_4948697
 	m	()Z	m_1733837	m_1733837	
 	m	()Z	m_0974034	m_0974034	
@@ -1280,23 +1280,23 @@ c	net/minecraft/unmapped/C_3210425		net/minecraft/world/gen/feature/IcebergConfi
 	f	Lnet/minecraft/unmapped/C_2441996;	f_8790835		ice
 	m	(Lnet/minecraft/unmapped/C_2441996;)V	<init>		<init>
 		p	1			ice
-c	net/minecraft/unmapped/C_3375805		net/minecraft/unmapped/C_3375805
-	f	Lnet/minecraft/unmapped/C_3779718;	f_7803106		f_7803106
-	f	Lnet/minecraft/unmapped/C_7131921;	f_3920952		f_3920952
-	f	Lnet/minecraft/unmapped/C_0561170;	f_4803900		f_4803900
-	f	Z	f_5620324		f_5620324
-	f	F	f_8386588		f_8386588
-	f	F	f_0548604		f_0548604
-	f	Lnet/minecraft/unmapped/C_4824661;	f_5283682		f_5283682
-	f	Lnet/minecraft/client/Minecraft;	f_3360400		f_3360400
+c	net/minecraft/unmapped/C_3375805		net/minecraft/client/render/LightMap
+	f	Lnet/minecraft/unmapped/C_3779718;	f_7803106		texture
+	f	Lnet/minecraft/unmapped/C_7131921;	f_3920952		pixels
+	f	Lnet/minecraft/unmapped/C_0561170;	f_4803900		textureLocation
+	f	Z	f_5620324		dirty
+	f	F	f_8386588		flicker
+	f	F	f_0548604		flickerTotal
+	f	Lnet/minecraft/unmapped/C_4824661;	f_5283682		gameRenderer
+	f	Lnet/minecraft/client/Minecraft;	f_3360400		minecraft
 	m	(Lnet/minecraft/unmapped/C_4824661;)V	<init>		<init>
-		p	1			p_1
+		p	1			gameRenderer
 	m	()V	close		close
-	m	()V	m_2224551		m_2224551
-	m	()V	m_3701040		m_3701040
-	m	()V	m_3077565		m_3077565
-	m	(F)V	m_2401716		m_2401716
-		p	1			p_1
+	m	()V	m_2224551		tick
+	m	()V	m_3701040		disable
+	m	()V	m_3077565		enable
+	m	(F)V	m_2401716		update
+		p	1			tickDelta
 c	net/minecraft/unmapped/C_3381509		net/minecraft/entity/ai/goal/SwimAroundGoal
 	m	(Lnet/minecraft/unmapped/C_3419581;DI)V	<init>		<init>
 		p	1			p_1
@@ -1528,41 +1528,41 @@ c	net/minecraft/unmapped/C_5998839$C_7914603		CageModel
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-c	net/minecraft/unmapped/C_6423206		net/minecraft/unmapped/C_6423206
-	f	Ljava/nio/FloatBuffer;	f_3325240		f_3325240
-	f	Ljava/nio/FloatBuffer;	f_3803381		f_3803381
-	f	F	f_5404147		f_5404147
-	f	F	f_3976534		f_3976534
-	f	F	f_4116867		f_4116867
-	f	F	f_3526382		f_3526382
-	f	F	f_3121616		f_3121616
-	f	F	f_9342307		f_9342307
-	f	F	f_9972883		f_9972883
-	f	F	f_9392576		f_9392576
-	f	I	f_6742803		f_6742803
-	f	I	f_0927759		f_0927759
-	f	J	f_8215543		f_8215543
-	f	Lnet/minecraft/unmapped/C_4824661;	f_2384781		f_2384781
-	f	Lnet/minecraft/client/Minecraft;	f_6898749		f_6898749
+c	net/minecraft/unmapped/C_6423206		net/minecraft/client/render/FogRenderer
+	f	Ljava/nio/FloatBuffer;	f_3325240		blackBuffer
+	f	Ljava/nio/FloatBuffer;	f_3803381		colorBuffer
+	f	F	f_5404147		fogRed
+	f	F	f_3976534		fogGreen
+	f	F	f_4116867		fogBlue
+	f	F	f_3526382		fogBrightness
+	f	F	f_3121616		oldFogBrightness
+	f	F	f_9342307		oldFogRed
+	f	F	f_9972883		oldFogGreen
+	f	F	f_9392576		oldFogBlue
+	f	I	f_6742803		biomeFogColor
+	f	I	f_0927759		oldBiomeFogColor
+	f	J	f_8215543		biomeChangedTime
+	f	Lnet/minecraft/unmapped/C_4824661;	f_2384781		gameRenderer
+	f	Lnet/minecraft/client/Minecraft;	f_6898749		minecraft
 	m	(Lnet/minecraft/unmapped/C_4824661;)V	<init>		<init>
+		p	1			gameRenderer
+	m	()V	m_5444430		tick
+	m	(F)V	m_9148969		setupClearColor
+		p	1			tickDelta
+	m	(Lnet/minecraft/unmapped/C_6385858;Lnet/minecraft/unmapped/C_3906126;F)V	m_3498548		updateColorForLand
+		p	1			camera
+		p	2			world
+		p	3			tickDelta
+	m	(Lnet/minecraft/unmapped/C_6385858;Lnet/minecraft/unmapped/C_3906126;F)V	m_7395040		updateColorForWater
+		p	1			camera
+		p	2			world
+		p	3			tickDelta
+	m	(IF)V	m_8628170		setupFog
 		p	1			p_1
-	m	()V	m_5444430		m_5444430
-	m	(F)V	m_9148969		m_9148969
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_6385858;Lnet/minecraft/unmapped/C_3906126;F)V	m_3498548		m_3498548
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_6385858;Lnet/minecraft/unmapped/C_3906126;F)V	m_7395040		m_7395040
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(IF)V	m_8628170		m_8628170
-		p	1			p_1
-		p	2			p_2
+		p	2			tickDelta
 	m	(Z)V	m_3292443		resetColor
-		p	1			p_1
-	m	()Ljava/nio/FloatBuffer;	m_1093423		m_1093423
+		p	1			black
+	m	()Ljava/nio/FloatBuffer;	m_1093423		updateColorBuffer
 c	net/minecraft/unmapped/C_6621274		net/minecraft/unmapped/C_6621274
 	f	Lnet/minecraft/unmapped/C_8191584;	f_4497357		f_4497357
 	f	Lnet/minecraft/unmapped/C_4917405;	f_8923086		f_8923086
