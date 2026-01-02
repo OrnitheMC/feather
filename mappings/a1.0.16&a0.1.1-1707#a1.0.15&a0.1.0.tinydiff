@@ -1,28 +1,28 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_80471510	m_80471510	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	m_45269355	m_45269355	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	m_80471510		m_80471510
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_45269355		m_45269355
-		p	0			p_0
-		p	1			p_1
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_80471510	start	
+		p	0		username	
+		p	1		sessionId	
+	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	m_45269355	startAndConnect	
+		p	0		username	
+		p	1		sessionId	
+		p	2		server	
+	m	()V	m_80471510		start
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_45269355		startAndConnect
+		p	0			username
+		p	1			server
 c	net/minecraft/server/MinecraftServer
-	f	Z	f_28577763	f_28577763	
-	m	(Ljava/lang/String;I)I	m_98547703	m_98547703	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;)Ljava/io/File;	m_20184875	m_20184875	
-		p	1		p_1	
-c	net/minecraft/unmapped/C_04787565	net/minecraft/unmapped/C_04787565	
-	f	Ljava/lang/String;	f_01636448	f_01636448	
+	f	Z	f_28577763	onlineMode	
+	m	(Ljava/lang/String;I)I	m_98547703	parseInt	
+		p	1		s	
+		p	2		defaultValue	
+	m	(Ljava/lang/String;)Ljava/io/File;	m_20184875	getFile	
+		p	1		path	
+c	net/minecraft/unmapped/C_04787565	net/minecraft/network/packet/HandshakePacket	
+	f	Ljava/lang/String;	f_01636448	key	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		key	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_17566769	m_17566769	
@@ -31,44 +31,44 @@ c	net/minecraft/unmapped/C_04787565	net/minecraft/unmapped/C_04787565
 		p	1		p_1	
 	m	()I	m_85604015	m_85604015	
 c	net/minecraft/unmapped/C_10918870
-	m	(Lnet/minecraft/unmapped/C_04787565;)V	m_22756750	m_22756750	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_04787565;)V	m_22756750	handleHandshake	
+		p	1		packet	
 c	net/minecraft/unmapped/C_29639016
-	f	Ljava/util/Set;	f_96467296	f_96467296	
-	f	Ljava/util/Set;	f_37860742	f_37860742	
-	f	Ljava/util/Set;	f_16318836	f_16318836	
-	f	Ljava/io/File;	f_03541485	f_03541485	
-	f	Ljava/io/File;	f_67533055	f_67533055	
-	f	Ljava/io/File;	f_68188075	f_68188075	
+	f	Ljava/util/Set;	f_96467296	bans	
+	f	Ljava/util/Set;	f_37860742	ipBans	
+	f	Ljava/util/Set;	f_16318836	ops	
+	f	Ljava/io/File;	f_03541485	bansFile	
+	f	Ljava/io/File;	f_67533055	ipBansFile	
+	f	Ljava/io/File;	f_68188075	opsFile	
 	f	J	f_29956351	f_29956351	
-	m	(Ljava/lang/String;)V	m_42023880	m_42023880	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_57604970	m_57604970	
-		p	1		p_1	
-	m	()V	m_09420220	m_09420220	
-	m	()V	m_18290420	m_18290420	
-	m	(Ljava/lang/String;)V	m_99279965	m_99279965	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_58423028	m_58423028	
-		p	1		p_1	
-	m	()V	m_01071404	m_01071404	
-	m	()V	m_66375491	m_66375491	
-	m	(Ljava/lang/String;)V	m_16677163	m_16677163	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_26800521	m_26800521	
-		p	1		p_1	
-	m	()V	m_62143716	m_62143716	
-	m	()V	m_10647750	m_10647750	
-	m	(Ljava/lang/String;)Z	m_55622692	m_55622692	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_42023880	ban	
+		p	1		name	
+	m	(Ljava/lang/String;)V	m_57604970	unban	
+		p	1		name	
+	m	()V	m_09420220	loadBans	
+	m	()V	m_18290420	saveBans	
+	m	(Ljava/lang/String;)V	m_99279965	banIp	
+		p	1		ip	
+	m	(Ljava/lang/String;)V	m_58423028	unbanIp	
+		p	1		ip	
+	m	()V	m_01071404	loadIpBans	
+	m	()V	m_66375491	saveIpBans	
+	m	(Ljava/lang/String;)V	m_16677163	addOp	
+		p	1		name	
+	m	(Ljava/lang/String;)V	m_26800521	removeOp	
+		p	1		name	
+	m	()V	m_62143716	loadOps	
+	m	()V	m_10647750	saveOps	
+	m	(Ljava/lang/String;)Z	m_55622692	isOp	
+		p	1		name	
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_05949161	m_05949161	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_58873528
-	f	Lnet/minecraft/unmapped/C_47909326;	f_38061167	f_38061167	
+	f	Lnet/minecraft/unmapped/C_47909326;	f_38061167	packet	
 	m	(Lnet/minecraft/unmapped/C_04787565;)V	m_22756750	m_22756750	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_47909326;)V	m_97853371	m_97853371	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_47909326;)V	m_97853371	acceptLogin	
+		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_58873528;Lnet/minecraft/unmapped/C_47909326;)Lnet/minecraft/unmapped/C_47909326;	m_98009256	m_98009256	
 		p	0		p_0	
 		p	1		p_1	
@@ -82,11 +82,11 @@ c	net/minecraft/unmapped/C_58873528$15575233	15575233
 		p	2		p_2	
 	m	()V	run	run	
 c	net/minecraft/unmapped/C_68604032
-	m	(Ljava/lang/String;Z)Z	m_37087607	m_37087607	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;Z)Z	m_37087607	getBoolean	
+		p	1		key	
+		p	2		defaultValue	
 c	net/minecraft/unmapped/C_70668269
-	f	Z	f_55807453	f_55807453	
+	f	Z	f_55807453	bypassSpawnProtection	
 c	net/minecraft/unmapped/C_88014908
 	m	(Lnet/minecraft/unmapped/C_04787565;)V	m_22756750	m_22756750	
 		p	1		p_1	

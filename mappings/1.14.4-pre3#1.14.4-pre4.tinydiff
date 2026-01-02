@@ -4,14 +4,14 @@ c	net/minecraft/server/MinecraftServer
 	m	(Ljava/nio/file/Path;)V	m_57185839		m_57185839
 		p	1			p_1
 c	net/minecraft/unmapped/C_10918870
-	m	()Lnet/minecraft/unmapped/C_05587068;	m_35397109		m_35397109
+	m	()Lnet/minecraft/unmapped/C_05587068;	m_35397109		getConnection
 c	net/minecraft/unmapped/C_14230742
-	f	I	f_65292159	f_65292159	
-	f	Z	f_74033841	f_74033841	
-	f	I	f_93292055	f_93292055	
-	f	I	f_76962167	f_76962167	
-	f	Lnet/minecraft/unmapped/C_93816630;	f_56981275	f_56981275	
-	f	Lnet/minecraft/unmapped/C_93816630;	f_21329832	f_21329832	
+	f	I	f_65292159	miningStartTime	
+	f	Z	f_74033841	wasMiningBlock	
+	f	I	f_93292055	prevMiningStartTime	
+	f	I	f_76962167	prevMiningProgress	
+	f	Lnet/minecraft/unmapped/C_93816630;	f_56981275	target	
+	f	Lnet/minecraft/unmapped/C_93816630;	f_21329832	prevTarget	
 	f	Lorg/apache/logging/log4j/Logger;	f_31313393		f_31313393
 	f	I	f_99704957		f_99704957
 	f	Lnet/minecraft/unmapped/C_93816630;	f_75934369		f_75934369
@@ -19,18 +19,18 @@ c	net/minecraft/unmapped/C_14230742
 	f	Lnet/minecraft/unmapped/C_93816630;	f_77828350		f_77828350
 	f	I	f_69885724		f_69885724
 	f	I	f_54666226		f_54666226
-	m	(Lnet/minecraft/unmapped/C_93816630;Lnet/minecraft/unmapped/C_28786548;)V	m_01983885	m_01983885	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_93816630;)V	m_92139263	m_92139263	
-		p	1		p_1	
-	m	()V	m_20465456	m_20465456	
-	m	(Lnet/minecraft/unmapped/C_93816630;)Z	m_14930303	m_14930303	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_93816630;Lnet/minecraft/unmapped/C_28786548;)V	m_01983885	startMiningBlock	
+		p	1		pos	
+		p	2		face	
+	m	(Lnet/minecraft/unmapped/C_93816630;)V	m_92139263	finishMiningBlock	
+		p	1		pos	
+	m	()V	m_20465456	stopMiningBlock	
+	m	(Lnet/minecraft/unmapped/C_93816630;)Z	m_14930303	mineBlock	
+		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_93816630;)F	m_89969984		m_89969984
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_93816630;Lnet/minecraft/unmapped/C_98608386$C_61305662;Lnet/minecraft/unmapped/C_28786548;I)V	m_01983885		m_01983885
+	m	(Lnet/minecraft/unmapped/C_93816630;Lnet/minecraft/unmapped/C_98608386$C_61305662;Lnet/minecraft/unmapped/C_28786548;I)V	m_01983885		startMiningBlock
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -69,8 +69,9 @@ c	net/minecraft/unmapped/C_70668269
 c	net/minecraft/unmapped/C_88014908
 	m	(Lnet/minecraft/unmapped/C_36919255;)V	m_00518293		m_00518293
 		p	1			p_1
+	m	()Lnet/minecraft/unmapped/C_05587068;	m_35397109	getConnection	m_35397109
 c	net/minecraft/unmapped/C_99660737
-	m	()Lnet/minecraft/unmapped/C_05587068;	m_04859862	m_04859862	
+	m	()Lnet/minecraft/unmapped/C_05587068;	m_04859862	getConnection	
 	m	()Lnet/minecraft/unmapped/C_05587068;	m_35397109		m_35397109
 c	net/minecraft/unmapped/C_27315939
 	m	(Lnet/minecraft/unmapped/C_93816630;Lnet/minecraft/unmapped/C_28786548;)V	m_01983885	m_01983885	
@@ -90,16 +91,16 @@ c	net/minecraft/unmapped/C_06377171
 c	net/minecraft/unmapped/C_29144146
 	m	()I	m_80724457		m_80724457
 c	net/minecraft/unmapped/C_52791181
-	m	(Ljava/lang/String;Ljava/lang/Object;)V	m_32997861	m_32997861	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_00251507;)V	m_16534273	m_16534273	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_00251507;)Lnet/minecraft/unmapped/C_52791181;	m_16534273		m_16534273
+	m	(Ljava/lang/String;Ljava/lang/Object;)V	m_32997861	add	
+		p	1		key	
+		p	2		value	
+	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_00251507;)V	m_16534273	add	
+		p	1		key	
+		p	2		value	
+	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_00251507;)Lnet/minecraft/unmapped/C_52791181;	m_16534273		add
 		p	1			p_1
 		p	2			p_2
-	m	(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraft/unmapped/C_52791181;	m_32997861		m_32997861
+	m	(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraft/unmapped/C_52791181;	m_32997861		add
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_17356353

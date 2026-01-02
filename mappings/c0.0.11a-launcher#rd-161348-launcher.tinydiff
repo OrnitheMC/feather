@@ -1,15 +1,15 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_71786997	net/minecraft/unmapped/C_71786997	
-	f	Ljava/awt/Canvas;	f_76617346	f_76617346	
-	f	Ljava/lang/Thread;	f_60221508	f_60221508	
-	f	Lcom/mojang/minecraft/Minecraft;	f_50311294	f_50311294	
+	f	Ljava/awt/Canvas;	f_76617346	canvas	
+	f	Ljava/lang/Thread;	f_60221508	thread	
+	f	Lcom/mojang/minecraft/Minecraft;	f_50311294	minecraft	
 	m	()V	<init>	<init>	
 	m	()V	init	init	
 	m	()V	start	start	
 	m	()V	stop	stop	
 	m	()V	destroy	destroy	
-	m	()V	m_62815550	m_62815550	
-	m	()V	m_39776356	m_39776356	
+	m	()V	m_62815550	stopGame	
+	m	()V	m_39776356	startGame	
 c	net/minecraft/unmapped/C_71786997$1	1	
 	f	Lnet/minecraft/unmapped/C_71786997;	this$0	this$0	
 	m	(Lnet/minecraft/unmapped/C_71786997;)V	<init>	<init>	
@@ -17,136 +17,137 @@ c	net/minecraft/unmapped/C_71786997$1	1
 	m	()V	addNotify	addNotify	
 	m	()V	removeNotify	removeNotify	
 c	com/mojang/minecraft/Entity
-	m	(F)V	m_73541603	m_73541603	
-		p	1		p_1	
+	m	(F)V	m_73541603	render	
+		p	1		tickDelta	
 c	com/mojang/minecraft/Minecraft
-	f	Ljava/lang/String;	f_22212355	f_22212355	
-	f	Z	f_96101654	f_96101654	
-	f	Ljava/awt/Canvas;	f_22385894	f_22385894	
-	f	Z	f_19936967	f_19936967	
-	f	Z	f_91843158	f_91843158	
-	f	Lorg/lwjgl/input/Cursor;	f_63421280	f_63421280	
-	f	I	f_75985246	f_75985246	
-	f	Lcom/mojang/minecraft/renderer/Textures;	f_45465196	f_45465196	
-	f	Lcom/mojang/minecraft/gui/Font;	f_21497584	f_21497584	
-	f	I	f_25998330	f_25998330	
-	f	Z	f_07565246	f_07565246	
-	f	Ljava/lang/String;	f_97146310	f_97146310	
-	f	Z	f_92501186	f_92501186	
-	f	Z	f_81314627		f_81314627
+	f	Ljava/lang/String;	f_22212355	VERSION	
+	f	Z	f_96101654	fullscreen	
+	f	Ljava/awt/Canvas;	f_22385894	canvas	
+	f	Z	f_19936967	appletMode	
+	f	Z	f_91843158	paused	
+	f	Lorg/lwjgl/input/Cursor;	f_63421280	cursor	
+	f	I	f_75985246	mouseYDirection	
+	f	Lcom/mojang/minecraft/renderer/Textures;	f_45465196	textureManager	
+	f	Lcom/mojang/minecraft/gui/Font;	f_21497584	textRenderer	
+	f	I	f_25998330	targetMode	
+		c	0 = break, 1 = place	
+	f	Z	f_07565246	running	
+	f	Ljava/lang/String;	f_97146310	fpsDebugInfo	
+	f	Z	f_92501186	focused	
+	f	Z	f_81314627		FULLSCREEN
 	m	(Ljava/awt/Canvas;IIZ)V	<init>	<init>	
+		p	1		canvas	
+		p	2		width	
+		p	3		height	
+		p	4		fullscreen	
+	m	(Ljava/lang/String;)V	m_07535032	logGlError	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Ljava/lang/String;)V	m_07535032	m_07535032	
-		p	1		p_1	
-	m	()V	m_16518433	m_16518433	
-	m	()V	m_57091929	m_57091929	
-	m	()V	m_57085983	m_57085983	
-	m	()V	m_51639184	m_51639184	
-	m	(Lcom/mojang/minecraft/phys/AABB;)Z	m_23143968	m_23143968	
-		p	1		p_1	
+	m	()V	m_16518433	stop	
+	m	()V	m_57091929	lockMouse	
+	m	()V	m_57085983	pauseGame	
+	m	()V	m_51639184	handleAttack	
+	m	(Lcom/mojang/minecraft/phys/AABB;)Z	m_23143968	canPlaceBlock	
+		p	1		shape	
 	m	()V	<init>		<init>
 c	com/mojang/minecraft/character/Zombie
-	f	Lcom/mojang/minecraft/renderer/Textures;	f_20917460	f_20917460	
+	f	Lcom/mojang/minecraft/renderer/Textures;	f_20917460	textureManager	
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/renderer/Textures;FFF)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		textureManager	
+		p	3		x	
+		p	4		y	
+		p	5		z	
 	m	(Lcom/mojang/minecraft/level/Level;FFF)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	com/mojang/minecraft/comm/ConnectionListener	com/mojang/minecraft/comm/ConnectionListener	
-	m	(Ljava/lang/Exception;)V	m_41848445	m_41848445	
-		p	1		p_1	
-	m	(BILjava/nio/ByteBuffer;)V	m_83012703	m_83012703	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Ljava/lang/Exception;)V	m_41848445	handleException	
+		p	1		e	
+	m	(BILjava/nio/ByteBuffer;)V	m_83012703	command	
+		p	1		command	
+		p	2		remaining	
+		p	3		buffer	
 c	com/mojang/minecraft/comm/ServerListener	com/mojang/minecraft/comm/ServerListener	
-	m	(Lcom/mojang/minecraft/comm/SocketConnection;)V	m_72480856	m_72480856	
-		p	1		p_1	
-	m	(Lcom/mojang/minecraft/comm/SocketConnection;Ljava/lang/Exception;)V	m_11886809	m_11886809	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lcom/mojang/minecraft/comm/SocketConnection;)V	m_72480856	clientConnected	
+		p	1		connection	
+	m	(Lcom/mojang/minecraft/comm/SocketConnection;Ljava/lang/Exception;)V	m_11886809	clientException	
+		p	1		connection	
+		p	2		e	
 c	com/mojang/minecraft/comm/SocketConnection	com/mojang/minecraft/comm/SocketConnection	
-	f	I	f_61075176	f_61075176	
-	f	Z	f_20032579	f_20032579	
-	f	Ljava/nio/channels/SocketChannel;	f_98559639	f_98559639	
-	f	Ljava/nio/ByteBuffer;	f_38649853	f_38649853	
-	f	Ljava/nio/ByteBuffer;	f_08296698	f_08296698	
-	f	J	f_58880236	f_58880236	
-	f	Lcom/mojang/minecraft/comm/ConnectionListener;	f_29259512	f_29259512	
-	f	I	f_74721631	f_74721631	
-	f	I	f_37162858	f_37162858	
-	f	I	f_33680907	f_33680907	
-	f	Ljava/net/Socket;	f_62603206	f_62603206	
-	f	Ljava/io/BufferedInputStream;	f_15274983	f_15274983	
-	f	Ljava/io/BufferedOutputStream;	f_39977036	f_39977036	
+	f	I	f_61075176	BUFFER_SIZE	
+	f	Z	f_20032579	open	
+	f	Ljava/nio/channels/SocketChannel;	f_98559639	channel	
+	f	Ljava/nio/ByteBuffer;	f_38649853	readBuffer	
+	f	Ljava/nio/ByteBuffer;	f_08296698	writeBuffer	
+	f	J	f_58880236	lastReadTime	
+	f	Lcom/mojang/minecraft/comm/ConnectionListener;	f_29259512	listener	
+	f	I	f_74721631	bytesRead	
+	f	I	f_37162858	bytesWritten	
+	f	I	f_33680907	maxBlocksPerIteration	
+	f	Ljava/net/Socket;	f_62603206	socket	
+	f	Ljava/io/BufferedInputStream;	f_15274983	input	
+	f	Ljava/io/BufferedOutputStream;	f_39977036	output	
 	m	(Ljava/lang/String;I)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	(I)V	m_85941999	m_85941999	
-		p	1		p_1	
-	m	()Ljava/lang/String;	m_29942537	m_29942537	
+		p	1		address	
+		p	2		port	
+	m	(I)V	m_85941999	setMaxBlocksPerIteration	
+		p	1		maxBlocksPerIteration	
+	m	()Ljava/lang/String;	m_29942537	getAddress	
 	m	(Ljava/nio/channels/SocketChannel;)V	<init>	<init>	
-		p	1		p_1	
-	m	()Ljava/nio/ByteBuffer;	m_64757299	m_64757299	
-	m	(Lcom/mojang/minecraft/comm/ConnectionListener;)V	m_94840975	m_94840975	
-		p	1		p_1	
-	m	()Z	m_25719196	m_25719196	
-	m	()V	m_24725743	m_24725743	
-	m	()V	m_51577853	m_51577853	
-	m	()I	m_90372414	m_90372414	
-	m	()I	m_13603837	m_13603837	
-	m	()V	m_49772359	m_49772359	
-	m	()V	m_26407856	m_26407856	
+		p	1		channel	
+	m	()Ljava/nio/ByteBuffer;	m_64757299	getWriteBuffer	
+	m	(Lcom/mojang/minecraft/comm/ConnectionListener;)V	m_94840975	setListener	
+		p	1		listener	
+	m	()Z	m_25719196	isOpen	
+	m	()V	m_24725743	close	
+	m	()V	m_51577853	tick	
+	m	()I	m_90372414	getBytesWritten	
+	m	()I	m_13603837	getBytesRead	
+	m	()V	m_49772359	clearBytesWritten	
+	m	()V	m_26407856	clearBytesRead	
 c	com/mojang/minecraft/comm/SocketServer	com/mojang/minecraft/comm/SocketServer	
-	f	Ljava/nio/channels/ServerSocketChannel;	f_82886994	f_82886994	
-	f	Lcom/mojang/minecraft/comm/ServerListener;	f_40844860	f_40844860	
-	f	Ljava/util/List;	f_91991442	f_91991442	
-	f	Ljava/util/logging/Logger;	f_58505039	f_58505039	
+	f	Ljava/nio/channels/ServerSocketChannel;	f_82886994	channel	
+	f	Lcom/mojang/minecraft/comm/ServerListener;	f_40844860	listener	
+	f	Ljava/util/List;	f_91991442	connections	
+	f	Ljava/util/logging/Logger;	f_58505039	LOGGER	
 	m	()V	<clinit>	<clinit>	
 	m	([BILcom/mojang/minecraft/comm/ServerListener;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()V	m_45626696	m_45626696	
+		p	1		address	
+		p	2		port	
+		p	3		listener	
+	m	()V	m_45626696	tick	
 c	com/mojang/minecraft/gui/Font	com/mojang/minecraft/gui/Font	
-	f	[I	f_45069205	f_45069205	
-	f	I	f_70082797	f_70082797	
+	f	[I	f_45069205	characterWidths	
+	f	I	f_70082797	boundTexture	
 	m	(Ljava/lang/String;Lcom/mojang/minecraft/renderer/Textures;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;III)V	m_01279315	m_01279315	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Ljava/lang/String;III)V	m_19996925	m_19996925	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Ljava/lang/String;IIIZ)V	m_83960853	m_83960853	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Ljava/lang/String;)I	m_09235706	m_09235706	
-		p	1		p_1	
+		p	1		name	
+		p	2		textureManager	
+	m	(Ljava/lang/String;III)V	m_01279315	drawWithShadow	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+		p	4		color	
+	m	(Ljava/lang/String;III)V	m_19996925	draw	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+		p	4		color	
+	m	(Ljava/lang/String;IIIZ)V	m_83960853	drawLayer	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+		p	4		color	
+		p	5		shadow	
+	m	(Ljava/lang/String;)I	m_09235706	getWidth	
+		p	1		text	
 c	com/mojang/minecraft/level/Chunk
-	f	Lcom/mojang/minecraft/renderer/Tesselator;	f_89118127	f_89118127	
-	f	Lcom/mojang/minecraft/level/Tesselator;	f_89118127		f_89118127
+	f	Lcom/mojang/minecraft/renderer/Tesselator;	f_89118127	TESSELATOR	
+	f	Lcom/mojang/minecraft/level/Tesselator;	f_89118127		TESSELATOR
 c	com/mojang/minecraft/level/DirtyChunkSorter
-	f	Lcom/mojang/minecraft/renderer/Frustum;	f_22014069	f_22014069	
-	f	Lcom/mojang/minecraft/level/Frustum;	f_22014069		f_22014069
+	f	Lcom/mojang/minecraft/renderer/Frustum;	f_22014069	frustum	
+	f	Lcom/mojang/minecraft/level/Frustum;	f_22014069		frustum
 	m	(Lcom/mojang/minecraft/Player;Lcom/mojang/minecraft/renderer/Frustum;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -154,359 +155,359 @@ c	com/mojang/minecraft/level/DirtyChunkSorter
 		p	1			p_1
 		p	2			p_2
 c	com/mojang/minecraft/level/Level
-	m	()V	m_94751313		m_94751313
+	m	()V	m_94751313		generate
 c	com/mojang/minecraft/level/LevelGen	com/mojang/minecraft/level/LevelGen	
-	f	I	f_86564369	f_86564369	
-	f	I	f_83204160	f_83204160	
-	f	I	f_33672489	f_33672489	
-	f	Ljava/util/Random;	f_35596902	f_35596902	
+	f	I	f_86564369	sizeX	
+	f	I	f_83204160	sizeZ	
+	f	I	f_33672489	sizeY	
+	f	Ljava/util/Random;	f_35596902	random	
 	m	(III)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()[B	m_90904105	m_90904105	
+		p	1		sizeX	
+		p	2		sizeZ	
+		p	3		sizeY	
+	m	()[B	m_90904105	generate	
 c	com/mojang/minecraft/level/LevelRenderer
-	f	Lcom/mojang/minecraft/renderer/Textures;	f_38343582	f_38343582	
+	f	Lcom/mojang/minecraft/renderer/Textures;	f_38343582	textureManager	
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/renderer/Textures;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/minecraft/Player;Lcom/mojang/minecraft/renderer/Frustum;)V	m_51438998	m_51438998	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/minecraft/HitResult;II)V	m_85117450	m_85117450	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		world	
+		p	2		textureManager	
+	m	(Lcom/mojang/minecraft/Player;Lcom/mojang/minecraft/renderer/Frustum;)V	m_51438998	renderBlocksNearPlayer	
+		p	1		camera	
+		p	2		frustum	
+	m	(Lcom/mojang/minecraft/HitResult;II)V	m_85117450	renderBlockOutline	
+		p	1		hit	
+		p	2		mode	
+		p	3		block	
 	m	(Lcom/mojang/minecraft/level/Level;)V	<init>		<init>
-		p	1			p_1
-	m	(Lcom/mojang/minecraft/Player;Lcom/mojang/minecraft/level/Frustum;)V	m_51438998		m_51438998
-		p	1			p_1
-		p	2			p_2
-	m	(Lcom/mojang/minecraft/HitResult;)V	m_85117450		m_85117450
-		p	1			p_1
+		p	1			world
+	m	(Lcom/mojang/minecraft/Player;Lcom/mojang/minecraft/level/Frustum;)V	m_51438998		renderBlocksNearPlayer
+		p	1			camera
+		p	2			frustum
+	m	(Lcom/mojang/minecraft/HitResult;)V	m_85117450		renderBlockOutline
+		p	1			hit
 c	com/mojang/minecraft/level/NoiseMap	com/mojang/minecraft/level/NoiseMap	
-	f	Ljava/util/Random;	f_30359699	f_30359699	
+	f	Ljava/util/Random;	f_30359699	random	
 	f	I	f_74963210	f_74963210	
-	f	I	f_54380172	f_54380172	
-	f	I	f_54022890	f_54022890	
+	f	I	f_54380172	octaves	
+	f	I	f_54022890	heightScale	
 	m	(I)V	<init>	<init>	
-		p	1		p_1	
-	m	(II)[I	m_10551497	m_10551497	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		octaves	
+	m	(II)[I	m_10551497	getRegion	
+		p	1		sizeX	
+		p	2		sizeY	
 c	com/mojang/minecraft/level/tile/Bush
 	m	(Lcom/mojang/minecraft/renderer/Tesselator;Lcom/mojang/minecraft/level/Level;IIII)V	m_84929365	m_84929365	
-		p	1		p_1	
+		p	1		tesselator	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
 	m	(Lcom/mojang/minecraft/level/Tesselator;Lcom/mojang/minecraft/level/Level;IIII)V	m_84929365		m_84929365
-		p	1			p_1
+		p	1			tesselator
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
 		p	6			p_6
 c	com/mojang/minecraft/level/tile/Tile
-	m	(Lcom/mojang/minecraft/renderer/Tesselator;Lcom/mojang/minecraft/level/Level;IIII)V	m_84929365	m_84929365	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(Lcom/mojang/minecraft/renderer/Tesselator;IIII)V	m_86795304	m_86795304	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lcom/mojang/minecraft/renderer/Tesselator;IIII)V	m_05450957	m_05450957	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lcom/mojang/minecraft/level/Tesselator;Lcom/mojang/minecraft/level/Level;IIII)V	m_84929365		m_84929365
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(Lcom/mojang/minecraft/level/Tesselator;IIII)V	m_86795304		m_86795304
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(Lcom/mojang/minecraft/level/Tesselator;IIII)V	m_05450957		m_05450957
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(Lcom/mojang/minecraft/renderer/Tesselator;Lcom/mojang/minecraft/level/Level;IIII)V	m_84929365	render	
+		p	1		tesselator	
+		p	2		world	
+		p	3		layer	
+		p	4		x	
+		p	5		y	
+		p	6		z	
+	m	(Lcom/mojang/minecraft/renderer/Tesselator;IIII)V	m_86795304	renderFace	
+		p	1		tesselator	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		face	
+	m	(Lcom/mojang/minecraft/renderer/Tesselator;IIII)V	m_05450957	renderOutlineFace	
+		p	1		tesselator	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		face	
+	m	(Lcom/mojang/minecraft/level/Tesselator;Lcom/mojang/minecraft/level/Level;IIII)V	m_84929365		render
+		p	1			tesselator
+		p	2			world
+		p	3			layer
+		p	4			x
+		p	5			y
+		p	6			z
+	m	(Lcom/mojang/minecraft/level/Tesselator;IIII)V	m_86795304		renderFace
+		p	1			tesselator
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			face
+	m	(Lcom/mojang/minecraft/level/Tesselator;IIII)V	m_05450957		renderOutlineFace
+		p	1			tesselator
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			face
 c	com/mojang/minecraft/particle/Particle
-	m	(Lcom/mojang/minecraft/renderer/Tesselator;FFFFFF)V	m_73421798	m_73421798	
+	m	(Lcom/mojang/minecraft/renderer/Tesselator;FFFFFF)V	m_73421798	render	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-	m	(Lcom/mojang/minecraft/level/Tesselator;FFFFFF)V	m_73421798		m_73421798
+		p	2		tickDelta	
+		p	3		dx	
+		p	4		dy	
+		p	5		dz	
+		p	6		forwards	
+		p	7		sideways	
+	m	(Lcom/mojang/minecraft/level/Tesselator;FFFFFF)V	m_73421798		render
 		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	2			tickDelta
+		p	3			dx
+		p	4			dy
+		p	5			dz
+		p	6			forwards
+		p	7			sideways
 c	com/mojang/minecraft/particle/ParticleEngine
-	f	Lcom/mojang/minecraft/renderer/Textures;	f_94050747	f_94050747	
+	f	Lcom/mojang/minecraft/renderer/Textures;	f_94050747	textureManager	
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/renderer/Textures;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		world	
+		p	2		textureManager	
 	m	(Lcom/mojang/minecraft/level/Level;)V	<init>		<init>
 		p	1			p_1
 c	com/mojang/minecraft/renderer/Frustum	com/mojang/minecraft/renderer/Frustum	
-	f	[[F	f_49427274	f_49427274	
-	f	I	f_10377737	f_10377737	
-	f	I	f_50608444	f_50608444	
-	f	I	f_72856891	f_72856891	
-	f	I	f_52837556	f_52837556	
-	f	I	f_89718155	f_89718155	
-	f	I	f_14735158	f_14735158	
-	f	I	f_04865846	f_04865846	
-	f	I	f_78936816	f_78936816	
-	f	I	f_98066930	f_98066930	
-	f	I	f_32905754	f_32905754	
-	f	Lcom/mojang/minecraft/renderer/Frustum;	f_86413496	f_86413496	
-	f	Ljava/nio/FloatBuffer;	f_47065416	f_47065416	
-	f	Ljava/nio/FloatBuffer;	f_77487857	f_77487857	
-	f	Ljava/nio/FloatBuffer;	f_86336944	f_86336944	
-	f	[F	f_48713785	f_48713785	
-	f	[F	f_58539757	f_58539757	
-	f	[F	f_76511680	f_76511680	
+	f	[[F	f_49427274	frustum	
+	f	I	f_10377737	FACE_RIGHT	
+	f	I	f_50608444	FACE_LEFT	
+	f	I	f_72856891	FACE_BOTTOM	
+	f	I	f_52837556	FACE_TOP	
+	f	I	f_89718155	FACE_BACK	
+	f	I	f_14735158	FACE_FRONT	
+	f	I	f_04865846	PLANE_X	
+	f	I	f_78936816	PLANE_Y	
+	f	I	f_98066930	PLANE_Z	
+	f	I	f_32905754	PLANE_W	
+	f	Lcom/mojang/minecraft/renderer/Frustum;	f_86413496	INSTANCE	
+	f	Ljava/nio/FloatBuffer;	f_47065416	projectionBuffer	
+	f	Ljava/nio/FloatBuffer;	f_77487857	modelBuffer	
+	f	Ljava/nio/FloatBuffer;	f_86336944	clipBuffer	
+	f	[F	f_48713785	projectionMatrix	
+	f	[F	f_58539757	modelMatrix	
+	f	[F	f_76511680	clipMatrix	
 	m	()V	<clinit>	<clinit>	
 	m	()V	<init>	<init>	
-	m	()Lcom/mojang/minecraft/renderer/Frustum;	m_27806081	m_27806081	
-	m	([[FI)V	m_68321611	m_68321611	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	m_77068716	m_77068716	
-	m	(FFF)Z	m_74920580	m_74920580	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(FFFF)Z	m_82287844	m_82287844	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(FFFFFF)Z	m_82258238	m_82258238	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(FFFFFF)Z	m_69852221	m_69852221	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(Lcom/mojang/minecraft/phys/AABB;)Z	m_81364846	m_81364846	
-		p	1		p_1	
+	m	()Lcom/mojang/minecraft/renderer/Frustum;	m_27806081	compute	
+	m	([[FI)V	m_68321611	normalize	
+		p	1		frustum	
+		p	2		face	
+	m	()V	m_77068716	generateFrustum	
+	m	(FFF)Z	m_74920580	isInside	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(FFFF)Z	m_82287844	isInside	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		radius	
+	m	(FFFFFF)Z	m_82258238	isFullyInside	
+		p	1		minX	
+		p	2		minY	
+		p	3		minZ	
+		p	4		maxX	
+		p	5		maxY	
+		p	6		maxZ	
+	m	(FFFFFF)Z	m_69852221	isPartiallyInside	
+		p	1		minX	
+		p	2		minY	
+		p	3		minZ	
+		p	4		maxX	
+		p	5		maxY	
+		p	6		maxZ	
+	m	(Lcom/mojang/minecraft/phys/AABB;)Z	m_81364846	isPartiallyInside	
+		p	1		box	
 c	com/mojang/minecraft/renderer/Tesselator	com/mojang/minecraft/renderer/Tesselator	
-	f	I	f_63210773	f_63210773	
-	f	I	f_21579457	f_21579457	
-	f	Ljava/nio/FloatBuffer;	f_09116169	f_09116169	
-	f	[F	f_96386002	f_96386002	
-	f	I	f_15150430	f_15150430	
-	f	F	f_80684054	f_80684054	
-	f	F	f_86301224	f_86301224	
-	f	F	f_88927828	f_88927828	
-	f	F	f_62946667	f_62946667	
-	f	F	f_80994442	f_80994442	
-	f	Z	f_73575362	f_73575362	
-	f	Z	f_63381300	f_63381300	
-	f	I	f_82323112	f_82323112	
-	f	I	f_42570949	f_42570949	
-	f	Z	f_65323585	f_65323585	
-	f	Lcom/mojang/minecraft/renderer/Tesselator;	f_99414865	f_99414865	
+	f	I	f_63210773	BYTE_COUNT	
+	f	I	f_21579457	VERTEX_COUNT	
+	f	Ljava/nio/FloatBuffer;	f_09116169	byteBuffer	
+	f	[F	f_96386002	vertexBuffer	
+	f	I	f_15150430	vertexCount	
+	f	F	f_80684054	u	
+	f	F	f_86301224	v	
+	f	F	f_88927828	r	
+	f	F	f_62946667	g	
+	f	F	f_80994442	b	
+	f	Z	f_73575362	colored	
+	f	Z	f_63381300	textured	
+	f	I	f_82323112	stride	
+	f	I	f_42570949	index	
+	f	Z	f_65323585	uncolored	
+	f	Lcom/mojang/minecraft/renderer/Tesselator;	f_99414865	INSTANCE	
 	m	()V	<clinit>	<clinit>	
 	m	()V	<init>	<init>	
-	m	()V	m_70070273	m_70070273	
-	m	()V	m_04179944	m_04179944	
-	m	()V	m_95009975	m_95009975	
-	m	(FF)V	m_22449873	m_22449873	
-		p	1		p_1	
-		p	2		p_2	
-	m	(FFF)V	m_86806702	m_86806702	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(FFFFF)V	m_75942980	m_75942980	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(FFF)V	m_51994127	m_51994127	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(I)V	m_18881924	m_18881924	
-		p	1		p_1	
-	m	()V	m_22111316	m_22111316	
+	m	()V	m_70070273	end	
+	m	()V	m_04179944	clear	
+	m	()V	m_95009975	reset	
+	m	(FF)V	m_22449873	texture	
+		p	1		u	
+		p	2		v	
+	m	(FFF)V	m_86806702	color	
+		p	1		r	
+		p	2		g	
+		p	3		b	
+	m	(FFFFF)V	m_75942980	vertex	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		u	
+		p	5		v	
+	m	(FFF)V	m_51994127	vertex	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(I)V	m_18881924	color	
+		p	1		rgb	
+	m	()V	m_22111316	uncolored	
 c	com/mojang/minecraft/renderer/Textures	com/mojang/minecraft/renderer/Textures	
-	f	Ljava/util/HashMap;	f_28882271	f_28882271	
+	f	Ljava/util/HashMap;	f_28882271	textureIds	
 	m	()V	<init>	<init>	
-	m	(Ljava/lang/String;I)I	m_33729172	m_33729172	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;I)I	m_33729172	load	
+		p	1		path	
+		p	2		mode	
 c	com/mojang/minecraft/server/Client	com/mojang/minecraft/server/Client	
-	f	Lcom/mojang/minecraft/comm/SocketConnection;	f_00357162	f_00357162	
-	f	Lcom/mojang/minecraft/server/MinecraftServer;	f_04458261	f_04458261	
+	f	Lcom/mojang/minecraft/comm/SocketConnection;	f_00357162	connection	
+	f	Lcom/mojang/minecraft/server/MinecraftServer;	f_04458261	server	
 	m	(Lcom/mojang/minecraft/server/MinecraftServer;Lcom/mojang/minecraft/comm/SocketConnection;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		server	
+		p	2		connection	
 	m	(BILjava/nio/ByteBuffer;)V	m_83012703	m_83012703	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	(Ljava/lang/Exception;)V	m_41848445	m_41848445	
 		p	1		p_1	
-	m	()V	m_35479395	m_35479395	
+	m	()V	m_35479395	disconnect	
 c	com/mojang/minecraft/server/MinecraftServer	com/mojang/minecraft/server/MinecraftServer	
-	f	Lcom/mojang/minecraft/comm/SocketServer;	f_27678770	f_27678770	
-	f	Ljava/util/Map;	f_55891609	f_55891609	
-	f	Ljava/util/List;	f_48543894	f_48543894	
+	f	Lcom/mojang/minecraft/comm/SocketServer;	f_27678770	connection	
+	f	Ljava/util/Map;	f_55891609	clientsByConnection	
+	f	Ljava/util/List;	f_48543894	clients	
 	m	([BI)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		address	
+		p	2		port	
 	m	(Lcom/mojang/minecraft/comm/SocketConnection;)V	m_72480856	m_72480856	
 		p	1		p_1	
-	m	(Lcom/mojang/minecraft/server/Client;)V	m_39751030	m_39751030	
-		p	1		p_1	
+	m	(Lcom/mojang/minecraft/server/Client;)V	m_39751030	disconnect	
+		p	1		client	
 	m	(Lcom/mojang/minecraft/comm/SocketConnection;Ljava/lang/Exception;)V	m_11886809	m_11886809	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	run	run	
-	m	()V	m_64637364	m_64637364	
+	m	()V	m_64637364	tick	
 	m	([Ljava/lang/String;)V	main	main	
-		p	0		p_0	
+		p	0		args	
 c	com/mojang/minecraft/MinecraftApplet		com/mojang/minecraft/MinecraftApplet
 	m	()V	<init>		<init>
 c	com/mojang/minecraft/Textures		com/mojang/minecraft/Textures
-	f	Ljava/util/HashMap;	f_28882271		f_28882271
+	f	Ljava/util/HashMap;	f_28882271		textureIds
 	m	()V	<clinit>		<clinit>
 	m	()V	<init>		<init>
-	m	(Ljava/lang/String;I)I	m_33729172		m_33729172
-		p	0			p_0
-		p	1			p_1
+	m	(Ljava/lang/String;I)I	m_33729172		load
+		p	0			resourceName
+		p	1			path
 c	com/mojang/minecraft/level/Frustum		com/mojang/minecraft/level/Frustum
-	f	[[F	f_49427274		f_49427274
-	f	I	f_10377737		f_10377737
-	f	I	f_50608444		f_50608444
-	f	I	f_72856891		f_72856891
-	f	I	f_52837556		f_52837556
-	f	I	f_89718155		f_89718155
-	f	I	f_14735158		f_14735158
-	f	I	f_04865846		f_04865846
-	f	I	f_78936816		f_78936816
-	f	I	f_98066930		f_98066930
-	f	I	f_32905754		f_32905754
-	f	Lcom/mojang/minecraft/level/Frustum;	f_86413496		f_86413496
-	f	Ljava/nio/FloatBuffer;	f_47065416		f_47065416
-	f	Ljava/nio/FloatBuffer;	f_77487857		f_77487857
-	f	Ljava/nio/FloatBuffer;	f_86336944		f_86336944
-	f	[F	f_48713785		f_48713785
-	f	[F	f_58539757		f_58539757
-	f	[F	f_76511680		f_76511680
+	f	[[F	f_49427274		frustum
+	f	I	f_10377737		FACE_RIGHT
+	f	I	f_50608444		FACE_LEFT
+	f	I	f_72856891		FACE_BOTTOM
+	f	I	f_52837556		FACE_TOP
+	f	I	f_89718155		FACE_BACK
+	f	I	f_14735158		FACE_FRONT
+	f	I	f_04865846		PLANE_X
+	f	I	f_78936816		PLANE_Y
+	f	I	f_98066930		PLANE_Z
+	f	I	f_32905754		PLANE_W
+	f	Lcom/mojang/minecraft/level/Frustum;	f_86413496		INSTANCE
+	f	Ljava/nio/FloatBuffer;	f_47065416		projectionBuffer
+	f	Ljava/nio/FloatBuffer;	f_77487857		modelBuffer
+	f	Ljava/nio/FloatBuffer;	f_86336944		clipBuffer
+	f	[F	f_48713785		projectionMatrix
+	f	[F	f_58539757		modelMatrix
+	f	[F	f_76511680		clipMatrix
 	m	()V	<clinit>		<clinit>
 	m	()V	<init>		<init>
-	m	()Lcom/mojang/minecraft/level/Frustum;	m_27806081		m_27806081
-	m	([[FI)V	m_68321611		m_68321611
-		p	1			p_1
-		p	2			p_2
-	m	()V	m_77068716		m_77068716
-	m	(FFF)Z	m_74920580		m_74920580
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(FFFF)Z	m_82287844		m_82287844
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(FFFFFF)Z	m_82258238		m_82258238
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(FFFFFF)Z	m_69852221		m_69852221
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(Lcom/mojang/minecraft/phys/AABB;)Z	m_81364846		m_81364846
-		p	1			p_1
+	m	()Lcom/mojang/minecraft/level/Frustum;	m_27806081		compute
+	m	([[FI)V	m_68321611		normalize
+		p	1			frustum
+		p	2			face
+	m	()V	m_77068716		generateFrustum
+	m	(FFF)Z	m_74920580		isInside
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(FFFF)Z	m_82287844		isInside
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			radius
+	m	(FFFFFF)Z	m_82258238		isFullyInside
+		p	1			minX
+		p	2			minY
+		p	3			minZ
+		p	4			maxX
+		p	5			maxY
+		p	6			maxZ
+	m	(FFFFFF)Z	m_69852221		isPartiallyInside
+		p	1			minX
+		p	2			minY
+		p	3			minZ
+		p	4			maxX
+		p	5			maxY
+		p	6			maxZ
+	m	(Lcom/mojang/minecraft/phys/AABB;)Z	m_81364846		isPartiallyInside
+		p	1			box
 c	com/mojang/minecraft/level/PerlinNoiseFilter		com/mojang/minecraft/level/PerlinNoiseFilter
-	f	Ljava/util/Random;	f_30359699		f_30359699
+	f	Ljava/util/Random;	f_30359699		random
 	f	I	f_74963210		f_74963210
-	f	I	f_54380172		f_54380172
-	f	I	f_54022890		f_54022890
+	f	I	f_54380172		octaves
+	f	I	f_54022890		heightScale
 	m	(I)V	<init>		<init>
-		p	1			p_1
-	m	(II)[I	m_10551497		m_10551497
-		p	1			p_1
-		p	2			p_2
+		p	1			octaves
+	m	(II)[I	m_10551497		getRegion
+		p	1			sizeX
+		p	2			sizeY
 c	com/mojang/minecraft/level/Tesselator		com/mojang/minecraft/level/Tesselator
-	f	I	f_63210773		f_63210773
-	f	I	f_21579457		f_21579457
-	f	Ljava/nio/FloatBuffer;	f_09116169		f_09116169
-	f	[F	f_96386002		f_96386002
-	f	I	f_15150430		f_15150430
-	f	F	f_80684054		f_80684054
-	f	F	f_86301224		f_86301224
-	f	F	f_88927828		f_88927828
-	f	F	f_62946667		f_62946667
-	f	F	f_80994442		f_80994442
-	f	Z	f_73575362		f_73575362
-	f	Z	f_63381300		f_63381300
-	f	I	f_82323112		f_82323112
-	f	I	f_42570949		f_42570949
-	f	Lcom/mojang/minecraft/level/Tesselator;	f_99414865		f_99414865
+	f	I	f_63210773		BYTE_COUNT
+	f	I	f_21579457		VERTEX_COUNT
+	f	Ljava/nio/FloatBuffer;	f_09116169		byteBuffer
+	f	[F	f_96386002		vertexBuffer
+	f	I	f_15150430		vertexCount
+	f	F	f_80684054		u
+	f	F	f_86301224		v
+	f	F	f_88927828		r
+	f	F	f_62946667		g
+	f	F	f_80994442		b
+	f	Z	f_73575362		colored
+	f	Z	f_63381300		textured
+	f	I	f_82323112		stride
+	f	I	f_42570949		index
+	f	Lcom/mojang/minecraft/level/Tesselator;	f_99414865		INSTANCE
 	m	()V	<clinit>		<clinit>
 	m	()V	<init>		<init>
-	m	()V	m_70070273		m_70070273
-	m	()V	m_04179944		m_04179944
-	m	()V	m_95009975		m_95009975
-	m	(FF)V	m_22449873		m_22449873
-		p	1			p_1
-		p	2			p_2
-	m	(FFF)V	m_86806702		m_86806702
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(FFFFF)V	m_75942980		m_75942980
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(FFF)V	m_51994127		m_51994127
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	()V	m_70070273		end
+	m	()V	m_04179944		clear
+	m	()V	m_95009975		reset
+	m	(FF)V	m_22449873		texture
+		p	1			u
+		p	2			v
+	m	(FFF)V	m_86806702		color
+		p	1			r
+		p	2			g
+		p	3			b
+	m	(FFFFF)V	m_75942980		vertex
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			u
+		p	5			v
+	m	(FFF)V	m_51994127		vertex
+		p	1			x
+		p	2			y
+		p	3			z

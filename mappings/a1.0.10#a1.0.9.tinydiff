@@ -1,12 +1,12 @@
 tiny	2	0
-c	net/minecraft/unmapped/C_10350466	net/minecraft/unmapped/C_10350466	
-	f	Lnet/minecraft/unmapped/C_85740840;	f_68344723	f_68344723	
-	f	I	f_83104804	f_83104804	
-	f	Ljava/lang/String;	f_37321250	f_37321250	
+c	net/minecraft/unmapped/C_10350466	net/minecraft/client/gui/screen/JoinMultiplayerScreen	
+	f	Lnet/minecraft/unmapped/C_85740840;	f_68344723	parent	
+	f	I	f_83104804	ticks	
+	f	Ljava/lang/String;	f_37321250	address	
 	f	Ljava/lang/String;	f_20212274	f_20212274	
 	f	[B	f_34169200	f_34169200	
 	m	(Lnet/minecraft/unmapped/C_85740840;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		parent	
 	m	()V	m_53520780	m_53520780	
 	m	()V	m_41805697	m_41805697	
 	m	(Lnet/minecraft/unmapped/C_85125467;)V	m_30778170	m_30778170	
@@ -26,37 +26,37 @@ c	net/minecraft/unmapped/C_10350466	net/minecraft/unmapped/C_10350466
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_10918870
-	m	(Lnet/minecraft/unmapped/C_70193960;)V	m_01570609	m_01570609	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_47185453;)V	m_21987675	m_21987675	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_37912925;)V	m_00872348	m_00872348	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_70193960;)V	m_01570609	handleEntityPickup	
+		p	1		packet	
+	m	(Lnet/minecraft/unmapped/C_47185453;)V	m_21987675	handleChatMessage	
+		p	1		packet	
+	m	(Lnet/minecraft/unmapped/C_37912925;)V	m_00872348	handleItemPickup	
+		p	1		packet	
 c	net/minecraft/unmapped/C_14917579
-	m	()V	m_71750474	m_71750474	
+	m	()V	m_71750474	populateHeightMapOnly	
 c	net/minecraft/unmapped/C_23014920
 	f	Ljava/lang/String;	f_34733250		f_34733250
 c	net/minecraft/unmapped/C_29058632
-	m	(IIIII)V	m_57734177	m_57734177	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(IIIII)V	m_57734177	fill	
+		p	1		x1	
+		p	2		y1	
+		p	3		x2	
+		p	4		y2	
+		p	5		color	
 c	net/minecraft/unmapped/C_40996800
 	m	()V	m_85081302	m_85081302	
-	m	(Lnet/minecraft/unmapped/C_06774341;)V	m_84892609	m_84892609	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_42232651;I)V	m_44124769	m_44124769	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_44124769		m_44124769
-		p	1			p_1
-c	net/minecraft/unmapped/C_47185453	net/minecraft/unmapped/C_47185453	
-	f	Ljava/lang/String;	f_07603144	f_07603144	
+	m	(Lnet/minecraft/unmapped/C_06774341;)V	m_84892609	spawnItem	
+		p	1		item	
+	m	(Lnet/minecraft/unmapped/C_42232651;I)V	m_44124769	pickUp	
+		p	1		item	
+		p	2		count	
+	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_44124769		pickUp
+		p	1			entity
+c	net/minecraft/unmapped/C_47185453	net/minecraft/network/packet/ChatMessagePacket	
+	f	Ljava/lang/String;	f_07603144	message	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		message	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_17566769	m_17566769	
@@ -67,13 +67,13 @@ c	net/minecraft/unmapped/C_57778754
 	m	(Lnet/minecraft/unmapped/C_42232651;I)V	m_44124769	m_44124769	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Ljava/lang/String;)V	m_52386447	m_52386447	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_52386447	sendChat	
+		p	1		content	
 	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_44124769		m_44124769
 		p	1			p_1
-c	net/minecraft/unmapped/C_63704535	net/minecraft/unmapped/C_63704535	
-	f	Ljava/lang/String;	f_43448917	f_43448917	
-	f	I	f_46934095	f_46934095	
+c	net/minecraft/unmapped/C_63704535	net/minecraft/client/gui/screen/ChatScreen	
+	f	Ljava/lang/String;	f_43448917	lastChatMessage	
+	f	I	f_46934095	ticks	
 	m	()V	<init>	<init>	
 	m	()V	m_41805697	m_41805697	
 	m	()V	m_47002234	m_47002234	
@@ -90,21 +90,21 @@ c	net/minecraft/unmapped/C_63704535	net/minecraft/unmapped/C_63704535
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_64041439
-	f	Z	f_68721024	f_68721024	
-	m	(Lnet/minecraft/unmapped/C_92766678;IIIIIIZ)V	m_01981485	m_01981485	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
+	f	Z	f_68721024	searchingSpawnPoint	
+	m	(Lnet/minecraft/unmapped/C_92766678;IIIIIIZ)V	m_01981485	updateLight	
+		p	1		type	
+		p	2		minX	
+		p	3		minY	
+		p	4		minZ	
+		p	5		maxX	
+		p	6		maxY	
+		p	7		maxZ	
+		p	8		expand	
 c	net/minecraft/unmapped/C_67960412
-	f	I	f_42726650	f_42726650	
-c	net/minecraft/unmapped/C_70193960	net/minecraft/unmapped/C_70193960	
-	f	I	f_72202759	f_72202759	
-	f	I	f_03166644	f_03166644	
+	f	I	f_42726650	ticks	
+c	net/minecraft/unmapped/C_70193960	net/minecraft/network/packet/EntityPickupPacket	
+	f	I	f_72202759	id	
+	f	I	f_03166644	collectorId	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	
@@ -113,8 +113,8 @@ c	net/minecraft/unmapped/C_70193960	net/minecraft/unmapped/C_70193960
 	m	(Lnet/minecraft/unmapped/C_10918870;)V	m_04853589	m_04853589	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_76792751
-	f	Lnet/minecraft/unmapped/C_23708450;	f_91803473		f_91803473
-	f	Lnet/minecraft/unmapped/C_23708450;	f_48991045		f_48991045
+	f	Lnet/minecraft/unmapped/C_23708450;	f_91803473		saveLocationKey
+	f	Lnet/minecraft/unmapped/C_23708450;	f_48991045		loadLocationKey
 c	net/minecraft/unmapped/C_88014908
 	m	(Lnet/minecraft/unmapped/C_70193960;)V	m_01570609	m_01570609	
 		p	1		p_1	
@@ -123,17 +123,17 @@ c	net/minecraft/unmapped/C_88014908
 	m	(Lnet/minecraft/unmapped/C_37912925;)V	m_00872348	m_00872348	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_97866173
-	m	(Ljava/lang/String;)V	m_81906308	m_81906308	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_81906308	addChatMessage	
+		p	1		text	
 c	net/minecraft/unmapped/C_97929192
 	m	(Lnet/minecraft/unmapped/C_06774341;)V	m_84892609	m_84892609	
 		p	1		p_1	
 	m	(Ljava/lang/String;)V	m_52386447	m_52386447	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_37912925	net/minecraft/unmapped/C_37912925	
-	f	I	f_32392020	f_32392020	
-	f	I	f_17953394	f_17953394	
-	f	I	f_59880040	f_59880040	
+c	net/minecraft/unmapped/C_37912925	net/minecraft/network/packet/ItemPickupPacket	
+	f	I	f_32392020	id	
+	f	I	f_17953394	count	
+	f	I	f_59880040	metadata	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	

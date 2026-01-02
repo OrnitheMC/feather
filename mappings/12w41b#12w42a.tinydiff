@@ -1,13 +1,13 @@
 tiny	2	0
 c	net/minecraft/server/MinecraftServer
 c	net/minecraft/server/MinecraftServer$44668523
-	f	Lnet/minecraft/unmapped/C_40675486;	f_47813059		f_47813059
+	f	Lnet/minecraft/unmapped/C_40675486;	f_47813059		fallback
 c	net/minecraft/server/MinecraftServer$49887269
-	f	Lnet/minecraft/unmapped/C_40675486;	f_61648266		f_61648266
+	f	Lnet/minecraft/unmapped/C_40675486;	f_61648266		fallback
 c	net/minecraft/server/MinecraftServer$73665004
-	f	Lnet/minecraft/unmapped/C_40675486;	f_26975926		f_26975926
+	f	Lnet/minecraft/unmapped/C_40675486;	f_26975926		fallback
 c	net/minecraft/server/MinecraftServer$78919150
-	f	Lnet/minecraft/unmapped/C_40675486;	f_87946624		f_87946624
+	f	Lnet/minecraft/unmapped/C_40675486;	f_87946624		fallback
 c	net/minecraft/unmapped/C_00242893
 	m	(DZ)V	m_40493886		m_40493886
 		p	1			p_1
@@ -39,13 +39,14 @@ c	net/minecraft/unmapped/C_39000935
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_42232651
-	m	()Z	m_84531999		m_84531999
+	m	()Z	m_84531999		canAvoidTraps
 c	net/minecraft/unmapped/C_46108969
-	m	(IIII)Z	m_48917424		m_48917424
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(IIII)Z	m_48917424		hasDirectSignal
+		c		Returns whether the block at the given position is emitting a direct redstone signal in the given direction.\nThis roughly equates to what is colloquially known as 'hard' or 'strong' power.\n\n<p>\nNOTE: directions in redstone signal related methods are backwards, so this method\nchecks for the signal emitted in the direction <i>opposite</i> of the one given.
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			dir
 c	net/minecraft/unmapped/C_51265047
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	m_14301495	
 		p	1		p_1	
@@ -81,27 +82,27 @@ c	net/minecraft/unmapped/C_66522575
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_71700262
-	f	Z	f_69827231		f_69827231
-	f	I	f_38211413		f_38211413
-	f	F	f_14861910		f_14861910
-	m	(Z)V	m_96999847		m_96999847
-		p	1			p_1
+	f	Z	f_69827231		hurtingEntities
+	f	I	f_38211413		maxFallHurt
+	f	F	f_14861910		fallHurtAmount
+	m	(Z)V	m_96999847		setHurtingEntities
+		p	1			hurtingEntities
 c	net/minecraft/unmapped/C_77418302
-	m	(Lnet/minecraft/unmapped/C_71700262;)V	m_84565679		m_84565679
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_71700262;)V	m_84565679		beforeStartFalling
+		p	1			fallingBlockEntity
 c	net/minecraft/unmapped/C_81592558
-	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	m_14301495	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_46108969;IIII)Z	m_14301495		m_14301495
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	hasDirectSignal	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		dir	
+	m	(Lnet/minecraft/unmapped/C_46108969;IIII)Z	m_14301495		hasDirectSignal
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			dir
 c	net/minecraft/unmapped/C_92949082
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	m_14301495	
 		p	1		p_1	
@@ -126,13 +127,13 @@ c	net/minecraft/unmapped/C_97645581
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_97645581$C_40495590
-	m	()I	m_57797600		m_57797600
+	m	()I	m_57797600		getRepairIngredient
 c	net/minecraft/unmapped/C_98888256
-	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_88708284;)Z	m_14016834		m_14016834
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_88708284;)Z	m_14016834		isRepairable
+		p	1			stack
+		p	2			ingredient
 c	net/minecraft/unmapped/C_98888256$C_74597326
-	m	()I	m_01812267		m_01812267
+	m	()I	m_01812267		getRepairIngredient
 c	net/minecraft/unmapped/C_73034413
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	m_14301495	
 		p	1		p_1	
@@ -146,14 +147,14 @@ c	net/minecraft/unmapped/C_73034413
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_46108969;IIII)Z	m_39512662		m_39512662
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(I)Z	m_96601395		m_96601395
-		p	0			p_0
+	m	(Lnet/minecraft/unmapped/C_46108969;IIII)Z	m_39512662		isLocked
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			metadata
+	m	(I)Z	m_96601395		isRepeater
+		p	0			block
 c	net/minecraft/unmapped/C_17388568
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	m_14301495	
 		p	1		p_1	
@@ -168,16 +169,16 @@ c	net/minecraft/unmapped/C_17388568
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_83334639
-	f	Lnet/minecraft/unmapped/C_83334639;	f_09949435		f_09949435
+	f	Lnet/minecraft/unmapped/C_83334639;	f_09949435		FALLING_BLOCK
 c	net/minecraft/unmapped/C_91543234
-	f	Z	f_54096000		f_54096000
-	m	()Z	m_12571436		m_12571436
-	m	(Z)V	m_47850796		m_47850796
-		p	1			p_1
+	f	Z	f_54096000		hideAddress
+	m	()Z	m_12571436		hideAddress
+	m	(Z)V	m_47850796		setHideAdress
+		p	1			hideAdress
 c	net/minecraft/unmapped/C_08317554
-	m	(Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;	m_14841273		m_14841273
-		p	0			p_0
-		p	1			p_1
+	m	(Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;	m_14841273		checkLogin
+		p	0			username
+		p	1			password
 c	net/minecraft/unmapped/C_60655902
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_14301495	m_14301495	
 		p	1		p_1	
@@ -197,7 +198,7 @@ c	net/minecraft/unmapped/C_53392386
 		p	3			p_3
 	m	()Z	m_84531999		m_84531999
 c	net/minecraft/unmapped/C_30819416
-	f	I	f_84915343		f_84915343
+	f	I	f_84915343		minRepairItemCount
 	m	(Lnet/minecraft/unmapped/C_30819416;)I	m_61547772		m_61547772
 		p	0			p_0
 c	net/minecraft/unmapped/C_30819416$50220959
@@ -207,4 +208,11 @@ c	net/minecraft/unmapped/C_41649100
 		p	1			p_1
 c	net/minecraft/unmapped/C_44132200
 	f	Z	f_38277443	f_38277443	
-	f	Lnet/minecraft/unmapped/C_87542771;	f_34822187		f_34822187
+	f	Lnet/minecraft/unmapped/C_87542771;	f_34822187		playerInventory
+c	net/minecraft/unmapped/C_64041439
+	m	(IIII)Z	m_48917424	hasDirectSignal	m_48917424
+		c	Returns whether the block at the given position is emitting a direct redstone signal in the given direction.\nThis roughly equates to what is colloquially known as 'hard' or 'strong' power.\n\n<p>\nNOTE: directions in redstone signal related methods are backwards, so this method\nchecks for the signal emitted in the direction <i>opposite</i> of the one given.	
+		p	1		x	p_1
+		p	2		y	p_2
+		p	3		z	p_3
+		p	4		dir	p_4

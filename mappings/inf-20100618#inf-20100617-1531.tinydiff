@@ -1,13 +1,13 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
-	f	Ljava/lang/String;	f_26315098		f_26315098
-	m	(Ljava/lang/String;I)V	m_42312876		m_42312876
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_02333628	net/minecraft/unmapped/C_02333628	
+	f	Ljava/lang/String;	f_26315098		startupServerAddress
+	m	(Ljava/lang/String;I)V	m_42312876		setStartupServer
+		p	1			address
+		p	2			port
+c	net/minecraft/unmapped/C_02333628	net/minecraft/block/RailBlock	
 	m	(II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		id	
+		p	2		sprite	
 	m	(Lnet/minecraft/unmapped/C_64041439;III)Lnet/minecraft/unmapped/C_82690114;	m_03092609	m_03092609	
 		p	1		p_1	
 		p	2		p_2	
@@ -65,9 +65,9 @@ c	net/minecraft/unmapped/C_02333628	net/minecraft/unmapped/C_02333628
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_03140863
-	m	(I)V	m_64444646	m_64444646	
-		p	1		p_1	
-	m	()V	m_64444646		m_64444646
+	m	(I)V	m_64444646	setupFog	
+		p	1		type	
+	m	()V	m_64444646		setupFog
 c	net/minecraft/unmapped/C_03670941
 	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_64041439;III)V	m_77097109	m_77097109	
 		p	1		p_1	
@@ -78,7 +78,7 @@ c	net/minecraft/unmapped/C_03670941
 c	net/minecraft/unmapped/C_09140510
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_14830046	net/minecraft/unmapped/C_14830046	
+c	net/minecraft/unmapped/C_14830046	net/minecraft/block/ObsidianBlock	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -88,13 +88,13 @@ c	net/minecraft/unmapped/C_14830046	net/minecraft/unmapped/C_14830046
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_14917579
-	m	(IIIII)Z	m_75581471	m_75581471	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-c	net/minecraft/unmapped/C_20443579	net/minecraft/unmapped/C_20443579	
+	m	(IIIII)Z	m_75581471	setBlockWithMetadata	
+		p	1		localX	
+		p	2		y	
+		p	3		localZ	
+		p	4		block	
+		p	5		metadata	
+c	net/minecraft/unmapped/C_20443579	net/minecraft/item/MinecartItem	
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_93921076	m_93921076	
 		p	1		p_1	
 		p	2		p_2	
@@ -105,23 +105,24 @@ c	net/minecraft/unmapped/C_20443579	net/minecraft/unmapped/C_20443579
 		p	7		p_7	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_21479319	net/minecraft/unmapped/C_21479319	
-	f	[Lnet/minecraft/unmapped/C_88708284;	f_85586729	f_85586729	
-	f	[[[I	f_97856110	f_97856110	
+c	net/minecraft/unmapped/C_21479319	net/minecraft/entity/vehicle/MinecartEntity	
+	f	[Lnet/minecraft/unmapped/C_88708284;	f_85586729	inventory	
+	f	[[[I	f_97856110	ADJACENT_RAIL_POSITIONS_BY_SHAPE	
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	m_91465012	m_91465012	
 	m	()Z	m_23617273	m_23617273	
 	m	()V	m_24884718	m_24884718	
-	m	(DDDD)Lnet/minecraft/unmapped/C_94584382;	m_62646199	m_62646199	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-	m	(DDD)Lnet/minecraft/unmapped/C_94584382;	m_18853071	m_18853071	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+	m	(DDDD)Lnet/minecraft/unmapped/C_94584382;	m_62646199	snapPositionToRailWithOffset	
+		c	This method is used to determine the minecart's render orientation, by computing a position along the rail slightly before and slightly after the minecart's actual position.	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		offset	
+	m	(DDD)Lnet/minecraft/unmapped/C_94584382;	m_18853071	snapPositionToRail	
+		p	1		x	
+		p	3		y	
+		p	5		z	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_61937125	m_61937125	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_30953923	m_30953923	
@@ -142,17 +143,17 @@ c	net/minecraft/unmapped/C_21479319	net/minecraft/unmapped/C_21479319
 	m	()V	m_38999452	m_38999452	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_64041439;DDD)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
 	m	(Lnet/minecraft/unmapped/C_40996800;)V	m_28193911	m_28193911	
 		p	1		p_1	
 	m	()F	m_88134648	m_88134648	
 c	net/minecraft/unmapped/C_24384787
-	f	I	f_82007530	f_82007530	
-c	net/minecraft/unmapped/C_34599799	net/minecraft/unmapped/C_34599799	
-	f	Lnet/minecraft/unmapped/C_03670941;	f_26552838	f_26552838	
+	f	I	f_82007530	darkSkyGlList	
+c	net/minecraft/unmapped/C_34599799	net/minecraft/client/render/entity/FallingBlockRenderer	
+	f	Lnet/minecraft/unmapped/C_03670941;	f_26552838	blockRenderer	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_42232651;DDDFF)V	m_58971924	m_58971924	
 		p	1		p_1	
@@ -162,7 +163,7 @@ c	net/minecraft/unmapped/C_34599799	net/minecraft/unmapped/C_34599799
 		p	8		p_8	
 		p	9		p_9	
 c	net/minecraft/unmapped/C_42232651
-	m	()V	m_71461017	m_71461017	
+	m	()V	m_71461017	voidTick	
 	m	(Lnet/minecraft/unmapped/C_40996800;)V	m_28193911	m_28193911	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_43588014
@@ -192,36 +193,37 @@ c	net/minecraft/unmapped/C_57199446
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_64041439
-	f	Z	f_39882272	f_39882272	
-	m	(IIIII)Z	m_54008700	m_54008700	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Z)Z	m_63559286	m_63559286	
-		p	1		p_1	
-	m	(IIIIZ)Z	m_84267582	m_84267582	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(IIII)Z	m_54008700		m_54008700
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(IIIIII)V	m_05590855		m_05590855
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-c	net/minecraft/unmapped/C_71700262	net/minecraft/unmapped/C_71700262	
-	f	I	f_55141416	f_55141416	
-	f	I	f_57391945	f_57391945	
+	f	Z	f_39882272	suppressNeighborChangedUpdates	
+	m	(IIIII)Z	m_54008700	setBlockWithMetadataQuietly	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		block	
+		p	5		metadata	
+	m	(Z)Z	m_63559286	doScheduledTicks	
+		p	1		flush	
+			c	Flush all scheduled ticks, rather than just the ones scheduled for this tick.	
+	m	(IIIIZ)Z	m_84267582	canPlace	
+		p	1		block	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		skipCollisionChecks	
+	m	(IIII)Z	m_54008700		setBlockMetadataQuietly
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			metadata
+	m	(IIIIII)V	m_05590855		swapBlocks
+		p	1			x1
+		p	2			y1
+		p	3			z1
+		p	4			x2
+		p	5			y2
+		p	6			z2
+c	net/minecraft/unmapped/C_71700262	net/minecraft/entity/FallingBlockEntity	
+	f	I	f_55141416	block	
+	f	I	f_57391945	fallingTicks	
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	m_23617273	m_23617273	
@@ -230,13 +232,13 @@ c	net/minecraft/unmapped/C_71700262	net/minecraft/unmapped/C_71700262
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_30953923	m_30953923	
 		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_64041439;	m_41470163	m_41470163	
+	m	()Lnet/minecraft/unmapped/C_64041439;	m_41470163	getWorld	
 	m	(Lnet/minecraft/unmapped/C_64041439;FFFI)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		block	
 c	net/minecraft/unmapped/C_74425583
 	m	()V	m_71461017	m_71461017	
 c	net/minecraft/unmapped/C_77418302
@@ -247,13 +249,13 @@ c	net/minecraft/unmapped/C_77418302
 		p	4		p_4	
 		p	5		p_5	
 	m	()I	m_79518977	m_79518977	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_30277567		m_30277567
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-c	net/minecraft/unmapped/C_80813818	net/minecraft/unmapped/C_80813818	
-	f	Lnet/minecraft/unmapped/C_36076665;	f_50033513	f_50033513	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_30277567		tryFall
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+c	net/minecraft/unmapped/C_80813818	net/minecraft/client/render/entity/MinecartRenderer	
+	f	Lnet/minecraft/unmapped/C_36076665;	f_50033513	model	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_42232651;DDDFF)V	m_58971924	m_58971924	
 		p	1		p_1	
@@ -263,20 +265,20 @@ c	net/minecraft/unmapped/C_80813818	net/minecraft/unmapped/C_80813818
 		p	8		p_8	
 		p	9		p_9	
 c	net/minecraft/unmapped/C_81592558
-	f	Lnet/minecraft/unmapped/C_81592558;	f_86544900	f_86544900	
-	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_42232651;)V	m_25225777	m_25225777	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_25225777		m_25225777
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-c	net/minecraft/unmapped/C_90851635	net/minecraft/unmapped/C_90851635	
-	f	[Lnet/minecraft/unmapped/C_94760802;	f_36436643	f_36436643	
+	f	Lnet/minecraft/unmapped/C_81592558;	f_86544900	RAIL	
+	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_42232651;)V	m_25225777	onSteppedOn	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		entity	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_25225777		onSteppedOn
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+c	net/minecraft/unmapped/C_90851635	net/minecraft/client/render/model/entity/MinecartModel	
+	f	[Lnet/minecraft/unmapped/C_94760802;	f_36436643	parts	
 	m	()V	<init>	<init>	
 	m	(FFFFFF)V	m_61514729	m_61514729	
 		p	1		p_1	
@@ -293,6 +295,6 @@ c	net/minecraft/unmapped/C_90851635	net/minecraft/unmapped/C_90851635
 		p	5		p_5	
 		p	6		p_6	
 c	net/minecraft/unmapped/C_94584382
-	m	()D	m_31856005	m_31856005	
+	m	()D	m_31856005	length	
 c	net/minecraft/unmapped/C_98888256
-	f	Lnet/minecraft/unmapped/C_98888256;	f_72559846	f_72559846	
+	f	Lnet/minecraft/unmapped/C_98888256;	f_72559846	MINECART	

@@ -1,5 +1,5 @@
 tiny	2	0
-c	net/minecraft/unmapped/C_01975579	net/minecraft/unmapped/C_01975579	
+c	net/minecraft/unmapped/C_01975579	net/minecraft/block/GravelBlock	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -20,11 +20,11 @@ c	net/minecraft/unmapped/C_18719811
 		p	2		p_2	
 	m	(I)I	m_78174230		m_78174230
 		p	1			p_1
-c	net/minecraft/unmapped/C_21951175	net/minecraft/unmapped/C_21951175	
-	f	Lnet/minecraft/unmapped/C_53504297;	f_22384365	f_22384365	
+c	net/minecraft/unmapped/C_21951175	net/minecraft/client/gui/screen/inventory/menu/FurnaceScreen	
+	f	Lnet/minecraft/unmapped/C_53504297;	f_22384365	furnace	
 	m	(Lnet/minecraft/unmapped/C_87542771;Lnet/minecraft/unmapped/C_53504297;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		playerInventory	
+		p	2		furnace	
 	m	()V	m_22745008	m_22745008	
 	m	()V	m_98661498	m_98661498	
 c	net/minecraft/unmapped/C_23330260
@@ -34,16 +34,16 @@ c	net/minecraft/unmapped/C_23330260
 	m	(I)I	m_78174230		m_78174230
 		p	1			p_1
 c	net/minecraft/unmapped/C_40735137
-	f	Lnet/minecraft/unmapped/C_64041439;	f_28851302	f_28851302	
-	f	I	f_99374343	f_99374343	
-	f	I	f_08847857	f_08847857	
-	f	I	f_27479407	f_27479407	
-	m	()V	m_15341212	m_15341212	
+	f	Lnet/minecraft/unmapped/C_64041439;	f_28851302	world	
+	f	I	f_99374343	x	
+	f	I	f_08847857	y	
+	f	I	f_27479407	z	
+	m	()V	m_15341212	tick	
 c	net/minecraft/unmapped/C_40996800
-	m	(Lnet/minecraft/unmapped/C_81592558;)Z	m_32006461	m_32006461	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_53504297;)V	m_71822587	m_71822587	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_81592558;)Z	m_32006461	canMineBlock	
+		p	1		block	
+	m	(Lnet/minecraft/unmapped/C_53504297;)V	m_71822587	openFurnaceMenu	
+		p	1		furnace	
 c	net/minecraft/unmapped/C_43112843
 	m	()I	m_54895347	m_54895347	
 c	net/minecraft/unmapped/C_44922783
@@ -52,11 +52,11 @@ c	net/minecraft/unmapped/C_44922783
 		p	2		p_2	
 	m	(I)I	m_78174230		m_78174230
 		p	1			p_1
-c	net/minecraft/unmapped/C_53504297	net/minecraft/unmapped/C_53504297	
-	f	[Lnet/minecraft/unmapped/C_88708284;	f_89437479	f_89437479	
-	f	I	f_12527950	f_12527950	
-	f	I	f_46600590	f_46600590	
-	f	I	f_41914682	f_41914682	
+c	net/minecraft/unmapped/C_53504297	net/minecraft/block/entity/FurnaceBlockEntity	
+	f	[Lnet/minecraft/unmapped/C_88708284;	f_89437479	inventory	
+	f	I	f_12527950	fuelTime	
+	f	I	f_46600590	totalFuelTime	
+	f	I	f_41914682	cookTime	
 	m	()V	<init>	<init>	
 	m	()I	m_54518913	m_54518913	
 	m	(I)Lnet/minecraft/unmapped/C_88708284;	m_87969967	m_87969967	
@@ -73,17 +73,17 @@ c	net/minecraft/unmapped/C_53504297	net/minecraft/unmapped/C_53504297
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_81108127	m_81108127	
 		p	1		p_1	
-	m	(I)I	m_90790622	m_90790622	
-		p	1		p_1	
-	m	(I)I	m_56781719	m_56781719	
-		p	1		p_1	
-	m	()Z	m_17887869	m_17887869	
+	m	(I)I	m_90790622	getCookProgress	
+		p	1		range	
+	m	(I)I	m_56781719	getLitProgress	
+		p	1		range	
+	m	()Z	m_17887869	hasFuel	
 	m	()V	m_15341212	m_15341212	
-	m	()Z	m_19610810	m_19610810	
-	m	(I)I	m_78582178	m_78582178	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_88708284;)I	m_55360503	m_55360503	
-		p	0		p_0	
+	m	()Z	m_19610810	canCook	
+	m	(I)I	m_78582178	getResult	
+		p	0		input	
+	m	(Lnet/minecraft/unmapped/C_88708284;)I	m_55360503	getFuelTime	
+		p	0		fuel	
 c	net/minecraft/unmapped/C_57199446
 	m	(ILjava/util/Random;)I	m_78174230	m_78174230	
 		p	1		p_1	
@@ -111,7 +111,7 @@ c	net/minecraft/unmapped/C_62147686
 	m	(I)I	m_78174230		m_78174230
 		p	1			p_1
 c	net/minecraft/unmapped/C_64041439
-	f	Ljava/util/List;	f_13639020	f_13639020	
+	f	Ljava/util/List;	f_13639020	blockEntities	
 c	net/minecraft/unmapped/C_68680121
 	m	(ILjava/util/Random;)I	m_78174230	m_78174230	
 		p	1		p_1	
@@ -125,32 +125,32 @@ c	net/minecraft/unmapped/C_71827890
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_74425583
-	m	()I	m_54895347	m_54895347	
+	m	()I	m_54895347	getDropItem	
 c	net/minecraft/unmapped/C_77418302
-	f	Ljava/util/Random;	f_47283480		f_47283480
+	f	Ljava/util/Random;	f_47283480		random
 	m	(Lnet/minecraft/unmapped/C_64041439;FFF)Z	m_40439954		m_40439954
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_81592558
-	f	Lnet/minecraft/unmapped/C_81592558;	f_19785413	f_19785413	
-	f	Lnet/minecraft/unmapped/C_81592558;	f_15617268	f_15617268	
-	m	(ILjava/util/Random;)I	m_78174230	m_78174230	
-		p	1		p_1	
-		p	2		p_2	
-	m	(I)I	m_78174230		m_78174230
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_64041439;FFF)Z	m_40439954		m_40439954
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-c	net/minecraft/unmapped/C_83152105	net/minecraft/unmapped/C_83152105	
-	f	Z	f_34330172	f_34330172	
+	f	Lnet/minecraft/unmapped/C_81592558;	f_19785413	FURNACE	
+	f	Lnet/minecraft/unmapped/C_81592558;	f_15617268	LIT_FURNACE	
+	m	(ILjava/util/Random;)I	m_78174230	getDropItem	
+		p	1		metadata	
+		p	2		random	
+	m	(I)I	m_78174230		getDropItem
+		p	1			metadata
+	m	(Lnet/minecraft/unmapped/C_64041439;FFF)Z	m_40439954		takeFireDamage
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+c	net/minecraft/unmapped/C_83152105	net/minecraft/block/FurnaceBlock	
+	f	Z	f_34330172	lit	
 	m	(IZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		id	
+		p	2		lit	
 	m	(I)I	m_79262324	m_79262324	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_40996800;)Z	m_39069644	m_39069644	
@@ -170,11 +170,11 @@ c	net/minecraft/unmapped/C_83152105	net/minecraft/unmapped/C_83152105
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_35759361	m_35759361	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_35759361	updateFacing	
+		p	0		world	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(Lnet/minecraft/unmapped/C_64041439;IIILjava/util/Random;)V	m_01130383	m_01130383	
 		p	1		p_1	
 		p	2		p_2	
@@ -189,11 +189,11 @@ c	net/minecraft/unmapped/C_87105418
 c	net/minecraft/unmapped/C_95265987
 	m	()I	m_54895347	m_54895347	
 c	net/minecraft/unmapped/C_98888256
-	f	Lnet/minecraft/unmapped/C_98888256;	f_96370468	f_96370468	
-	f	Lnet/minecraft/unmapped/C_98888256;	f_08935226	f_08935226	
-	f	Lnet/minecraft/unmapped/C_98888256;	f_92499928	f_92499928	
-	m	(Lnet/minecraft/unmapped/C_64041439;FFF)Z	m_85713830		m_85713830
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	f	Lnet/minecraft/unmapped/C_98888256;	f_96370468	FLINT_AND_STEEL	
+	f	Lnet/minecraft/unmapped/C_98888256;	f_08935226	FLINT	
+	f	Lnet/minecraft/unmapped/C_98888256;	f_92499928	COOKED_PORKCHOP	
+	m	(Lnet/minecraft/unmapped/C_64041439;FFF)Z	m_85713830		takeFireDamage
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z

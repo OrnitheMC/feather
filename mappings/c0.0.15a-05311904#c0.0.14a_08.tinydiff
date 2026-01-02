@@ -1,20 +1,20 @@
 tiny	2	0
 c	com/mojang/a/a	com/mojang/a/a	
-	f	Z	f_59266209	f_59266209	
-	f	Ljava/nio/channels/SocketChannel;	f_46335107	f_46335107	
-	f	Ljava/nio/ByteBuffer;	f_31123124	f_31123124	
-	f	Ljava/nio/ByteBuffer;	f_15227222	f_15227222	
-	f	Ljava/net/Socket;	f_65105212	f_65105212	
+	f	Z	f_59266209	open	
+	f	Ljava/nio/channels/SocketChannel;	f_46335107	channel	
+	f	Ljava/nio/ByteBuffer;	f_31123124	input	
+	f	Ljava/nio/ByteBuffer;	f_15227222	output	
+	f	Ljava/net/Socket;	f_65105212	socket	
 	f	Z	f_66092961	f_66092961	
-	f	[B	f_95297538	f_95297538	
-	f	Lcom/mojang/minecraft/net/b;	f_23221710	f_23221710	
+	f	[B	f_95297538	stringBuffer	
+	f	Lcom/mojang/minecraft/net/b;	f_23221710	listener	
 	m	(Ljava/lang/String;I)V	<init>	<init>	
-		p	1		p_1	
+		p	1		address	
 		p	2		p_2	
-	m	()V	m_06068580	m_06068580	
-	m	(Lcom/mojang/minecraft/net/a;[Ljava/lang/Object;)V	m_24741370	m_24741370	
-		p	1		p_1	
-		p	2		p_2	
+	m	()V	m_06068580	close	
+	m	(Lcom/mojang/minecraft/net/a;[Ljava/lang/Object;)V	m_24741370	send	
+		p	1		packet	
+		p	2		payload	
 	m	()V	m_87236046	m_87236046	
 c	com/mojang/minecraft/Entity
 	m	(FFFFF)V	moveTo	moveTo	
@@ -24,45 +24,45 @@ c	com/mojang/minecraft/Entity
 		p	4		p_4	
 		p	5		p_5	
 c	com/mojang/minecraft/a/g
-	m	(Lcom/mojang/minecraft/player/Player;I)I	m_72725110	m_72725110	
+	m	(Lcom/mojang/minecraft/player/Player;I)I	m_72725110	render	
 		p	1		p_1	
-		p	2		p_2	
-	m	(Lcom/mojang/minecraft/player/Player;I)V	m_72725110		m_72725110
+		p	2		layer	
+	m	(Lcom/mojang/minecraft/player/Player;I)V	m_72725110		render
 		p	1			p_1
 		p	2			p_2
 c	com/mojang/minecraft/c
-	f	Lcom/mojang/minecraft/net/b;	f_04395660	f_04395660	
+	f	Lcom/mojang/minecraft/net/b;	f_04395660	networkHandler	
 	f	F	f_89255894	f_89255894	
 	m	(Ljava/lang/String;I)V	m_41470874	m_41470874	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Z	m_39882329	m_39882329	
+	m	()Z	m_39882329	isRemote	
 c	com/mojang/minecraft/level/Level
 	m	()V	tickEntities	tickEntities	
 	m	(Lcom/mojang/minecraft/phys/AABB;Lcom/mojang/minecraft/level/c/a;)Z	containsLiquid	containsLiquid	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		bounds	
+		p	2		material	
 	m	(Lcom/mojang/minecraft/phys/AABB;I)Z	containsLiquid		containsLiquid
 		p	1			p_1
 		p	2			p_2
 c	com/mojang/minecraft/level/a
-	m	(Ljava/io/InputStream;)[B	m_33984034	m_33984034	
-		p	0		p_0	
+	m	(Ljava/io/InputStream;)[B	m_33984034	readBlocks	
+		p	0		input	
 c	com/mojang/minecraft/level/a/a
-	f	[I	f_17346165	f_17346165	
-	f	F	f_56001357	f_56001357	
-	m	(I)V	m_11218590	m_11218590	
-		p	1		p_1	
-	m	(Lcom/mojang/minecraft/level/Level;III)F	m_48092460	m_48092460	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	()Lcom/mojang/minecraft/level/c/a;	m_93090551	m_93090551	
-	m	()I	m_76800693	m_76800693	
-	m	()I	m_93090551		m_93090551
+	f	[I	f_17346165	BRIGHTNESS	
+	f	F	f_56001357	weight	
+	m	(I)V	m_11218590	setBrightness	
+		p	1		brightness	
+	m	(Lcom/mojang/minecraft/level/Level;III)F	m_48092460	getBrightness	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	()Lcom/mojang/minecraft/level/c/a;	m_93090551	getMaterial	
+	m	()I	m_76800693	getTickRate	
+	m	()I	m_93090551		getMaterial
 c	com/mojang/minecraft/level/b
-	f	I	f_55004982	f_55004982	
+	f	I	f_55004982	delay	
 c	com/mojang/minecraft/net/NetworkPlayer	com/mojang/minecraft/net/NetworkPlayer	
 	f	J	serialVersionUID	serialVersionUID	
 	f	Lcom/mojang/minecraft/character/a;	f_20614856	f_20614856	
@@ -82,28 +82,28 @@ c	com/mojang/minecraft/net/NetworkPlayer	com/mojang/minecraft/net/NetworkPlayer
 		p	7		p_7	
 		p	8		p_8	
 c	com/mojang/minecraft/net/a	com/mojang/minecraft/net/a	
-	f	[Lcom/mojang/minecraft/net/a;	f_03278148	f_03278148	
-	f	Lcom/mojang/minecraft/net/a;	f_95509986	f_95509986	
-	f	Lcom/mojang/minecraft/net/a;	f_01940152	f_01940152	
-	f	Lcom/mojang/minecraft/net/a;	f_68640010	f_68640010	
-	f	Lcom/mojang/minecraft/net/a;	f_50036393	f_50036393	
-	f	Lcom/mojang/minecraft/net/a;	f_71995881	f_71995881	
-	f	Lcom/mojang/minecraft/net/a;	f_22493710	f_22493710	
-	f	Lcom/mojang/minecraft/net/a;	f_49717875	f_49717875	
-	f	Lcom/mojang/minecraft/net/a;	f_62654844	f_62654844	
-	f	Lcom/mojang/minecraft/net/a;	f_69664647	f_69664647	
-	f	I	f_97321060	f_97321060	
-	f	I	f_38543408	f_38543408	
-	f	B	f_55479557	f_55479557	
-	f	[Ljava/lang/Class;	f_28881198	f_28881198	
+	f	[Lcom/mojang/minecraft/net/a;	f_03278148	BY_ID	
+	f	Lcom/mojang/minecraft/net/a;	f_95509986	LOGIN	
+	f	Lcom/mojang/minecraft/net/a;	f_01940152	PING	
+	f	Lcom/mojang/minecraft/net/a;	f_68640010	WORLD_CHUNK	
+	f	Lcom/mojang/minecraft/net/a;	f_50036393	WORLD_SIZE	
+	f	Lcom/mojang/minecraft/net/a;	f_71995881	SET_BLOCK	
+	f	Lcom/mojang/minecraft/net/a;	f_22493710	BLOCK_UPDATE	
+	f	Lcom/mojang/minecraft/net/a;	f_49717875	ADD_PLAYER	
+	f	Lcom/mojang/minecraft/net/a;	f_62654844	PLAYER_TELEPORT	
+	f	Lcom/mojang/minecraft/net/a;	f_69664647	REMOVE_PLAYER	
+	f	I	f_97321060	size	
+	f	I	f_38543408	lastId	
+	f	B	f_55479557	id	
+	f	[Ljava/lang/Class;	f_28881198	dataTypes	
 	m	([Ljava/lang/Class;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		dataTypes	
 	m	()V	<clinit>	<clinit>	
 c	com/mojang/minecraft/net/b	com/mojang/minecraft/net/b	
-	f	Ljava/io/ByteArrayOutputStream;	f_09134645	f_09134645	
-	f	Lcom/mojang/a/a;	f_26282551	f_26282551	
+	f	Ljava/io/ByteArrayOutputStream;	f_09134645	output	
+	f	Lcom/mojang/a/a;	f_26282551	conection	
 	f	Lcom/mojang/minecraft/c;	f_85764342	f_85764342	
-	f	Ljava/util/HashMap;	f_50861646	f_50861646	
+	f	Ljava/util/HashMap;	f_50861646	players	
 	m	(Lcom/mojang/minecraft/c;Ljava/lang/String;ILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -142,7 +142,7 @@ c	com/mojang/minecraft/level/a/e
 		p	2			p_2
 c	com/mojang/minecraft/level/a/i
 	f	Lcom/mojang/minecraft/level/c/a;	f_65844499	f_65844499	
-	f	I	f_32520509		f_32520509
+	f	I	f_32520509		material
 	m	(ILcom/mojang/minecraft/level/c/a;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -158,10 +158,10 @@ c	com/mojang/minecraft/level/a/i
 		p	2			p_2
 	m	()I	m_93090551		m_93090551
 c	com/mojang/minecraft/level/c/a	com/mojang/minecraft/level/c/a	
-	f	[Lcom/mojang/minecraft/level/c/a;	f_75203064	f_75203064	
-	f	Lcom/mojang/minecraft/level/c/a;	f_05818178	f_05818178	
-	f	Lcom/mojang/minecraft/level/c/a;	f_99458234	f_99458234	
-	f	Lcom/mojang/minecraft/level/c/a;	f_70482856	f_70482856	
+	f	[Lcom/mojang/minecraft/level/c/a;	f_75203064	BY_ID	
+	f	Lcom/mojang/minecraft/level/c/a;	f_05818178	WOOD	
+	f	Lcom/mojang/minecraft/level/c/a;	f_99458234	WATER	
+	f	Lcom/mojang/minecraft/level/c/a;	f_70482856	LAVA	
 	m	(I)V	<init>	<init>	
-		p	1		p_1	
+		p	1		id	
 	m	()V	<clinit>	<clinit>	
