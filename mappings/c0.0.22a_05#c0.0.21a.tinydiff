@@ -1,12 +1,12 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
-	f	Lnet/minecraft/unmapped/C_62408525;	f_06595342	f_06595342	
-	f	Lnet/minecraft/unmapped/C_03140863;	f_19113424	f_19113424	
-	f	Lnet/minecraft/unmapped/C_31574624;	f_86515636	f_86515636	
-	f	Lnet/minecraft/unmapped/C_06462799;	f_00634279	f_00634279	
-	f	Lnet/minecraft/unmapped/C_77514842;	f_80522579	f_80522579	
-	f	Ljava/nio/FloatBuffer;	f_96846485		f_96846485
-	f	Ljava/nio/FloatBuffer;	f_95600397		f_95600397
+	f	Lnet/minecraft/unmapped/C_62408525;	f_06595342	progressRenderer	
+	f	Lnet/minecraft/unmapped/C_03140863;	f_19113424	gameRenderer	
+	f	Lnet/minecraft/unmapped/C_31574624;	f_86515636	resourceDownloader	
+	f	Lnet/minecraft/unmapped/C_06462799;	f_00634279	sounds	
+	f	Lnet/minecraft/unmapped/C_77514842;	f_80522579	soundEngine	
+	f	Ljava/nio/FloatBuffer;	f_96846485		fogColor
+	f	Ljava/nio/FloatBuffer;	f_95600397		shadowFogColor
 	f	F	f_80321786		f_80321786
 	f	F	f_62157119		f_62157119
 	f	F	f_57860983		f_57860983
@@ -15,20 +15,20 @@ c	net/minecraft/client/Minecraft
 	f	Z	f_42677711		f_42677711
 	f	I	f_43097792		f_43097792
 	f	I	f_31188738		f_31188738
-	f	Ljava/nio/FloatBuffer;	f_00852718		f_00852718
+	f	Ljava/nio/FloatBuffer;	f_00852718		floatBuffer
 	f	Ljava/lang/String;	f_34969745		f_34969745
 	f	Ljava/lang/String;	f_12927917		f_12927917
-	m	(F)V	m_21818603		m_21818603
-		p	1			p_1
+	m	(F)V	m_21818603		render
+		p	1			tickDelta
 	m	(Z)V	m_04830220		m_04830220
 		p	1			p_1
 	m	()V	m_90104377		m_90104377
-	m	()V	m_38072232		m_38072232
-	m	(FFFF)Ljava/nio/FloatBuffer;	m_61780442		m_61780442
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	()V	m_38072232		setupFog
+	m	(FFFF)Ljava/nio/FloatBuffer;	m_61780442		getBuffer
+		p	1			f1
+		p	2			f2
+		p	3			f3
+		p	4			f4
 	m	(Ljava/lang/String;)V	m_57841518		m_57841518
 		p	1			p_1
 	m	(Ljava/lang/String;)V	m_04222983		m_04222983
@@ -44,12 +44,12 @@ c	net/minecraft/client/Minecraft$32171470	32171470
 c	net/minecraft/client/Minecraft$47397631	47397631	
 	f	[I	f_42587729	f_42587729	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/client/Minecraft$C_09602128	C_09602128	
-	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_43365122	f_43365122	
-	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_87351188	f_87351188	
-	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_41241989	f_41241989	
-	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_35327376	f_35327376	
-	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_51800074	f_51800074	
+c	net/minecraft/client/Minecraft$C_09602128	OS	
+	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_43365122	LINUX	
+	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_87351188	SOLARIS	
+	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_41241989	WINDOWS	
+	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_35327376	MACOS	
+	f	Lnet/minecraft/client/Minecraft$C_09602128;	f_51800074	UNKNOWN	
 	f	[Lnet/minecraft/client/Minecraft$C_09602128;	f_61760380	f_61760380	
 	m	(Ljava/lang/String;I)V	<init>	<init>	
 		p	1		p_1	
@@ -58,71 +58,71 @@ c	net/minecraft/client/Minecraft$C_09602128	C_09602128
 	m	()[Lnet/minecraft/client/Minecraft$C_09602128;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/client/Minecraft$C_09602128;	valueOf	valueOf	
 		p	0		p_0	
-c	net/minecraft/unmapped/C_03140863	net/minecraft/unmapped/C_03140863	
-	f	Lnet/minecraft/client/Minecraft;	f_61271335	f_61271335	
+c	net/minecraft/unmapped/C_03140863	net/minecraft/client/render/GameRenderer	
+	f	Lnet/minecraft/client/Minecraft;	f_61271335	minecraft	
 	f	I	f_71399429	f_71399429	
 	f	I	f_36908558	f_36908558	
-	f	Ljava/nio/FloatBuffer;	f_30395217	f_30395217	
-	f	Z	f_32880092	f_32880092	
-	f	F	f_73888253	f_73888253	
-	f	F	f_91250604	f_91250604	
-	f	F	f_56141207	f_56141207	
-	f	F	f_37672216	f_37672216	
-	f	F	f_69481369	f_69481369	
+	f	Ljava/nio/FloatBuffer;	f_30395217	colorBuffer	
+	f	Z	f_32880092	displayActive	
+	f	F	f_73888253	fogBrightness	
+	f	F	f_91250604	renderDistance	
+	f	F	f_56141207	fogRed	
+	f	F	f_37672216	fogGreen	
+	f	F	f_69481369	fogBlue	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
-		p	1		p_1	
-	m	()V	m_21822970	m_21822970	
-	m	(Z)V	m_95751523	m_95751523	
-		p	1		p_1	
-	m	()V	m_08648343	m_08648343	
-	m	(FFFF)Ljava/nio/FloatBuffer;	m_46522750	m_46522750	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		minecraft	
+	m	()V	m_21822970	setupGuiState	
+	m	(Z)V	m_95751523	setLighting	
+		p	1		enable	
+	m	()V	m_08648343	setupFog	
+	m	(FFFF)Ljava/nio/FloatBuffer;	m_46522750	getBuffer	
+		p	1		f1	
+		p	2		f2	
+		p	3		f3	
+		p	4		f4	
 c	net/minecraft/unmapped/C_16190149
-	m	()V	m_32935721	m_32935721	
-c	net/minecraft/unmapped/C_31574624	net/minecraft/unmapped/C_31574624	
-	f	Ljava/io/File;	f_67377692	f_67377692	
-	f	Z	f_15263537	f_15263537	
+	m	()V	m_32935721	tick	
+c	net/minecraft/unmapped/C_31574624	net/minecraft/client/resource/ResourceDownloader	
+	f	Ljava/io/File;	f_67377692	resourcesDir	
+	f	Z	f_15263537	stopped	
 	f	Lnet/minecraft/client/Minecraft;	f_96169308	f_96169308	
 	m	()V	run	run	
-	m	(Ljava/net/URL;Ljava/io/File;)V	m_18609054	m_18609054	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/net/URL;Ljava/io/File;)V	m_18609054	download	
+		p	1		url	
+		p	2		file	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_49004282
-	f	Lnet/minecraft/unmapped/C_62408525;	f_76014930	f_76014930	
-	f	Lnet/minecraft/client/Minecraft;	f_76014930		f_76014930
+	f	Lnet/minecraft/unmapped/C_62408525;	f_76014930	listener	
+	f	Lnet/minecraft/client/Minecraft;	f_76014930		listener
 	m	(Lnet/minecraft/unmapped/C_62408525;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_62408525	net/minecraft/unmapped/C_62408525	
-	f	Ljava/lang/String;	f_07914042	f_07914042	
-	f	Lnet/minecraft/client/Minecraft;	f_70768807	f_70768807	
-	f	Ljava/lang/String;	f_88418599	f_88418599	
+c	net/minecraft/unmapped/C_62408525	net/minecraft/client/render/ProgressRenderer	
+	f	Ljava/lang/String;	f_07914042	stage	
+	f	Lnet/minecraft/client/Minecraft;	f_70768807	minecraft	
+	f	Ljava/lang/String;	f_88418599	title	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_97310843	m_97310843	
-		p	1		p_1	
-	m	(I)V	m_52124428	m_52124428	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_57651232	m_57651232	
-		p	1		p_1	
+		p	1		minecraft	
+	m	(Ljava/lang/String;)V	m_97310843	progressStage	
+		p	1		stage	
+	m	(I)V	m_52124428	progressPercentage	
+		p	1		percentage	
+	m	(Ljava/lang/String;)V	m_57651232	progressStart	
+		p	1		title	
 c	net/minecraft/unmapped/C_81592558
-	f	Ljava/util/Random;	f_34940004	f_34940004	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_53353782	f_53353782	
-	m	(Lnet/minecraft/unmapped/C_67620614;FF)Lnet/minecraft/unmapped/C_81592558;	m_84508394	m_84508394	
+	f	Ljava/util/Random;	f_34940004	RANDOM	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_53353782	sound	
+	m	(Lnet/minecraft/unmapped/C_67620614;FF)Lnet/minecraft/unmapped/C_81592558;	m_84508394	setProperties	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_85740840
-	m	()V	m_03699644	m_03699644	
+	m	()V	m_03699644	handleInputs	
 c	net/minecraft/unmapped/C_97866173
-	m	(Ljava/lang/String;)V	m_06103008	m_06103008	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_06103008	addMessage	
+		p	1		content	
 c	com/mojang/minecraft/Entity
 	f	F	walkDist	walkDist	
 	f	Z	makeStepSound	makeStepSound	
@@ -146,15 +146,15 @@ c	com/mojang/minecraft/level/Level
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-c	net/minecraft/unmapped/C_00555010	net/minecraft/unmapped/C_00555010	
-	f	Ljava/nio/ByteBuffer;	f_48722420	f_48722420	
-	f	Ljava/nio/ByteBuffer;	f_88542267	f_88542267	
-	f	Ljava/nio/ByteBuffer;	f_22186147	f_22186147	
-	f	Ljava/nio/ByteBuffer;	f_77574589	f_77574589	
-	f	Lnet/minecraft/unmapped/C_95893500;	f_50410762	f_50410762	
-	f	Lnet/minecraft/unmapped/C_77514842;	f_66663362	f_66663362	
-	f	Z	f_65824134	f_65824134	
-	f	Z	f_70401892	f_70401892	
+c	net/minecraft/unmapped/C_00555010	net/minecraft/client/sound/source/StreamingSoundSource	
+	f	Ljava/nio/ByteBuffer;	f_48722420	vorbisBuffer	
+	f	Ljava/nio/ByteBuffer;	f_88542267	lastBuffer	
+	f	Ljava/nio/ByteBuffer;	f_22186147	currentBuffer	
+	f	Ljava/nio/ByteBuffer;	f_77574589	nextBuffer	
+	f	Lnet/minecraft/unmapped/C_95893500;	f_50410762	vorbis	
+	f	Lnet/minecraft/unmapped/C_77514842;	f_66663362	engine	
+	f	Z	f_65824134	finished	
+	f	Z	f_70401892	terminated	
 	m	(Lnet/minecraft/unmapped/C_77514842;Ljava/net/URL;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -167,27 +167,27 @@ c	net/minecraft/unmapped/C_00555010$55517230	55517230
 	m	(Lnet/minecraft/unmapped/C_00555010;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	run	run	
-c	net/minecraft/unmapped/C_06462799	net/minecraft/unmapped/C_06462799	
-	f	Lnet/minecraft/unmapped/C_53170080;	f_32132303	f_32132303	
-	f	Ljava/util/Map;	f_86707074	f_86707074	
-	f	Ljava/util/Map;	f_54088774	f_54088774	
-	f	Ljava/util/Random;	f_12246476	f_12246476	
-	f	J	f_23907932	f_23907932	
+c	net/minecraft/unmapped/C_06462799	net/minecraft/client/sound/Sounds	
+	f	Lnet/minecraft/unmapped/C_53170080;	f_32132303	codec	
+	f	Ljava/util/Map;	f_86707074	sounds	
+	f	Ljava/util/Map;	f_54088774	records	
+	f	Ljava/util/Random;	f_12246476	random	
+	f	J	f_23907932	musicTime	
 	m	()V	<init>	<init>	
-	m	(Ljava/lang/String;FF)Lnet/minecraft/unmapped/C_49086516;	m_61754366	m_61754366	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/io/File;Ljava/lang/String;)V	m_54543118	m_54543118	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;Ljava/io/File;)V	m_87904867	m_87904867	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_77514842;Ljava/lang/String;)Z	m_59168487	m_59168487	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/unmapped/C_07035255	net/minecraft/unmapped/C_07035255	
+	m	(Ljava/lang/String;FF)Lnet/minecraft/unmapped/C_49086516;	m_61754366	getRandom	
+		p	1		path	
+		p	2		volume	
+		p	3		pitch	
+	m	(Ljava/io/File;Ljava/lang/String;)V	m_54543118	add	
+		p	1		file	
+		p	2		path	
+	m	(Ljava/lang/String;Ljava/io/File;)V	m_87904867	addRecord	
+		p	1		path	
+		p	2		file	
+	m	(Lnet/minecraft/unmapped/C_77514842;Ljava/lang/String;)Z	m_59168487	playRandomRecord	
+		p	1		engine	
+		p	2		path	
+c	net/minecraft/unmapped/C_07035255	de/jarnbjo/vorbis/MdctFloat	
 	f	I	f_89306539	f_89306539	
 	f	I	f_07874453	f_07874453	
 	f	[F	f_87605259	f_87605259	
@@ -204,7 +204,7 @@ c	net/minecraft/unmapped/C_07035255	net/minecraft/unmapped/C_07035255
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_08488772	net/minecraft/unmapped/C_08488772	
+c	net/minecraft/unmapped/C_08488772	de/jarnbjo/vorbis/Mode	
 	f	Z	f_21977387	f_21977387	
 	f	I	f_91306293	f_91306293	
 	f	I	f_10230562	f_10230562	
@@ -212,7 +212,7 @@ c	net/minecraft/unmapped/C_08488772	net/minecraft/unmapped/C_08488772
 	m	(Lnet/minecraft/unmapped/C_29656781;Lnet/minecraft/unmapped/C_66643593;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_10417424	net/minecraft/unmapped/C_10417424	
+c	net/minecraft/unmapped/C_10417424	de/jarnbjo/ogg/OnDemandUrlStream	
 	f	Ljava/net/URLConnection;	f_81887985	f_81887985	
 	f	Ljava/io/InputStream;	f_45769365	f_45769365	
 	f	I	f_33080775	f_33080775	
@@ -221,7 +221,7 @@ c	net/minecraft/unmapped/C_10417424	net/minecraft/unmapped/C_10417424
 	m	(Ljava/net/URL;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Lnet/minecraft/unmapped/C_45553958;	m_08590797	m_08590797	
-c	net/minecraft/unmapped/C_14962163	net/minecraft/unmapped/C_14962163	
+c	net/minecraft/unmapped/C_14962163	de/jarnbjo/vorbis/Floor1	
 	f	[I	f_89837982	f_89837982	
 	f	I	f_59160648	f_59160648	
 	f	I	f_96309121	f_96309121	
@@ -247,13 +247,13 @@ c	net/minecraft/unmapped/C_14962163	net/minecraft/unmapped/C_14962163
 	m	()Ljava/lang/Object;	clone	clone	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_16639010
-	f	Lnet/minecraft/unmapped/C_62408525;	f_97755075	f_97755075	
-	f	Lnet/minecraft/client/Minecraft;	f_97755075		f_97755075
+	f	Lnet/minecraft/unmapped/C_62408525;	f_97755075	listener	
+	f	Lnet/minecraft/client/Minecraft;	f_97755075		listener
 	m	(Lnet/minecraft/unmapped/C_62408525;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_17284632	net/minecraft/unmapped/C_17284632	
+c	net/minecraft/unmapped/C_17284632	de/jarnbjo/vorbis/Util	
 	m	()V	<init>	<init>	
 	m	(I)I	m_75565289	m_75565289	
 		p	0		p_0	
@@ -271,7 +271,7 @@ c	net/minecraft/unmapped/C_17284632	net/minecraft/unmapped/C_17284632
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/unmapped/C_20852113	net/minecraft/unmapped/C_20852113	
+c	net/minecraft/unmapped/C_20852113	de/jarnbjo/vorbis/AudioPacket	
 	f	I	f_90794536	f_90794536	
 	f	Lnet/minecraft/unmapped/C_08488772;	f_57651820	f_57651820	
 	f	Lnet/minecraft/unmapped/C_64978369;	f_62513714	f_62513714	
@@ -300,7 +300,7 @@ c	net/minecraft/unmapped/C_20852113	net/minecraft/unmapped/C_20852113
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_27209785	net/minecraft/unmapped/C_27209785	
+c	net/minecraft/unmapped/C_27209785	de/jarnbjo/vorbis/CodeBook	
 	f	Lnet/minecraft/unmapped/C_57506932;	f_34716083	f_34716083	
 	f	I	f_06791508	f_06791508	
 	f	I	f_79891708	f_79891708	
@@ -310,29 +310,29 @@ c	net/minecraft/unmapped/C_27209785	net/minecraft/unmapped/C_27209785
 		p	1		p_1	
 	m	([I)Z	m_20766363	m_20766363	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_27730263	net/minecraft/unmapped/C_27730263	
-	f	Lnet/minecraft/unmapped/C_45024765;	f_52171718	f_52171718	
-	f	F	f_58156339	f_58156339	
-	f	F	f_81462031	f_81462031	
+c	net/minecraft/unmapped/C_27730263	net/minecraft/client/sound/buffer/SimpleSoundBuffer	
+	f	Lnet/minecraft/unmapped/C_45024765;	f_52171718	sound	
+	f	F	f_58156339	position	
+	f	F	f_81462031	pitch	
 	m	(Lnet/minecraft/unmapped/C_45024765;FF)V	<init>	<init>	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	2		pitch	
+		p	3		volume	
 	m	([SI)I	m_52201951	m_52201951	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_28806354	net/minecraft/unmapped/C_28806354	
-	f	F	f_75583757	f_75583757	
-	f	F	f_13228700	f_13228700	
-	f	F	f_98216689	f_98216689	
+c	net/minecraft/unmapped/C_28806354	net/minecraft/client/sound/effect/PositionSoundEffect	
+	f	F	f_75583757	x	
+	f	F	f_13228700	y	
+	f	F	f_98216689	z	
 	m	(FFFLcom/mojang/minecraft/Entity;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-		p	4		p_4	
+		p	4		listener	
 	m	()F	m_16209133	m_16209133	
 	m	()F	m_64449930	m_64449930	
-c	net/minecraft/unmapped/C_29656781	net/minecraft/unmapped/C_29656781	
+c	net/minecraft/unmapped/C_29656781	de/jarnbjo/util/io/ByteArrayBitInputStream	
 	f	[B	f_36879576	f_36879576	
 	f	B	f_30547750	f_30547750	
 	f	I	f_42420671	f_42420671	
@@ -350,14 +350,14 @@ c	net/minecraft/unmapped/C_29656781	net/minecraft/unmapped/C_29656781
 		p	1		p_1	
 	m	(I)J	m_85938554	m_85938554	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_36861765	net/minecraft/unmapped/C_36861765	
-	f	Lcom/mojang/minecraft/Entity;	f_41537050	f_41537050	
+c	net/minecraft/unmapped/C_36861765	net/minecraft/client/sound/effect/EntitySoundEffect	
+	f	Lcom/mojang/minecraft/Entity;	f_41537050	source	
 	m	(Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/Entity;)V	<init>	<init>	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		listener	
 	m	()F	m_16209133	m_16209133	
 	m	()F	m_64449930	m_64449930	
-c	net/minecraft/unmapped/C_37573272	net/minecraft/unmapped/C_37573272	
+c	net/minecraft/unmapped/C_37573272	de/jarnbjo/vorbis/Floor0	
 	f	[I	f_56171433	f_56171433	
 	m	(Lnet/minecraft/unmapped/C_29656781;Lnet/minecraft/unmapped/C_66643593;)V	<init>	<init>	
 		p	1		p_1	
@@ -367,19 +367,19 @@ c	net/minecraft/unmapped/C_37573272	net/minecraft/unmapped/C_37573272
 		p	2		p_2	
 	m	([F)V	m_42799278	m_42799278	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_40486725	net/minecraft/unmapped/C_40486725	
+c	net/minecraft/unmapped/C_40486725	de/jarnbjo/vorbis/CommentHeader	
 	f	Ljava/util/HashMap;	f_31652905	f_31652905	
 	m	(Lnet/minecraft/unmapped/C_29656781;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_29656781;)Ljava/lang/String;	m_95806165	m_95806165	
 		p	0		p_0	
-c	net/minecraft/unmapped/C_45024765	net/minecraft/unmapped/C_45024765	
-	f	[S	f_85839376	f_85839376	
-	f	F	f_80296075	f_80296075	
+c	net/minecraft/unmapped/C_45024765	net/minecraft/client/sound/Sound	
+	f	[S	f_85839376	samples	
+	f	F	f_80296075	sampleRate	
 	m	([SF)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_45553958	net/minecraft/unmapped/C_45553958	
+c	net/minecraft/unmapped/C_45553958	de/jarnbjo/ogg/OggPage	
 	f	Z	f_49612506	f_49612506	
 	f	Z	f_52080855	f_52080855	
 	f	I	f_94875181	f_94875181	
@@ -412,7 +412,7 @@ c	net/minecraft/unmapped/C_45553958	net/minecraft/unmapped/C_45553958
 		p	0		p_0	
 		p	1		p_1	
 	m	()I	m_29335247	m_29335247	
-c	net/minecraft/unmapped/C_47548417	net/minecraft/unmapped/C_47548417	
+c	net/minecraft/unmapped/C_47548417	de/jarnbjo/vorbis/Residue0	
 	m	(Lnet/minecraft/unmapped/C_29656781;Lnet/minecraft/unmapped/C_66643593;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -422,18 +422,18 @@ c	net/minecraft/unmapped/C_47548417	net/minecraft/unmapped/C_47548417
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/unmapped/C_49086516	net/minecraft/unmapped/C_49086516	
-	f	F	f_90773121	f_90773121	
+c	net/minecraft/unmapped/C_49086516	net/minecraft/client/sound/buffer/SoundBuffer	
+	f	F	f_90773121	volume	
 	m	()V	<init>	<init>	
-	m	([SI)I	m_52201951	m_52201951	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/unmapped/C_52480047	net/minecraft/unmapped/C_52480047	
-	f	Lnet/minecraft/unmapped/C_49086516;	f_57464109	f_57464109	
-	f	Lnet/minecraft/unmapped/C_58085244;	f_38098362	f_38098362	
-	f	F	f_96914900	f_96914900	
-	f	F	f_10003976	f_10003976	
-	f	[S	f_84365542	f_84365542	
+	m	([SI)I	m_52201951	read	
+		p	1		samples	
+		p	2		sampleCount	
+c	net/minecraft/unmapped/C_52480047	net/minecraft/client/sound/source/SimpleSoundSource	
+	f	Lnet/minecraft/unmapped/C_49086516;	f_57464109	buffer	
+	f	Lnet/minecraft/unmapped/C_58085244;	f_38098362	effect	
+	f	F	f_96914900	pan	
+	f	F	f_10003976	volume	
+	f	[S	f_84365542	sampleBuffer	
 	m	(Lnet/minecraft/unmapped/C_49086516;Lnet/minecraft/unmapped/C_58085244;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -442,11 +442,11 @@ c	net/minecraft/unmapped/C_52480047	net/minecraft/unmapped/C_52480047
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_53170080	net/minecraft/unmapped/C_53170080	
+c	net/minecraft/unmapped/C_53170080	net/minecraft/client/sound/VorbisCodec	
 	m	()V	<init>	<init>	
-	m	(Ljava/net/URL;)Lnet/minecraft/unmapped/C_45024765;	m_63606255	m_63606255	
+	m	(Ljava/net/URL;)Lnet/minecraft/unmapped/C_45024765;	m_63606255	load	
 		p	0		p_0	
-c	net/minecraft/unmapped/C_57506932	net/minecraft/unmapped/C_57506932	
+c	net/minecraft/unmapped/C_57506932	de/jarnbjo/util/io/HuffmanNode	
 	f	I	f_77283419	f_77283419	
 	f	Lnet/minecraft/unmapped/C_57506932;	f_62499900	f_62499900	
 	f	Lnet/minecraft/unmapped/C_57506932;	f_81917848	f_81917848	
@@ -462,10 +462,10 @@ c	net/minecraft/unmapped/C_57506932	net/minecraft/unmapped/C_57506932
 	m	(II)Z	m_02005372	m_02005372	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_58085244	net/minecraft/unmapped/C_58085244	
-	m	()F	m_16209133	m_16209133	
-	m	()F	m_64449930	m_64449930	
-c	net/minecraft/unmapped/C_64123468	net/minecraft/unmapped/C_64123468	
+c	net/minecraft/unmapped/C_58085244	net/minecraft/client/sound/effect/SoundEffect	
+	m	()F	m_16209133	getPan	
+	m	()F	m_64449930	getVolume	
+c	net/minecraft/unmapped/C_64123468	de/jarnbjo/vorbis/Mapping0	
 	f	[I	f_24684171	f_24684171	
 	f	[I	f_12158427	f_12158427	
 	f	[I	f_74850311	f_74850311	
@@ -482,7 +482,7 @@ c	net/minecraft/unmapped/C_64123468	net/minecraft/unmapped/C_64123468
 	m	()[I	m_14938084	m_14938084	
 	m	()I	m_21861772	m_21861772	
 	m	()I	m_57871654	m_57871654	
-c	net/minecraft/unmapped/C_64978369	net/minecraft/unmapped/C_64978369	
+c	net/minecraft/unmapped/C_64978369	de/jarnbjo/vorbis/Mapping	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_95893500;Lnet/minecraft/unmapped/C_29656781;Lnet/minecraft/unmapped/C_66643593;)Lnet/minecraft/unmapped/C_64978369;	m_38128714	m_38128714	
 		p	0		p_0	
@@ -495,7 +495,7 @@ c	net/minecraft/unmapped/C_64978369	net/minecraft/unmapped/C_64978369
 	m	()[I	m_14938084	m_14938084	
 	m	()I	m_21861772	m_21861772	
 	m	()I	m_57871654	m_57871654	
-c	net/minecraft/unmapped/C_66643593	net/minecraft/unmapped/C_66643593	
+c	net/minecraft/unmapped/C_66643593	de/jarnbjo/vorbis/SetupHeader	
 	f	[Lnet/minecraft/unmapped/C_27209785;	f_96976506	f_96976506	
 	f	[Lnet/minecraft/unmapped/C_91040690;	f_41442890	f_41442890	
 	f	[Lnet/minecraft/unmapped/C_68051562;	f_16888409	f_16888409	
@@ -504,17 +504,17 @@ c	net/minecraft/unmapped/C_66643593	net/minecraft/unmapped/C_66643593
 	m	(Lnet/minecraft/unmapped/C_95893500;Lnet/minecraft/unmapped/C_29656781;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_67620614	net/minecraft/unmapped/C_67620614	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_32162563	f_32162563	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_05458444	f_05458444	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_29657067	f_29657067	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_95123959	f_95123959	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_92364433	f_92364433	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_03439561	f_03439561	
-	f	Lnet/minecraft/unmapped/C_67620614;	f_82051427	f_82051427	
-	f	Ljava/lang/String;	f_04720686	f_04720686	
-	f	F	f_17664260	f_17664260	
-	f	F	f_82250703	f_82250703	
+c	net/minecraft/unmapped/C_67620614	net/minecraft/block/BlockSound	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_32162563	NONE	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_05458444	GRASS	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_29657067	CLOTH	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_95123959	GRAVEL	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_92364433	STONE	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_03439561	METAL	
+	f	Lnet/minecraft/unmapped/C_67620614;	f_82051427	WOOD	
+	f	Ljava/lang/String;	f_04720686	key	
+	f	F	f_17664260	volume	
+	f	F	f_82250703	pitch	
 	f	[Lnet/minecraft/unmapped/C_67620614;	f_30747738	f_30747738	
 	m	()[Lnet/minecraft/unmapped/C_67620614;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_67620614;	valueOf	valueOf	
@@ -522,13 +522,13 @@ c	net/minecraft/unmapped/C_67620614	net/minecraft/unmapped/C_67620614
 	m	(Ljava/lang/String;ILjava/lang/String;FF)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	()F	m_63429825	m_63429825	
-	m	()F	m_50391414	m_50391414	
+		p	3		key	
+		p	4		volume	
+		p	5		pitch	
+	m	()F	m_63429825	getVolume	
+	m	()F	m_50391414	getPitch	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_68051562	net/minecraft/unmapped/C_68051562	
+c	net/minecraft/unmapped/C_68051562	de/jarnbjo/vorbis/Residue	
 	f	I	f_64088698	f_64088698	
 	f	I	f_99031824	f_99031824	
 	f	I	f_37682134	f_37682134	
@@ -562,19 +562,19 @@ c	net/minecraft/unmapped/C_68051562	net/minecraft/unmapped/C_68051562
 	m	(Lnet/minecraft/unmapped/C_95893500;Lnet/minecraft/unmapped/C_08488772;)Lnet/minecraft/unmapped/C_87794666;	m_74458241	m_74458241	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_77514842	net/minecraft/unmapped/C_77514842	
-	f	Z	f_36538881	f_36538881	
-	f	Ljavax/sound/sampled/SourceDataLine;	f_78930819	f_78930819	
-	f	Ljava/util/List;	f_58911579	f_58911579	
+c	net/minecraft/unmapped/C_77514842	net/minecraft/client/sound/SoundEngine	
+	f	Z	f_36538881	running	
+	f	Ljavax/sound/sampled/SourceDataLine;	f_78930819	audioDataLine	
+	f	Ljava/util/List;	f_58911579	sources	
 	f	Z	f_18392554	f_18392554	
-	m	(Lnet/minecraft/unmapped/C_87991158;)V	m_74262402	m_74262402	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_49086516;Lnet/minecraft/unmapped/C_58085244;)V	m_79252723	m_79252723	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_87991158;)V	m_74262402	play	
+		p	1		source	
+	m	(Lnet/minecraft/unmapped/C_49086516;Lnet/minecraft/unmapped/C_58085244;)V	m_79252723	play	
+		p	1		buffer	
 		p	2		p_2	
 	m	()V	run	run	
 	m	()V	<init>	<init>	
-c	net/minecraft/unmapped/C_78308467	net/minecraft/unmapped/C_78308467	
+c	net/minecraft/unmapped/C_78308467	de/jarnbjo/vorbis/Residue2	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_29656781;Lnet/minecraft/unmapped/C_66643593;)V	<init>	<init>	
 		p	1		p_1	
@@ -586,7 +586,7 @@ c	net/minecraft/unmapped/C_78308467	net/minecraft/unmapped/C_78308467
 		p	4		p_4	
 		p	5		p_5	
 	m	()Ljava/lang/Object;	clone	clone	
-c	net/minecraft/unmapped/C_84251816	net/minecraft/unmapped/C_84251816	
+c	net/minecraft/unmapped/C_84251816	de/jarnbjo/vorbis/IdentificationHeader	
 	f	I	f_30258318	f_30258318	
 	f	I	f_57335768	f_57335768	
 	f	I	f_66678998	f_66678998	
@@ -594,7 +594,7 @@ c	net/minecraft/unmapped/C_84251816	net/minecraft/unmapped/C_84251816
 	f	[Lnet/minecraft/unmapped/C_07035255;	f_03344094	f_03344094	
 	m	(Lnet/minecraft/unmapped/C_29656781;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_87794666	net/minecraft/unmapped/C_87794666	
+c	net/minecraft/unmapped/C_87794666	de/jarnbjo/vorbis/Look	
 	f	I	f_89850956	f_89850956	
 	f	I	f_56389427	f_56389427	
 	f	[Lnet/minecraft/unmapped/C_27209785;	f_11403424	f_11403424	
@@ -606,12 +606,12 @@ c	net/minecraft/unmapped/C_87794666	net/minecraft/unmapped/C_87794666
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_87991158	net/minecraft/unmapped/C_87991158	
-	m	([I[II)Z	m_51209075	m_51209075	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-c	net/minecraft/unmapped/C_90324329	net/minecraft/unmapped/C_90324329	
+c	net/minecraft/unmapped/C_87991158	net/minecraft/client/sound/source/SoundSource	
+	m	([I[II)Z	m_51209075	play	
+		p	1		leftChannel	
+		p	2		rightChannel	
+		p	3		sampleCount	
+c	net/minecraft/unmapped/C_90324329	de/jarnbjo/ogg/LogicalOggStreamImpl	
 	f	Lnet/minecraft/unmapped/C_10417424;	f_55657701	f_55657701	
 	f	Ljava/util/ArrayList;	f_27431142	f_27431142	
 	f	I	f_36552350	f_36552350	
@@ -621,7 +621,7 @@ c	net/minecraft/unmapped/C_90324329	net/minecraft/unmapped/C_90324329
 		p	1		p_1	
 	m	()Lnet/minecraft/unmapped/C_45553958;	m_83215101	m_83215101	
 	m	()[B	m_76234767	m_76234767	
-c	net/minecraft/unmapped/C_91040690	net/minecraft/unmapped/C_91040690	
+c	net/minecraft/unmapped/C_91040690	de/jarnbjo/vorbis/Floor	
 	f	[F	f_30894226	f_30894226	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_29656781;Lnet/minecraft/unmapped/C_66643593;)Lnet/minecraft/unmapped/C_91040690;	m_83371143	m_83371143	
@@ -635,18 +635,18 @@ c	net/minecraft/unmapped/C_91040690	net/minecraft/unmapped/C_91040690
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_92588294
 	m	()V	m_87236046		m_87236046
-c	net/minecraft/unmapped/C_93374159	net/minecraft/unmapped/C_93374159	
-	f	Lcom/mojang/minecraft/Entity;	f_98663938	f_98663938	
+c	net/minecraft/unmapped/C_93374159	net/minecraft/client/sound/effect/StereoSoundEffect	
+	f	Lcom/mojang/minecraft/Entity;	f_98663938	listener	
 	m	(Lcom/mojang/minecraft/Entity;)V	<init>	<init>	
 		p	1		p_1	
-	m	(FF)F	m_28305477	m_28305477	
-		p	1		p_1	
-		p	2		p_2	
-	m	(FFF)F	m_87635325	m_87635325	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-c	net/minecraft/unmapped/C_95893500	net/minecraft/unmapped/C_95893500	
+	m	(FF)F	m_28305477	getPan	
+		p	1		x	
+		p	2		z	
+	m	(FFF)F	m_87635325	getVolume	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+c	net/minecraft/unmapped/C_95893500	de/jarnbjo/vorbis/VorbisStream	
 	f	Lnet/minecraft/unmapped/C_90324329;	f_06127313	f_06127313	
 	f	Lnet/minecraft/unmapped/C_84251816;	f_00446577	f_00446577	
 	f	Lnet/minecraft/unmapped/C_40486725;	f_33429261	f_33429261	

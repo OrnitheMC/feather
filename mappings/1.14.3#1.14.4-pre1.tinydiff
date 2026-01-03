@@ -46,7 +46,7 @@ c	net/minecraft/unmapped/C_64041439
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_70668269
-	f	Lnet/minecraft/unmapped/C_52684014;	f_54932988	f_54932988	
+	f	Lnet/minecraft/unmapped/C_52684014;	f_54932988	villageSiege	
 	m	(Ljava/nio/file/Path;)V	m_63949124		m_63949124
 		p	1			p_1
 	m	(Ljava/io/Writer;)V	m_35965810		m_35965810
@@ -92,24 +92,24 @@ c	net/minecraft/unmapped/C_56964626
 		p	1			p_1
 	m	()V	m_49783355		m_49783355
 c	net/minecraft/unmapped/C_52684014
-	f	Lnet/minecraft/unmapped/C_70668269;	f_83427019	f_83427019	
-	m	()V	m_32916691	m_32916691	
-	m	()Z	m_91473974	m_91473974	
-	m	(Lnet/minecraft/unmapped/C_93816630;)Lnet/minecraft/unmapped/C_94584382;	m_98466960	m_98466960	
-		p	1		p_1	
+	f	Lnet/minecraft/unmapped/C_70668269;	f_83427019	world	
+	m	()V	m_32916691	tick	
+	m	()Z	m_91473974	initSiege	
+	m	(Lnet/minecraft/unmapped/C_93816630;)Lnet/minecraft/unmapped/C_94584382;	m_98466960	findSpawnPos	
+		p	1		siegePos	
 	m	(Lnet/minecraft/unmapped/C_70668269;)V	<init>	<init>	
 		p	1		p_1	
-	m	()V	m_19351882	m_19351882	
+	m	()V	m_19351882	spawnZombies	
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_70668269;ZZ)I	m_32916691		m_32916691
+	m	(Lnet/minecraft/unmapped/C_70668269;ZZ)I	m_32916691		tick
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_70668269;)Z	m_91473974		m_91473974
+	m	(Lnet/minecraft/unmapped/C_70668269;)Z	m_91473974		initSiege
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_70668269;)V	m_19351882		m_19351882
+	m	(Lnet/minecraft/unmapped/C_70668269;)V	m_19351882		spawnZombies
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_70668269;Lnet/minecraft/unmapped/C_93816630;)Lnet/minecraft/unmapped/C_94584382;	m_98466960		m_98466960
+	m	(Lnet/minecraft/unmapped/C_70668269;Lnet/minecraft/unmapped/C_93816630;)Lnet/minecraft/unmapped/C_94584382;	m_98466960		findSpawnPos
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_06806298
@@ -124,9 +124,9 @@ c	net/minecraft/client/main/Main
 	m	(Ljava/lang/Integer;)Ljava/util/OptionalInt;	m_00270694		m_00270694
 		p	0			p_0
 c	net/minecraft/unmapped/C_05587068
-	f	Ljava/util/concurrent/locks/ReentrantReadWriteLock;	f_25564011	f_25564011	
+	f	Ljava/util/concurrent/locks/ReentrantReadWriteLock;	f_25564011	lock	
 c	net/minecraft/realms/RealmsBridge
-	f	Lorg/apache/logging/log4j/Logger;	f_52499669	f_52499669	
+	f	Lorg/apache/logging/log4j/Logger;	f_52499669	LOGGER	
 	m	()V	<clinit>	<clinit>	
 	m	()V	m_89633172	m_89633172	
 	m	()V	m_70397272	m_70397272	
@@ -137,7 +137,7 @@ c	net/minecraft/unmapped/C_04107818
 	f	Lnet/minecraft/unmapped/C_41070485;	f_38054462		f_38054462
 	f	Lit/unimi/dsi/fastutil/objects/Object2IntMap;	f_85194896		f_85194896
 	m	(Lnet/minecraft/unmapped/C_83717615;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		blocksAtlas	
 	m	(Lnet/minecraft/unmapped/C_83717615;Lnet/minecraft/unmapped/C_41070485;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -145,7 +145,7 @@ c	net/minecraft/unmapped/C_04107818
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_05113611
-	m	()V	m_45147713		m_45147713
+	m	()V	m_45147713		waitForTasks
 c	net/minecraft/unmapped/C_15815210
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_93816630;Lnet/minecraft/unmapped/C_28786548;)Z	m_87223014		m_87223014
 		p	1			p_1
@@ -291,41 +291,41 @@ c	net/minecraft/unmapped/C_41070485
 	m	(Lnet/minecraft/unmapped/C_81592558;)Ljava/util/Set;	m_98481845		m_98481845
 		p	1			p_1
 c	net/minecraft/unmapped/C_29565597
-	f	Lnet/minecraft/unmapped/C_55906044;	f_05287589	f_05287589	
-	m	()V	m_49279388	m_49279388	
-	m	()I	m_92303526	m_92303526	
-	m	(I)Ljava/lang/String;	m_32045028	m_32045028	
-		p	1		p_1	
-	m	(I)V	m_55028376	m_55028376	
-		p	1		p_1	
-	m	(Ljava/util/Optional;)V	m_55028376		m_55028376
+	f	Lnet/minecraft/unmapped/C_55906044;	f_05287589	monitor	
+	m	()V	m_49279388	findBestMonitor	
+	m	()I	m_92303526	getPreferredFullscreenVideoModeIndex	
+	m	(I)Ljava/lang/String;	m_32045028	saveVideoMode	
+		p	1		index	
+	m	(I)V	m_55028376	setPreferredFullscreenVideoMode	
+		p	1		index	
+	m	(Ljava/util/Optional;)V	m_55028376		setPreferredFullscreenVideoMode
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_55906044;	m_28139680		m_28139680
 c	net/minecraft/unmapped/C_55906044
-	f	Lnet/minecraft/unmapped/C_88356662;	f_55171810	f_55171810	
+	f	Lnet/minecraft/unmapped/C_88356662;	f_55171810	screenManager	
 	m	(Lnet/minecraft/unmapped/C_88356662;J)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/util/Optional;)I	m_53138249	m_53138249	
-		p	1		p_1	
+		p	1		screenManager	
+		p	2		monitor	
+	m	(Ljava/util/Optional;)I	m_53138249	getPreferredVideoModeIndex	
+		p	1		preferred	
 	m	(J)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_07096562;)I	m_53138249		m_53138249
+	m	(Lnet/minecraft/unmapped/C_07096562;)I	m_53138249		getPreferredVideoModeIndex
 		p	1			p_1
 c	net/minecraft/unmapped/C_88356662
-	f	Ljava/util/Map;	f_40227899	f_40227899	
-	f	Ljava/util/Map;	f_28267336	f_28267336	
-	f	Ljava/util/Map;	f_81103560	f_81103560	
-	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	f_40227899		f_40227899
+	f	Ljava/util/Map;	f_40227899	monitors	
+	f	Ljava/util/Map;	f_28267336	windows	
+	f	Ljava/util/Map;	f_81103560	monitorsByWindow	
+	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	f_40227899		monitors
 c	net/minecraft/unmapped/C_05357615
 	m	(Lnet/minecraft/unmapped/C_79262971$C_56254000;IIIIII)V	m_71057241	m_71057241	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
+		p	2		minX	
+		p	3		minY	
+		p	4		minZ	
+		p	5		maxX	
+		p	6		maxY	
+		p	7		maxZ	
 	m	(Lnet/minecraft/unmapped/C_79262971$C_56254000;Lit/unimi/dsi/fastutil/doubles/DoubleList;Lit/unimi/dsi/fastutil/doubles/DoubleList;Lit/unimi/dsi/fastutil/doubles/DoubleList;IIIIII)V	m_71057241		m_71057241
 		p	0			p_0
 		p	1			p_1
@@ -351,10 +351,10 @@ c	net/minecraft/unmapped/C_41155727
 c	net/minecraft/unmapped/C_59659657
 	m	()Z	m_18149604		m_18149604
 c	net/minecraft/unmapped/C_63455388
-	f	Ljava/util/Optional;	f_36259780	f_36259780	
-	f	Ljava/util/Optional;	f_69268017	f_69268017	
-	f	Ljava/util/OptionalInt;	f_36259780		f_36259780
-	f	Ljava/util/OptionalInt;	f_69268017		f_69268017
+	f	Ljava/util/Optional;	f_36259780	preferredVideoModeWidth	
+	f	Ljava/util/Optional;	f_69268017	preferredVideoModeHeight	
+	f	Ljava/util/OptionalInt;	f_36259780		preferredVideoModeWidth
+	f	Ljava/util/OptionalInt;	f_69268017		preferredVideoModeHeight
 	m	(IILjava/util/Optional;Ljava/util/Optional;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -3631,12 +3631,12 @@ c	net/minecraft/unmapped/C_45790653$C_57785477		C_57785477
 		p	3			p_3
 		p	4			p_4
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_47373925		net/minecraft/unmapped/C_47373925
+c	net/minecraft/unmapped/C_47373925		net/minecraft/client/options/FullscreenOption
 	m	(Lnet/minecraft/unmapped/C_29565597;)V	<init>		<init>
-		p	1			p_1
+		p	1			window
 	m	(Lnet/minecraft/unmapped/C_29565597;Lnet/minecraft/unmapped/C_55906044;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			window
+		p	2			monitor
 	m	(Lnet/minecraft/unmapped/C_55906044;Lnet/minecraft/unmapped/C_76792751;Lnet/minecraft/unmapped/C_58340489;)Ljava/lang/String;	m_20737133		m_20737133
 		p	0			p_0
 		p	1			p_1
@@ -5191,23 +5191,23 @@ c	net/minecraft/unmapped/C_81114142$C_77767697		C_77767697
 		p	5			p_5
 	m	(I)V	m_46315481		m_46315481
 		p	1			p_1
-c	net/minecraft/unmapped/C_81620801		net/minecraft/unmapped/C_81620801
-	f	[I	f_43448651		f_43448651
-	f	I	f_62699738		f_62699738
-	f	I	f_69515149		f_69515149
+c	net/minecraft/unmapped/C_81620801		net/minecraft/realms/RealmsSkinImageProcessor
+	f	[I	f_43448651		data
+	f	I	f_62699738		width
+	f	I	f_69515149		height
 	m	()V	<init>		<init>
-	m	(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;	m_97138566		m_97138566
-		p	1			p_1
-	m	(IIII)V	m_28994540		m_28994540
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(IIII)V	m_12711660		m_12711660
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;	m_97138566		process
+		p	1			image
+	m	(IIII)V	m_28994540		doLegacyTransparencyHack
+		p	1			u1
+		p	2			v1
+		p	3			u2
+		p	4			v2
+	m	(IIII)V	m_12711660		setOpaque
+		p	1			u1
+		p	2			v1
+		p	3			u2
+		p	4			v2
 c	net/minecraft/unmapped/C_82293542		net/minecraft/unmapped/C_82293542
 	m	()Lnet/minecraft/unmapped/C_82293542$C_73170288;	m_79092010		m_79092010
 	m	(Lnet/minecraft/unmapped/C_82293542$C_73170288;)V	m_09349465		m_09349465

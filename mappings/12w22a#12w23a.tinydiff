@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_10918870
-	m	(Lnet/minecraft/unmapped/C_01281220;)V	m_00395552		m_00395552
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_01281220;)V	m_00395552		handleBlockMiningProgress
+		p	1			packet
 c	net/minecraft/unmapped/C_13231860
-	f	[[I	f_49221117		f_49221117
-	f	Z	f_99551803		f_99551803
-	f	I	f_20084933		f_20084933
+	f	[[I	f_49221117		ROTATIONS
+	f	Z	f_99551803		isCorner
+	f	I	f_20084933		stairType
 	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;)Lnet/minecraft/unmapped/C_24654288;	m_18909995		m_18909995
 		p	1			p_1
 		p	2			p_2
@@ -15,27 +15,27 @@ c	net/minecraft/unmapped/C_13231860
 		p	6			p_6
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_13860305
-	f	D	f_26303064		f_26303064
+	f	D	f_26303064		speedBoost
 c	net/minecraft/unmapped/C_14230742
 	f	F	f_97603496	f_97603496	
-	f	Z	f_12026733		f_12026733
-	f	I	f_76962167		f_76962167
-	m	(III)V	m_20465456		m_20465456
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	f	Z	f_12026733		isMiningBlock
+	f	I	f_76962167		prevMiningProgress
+	m	(III)V	m_20465456		stopMiningBlock
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_21829382
-	f	I	f_10516060	f_10516060	
-	f	I	f_96552024	f_96552024	
-	f	Lnet/minecraft/unmapped/C_88708284;	f_84191101		f_84191101
-	m	()Lnet/minecraft/unmapped/C_88708284;	m_10776202		m_10776202
+	f	I	f_10516060	item	
+	f	I	f_96552024	metadata	
+	f	Lnet/minecraft/unmapped/C_88708284;	f_84191101		item
+	m	()Lnet/minecraft/unmapped/C_88708284;	m_10776202		getItem
 c	net/minecraft/unmapped/C_24384787
-	f	F	f_97567165	f_97567165	
-	f	Ljava/util/Map;	f_79069085		f_79069085
-	m	(Lnet/minecraft/unmapped/C_96603444;Lnet/minecraft/unmapped/C_40996800;F)V	m_08872489		m_08872489
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	f	F	f_97567165	miningProgress	
+	f	Ljava/util/Map;	f_79069085		miningProgress
+	m	(Lnet/minecraft/unmapped/C_96603444;Lnet/minecraft/unmapped/C_40996800;F)V	m_08872489		renderMiningProgress
+		p	1			buffer
+		p	2			player
+		p	3			coordinateScaling
 	m	(IIIII)V	m_83094077		m_83094077
 		p	1			p_1
 		p	2			p_2
@@ -43,13 +43,13 @@ c	net/minecraft/unmapped/C_24384787
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_29639016
-	m	()Lnet/minecraft/unmapped/C_74087615;	m_85860072		m_85860072
+	m	()Lnet/minecraft/unmapped/C_74087615;	m_85860072		getSingleplayerData
 c	net/minecraft/unmapped/C_34267874
-	m	(F)V	m_40772983	m_40772983	
-		p	1		p_1	
+	m	(F)V	m_40772983	render	
+		p	1		tickDelta	
 c	net/minecraft/unmapped/C_39000935
-	f	Ljava/util/List;	f_24688283	f_24688283	
-	f	Ljava/util/Map;	f_24688283		f_24688283
+	f	Ljava/util/List;	f_24688283	RECENT_TOGGLES	
+	f	Ljava/util/Map;	f_24688283		RECENT_TOGGLES
 	m	(Lnet/minecraft/unmapped/C_64041439;JJ)V	m_28524346		m_28524346
 		p	1			p_1
 		p	2			p_2
@@ -57,21 +57,21 @@ c	net/minecraft/unmapped/C_39000935
 c	net/minecraft/unmapped/C_39588828
 	m	()V	m_29930604		m_29930604
 c	net/minecraft/unmapped/C_42232651
-	m	(III)V	m_37260269	m_37260269	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()V	m_33702178		m_33702178
-	m	(ILnet/minecraft/unmapped/C_88708284;)V	m_37260269		m_37260269
-		p	1			p_1
-		p	2			p_2
+	m	(III)V	m_37260269	setEquipment	
+		p	1		slot	
+		p	2		item	
+		p	3		metadata	
+	m	()V	m_33702178		checkBlockCollisions
+	m	(ILnet/minecraft/unmapped/C_88708284;)V	m_37260269		setEquipment
+		p	1			slot
+		p	2			item
 c	net/minecraft/unmapped/C_50078015
-	m	(IIIII)V	m_83094077		m_83094077
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(IIIII)V	m_83094077		updateBlockMiningProgress
+		p	1			id
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			progress
 c	net/minecraft/unmapped/C_54810664
 	m	(III)V	m_37260269	m_37260269	
 		p	1		p_1	
@@ -81,21 +81,21 @@ c	net/minecraft/unmapped/C_54810664
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_64041439
-	m	(IIIII)V	m_97254881		m_97254881
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(IIIII)V	m_97254881		updateBlockMiningProgress
+		p	1			id
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			progress
 c	net/minecraft/unmapped/C_70668269
 	m	()Lnet/minecraft/unmapped/C_40996800;	m_32742606	m_32742606	
 c	net/minecraft/unmapped/C_81592558
-	m	(Lnet/minecraft/unmapped/C_64041439;JJ)V	m_28524346		m_28524346
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_64041439;JJ)V	m_28524346		onTimeChanged
+		p	1			world
+		p	2			change
+		p	4			newTime
 c	net/minecraft/unmapped/C_88014908
-	m	()V	m_85778044		m_85778044
+	m	()V	m_85778044		closeWorld
 	m	(Lnet/minecraft/unmapped/C_01281220;)V	m_00395552		m_00395552
 		p	1			p_1
 c	net/minecraft/unmapped/C_93497269
@@ -106,14 +106,14 @@ c	net/minecraft/unmapped/C_93497269
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_97866173
-	f	F	f_84620581	f_84620581	
+	f	F	f_84620581	progress	
 c	net/minecraft/unmapped/C_08489468
-	m	(Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_40996800;)V	m_92317641	m_92317641	
+	m	(Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_40996800;)V	m_92317641	saveData	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_74087615;)V	m_92317641		m_92317641
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_74087615;)V	m_92317641		saveData
+		p	1			data
+		p	2			playerData
 c	net/minecraft/unmapped/C_25923450
 	m	(Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_40996800;)V	m_92317641	m_92317641	
 		p	1		p_1	
@@ -129,10 +129,10 @@ c	net/minecraft/unmapped/C_50240030
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_64676926
-	m	(Lnet/minecraft/unmapped/C_40996800;)Lnet/minecraft/unmapped/C_74087615;	m_19289848	m_19289848	
+	m	(Lnet/minecraft/unmapped/C_40996800;)Lnet/minecraft/unmapped/C_74087615;	m_19289848	toNbt	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_74087615;	m_19289848		m_19289848
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_74087615;	m_19289848		toNbt
+		p	1			playerData
 c	net/minecraft/unmapped/C_68019318
 	m	(Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_40996800;)V	m_92317641	m_92317641	
 		p	1		p_1	
@@ -143,37 +143,37 @@ c	net/minecraft/unmapped/C_68019318
 c	net/minecraft/unmapped/C_98403025
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_40266271
-	m	()V	m_64689751		m_64689751
+	m	()V	m_64689751		interrupt
 c	net/minecraft/unmapped/C_32101806
 	m	()V	m_29930604		m_29930604
-	m	()Z	m_38696535		m_38696535
+	m	()Z	m_38696535		isOpen
 c	net/minecraft/unmapped/C_62989604
-	m	()V	m_29930604		m_29930604
+	m	()V	m_29930604		stop
 c	net/minecraft/unmapped/C_64849426
 	m	(Lnet/minecraft/unmapped/C_40996800;)Lnet/minecraft/unmapped/C_74087615;	m_19289848	m_19289848	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_74087615;	m_19289848		m_19289848
 		p	1			p_1
 c	net/minecraft/unmapped/C_99083207
-	f	Lnet/minecraft/unmapped/C_74087615;	f_18417550		f_18417550
+	f	Lnet/minecraft/unmapped/C_74087615;	f_18417550		playerData
 	m	(Lnet/minecraft/unmapped/C_49202226;)V	m_76966139		m_76966139
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_74087615;	m_85860072		m_85860072
 c	net/minecraft/unmapped/C_25781992
 	m	()I	m_52943252		m_52943252
-c	net/minecraft/unmapped/C_01281220		net/minecraft/unmapped/C_01281220
-	f	I	f_46588580		f_46588580
-	f	I	f_76138822		f_76138822
-	f	I	f_09253550		f_09253550
-	f	I	f_96468429		f_96468429
-	f	I	f_97113489		f_97113489
+c	net/minecraft/unmapped/C_01281220		net/minecraft/network/packet/BlockMiningProgressPacket
+	f	I	f_46588580		id
+	f	I	f_76138822		x
+	f	I	f_09253550		y
+	f	I	f_96468429		z
+	f	I	f_97113489		progress
 	m	()V	<init>		<init>
 	m	(IIIII)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			id
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			progress
 	m	(Ljava/io/DataInputStream;)V	m_13296744		m_13296744
 		p	1			p_1
 	m	(Ljava/io/DataOutputStream;)V	m_17566769		m_17566769
@@ -181,25 +181,25 @@ c	net/minecraft/unmapped/C_01281220		net/minecraft/unmapped/C_01281220
 	m	(Lnet/minecraft/unmapped/C_10918870;)V	m_04853589		m_04853589
 		p	1			p_1
 	m	()I	m_85604015		m_85604015
-	m	()I	m_76880707		m_76880707
-	m	()I	m_25007212		m_25007212
-	m	()I	m_72860129		m_72860129
-	m	()I	m_88541474		m_88541474
-	m	()I	m_81877588		m_81877588
-c	net/minecraft/unmapped/C_58838815		net/minecraft/unmapped/C_58838815
-	f	I	f_62634985		f_62634985
-	f	I	f_98727740		f_98727740
-	f	I	f_86945011		f_86945011
-	f	I	f_31486243		f_31486243
-	f	I	f_78720466		f_78720466
+	m	()I	m_76880707		getPlayerId
+	m	()I	m_25007212		getX
+	m	()I	m_72860129		getY
+	m	()I	m_88541474		getZ
+	m	()I	m_81877588		getProgress
+c	net/minecraft/unmapped/C_58838815		net/minecraft/client/render/world/BlockMiningProgress
+	f	I	f_62634985		id
+	f	I	f_98727740		x
+	f	I	f_86945011		y
+	f	I	f_31486243		z
+	f	I	f_78720466		progress
 	m	(IIII)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	()I	m_89371649		m_89371649
-	m	()I	m_16942310		m_16942310
-	m	()I	m_55007513		m_55007513
-	m	(I)V	m_72204052		m_72204052
-		p	1			p_1
-	m	()I	m_47668926		m_47668926
+		p	1			entityId
+		p	2			x
+		p	3			y
+		p	4			z
+	m	()I	m_89371649		getX
+	m	()I	m_16942310		getY
+	m	()I	m_55007513		getZ
+	m	(I)V	m_72204052		setProgress
+		p	1			progress
+	m	()I	m_47668926		getProgress

@@ -5,12 +5,12 @@ c	net/minecraft/unmapped/C_03111506
 	m	(Lnet/minecraft/unmapped/C_03111506;)Lnet/minecraft/unmapped/C_03111506$C_56854011;	m_41781214		m_41781214
 		p	0			p_0
 c	net/minecraft/unmapped/C_23330260
-	f	[Lnet/minecraft/unmapped/C_02915043;	f_68515716	f_68515716	
-	f	[Lnet/minecraft/unmapped/C_02915043;	f_91519797	f_91519797	
+	f	[Lnet/minecraft/unmapped/C_02915043;	f_68515716	sideSprites	
+	f	[Lnet/minecraft/unmapped/C_02915043;	f_91519797	topSprites	
 	m	(Ljava/util/Random;)I	m_23574716	m_23574716	
 		p	1		p_1	
-	m	(I)I	m_80941529	m_80941529	
-		p	0		p_0	
+	m	(I)I	m_80941529	getLogAxis	
+		p	0		metadata	
 	m	(I)Lnet/minecraft/unmapped/C_02915043;	m_78786505	m_78786505	
 		p	1		p_1	
 	m	(I)Lnet/minecraft/unmapped/C_02915043;	m_42608967	m_42608967	
@@ -26,9 +26,9 @@ c	net/minecraft/unmapped/C_23330260
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-c	net/minecraft/unmapped/C_44922783
-	f	[Ljava/lang/String;	f_86460541	f_86460541	
-	f	[[Ljava/lang/String;	f_28120517	f_28120517	
+c	net/minecraft/unmapped/C_44922783	net/minecraft/block/LeavesBlock	net/minecraft/block/AbstractLeavesBlock
+	f	[Ljava/lang/String;	f_86460541	VARIANTS	
+	f	[[Ljava/lang/String;	f_28120517	SPRITE_NAMES	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_97491075;)V	m_79185607	m_79185607	
 		p	1		p_1	
@@ -36,47 +36,51 @@ c	net/minecraft/unmapped/C_44922783
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_64041439;IIIII)V	m_30105172		m_30105172
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(I)I	m_87600974		m_87600974
-		p	1			p_1
-	m	()[Ljava/lang/String;	m_22332128		m_22332128
+	m	(Lnet/minecraft/unmapped/C_64041439;IIIII)V	m_30105172		dropAppleWithChance
+		c		If leaf block has correct metadata, then drop an apple item with 1/chance probability
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			metadata
+		p	6			chance
+	m	(I)I	m_87600974		getSaplingDropChance
+		c		Returns the base chance for the block to drop a sapling when broken
+		p	1			metadata
+	m	()[Ljava/lang/String;	m_22332128		getVariants
 c	net/minecraft/unmapped/C_50456764
-	f	[Lnet/minecraft/unmapped/C_81592558;	f_34489011	f_34489011	
-	f	Ljava/util/Set;	f_34489011		f_34489011
+	f	[Lnet/minecraft/unmapped/C_81592558;	f_34489011	EFFECTIVE_BLOCKS	
+	f	Ljava/util/Set;	f_34489011		EFFECTIVE_BLOCKS
 c	net/minecraft/unmapped/C_53672520
-	f	[Lnet/minecraft/unmapped/C_81592558;	f_39855642	f_39855642	
-	f	Ljava/util/Set;	f_39855642		f_39855642
+	f	[Lnet/minecraft/unmapped/C_81592558;	f_39855642	effectiveBlocks	
+	f	Ljava/util/Set;	f_39855642		effectiveBlocks
 	m	(FLnet/minecraft/unmapped/C_98888256$C_74597326;[Lnet/minecraft/unmapped/C_81592558;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		attackDamage	
+		p	2		tier	
+		p	3		effectiveBlocks	
 	m	(FLnet/minecraft/unmapped/C_98888256$C_74597326;Ljava/util/Set;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			attackDamage
+		p	2			tier
+		p	3			effectiveBlocks
 c	net/minecraft/unmapped/C_75759956
-	f	[Lnet/minecraft/unmapped/C_81592558;	f_35910788	f_35910788	
-	f	Ljava/util/Set;	f_35910788		f_35910788
+	f	[Lnet/minecraft/unmapped/C_81592558;	f_35910788	EFFECTIVE_BLOCKS	
+	f	Ljava/util/Set;	f_35910788		EFFECTIVE_BLOCKS
 c	net/minecraft/unmapped/C_85721786
-	f	[Lnet/minecraft/unmapped/C_81592558;	f_23557953	f_23557953	
-	f	Ljava/util/Set;	f_23557953		f_23557953
+	f	[Lnet/minecraft/unmapped/C_81592558;	f_23557953	EFFECTIVE_BLOCKS	
+		c	The items that are broken more efficiently with an axe	
+	f	Ljava/util/Set;	f_23557953		EFFECTIVE_BLOCKS
+		c		The items that are broken more efficiently with an axe
 c	net/minecraft/unmapped/C_90901456
-	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_98888256;)Lnet/minecraft/unmapped/C_88708284;	m_23135479		m_23135479
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_98888256;)Lnet/minecraft/unmapped/C_88708284;	m_23135479		fill
+		p	1			stack
+		p	2			player
+		p	3			item
 c	net/minecraft/unmapped/C_52610529
-	f	Lnet/minecraft/unmapped/C_44922783;	f_25994508		f_25994508
+	f	Lnet/minecraft/unmapped/C_44922783;	f_25994508		block
 	m	(Lnet/minecraft/unmapped/C_81592558;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_44922783;)V	<init>		<init>
-		p	1			p_1
+		p	1			block
 c	net/minecraft/unmapped/C_89496465
 	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_42232651;)V	m_36335635		m_36335635
 		p	1			p_1
@@ -84,27 +88,27 @@ c	net/minecraft/unmapped/C_89496465
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_64041439;IIII)V	m_53088648		m_53088648
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(I)F	m_50000865		m_50000865
-		p	0			p_0
+	m	(Lnet/minecraft/unmapped/C_64041439;IIII)V	m_53088648		setLevel
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			level
+	m	(I)F	m_50000865		getHeightOfLevel
+		p	0			level
 c	net/minecraft/unmapped/C_79360482
-	f	Lnet/minecraft/unmapped/C_11164199;	f_68181585		f_68181585
-	m	(Lnet/minecraft/unmapped/C_79360482;)Lnet/minecraft/unmapped/C_11164199;	m_86682709		m_86682709
-		p	0			p_0
+	f	Lnet/minecraft/unmapped/C_11164199;	f_68181585		forceUnicodeFontButton
+	m	(Lnet/minecraft/unmapped/C_79360482;)Lnet/minecraft/unmapped/C_11164199;	m_86682709		getOptionButtonWidget
+		p	0			screen
 c	net/minecraft/unmapped/C_95354761
-	m	(Lnet/minecraft/unmapped/C_26894433;)V	m_03039333		m_03039333
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_26894433;)V	m_03039333		renderDefaultFrame
+		p	1			itemFrame
 c	net/minecraft/unmapped/C_53524147
-	f	Lnet/minecraft/unmapped/C_81592558;	f_50366577		f_50366577
-	f	Lnet/minecraft/unmapped/C_44922783;	f_42535103		f_42535103
-c	net/minecraft/unmapped/C_03079205		net/minecraft/unmapped/C_03079205
-	f	[[Ljava/lang/String;	f_21688586		f_21688586
-	f	[Ljava/lang/String;	f_09653347		f_09653347
+	f	Lnet/minecraft/unmapped/C_81592558;	f_50366577		LOG2
+	f	Lnet/minecraft/unmapped/C_44922783;	f_42535103		LEAVES2
+c	net/minecraft/unmapped/C_03079205		net/minecraft/block/LeavesBlock
+	f	[[Ljava/lang/String;	f_21688586		SPRITE_NAMES
+	f	[Ljava/lang/String;	f_09653347		VARIANTS
 	m	()V	<init>		<init>
 	m	(I)I	m_51470331		m_51470331
 		p	1			p_1
@@ -133,8 +137,8 @@ c	net/minecraft/unmapped/C_03079205		net/minecraft/unmapped/C_03079205
 		p	1			p_1
 	m	()[Ljava/lang/String;	m_22332128		m_22332128
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_07974392		net/minecraft/unmapped/C_07974392
-	f	[Ljava/lang/String;	f_92849255		f_92849255
+c	net/minecraft/unmapped/C_07974392		net/minecraft/block/Log2Block
+	f	[Ljava/lang/String;	f_92849255		VARIANTS
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_98888256;Lnet/minecraft/unmapped/C_87042217;Ljava/util/List;)V	m_77245430		m_77245430
 		p	1			p_1
@@ -143,9 +147,9 @@ c	net/minecraft/unmapped/C_07974392		net/minecraft/unmapped/C_07974392
 	m	(Lnet/minecraft/unmapped/C_97491075;)V	m_79185607		m_79185607
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_27391661		net/minecraft/unmapped/C_27391661
-	f	[[Ljava/lang/String;	f_77456786		f_77456786
-	f	[Ljava/lang/String;	f_28829664		f_28829664
+c	net/minecraft/unmapped/C_27391661		net/minecraft/block/Leaves2Block
+	f	[[Ljava/lang/String;	f_77456786		BLOCK_IDS
+	f	[Ljava/lang/String;	f_28829664		VARIANTS
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_64041439;IIIII)V	m_30105172		m_30105172
 		p	1			p_1
@@ -165,12 +169,12 @@ c	net/minecraft/unmapped/C_27391661		net/minecraft/unmapped/C_27391661
 		p	1			p_1
 	m	()[Ljava/lang/String;	m_22332128		m_22332128
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_47681290		net/minecraft/unmapped/C_47681290
-	f	[Lnet/minecraft/unmapped/C_02915043;	f_95892829		f_95892829
-	f	[Lnet/minecraft/unmapped/C_02915043;	f_13807035		f_13807035
+c	net/minecraft/unmapped/C_47681290		net/minecraft/block/AbstractLogBlock
+	f	[Lnet/minecraft/unmapped/C_02915043;	f_95892829		sideSprites
+	f	[Lnet/minecraft/unmapped/C_02915043;	f_13807035		topSprites
 	m	()V	<init>		<init>
-	m	(I)I	m_65143262		m_65143262
-		p	0			p_0
+	m	(I)I	m_65143262		getLogAxis
+		p	0			metadata
 	m	(Ljava/util/Random;)I	m_23574716		m_23574716
 		p	1			p_1
 	m	(ILjava/util/Random;I)Lnet/minecraft/unmapped/C_98888256;	m_78174230		m_78174230
@@ -188,7 +192,7 @@ c	net/minecraft/unmapped/C_47681290		net/minecraft/unmapped/C_47681290
 		p	1			p_1
 	m	(I)Lnet/minecraft/unmapped/C_02915043;	m_42608967		m_42608967
 		p	1			p_1
-c	net/minecraft/unmapped/C_65691089		net/minecraft/unmapped/C_65691089
+c	net/minecraft/unmapped/C_65691089		net/minecraft/server/command/SetWorldSpawnCommand
 	m	()V	<init>		<init>
 	m	()Ljava/lang/String;	m_72533879		m_72533879
 	m	()I	m_09735553		m_09735553

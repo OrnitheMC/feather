@@ -1,14 +1,14 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_03670941
-	m	(IIILnet/minecraft/unmapped/C_89604096;)F	m_87085393	m_87085393	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(III)F	m_87085393		m_87085393
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(IIILnet/minecraft/unmapped/C_89604096;)F	m_87085393	getLiquidHeight	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		liquid	
+	m	(III)F	m_87085393		getLiquidHeight
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_05042406
 	m	(Lnet/minecraft/unmapped/C_64041439;IIILjava/util/Random;)V	m_56075420		m_56075420
 		p	1			p_1
@@ -19,15 +19,17 @@ c	net/minecraft/unmapped/C_05042406
 c	net/minecraft/unmapped/C_06774341
 	m	()Z	m_09162316	m_09162316	
 c	net/minecraft/unmapped/C_13709197
-	f	I	f_21526176		f_21526176
-	f	I	f_88641891		f_88641891
-	m	(I)F	m_11761920	m_11761920	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)I	m_91173234	m_91173234	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	f	I	f_21526176		sourceBlock
+	f	I	f_88641891		flowingBlock
+	m	(I)F	m_11761920	getHeightLoss	
+		c	@return the height loss of a liquid with the given state compared to a full block.	
+		p	0		state	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)I	m_91173234	getLiquidState	
+		c	Returns the depth and falling state of the liquid at the given position, encoded in a 4 bit number,\nor {@code -1} if the given position is not occupied by this liquid.\n<p>\nThe 3 least significant bits encode the depth of this liquid - that is to say, how shallow it lies within this block.\nA value of {@code 0} denotes a source block, while the values {@code 1} to {@code 7} denote increasingly shallow depth values.\n<br>\nIf this liquid is falling, the depth applies not to this liquid, but to the liquid above it.\nIf the liquid above is also falling, the depth is always 0.\n<p>\nThe 4th least significant bit encodes whether the liquid is falling (i.e. there is liquid flowing in from above).	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 	m	()I	m_43136364	m_43136364	
 	m	(ILjava/util/Random;)I	m_78174230	m_78174230	
 		p	1		p_1	
@@ -38,7 +40,7 @@ c	net/minecraft/unmapped/C_13709197
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)I	m_28266941	m_28266941	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)I	m_28266941	getLiquidDepth	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -50,32 +52,32 @@ c	net/minecraft/unmapped/C_13709197
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_67283254		m_67283254
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_67283254		spread
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_17136020		m_17136020
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_25975903		m_25975903
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_98030138		m_98030138
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_70712015		m_70712015
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_17136020		isNotLiquidBlocking
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_25975903		canSpreadTo
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_98030138		lightOnFire
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_70712015		spreadTo
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 	m	()Z	m_31554219		m_31554219
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)V	m_91032811		m_91032811
 		p	1			p_1
@@ -83,43 +85,44 @@ c	net/minecraft/unmapped/C_13709197
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_59911292		m_59911292
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_59911292		canSplashAt
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_32232284
-	f	Lnet/minecraft/unmapped/C_76792751;	f_55506873	f_55506873	
-	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_82920792;Lnet/minecraft/unmapped/C_23014920;Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_76792751;F)V	m_62512441	m_62512441	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_82920792;Lnet/minecraft/unmapped/C_23014920;Lnet/minecraft/unmapped/C_40996800;F)V	m_62512441		m_62512441
+	f	Lnet/minecraft/unmapped/C_76792751;	f_55506873	options	
+	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_82920792;Lnet/minecraft/unmapped/C_23014920;Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_76792751;F)V	m_62512441	prepare	
+		p	1		world	
+		p	2		textureManager	
+		p	3		textRenderer	
+		p	4		camera	
+		p	5		options	
+		p	6		tickDelta	
+	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_82920792;Lnet/minecraft/unmapped/C_23014920;Lnet/minecraft/unmapped/C_40996800;F)V	m_62512441		prepare
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_32290952
-	m	(I)Z	m_42050795		m_42050795
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_35939364		m_35939364
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_78676495		m_78676495
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(I)Z	m_42050795		isFlammable
+		p	1			block
+	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_35939364		spread
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_78676495		spreadTo
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_42232651
-	m	(Lnet/minecraft/unmapped/C_89604096;)Z	m_52586232	m_52586232	
-		p	1		p_1	
-	m	()Z	m_52586232		m_52586232
+	m	(Lnet/minecraft/unmapped/C_89604096;)Z	m_52586232	isSubmergedIn	
+		c	Check if this entity is submerged in the given fluid, meaning the fluid covers its eyes.	
+		p	1		liquid	
+	m	()Z	m_52586232		isSubmergedIn
 c	net/minecraft/unmapped/C_44922783
 	m	(Lnet/minecraft/unmapped/C_64041439;IIILjava/util/Random;)V	m_56075420	m_56075420	
 		p	1		p_1	
@@ -142,57 +145,64 @@ c	net/minecraft/unmapped/C_45898477
 		p	4			p_4
 		p	6			p_6
 c	net/minecraft/unmapped/C_64041439
-	m	(IIIII)Z	m_70456507	m_70456507	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(IIII)V	m_62453220	m_62453220	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;)Lnet/minecraft/unmapped/C_24654288;	m_82559274	m_82559274	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;Z)Lnet/minecraft/unmapped/C_24654288;	m_40214598	m_40214598	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_82690114;Lnet/minecraft/unmapped/C_89604096;Lnet/minecraft/unmapped/C_42232651;)Z	m_79097064	m_79097064	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;)Lnet/minecraft/unmapped/C_24654288;	m_40214598		m_40214598
-		p	1			p_1
-		p	2			p_2
+	m	(IIIII)Z	m_70456507	setBlockWithMetadata	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		block	
+		p	5		metadata	
+	m	(IIII)V	m_62453220	onBlockChanged	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		block	
+	m	(Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;)Lnet/minecraft/unmapped/C_24654288;	m_82559274	rayTrace	
+		p	1		from	
+		p	2		to	
+	m	(Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;Z)Lnet/minecraft/unmapped/C_24654288;	m_40214598	rayTrace	
+		p	1		from	
+		p	2		to	
+		p	3		allowLiquids	
+	m	(Lnet/minecraft/unmapped/C_82690114;Lnet/minecraft/unmapped/C_89604096;Lnet/minecraft/unmapped/C_42232651;)Z	m_79097064	applyLiquidDrag	
+		p	1		bounds	
+		p	2		material	
+		p	3		entity	
+	m	(Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;)Lnet/minecraft/unmapped/C_24654288;	m_40214598		rayTrace
+		p	1			from
+		p	2			to
 c	net/minecraft/unmapped/C_65131087
-	f	[Z	f_96025036	f_96025036	
-	f	[I	f_55901751	f_55901751	
-	f	I	f_61618395		f_61618395
-	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_78191746	m_78191746	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_35725464	m_35725464	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	f	[Z	f_96025036	spread	
+		c	For each direction, whether this liquid should spread in that direction.	
+	f	[I	f_55901751	distanceToGap	
+		c	For each direction, the distance to the nearest gap to flow down into.	
+	f	I	f_61618395		flowingBlock
+	f	I	f_54866565	adjacentSources	sourceBlock
+		c	The number of adjacent source liquids.	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_78191746	convertToSource	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_35725464	isLiquidBlocking	
+		c	@return whether the block at the given position blocks liquids from flowing.	
+		p	1		world	
+		p	2		x	
+		p	3		y	
 		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_64041439;IIII)I	m_87223021	m_87223021	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_06230005	m_06230005	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_64041439;IIII)I	m_87223021	getLowestDepth	
+		c	@return the lowest depth between the given value and that of an adjacent liquid.	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		depth	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)Z	m_06230005	canSpreadTo	
+		c	@return whether this liquid can spread to the given position.	
+		p	1		world	
+		p	2		x	
+		p	3		y	
 		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_64041439;IIII)I	m_14404841	m_14404841	
+	m	(Lnet/minecraft/unmapped/C_64041439;IIII)I	m_14404841	getDistanceToGap	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -228,33 +238,33 @@ c	net/minecraft/unmapped/C_65131087
 		p	1			p_1
 	m	()I	m_52943252		m_52943252
 c	net/minecraft/unmapped/C_76792751
-	f	Z	f_76039125	f_76039125	
+	f	Z	f_76039125	fancyGraphics	
 c	net/minecraft/unmapped/C_81592558
-	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_94584382;)V	m_75122135	m_75122135	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_98737217	m_98737217	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Z)Z	m_73649196	m_73649196	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_64041439;IIILnet/minecraft/unmapped/C_94584382;)V	m_75122135	applyMaterialDrag	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		velocity	
+	m	(Lnet/minecraft/unmapped/C_64041439;III)V	m_98737217	updateShape	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Z)Z	m_73649196	canRayTrace	
+		p	1		allowLiquids	
 c	net/minecraft/unmapped/C_89604096
-	m	()Z	m_45818380		m_45818380
-c	net/minecraft/unmapped/C_90901456	net/minecraft/unmapped/C_90901456	
-	f	I	f_21920182	f_21920182	
+	m	()Z	m_45818380		isNotLiquidBlocking
+c	net/minecraft/unmapped/C_90901456	net/minecraft/item/BucketItem	
+	f	I	f_21920182	liquid	
 	m	(II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		id	
+		p	2		liquid	
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_40996800;)Lnet/minecraft/unmapped/C_88708284;	m_94551825	m_94551825	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_98888256
-	f	Lnet/minecraft/unmapped/C_98888256;	f_91599154	f_91599154	
-	f	Lnet/minecraft/unmapped/C_98888256;	f_94313583	f_94313583	
-	f	Lnet/minecraft/unmapped/C_98888256;	f_32467447	f_32467447	
+	f	Lnet/minecraft/unmapped/C_98888256;	f_91599154	BUCKET	
+	f	Lnet/minecraft/unmapped/C_98888256;	f_94313583	WATER_BUCKET	
+	f	Lnet/minecraft/unmapped/C_98888256;	f_32467447	LAVA_BUCKET	
