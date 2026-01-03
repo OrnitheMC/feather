@@ -12,38 +12,7 @@ GRADLEW = 'gradlew' if os.name == 'nt' else './gradlew'
 UNAVAILABLE_VERSIONS = []
 # shortcuts for versions with ugly ids
 VERSION_SHORTCUTS = {
-    'a1.0.15': 'a1.0.15&server-a0.1.0',
-    'server-a0.1.0': 'a1.0.15&server-a0.1.0',
-    'a1.0.16': 'a1.0.16&server-a0.1.1-1707',
-    'server-a0.1.1': 'a1.0.16&server-a0.1.1-1707',
-    'a1.0.16_01': 'a1.0.16_01&server-a0.1.2_01',
-    'server-a0.1.2_01': 'a1.0.16_01&server-a0.1.2_01',
-    'a1.0.16_02': 'a1.0.16_02&server-a0.1.3',
-    'server-a0.1.3': 'a1.0.16_02&server-a0.1.3',
-    'a1.0.17_02': 'a1.0.17_02&server-a0.1.4',
-    'server-a0.1.4': 'a1.0.17_02&server-a0.1.4',
-    'a1.1.1': 'a1.1.1&server-a0.2.1',
-    'server-a0.2.1': 'a1.1.1&server-a0.2.1',
-    'a1.2.0': 'a1.2.0&server-a0.2.2',
-    'server-a0.2.2': 'a1.2.0&server-a0.2.2',
-    'a1.2.0_01': 'a1.2.0_01&server-a0.2.2_01',
-    'server-a0.2.2_01': 'a1.2.0_01&server-a0.2.2_01',
-    'a1.2.1_01': 'a1.2.1_01&server-a0.2.3',
-    'server-a0.2.3': 'a1.2.1_01&server-a0.2.3',
-    'a1.2.3': 'a1.2.3&server-a0.2.5-0923',
-    'server-a0.2.5': 'a1.2.3&server-a0.2.5-0923',
-    'a1.2.3_02': 'a1.2.3_02&server-a0.2.5_01',
-    'server-a0.2.5_01': 'a1.2.3_02&server-a0.2.5_01',
-    'a1.2.3_04': 'a1.2.3_04&server-a0.2.5_02',
-    'server-a0.2.5_02': 'a1.2.3_04&server-a0.2.5_02',
-    'a1.2.3_05': 'a1.2.3_05&server-a0.2.6',
-    'server-a0.2.6': 'a1.2.3_05&server-a0.2.6',
-    'a1.2.4_01': 'a1.2.4_01&server-a0.2.6_02',
-    'server-a0.2.6_02': 'a1.2.4_01&server-a0.2.6_02',
-    'a1.2.5': 'a1.2.5&server-a0.2.7',
-    'server-a0.2.7': 'a1.2.5&server-a0.2.7',
-    'a1.2.6': 'a1.2.6&server-a0.2.8',
-    'server-a0.2.8': 'a1.2.6&server-a0.2.8',
+    '1.0': '1.0.0'
 }
 
 
@@ -111,6 +80,12 @@ def parse_minecraft_version(arg, possible_versions):
     versions = []
     if arg in possible_versions:
         versions.append(arg)
+    elif '&' not in arg:
+        for possible_version in possible_versions:
+            if '&' in possible_version:
+                for mc_version in possible_version.split('&'):
+                    if arg == mc_version:
+                        versions.append(possible_version)
     for version in versions:
         if version in UNAVAILABLE_VERSIONS:
             raise Exception('version ' + version + ' is unavailable at the moment!')
