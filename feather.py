@@ -34,7 +34,7 @@ def main():
         else:
             if arg in GRADLE_TASKS:
                 tasks.append(arg)
-            elif arg.startswith('--'):
+            elif arg.startswith('--') or arg.startswith('-D'):
                 options.append(arg)
             else:
                 raise Exception('unrecognized arg ' + arg + '!')
