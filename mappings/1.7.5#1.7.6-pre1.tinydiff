@@ -8,16 +8,16 @@ c	net/minecraft/server/MinecraftServer
 	m	()Lcom/mojang/authlib/GameProfileRepository;	m_1289492		getGameProfileRepository
 	m	()Lnet/minecraft/unmapped/C_5148056;	m_2017591		getGameProfileCache
 c	net/minecraft/unmapped/C_0066205
-	m	()V	m_7365521		m_7365521
+	m	()V	m_7365521		onTextureDownloaded
 c	net/minecraft/unmapped/C_0281639
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_2018497;	m_4745173	loadPlayerData	
-		p	1		name	
+		p	1		playerName	
 c	net/minecraft/unmapped/C_0614482
 	f	Ljava/util/regex/Pattern;	f_0491837	UUID_PATTERN	
 	m	(Ljava/lang/String;)Z	m_4681679	isValidUuid	
-		p	0		string	
+		p	0		s	
 	m	(Ljava/lang/String;)Ljava/util/UUID;	m_6278303	getUuidFromString	
-		p	0		string	
+		p	0		s	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_0915802
 	f	Lnet/minecraft/unmapped/C_0915802;	f_8029926	USE_SERVER_TEXTURES	
@@ -38,12 +38,11 @@ c	net/minecraft/unmapped/C_1128759
 		p	0			p_0
 c	net/minecraft/unmapped/C_1331819
 	f	Z	f_9719945	serverTextures	
-	f	Z	f_9875838	snooperEnabled	serverTextures
 c	net/minecraft/unmapped/C_1533205
 	f	Z	f_0995285	mustAcceptTextures	
 	f	Z	f_1608860	acceptsTextures	
 	f	Z	f_5976456	hideAddress	
-	f	Lnet/minecraft/unmapped/C_6629891;	f_0456238		f_0456238
+	f	Lnet/minecraft/unmapped/C_6629891;	f_0456238		resourcePackStatus
 	m	()Z	m_6234704	acceptTextures	
 	m	()Z	m_0105126	mustAcceptTextures	
 	m	(Z)V	m_5624826	setAcceptsTextures	
@@ -51,9 +50,9 @@ c	net/minecraft/unmapped/C_1533205
 	m	()Z	m_3817173	hideAddress	
 	m	(Z)V	m_8773155	setHideAdress	
 		p	1		hideAdress	
-	m	()Lnet/minecraft/unmapped/C_6629891;	m_4953386		acceptTextures
-	m	(Lnet/minecraft/unmapped/C_6629891;)V	m_5517309		setAcceptTextures
-		p	1			p_1
+	m	()Lnet/minecraft/unmapped/C_6629891;	m_4953386		getResourcePackStatus
+	m	(Lnet/minecraft/unmapped/C_6629891;)V	m_5517309		setResourcePackStatus
+		p	1			status
 	m	(Lnet/minecraft/unmapped/C_1533205;)V	m_1004421		m_1004421
 		p	1			p_1
 c	net/minecraft/unmapped/C_1555023
@@ -65,16 +64,15 @@ c	net/minecraft/unmapped/C_1677199
 c	net/minecraft/unmapped/C_1789828
 	f	Lorg/apache/logging/log4j/Logger;	f_8484072	LOGGER	
 	f	Ljava/lang/String;	f_1527394	user	
-	f	Ljava/lang/String;	f_7636884	operator	source
 	m	(Ljava/lang/String;)V	<init>	<init>	
-		p	1		playerName	
-	m	()Ljava/lang/String;	m_8076411	getPlayerName	
+		p	1		user	
+	m	()Ljava/lang/String;	m_8076411	getUser	
 	m	()Ljava/util/Date;	m_7067268	getStartDate	
 	m	(Ljava/util/Date;)V	m_2421038	setStartDate	
 		p	1		date	
-	m	()Ljava/lang/String;	m_5202735	getOperator	
-	m	(Ljava/lang/String;)V	m_1592671	setOperator	
-		p	1		name	
+	m	()Ljava/lang/String;	m_5202735	getSource	
+	m	(Ljava/lang/String;)V	m_1592671	setSource	
+		p	1		source	
 	m	(Ljava/util/Date;)V	m_8645792	setExpirationDate	
 		p	1		date	
 	m	(Ljava/lang/String;)V	m_8832819	setReason	
@@ -93,7 +91,7 @@ c	net/minecraft/unmapped/C_1789828
 		p	2			p_2
 	m	(Lcom/google/gson/JsonObject;)V	m_2413061		m_2413061
 		p	1			p_1
-	m	()Z	m_0228100	isExpired	m_0228100
+	m	()Z	m_0228100	hasExpired	m_0228100
 c	net/minecraft/unmapped/C_2578250
 	f	Ljava/io/File;	f_9724054	optionFile	
 	f	Ljava/io/File;	f_1780882	whitelistFile	
@@ -131,7 +129,6 @@ c	net/minecraft/unmapped/C_4707822
 	f	Z	f_3105019		f_3105019
 	f	Z	f_8276267		f_8276267
 	f	Ljava/util/Set;	f_9994771		f_9994771
-	f	Z	f_2819199	opened	f_2819199
 	m	()Ljava/lang/String;	m_2152400	getServerState	
 	m	(Lnet/minecraft/unmapped/C_4707822;)Lnet/minecraft/unmapped/C_2348249;	m_1355998	m_1355998	
 		p	0		p_0	
@@ -319,8 +316,6 @@ c	net/minecraft/unmapped/C_6509480	net/minecraft/server/BanList
 c	net/minecraft/unmapped/C_7106153
 	f	Lnet/minecraft/unmapped/C_1128759;	f_1229150	skinTexture	
 	f	Lnet/minecraft/unmapped/C_1128759;	f_1814478	capeTexture	
-	f	Lnet/minecraft/unmapped/C_0561170;	f_5038870	skinTextureLocation	f_5038870
-	f	Lnet/minecraft/unmapped/C_0561170;	f_2122975	capeTextureLocation	f_2122975
 	m	()V	m_7227461	registerTextures	
 	m	()Lnet/minecraft/unmapped/C_1128759;	m_0505925	getSkinTexture	
 	m	()Lnet/minecraft/unmapped/C_1128759;	m_7934561	getCapeTexture	
@@ -343,11 +338,11 @@ c	net/minecraft/unmapped/C_7106153
 		p	0		playerName	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_0561170;	m_9260229	getHeadTextureLocation	
 		p	0		playerName	
-	m	()Z	m_7453136		m_7453136
-	m	()Z	m_7065855		m_7065855
+	m	()Z	m_7453136		hasCape
+	m	()Z	m_7065855		hasSkin
 	m	(Lnet/minecraft/unmapped/C_0561170;Ljava/lang/String;)Lnet/minecraft/unmapped/C_1128759;	m_2614428		loadTexture
-		p	0			p_0
-		p	1			p_1
+		p	0			location
+		p	1			playerName
 	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/unmapped/C_0561170;)V	m_4174527		m_4174527
 		p	1			p_1
 		p	2			p_2
@@ -361,17 +356,17 @@ c	net/minecraft/unmapped/C_7628181
 		p	1			p_1
 		p	3			p_3
 c	net/minecraft/unmapped/C_8105098
-	f	Lcom/mojang/authlib/minecraft/MinecraftSessionService;	f_3166854		f_3166854
-	f	Lnet/minecraft/unmapped/C_9024480;	f_3478403		f_3478403
-	f	Ljava/util/Queue;	f_1299372		f_1299372
-	f	Ljava/lang/Thread;	f_0098326		f_0098326
-	m	(Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;	m_5212308		m_5212308
-		p	1			p_1
-	m	(Ljava/lang/Runnable;)Lcom/google/common/util/concurrent/ListenableFuture;	m_6029165		m_6029165
-		p	1			p_1
-	m	()Z	m_3218880		m_3218880
-	m	()Lcom/mojang/authlib/minecraft/MinecraftSessionService;	m_8891329		m_8891329
-	m	()Lnet/minecraft/unmapped/C_9024480;	m_5547257		m_5547257
+	f	Lcom/mojang/authlib/minecraft/MinecraftSessionService;	f_3166854		sessionService
+	f	Lnet/minecraft/unmapped/C_9024480;	f_3478403		skinManager
+	f	Ljava/util/Queue;	f_1299372		tasks
+	f	Ljava/lang/Thread;	f_0098326		thread
+	m	(Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;	m_5212308		execute
+		p	1			task
+	m	(Ljava/lang/Runnable;)Lcom/google/common/util/concurrent/ListenableFuture;	m_6029165		execute
+		p	1			task
+	m	()Z	m_3218880		isOnSameThread
+	m	()Lcom/mojang/authlib/minecraft/MinecraftSessionService;	m_8891329		getSessionService
+	m	()Lnet/minecraft/unmapped/C_9024480;	m_5547257		getSkinManager
 c	net/minecraft/unmapped/C_8646368
 	m	(CI)V	m_6992336		m_6992336
 		p	1			p_1
@@ -442,7 +437,7 @@ c	net/minecraft/unmapped/C_9992501
 	m	()[Ljava/lang/String;	m_1025061		getOpNames
 	m	(Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_8949651;	m_6605329		getStats
 		p	1			player
-c	net/minecraft/unmapped/C_0212751		net/minecraft/unmapped/C_9024480__2
+c	net/minecraft/unmapped/C_0212751		net/minecraft/client/resource/skin/SkinManager__0212751
 	f	Lnet/minecraft/unmapped/C_0066205;	f_6994720		f_6994720
 	f	Lnet/minecraft/unmapped/C_5316375;	f_9090318		f_9090318
 	f	Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;	f_0394481		f_0394481
@@ -487,44 +482,44 @@ c	net/minecraft/unmapped/C_0741680		net/minecraft/server/StoredUserList__Seriali
 	f	Lnet/minecraft/unmapped/C_6508913;	f_9663238		f_9663238
 	m	(Lnet/minecraft/unmapped/C_6508913;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0441639;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	m_9560230		m_9560230
+	m	(Lnet/minecraft/unmapped/C_0441639;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	m_9560230		serialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_0441639;	m_6332154		m_6332154
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_0441639;	m_6332154		deserialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	(Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	serialize		serialize
-		p	1			entry
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_6508913;Lnet/minecraft/unmapped/C_8911079;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_0759855		net/minecraft/client/entity/living/player/ClientPlayerEntity__1
+c	net/minecraft/unmapped/C_0759855		net/minecraft/client/entity/living/player/ClientPlayerEntity__0759855
 	f	[I	f_9248171		f_9248171
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_0887160		net/minecraft/server/GameProfileCache__2
+c	net/minecraft/unmapped/C_0887160		net/minecraft/server/GameProfileCache__0887160
 	m	()V	<init>		<init>
 	m	()[Ljava/lang/reflect/Type;	getActualTypeArguments		getActualTypeArguments
 	m	()Ljava/lang/reflect/Type;	getRawType		getRawType
 	m	()Ljava/lang/reflect/Type;	getOwnerType		getOwnerType
-c	net/minecraft/unmapped/C_1499939		net/minecraft/server/dedicated/UserConverter__4
+c	net/minecraft/unmapped/C_1499939		net/minecraft/server/dedicated/UserConverter__1499939
 	f	Lnet/minecraft/server/MinecraftServer;	f_9774461		f_9774461
 	f	Lnet/minecraft/unmapped/C_1807830;	f_3495206		f_3495206
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_1807830;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/authlib/GameProfile;)V	onProfileLookupSucceeded		onProfileLookupSucceeded
-		p	1			profile
+		p	1			p_1
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
-		p	1			profile
-		p	2			e
+		p	1			p_1
+		p	2			p_2
 c	net/minecraft/unmapped/C_1807830		net/minecraft/server/Whitelist
 	m	(Ljava/io/File;)V	<init>		<init>
 		p	1			p_1
@@ -543,26 +538,26 @@ c	net/minecraft/unmapped/C_3631137		net/minecraft/server/GameProfileCache__Seria
 	f	Lnet/minecraft/unmapped/C_5148056;	f_5104784		f_5104784
 	m	(Lnet/minecraft/unmapped/C_5148056;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_8461612;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	m_0626542		m_0626542
+	m	(Lnet/minecraft/unmapped/C_8461612;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	m_0626542		serialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_8461612;	m_8552597		m_8552597
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_8461612;	m_8552597		deserialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	(Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	serialize		serialize
-		p	1			entry
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_5148056;Lnet/minecraft/unmapped/C_9283065;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_3752993		net/minecraft/unmapped/C_9024480__3
+c	net/minecraft/unmapped/C_3752993		net/minecraft/client/resource/skin/SkinManager__3752993
 	f	Lcom/mojang/authlib/GameProfile;	f_1383451		f_1383451
 	f	Z	f_7518014		f_7518014
 	f	Lnet/minecraft/unmapped/C_5316375;	f_4138213		f_4138213
@@ -585,14 +580,14 @@ c	net/minecraft/unmapped/C_4166161		net/minecraft/server/Ops
 		p	1			name
 	m	(Ljava/lang/Object;)Ljava/lang/String;	m_7784880		m_7784880
 		p	1			p_1
-c	net/minecraft/unmapped/C_4744275		net/minecraft/unmapped/C_9024480__3__1
+c	net/minecraft/unmapped/C_4744275		net/minecraft/client/resource/skin/SkinManager__13037493__4744275
 	f	Ljava/util/Map;	f_6279749		f_6279749
 	f	Lnet/minecraft/unmapped/C_3752993;	f_7907385		f_7907385
 	m	(Lnet/minecraft/unmapped/C_3752993;Ljava/util/Map;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()V	run		run
-c	net/minecraft/unmapped/C_4868511		net/minecraft/server/dedicated/UserConverter__2
+c	net/minecraft/unmapped/C_4868511		net/minecraft/server/dedicated/UserConverter__4868511
 	f	Lnet/minecraft/server/MinecraftServer;	f_6139723		f_6139723
 	f	Ljava/util/Map;	f_8101781		f_8101781
 	f	Lnet/minecraft/unmapped/C_8717445;	f_0915482		f_0915482
@@ -601,16 +596,16 @@ c	net/minecraft/unmapped/C_4868511		net/minecraft/server/dedicated/UserConverter
 		p	2			p_2
 		p	3			p_3
 	m	(Lcom/mojang/authlib/GameProfile;)V	onProfileLookupSucceeded		onProfileLookupSucceeded
-		p	1			profile
+		p	1			p_1
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
-		p	1			profile
-		p	2			e
-c	net/minecraft/unmapped/C_5120280		net/minecraft/server/dedicated/UserConverter__1
+		p	1			p_1
+		p	2			p_2
+c	net/minecraft/unmapped/C_5120280		net/minecraft/server/dedicated/UserConverter__5120280
 	m	()V	<init>		<init>
-	m	(Ljava/lang/String;)Z	m_0736499		m_0736499
+	m	(Ljava/lang/String;)Z	m_0736499		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			s
+		p	1			p_1
 c	net/minecraft/unmapped/C_5148056		net/minecraft/server/GameProfileCache
 	f	Ljava/text/SimpleDateFormat;	f_9916906		DATE_FORMAT
 	f	Ljava/util/Map;	f_3760092		profilesByName
@@ -656,16 +651,16 @@ c	net/minecraft/unmapped/C_5300961		net/minecraft/server/IpBanEntry
 		p	0			json
 	m	(Lcom/google/gson/JsonObject;)V	m_2413061		m_2413061
 		p	1			p_1
-c	net/minecraft/unmapped/C_5316375		net/minecraft/unmapped/C_5316375
-	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/unmapped/C_0561170;)V	m_4174527		m_4174527
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_5512985		net/minecraft/C_30nzjevqx
+c	net/minecraft/unmapped/C_5316375		net/minecraft/client/resource/skin/SkinManager__SkinTextureCallback
+	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/unmapped/C_0561170;)V	m_4174527		textureAvailable
+		p	1			type
+		p	2			location
+c	net/minecraft/unmapped/C_5512985		net/minecraft/unmapped/C_5512985
 	f	Ljava/util/Set;	f_0108466		f_0108466
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_5512985;	m_3766994		m_3766994
 		p	0			p_0
-c	net/minecraft/unmapped/C_5678145		net/minecraft/server/dedicated/UserConverter__6
+c	net/minecraft/unmapped/C_5678145		net/minecraft/server/dedicated/UserConverter__5678145
 	f	Lnet/minecraft/unmapped/C_1555023;	f_6267714		f_6267714
 	f	Ljava/io/File;	f_9240701		f_9240701
 	f	Ljava/io/File;	f_5109282		f_5109282
@@ -678,21 +673,21 @@ c	net/minecraft/unmapped/C_5678145		net/minecraft/server/dedicated/UserConverter
 		p	4			p_4
 		p	5			p_5
 	m	(Lcom/mojang/authlib/GameProfile;)V	onProfileLookupSucceeded		onProfileLookupSucceeded
-		p	1			profile
+		p	1			p_1
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
-		p	1			profile
-		p	2			e
+		p	1			p_1
+		p	2			p_2
 	m	(Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)V	m_0577523		convertPlayerFile
 		p	1			playersDir
 		p	2			playerFileName
 		p	3			playerUuid
 	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_1149065		getPlayerFileName
 		p	1			profile
-c	net/minecraft/unmapped/C_5967556		net/minecraft/unmapped/C_9024480__1
+c	net/minecraft/unmapped/C_5967556		net/minecraft/client/resource/skin/SkinManager__5967556
 	f	Lnet/minecraft/unmapped/C_9024480;	f_6093643		f_6093643
 	m	(Lnet/minecraft/unmapped/C_9024480;)V	<init>		<init>
 		p	1			p_1
-	m	(Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;	m_7374683		m_7374683
+	m	(Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;	m_7374683		load
 		p	1			p_1
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	load		load
 		p	1			p_1
@@ -770,7 +765,7 @@ c	net/minecraft/unmapped/C_6508913		net/minecraft/server/StoredUserList
 	m	()V	m_0327730		save
 	m	()V	m_4669861		load
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_6553354		net/minecraft/server/dedicated/UserConverter__5
+c	net/minecraft/unmapped/C_6553354		net/minecraft/server/dedicated/UserConverter__6553354
 	f	Lnet/minecraft/server/MinecraftServer;	f_9205510		f_9205510
 	f	Ljava/util/List;	f_9658002		f_9658002
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/util/List;)V	<init>		<init>
@@ -781,11 +776,11 @@ c	net/minecraft/unmapped/C_6553354		net/minecraft/server/dedicated/UserConverter
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_6629891		net/minecraft/unmapped/C_6629891
-	f	Lnet/minecraft/unmapped/C_6629891;	f_1497176		f_1497176
-	f	Lnet/minecraft/unmapped/C_6629891;	f_1641329		f_1641329
-	f	Lnet/minecraft/unmapped/C_6629891;	f_4302135		f_4302135
-	f	Lnet/minecraft/unmapped/C_9550253;	f_2125232		f_2125232
+c	net/minecraft/unmapped/C_6629891		net/minecraft/client/options/ServerListEntry__ResourcePackStatus
+	f	Lnet/minecraft/unmapped/C_6629891;	f_1497176		ENABLED
+	f	Lnet/minecraft/unmapped/C_6629891;	f_1641329		DISABLED
+	f	Lnet/minecraft/unmapped/C_6629891;	f_4302135		PROMPT
+	f	Lnet/minecraft/unmapped/C_9550253;	f_2125232		message
 	f	[Lnet/minecraft/unmapped/C_6629891;	f_8218689		f_8218689
 	m	()[Lnet/minecraft/unmapped/C_6629891;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_6629891;	valueOf		valueOf
@@ -793,8 +788,8 @@ c	net/minecraft/unmapped/C_6629891		net/minecraft/unmapped/C_6629891
 	m	(Ljava/lang/String;ILjava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-		p	3			p_3
-	m	()Lnet/minecraft/unmapped/C_9550253;	m_4426777		m_4426777
+		p	3			key
+	m	()Lnet/minecraft/unmapped/C_9550253;	m_4426777		getMessage
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_6712363		net/minecraft/server/dedicated/UserConverter__ConversionException
 	m	(Ljava/lang/String;Ljava/lang/Throwable;)V	<init>		<init>
@@ -809,25 +804,25 @@ c	net/minecraft/unmapped/C_6712363		net/minecraft/server/dedicated/UserConverter
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_7421797		net/minecraft/client/realms/dto/RealmsServer__1
+c	net/minecraft/unmapped/C_7421797		net/minecraft/client/realms/dto/RealmsServer__7421797
 	m	()V	<init>		<init>
-	m	(Ljava/lang/String;Ljava/lang/String;)I	m_1221761		m_1221761
+	m	(Ljava/lang/String;Ljava/lang/String;)I	m_1221761		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_8021882		net/minecraft/server/dedicated/UserConverter__3
+c	net/minecraft/unmapped/C_8021882		net/minecraft/server/dedicated/UserConverter__8021882
 	f	Lnet/minecraft/server/MinecraftServer;	f_1075818		f_1075818
 	f	Lnet/minecraft/unmapped/C_4166161;	f_3084856		f_3084856
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_4166161;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/authlib/GameProfile;)V	onProfileLookupSucceeded		onProfileLookupSucceeded
-		p	1			profile
+		p	1			p_1
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
-		p	1			profile
-		p	2			e
+		p	1			p_1
+		p	2			p_2
 c	net/minecraft/unmapped/C_8361170		net/minecraft/unmapped/C_8361170
 	m	(Lnet/minecraft/unmapped/C_2018497;)Lcom/mojang/authlib/GameProfile;	m_0463414		m_0463414
 		p	0			p_0
@@ -874,35 +869,35 @@ c	net/minecraft/unmapped/C_8717445		net/minecraft/server/PlayerBans
 		p	1			name
 	m	(Ljava/lang/Object;)Ljava/lang/String;	m_7784880		m_7784880
 		p	1			p_1
-c	net/minecraft/unmapped/C_8911079		net/minecraft/server/StoredUserList__1
+c	net/minecraft/unmapped/C_8911079		net/minecraft/server/StoredUserList__8911079
 	m	()V	<init>		<init>
 	m	()[Ljava/lang/reflect/Type;	getActualTypeArguments		getActualTypeArguments
 	m	()Ljava/lang/reflect/Type;	getRawType		getRawType
 	m	()Ljava/lang/reflect/Type;	getOwnerType		getOwnerType
-c	net/minecraft/unmapped/C_9024480		net/minecraft/unmapped/C_9024480
-	f	Lnet/minecraft/unmapped/C_0561170;	f_9739517		f_9739517
-	f	Ljava/util/concurrent/ExecutorService;	f_7119363		f_7119363
-	f	Lnet/minecraft/unmapped/C_0876962;	f_7487646		f_7487646
-	f	Ljava/io/File;	f_0531895		f_0531895
-	f	Lcom/mojang/authlib/minecraft/MinecraftSessionService;	f_7024725		f_7024725
-	f	Lcom/google/common/cache/LoadingCache;	f_3479732		f_3479732
+c	net/minecraft/unmapped/C_9024480		net/minecraft/client/resource/skin/SkinManager
+	f	Lnet/minecraft/unmapped/C_0561170;	f_9739517		STEVE_LOCATION
+	f	Ljava/util/concurrent/ExecutorService;	f_7119363		EXECUTOR
+	f	Lnet/minecraft/unmapped/C_0876962;	f_7487646		textureManager
+	f	Ljava/io/File;	f_0531895		skinsDir
+	f	Lcom/mojang/authlib/minecraft/MinecraftSessionService;	f_7024725		sessionService
+	f	Lcom/google/common/cache/LoadingCache;	f_3479732		skinCache
 	m	(Lnet/minecraft/unmapped/C_0876962;Ljava/io/File;Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;)Lnet/minecraft/unmapped/C_0561170;	m_3046827		m_3046827
-		p	1			p_1
-		p	2			p_2
-	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/unmapped/C_5316375;)Lnet/minecraft/unmapped/C_0561170;	m_9483714		m_9483714
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lcom/mojang/authlib/GameProfile;Lnet/minecraft/unmapped/C_5316375;Z)V	m_0852058		m_0852058
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;	m_4745972		m_4745972
-		p	1			p_1
+		p	1			textureManager
+		p	2			skinsDir
+		p	3			sessionService
+	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;)Lnet/minecraft/unmapped/C_0561170;	m_3046827		register
+		p	1			texture
+		p	2			type
+	m	(Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/unmapped/C_5316375;)Lnet/minecraft/unmapped/C_0561170;	m_9483714		register
+		p	1			texture
+		p	2			type
+		p	3			callback
+	m	(Lcom/mojang/authlib/GameProfile;Lnet/minecraft/unmapped/C_5316375;Z)V	m_0852058		register
+		p	1			profile
+		p	2			callback
+		p	3			requireSecure
+	m	(Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;	m_4745972		getTextures
+		p	1			profile
 	m	(Lnet/minecraft/unmapped/C_9024480;)Lcom/mojang/authlib/minecraft/MinecraftSessionService;	m_9359306		m_9359306
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
@@ -929,16 +924,16 @@ c	net/minecraft/unmapped/C_9268674		net/minecraft/server/IpBans
 		p	1			address
 	m	(Ljava/net/SocketAddress;)Ljava/lang/String;	m_2858733		getIp
 		p	1			address
-c	net/minecraft/unmapped/C_9283065		net/minecraft/server/GameProfileCache__1
+c	net/minecraft/unmapped/C_9283065		net/minecraft/server/GameProfileCache__9283065
 	f	[Lcom/mojang/authlib/GameProfile;	f_6518588		f_6518588
 	m	([Lcom/mojang/authlib/GameProfile;)V	<init>		<init>
 		p	1			p_1
 	m	(Lcom/mojang/authlib/GameProfile;)V	onProfileLookupSucceeded		onProfileLookupSucceeded
-		p	1			profile
+		p	1			p_1
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
-		p	1			profile
-		p	2			exception
-c	net/minecraft/unmapped/C_9610437		net/minecraft/client/realms/gui/screen/ConfigureRealmsWorldScreen__1
+		p	1			p_1
+		p	2			p_2
+c	net/minecraft/unmapped/C_9610437		net/minecraft/client/realms/gui/screen/ConfigureRealmsWorldScreen__9610437
 	f	Lnet/minecraft/unmapped/C_4707822;	f_4959761		f_4959761
 	m	(Lnet/minecraft/unmapped/C_4707822;)V	<init>		<init>
 		p	1			p_1

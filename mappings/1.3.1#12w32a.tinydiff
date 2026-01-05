@@ -33,7 +33,7 @@ c	net/minecraft/unmapped/C_0328289
 		p	2			p_2
 c	net/minecraft/unmapped/C_0415052
 	f	I	f_4741114		maxUses
-	m	()I	m_8011622	m_8011622	
+	m	()I	m_8011622	getUses	
 	m	(I)V	m_8069277		increaseMaxUses
 		p	1			uses
 	m	()Z	m_0947370		isDisabled
@@ -194,7 +194,7 @@ c	net/minecraft/unmapped/C_2448106
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_2454309
-	m	()Z	m_9998635		canAlwaysUse
+	m	()Z	m_9998635		canUseOnBlockInAdventureMode
 c	net/minecraft/unmapped/C_2485969
 	m	(Lnet/minecraft/unmapped/C_5553933;JJ)V	m_5976590	m_5976590	
 		p	1		p_1	
@@ -252,7 +252,7 @@ c	net/minecraft/unmapped/C_3273480
 		p	9			p_9
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_3292284
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_8203822	f_8203822	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_8203822	equipment	
 	m	()V	m_4519917	m_4519917	
 	m	(Ljava/lang/String;)Z	m_3648734	m_3648734	
 		p	1		p_1	
@@ -266,8 +266,10 @@ c	net/minecraft/unmapped/C_3292284
 		p	1			p_1
 		p	2			p_2
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_0490395		m_0490395
+	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_8577730	getEquipment	m_8577730
+		p	1		slot	p_1
 c	net/minecraft/unmapped/C_3325732
-	f	Lnet/minecraft/unmapped/C_2454309;	f_9472198	f_9472198	
+	f	Lnet/minecraft/unmapped/C_2454309;	f_9472198	BOW	
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_8648127	m_8648127	
 	m	(I)V	m_4110070	m_4110070	
 		p	1		p_1	
@@ -294,7 +296,7 @@ c	net/minecraft/unmapped/C_3674802
 	m	(Lnet/minecraft/unmapped/C_3674802;)D	m_9635599		squaredDistanceTo
 		p	1			p_1
 c	net/minecraft/unmapped/C_3755722
-	m	()Z	m_8188591		canAlwaysUse
+	m	()Z	m_8188591		canUseOnBlockInAdventureMode
 c	net/minecraft/unmapped/C_3865296
 	m	(Lnet/minecraft/unmapped/C_0539808;DDDFZ)Lnet/minecraft/unmapped/C_8813417;	m_5241373	m_5241373	
 		p	1		p_1	
@@ -401,12 +403,12 @@ c	net/minecraft/unmapped/C_5587144
 c	net/minecraft/unmapped/C_5615470
 	m	()I	m_5251718		m_5251718
 c	net/minecraft/unmapped/C_5708472
-	f	I	f_6757099		ticksOfLastMating
+	f	I	f_6757099		lastMatingTicks
 	f	Ljava/util/TreeMap;	f_0938585		playerReputations
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_5974089		setWorld
 		p	1			world
-	m	(Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_9590849;	m_4978400		getClosestPlayer
+	m	(Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_9590849;	m_4978400		getNearestPlayer
 		p	1			entity
 	m	(Ljava/lang/String;)I	m_3366108		getReputation
 		p	1			playerName
@@ -427,7 +429,7 @@ c	net/minecraft/unmapped/C_5903539
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_5904422
-	f	I	f_3083264	f_3083264	
+	f	I	f_3083264	attackDamage	
 	m	(Lnet/minecraft/unmapped/C_0539808;)I	m_5253734		getAttackDamage
 		p	1			target
 c	net/minecraft/unmapped/C_5917668
@@ -452,11 +454,11 @@ c	net/minecraft/unmapped/C_6063722
 		p	1			p_1
 c	net/minecraft/unmapped/C_6152184
 	f	J	f_0298005		timeOfDay
-	f	Lnet/minecraft/unmapped/C_6404817;	f_4271636		gamerules
+	f	Lnet/minecraft/unmapped/C_6404817;	f_4271636		gameRules
 	m	()J	m_3931669		getTimeOfDay
 	m	(J)V	m_9295365		setTimeOfDay
 		p	1			time
-	m	()Lnet/minecraft/unmapped/C_6404817;	m_7242457		getGamerules
+	m	()Lnet/minecraft/unmapped/C_6404817;	m_7242457		getGameRules
 c	net/minecraft/unmapped/C_6255335
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_6503279	getPlayer	
 		p	1		name	
@@ -486,16 +488,16 @@ c	net/minecraft/unmapped/C_6607881
 		c		An array containing the probability for the mob to have armor. These are sorted by increasing probability with item[0] being difficulty easy and item[3] being difficulty hard.
 	f	[Lnet/minecraft/unmapped/C_2454309;	f_2021350		equipment
 		c		The inventory of the mob. This has 5 slots:\n <ul>\n  <li>Slot 0: weapon</li>\n  <li>Slot 1: boots</li>\n  <li>Slot 2: leggins</li>\n  <li>Slot 3: chestplate</li>\n  <li>Slot 4: helmet</li>\n</ul>
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_2960352		f_2960352
-	f	Z	f_1813673		handSwinging
-	f	I	f_7845384		handSwingTicks
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_2960352		lastEquipment
+	f	Z	f_1813673		armSwinging
+	f	I	f_7845384		armSwingingTicks
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_1202560		pushAway
 		p	1			entity
-	m	()V	m_0480570		updateHandSwing
+	m	()V	m_0480570		updateArmSwing
 	m	(I)V	m_7500176		removeStatusEffect
 		p	1			id
-	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_8577730		getStackInInventory
-		p	1			id
+	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_8577730		getEquipment
+		p	1			slot
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_5792818		getArmor
 		p	1			slot
 	m	(ILnet/minecraft/unmapped/C_2454309;)V	m_0241073		m_0241073
@@ -503,17 +505,16 @@ c	net/minecraft/unmapped/C_6607881
 		p	2			p_2
 	m	()[Lnet/minecraft/unmapped/C_2454309;	m_7350002		m_7350002
 	m	(I)V	m_3954997		dropEquipment
-		p	1			p_1
-	m	()V	m_5360949		setEquipment
-	m	(II)Lnet/minecraft/unmapped/C_3755722;	m_9577593		getArmorType
-		p	1			armorMaterial
+		p	1			lootingLevel
+	m	()V	m_5360949		addRandomEquipment
+	m	(II)Lnet/minecraft/unmapped/C_3755722;	m_9577593		getArmorItem
+		p	1			tier
 		p	2			p_2
 	m	()V	m_3681089		enchantWeaponsAndArmor
 	m	()V	m_6896447		setEntityVariety
 		c		This method is used to set which variety of entity is spawned. For zombies this can be a zombie or zombie pigman. It can be a spider spawning with a jockey, the color of the sheep etc.
-	m	()I	m_6916890		getMiningSpeedMultiplier
-		c		Gets the mining speed f the player. Mining speed is increased by haste and reduced by mining fatige
-	m	()V	m_5308766		swingHand
+	m	()I	m_6916890		getArmSwingDuration
+	m	()V	m_5308766		swingArm
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_6842557
 	m	()I	m_5251718		m_5251718
@@ -543,8 +544,8 @@ c	net/minecraft/unmapped/C_8730824
 c	net/minecraft/unmapped/C_8813417
 	f	Z	f_5535540		destructive
 c	net/minecraft/unmapped/C_8814877
-	f	Lnet/minecraft/unmapped/C_0415052;	f_7637935	tradingPlayer	
-	f	Ljava/lang/String;	f_6890693		tradingPlayer
+	f	Lnet/minecraft/unmapped/C_0415052;	f_7637935	lastSuccessfulTradeOffer	
+	f	Ljava/lang/String;	f_6890693		lastSuccessfulTradeCustomer
 	f	F	f_3943076		tradeOfferSize
 		c		sqrt of (tradeOfferSize divided by 5) used to lower the chance to unlock more trades
 	m	(Lnet/minecraft/unmapped/C_1161898;)V	m_8067433		m_8067433
@@ -568,16 +569,15 @@ c	net/minecraft/unmapped/C_9456817
 c	net/minecraft/unmapped/C_9519056
 	m	()I	m_5251718		m_5251718
 c	net/minecraft/unmapped/C_9590849
-	f	Z	f_6446018	f_6446018	
-	f	I	f_5412755	f_5412755	
-	m	()I	m_9018481	m_9018481	
+	f	Z	f_6446018	swingArm	
+	f	I	f_5412755	swingArmTicks	
+	m	()I	m_9018481	getSwingArmSpeed	
 	m	(I)I	m_4540776	m_4540776	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_1857222;)V	m_9360072	openSignEditor	
-		c	Open a sign or command block editor.	
-		p	1		p_1	
-	m	()V	m_4519917	m_4519917	
-	m	(III)Z	m_9845869	canMineBlock	
+		p	1		sign	
+	m	()V	m_4519917	swingArm	
+	m	(III)Z	m_9845869	canUseItemOn	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -593,15 +593,15 @@ c	net/minecraft/unmapped/C_9590849
 		p	1			x
 		p	2			y
 		p	3			z
-	m	(IIIILnet/minecraft/unmapped/C_2454309;)Z	m_9845869		canUseItem
+	m	(IIIILnet/minecraft/unmapped/C_2454309;)Z	m_9845869		canUseItemOn
 		p	1			x
 		p	2			y
 		p	3			z
 		p	4			face
-		p	5			stack
+		p	5			itemInHand
 c	net/minecraft/unmapped/C_9639106
-	m	()V	m_5696373	drawForeground	
-	m	(II)V	m_5696373		drawForeground
+	m	()V	m_5696373	renderLabels	
+	m	(II)V	m_5696373		renderLabels
 		p	1			mouseX
 		p	2			mouseY
 c	net/minecraft/unmapped/C_9885753
@@ -614,9 +614,9 @@ c	net/minecraft/unmapped/C_9885753
 		p	1			reduction
 		p	2			pivot
 c	net/minecraft/unmapped/C_9992501
-	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3292284;	m_9354812		m_9354812
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_3292284;	m_6649474		m_6649474
+	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3292284;	m_9354812		getNearest
+		p	1			pos
+	m	()Lnet/minecraft/unmapped/C_3292284;	m_6649474		pick
 c	net/minecraft/unmapped/C_0567922		net/minecraft/block/CommandBlock
 	m	(I)V	<init>		<init>
 		p	1			id
@@ -667,19 +667,17 @@ c	net/minecraft/unmapped/C_2408749		net/minecraft/server/command/TellCommand
 c	net/minecraft/unmapped/C_2696514		net/minecraft/client/gui/screen/inventory/menu/BeaconScreen__BeaconButtonWidget
 	f	Ljava/lang/String;	f_7881606		textureLocation
 		c		The texture of the button inside the beacon GUI
-	f	I	f_8988095		xPos
-		c		The horizontal position relative to the beacon GUI at which the button starts
-	f	I	f_9624562		yPos
-		c		The vertical position relative to the beacon GUI at which the button starts
+	f	I	f_8988095		u
+	f	I	f_9624562		v
 	f	Z	f_0270984		disabled
 		c		If clicking the button is disabled (button becomes unclickable and grayed out).
 	m	(IIILjava/lang/String;II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			id
+		p	2			x
+		p	3			y
+		p	4			textureLocation
+		p	5			u
+		p	6			v
 	m	(Lnet/minecraft/client/Minecraft;II)V	m_5350167		m_5350167
 		p	1			p_1
 		p	2			p_2
@@ -706,7 +704,7 @@ c	net/minecraft/unmapped/C_2992329		net/minecraft/server/command/DifficultyComma
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_3514359		net/minecraft/client/render/block/entity/BeaconRenderer
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_6989019;DDDF)V	m_9671526		render
+	m	(Lnet/minecraft/unmapped/C_6989019;DDDF)V	m_9671526		m_9671526
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
@@ -728,7 +726,7 @@ c	net/minecraft/unmapped/C_3712967		net/minecraft/client/gui/screen/inventory/me
 	m	(II)V	m_2016731		m_2016731
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_3733570		net/minecraft/world/Gamerules__Value
+c	net/minecraft/unmapped/C_3733570		net/minecraft/world/GameRules__Value
 	f	Ljava/lang/String;	f_6177017		value
 	f	Z	f_3742623		booleanValue
 	f	I	f_0575578		intValue
@@ -814,7 +812,7 @@ c	net/minecraft/unmapped/C_5788730		net/minecraft/block/BeaconBlock
 		p	9			p_9
 	m	()Z	m_1635166		m_1635166
 	m	()Z	m_6174711		m_6174711
-c	net/minecraft/unmapped/C_6404817		net/minecraft/world/Gamerules
+c	net/minecraft/unmapped/C_6404817		net/minecraft/world/GameRules
 	f	Ljava/util/TreeMap;	f_2685955		values
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;Ljava/lang/String;)V	m_4559885		add
@@ -934,7 +932,7 @@ c	net/minecraft/unmapped/C_6989019		net/minecraft/block/entity/BeaconBlockEntity
 	m	()V	m_6217589		m_6217589
 	m	()V	m_7226012		m_7226012
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_8370969		net/minecraft/client/render/entity/ZombieBaseRenderer
+c	net/minecraft/unmapped/C_8370969		net/minecraft/client/render/entity/ZombieRenderer
 	f	Lnet/minecraft/unmapped/C_2313930;	f_8990118		zombieModel
 	f	Lnet/minecraft/unmapped/C_8688234;	f_9142541		zombieVillagerModel
 	f	Lnet/minecraft/unmapped/C_2313930;	f_4349770		zombieModel1
@@ -944,23 +942,23 @@ c	net/minecraft/unmapped/C_8370969		net/minecraft/client/render/entity/ZombieBas
 	f	I	f_2155567		modelNumber
 	m	()V	<init>		<init>
 	m	()V	m_7496571		m_7496571
-	m	(Lnet/minecraft/unmapped/C_4316830;IF)I	m_2587194		bindDecorationTexture
+	m	(Lnet/minecraft/unmapped/C_4316830;IF)I	m_2587194		m_2587194
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_4316830;DDDFF)V	m_2684342		render
+	m	(Lnet/minecraft/unmapped/C_4316830;DDDFF)V	m_2684342		m_2684342
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 		p	6			p_6
 		p	8			p_8
 		p	9			p_9
-	m	(Lnet/minecraft/unmapped/C_4316830;F)V	m_6535908		renderDecoration
+	m	(Lnet/minecraft/unmapped/C_4316830;F)V	m_6535908		m_6535908
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_4316830;)V	m_4545664		updateModels
 		p	1			zombie
-	m	(Lnet/minecraft/unmapped/C_4316830;FFF)V	m_2229190		applyRotation
+	m	(Lnet/minecraft/unmapped/C_4316830;FFF)V	m_2229190		m_2229190
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3

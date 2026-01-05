@@ -50,9 +50,9 @@ c	net/minecraft/unmapped/C_0390784
 		p	2		playerName	
 	m	()V	m_0181861	m_0181861	
 	m	()Z	m_8805981	isPaused	
-	m	(Lnet/minecraft/unmapped/C_5355424;Ljava/lang/String;)V	m_1692143		m_1692143
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_5355424;Ljava/lang/String;)V	m_1692143		setConnection
+		p	1			connection
+		p	2			playerName
 c	net/minecraft/unmapped/C_0414000
 	f	I	f_0488785	hPos	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_7492943;I)Z	m_9603569	updateHPos	
@@ -179,11 +179,11 @@ c	net/minecraft/unmapped/C_1184371
 c	net/minecraft/unmapped/C_1197137
 	m	(Ljava/util/Random;Lnet/minecraft/unmapped/C_2454309;I)Lnet/minecraft/unmapped/C_2454309;	m_3380905	addRandomEnchantment	
 		p	0		random	
-		p	1		stack	
+		p	1		item	
 		p	2		xpLevel	
 	m	(Ljava/util/Random;Lnet/minecraft/unmapped/C_2454309;I)V	m_3380905		addRandomEnchantment
 		p	0			random
-		p	1			stack
+		p	1			item
 		p	2			xpLevel
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_9890847;	f_8854466	TRIPWIRE_HOOK	
@@ -194,7 +194,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		blockId	
+		p	5		block	
 		p	6		metadata	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_2252028	dropXp	
 		p	1		world	
@@ -210,9 +210,9 @@ c	net/minecraft/unmapped/C_1241852
 		p	4		z	
 		p	5		player	
 		p	6		face	
-		p	7		dx	
-		p	8		dy	
-		p	9		dz	
+		p	7		faceX	
+		p	8		faceY	
+		p	9		faceZ	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIIIFFF)V	m_1921716	updateMetadataOnPlaced	
 		p	1		world	
 		p	2		x	
@@ -256,7 +256,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	2			x
 		p	3			y
 		p	4			z
-		p	5			metadata
+		p	5			face
 c	net/minecraft/unmapped/C_1264786
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_3000450	m_3000450	
 		p	1		p_1	
@@ -340,7 +340,7 @@ c	net/minecraft/unmapped/C_1741573
 		p	2		x	
 		p	4		y	
 		p	6		z	
-		p	8		blockId	
+		p	8		block	
 		p	9		metadata	
 c	net/minecraft/unmapped/C_1797947
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_3000450	m_3000450	
@@ -392,27 +392,27 @@ c	net/minecraft/unmapped/C_2128050
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2454309;IIIIFFF)Z	m_8566428	useBlock	
 		p	1		player	
 		p	2		world	
-		p	3		stack	
+		p	3		itemInHand	
 		p	4		x	
 		p	5		y	
 		p	6		z	
 		p	7		face	
-		p	8		dx	
-		p	9		dy	
-		p	10		dz	
+		p	8		faceX	
+		p	9		faceY	
+		p	10		faceZ	
 	m	(I)V	m_5701374		setGameMode
-		p	1			p_1
+		p	1			gameMode
 	m	()I	m_8441679		getGameMode
 	m	(I)V	m_3895376		setGameModeIfNotSet
-		p	1			p_1
+		p	1			gameMode
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2454309;IIII)Z	m_8566428		useBlock
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	1			player
+		p	2			world
+		p	3			itemInHand
+		p	4			x
+		p	5			y
+		p	6			z
+		p	7			face
 c	net/minecraft/unmapped/C_2134645	net/minecraft/block/TripwireBlock	
 	m	(I)V	<init>	<init>	
 		p	1		id	
@@ -498,17 +498,17 @@ c	net/minecraft/unmapped/C_2167183
 	f	Lnet/minecraft/unmapped/C_4223822;	f_2893626	gameMode	
 	f	I	f_2893626		gameMode
 	m	(IBLnet/minecraft/unmapped/C_1518925;ILnet/minecraft/unmapped/C_4223822;)V	<init>	<init>	
-		p	1		dimensionId	
+		p	1		dimension	
 		p	2		difficulty	
 		p	3		generatorType	
 		p	4		worldHeight	
 		p	5		gameMode	
 	m	(IBLnet/minecraft/unmapped/C_1518925;II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			dimension
+		p	2			difficulty
+		p	3			generatorType
+		p	4			worldHeight
+		p	5			gameMode
 c	net/minecraft/unmapped/C_2367183
 	m	(Lnet/minecraft/unmapped/C_5553933;IIIIFI)V	m_7925717	m_7925717	
 		p	1		p_1	
@@ -548,26 +548,26 @@ c	net/minecraft/unmapped/C_2381425
 		p	8		entries	
 		p	9		amount	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_7492943;Ljava/util/Random;III[Lnet/minecraft/unmapped/C_0268929;I)V	m_7490416		placeChestWithLoot
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
+		p	1			world
+		p	2			bounds
+		p	3			random
+		p	4			x
+		p	5			y
+		p	6			z
+		p	7			loot
+		p	8			attempts
 c	net/minecraft/unmapped/C_2454309
-	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_8878857	use	
+	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_8878857	useOn	
 		p	1		player	
 		p	2		world	
 		p	3		x	
 		p	4		y	
 		p	5		z	
 		p	6		face	
-		p	7		dx	
-		p	8		dy	
-		p	9		dz	
-	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_8878857		use
+		p	7		faceX	
+		p	8		faceY	
+		p	9		faceZ	
+	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_8878857		useOn
 		p	1			player
 		p	2			world
 		p	3			x
@@ -587,7 +587,7 @@ c	net/minecraft/unmapped/C_2485969
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/unmapped/C_2515472	net/minecraft/world/gen/structure/TemplePieces__1	
+c	net/minecraft/unmapped/C_2515472	net/minecraft/world/gen/structure/TemplePieces__2515472	
 c	net/minecraft/unmapped/C_2594473
 	m	()Z	m_0601517	m_0601517	
 c	net/minecraft/unmapped/C_2604451
@@ -645,7 +645,7 @@ c	net/minecraft/unmapped/C_2670477
 	m	(JLnet/minecraft/unmapped/C_4223822;ZZLnet/minecraft/unmapped/C_1518925;)V	<init>	<init>	
 		p	1		seed	
 		p	3		gameMode	
-		p	4		allowStructures	
+		p	4		generateStructures	
 		p	5		hardcore	
 		p	6		generatorType	
 	m	()Lnet/minecraft/unmapped/C_4223822;	m_0928992	getGameMode	
@@ -654,7 +654,7 @@ c	net/minecraft/unmapped/C_2670477
 	m	(JIZZLnet/minecraft/unmapped/C_1518925;)V	<init>		<init>
 		p	1			seed
 		p	3			gameMode
-		p	4			allowStructures
+		p	4			generateStructures
 		p	5			hardcore
 		p	6			generatorType
 	m	()I	m_0928992		getGameMode
@@ -679,24 +679,24 @@ c	net/minecraft/unmapped/C_3106743
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_0034134	tessellateTripwireHook	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_0034134	tesselateTripwireHook	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_9290021	tessellateTripwire	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_9290021	tesselateTripwire	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_5553933;IIII)V	m_7943414	render	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_5553933;IIII)V	m_7943414	tesselateFallingBlock	
 		p	1		block	
 		p	2		world	
 		p	3		x	
 		p	4		y	
 		p	5		z	
 		p	6		metadata	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_5553933;III)V	m_7943414		render
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_5553933;III)V	m_7943414		tesselateFallingBlock
 		p	1			block
 		p	2			world
 		p	3			x
@@ -734,12 +734,12 @@ c	net/minecraft/unmapped/C_3292284
 		p	1			p_1
 c	net/minecraft/unmapped/C_3342272
 	m	(Lnet/minecraft/client/Minecraft;IIIFF)V	m_5839514	renderEntity	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	0		minecraft	
+		p	1		x	
+		p	2		y	
+		p	3		scale	
+		p	4		yaw	
+		p	5		pitch	
 c	net/minecraft/unmapped/C_3466810
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_3000450	m_3000450	
 		p	1		p_1	
@@ -761,34 +761,34 @@ c	net/minecraft/unmapped/C_3466810
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/unmapped/C_3476247
-	f	F	f_9262847	dx	
-	f	F	f_3177043	dy	
-	f	F	f_0382192	dz	
+	f	F	f_9262847	faceX	
+	f	F	f_3177043	faceY	
+	f	F	f_0382192	faceZ	
 	m	(IIIILnet/minecraft/unmapped/C_2454309;FFF)V	<init>	<init>	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		face	
-		p	5		stack	
-		p	6		dx	
-		p	7		dy	
-		p	8		dz	
+		p	5		itemInHand	
+		p	6		faceX	
+		p	7		faceY	
+		p	8		faceZ	
 	m	()I	m_9523346	getX	
 	m	()I	m_4283494	getY	
 	m	()I	m_1146194	getZ	
 	m	()I	m_3513093	getFace	
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_1194015	getStack	
-	m	()F	m_2701635	getDx	
-	m	()F	m_3658162	getDy	
-	m	()F	m_6975763	getDz	
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_1194015	getItemInHand	
+	m	()F	m_2701635	getFaceX	
+	m	()F	m_3658162	getFaceY	
+	m	()F	m_6975763	getFaceZ	
 	m	(IIIILnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			face
+		p	5			itemInHand
 c	net/minecraft/unmapped/C_3755722
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_3000450	use	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIIIFFF)Z	m_3000450	useOn	
 		p	1		stack	
 		p	2		player	
 		p	3		world	
@@ -796,10 +796,10 @@ c	net/minecraft/unmapped/C_3755722
 		p	5		y	
 		p	6		z	
 		p	7		face	
-		p	8		dx	
-		p	9		dy	
-		p	10		dz	
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450		use
+		p	8		faceX	
+		p	9		faceY	
+		p	10		faceZ	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450		useOn
 		p	1			stack
 		p	2			player
 		p	3			world
@@ -838,7 +838,7 @@ c	net/minecraft/unmapped/C_4114026
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_4116648
-	f	Z	f_9682943		f_9682943
+	f	Z	f_9682943		extraDamage
 	m	(DDDFFI)V	m_2943996	m_2943996	
 		p	1		p_1	
 		p	3		p_3	
@@ -1200,56 +1200,56 @@ c	net/minecraft/unmapped/C_5847341
 		p	1		slot	
 c	net/minecraft/unmapped/C_5956487
 	f	Lnet/minecraft/unmapped/C_4223822;	f_8408497	gameMode	
-	f	Z	f_1871962		isCreativeMode
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_1855318	refreshAbilities	
+	f	Z	f_1871962		creative
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_1855318	adjustPlayer	
 		p	1		player	
 	m	(Lnet/minecraft/unmapped/C_4223822;)V	m_6483828	setGameMode	
 		p	1		gameMode	
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2454309;IIIILnet/minecraft/unmapped/C_0557736;)Z	m_1601703	useBlock	
 		p	1		player	
 		p	2		world	
-		p	3		stack	
+		p	3		item	
 		p	4		x	
 		p	5		y	
 		p	6		z	
 		p	7		face	
-		p	8		hitPos	
+		p	8		facePos	
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_0539808;)Z	m_3025334	interactEntity	
 		p	1		player	
 		p	2		target	
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_2058905		m_2058905
-		p	0			p_0
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_8123005		m_8123005
-		p	0			p_0
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_3395782		m_3395782
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_2058905		setCreativeMode
+		p	0			player
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_8123005		setSurvivalMode
+		p	0			player
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_3395782		adjustPlayer
+		p	1			player
 	m	(Z)V	m_6483828		setGameMode
 		p	1			isCreative
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2454309;IIII)Z	m_1601703		useBlock
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	1			player
+		p	2			world
+		p	3			itemInHand
+		p	4			x
+		p	5			y
+		p	6			z
+		p	7			face
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_0539808;)V	m_3025334		interactEntity
-		p	1			p_1
-		p	2			p_2
+		p	1			player
+		p	2			target
 c	net/minecraft/unmapped/C_6152184
 	f	Lnet/minecraft/unmapped/C_4223822;	f_9077617	defaultGameMode	
 	f	I	f_9077617		defaultGameMode
 	m	()Lnet/minecraft/unmapped/C_4223822;	m_7930298	getDefaultGamemode	
-	m	(Lnet/minecraft/unmapped/C_4223822;)V	m_8334198	setDefaultGamemode	
+	m	(Lnet/minecraft/unmapped/C_4223822;)V	m_8334198	setDefaultGameMode	
 		p	1		gameMode	
 	m	()I	m_7930298		getDefaultGamemode
-	m	(I)V	m_8334198		setDefaultGamemode
+	m	(I)V	m_8334198		setDefaultGameMode
 		p	1			gameMode
 c	net/minecraft/unmapped/C_6260518
 	f	I	f_6659516	selectedTab	
 	f	Ljava/util/List;	f_7466933	slots	
 	f	Lnet/minecraft/unmapped/C_2711798;	f_5205693	slot	
-	f	I	f_8587613		f_8587613
+	f	I	f_8587613		selectedTab
 c	net/minecraft/unmapped/C_6265506
 	m	(Lnet/minecraft/unmapped/C_5553933;IIIIFFF)V	m_1921716	m_1921716	
 		p	1		p_1	
@@ -1464,12 +1464,12 @@ c	net/minecraft/unmapped/C_7901749
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/unmapped/C_7910832	net/minecraft/client/gui/screen/inventory/menu/CreativeInventoryScreen__CreativeInventorySlot	
-	f	Lnet/minecraft/unmapped/C_2711798;	f_5702965	invSlot	
+	f	Lnet/minecraft/unmapped/C_2711798;	f_5702965	slot	
 	f	Lnet/minecraft/unmapped/C_6260518;	f_7474669	inventoryScreen	
 	m	(Lnet/minecraft/unmapped/C_6260518;Lnet/minecraft/unmapped/C_2711798;I)V	<init>	<init>	
 		p	1		p_1	
-		p	2		invSlot	
-		p	3		slot	
+		p	2		slot	
+		p	3		id	
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1468841	m_1468841	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3397298	m_3397298	
@@ -1687,13 +1687,13 @@ c	net/minecraft/unmapped/C_8941619
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_9012949
-	f	Lnet/minecraft/unmapped/C_6607881;	f_3108574	f_3108574	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_3108574	attacker	
 	m	()Z	m_4540487	m_4540487	
 c	net/minecraft/unmapped/C_9232485
 	f	Lnet/minecraft/unmapped/C_4223822;	f_1222376	gameMode	
 	f	I	f_1222376		gameMode
 	m	(ILnet/minecraft/unmapped/C_1518925;Lnet/minecraft/unmapped/C_4223822;ZIIII)V	<init>	<init>	
-		p	1		id	
+		p	1		gameVersion	
 		p	2		generatorType	
 		p	3		gameMode	
 		p	4		hardcore	
@@ -1793,9 +1793,9 @@ c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_4223822;)V	m_2325657	setGameMode	
 		p	1		gameMode	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_0415468		interact
-		p	1			p_1
+		p	1			target
 	m	(I)V	m_2325657		setGameMode
-		p	1			p_1
+		p	1			gameMode
 c	net/minecraft/unmapped/C_9639106
 	m	()Z	m_0601517	m_0601517	
 c	net/minecraft/unmapped/C_9739154
@@ -1903,7 +1903,7 @@ c	net/minecraft/unmapped/C_9890847	net/minecraft/block/TripwireHookBlock
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		blockId	
+		p	5		block	
 		p	6		metadata	
 		p	7		updateNeighbors	
 		p	8		distanceToTripwire	

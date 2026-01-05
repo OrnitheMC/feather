@@ -1,6 +1,6 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0539808
-	m	(DDDFF)V	m_4021558	teleport	
+	m	(DDDFF)V	m_4021558	updatePositionAndAngles	
 		p	1		x	
 		p	3		y	
 		p	5		z	
@@ -10,8 +10,8 @@ c	net/minecraft/unmapped/C_0707753
 	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4043156	m_4043156	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_1023567
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_1368776		m_1368776
-	m	()V	m_6899236		m_6899236
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_1368776		getSelectedItem
+	m	()V	m_6899236		clearSelectedSlot
 	m	()D	m_1424699		m_1424699
 c	net/minecraft/unmapped/C_1241852
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_9823382	afterMinedByPlayer	
@@ -27,7 +27,7 @@ c	net/minecraft/unmapped/C_4469972	net/minecraft/network/packet/PlayerHandAction
 	f	I	f_1383056	face	
 		c	The face of the block on which the interaction takes place.	
 	f	I	f_2410675	action	
-		c	The type of interaction. This can be one of the following:\n<br> 0: start mining block\n<br> 1: stop mining block\n<br> 2: finish mining block\n<br> 3: drop stack\n<br> 4: drop item\n<br> 5: stop using item	
+		c	The type of interaction. This can be one of the following:\n<br> 0: start mining block\n<br> 1: continue mining block\n<br> 2: stop mining block\n<br> 3: finish mining block\n<br> 4: drop item	
 	m	()V	<init>	<init>	
 	m	(IIIII)V	<init>	<init>	
 		p	1		action	
@@ -46,7 +46,7 @@ c	net/minecraft/unmapped/C_5257938	net/minecraft/network/packet/BlockUpdatePacke
 	f	I	f_4136394	x	
 	f	I	f_1129407	y	
 	f	I	f_9647768	z	
-	f	I	f_8595461	blockId	
+	f	I	f_8595461	block	
 	f	I	f_3627026	metadata	
 	m	()V	<init>	<init>	
 	m	()I	m_3270342	m_3270342	
@@ -72,8 +72,8 @@ c	net/minecraft/unmapped/C_5956487
 	f	Z	f_6035426	isMiningBlock	
 	f	Lnet/minecraft/unmapped/C_5722573;	f_7660091	networkHandler	
 	m	(Lnet/minecraft/unmapped/C_5664496;Lnet/minecraft/unmapped/C_5722573;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		minecraft	
+		p	2		networkHandler	
 	m	(Lnet/minecraft/unmapped/C_5664496;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_6967011
@@ -91,14 +91,14 @@ c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_5257938;)V	m_8581452	handleBlockUpdate	
 		p	1		packet	
 c	net/minecraft/unmapped/C_7748732
-	f	Z	f_4917190	f_4917190	
+	f	Z	f_4917190	onGround	
 	m	(DDDFFZ)V	<init>	<init>	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
+		p	1		x	
+		p	3		minY	
+		p	5		y	
+		p	7		yaw	
+		p	8		pitch	
+		p	9		onGround	
 c	net/minecraft/unmapped/C_9358458	net/minecraft/network/packet/BlocksUpdatePacket	
 	f	I	f_6427972	chunkX	
 	f	I	f_9302469	chunkZ	
@@ -115,6 +115,6 @@ c	net/minecraft/unmapped/C_9358458	net/minecraft/network/packet/BlocksUpdatePack
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666	m_7216666	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_9590849
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_7146798	getMainHandStack	
-	m	()V	m_3200692	clearSelectedSlot	
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_7146798	getItemInHand	
+	m	()V	m_3200692	clearItemInHand	
 	m	()D	m_1424699	m_1424699	

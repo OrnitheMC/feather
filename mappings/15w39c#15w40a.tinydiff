@@ -9,8 +9,8 @@ c	net/minecraft/unmapped/C_0131593$C_6132220
 		p	2			shulker
 	m	()Z	m_9549250		m_9549250
 c	net/minecraft/unmapped/C_0539808
-	m	(Z)V	m_6054043		setCanBeRemoved
-		p	1			canBeRemoved
+	m	(Z)V	m_6054043		setDropContents
+		p	1			dropContents
 c	net/minecraft/unmapped/C_0778972
 	m	(Z)V	m_6054043		m_6054043
 		p	1			p_1
@@ -31,7 +31,7 @@ c	net/minecraft/unmapped/C_5192843
 	f	F	f_9486405		oldWaterWeight
 c	net/minecraft/unmapped/C_5622853
 	f	Ljava/util/Map;	f_6225981		f_6225981
-	f	F	f_3038089		f_3038089
+	f	F	f_3038089		waterPenalty
 	m	(Lnet/minecraft/unmapped/C_6124529;)Ljava/lang/Float;	m_0478514		m_0478514
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_6124529;F)V	m_2012187		m_2012187
@@ -60,11 +60,11 @@ c	net/minecraft/unmapped/C_6124529
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_7179010
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;II)Lnet/minecraft/unmapped/C_3674802;	m_7764911		locateClosestWater
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;II)Lnet/minecraft/unmapped/C_3674802;	m_7764911		locateNearestWater
 		p	1			world
 		p	2			entity
-		p	3			p_3
-		p	4			p_4
+		p	3			boxWidth
+		p	4			boxHeight
 c	net/minecraft/unmapped/C_7240405
 	m	([B)V	m_9874803	writeByteArray	
 		p	1		bytes	
@@ -84,8 +84,8 @@ c	net/minecraft/unmapped/C_7240405
 		p	1		l	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7698279	writeNbtCompound	
 		p	1		nbt	
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1594978	writeItemStack	
-		p	1		stack	
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1594978	writeItem	
+		p	1		item	
 	m	([B)Lnet/minecraft/unmapped/C_7240405;	m_9874803		writeByteArray
 		p	1			data
 	m	([J)Lnet/minecraft/unmapped/C_7240405;	m_4575445		writeLongArray
@@ -104,26 +104,28 @@ c	net/minecraft/unmapped/C_7240405
 		p	1			value
 	m	(Lnet/minecraft/unmapped/C_2018497;)Lnet/minecraft/unmapped/C_7240405;	m_7698279		writeNbtCompound
 		p	1			nbt
-	m	(Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_7240405;	m_1594978		writeItemStack
-		p	1			stack
+	m	(Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_7240405;	m_1594978		writeItem
+		p	1			item
 c	net/minecraft/unmapped/C_7400754
-	m	(Lnet/minecraft/unmapped/C_2454309;Z)V	m_2955308	pickItem	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_2454309;Z)V	m_2955308	selectSlot	
+		p	1		item	
+		p	2		creativeMode	
 	m	(I)Z	m_1235656
-		p	1		p_1	
+		p	1		slot	
 		p	0			slot
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2955308		pickItem
-		p	1			stack
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2955308		selectSlot
+		p	1			item
 	m	(I)V	m_3303991		swapSlotWithHotbar
 		p	1			slot
 c	net/minecraft/unmapped/C_8008980
-	m	()Z	m_7730897	canFloat	
-	m	(Z)V	m_8435532	setCanWalkThroughDoors	
-		p	1		canWalkThroughDoors	
+	m	()Z	m_7730897	canSwim	
+	m	(Z)V	m_8435532	setCanOpenDoors	
+		p	1		canOpenDoors	
+	m	(Z)V	m_4656051	setCanSwim	setCanOpenDoors
+		p	1		canSwim	canOpenDoors
 c	net/minecraft/unmapped/C_8009477
-	f	Z	f_4744787	canFloat	
-	f	Z	f_4786922	couldFloat	
+	f	Z	f_4744787	canSwim	
+	f	Z	f_4786922	savedCanSwim	
 	f	F	f_6012643		oldWaterWeight
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_0539808;IIIIIIZZZ)Lnet/minecraft/unmapped/C_6124529;	m_4381403	getBlockingType	
 		p	0		world	
@@ -134,12 +136,12 @@ c	net/minecraft/unmapped/C_8009477
 		p	5		width	
 		p	6		height	
 		p	7		depth	
-		p	8		canFloat	
+		p	8		canSwim	
 		p	9		canOpenDoors	
-		p	10		canWalkThroughDoors	
-	m	(Z)V	m_1869907	setCanWalkThroughDoors	
-		p	1		canWalkThroughDoors	
-	m	()Z	m_2144666	canFloat	
+		p	10		canPassThroughDoors	
+	m	(Z)V	m_1869907	setCanOpenDoors	
+		p	1		canOpenDoors	
+	m	()Z	m_2144666	canSwim	
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_0539808;IIIIIIZZ)Lnet/minecraft/unmapped/C_6124529;	m_4381403		getBlockingType
 		p	0			world
 		p	1			entity
@@ -150,7 +152,9 @@ c	net/minecraft/unmapped/C_8009477
 		p	6			height
 		p	7			depth
 		p	8			canOpenDoors
-		p	9			canWalkThroughDoors
+		p	9			canPassThroughDoors
+	m	(Z)V	m_5716698	setCanSwim	setCanOpenDoors
+		p	1		canSwim	canOpenDoors
 c	net/minecraft/unmapped/C_8114740
 	f	Z	f_8268727	inWater	
 c	net/minecraft/unmapped/C_8180393

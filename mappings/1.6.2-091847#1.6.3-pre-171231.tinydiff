@@ -1,9 +1,9 @@
 tiny	2	0
 c	net/minecraft/server/MinecraftServer
-	f	I	f_0562773		idleTimeout
-	m	()I	m_1832707		getIdleTimeout
-	m	(I)V	m_3861836		setIdleTimeout
-		p	1			idleTimeout
+	f	I	f_0562773		playerIdleTimeout
+	m	()I	m_1832707		getPlayerIdleTimeout
+	m	(I)V	m_3861836		setPlayerIdleTimeout
+		p	1			playerIdleTimeout
 c	net/minecraft/unmapped/C_0219615
 	f	I	f_7064496	hpos	
 	m	()V	<init>		<init>
@@ -37,7 +37,7 @@ c	net/minecraft/unmapped/C_1151977
 c	net/minecraft/unmapped/C_1202026
 	f	Lnet/minecraft/unmapped/C_3849939;	f_0801017	start	
 	f	I	f_9161150		hpos
-	f	Z	f_5827521		isDesert
+	f	Z	f_5827521		desert
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7238579		m_7238579
 		p	1			p_1
@@ -74,7 +74,7 @@ c	net/minecraft/unmapped/C_2381425
 	m	()Lnet/minecraft/unmapped/C_2018497;	m_6150925		toNbt
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7238579		writeNbt
 		p	1			nbt
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2018497;)V	m_1140790		fromNbt
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2018497;)V	m_1140790		readNbt
 		p	1			world
 		p	2			nbt
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8808362		readNbt
@@ -133,7 +133,7 @@ c	net/minecraft/unmapped/C_3604445
 		p	1			p_1
 c	net/minecraft/unmapped/C_3633110
 	m	()Ljava/lang/String;	m_1131701		m_1131701
-	m	(III)Z	m_8531893		isValid
+	m	(III)Z	m_8531893		isWitchHut
 		p	1			x
 		p	2			y
 		p	3			z
@@ -162,16 +162,13 @@ c	net/minecraft/unmapped/C_3937547
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8808362		m_8808362
 		p	1			p_1
-c	net/minecraft/unmapped/C_3945056	net/minecraft/world/gen/structure/VillagePieces__BalconyHouse	net/minecraft/world/gen/structure/VillagePieces__TinyHouse
+c	net/minecraft/unmapped/C_3945056
 	f	I	f_0945978	hpos	
-	f	Z	f_0635708	hasRooftopTerrace	terrace
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7238579		m_7238579
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8808362		m_8808362
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3849939;ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>
-		p	1		statPiece	startPiece
 c	net/minecraft/unmapped/C_4100759
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8808362		m_8808362
@@ -194,7 +191,8 @@ c	net/minecraft/unmapped/C_4400263
 c	net/minecraft/unmapped/C_4525887
 	m	()V	m_8258869		register
 c	net/minecraft/unmapped/C_4914098
-	f	I	f_8814903	cropA	
+	f	I	f_8814903	crop1	
+	f	I	f_8181182	hpos	crop1
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7238579		m_7238579
 		p	1			p_1
@@ -301,11 +299,9 @@ c	net/minecraft/unmapped/C_7587089
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_8018465
 	m	()V	<init>		<init>
-c	net/minecraft/unmapped/C_8136609	net/minecraft/world/gen/structure/VillagePieces__TinyHouse	net/minecraft/world/gen/structure/VillagePieces__BalconyHouse
+c	net/minecraft/unmapped/C_8136609
 	f	I	f_2325589	hpos	
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_3849939;ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>
-		p	1		startPiece	statPiece
 c	net/minecraft/unmapped/C_8469009
 	f	I	f_7409859	hpos	
 	m	()V	<init>		<init>
@@ -333,22 +329,22 @@ c	net/minecraft/unmapped/C_9407506
 c	net/minecraft/unmapped/C_9470286
 	f	Lnet/minecraft/unmapped/C_7517289;	f_0596870		savedData
 	m	()Ljava/lang/String;	m_1131701		getName
-	m	(III)Lnet/minecraft/unmapped/C_2706017;	m_8977553		getStructure
+	m	(III)Lnet/minecraft/unmapped/C_2706017;	m_8977553		findStructure
 		p	1			x
 		p	2			y
 		p	3			z
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_9425050		loadSavedData
 		p	1			world
-	m	(IILnet/minecraft/unmapped/C_2706017;)V	m_8580738		save
+	m	(IILnet/minecraft/unmapped/C_2706017;)V	m_8580738		saveStructure
 		p	1			chunkX
 		p	2			chunkZ
-		p	3			start
+		p	3			structure
 c	net/minecraft/unmapped/C_9494583
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_9868114
 	f	Lnet/minecraft/unmapped/C_0341503;	f_5912266	entranceType	
 	m	()V	<init>		<init>
-c	net/minecraft/unmapped/C_3735697		net/minecraft/server/command/SetIdleTimeoutComand
+c	net/minecraft/unmapped/C_3735697		net/minecraft/server/dedicated/command/SetIdleTimeoutCommand
 	m	()V	<init>		<init>
 	m	()Ljava/lang/String;	m_2274818		m_2274818
 	m	()I	m_5251718		m_5251718

@@ -1,38 +1,38 @@
 tiny	2	0
 c	net/minecraft/client/C_1331819
-	f	Z	f_6553253	f_6553253	
+	f	Z	f_6553253	fancyGraphics	
 c	net/minecraft/unmapped/C_0539808
 	m	(Lnet/minecraft/unmapped/C_8048208;)Z	m_0217121	isSubmergedIn	
 		c	Check if this entity is submerged in the given fluid, meaning the fluid covers its eyes.	
 		p	1		liquid	
 	m	()Z	m_0217121		isSubmergedIn
 c	net/minecraft/unmapped/C_0774916
-	m	(I)Z	m_3628236		m_3628236
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_0312250		m_0312250
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_4577803		m_4577803
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(I)Z	m_3628236		isFlammable
+		p	1			block
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_0312250		spread
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_4577803		spreadTo
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_1241852
-	m	(Z)Z	m_7371947	hasCollision	
-		p	1		p_1	
+	m	(Z)Z	m_7371947	canRayTrace	
+		p	1		allowLiquids	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_0557736;)V	m_7940442	applyMaterialDrag	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		velocity	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_5507773	updateShape	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 c	net/minecraft/unmapped/C_2010724
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILjava/util/Random;)V	m_7197439		m_7197439
 		p	1			p_1
@@ -61,18 +61,18 @@ c	net/minecraft/unmapped/C_3216249
 		p	3		z	
 		p	4		liquid	
 	m	(III)F	m_8157292		getLiquidHeight
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_3362006
 	f	Lnet/minecraft/client/C_1331819;	f_3150710	options	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/client/C_1331819;F)V	m_3742790	prepare	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		world	
+		p	2		textureManager	
+		p	3		textRenderer	
+		p	4		camera	
+		p	5		options	
+		p	6		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_9590849;F)V	m_3742790		prepare
 		p	1			p_1
 		p	2			p_2
@@ -80,17 +80,18 @@ c	net/minecraft/unmapped/C_3362006
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_3747079
-	f	I	f_9509159		f_9509159
-	f	I	f_9203262		f_9203262
+	f	I	f_9509159		sourceBlock
+	f	I	f_9203262		flowingBlock
 	m	(I)F	m_3205273	getHeightLoss	
-		p	0		level	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)I	m_7726651	getLevel	
-		c	Returns the level of this fluid. The first 3 bits encode the distance to a source\nfluid, while the 4th bit encodes whether this fluid is falling.	
+		c	@return the height loss of a liquid with the given state compared to a full block.	
+		p	0		state	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)I	m_7726651	getLiquidState	
+		c	Returns the depth and falling state of the liquid at the given position, encoded in a 4 bit number,\nor {@code -1} if the given position is not occupied by this liquid.\n<p>\nThe 3 least significant bits encode the depth of this liquid - that is to say, how shallow it lies within this block.\nA value of {@code 0} denotes a source block, while the values {@code 1} to {@code 7} denote increasingly shallow depth values.\n<br>\nIf this liquid is falling, the depth applies not to this liquid, but to the liquid above it.\nIf the liquid above is also falling, the depth is always 0.\n<p>\nThe 4th least significant bit encodes whether the liquid is falling (i.e. there is liquid flowing in from above).	
 		p	1		world	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)I	m_3610891	getDistanceToSource	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)I	m_3610891	getLiquidDepth	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -112,32 +113,32 @@ c	net/minecraft/unmapped/C_3747079
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_1392993		m_1392993
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_1392993		spread
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2546368		m_2546368
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_1637083		m_1637083
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2139854		m_2139854
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_0936739		m_0936739
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2546368		isNotLiquidBlocking
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_1637083		canSpreadTo
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2139854		lightOnFire
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_0936739		spreadTo
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 	m	()Z	m_0674178		m_0674178
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_7735018		m_7735018
 		p	1			p_1
@@ -145,11 +146,11 @@ c	net/minecraft/unmapped/C_3747079
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6787489		m_6787489
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6787489		canSplashAt
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_0929720	BUCKET	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_3810496	WATER_BUCKET	
@@ -159,33 +160,35 @@ c	net/minecraft/unmapped/C_5553933
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 		p	5		metadata	
 	m	(IIII)V	m_5170064	onBlockChanged	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;)Lnet/minecraft/unmapped/C_7794883;	m_4935276	rayTrace	
 		p	1		from	
 		p	2		to	
 	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;Z)Lnet/minecraft/unmapped/C_7794883;	m_1592938	rayTrace	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		from	
+		p	2		to	
+		p	3		allowLiquids	
 	m	(Lnet/minecraft/unmapped/C_5577922;Lnet/minecraft/unmapped/C_8048208;Lnet/minecraft/unmapped/C_0539808;)Z	m_0774852	applyLiquidDrag	
 		p	1		bounds	
 		p	2		material	
 		p	3		entity	
 	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;)Lnet/minecraft/unmapped/C_7794883;	m_1592938		rayTrace
-		p	1			p_1
-		p	2			p_2
+		p	1			from
+		p	2			to
 c	net/minecraft/unmapped/C_7051878
-	f	[Z	f_0329558	spreadDirections	
-		c	Whether this liquid should flow in each direction.\n<br>\n@see net.minecraft.util.math.Facings	
+	f	[Z	f_0329558	spread	
+		c	For each direction, whether this liquid should spread in that direction.	
 	f	[I	f_3001582	distanceToGap	
-		c	The distance to the nearest gap to flow into for each horizontal direction.\n<br>\n@see net.minecraft.util.math.Facings	
-	f	I	f_2995398		f_2995398
+		c	For each direction, the distance to the nearest gap to flow down into.	
+	f	I	f_2995398		flowingBlock
+	f	I	f_3076630	adjacentSources	sourceBlock
+		c	The number of adjacent source liquids.	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8941536	convertToSource	
 		p	1		world	
 		p	2		x	
@@ -197,18 +200,21 @@ c	net/minecraft/unmapped/C_7051878
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_1007056	blocksSpreading	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_1007056	isLiquidBlocking	
+		c	@return whether the block at the given position blocks liquids from flowing.	
 		p	0		p_0	
 		p	1		world	
 		p	2		x	
 		p	3		y	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_5643540	decreaseLevel	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_5643540	getLowestDepth	
+		c	@return the lowest depth between the given value and that of an adjacent liquid.	
 		p	1		world	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		level	
+		p	5		depth	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_5712832	canSpreadTo	
+		c	@return whether this liquid can spread to the given position.	
 		p	0		p_0	
 		p	1		world	
 		p	2		x	
@@ -243,7 +249,7 @@ c	net/minecraft/unmapped/C_7051878
 		p	1			p_1
 	m	()I	m_8049265		m_8049265
 c	net/minecraft/unmapped/C_8048208
-	m	()Z	m_3787971		m_3787971
+	m	()Z	m_3787971		isNotLiquidBlocking
 c	net/minecraft/unmapped/C_8300121
 	m	()Z	m_5713279	m_5713279	
 c	net/minecraft/unmapped/C_8620458

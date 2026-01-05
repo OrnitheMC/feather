@@ -208,7 +208,7 @@ c	net/minecraft/unmapped/C_0627383	net/minecraft/world/map/SavedMapData__Decorat
 	m	()B	m_8199150		getY
 	m	()B	m_3585884		getRotation
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			obj
+		p	1			p_1
 	m	()I	hashCode		hashCode
 c	net/minecraft/unmapped/C_0658183
 	m	(II)V	<init>	<init>	
@@ -259,7 +259,7 @@ c	net/minecraft/unmapped/C_0979881
 	m	(ZZ)V	m_3404029	updateTextureFilter	
 		p	0		blur	
 		p	1		mipmap	
-	m	()V	m_6713515	setHeldItemNonBlock	
+	m	()V	m_6713515	resetTextureFilter	
 	m	(II)V	m_6997653	setTextureFilter	
 		p	0		min	
 		p	1		mag	
@@ -330,15 +330,15 @@ c	net/minecraft/unmapped/C_1316134
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	m_0804715	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6520615		generateChunk
-		c		@return the world chunk at the given chunk coordinates, loading or generating it if needed
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6520615		loadChunk
+		c		Loads the world chunk at the given chunk coordinates.
 		p	1			chunkX
 		p	2			chunkZ
 c	net/minecraft/unmapped/C_1331819
 	f	Z	f_0190662		allowBlockAlternatives
 c	net/minecraft/unmapped/C_1350658
 	m	(Lnet/minecraft/unmapped/C_5786166;Lnet/minecraft/unmapped/C_0539808;FFFFFF)V	m_2192689	render	
-		p	1		tessellator	
+		p	1		tesselator	
 		p	2		camera	
 		p	3		tickDelta	
 		p	4		dx	
@@ -440,28 +440,28 @@ c	net/minecraft/unmapped/C_1861457
 		p	7			p_7
 		p	8			p_8
 c	net/minecraft/unmapped/C_1895985
-	f	I	f_5166812	regionX	
-	f	I	f_2315043	regionY	
-	f	I	f_2752168	regionZ	
+	f	I	f_5166812	x	
+	f	I	f_2315043	y	
+	f	I	f_2752168	z	
 	f	Lnet/minecraft/unmapped/C_3674802;	f_6879913		origin
-	m	(IIIDDD)V	m_6649386	setPositions	
-		p	1		regionX	
-		p	2		regionY	
-		p	3		regionZ	
-		p	4		cameraX	
-		p	6		cameraY	
-		p	8		cameraZ	
-	m	(III)Z	m_8405137	checkMatch	
+	m	(IIIDDD)V	m_6649386	init	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(Lnet/minecraft/unmapped/C_3674802;DDD)V	m_6649386		m_6649386
+		p	4		offsetX	
+		p	6		offsetY	
+		p	8		offsetZ	
+	m	(III)Z	m_8405137	isAt	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(Lnet/minecraft/unmapped/C_3674802;DDD)V	m_6649386		init
 		p	1			origin
 		p	2			cameraX
 		p	4			cameraY
 		p	6			cameraZ
-	m	(Lnet/minecraft/unmapped/C_3674802;)Z	m_8405137		m_8405137
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_3674802;)Z	m_8405137		isAt
+		p	1			pos
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_1365242		getOrigin
 c	net/minecraft/unmapped/C_1898615
 	m	(IIIIILnet/minecraft/unmapped/C_5786166;IIZ)V	m_2013749	m_2013749	
@@ -496,22 +496,22 @@ c	net/minecraft/unmapped/C_2019151
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_4902034	m_4902034	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_0346713	tessellateWithAmbientOcclusion	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_1209340	tessellateWithoutAmbientOcclusion	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)V	m_7950279	tessellateFaceWithAmbientOcclusion	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZ)V	m_7128555	tessellateFaceWithoutAmbientOcclusion	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_0346713	tesselateWithAmbientOcclusion	
+		p	1		block	
+		p	2		pos	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_1209340	tesselateWithoutAmbientOcclusion	
+		p	1		block	
+		p	2		pos	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)V	m_7950279	tesselateFaceWithAmbientOcclusion	
+		p	1		block	
+		p	2		pos	
+		p	3		face	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZ)V	m_7128555	tesselateFaceWithoutAmbientOcclusion	
+		p	1		block	
+		p	2		pos	
+		p	3		face	
+		p	4		lightColor	
+		p	5		computeShape	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_4249277		m_4249277
 		p	1			p_1
 		p	2			p_2
@@ -520,20 +520,20 @@ c	net/minecraft/unmapped/C_2019151
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_0346713		tessellateWithAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_0346713		tesselateWithAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			bufferBuilder
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_1209340		tessellateWithoutAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_1209340		tesselateWithoutAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			bufferBuilder
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_8373595;)V	m_7950279		tessellateFaceWithAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_8373595;)V	m_7950279		tesselateFaceWithAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			face
 		p	4			bufferBuilder
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZLnet/minecraft/unmapped/C_8373595;)V	m_7128555		tessellateFaceWithoutAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZLnet/minecraft/unmapped/C_8373595;)V	m_7128555		tesselateFaceWithoutAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			face
@@ -871,7 +871,7 @@ c	net/minecraft/unmapped/C_3677942
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_4902034	m_4902034	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_7437567	tessellateLiquid	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_7437567	tesselateLiquid	
 		p	1		state	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_4249277		m_4249277
@@ -882,7 +882,7 @@ c	net/minecraft/unmapped/C_3677942
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_7437567		tessellateLiquid
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_7437567		tesselateLiquid
 		p	1			state
 		p	2			pos
 		p	3			bufferBuilder
@@ -996,7 +996,7 @@ c	net/minecraft/unmapped/C_3784880
 		p	3		y	
 		p	4		width	
 		p	5		height	
-		p	6		tessellator	
+		p	6		tesselator	
 		p	7		mouseX	
 		p	8		mouseY	
 		p	9		hovered	
@@ -1115,7 +1115,7 @@ c	net/minecraft/unmapped/C_4382529
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_4565244	net/minecraft/block/PumpkinBlock__1	
+c	net/minecraft/unmapped/C_4565244	net/minecraft/block/PumpkinBlock__4565244	
 	f	[I	f_0809227	f_0809227	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_4590270
@@ -1182,17 +1182,17 @@ c	net/minecraft/unmapped/C_4764902
 		p	7			p_7
 		p	8			p_8
 c	net/minecraft/unmapped/C_4833795
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_4249277	tessellateBlock	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_4249277	tesselateInWorld	
 		p	1		state	
 		p	2		pos	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_4902034	tessellate	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_4902034	tesselateBlock	
 		p	1		state	
 		p	2		pos	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_4249277		tessellateBlock
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_4249277		tesselateInWorld
 		p	1			state
 		p	2			pos
 		p	3			bufferBuilder
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_4902034		tessellate
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;)Z	m_4902034		tesselateBlock
 		p	1			state
 		p	2			pos
 		p	3			bufferBuilder
@@ -1297,7 +1297,7 @@ c	net/minecraft/unmapped/C_5114878
 c	net/minecraft/unmapped/C_5117296
 	m	(Lnet/minecraft/unmapped/C_0073700;)V	m_4922777		handleCompressionThreshold
 		p	1			packet
-c	net/minecraft/unmapped/C_5162947	com/mojang/blaze3d/platform/GlStateManager__1	
+c	net/minecraft/unmapped/C_5162947	net/minecraft/client/render/platform/GlStateManager__5162947	
 c	net/minecraft/unmapped/C_5201828
 	m	(Lnet/minecraft/unmapped/C_5786166;Lnet/minecraft/unmapped/C_0539808;FFFFFF)V	m_2192689	m_2192689	
 		p	1		p_1	
@@ -1448,9 +1448,9 @@ c	net/minecraft/unmapped/C_5786166
 		p	3		z	
 	m	(Lnet/minecraft/unmapped/C_1103360;)V	m_4689372	setState	
 		p	1		state	
-	m	()V	m_9311682	start	
+	m	()V	m_9311682	begin	
 		c	Start with default draw mode {@link org.lwjgl.opengl.GL11#GL_QUADS GL_QUADS}	
-	m	(I)V	m_8067894	start	
+	m	(I)V	m_8067894	begin	
 		p	1		drawMode	
 	m	(I)V	m_5126752	brightness	
 		p	1		brightness	
@@ -1520,7 +1520,7 @@ c	net/minecraft/unmapped/C_5786166
 		p	1		offsetX	
 		p	3		offsetY	
 		p	5		offsetZ	
-	m	()Lnet/minecraft/unmapped/C_8373595;	m_1454391		getBuilder
+	m	()Lnet/minecraft/unmapped/C_8373595;	m_1454391		getBuffer
 c	net/minecraft/unmapped/C_5825329
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_9077732		m_9077732
 c	net/minecraft/unmapped/C_5840038
@@ -1565,7 +1565,7 @@ c	net/minecraft/unmapped/C_5999076
 		p	2		x	
 		p	3		y	
 		p	4		entryHeight	
-		p	5		tessellator	
+		p	5		tesselator	
 		p	6		mouseX	
 		p	7		mouseY	
 	m	(IIIIII)V	m_2768810		renderEntry
@@ -1655,14 +1655,14 @@ c	net/minecraft/unmapped/C_6695579
 	f	Lnet/minecraft/unmapped/C_1331819;	f_3676614		options
 	m	(Lnet/minecraft/unmapped/C_8559585;)V	<init>	<init>	
 		p	1		modelShaper	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;)Z	m_2322142	tessellate	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;)Z	m_2322142	render	
 		p	1		state	
 		p	2		pos	
 		p	3		world	
 	m	(Lnet/minecraft/unmapped/C_8559585;Lnet/minecraft/unmapped/C_1331819;)V	<init>		<init>
 		p	1			modelShaper
 		p	2			options
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_8373595;)Z	m_2322142		tessellate
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_8373595;)Z	m_2322142		render
 		p	1			state
 		p	2			pos
 		p	3			world
@@ -1670,14 +1670,14 @@ c	net/minecraft/unmapped/C_6695579
 c	net/minecraft/unmapped/C_6804573
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_9077732		m_9077732
 c	net/minecraft/unmapped/C_6823239
-	m	(Lnet/minecraft/unmapped/C_5786166;IIIII)V	m_9490960	drawRect	
-		p	1		tessellator	
+	m	(Lnet/minecraft/unmapped/C_5786166;IIIII)V	m_9490960	fillRect	
+		p	1		tesselator	
 		p	2		x	
 		p	3		y	
 		p	4		width	
 		p	5		height	
 		p	6		color	
-	m	(Lnet/minecraft/unmapped/C_8373595;IIIII)V	m_9490960		drawRect
+	m	(Lnet/minecraft/unmapped/C_8373595;IIIII)V	m_9490960		fillRect
 		p	1			bufferBuilder
 		p	2			x
 		p	3			y
@@ -1777,18 +1777,18 @@ c	net/minecraft/unmapped/C_7028449
 	f	I	f_9148018	originX	
 	f	I	f_8057675	originY	
 	f	I	f_1468741	originZ	
-	f	I	f_4283526	regionOriginX	
-	f	I	f_7075818	regionOriginY	
-	f	I	f_5111861	regionOriginZ	
-	f	I	f_8963250	regionX	
-	f	I	f_8232629	regionY	
-	f	I	f_5181695	regionZ	
+	f	I	f_4283526	renderX	
+	f	I	f_7075818	renderY	
+	f	I	f_5111861	renderZ	
+	f	I	f_8963250	renderOffsetX	
+	f	I	f_8232629	renderOffsetY	
+	f	I	f_5181695	renderOffsetZ	
 	f	Z	f_1508189	visible	
 	f	I	f_1795260	centerX	
 	f	I	f_9365868	centerY	
 	f	I	f_1811950	centerZ	
-	f	I	f_7839409	index	
-	f	Z	f_5817086	glArbOcclusionPending	
+	f	I	f_7839409	id	
+	f	Z	f_5817086	occlusionQueryPending	
 	f	Lnet/minecraft/unmapped/C_3674802;	f_4863579		origin
 	f	Lnet/minecraft/unmapped/C_3674802;	f_5654898		edge
 	f	Lnet/minecraft/unmapped/C_3674802;	f_5645267		size
@@ -1797,11 +1797,10 @@ c	net/minecraft/unmapped/C_7028449
 	f	[Z	f_8171855		layers
 	f	Ljava/util/concurrent/locks/ReentrantLock;	f_0176851		lock
 	f	Lnet/minecraft/unmapped/C_9450178;	f_6280856		boundsRenderer
-	f	Z	f_5353207	glArbOcclusion	f_5353207
-	f	I	f_7712432	glArbOcclusionQuery	index
+	f	I	f_7712432	occlusionQuery	index
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;IIII)V	<init>	<init>	
 		p	1		world	
-		p	2		globalBlockEntities	
+		p	2		blockEntitiesToBeRendered	
 		p	3		x	
 		p	4		y	
 		p	5		z	
@@ -1810,7 +1809,7 @@ c	net/minecraft/unmapped/C_7028449
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	()V	m_6262464	glTranslatef	
+	m	()V	m_6262464	glTranslate	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_4928853	compile	
 		p	1		camera	
 	m	(Lnet/minecraft/unmapped/C_3333682;)V	m_8061774	beginLayer	
@@ -1820,12 +1819,12 @@ c	net/minecraft/unmapped/C_7028449
 		p	2		camera	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_8519042	rebuildTranslucent	
 		p	1		camera	
-	m	()V	m_4954370	glCallList	
+	m	()V	m_4954370	renderOcclusionTest	
 	m	()V	m_3698923	markDirty	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;Lnet/minecraft/unmapped/C_3674802;II)V	<init>		<init>
 		p	1			world
-		p	2			globalBlockEntities
+		p	2			blockEntitiesToBeRendered
 		p	3			origin
 		p	4			glList
 		p	5			index
@@ -1892,7 +1891,7 @@ c	net/minecraft/unmapped/C_7133828
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_9077732		m_9077732
 c	net/minecraft/unmapped/C_7150906
 	m	(Lnet/minecraft/unmapped/C_5786166;F)V	m_9580719	compile	
-		p	1		tessellator	
+		p	1		tesselator	
 		p	2		scale	
 	m	(Lnet/minecraft/unmapped/C_8373595;F)V	m_9580719		compile
 		p	1			bufferBuilder
@@ -2068,7 +2067,7 @@ c	net/minecraft/unmapped/C_8285034
 	m	()Lnet/minecraft/unmapped/C_3504190;	m_8156143		first
 c	net/minecraft/unmapped/C_8307016
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)[B	m_6440547	getUpdateData	
-		p	1		stack	
+		p	1		item	
 		p	2		world	
 		p	3		player	
 	m	(III)V	m_6859598	markDirty	
@@ -2078,7 +2077,7 @@ c	net/minecraft/unmapped/C_8307016
 	m	([B)V	m_0370849	update	
 		p	1		data	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_5385258;	m_6440547		createUpdatePacket
-		p	1			stack
+		p	1			item
 		p	2			world
 		p	3			player
 	m	(II)V	m_6125040		markDirty
@@ -2107,7 +2106,7 @@ c	net/minecraft/unmapped/C_8373595
 	f	[I	f_8076276	buffer	
 	f	Ljava/nio/FloatBuffer;	f_8076276		floatBuffer
 	f	I	f_7654450		limit
-	m	()V	m_7801527		start
+	m	()V	m_7801527		begin
 		c		Start with default draw mode {@link org.lwjgl.opengl.GL11#GL_QUADS GL_QUADS}
 	m	(FFF)V	m_8672156		color
 		p	1			r
@@ -2124,7 +2123,7 @@ c	net/minecraft/unmapped/C_8398976
 	f	Lnet/minecraft/unmapped/C_8093177;	f_1523400		chunkBufferBuilders
 	f	Lnet/minecraft/unmapped/C_4253627;	f_4398270		chunkBufferUploader
 	m	(Lnet/minecraft/unmapped/C_5786166;Lnet/minecraft/unmapped/C_0539808;F)V	m_1913348	renderMiningProgress	
-		p	1		tessellator	
+		p	1		tesselator	
 		p	2		camera	
 		p	3		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_3333682;Lnet/minecraft/unmapped/C_8373595;ILnet/minecraft/unmapped/C_3674802;)V	m_1757683		m_1757683
@@ -2136,7 +2135,7 @@ c	net/minecraft/unmapped/C_8398976
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_5786166;Lnet/minecraft/unmapped/C_8373595;Lnet/minecraft/unmapped/C_0539808;F)V	m_1913348		renderMiningProgress
-		p	1			tessellator
+		p	1			tesselator
 		p	2			bufferBuilder
 		p	3			camera
 		p	4			tickDelta
@@ -2332,7 +2331,7 @@ c	net/minecraft/unmapped/C_9560633
 		p	1			mapData
 c	net/minecraft/unmapped/C_9603904
 	m	(Lnet/minecraft/unmapped/C_5786166;F)V	m_7860187	compile	
-		p	1		tessellator	
+		p	1		tesselator	
 		p	2		scale	
 	m	(Lnet/minecraft/unmapped/C_8373595;F)V	m_7860187		compile
 		p	1			bufferBuilder
@@ -2374,8 +2373,8 @@ c	net/minecraft/unmapped/C_9808107
 c	net/minecraft/unmapped/C_9830617
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_9077732		m_9077732
 c	net/minecraft/unmapped/C_9848147
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	generateChunk	
-		c	@return the world chunk at the given chunk coordinates, loading or generating it if needed	
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	loadChunk	
+		c	Loads the world chunk at the given chunk coordinates.	
 		p	1		chunkX	
 		p	2		chunkZ	
 c	net/minecraft/unmapped/C_9865017
@@ -2392,9 +2391,9 @@ c	net/minecraft/unmapped/C_9865017
 	f	I	f_3777072		ticks
 	m	(Lnet/minecraft/unmapped/C_2454309;)[B	m_0898657	getUpdateData	
 		c	Packs data for a map update packet in a byte array. The first byte encodes the type\nof update:\n<br>0: colors\n<br>1: decorations\n<br>2: scale	
-		p	1		stack	
+		p	1		item	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_5385258;	m_0134628		createUpdatePacket
-		p	1			stack
+		p	1			item
 	m	(II)V	m_8866123		markDirty
 		p	1			x
 		p	2			y
@@ -2413,7 +2412,7 @@ c	net/minecraft/unmapped/C_9962825
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_9077732		m_9077732
 c	net/minecraft/unmapped/C_9986135
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_9077732		m_9077732
-c	net/minecraft/unmapped/C_0027322		net/minecraft/server/network/handler/ServerLoginNetworkHandler__1
+c	net/minecraft/unmapped/C_0027322		net/minecraft/server/network/handler/ServerLoginNetworkHandler__0027322
 	f	Lnet/minecraft/unmapped/C_8983523;	f_5734859		f_5734859
 	m	(Lnet/minecraft/unmapped/C_8983523;)V	<init>		<init>
 		p	1			p_1
@@ -2441,7 +2440,7 @@ c	net/minecraft/unmapped/C_0073700		net/minecraft/network/packet/s2c/login/Compr
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_6110406		m_6110406
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_5117296;)V	m_0371583		apply
+	m	(Lnet/minecraft/unmapped/C_5117296;)V	m_0371583		m_0371583
 		p	1			p_1
 	m	()I	m_4769670		getCompressionThreshold
 	m	(Lnet/minecraft/unmapped/C_5444260;)V	m_7216666		m_7216666
@@ -2458,7 +2457,7 @@ c	net/minecraft/unmapped/C_0762704		net/minecraft/client/entity/particle/RainSpl
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_1081513		com/mojang/blaze3d/platform/GlStateManager__Viewport
+c	net/minecraft/unmapped/C_1081513		net/minecraft/client/render/platform/GlStateManager__Viewport
 	f	I	f_8766937		x
 	f	I	f_0855964		y
 	f	I	f_2963428		width
@@ -2466,14 +2465,14 @@ c	net/minecraft/unmapped/C_1081513		com/mojang/blaze3d/platform/GlStateManager__
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_1230864		com/mojang/blaze3d/platform/GlStateManager__PolygonOffset
+c	net/minecraft/unmapped/C_1230864		net/minecraft/client/render/platform/GlStateManager__PolygonOffset
 	f	Lnet/minecraft/unmapped/C_8796143;	f_5693239		fill
 	f	F	f_7015755		factor
 	f	F	f_2187824		units
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_1241808		com/mojang/blaze3d/platform/GlStateManager__1
+c	net/minecraft/unmapped/C_1241808		net/minecraft/client/render/platform/GlStateManager__1241808
 	f	[I	f_6588363		f_6588363
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_1272823		net/minecraft/util/IterableBuilder__ArrayIterable__ArrayIterator
@@ -2492,7 +2491,7 @@ c	net/minecraft/unmapped/C_1272823		net/minecraft/util/IterableBuilder__ArrayIte
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_1914103		net/minecraft/util/IterableBuilder__1
+c	net/minecraft/unmapped/C_1914103		net/minecraft/util/IterableBuilder__1914103
 c	net/minecraft/unmapped/C_2165440		net/minecraft/util/math/BlockPos__Mutable
 	f	I	f_1228260		posX
 	f	I	f_5225544		posY
@@ -2540,34 +2539,34 @@ c	net/minecraft/unmapped/C_3008739		net/minecraft/util/IterableBuilder__ArrayToL
 		p	1			p_1
 c	net/minecraft/unmapped/C_3061083		net/minecraft/inventory/InventoryUtils
 	f	Ljava/util/Random;	f_1567774		RANDOM
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5818647;)V	m_0147581		dropContents
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5818647;)V	m_0147581		dropItems
 		p	0			world
 		p	1			pos
 		p	2			inventory
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5818647;)V	m_5020472		dropContents
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5818647;)V	m_5020472		dropItems
 		p	0			world
 		p	1			owner
 		p	2			inventory
-	m	(Lnet/minecraft/unmapped/C_5553933;DDDLnet/minecraft/unmapped/C_5818647;)V	m_3610992		dropContents
+	m	(Lnet/minecraft/unmapped/C_5553933;DDDLnet/minecraft/unmapped/C_5818647;)V	m_3610992		dropItems
 		p	0			world
 		p	1			x
 		p	3			y
 		p	5			z
 		p	7			inventory
-	m	(Lnet/minecraft/unmapped/C_5553933;DDDLnet/minecraft/unmapped/C_2454309;)V	m_8004743		dropStack
+	m	(Lnet/minecraft/unmapped/C_5553933;DDDLnet/minecraft/unmapped/C_2454309;)V	m_8004743		dropItem
 		p	0			world
 		p	1			x
 		p	3			y
 		p	5			z
-		p	7			stack
+		p	7			item
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_3704895		com/mojang/blaze3d/platform/GlStateManager__ColorLogicOp
+c	net/minecraft/unmapped/C_3704895		net/minecraft/client/render/platform/GlStateManager__ColorLogicOp
 	f	Lnet/minecraft/unmapped/C_8796143;	f_3457052		state
 	f	I	f_7894511		op
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_3905646		com/mojang/blaze3d/platform/GlStateManager__ColorMask
+c	net/minecraft/unmapped/C_3905646		net/minecraft/client/render/platform/GlStateManager__ColorMask
 	f	Z	f_6410862		r
 	f	Z	f_2994357		g
 	f	Z	f_9242982		b
@@ -2575,26 +2574,26 @@ c	net/minecraft/unmapped/C_3905646		com/mojang/blaze3d/platform/GlStateManager__
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_4182637		com/mojang/blaze3d/platform/GlStateManager__TexGenCoord
+c	net/minecraft/unmapped/C_4182637		net/minecraft/client/render/platform/GlStateManager__TexGenCoord
 	f	Lnet/minecraft/unmapped/C_8796143;	f_2278101		state
 	f	I	f_8206728		coord
 	f	I	f_3759221		mode
 	m	(II)V	<init>		<init>
 		p	1			coord
 		p	2			state
-c	net/minecraft/unmapped/C_4253627		com/mojang/blaze3d/vertex/BufferUploader
+c	net/minecraft/unmapped/C_4253627		net/minecraft/client/render/vertex/BufferUploader
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_8373595;I)I	m_4051893		end
 		p	1			builder
 		p	2			vertexCount
-c	net/minecraft/unmapped/C_4491114		com/mojang/blaze3d/platform/GlStateManager__StencilFunc
+c	net/minecraft/unmapped/C_4491114		net/minecraft/client/render/platform/GlStateManager__StencilFunc
 	f	I	f_7089620		func
 	f	I	f_5344379		ref
 	f	I	f_9062318		mask
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_4850190		com/mojang/blaze3d/platform/GlStateManager__TexGen
+c	net/minecraft/unmapped/C_4850190		net/minecraft/client/render/platform/GlStateManager__TexGen
 	f	Lnet/minecraft/unmapped/C_4182637;	f_6007195		s
 	f	Lnet/minecraft/unmapped/C_4182637;	f_0509484		t
 	f	Lnet/minecraft/unmapped/C_4182637;	f_4524798		r
@@ -2615,10 +2614,10 @@ c	net/minecraft/unmapped/C_5170502		net/minecraft/network/CompressionEncoder
 	m	(I)V	m_0811546		setThreshold
 		p	1			threshold
 	m	(Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/buffer/ByteBuf;)V	encode		encode
-		p	1			context
-		p	2			in
+		p	1			ctx
+		p	2			msg
 		p	3			out
-c	net/minecraft/unmapped/C_6288580		com/mojang/blaze3d/platform/GlStateManager__Color
+c	net/minecraft/unmapped/C_6288580		net/minecraft/client/render/platform/GlStateManager__Color
 	f	F	f_0131656		r
 	f	F	f_0955936		g
 	f	F	f_2993101		b
@@ -2636,32 +2635,32 @@ c	net/minecraft/unmapped/C_6447889		net/minecraft/network/packet/s2c/play/Compre
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_6110406		m_6110406
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_4637169		apply
+	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_4637169		m_4637169
 		p	1			p_1
 	m	()I	m_3862217		getCompressionThreshold
 	m	(Lnet/minecraft/unmapped/C_5444260;)V	m_7216666		m_7216666
 		p	1			p_1
-c	net/minecraft/unmapped/C_6654424		net/minecraft/entity/ai/goal/MobEntityActiveTargetGoal__1
+c	net/minecraft/unmapped/C_6654424		net/minecraft/entity/ai/goal/MobEntityActiveTargetGoal__6654424
 	f	Lnet/minecraft/unmapped/C_8634284;	f_1159962		f_1159962
 	m	(Lnet/minecraft/unmapped/C_8634284;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_7625671		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			target
-c	net/minecraft/unmapped/C_6972436		com/mojang/blaze3d/platform/GlStateManager__Clear
+		p	1			p_1
+c	net/minecraft/unmapped/C_6972436		net/minecraft/client/render/platform/GlStateManager__Clear
 	f	D	f_4844946		depth
 	f	Lnet/minecraft/unmapped/C_6288580;	f_6858167		color
 	f	I	f_2120441		stencil
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_7618081		net/minecraft/entity/living/mob/Monster__2
+c	net/minecraft/unmapped/C_7618081		net/minecraft/entity/living/mob/monster/Monster__7618081
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_5658158		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			entity
+		p	1			p_1
 c	net/minecraft/unmapped/C_8093177		net/minecraft/client/render/world/ChunkBufferBuilders
 	f	[Lnet/minecraft/unmapped/C_8373595;	f_3537520		builders
 	m	()V	<init>		<init>
@@ -2669,7 +2668,7 @@ c	net/minecraft/unmapped/C_8093177		net/minecraft/client/render/world/ChunkBuffe
 		p	1			layer
 	m	(I)Lnet/minecraft/unmapped/C_8373595;	m_6372663		get
 		p	1			layer
-c	net/minecraft/unmapped/C_8203323		com/mojang/blaze3d/platform/GlStateManager__Stencil
+c	net/minecraft/unmapped/C_8203323		net/minecraft/client/render/platform/GlStateManager__Stencil
 	f	Lnet/minecraft/unmapped/C_4491114;	f_2448841		func
 	f	I	f_7569078		mask
 	f	I	f_6787652		fail
@@ -2678,7 +2677,7 @@ c	net/minecraft/unmapped/C_8203323		com/mojang/blaze3d/platform/GlStateManager__
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1241808;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_8243028		net/minecraft/util/math/BlockPos__2
+c	net/minecraft/unmapped/C_8243028		net/minecraft/util/math/BlockPos__8243028
 	f	Lnet/minecraft/unmapped/C_3674802;	f_6268752		f_6268752
 	f	Lnet/minecraft/unmapped/C_3674802;	f_4202795		f_4202795
 	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3674802;)V	<init>		<init>
@@ -2721,7 +2720,7 @@ c	net/minecraft/unmapped/C_8634284		net/minecraft/entity/ai/goal/MobEntityActive
 	m	(Lnet/minecraft/unmapped/C_8634284;)Lnet/minecraft/unmapped/C_8099772;	m_4907891		m_4907891
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_8920728		net/minecraft/util/math/BlockPos__2__1
+c	net/minecraft/unmapped/C_8920728		net/minecraft/util/math/BlockPos__15871338__8920728
 	f	Lnet/minecraft/unmapped/C_2165440;	f_5064862		pos
 	f	Lnet/minecraft/unmapped/C_8243028;	f_5663079		f_5663079
 	m	(Lnet/minecraft/unmapped/C_8243028;)V	<init>		<init>
@@ -2748,7 +2747,7 @@ c	net/minecraft/unmapped/C_9450178		net/minecraft/client/render/world/ChunkBound
 	m	()Z	m_0277008		isPending
 	m	(Z)V	m_1891126		setPending
 		p	1			pending
-c	net/minecraft/unmapped/C_9591274		com/mojang/blaze3d/platform/GlStateManager__TexGenMode
+c	net/minecraft/unmapped/C_9591274		net/minecraft/client/render/platform/GlStateManager__TexGenMode
 	f	Lnet/minecraft/unmapped/C_9591274;	f_5767840		S
 	f	Lnet/minecraft/unmapped/C_9591274;	f_3940633		T
 	f	Lnet/minecraft/unmapped/C_9591274;	f_1920998		R
@@ -2767,14 +2766,14 @@ c	net/minecraft/unmapped/C_9592408		net/minecraft/network/CompressionDecoder
 	m	(I)V	<init>		<init>
 		p	1			threshold
 	m	(Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;Ljava/util/List;)V	decode		decode
-		p	1			context
+		p	1			ctx
 		p	2			in
 		p	3			out
 	m	(I)V	m_7924586		setThreshold
 		p	1			threshold
 c	net/minecraft/unmapped/C_4241305
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	m_0804715	generateChunk
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	m_0804715	loadChunk
+		c		Loads a new world chunk at the given chunk coordinates into memory.
 		p	1		p_1	chunkX
 		p	2		p_2	chunkZ
-c	net/minecraft/unmapped/C_5158551	net/minecraft/server/network/handler/ServerLoginNetworkHandler__1	net/minecraft/server/network/handler/ServerLoginNetworkHandler__2
-c	net/minecraft/unmapped/C_4926045	com/mojang/blaze3d/vertex/Tessellator__1	com/mojang/blaze3d/vertex/BufferUploader__1
+c	net/minecraft/unmapped/C_4926045	net/minecraft/client/render/vertex/Tesselator__4926045	net/minecraft/client/render/vertex/BufferUploader__4926045

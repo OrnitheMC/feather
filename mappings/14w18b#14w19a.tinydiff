@@ -16,10 +16,10 @@ c	net/minecraft/unmapped/C_0259655
 	f	F	f_3769621	oldCamRoll	
 	f	F	f_4789900	newCamRoll	
 	f	F	f_3816640	movementFovMultiplier	
-	f	F	f_8522225	lightmapFlicker	
-	f	F	f_4170296	lightMapRandoms	
+	f	F	f_8522225	lightMapFlicker	
+	f	F	f_4170296	lightMapFlickerTotal	
 	f	F	f_7788706	lightMapFlicker2	
-	f	F	f_3099976	lightMapRandoms2	
+	f	F	f_3099976	lightMapFlickerTotal2	
 	f	I	f_1324734	hasNausea	
 	f	Z	f_2256596		newCamPitch
 	f	Z	f_0668903		renderBlockOutline
@@ -89,14 +89,6 @@ c	net/minecraft/unmapped/C_2531801
 		p	10			p_10
 		p	12			p_12
 		p	14			p_14
-	m	(Lnet/minecraft/unmapped/C_5553933;DDDDDD)V	<init>
-		p	1		p_1	world
-		p	2		p_2	x
-		p	4		p_4	y
-		p	6		p_6	z
-		p	8		p_8	velocityX
-		p	10		p_10	velocityY
-		p	12		p_12	velocityZ
 c	net/minecraft/unmapped/C_2896536
 	f	Ljava/lang/String;	f_4308451	type	
 	f	I	f_9452987		type
@@ -390,9 +382,9 @@ c	net/minecraft/unmapped/C_8385625
 	m	()Lnet/minecraft/unmapped/C_2717027;	m_7245228		getAction
 c	net/minecraft/unmapped/C_8398976
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_3333682;D)I	m_4843024	render	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		camera	
+		p	2		layer	
+		p	3		tickDelta	
 	m	(F)V	m_5055077	renderSky	
 		p	1		tickDelta	
 	m	(F)V	m_3787690	renderClouds	
@@ -524,14 +516,14 @@ c	net/minecraft/unmapped/C_0473014		net/minecraft/client/entity/particle/Redston
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_0546432		net/minecraft/client/gui/spectator/TeleportToPlayerCategory__1
+c	net/minecraft/unmapped/C_0546432		net/minecraft/client/gui/spectator/TeleportToPlayerCategory__0546432
 	m	()V	<init>		<init>
-	m	(Lcom/mojang/authlib/GameProfile;Lcom/mojang/authlib/GameProfile;)I	m_6504985		m_6504985
+	m	(Lcom/mojang/authlib/GameProfile;Lcom/mojang/authlib/GameProfile;)I	m_6504985		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
-		p	1			player1
-		p	2			player2
+		p	1			p_1
+		p	2			p_2
 c	net/minecraft/unmapped/C_0770472		net/minecraft/client/entity/particle/WakeParticle__Factory
 	m	()V	<init>		<init>
 	m	(ILnet/minecraft/unmapped/C_5553933;DDDDDD[I)Lnet/minecraft/unmapped/C_1350658;	m_6227983		m_6227983
@@ -617,7 +609,7 @@ c	net/minecraft/unmapped/C_1939929		net/minecraft/network/packet/c2s/play/Player
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_6110406		m_6110406
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3809662;)V	m_4813306		apply
+	m	(Lnet/minecraft/unmapped/C_3809662;)V	m_4813306		m_4813306
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_3865296;)Lnet/minecraft/unmapped/C_0539808;	m_9001623		getSpectateTarget
 		p	1			world
@@ -663,11 +655,11 @@ c	net/minecraft/unmapped/C_2291899		net/minecraft/client/gui/spectator/Spectator
 		p	1			scroll
 	m	()V	m_6457912		mouseMiddleClicked
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_2497132		net/minecraft/client/gui/spectator/TeleportToPlayerCategory__2
+c	net/minecraft/unmapped/C_2497132		net/minecraft/client/gui/spectator/TeleportToPlayerCategory__2497132
 	f	Lnet/minecraft/unmapped/C_2853348;	f_0654054		f_0654054
 	m	(Lnet/minecraft/unmapped/C_2853348;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3543146;)Lcom/mojang/authlib/GameProfile;	m_6556314		m_6556314
+	m	(Lnet/minecraft/unmapped/C_3543146;)Lcom/mojang/authlib/GameProfile;	m_6556314		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	apply		apply
 		p	1			p_1
@@ -705,7 +697,7 @@ c	net/minecraft/unmapped/C_2630697		net/minecraft/client/entity/particle/Barrier
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_2648333		net/minecraft/block/entity/MovingBlockEntity__1
+c	net/minecraft/unmapped/C_2648333		net/minecraft/block/entity/MovingBlockEntity__2648333
 	f	[I	f_1522614		f_1522614
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_2717027		net/minecraft/network/packet/s2c/play/PlayerInfoS2CPacket__Action
@@ -783,7 +775,7 @@ c	net/minecraft/unmapped/C_3913199		net/minecraft/client/entity/particle/ItemPar
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_3946661		net/minecraft/client/gui/spectator/SpectatorMenu__1
+c	net/minecraft/unmapped/C_3946661		net/minecraft/client/gui/spectator/SpectatorMenu__3946661
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_9259189;)V	m_2934731		m_2934731
 		p	1			p_1
@@ -1002,11 +994,11 @@ c	net/minecraft/unmapped/C_5103795		net/minecraft/client/entity/particle/SpellPa
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_5309012		net/minecraft/client/entity/particle/SmokeParticle__1
-c	net/minecraft/unmapped/C_5741096		net/minecraft/network/packet/s2c/play/PlayerInfoS2CPacket__1
+c	net/minecraft/unmapped/C_5309012		net/minecraft/client/entity/particle/SmokeParticle__5309012
+c	net/minecraft/unmapped/C_5741096		net/minecraft/network/packet/s2c/play/PlayerInfoS2CPacket__5741096
 	f	[I	f_5846748		f_5846748
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_5847242		net/minecraft/client/entity/particle/BlockBreakingParticle__Factory
+c	net/minecraft/unmapped/C_5847242		net/minecraft/client/entity/particle/BlockParticle__Factory
 	m	()V	<init>		<init>
 	m	(ILnet/minecraft/unmapped/C_5553933;DDDDDD[I)Lnet/minecraft/unmapped/C_1350658;	m_6227983		m_6227983
 		p	1			p_1
@@ -1018,11 +1010,11 @@ c	net/minecraft/unmapped/C_5847242		net/minecraft/client/entity/particle/BlockBr
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_5956330		net/minecraft/client/gui/GameGui__1
+c	net/minecraft/unmapped/C_5956330		net/minecraft/client/gui/GameGui__5956330
 	f	Lnet/minecraft/unmapped/C_8651652;	f_2636940		f_2636940
 	m	(Lnet/minecraft/unmapped/C_8651652;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3543146;Lnet/minecraft/unmapped/C_3543146;)I	m_3950540		m_3950540
+	m	(Lnet/minecraft/unmapped/C_3543146;Lnet/minecraft/unmapped/C_3543146;)I	m_3950540		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
@@ -1040,7 +1032,7 @@ c	net/minecraft/unmapped/C_6016128		net/minecraft/client/entity/particle/SmokePa
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_6157247		net/minecraft/client/network/handler/ClientPlayNetworkHandler__2
+c	net/minecraft/unmapped/C_6157247		net/minecraft/client/network/handler/ClientPlayNetworkHandler__6157247
 	f	[I	f_5230267		f_5230267
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_6408515		net/minecraft/client/gui/spectator/SpectatorMenu__CloseMenuItem
@@ -1253,13 +1245,3 @@ c	net/minecraft/unmapped/C_9851797		net/minecraft/client/entity/particle/SpellPa
 		p	11			p_11
 		p	13			p_13
 		p	15			p_15
-c	net/minecraft/unmapped/C_4909282
-	m	(Lnet/minecraft/unmapped/C_5553933;DDDDDD)V	<init>
-		p	1		world	p_1
-		p	2		x	p_2
-		p	4		y	p_4
-		p	6		z	p_6
-		p	8		velocityX	p_8
-		p	10		velocityY	p_10
-		p	12		velocityZ	p_12
-c	net/minecraft/unmapped/C_5508885	net/minecraft/client/gui/GameGui__1	net/minecraft/client/gui/GameGui__2

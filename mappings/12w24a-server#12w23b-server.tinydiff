@@ -6,16 +6,16 @@ c	net/minecraft/server/MinecraftServer
 	m	()Z	m_8325482	hasGui	
 	m	()Ljava/lang/String;	m_3739797	publish	
 	m	()V	m_7208530		onServerCrashed
-c	net/minecraft/unmapped/C_0563666
+c	net/minecraft/unmapped/C_0563666	net/minecraft/server/network/ListenThread	net/minecraft/server/dedicated/DedicatedConnectionListener
 	f	Ljava/util/logging/Logger;	f_8149377	LOGGER	
 	f	Ljava/util/List;	f_5487039	pendingConnections	
-	f	Lnet/minecraft/unmapped/C_1228817;	f_1814316	networkIo	
+	f	Lnet/minecraft/unmapped/C_1228817;	f_1814316	listener	
 	f	Ljava/net/InetAddress;	f_6780375	address	
 	f	I	f_7827986	port	
 	f	Ljava/util/ArrayList;	f_5487039		pendingConnections
 	f	Ljava/lang/Thread;	f_7607563		thread
 	m	(Lnet/minecraft/unmapped/C_1228817;Ljava/net/InetAddress;I)V	<init>	<init>	
-		p	1		networkIo	
+		p	1		listener	
 		p	2		address	
 		p	3		port	
 	m	()V	m_2981968	tick	
@@ -26,7 +26,7 @@ c	net/minecraft/unmapped/C_0563666
 		p	1			server
 		p	2			address
 		p	3			port
-	m	()V	m_0181861		tick
+	m	()V	m_0181861		m_0181861
 	m	(Lnet/minecraft/unmapped/C_0563666;)Ljava/net/ServerSocket;	m_5661192		m_5661192
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_0563666;)Ljava/util/HashMap;	m_8958486		m_8958486
@@ -39,7 +39,7 @@ c	net/minecraft/unmapped/C_0563666
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_0674995
-	m	()Z	m_2532852		m_2532852
+	m	()Z	m_2532852		isEnabled
 c	net/minecraft/unmapped/C_1228817
 	f	Ljava/util/List;	f_9098705	connections	
 	f	Ljava/util/ArrayList;	f_9098705		connections
@@ -96,7 +96,7 @@ c	net/minecraft/unmapped/C_3061522	net/minecraft/server/dedicated/DedicatedConne
 	m	()V	m_0181861	m_0181861	
 	m	()Lnet/minecraft/unmapped/C_1555023;	m_1969147	m_1969147	
 	m	(Ljava/net/Socket;)V	m_1770251	close	
-		p	1		p_1	
+		p	1		socket	
 	m	()Lnet/minecraft/server/MinecraftServer;	m_7524482	m_7524482	
 c	net/minecraft/unmapped/C_3755722
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)Z	m_4911788	interact	
@@ -132,8 +132,8 @@ c	net/minecraft/unmapped/C_3944207
 c	net/minecraft/unmapped/C_5385258
 	f	Z	f_5043654		f_5043654
 c	net/minecraft/unmapped/C_6152184
-	f	Lnet/minecraft/unmapped/C_8848952;	f_1180788		f_1180788
-	m	()Lnet/minecraft/unmapped/C_5818647;	m_4572795		m_4572795
+	f	Lnet/minecraft/unmapped/C_8848952;	f_1180788		enderChest
+	m	()Lnet/minecraft/unmapped/C_5818647;	m_4572795		getEnderChest
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_2167183;)V	m_5031511	handlePlayerRespawn	
 		p	1		packet	
@@ -174,7 +174,7 @@ c	net/minecraft/unmapped/C_8813417
 	m	()Ljava/util/Map;	m_3886885	getDamagedPlayers	
 c	net/minecraft/unmapped/C_8848952	net/minecraft/inventory/EnderChestInventory	net/minecraft/world/WorldData__EnderChestInventory
 	f	Lnet/minecraft/unmapped/C_8299809;	f_4099392	enderChest	
-	f	Lnet/minecraft/unmapped/C_6152184;	f_4099392		enderChest
+	f	Lnet/minecraft/unmapped/C_6152184;	f_4099392		f_4099392
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_8299809;)V	m_4346329	setCurrentBlockEntity	
 		p	1		enderChest	
@@ -226,7 +226,7 @@ c	net/minecraft/unmapped/C_9890847
 		p	7			p_7
 		p	8			p_8
 		p	9			p_9
-c	net/minecraft/unmapped/C_1715929		net/minecraft/server/network/ListenThread__1
+c	net/minecraft/unmapped/C_1715929		net/minecraft/server/dedicated/DedicatedConnectionListener__1715929
 	f	Lnet/minecraft/unmapped/C_1555023;	f_6002699		f_6002699
 	f	Lnet/minecraft/unmapped/C_0563666;	f_6151001		f_6151001
 	m	(Lnet/minecraft/unmapped/C_0563666;Ljava/lang/String;Lnet/minecraft/unmapped/C_1555023;)V	<init>		<init>

@@ -29,10 +29,10 @@ c	net/minecraft/unmapped/C_0539808
 		p	5			z
 	m	()I	m_6940054		getSafeFallDistance
 c	net/minecraft/unmapped/C_0557736
-	f	Ljava/lang/ThreadLocal;	f_8620120	CACHE	
-	f	Lnet/minecraft/unmapped/C_0413198;	f_5999371		CACHE
+	f	Ljava/lang/ThreadLocal;	f_8620120	POOL	
+	f	Lnet/minecraft/unmapped/C_0413198;	f_5999371		INFINITE_POOL
 	f	Lnet/minecraft/unmapped/C_0413198;	f_6858132		pool
-	m	()Lnet/minecraft/unmapped/C_0413198;	m_8200625	getCache	
+	m	()Lnet/minecraft/unmapped/C_0413198;	m_8200625	getPool	
 	m	(DDD)V	<init>	<init>	
 		p	1		x	
 		p	3		y	
@@ -52,7 +52,7 @@ c	net/minecraft/unmapped/C_0987157
 c	net/minecraft/unmapped/C_1197137
 	m	(Lnet/minecraft/unmapped/C_7400754;Lnet/minecraft/unmapped/C_1161898;)I	m_6666145	modifyProtection	
 		c	Returns the increase in protection from the damage source due to the armor stacks' enchantments.	
-		p	0		inventory	
+		p	0		player	
 		p	1		source	
 	m	([Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_1161898;)I	m_6666145		modifyProtection
 		c		Returns the increase in protection from the damage source due to the armor stacks' enchantments.
@@ -65,14 +65,11 @@ c	net/minecraft/unmapped/C_1316134
 c	net/minecraft/unmapped/C_1444189
 	f	[I	f_6900518		chargedSkullCooldowns
 	m	(IDDDZ)V	m_4178994		shootSkullAt
-		p	1			headIndex
+		p	1			head
 		p	2			targetX
 		p	4			targetY
 		p	6			targetZ
 		p	8			charged
-	m	(ILnet/minecraft/unmapped/C_6607881;)V	m_6449618
-		p	1		p_1	headIndex
-		p	2		p_2	target
 c	net/minecraft/unmapped/C_1498011
 	m	()I	m_6940054		m_6940054
 	m	(F)V	m_0228715		m_0228715
@@ -80,9 +77,9 @@ c	net/minecraft/unmapped/C_1498011
 c	net/minecraft/unmapped/C_1518925
 	f	I	f_9034167		id
 	m	()I	m_0820400		getId
-c	net/minecraft/unmapped/C_1984964	net/minecraft/util/math/Vec3d__1	
+c	net/minecraft/unmapped/C_1984964	net/minecraft/util/math/Vec3d__1984964	
 	m	()V	<init>	<init>	
-	m	()Lnet/minecraft/unmapped/C_0413198;	m_5145398	m_5145398	
+	m	()Lnet/minecraft/unmapped/C_0413198;	m_5145398	initialValue	
 	m	()Ljava/lang/Object;	initialValue	initialValue	
 c	net/minecraft/unmapped/C_2207032
 	m	(Ljava/lang/String;)V	m_0893658	m_0893658	
@@ -141,7 +138,7 @@ c	net/minecraft/unmapped/C_5502075
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_5553933
-	f	Lnet/minecraft/unmapped/C_0413198;	f_7430694		vec3dCache
+	f	Lnet/minecraft/unmapped/C_0413198;	f_7430694		vec3dPool
 	m	()Lnet/minecraft/unmapped/C_0413198;	m_2942424		m_2942424
 c	net/minecraft/unmapped/C_5705147
 	f	Lnet/minecraft/unmapped/C_2348249;	f_8426910		recreateWorldButton
@@ -211,17 +208,17 @@ c	net/minecraft/unmapped/C_6705649
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_7180857
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_4404530		m_4404530
-		p	1			p_1
-		p	2			p_2
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_4404530		bindHttpTexture
+		p	1			url
+		p	2			backup
 c	net/minecraft/unmapped/C_7400754
-	m	()I	m_7649378		getRemovedAmount
+	m	()I	m_7649378		removeAll
 c	net/minecraft/unmapped/C_7450921
 	f	Lnet/minecraft/unmapped/C_2348249;	f_6924190		customizeButton
 	f	Ljava/lang/String;	f_7474764		generatorOptions
 	m	()V	m_4616997		toggleMoreOptions
 	m	(Z)V	m_3613314		setScreen
-		p	1			moreOptionsOPen
+		p	1			moreOptionsOpen
 	m	(Lnet/minecraft/unmapped/C_6152184;)V	m_9479540		copyWorld
 		p	1			data
 c	net/minecraft/unmapped/C_7639596
@@ -230,12 +227,12 @@ c	net/minecraft/unmapped/C_7639596
 		p	2			piece
 		p	3			f
 c	net/minecraft/unmapped/C_8030141
-	m	()Lnet/minecraft/unmapped/C_0413198;	m_2942424		getVec3dCache
+	m	()Lnet/minecraft/unmapped/C_0413198;	m_2942424		getVec3dPool
 c	net/minecraft/unmapped/C_8275823
 	m	()Lnet/minecraft/unmapped/C_0413198;	m_2942424		m_2942424
 c	net/minecraft/unmapped/C_8891094
 	f	[B	f_9323581	f_9323581	
-	f	[B	f_7549197		blockIds
+	f	[B	f_7549197		blocks
 	f	[B	f_2025366		blockMetadata
 	f	Lnet/minecraft/unmapped/C_7574603;	f_6642301		settings
 	m	([B)V	m_2266963	populateBlocks	
@@ -244,7 +241,7 @@ c	net/minecraft/unmapped/C_8891094
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_9139005
-	m	(Lnet/minecraft/unmapped/C_9590849;IF)V	m_1089019		renderArmorPiece
+	m	(Lnet/minecraft/unmapped/C_9590849;IF)V	m_1089019		m_1089019
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -255,8 +252,8 @@ c	net/minecraft/unmapped/C_9139005
 c	net/minecraft/unmapped/C_9590849
 	f	Z	f_9567581		respawnForced
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3674802;	m_0052859	loadSpawnPoint	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		world	
+		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_3674802;)V	m_5291894	setSpawnPoint	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Z)Lnet/minecraft/unmapped/C_3674802;	m_0052859		loadSpawnPoint
@@ -275,13 +272,13 @@ c	net/minecraft/unmapped/C_9899502
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/lang/String;	m_4048340		m_4048340
 		p	1			p_1
 c	net/minecraft/unmapped/C_2302828		net/minecraft/client/gui/screen/PresetsScreen__FlatWorldPreset
-	f	I	f_0139041		f_0139041
+	f	I	f_0139041		icon
 	f	Ljava/lang/String;	f_8688046		presetName
 	f	Ljava/lang/String;	f_0721320		presetLayers
 	m	(ILjava/lang/String;Ljava/lang/String;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			icon
+		p	2			presetName
+		p	3			presetLayers
 c	net/minecraft/unmapped/C_3193933		net/minecraft/client/gui/screen/CustomizeFlatWorldScreen__LayerListWidget
 	f	I	f_8460294		focusedEntry
 	f	Lnet/minecraft/unmapped/C_8941301;	f_1010303		parent
@@ -290,7 +287,7 @@ c	net/minecraft/unmapped/C_3193933		net/minecraft/client/gui/screen/CustomizeFla
 	m	(IILnet/minecraft/unmapped/C_2454309;)V	m_9395007		renderIcon
 		p	1			x
 		p	2			y
-		p	3			stack
+		p	3			item
 	m	(II)V	m_0683243		renderIcon
 		p	1			x
 		p	2			y
@@ -357,18 +354,18 @@ c	net/minecraft/unmapped/C_6495889		net/minecraft/client/gui/screen/PresetsScree
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_6574817		net/minecraft/world/gen/chunk/FlatWorldLayer
 	f	I	f_3559066		size
-	f	I	f_5359960		blockId
+	f	I	f_5359960		block
 	f	I	f_5849086		metadata
 	f	I	f_4843376		y
 	m	(II)V	<init>		<init>
 		p	1			size
-		p	2			blockId
+		p	2			block
 	m	(III)V	<init>		<init>
 		p	1			size
-		p	2			blockId
+		p	2			block
 		p	3			metadata
 	m	()I	m_1425410		getSize
-	m	()I	m_9803110		getBlockId
+	m	()I	m_9803110		getBlock
 	m	()I	m_6906409		getBlockMetadata
 	m	()I	m_1651704		getY
 	m	(I)V	m_1386751		setY
@@ -376,11 +373,11 @@ c	net/minecraft/unmapped/C_6574817		net/minecraft/world/gen/chunk/FlatWorldLayer
 	m	()Ljava/lang/String;	toString		toString
 c	net/minecraft/unmapped/C_7574603		net/minecraft/world/gen/chunk/FlatWorldGeneratorSettings
 	f	Ljava/util/List;	f_9117261		layers
-	f	I	f_1830580		biomeId
+	f	I	f_1830580		biome
 	m	()V	<init>		<init>
-	m	()I	m_5327885		getBiomeId
-	m	(I)V	m_4446801		setBiomeId
-		p	1			biomeId
+	m	()I	m_5327885		getBiome
+	m	(I)V	m_4446801		setBiome
+		p	1			biome
 	m	()Ljava/util/List;	m_8711707		getLayers
 	m	()V	m_0339298		processLayers
 	m	()Ljava/lang/String;	toString		toString
@@ -390,7 +387,7 @@ c	net/minecraft/unmapped/C_7574603		net/minecraft/world/gen/chunk/FlatWorldGener
 	m	(Ljava/lang/String;)Ljava/util/List;	m_2372834		getLayers
 		p	0			preset
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_7574603;	m_1786863		of
-		p	0			preset
+		p	0			s
 	m	()Lnet/minecraft/unmapped/C_7574603;	m_4045190		ofDefault
 c	net/minecraft/unmapped/C_8583107		net/minecraft/client/gui/screen/PresetsScreen__PresetsListWidget
 	f	I	f_8481444		selectedEntryIndex
@@ -398,9 +395,9 @@ c	net/minecraft/unmapped/C_8583107		net/minecraft/client/gui/screen/PresetsScree
 	m	(Lnet/minecraft/unmapped/C_6495889;)V	<init>		<init>
 		p	1			p_1
 	m	(III)V	m_5748882		renderIcon
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			icon
 	m	(II)V	m_9788797		render
 		p	1			x
 		p	2			y

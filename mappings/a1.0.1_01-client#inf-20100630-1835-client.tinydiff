@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0113445
-	f	Ljava/awt/Robot;	f_3509429		f_3509429
-	f	I	f_4312758		f_4312758
-	f	I	f_2969124		f_2969124
+	f	Ljava/awt/Robot;	f_3509429		robot
+	f	I	f_4312758		scaledX
+	f	I	f_2969124		scaledY
 c	net/minecraft/unmapped/C_0259655
-	f	J	f_8516179	lastWindowFocusedTime	
-	f	Z	f_3616371		f_3616371
+	f	J	f_8516179	lastActiveTime	
+	f	Z	f_3616371		displayActive
 	f	I	f_6917437		f_6917437
 	f	I	f_8197037		f_8197037
 c	net/minecraft/unmapped/C_0557736
@@ -14,13 +14,13 @@ c	net/minecraft/unmapped/C_0557736
 	m	(F)V	m_9222421	rotateY	
 		p	1		angle	
 c	net/minecraft/unmapped/C_0876962
-	f	Z	f_0663689	f_0663689	
-	m	(II)I	m_7471717	m_7471717	
-		p	1		p_1	
-		p	2		p_2	
-	m	(II)I	m_6828133	m_6828133	
-		p	1		p_1	
-		p	2		p_2	
+	f	Z	f_0663689	MIPMAP	
+	m	(II)I	m_7471717	smoothBlend	
+		p	1		color1	
+		p	2		color2	
+	m	(II)I	m_6828133	crispBlend	
+		p	1		color1	
+		p	2		color2	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_6891750	WALL_SIGN	
@@ -33,6 +33,7 @@ c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_1191362	UNLIT_REDSTONE_TORCH	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_7352344	REDSTONE_TORCH	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_7094981	STONE_BUTTON	
+	f	Lnet/minecraft/unmapped/C_1241852;	f_4770128	REDSTONE_WIRE	GEAR
 	m	(Lnet/minecraft/unmapped/C_8030141;IIII)Z	m_7017977	hasSignal	
 		c	Returns whether this block is emitting a redstone signal in the given direction.\nThis roughly equates to what is colloquially known as 'soft' or 'weak' power.\n\n<p>\nNOTE: directions in redstone signal related methods are backwards, so blocks should\ncheck for the signal emitted in the direction <i>opposite</i> of the one given.	
 		p	1		world	
@@ -133,7 +134,7 @@ c	net/minecraft/unmapped/C_2604451	net/minecraft/item/DoorItem
 		p	6		p_6	
 		p	7		p_7	
 c	net/minecraft/unmapped/C_3045302
-	m	(III)Z	m_0863530	shouldConnectTo	
+	m	(III)Z	m_0863530	couldConnectTo	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -144,13 +145,14 @@ c	net/minecraft/unmapped/C_3045302
 		p	0		p_0	
 	m	()V	m_4644968		updateState
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_4262505	tessellateLever	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_4262505	tesselateLever	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(I)Z	m_1480334	isGui3D	
+	m	(I)Z	m_1480334	isItem3d	
 		p	0		type	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_2288352	tesselateRedstoneWire	tesselateGear
 c	net/minecraft/unmapped/C_3450330	net/minecraft/block/PressurePlateBlock__ActivationRule	
 	f	Lnet/minecraft/unmapped/C_3450330;	f_1745178	EVERYTHING	
 	f	Lnet/minecraft/unmapped/C_3450330;	f_9759745	MOBS	
@@ -171,10 +173,10 @@ c	net/minecraft/unmapped/C_3755722
 c	net/minecraft/unmapped/C_3813953
 	f	Z	f_0926429	standing	
 	m	(ILjava/lang/Class;IZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		id	
+		p	2		blockEntityType	
+		p	3		dropItem	
+		p	4		standing	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
 		p	2		p_2	
@@ -191,15 +193,15 @@ c	net/minecraft/unmapped/C_3813953
 		p	3		p_3	
 		p	4		p_4	
 	m	(ILjava/lang/Class;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			id
+		p	2			blockEntityType
+		p	3			dropItem
 c	net/minecraft/unmapped/C_4114026	net/minecraft/block/PressurePlateBlock	
 	f	Lnet/minecraft/unmapped/C_3450330;	f_5530362	rule	
 	m	(IILnet/minecraft/unmapped/C_3450330;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		id	
+		p	2		sprite	
+		p	3		rule	
 	m	()I	m_0006289	m_0006289	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
@@ -308,9 +310,9 @@ c	net/minecraft/unmapped/C_7842113
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		powered	
+		p	5		open	
 	m	(I)V	<init>		<init>
-		p	1			p_1
+		p	1			id
 c	net/minecraft/unmapped/C_8210008
 	m	(ILjava/util/Random;)I	m_7534654	m_7534654	
 		p	1		p_1	
@@ -341,7 +343,7 @@ c	net/minecraft/unmapped/C_8305266	net/minecraft/block/RedstoneOreBlock
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_7301826	lightUp	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_7301826	interact	
 		p	1		world	
 		p	2		x	
 		p	3		y	
@@ -597,10 +599,10 @@ c	net/minecraft/unmapped/C_9739154	net/minecraft/block/LeverBlock
 		p	4		p_4	
 		p	5		p_5	
 	m	()Z	m_3885870	m_3885870	
-c	net/minecraft/unmapped/C_0767651		net/minecraft/unmapped/C_0767651
+c	net/minecraft/unmapped/C_0767651		net/minecraft/block/GearBlock
 	m	(II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			id
+		p	2			sprite
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Lnet/minecraft/unmapped/C_5577922;	m_4350289		m_4350289
 		p	1			p_1
 		p	2			p_2
@@ -612,11 +614,12 @@ c	net/minecraft/unmapped/C_0767651		net/minecraft/unmapped/C_0767651
 	m	(Ljava/util/Random;)I	m_2862578		m_2862578
 		p	1			p_1
 	m	()Z	m_0674178		m_0674178
-c	net/minecraft/unmapped/C_8241844		net/minecraft/unmapped/C_8241844
-	f	I	f_2526767		f_2526767
-	f	[I	f_2732378		f_2732378
-	f	[I	f_4077881		f_4077881
-	f	I	f_9069350		f_9069350
+c	net/minecraft/unmapped/C_8241844		net/minecraft/client/render/texture/GearTexture
+	f	I	f_2526767		current
+	f	[I	f_2732378		next
+	f	[I	f_4077881		rotation
+	f	I	f_9069350		rotationDelta
 	m	(I)V	<init>		<init>
 		p	1			p_1
 	m	()V	m_5407865		m_5407865
+c	net/minecraft/unmapped/C_7589055	net/minecraft/item/RedstoneItem	net/minecraft/item/DoorItem

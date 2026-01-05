@@ -186,7 +186,7 @@ c	net/minecraft/unmapped/C_0547482
 		p	2			p_2
 c	net/minecraft/unmapped/C_0557736
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			obj
+		p	1			p_1
 	m	()I	hashCode		hashCode
 c	net/minecraft/unmapped/C_0567922
 	m	()Z	m_9803079	m_9803079	
@@ -290,7 +290,7 @@ c	net/minecraft/unmapped/C_0906767
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_0933845
-	f	Lnet/minecraft/unmapped/C_2441996;	f_7569673		f_7569673
+	f	Lnet/minecraft/unmapped/C_2441996;	f_7569673		AIR
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_0945510
 	f	Lnet/minecraft/unmapped/C_0561170;	f_1493195		NO_PATTERN_SHIELD
@@ -432,7 +432,7 @@ c	net/minecraft/unmapped/C_1241852
 		c	An opaque block is a full cube with no transparency.	
 	m	()I	m_3157258	getOpacity	
 	m	()Z	m_4952508	isTranslucent	
-	m	()I	m_8369968	getLightLevel	
+	m	()I	m_8369968	getLight	
 	m	()Z	m_3995948	usesNeighborLight	
 	m	()Lnet/minecraft/unmapped/C_8048208;	m_8228353	getMaterial	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1241852$C_0480726;)Lnet/minecraft/unmapped/C_2441996;	m_6626229	rotate	
@@ -442,12 +442,11 @@ c	net/minecraft/unmapped/C_1241852
 		p	1		state	
 		p	2		mirror	
 	m	()Z	m_6763563	blocksAmbientLight	
-	m	()Z	m_0244472	isConductor	
-		c	Returns whether this block conducts redstone signals.	
-	m	()Z	m_6174711	isFullCube	
+	m	()Z	m_0244472	isSolid	
+	m	()Z	m_6174711	isCube	
 	m	()I	m_2337713	getRenderType	
 		c	Returns this block's render type. The possible values are as follows:\n<br>-1: none\n<br>1: liquid\n<br>2: animated block entity\n<br>3: block model	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)F	m_7303643	getMiningSpeed	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)F	m_7303643	getMiningTime	
 		p	1		world	
 		p	2		pos	
 	m	(FFFFFF)V	m_8709100	setShape	
@@ -478,7 +477,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	1		world	
 		p	2		pos	
 		p	3		state	
-	m	()Z	m_1635166	isOpaqueCube	
+	m	()Z	m_1635166	isSolidRender	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Ljava/util/Random;)V	m_9792685	randomDisplayTick	
 		c	Performs a random display tick. Random display ticks are mostly used to spawn particles\naround a block. The client does 1000 random display tick attempts within a radius of\n16 blocks of the player each tick.	
 		p	1		world	
@@ -495,12 +494,12 @@ c	net/minecraft/unmapped/C_1241852
 		p	2		pos	
 		p	3		start	
 		p	4		end	
-	m	(Lnet/minecraft/unmapped/C_0557736;)Z	m_7316396	isWithinPlaneYZ	
-		p	1		vec	
-	m	(Lnet/minecraft/unmapped/C_0557736;)Z	m_3418881	isWithinPlaneXZ	
-		p	1		vec	
-	m	(Lnet/minecraft/unmapped/C_0557736;)Z	m_9946993	isWithinPlaneXY	
-		p	1		vec	
+	m	(Lnet/minecraft/unmapped/C_0557736;)Z	m_7316396	containsX	
+		p	1		pos	
+	m	(Lnet/minecraft/unmapped/C_0557736;)Z	m_3418881	containsY	
+		p	1		pos	
+	m	(Lnet/minecraft/unmapped/C_0557736;)Z	m_9946993	containsZ	
+		p	1		pos	
 	m	()D	m_0916605	getMinX	
 	m	()D	m_4789075	getMaxX	
 	m	()D	m_7008015	getMinY	
@@ -537,7 +536,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	1			state
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_4952508		isTranslucent
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_8369968		getLightLevel
+	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_8369968		getLight
 		p	1			state
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_3995948		usesNeighborLight
 		p	1			state
@@ -551,14 +550,13 @@ c	net/minecraft/unmapped/C_1241852
 		p	2			mirror
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_6763563		blocksAmbientLight
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_0244472		isConductor
-		c		Returns whether this block conducts redstone signals.
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_0244472		isSolid
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_6174711		isFullCube
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_6174711		isCube
 		p	1			state
 	m	(Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_4345966;	m_2337713		getRenderType
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)F	m_7303643		getMiningSpeed
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)F	m_7303643		getMiningTime
 		p	1			state
 		p	2			world
 		p	3			pos
@@ -590,7 +588,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	1			state
 		p	2			world
 		p	3			pos
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_1635166		isOpaqueCube
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_1635166		isSolidRender
 		p	1			state
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Ljava/util/Random;)V	m_9792685		randomDisplayTick
 		c		Performs a random display tick. Random display ticks are mostly used to spawn particles\naround a block. The client does 1000 random display tick attempts within a radius of\n16 blocks of the player each tick.
@@ -719,8 +717,8 @@ c	net/minecraft/unmapped/C_1316134
 	m	(II)Z	m_8714752	m_8714752	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6520615	generateChunk	
-		c	@return the world chunk at the given chunk coordinates, loading or generating it if needed	
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6520615	loadChunk	
+		c	Loads the world chunk at the given chunk coordinates.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(Lnet/minecraft/unmapped/C_9848147;II)V	m_4129669	m_4129669	
@@ -749,7 +747,7 @@ c	net/minecraft/unmapped/C_1316134
 		p	2			storage
 		p	3			generator
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_4129669		getGeneratedChunk
-		c		@return the chunk at the given chunk coordinates,\nloading it if needed, or {@code null} if it does not exist.
+		c		@return the world chunk at the given chunk coordinates,\nloading it from storage if needed, or {@code null} if it does not exist.
 		p	1			chunkX
 		p	2			chunkZ
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8714752		m_8714752
@@ -757,11 +755,11 @@ c	net/minecraft/unmapped/C_1316134
 		p	2			p_2
 	m	(Z)Z	m_6309491		save
 		p	1			saveEntities
-	m	()V	m_1836040		save
-	m	()Z	m_6876447		canSave
+	m	()V	m_1836040		flush
+	m	()Z	m_6876447		shouldSave
 	m	()I	m_7720664		size
 	m	(II)Z	m_7591747		isChunkLoaded
-		c		@return whether the chunk at the given chunk coordinates is loaded
+		c		@return whether the world chunk at the given chunk coordinates is loaded.
 		p	1			chunkX
 		p	2			chunkZ
 	m	(Lnet/minecraft/unmapped/C_0902334;Lnet/minecraft/unmapped/C_3674802;)Ljava/util/List;	m_6970926	m_6970926	getSpawnEntries
@@ -769,8 +767,9 @@ c	net/minecraft/unmapped/C_1316134
 		p	2		p_2	pos
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/lang/String;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3674802;	m_9732051	m_9732051	findNearestStructure
 		p	1		p_1	world
-		p	2		p_2	name
+		p	2		p_2	type
 		p	3		p_3	pos
+	m	()Ljava/util/List;	m_8729355	getChunks	getLoadedChunks
 c	net/minecraft/unmapped/C_1400833
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;F)Lnet/minecraft/unmapped/C_1241852;	m_7179989	getBlockInside	
 		p	0		world	
@@ -869,9 +868,9 @@ c	net/minecraft/unmapped/C_1431328
 	m	(I)I	m_4990483	hash	
 		p	0		key	
 c	net/minecraft/unmapped/C_1556410
-	m	(Lnet/minecraft/unmapped/C_7400754;)I	m_9827423	getHeldArrow	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_9827423		getHeldArrow
+	m	(Lnet/minecraft/unmapped/C_7400754;)I	m_9827423	getSlotWithArrow	
+		p	1		inventory	
+	m	(Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_9827423		getSlotWithArrow
 		p	1			player
 c	net/minecraft/unmapped/C_1705548
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1241852$C_0480726;)Lnet/minecraft/unmapped/C_2441996;	m_6626229	m_6626229	
@@ -922,7 +921,7 @@ c	net/minecraft/unmapped/C_1951812
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_9803079		m_9803079
 		p	1			p_1
 c	net/minecraft/unmapped/C_2019151
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;[FLjava/util/BitSet;Lnet/minecraft/unmapped/C_2019151$C_5064434;)V	m_7950279	tessellateFaceWithAmbientOcclusion	
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;[FLjava/util/BitSet;Lnet/minecraft/unmapped/C_2019151$C_5064434;)V	m_7950279	tesselateFaceWithAmbientOcclusion	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -937,7 +936,7 @@ c	net/minecraft/unmapped/C_2019151
 		p	3		face	
 		p	4		faceShape	
 		p	5		shapeState	
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZLnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;Ljava/util/BitSet;)V	m_7128555	tessellateFaceWithoutAmbientOcclusion	
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZLnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;Ljava/util/BitSet;)V	m_7128555	tesselateFaceWithoutAmbientOcclusion	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -947,7 +946,7 @@ c	net/minecraft/unmapped/C_2019151
 		p	7		p_7	
 		p	8		p_8	
 		p	9		p_9	
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;[FLjava/util/BitSet;Lnet/minecraft/unmapped/C_2019151$C_5064434;)V	m_7950279		tessellateFaceWithAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;[FLjava/util/BitSet;Lnet/minecraft/unmapped/C_2019151$C_5064434;)V	m_7950279		tesselateFaceWithAmbientOcclusion
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -962,7 +961,7 @@ c	net/minecraft/unmapped/C_2019151
 		p	3			ace
 		p	4			faceShape
 		p	5			shapeState
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZLnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;Ljava/util/BitSet;)V	m_7128555		tessellateFaceWithoutAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;IZLnet/minecraft/unmapped/C_8373595;Ljava/lang/Iterable;Ljava/util/BitSet;)V	m_7128555		tesselateFaceWithoutAmbientOcclusion
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -1206,7 +1205,7 @@ c	net/minecraft/unmapped/C_3198459
 	m	()Lnet/minecraft/unmapped/C_9848147;	m_8163370	createChunkGenerator	
 	m	()Lnet/minecraft/unmapped/C_0705111;	m_8163370		createChunkGenerator
 c	net/minecraft/unmapped/C_3292284
-	f	Ljava/util/List;	f_4684838	newLoadedChunks	
+	f	Ljava/util/List;	f_4684838	pendingChunks	
 		c	Coordinates of chunks that have come within view of the player, but have not yet\nbeen sent to the client.	
 c	net/minecraft/unmapped/C_3432967
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1241852$C_0480726;)Lnet/minecraft/unmapped/C_2441996;	m_6626229	m_6626229	
@@ -1417,13 +1416,13 @@ c	net/minecraft/unmapped/C_3767424$1
 	m	(Lnet/minecraft/unmapped/C_3767424;Ljava/util/Iterator;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Lnet/minecraft/unmapped/C_6849228;	m_0414379	m_0414379	
+	m	()Lnet/minecraft/unmapped/C_6849228;	m_0414379	computeNext	
 	m	()Ljava/lang/Object;	computeNext	computeNext	
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_3292284;)Z	m_7915007		m_7915007
+	m	(Lnet/minecraft/unmapped/C_3292284;)Z	m_7915007		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			player
+		p	1			input
 c	net/minecraft/unmapped/C_3767424$C_9369513	ChunkHolder	
 	f	Ljava/util/List;	f_0537688	players	
 		c	Players within view distance of this chunk.	
@@ -1460,38 +1459,38 @@ c	net/minecraft/unmapped/C_3767424$C_9369513	ChunkHolder
 		p	0		playerChunkManager	
 c	net/minecraft/unmapped/C_3767424$2		2
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_3292284;)Z	m_3140466		m_3140466
+	m	(Lnet/minecraft/unmapped/C_3292284;)Z	m_3140466		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			player
+		p	1			input
 c	net/minecraft/unmapped/C_3767424$3		3
 	f	Ljava/util/Iterator;	f_3909837		f_3909837
 	f	Lnet/minecraft/unmapped/C_3767424;	f_4860185		f_4860185
 	m	(Lnet/minecraft/unmapped/C_3767424;Ljava/util/Iterator;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	()Lnet/minecraft/unmapped/C_6849228;	m_0414379		m_0414379
+	m	()Lnet/minecraft/unmapped/C_6849228;	m_0414379		computeNext
 	m	()Ljava/lang/Object;	computeNext		computeNext
 c	net/minecraft/unmapped/C_3767424$4		4
 	f	Lnet/minecraft/unmapped/C_3767424;	f_7250939		f_7250939
 	m	(Lnet/minecraft/unmapped/C_3767424;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_7808835;Lnet/minecraft/unmapped/C_7808835;)I	m_9367687		m_9367687
+	m	(Lnet/minecraft/unmapped/C_7808835;Lnet/minecraft/unmapped/C_7808835;)I	m_9367687		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
-		p	1			chunk1
-		p	2			chunk2
+		p	1			o1
+		p	2			o2
 c	net/minecraft/unmapped/C_3767424$5		5
 	f	Lnet/minecraft/unmapped/C_3767424;	f_3843693		f_3843693
 	m	(Lnet/minecraft/unmapped/C_3767424;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_7808835;Lnet/minecraft/unmapped/C_7808835;)I	m_6006276		m_6006276
+	m	(Lnet/minecraft/unmapped/C_7808835;Lnet/minecraft/unmapped/C_7808835;)I	m_6006276		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
-		p	1			chunk1
-		p	2			chunk2
+		p	1			o1
+		p	2			o2
 c	net/minecraft/unmapped/C_3813953
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
@@ -2123,7 +2122,7 @@ c	net/minecraft/unmapped/C_5577922
 		p	8		y2	
 		p	10		z2	
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			obj
+		p	1			p_1
 	m	()I	hashCode		hashCode
 	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_5577922;	m_1393616		move
 		p	1			delta
@@ -2134,7 +2133,7 @@ c	net/minecraft/unmapped/C_5577922
 		p	7			maxX
 		p	9			maxY
 		p	11			maxZ
-	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;)Z	m_2164702		isCloser
+	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;)Z	m_2164702		isNearer
 		p	1			from
 		p	2			newTo
 		p	3			to
@@ -2162,8 +2161,8 @@ c	net/minecraft/unmapped/C_5587144$C_6955547
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	4			target
+		p	5			underTarget
 c	net/minecraft/unmapped/C_5601492
 	m	()Z	m_6174711	m_6174711	
 	m	()Z	m_1635166	m_1635166	
@@ -2498,10 +2497,10 @@ c	net/minecraft/unmapped/C_6695352
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_1635166		m_1635166
 		p	1			p_1
 c	net/minecraft/unmapped/C_6695579
-	m	(Lnet/minecraft/unmapped/C_1241852;I)Z	m_2296674	m_2296674	
+	m	(Lnet/minecraft/unmapped/C_1241852;I)Z	m_2296674	isItem3d	
 		p	1		block	
 		p	2		metadata	
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_2296674		m_2296674
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_2296674		isItem3d
 		p	1			p_1
 c	net/minecraft/unmapped/C_6695579$1		1
 	f	[I	f_8525698		f_8525698
@@ -2815,8 +2814,8 @@ c	net/minecraft/unmapped/C_7284070
 c	net/minecraft/unmapped/C_7400754
 	m	(Lnet/minecraft/unmapped/C_1241852;)F	m_1447441	getMiningSpeed	
 		p	1		block	
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_9620775		removeOne
-		p	1			stack
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_9620775		removeItem
+		p	1			item
 	m	(Lnet/minecraft/unmapped/C_2441996;)F	m_1447441		getMiningSpeed
 		p	1			state
 c	net/minecraft/unmapped/C_7452508
@@ -3138,11 +3137,11 @@ c	net/minecraft/unmapped/C_8124234
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_6174711		m_6174711
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Z)Z	m_1680891		canMoveBlock
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	0			state
+		p	1			world
+		p	2			pos
+		p	3			dir
+		p	4			allowBreaking
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2313500;)Lnet/minecraft/unmapped/C_2441996;	m_6626229		m_6626229
 		p	1			p_1
 		p	2			p_2
@@ -3299,16 +3298,16 @@ c	net/minecraft/unmapped/C_8830502
 		p	3		p_3	
 		p	4		p_4	
 	m	(Lnet/minecraft/unmapped/C_8830502$C_2455001;Lnet/minecraft/unmapped/C_3674802;Ljava/lang/String;Lnet/minecraft/unmapped/C_2313500;Z)Lnet/minecraft/unmapped/C_8830502$C_2455001;	m_8267791		createPiece
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	0			start
+		p	1			pos
+		p	2			name
+		p	3			rotation
+		p	4			overwrite
 	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2313500;Ljava/util/List;Ljava/util/Random;)V	m_7573244		startHouseTower
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	0			pos
+		p	1			rotation
+		p	2			pieces
+		p	3			random
 	m	(Lnet/minecraft/unmapped/C_8830502$C_2455001;Lnet/minecraft/unmapped/C_3674802;Ljava/lang/String;Lnet/minecraft/unmapped/C_2313500;Z)Lnet/minecraft/unmapped/C_8830502$C_2455001;	m_7204530		m_7204530
 		p	0			p_0
 		p	1			p_1
@@ -3324,10 +3323,10 @@ c	net/minecraft/unmapped/C_8830502$C_2455001
 		p	3		p_3	
 		p	4		p_4	
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2313500;Z)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			name
+		p	2			pos
+		p	3			rotation
+		p	4			overwrite
 c	net/minecraft/unmapped/C_8891094
 	m	(II)Z	m_8714752	m_8714752	
 		p	1		p_1	
@@ -3446,11 +3445,11 @@ c	net/minecraft/unmapped/C_8980628
 		p	4		dy	
 		p	6		dz	
 		p	8		pos	
-		p	9		dyBlock	
-		p	10		dzBlock	
-		p	11		offsetX	
-		p	13		offsetY	
-		p	15		offsetZ	
+		p	9		yaw	
+		p	10		shadowSize	
+		p	11		cx	
+		p	13		cy	
+		p	15		cz	
 	m	(Lnet/minecraft/unmapped/C_2441996;DDDLnet/minecraft/unmapped/C_3674802;FFDDD)V	m_0468211		renderShadowOnBlock
 		p	1			state
 		p	2			dx
@@ -3459,9 +3458,9 @@ c	net/minecraft/unmapped/C_8980628
 		p	8			pos
 		p	9			yaw
 		p	10			shadowSize
-		p	11			shadowX
-		p	13			shadowY
-		p	15			shadowZ
+		p	11			cx
+		p	13			cy
+		p	15			cz
 c	net/minecraft/unmapped/C_9214806
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
@@ -3700,7 +3699,7 @@ c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_1241852;)F	m_4499539	getMiningSpeed	
 		p	1		block	
 	m	(Lnet/minecraft/unmapped/C_2441996;)F	m_4499539		getMiningSpeed
-		p	1			p_1
+		p	1			state
 c	net/minecraft/unmapped/C_9685768
 	m	()Z	m_1635166	m_1635166	
 	m	()I	m_2337713	m_2337713	
@@ -3824,14 +3823,14 @@ c	net/minecraft/unmapped/C_9830617
 		p	2			p_2
 c	net/minecraft/unmapped/C_9848147
 	m	(II)Z	m_8714752	hasChunk	
-		c	@return whether a chunk exists at the given chunk coordinates	
+		c	@return whether a world chunk exists at the given chunk coordinates	
 		p	1		chunkX	
 		p	2		chunkZ	
-	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6849228;	m_7603521	getLoadedChunk	
-		c	@return the world chunk at the given position, or {@code null} if it does not exist	
+	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6849228;	m_7603521	getChunk	
+		c	@return the world chunk at the given position.	
 		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_9848147;II)V	m_4129669	populateChunk	
-		c	Populates the chunk at the given chunk coordinates, placing features and spawning mobs.	
+		c	Populates the world chunk at the given chunk coordinates, placing features and spawning mobs.	
 		p	1		source	
 		p	2		chunkX	
 		p	3		chunkZ	
@@ -3842,15 +3841,16 @@ c	net/minecraft/unmapped/C_9848147
 		p	3		chunkX	
 		p	4		chunkZ	
 	m	(ZLnet/minecraft/unmapped/C_3893367;)Z	m_2192709	save	
+		c	Saves all loaded world chunks to storage.	
 		p	1		saveEntities	
 		p	2		listener	
-	m	()Z	m_6553566	canSave	
+	m	()Z	m_6553566	shouldSave	
 	m	(Lnet/minecraft/unmapped/C_0902334;Lnet/minecraft/unmapped/C_3674802;)Ljava/util/List;	m_6970926	getSpawnEntries	
 		p	1		category	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/lang/String;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3674802;	m_9732051	findNearestStructure	
 		p	1		world	
-		p	2		name	
+		p	2		type	
 		p	3		pos	
 	m	()I	m_1486221	size	
 	m	(Lnet/minecraft/unmapped/C_6849228;II)V	m_6674995	placeStructures	
@@ -3858,11 +3858,13 @@ c	net/minecraft/unmapped/C_9848147
 		p	1		chunk	
 		p	2		chunkX	
 		p	3		chunkZ	
-	m	()V	m_1069355	save	
+	m	()V	m_1069355	flush	
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8714752		getChunk
-		c		@return the world chunk at the given chunk coordinates, loading or generating it if needed
+		c		@return the world chunk at the given chunk coordinates, loading or generating it if needed.
 		p	1			chunkX
 		p	2			chunkZ
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366	getChunk	getLoadedChunk
+		c	@return the world chunk at the given chunk coordinates.	@return the world chunk at the given chunk coordinates, or {@code null} if it is not loaded.
 c	net/minecraft/unmapped/C_9890847
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
@@ -4020,13 +4022,16 @@ c	net/minecraft/unmapped/C_0646374		net/minecraft/block/piston/PistonMoveBehavio
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_0705111		net/minecraft/world/chunk/ChunkGenerator
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366		getChunk
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366		generateChunk
+		c		Generates a world chunk at the given chunk coordinates.
 		p	1			chunkX
 		p	2			chunkZ
 	m	(II)V	m_4129669		populateChunk
+		c		Populates the world chunk at the given chunk coordinates, placing features and spawning mobs.
 		p	1			chunkX
 		p	2			chunkZ
 	m	(Lnet/minecraft/unmapped/C_6849228;II)Z	m_4331578		populateChunkAfterTerrain
+		c		Performs a second pass of population on the chunk at the given chunk coordinates.
 		p	1			chunk
 		p	2			chunkX
 		p	3			chunkZ
@@ -4035,9 +4040,10 @@ c	net/minecraft/unmapped/C_0705111		net/minecraft/world/chunk/ChunkGenerator
 		p	2			pos
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/lang/String;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3674802;	m_9732051		findNearestStructure
 		p	1			world
-		p	2			name
+		p	2			type
 		p	3			pos
 	m	(Lnet/minecraft/unmapped/C_6849228;II)V	m_9111949		placeStructures
+		c		Place structure features in the chunk at the given chunk coordinates.
 		p	1			chunk
 		p	2			chunkX
 		p	3			chunkZ
@@ -4045,7 +4051,7 @@ c	net/minecraft/unmapped/C_1713479		net/minecraft/block/state/BlockProperties
 	m	()Lnet/minecraft/unmapped/C_8048208;	m_7228786		getMaterial
 	m	()Z	m_3498998		isOpaque
 	m	()I	m_2425426		getOpacity
-	m	()I	m_8514269		getLightLevel
+	m	()I	m_8514269		getLight
 	m	()Z	m_2248102		isTranslucent
 	m	()Z	m_6388929		usesNeighborLight
 	m	()Lnet/minecraft/unmapped/C_9335057;	m_7777784		getMapColor
@@ -4053,14 +4059,14 @@ c	net/minecraft/unmapped/C_1713479		net/minecraft/block/state/BlockProperties
 		p	1			rotation
 	m	(Lnet/minecraft/unmapped/C_7763554;)Lnet/minecraft/unmapped/C_2441996;	m_4829162		mirror
 		p	1			mirror
-	m	()Z	m_2095894		isFullCube
+	m	()Z	m_2095894		isCube
 	m	()Lnet/minecraft/unmapped/C_4345966;	m_4101275		getRenderType
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)I	m_2368263		getLightColor
 		p	1			world
 		p	2			pos
 	m	()F	m_1964234		getAmbientOcclusionLight
 	m	()Z	m_0810303		blocksAmbientLight
-	m	()Z	m_1581837		isConductor
+	m	()Z	m_1581837		isSolid
 	m	()Z	m_4954044		isSignalSource
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)I	m_2469366		getSignal
 		p	1			world
@@ -4092,7 +4098,7 @@ c	net/minecraft/unmapped/C_1713479		net/minecraft/block/state/BlockProperties
 		p	1			world
 		p	2			pos
 		p	3			face
-	m	()Z	m_5236187		isOpaqueCube
+	m	()Z	m_5236187		isSolidRender
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_5577922;	m_5141151		getCollisionShape
 		p	1			world
 		p	2			pos

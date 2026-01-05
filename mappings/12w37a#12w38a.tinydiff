@@ -25,10 +25,10 @@ c	net/minecraft/unmapped/C_0902334
 	m	(Ljava/lang/String;ILjava/lang/Class;ILnet/minecraft/unmapped/C_8048208;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	3		type	
+		p	4		cap	
+		p	5		spawnableMaterial	
+		p	6		peaceful	
 	m	(Ljava/lang/String;ILjava/lang/Class;ILnet/minecraft/unmapped/C_8048208;ZZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -41,7 +41,7 @@ c	net/minecraft/unmapped/C_0902334
 c	net/minecraft/unmapped/C_1161898
 	f	Z	f_1605499		magic
 	m	()Z	m_4849132		getMagic
-	m	()Lnet/minecraft/unmapped/C_1161898;	m_4415636		setUsesMagic
+	m	()Lnet/minecraft/unmapped/C_1161898;	m_4415636		isMagic
 c	net/minecraft/unmapped/C_1164730
 	m	(FFFFFF)V	m_6142526	m_6142526	
 		p	1		p_1	
@@ -75,8 +75,8 @@ c	net/minecraft/unmapped/C_1184371
 		p	7			p_7
 		p	8			p_8
 c	net/minecraft/unmapped/C_1241852
-	f	Lnet/minecraft/unmapped/C_4863209;	f_0221049		SNOW_SOUND
-	f	Lnet/minecraft/unmapped/C_4863209;	f_5273639		LADDER_SOUND
+	f	Lnet/minecraft/unmapped/C_4863209;	f_0221049		SNOW_SOUNDS
+	f	Lnet/minecraft/unmapped/C_4863209;	f_5273639		LADDER_SOUNDS
 c	net/minecraft/unmapped/C_1546356
 	m	(FFFFFF)V	m_6142526	m_6142526	
 		p	1		p_1	
@@ -224,9 +224,9 @@ c	net/minecraft/unmapped/C_3242141
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_3273480
-	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_2454309;)V	m_9284237		updateHoldingItem
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_2454309;)V	m_9284237		setupAnimation
+		p	1			mob
+		p	2			itemInHand
 c	net/minecraft/unmapped/C_3325732
 	m	(IIII)V	m_3032530		m_3032530
 		p	1			p_1
@@ -404,9 +404,9 @@ c	net/minecraft/unmapped/C_7019121
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_7400754
-	m	()I	m_7649378	getRemovedAmount	
-	m	(II)I	m_7649378		getRemovedAmount
-		p	1			itemId
+	m	()I	m_7649378	removeAll	
+	m	(II)I	m_7649378		removeAll
+		p	1			item
 		p	2			metadata
 c	net/minecraft/unmapped/C_7452650
 	m	(FFFFFF)V	m_6142526	m_6142526	
@@ -441,17 +441,17 @@ c	net/minecraft/unmapped/C_7482415
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/unmapped/C_7503776
-	m	(FFFFFF)V	m_6142526	setAngles	
-		p	1		handSwing	
-		p	2		handSwingAmount	
-		p	3		age	
+	m	(FFFFFF)V	m_6142526	setupAnimation	
+		p	1		walkAnimationProgress	
+		p	2		walkAnimationSpeed	
+		p	3		bob	
 		p	4		yaw	
 		p	5		pitch	
 		p	6		scale	
-	m	(FFFFFFLnet/minecraft/unmapped/C_0539808;)V	m_6142526		setAngles
-		p	1			handSwing
-		p	2			handSwingAmount
-		p	3			age
+	m	(FFFFFFLnet/minecraft/unmapped/C_0539808;)V	m_6142526		setupAnimation
+		p	1			walkAnimationProgress
+		p	2			walkAnimationSpeed
+		p	3			bob
 		p	4			yaw
 		p	5			pitch
 		p	6			scale
@@ -511,8 +511,8 @@ c	net/minecraft/unmapped/C_8938672
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/unmapped/C_9139005
-	m	()V	m_7408231	renderPlayerRightHandModel	
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_7408231		renderPlayerRightHandModel
+	m	()V	m_7408231	renderRightHand	
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_7408231		renderRightHand
 		p	1			player
 c	net/minecraft/unmapped/C_9226316
 	m	(FFFFFF)V	m_6142526	m_6142526	
@@ -568,9 +568,9 @@ c	net/minecraft/unmapped/C_9885753
 c	net/minecraft/unmapped/C_9917583
 	f	Lnet/minecraft/unmapped/C_5537602;	f_6889008		monsterEggVein
 c	net/minecraft/unmapped/C_9992501
-	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3292284;	m_9354812	m_9354812	
-		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_3292284;	m_6649474	m_6649474	
+	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3292284;	m_9354812	getNearest	
+		p	1		pos	
+	m	()Lnet/minecraft/unmapped/C_3292284;	m_6649474	pick	
 	m	(Lnet/minecraft/unmapped/C_3674802;III)Ljava/util/List;	m_4817680		getMatching
 		p	1			p_1
 		p	2			p_2
@@ -597,18 +597,18 @@ c	net/minecraft/unmapped/C_1877953		net/minecraft/client/render/entity/WitchRend
 	f	Lnet/minecraft/unmapped/C_8305387;	f_5239315		model
 	f	I	f_2958135		version
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_8935931;DDDFF)V	m_3427156		render
+	m	(Lnet/minecraft/unmapped/C_8935931;DDDFF)V	m_3427156		m_3427156
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 		p	6			p_6
 		p	8			p_8
 		p	9			p_9
-	m	(Lnet/minecraft/unmapped/C_8935931;F)V	m_4549212		renderDecoration
+	m	(Lnet/minecraft/unmapped/C_8935931;F)V	m_4549212		m_4549212
 		p	1			p_1
 		p	2			p_2
 	m	()V	m_7222171		translate
-	m	(Lnet/minecraft/unmapped/C_8935931;F)V	m_1899281		scale
+	m	(Lnet/minecraft/unmapped/C_8935931;F)V	m_1899281		m_1899281
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_9699490		m_9699490
@@ -634,22 +634,22 @@ c	net/minecraft/unmapped/C_1877953		net/minecraft/client/render/entity/WitchRend
 c	net/minecraft/unmapped/C_2771535		net/minecraft/client/render/entity/BatRenderer
 	f	I	f_4787739		handModel
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_6182204;DDDFF)V	m_5939050		render
+	m	(Lnet/minecraft/unmapped/C_6182204;DDDFF)V	m_5939050		m_5939050
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 		p	6			p_6
 		p	8			p_8
 		p	9			p_9
-	m	(Lnet/minecraft/unmapped/C_6182204;F)V	m_6877520		scale
+	m	(Lnet/minecraft/unmapped/C_6182204;F)V	m_6877520		m_6877520
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_6182204;DDD)V	m_4992090		applyTranslation
+	m	(Lnet/minecraft/unmapped/C_6182204;DDD)V	m_4992090		m_4992090
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 		p	6			p_6
-	m	(Lnet/minecraft/unmapped/C_6182204;FFF)V	m_5643388		applyRotation
+	m	(Lnet/minecraft/unmapped/C_6182204;FFF)V	m_5643388		m_5643388
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -681,7 +681,7 @@ c	net/minecraft/unmapped/C_2771535		net/minecraft/client/render/entity/BatRender
 		p	6			p_6
 		p	8			p_8
 		p	9			p_9
-c	net/minecraft/unmapped/C_3310814		net/minecraft/entity/living/mob/ambient/AmbientEntity
+c	net/minecraft/unmapped/C_3310814		net/minecraft/entity/mob/ambient/AmbientMobEntity
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_5100287		net/minecraft/server/command/TargetSelector
@@ -711,7 +711,7 @@ c	net/minecraft/unmapped/C_5100287		net/minecraft/server/command/TargetSelector
 	m	(Ljava/lang/String;)Ljava/util/Map;	m_3149073		parseArgs
 		p	0			s
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_6182204		net/minecraft/entity/living/mob/ambient/BatEntity
+c	net/minecraft/unmapped/C_6182204		net/minecraft/entity/mob/ambient/BatEntity
 	f	Lnet/minecraft/unmapped/C_3674802;	f_5981702		hangPos
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
 		p	1			world
@@ -735,11 +735,11 @@ c	net/minecraft/unmapped/C_6182204		net/minecraft/entity/living/mob/ambient/BatE
 		p	1			p_1
 	m	()Z	m_8724935		m_8724935
 	m	()V	m_6896447		m_6896447
-c	net/minecraft/unmapped/C_7127389		net/minecraft/entity/living/mob/Monster__1
+c	net/minecraft/unmapped/C_7127389		net/minecraft/entity/mob/monster/Monster__7127389
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1473293		m_1473293
 		p	1			p_1
-c	net/minecraft/unmapped/C_7181854		net/minecraft/util/math/PlayerDistanceToPosComparator
+c	net/minecraft/unmapped/C_7181854		net/minecraft/server/DistancePlayerSorter
 	f	Lnet/minecraft/unmapped/C_3674802;	f_2464733		pos
 	m	(Lnet/minecraft/unmapped/C_3674802;)V	<init>		<init>
 		p	1			pos
@@ -747,10 +747,10 @@ c	net/minecraft/unmapped/C_7181854		net/minecraft/util/math/PlayerDistanceToPosC
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
-		p	1			player1
-		p	2			player2
+		p	1			p_1
+		p	2			p_2
 c	net/minecraft/unmapped/C_8305387		net/minecraft/client/render/model/entity/WitchModel
-	f	Z	f_2503266		heldItemId
+	f	Z	f_2503266		itemInHand
 	f	Lnet/minecraft/unmapped/C_6697291;	f_4545975		mole
 	f	Lnet/minecraft/unmapped/C_6697291;	f_1578083		hat
 	m	(F)V	<init>		<init>
@@ -764,7 +764,7 @@ c	net/minecraft/unmapped/C_8305387		net/minecraft/client/render/model/entity/Wit
 		p	6			p_6
 		p	7			p_7
 	m	()I	m_1039151		getVersion
-c	net/minecraft/unmapped/C_8935931		net/minecraft/entity/living/mob/hostile/WitchEntity
+c	net/minecraft/unmapped/C_8935931		net/minecraft/entity/mob/monster/WitchEntity
 	f	I	f_6921929		drinkTimeLeft
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
 		p	1			world

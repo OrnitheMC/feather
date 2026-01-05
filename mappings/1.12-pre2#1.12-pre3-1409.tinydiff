@@ -14,7 +14,7 @@ c	net/minecraft/unmapped/C_0241772
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_0512768
-	m	(Lnet/minecraft/unmapped/C_0512768;)I	m_7177426	m_7177426	
+	m	(Lnet/minecraft/unmapped/C_0512768;)I	m_7177426	compareTo	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
 		p	1		p_1	
@@ -53,7 +53,7 @@ c	net/minecraft/unmapped/C_0837724
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_0876962
-	f	Lnet/minecraft/unmapped/C_0561170;	f_2792843		f_2792843
+	f	Lnet/minecraft/unmapped/C_0561170;	f_2792843		EMPTY_LOCATION
 c	net/minecraft/unmapped/C_1078566
 	m	(Lnet/minecraft/unmapped/C_1730529;)Lnet/minecraft/unmapped/C_1730529;	m_7464404		of
 		p	0			p_0
@@ -129,9 +129,9 @@ c	net/minecraft/unmapped/C_1606480$C_4786456
 	f	Ljava/util/Iterator;	f_4699753		f_4699753
 	f	F	f_7965833		f_7965833
 	m	(Lnet/minecraft/unmapped/C_2454309;IIZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		stack	
+		p	2		x	
+		p	3		y	
 		p	4		p_4	
 	m	(Ljava/util/List;II)V	<init>		<init>
 		p	1			p_1
@@ -346,14 +346,14 @@ c	net/minecraft/unmapped/C_3499107
 		p	2			p_2
 c	net/minecraft/unmapped/C_3755722
 	m	(Lnet/minecraft/unmapped/C_3755722;Lnet/minecraft/unmapped/C_0191817;Lnet/minecraft/unmapped/C_0160011;)V	m_1746706	addToCreativeMenu	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		item	
+		p	2		tab	
+		p	3		inventory	
 	m	(Lnet/minecraft/unmapped/C_0191817;Lnet/minecraft/unmapped/C_0160011;)V	m_1746706		addToCreativeMenu
 		p	1			group
 		p	2			list
-	m	(Lnet/minecraft/unmapped/C_0191817;)Z	m_1522042		isInGroup
-		p	1			group
+	m	(Lnet/minecraft/unmapped/C_0191817;)Z	m_1522042		isInCreativeModeTab
+		p	1			tab
 c	net/minecraft/unmapped/C_3809662
 	m	(Lnet/minecraft/unmapped/C_3310297;)V	m_7323622		handleSeenAdvancements
 		p	1			packet
@@ -758,7 +758,7 @@ c	net/minecraft/unmapped/C_7400754
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_8814194;Z)V	m_5777290		fill
 		p	1			contents
-		p	2			p_2
+		p	2			addOffHand
 c	net/minecraft/unmapped/C_7431851
 	m	(Lnet/minecraft/unmapped/C_3755722;Lnet/minecraft/unmapped/C_0191817;Lnet/minecraft/unmapped/C_0160011;)V	m_5196965	m_5196965	
 		p	1		p_1	
@@ -800,9 +800,9 @@ c	net/minecraft/unmapped/C_7735639
 		p	1		stack	
 		p	0			stack
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_0927368;)V	m_4355566
-		p	2		entry	
+		p	2		enchantment	
 		p	0			stack
-		p	1		stack	entry
+		p	1		stack	enchantment
 	m	(Lnet/minecraft/unmapped/C_0927368;)Lnet/minecraft/unmapped/C_2454309;	m_6048447
 		p	1		enchantment	
 		p	0			enchantment
@@ -1026,10 +1026,10 @@ c	net/minecraft/unmapped/C_5242898		net/minecraft/client/gui/recipebook/RecipeBo
 	m	(Lnet/minecraft/unmapped/C_0191817;)Lnet/minecraft/unmapped/C_0191817;	m_0103149		m_0103149
 		p	1			p_1
 	m	()V	m_2396433		m_2396433
-	m	()V	m_8224721		toggleVisibility
-	m	()Z	m_1396231		isVisible
-	m	(Z)V	m_4488802		setVisible
-		p	1			visible
+	m	()V	m_8224721		toggleGuiOpen
+	m	()Z	m_1396231		isGuiOpen
+	m	(Z)V	m_4488802		setGuiOpen
+		p	1			guiOpen
 	m	(Lnet/minecraft/unmapped/C_2711798;Lnet/minecraft/unmapped/C_1421936;)V	m_1284115		clickSlot
 		p	1			p_1
 		p	2			p_2
@@ -1172,16 +1172,16 @@ c	net/minecraft/unmapped/C_8814194		net/minecraft/item/StackedContents
 	f	Lit/unimi/dsi/fastutil/ints/Int2IntMap;	f_3646928		contents
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_5520197		addUnenchantedInput
-		p	1			stack
-	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_2986017		getItemId
-		p	0			stack
+		p	1			item
+	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_2986017		getStackingIndex
+		p	0			item
 	m	(I)Z	m_5570721		contains
-		p	1			itemId
+		p	1			index
 	m	(II)I	m_0261811		consume
-		p	1			itemId
+		p	1			index
 		p	2			count
 	m	(II)V	m_0031630		addInput
-		p	1			itemId
+		p	1			index
 		p	2			count
 	m	(Lnet/minecraft/unmapped/C_2361607;Lit/unimi/dsi/fastutil/ints/IntList;)Z	m_8826076		canCraft
 		p	1			recipe
@@ -1197,8 +1197,8 @@ c	net/minecraft/unmapped/C_8814194		net/minecraft/item/StackedContents
 		p	1			recipe
 		p	2			limit
 		p	3			output
-	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_8089679		getStackFromId
-		p	0			itemId
+	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_8089679		fromStackingIndex
+		p	0			index
 	m	()V	m_9756494		clear
 	m	(Lnet/minecraft/unmapped/C_8814194;II)V	m_3667808		m_3667808
 		p	0			p_0
@@ -1223,39 +1223,39 @@ c	net/minecraft/unmapped/C_8814194$C_3648878		Matcher
 	m	(I)Z	m_7915181		checkRequirements
 		p	1			multiplier
 	m	(I)Z	m_9536025		getRequirement
-		p	1			itemId
+		p	1			item
 	m	(I)V	m_5003759		unfulfillRequirement
-		p	1			itemId
+		p	1			item
 	m	(I)I	m_7536391		getRequirementIndex
-		p	1			itemId
+		p	1			item
 	m	(ZII)Z	m_9216315		needsRequirement
 		p	1			reversed
-		p	2			itemIndex
+		p	2			index
 		p	3			ingredientIndex
 	m	(ZII)Z	m_5580604		checkRequirement
 		p	1			reversed
-		p	2			itemIndex
+		p	2			index
 		p	3			ingredientIndex
 	m	(ZII)V	m_6523189		flipRequirement
 		p	1			reversed
-		p	2			itemIndex
+		p	2			index
 		p	3			ingredientIndex
 	m	(ZII)I	m_2563439		getRequirementIndex
 		p	1			reversed
-		p	2			itemIndex
+		p	2			index
 		p	3			ingredientIndex
 	m	(ZI)V	m_0945149		addRequirement
 		p	1			reversed
-		p	2			itemId
+		p	2			item
 	m	(ZI)Z	m_0989083		isRequirementUnfulfilled
 		p	1			reversed
-		p	2			itemId
+		p	2			item
 	m	(ZI)I	m_5659365		getRequirementIndex
 		p	1			reversed
-		p	2			itemId
+		p	2			item
 	m	(ILit/unimi/dsi/fastutil/ints/IntList;)I	m_9615646		countCrafts
 		p	1			minimum
 		p	2			output
 	m	()I	m_3652072		getMaximumCrafts
 	m	(Lnet/minecraft/unmapped/C_0241772;)Z	m_5724783		m_5724783
-		p	0			p_0
+		p	0			ingredient

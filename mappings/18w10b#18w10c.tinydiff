@@ -34,12 +34,12 @@ c	net/minecraft/unmapped/C_1066300
 c	net/minecraft/unmapped/C_1241852
 	m	()Z	m_5805464	ticksRandomly	
 		c	Returns whether this block accepts random ticks. Random ticks are mostly used by plants\nand crops to update growth, but some other blocks are affected by random ticks as well,\nlike e.g. leaves (to update decay).\nNote that while this field might be set to true the block might not do anything with the random tick.	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3030937;)Z	m_7371947	hasCollision	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3030937;)Z	m_7371947	canRayTrace	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5805464		ticksRandomly
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_7371947		hasCollision
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_7371947		canRayTrace
 		p	1			state
 	m	(Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_1534020;	m_8039579		getFluidState
 		p	1			state
@@ -139,17 +139,17 @@ c	net/minecraft/unmapped/C_3677942
 		p	2		pos	
 		p	3		material	
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_1534020;)Z	m_2586515		m_2586515
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_1534020;)Z	m_2586515		isNeighborSameLiquid
+		p	0			world
+		p	1			pos
+		p	2			face
+		p	3			state
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8373595;Lnet/minecraft/unmapped/C_1534020;)Z	m_7437567		render
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			world
+		p	2			blockState
+		p	3			pos
+		p	4			bufferBuilder
+		p	5			state
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8052515;)F	m_9792460		getLiquidHeight
 		p	1			p_1
 		p	2			p_2
@@ -160,11 +160,12 @@ c	net/minecraft/unmapped/C_3747079
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2441996;)F	m_3205273	getHeightLoss	
 		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_7726651	getLevel	
+	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_7726651	getLiquidState	
+		c	Returns the depth and falling state of the liquid at the given position, encoded in a 4 bit number,\nor {@code -1} if the given position is not occupied by this liquid.\n<p>\nThe 3 least significant bits encode the depth of this liquid - that is to say, how shallow it lies within this block.\nA value of {@code 0} denotes a source block, while the values {@code 1} to {@code 7} denote increasingly shallow depth values.\n<br>\nIf this liquid is falling, the depth applies not to this liquid, but to the liquid above it.\nIf the liquid above is also falling, the depth is always 0.\n<p>\nThe 4th least significant bit encodes whether the liquid is falling (i.e. there is liquid flowing in from above).	
 		p	1		state	
-	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_3610891	getDistanceToSource	
-		c	Returns the distance to a source fluid. A falling fluid acts as a source.	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_3610891	getLiquidDepth	
+		c	@return the depth of the liquid at the given position - that is to say, how shallow it lies within this block -\nor {@code -1} if the given position is not occupied by this liquid.	
+		p	1		state	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3030937;)Z	m_7371947	m_7371947	
 		p	1		p_1	
 		p	2		p_2	
@@ -203,12 +204,12 @@ c	net/minecraft/unmapped/C_3747079
 		p	1		world	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_8052515;Lnet/minecraft/unmapped/C_1241852$C_6799794;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			liquid
+		p	2			properties
 	m	(Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_1534020;	m_8039579		m_8039579
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_1534020;)I	m_7726651		getLevel
-		p	0			p_0
+	m	(Lnet/minecraft/unmapped/C_1534020;)I	m_7726651		getLiquidState
+		p	0			state
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_7371947		m_7371947
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_8052515;	m_1051617		m_1051617
@@ -226,8 +227,8 @@ c	net/minecraft/unmapped/C_5237571
 	m	(Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_1534020;	m_8039579		m_8039579
 		p	1			p_1
 c	net/minecraft/unmapped/C_5532430
-	f	Lnet/minecraft/unmapped/C_2441996;	f_6094595	f_6094595	
-	f	Lnet/minecraft/unmapped/C_2441996;	f_5338080	f_5338080	
+	f	Lnet/minecraft/unmapped/C_2441996;	f_6094595	FLOWING_WATER	
+	f	Lnet/minecraft/unmapped/C_2441996;	f_5338080	FLOWING_LAVA	
 c	net/minecraft/unmapped/C_5553933
 	m	(Lnet/minecraft/unmapped/C_5577922;Lnet/minecraft/unmapped/C_8048208;Lnet/minecraft/unmapped/C_0539808;)Z	m_0774852	applyLiquidDrag	
 		p	1		bounds	
@@ -271,12 +272,12 @@ c	net/minecraft/unmapped/C_6265506
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_6695579
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_8373595;Lnet/minecraft/unmapped/C_1534020;)Z	m_8038755		m_8038755
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_8373595;Lnet/minecraft/unmapped/C_1534020;)Z	m_8038755		tesselateLiquid
+		p	1			state
+		p	2			pos
+		p	3			world
+		p	4			bufferBuilder
+		p	5			fluidState
 c	net/minecraft/unmapped/C_7005109
 	m	(Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_1534020;	m_8039579		m_8039579
 		p	1			p_1
@@ -300,7 +301,7 @@ c	net/minecraft/unmapped/C_7051878	net/minecraft/block/FlowingLiquidBlock
 		p	1		world	
 		p	2		pos	
 		p	3		state	
-		p	4		level	
+		p	4		depth	
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;ILnet/minecraft/unmapped/C_3544601;)I	m_2162184	getDistanceToGap	
 		p	1		p_1	
 		p	2		p_2	
@@ -308,10 +309,10 @@ c	net/minecraft/unmapped/C_7051878	net/minecraft/block/FlowingLiquidBlock
 		p	4		p_4	
 	m	(Lnet/minecraft/unmapped/C_9844932;)I	m_7905280	getLevelDecrease	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;)Ljava/util/Set;	m_2610325	getSpreadDirections	
+	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;)Ljava/util/Set;	m_2610325	getSpread	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Z	m_1007056	blocksSpreading	
+	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Z	m_1007056	isLiquidBlocking	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -401,7 +402,7 @@ c	net/minecraft/unmapped/C_1534020		net/minecraft/fluid/state/FluidState
 		p	4			falling
 	m	()Lnet/minecraft/unmapped/C_8052515;	m_9514689		getFluid
 	m	()F	m_3979908		getHeight
-	m	()Z	m_5306000		m_5306000
+	m	()Z	m_5306000		isEmpty
 	m	()Z	m_8729178		isSource
 	m	(Z)Lnet/minecraft/unmapped/C_1534020;	m_9830475		m_9830475
 		p	1			p_1
@@ -414,9 +415,9 @@ c	net/minecraft/unmapped/C_1534020		net/minecraft/fluid/state/FluidState
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_6449210		m_6449210
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_6449210		shouldRenderBackwardUpFace
+		p	1			world
+		p	2			above
 	m	(Ljava/lang/Object;)Z	equals		equals
 		p	1			p_1
 	m	()I	hashCode		hashCode
@@ -453,9 +454,9 @@ c	net/minecraft/unmapped/C_1534020		net/minecraft/fluid/state/FluidState
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_1965942		net/minecraft/block/Bucketable
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_8052515;	m_1051617		takeLiquid
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			pos
+		p	3			state
 c	net/minecraft/unmapped/C_2827860		net/minecraft/block/LiquidBlockContainer
 	m	(Lnet/minecraft/unmapped/C_2137190;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8052515;)Z	m_5742181		canPlaceLiquid
 		p	1			p_1
@@ -463,10 +464,10 @@ c	net/minecraft/unmapped/C_2827860		net/minecraft/block/LiquidBlockContainer
 		p	3			p_3
 		p	4			p_4
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1534020;)Z	m_2344132		placeLiquid
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			pos
+		p	3			blockState
+		p	4			liquid
 c	net/minecraft/unmapped/C_2858466		net/minecraft/fluid/WaterFluid
 	m	()V	<init>		<init>
 	m	(IZZ)Lnet/minecraft/unmapped/C_1534020;	m_4095842		m_4095842

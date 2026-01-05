@@ -1,15 +1,15 @@
 tiny	2	0
 c	net/minecraft/client/C_5664496
-	f	Ljava/lang/String;	f_9991059		f_9991059
-	m	(Ljava/lang/String;I)V	m_4363926		m_4363926
-		p	1			p_1
-		p	2			p_2
+	f	Ljava/lang/String;	f_9991059		startupServerAddress
+	m	(Ljava/lang/String;I)V	m_4363926		setStartupServer
+		p	1			address
+		p	2			port
 c	net/minecraft/unmapped/C_0259655
-	m	(I)V	m_6211536	renderFog	
-		p	1		p_1	
-	m	()V	m_6211536		renderFog
+	m	(I)V	m_6211536	setupFog	
+		p	1		type	
+	m	()V	m_6211536		setupFog
 c	net/minecraft/unmapped/C_0539808
-	m	()V	m_4493293	tickVoid	
+	m	()V	m_4493293	voidTick	
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_6033607	m_6033607	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_0557736
@@ -23,21 +23,21 @@ c	net/minecraft/unmapped/C_1241852
 		p	4		z	
 		p	5		entity	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_3847163		onSteppedOn
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_1741573	net/minecraft/entity/FallingBlockEntity	
-	f	I	f_6582626	blockId	
-	f	I	f_9152518	time	
+	f	I	f_6582626	block	
+	f	I	f_9152518	fallingTicks	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_5553933;FFFI)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		block	
 	m	()Z	m_3104437	m_3104437	
 	m	()V	m_7274048	m_7274048	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_1129840	m_1129840	
@@ -83,11 +83,11 @@ c	net/minecraft/unmapped/C_2910311
 		p	4		p_4	
 		p	5		p_5	
 	m	()I	m_0006289	m_0006289	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8928079		m_8928079
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8928079		tryFall
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_3216249
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_5553933;III)V	m_8751459	m_8751459	
 		p	1		p_1	
@@ -168,34 +168,34 @@ c	net/minecraft/unmapped/C_4311389	net/minecraft/block/RailBlock
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_5553933
-	f	Z	f_3155823	suppressBlockUpdates	
+	f	Z	f_3155823	suppressNeighborChangedUpdates	
 	m	(IIIII)Z	m_6769014	setBlockWithMetadataQuietly	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 		p	5		metadata	
 	m	(Z)Z	m_3554902	doScheduledTicks	
 		p	1		flush	
 			c	Flush all scheduled ticks, rather than just the ones scheduled for this tick.	
-	m	(IIIIZ)Z	m_6323146	canReplace	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(IIII)Z	m_6769014		setBlockWithMetadataQuietly
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(IIIIII)V	m_4352851		m_4352851
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+	m	(IIIIZ)Z	m_6323146	canPlace	
+		p	1		block	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		skipCollisionChecks	
+	m	(IIII)Z	m_6769014		setBlockMetadataQuietly
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			metadata
+	m	(IIIIII)V	m_4352851		swapBlocks
+		p	1			x1
+		p	2			y1
+		p	3			z1
+		p	4			x2
+		p	5			y2
+		p	6			z2
 c	net/minecraft/unmapped/C_5705147
 	m	(I)Ljava/lang/String;	m_8741831
 		p	0		p_0	
@@ -203,12 +203,12 @@ c	net/minecraft/unmapped/C_5705147
 c	net/minecraft/unmapped/C_6607881
 	m	()V	m_4493293	m_4493293	
 c	net/minecraft/unmapped/C_6849228
-	m	(IIIII)Z	m_5827966	m_5827966	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(IIIII)Z	m_5827966	setBlockWithMetadata	
+		p	1		localX	
+		p	2		y	
+		p	3		localZ	
+		p	4		block	
+		p	5		metadata	
 c	net/minecraft/unmapped/C_6991030	net/minecraft/item/MinecartItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -260,10 +260,10 @@ c	net/minecraft/unmapped/C_9482745	net/minecraft/entity/vehicle/MinecartEntity
 		p	1		p_1	
 	m	()Z	m_6281908	m_6281908	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
 	m	()Z	m_3104437	m_3104437	
 	m	()V	m_7274048	m_7274048	
 	m	(DDDD)Lnet/minecraft/unmapped/C_0557736;	m_4908713	snapPositionToRailWithOffset	

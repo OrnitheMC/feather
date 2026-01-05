@@ -2,20 +2,20 @@ tiny	2	0
 c	net/minecraft/client/Minecraft
 	m	()Lnet/minecraft/unmapped/C_5722573;	m_3332347	getNetworkHandler	
 c	net/minecraft/unmapped/C_0539808
-	f	Ljava/lang/String;	f_0877927	cloak	
-	m	()V	m_3816455	registerCloak	
-	m	(II)V	m_0241073	setEquipmentStack	
-		p	1		p_1	
-		p	2		p_2	
+	f	Ljava/lang/String;	f_0877927	cape	
+	m	()V	m_3816455	prepareCape	
+	m	(II)V	m_0241073	setEquipment	
+		p	1		slot	
+		p	2		item	
 c	net/minecraft/unmapped/C_0579327
 	m	(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		title	
+		p	2		reason	
+		p	3		reasonArgs	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_0759248	net/minecraft/locale/LanguageManager	
+		p	1			title
+		p	2			reason
+c	net/minecraft/unmapped/C_0759248	net/minecraft/locale/Language	
 	f	Lnet/minecraft/unmapped/C_0759248;	f_7464866	INSTANCE	
 	f	Ljava/util/Properties;	f_6169381	translations	
 	m	()V	<init>	<init>	
@@ -78,35 +78,35 @@ c	net/minecraft/unmapped/C_1241852
 c	net/minecraft/unmapped/C_1264786
 	m	()Ljava/lang/String;	m_8870654	m_8870654	
 c	net/minecraft/unmapped/C_1331819
-	f	I	f_7496186		f_7496186
+	f	I	f_7496186		count
 	m	(I)Ljava/lang/String;	m_2797070	getKeyBindingName	
 		p	1		keyBinding	
-	m	(Lnet/minecraft/unmapped/C_0915802;F)V	m_3268154	setValue	
+	m	(Lnet/minecraft/unmapped/C_0915802;F)V	m_3268154	set	
 		p	1		option	
 		p	2		value	
-	m	(Lnet/minecraft/unmapped/C_0915802;I)V	m_2312322	setValue	
+	m	(Lnet/minecraft/unmapped/C_0915802;I)V	m_2312322	set	
 		p	1		option	
 		p	2		value	
-	m	(Lnet/minecraft/unmapped/C_0915802;)F	m_6857491	getValueFloat	
+	m	(Lnet/minecraft/unmapped/C_0915802;)F	m_6857491	getFloat	
 		p	1		option	
-	m	(Lnet/minecraft/unmapped/C_0915802;)Z	m_4431595	getValueBool	
+	m	(Lnet/minecraft/unmapped/C_0915802;)Z	m_4431595	getBoolean	
 		p	1		option	
-	m	(Lnet/minecraft/unmapped/C_0915802;)Ljava/lang/String;	m_8187097	translateValue	
+	m	(Lnet/minecraft/unmapped/C_0915802;)Ljava/lang/String;	m_8187097	getAsString	
 		p	1		option	
-	m	(IF)V	m_3268154		setValue
-		p	1			p_1
-		p	2			p_2
-	m	(II)V	m_2312322		setValue
-		p	1			p_1
-		p	2			p_2
-	m	(I)I	m_7544135		m_7544135
-		p	1			p_1
-	m	(I)F	m_6857491		getValueFloat
-		p	1			p_1
-	m	(I)Ljava/lang/String;	m_8187097		translateValue
-		p	1			p_1
+	m	(IF)V	m_3268154		set
+		p	1			option
+		p	2			value
+	m	(II)V	m_2312322		set
+		p	1			option
+		p	2			value
+	m	(I)I	m_7544135		getInt
+		p	1			option
+	m	(I)F	m_6857491		getFloat
+		p	1			option
+	m	(I)Ljava/lang/String;	m_8187097		getAsString
+		p	1			option
 c	net/minecraft/unmapped/C_1388995	net/minecraft/inventory/menu/CraftingTableMenu	
-	f	Lnet/minecraft/unmapped/C_5217418;	f_5131939	craftingTable	
+	f	Lnet/minecraft/unmapped/C_5217418;	f_5131939	inventory	
 	f	Lnet/minecraft/unmapped/C_5818647;	f_8639181	resultInventory	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_0897645	world	
 	f	I	f_7955360	x	
@@ -133,21 +133,21 @@ c	net/minecraft/unmapped/C_1741573
 		p	2		x	
 		p	4		y	
 		p	6		z	
-		p	8		blockId	
+		p	8		block	
 	m	(Lnet/minecraft/unmapped/C_5553933;FFFI)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-c	net/minecraft/unmapped/C_2183633	net/minecraft/network/packet/ConfirmMenuActionPacket	
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			block
+c	net/minecraft/unmapped/C_2183633	net/minecraft/network/packet/InventoryMenuConfirmPacket	
 	f	I	f_5057528	menuId	
-	f	S	f_8406585	actionId	
+	f	S	f_8406585	interactionId	
 	f	Z	f_7511419	accepted	
 	m	()V	<init>	<init>	
 	m	(ISZ)V	<init>	<init>	
 		p	1		menuId	
-		p	2		actionId	
+		p	2		interactionId	
 		p	3		accepted	
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666	m_7216666	
 		p	1		p_1	
@@ -163,10 +163,10 @@ c	net/minecraft/unmapped/C_2313930
 		p	1		scale	
 	m	(F)V	m_5293878	renderCape	
 		p	1		scale	
-c	net/minecraft/unmapped/C_2337516
-	f	I	f_6272380	metadata	
+c	net/minecraft/unmapped/C_2337516	net/minecraft/client/render/entity/ItemSpriteRenderer	net/minecraft/client/render/entity/FireballRenderer
+	f	I	f_6272380	sprite	
 	m	(I)V	<init>	<init>	
-		p	1		metadata	
+		p	1		sprite	
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3366538;DDDFF)V	m_2694213		m_2694213
 		p	1			p_1
@@ -187,25 +187,25 @@ c	net/minecraft/unmapped/C_2538104
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_7523250	m_7523250	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_2711798
-	f	I	f_8275448	id	
+	f	I	f_8275448	index	
 		c	The slot's index in its {@link net.minecraft.inventory.menu.InventoryMenu InventoryMenu}	
 	f	I	f_1372872	x	
 	f	I	f_2305678	y	
 	m	(Lnet/minecraft/unmapped/C_5818647;III)V	<init>	<init>	
 		p	1		inventory	
-		p	2		slot	
+		p	2		id	
 		p	3		x	
 		p	4		y	
-	m	()Z	m_1942398	hasStack	
-	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_3635966	removeStack	
+	m	()Z	m_1942398	hasItem	
+	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_3635966	removeItem	
 		p	1		amount	
 	m	(Lnet/minecraft/unmapped/C_5818647;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			inventory
+		p	2			id
 c	net/minecraft/unmapped/C_2810918	net/minecraft/inventory/SimpleInventory	
 	f	Ljava/lang/String;	f_0434555	name	
 	f	I	f_5891820	size	
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_5501598	stacks	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_5501598	items	
 	f	Ljava/util/List;	f_8406143	listeners	
 	m	(Ljava/lang/String;I)V	<init>	<init>	
 		p	1		name	
@@ -224,20 +224,20 @@ c	net/minecraft/unmapped/C_2810918	net/minecraft/inventory/SimpleInventory
 	m	()V	m_6769151	m_6769151	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_7523250	m_7523250	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_2999845
+c	net/minecraft/unmapped/C_2999845	net/minecraft/network/packet/SignUpdatePacket	net/minecraft/network/packet/BlockEntityUpdatePacket
 	f	[Ljava/lang/String;	f_3061882	lines	
-	f	[B	f_7158550		f_7158550
-	f	Lnet/minecraft/unmapped/C_2018497;	f_6735416		f_6735416
+	f	[B	f_7158550		data
+	f	Lnet/minecraft/unmapped/C_2018497;	f_6735416		nbt
 	m	(III[Ljava/lang/String;)V	<init>	<init>	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		lines	
 	m	(IIILnet/minecraft/unmapped/C_3622326;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			blockEntity
 c	net/minecraft/unmapped/C_3090109	net/minecraft/item/EggItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -246,41 +246,41 @@ c	net/minecraft/unmapped/C_3090109	net/minecraft/item/EggItem
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_3342272
-	f	Lnet/minecraft/unmapped/C_8593502;	f_0751789		f_0751789
+	f	Lnet/minecraft/unmapped/C_8593502;	f_0751789		menu
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	<init>	<init>	
 		p	1		player	
 	m	(Lnet/minecraft/unmapped/C_5818647;[Lnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			inventory
+		p	2			craftingSlots
 c	net/minecraft/unmapped/C_3476247
-	f	Lnet/minecraft/unmapped/C_2454309;	f_7837512	stack	
-	f	I	f_4540574		f_4540574
+	f	Lnet/minecraft/unmapped/C_2454309;	f_7837512	itemInHand	
+	f	I	f_4540574		item
 	m	(IIIILnet/minecraft/unmapped/C_2454309;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		face	
+		p	5		itemInHand	
 	m	(IIIII)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			face
+		p	5			item
 c	net/minecraft/unmapped/C_3499589
 	f	[Ljava/lang/Object;	f_6970763	disconnectReasonArgs	
-	f	I	f_0173214	packetDelay	
-		c	Delay in milliseconds before a packet can be sent.	
-	m	(Ljava/lang/String;[Ljava/lang/Object;)V	m_9836561	disconnect	
+	f	I	f_0173214	lag	
+		c	Time in milliseconds before a packet is sent.	
+	m	(Ljava/lang/String;[Ljava/lang/Object;)V	m_9836561	close	
 		p	1		reason	
 		p	2		args	
-	m	(Ljava/lang/String;)V	m_9836561		disconnect
-		p	1			p_1
+	m	(Ljava/lang/String;)V	m_9836561		close
+		p	1			reason
 c	net/minecraft/unmapped/C_3556133	net/minecraft/inventory/menu/InventoryMenuListener	
 	m	(Lnet/minecraft/unmapped/C_6306298;ILnet/minecraft/unmapped/C_2454309;)V	m_9323987	onSlotChanged	
 		p	1		menu	
-		p	2		id	
-		p	3		stack	
+		p	2		slot	
+		p	3		item	
 	m	(Lnet/minecraft/unmapped/C_6306298;II)V	m_4807161	onDataChanged	
 		p	1		menu	
 		p	2		id	
@@ -293,10 +293,10 @@ c	net/minecraft/unmapped/C_3755722
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3755722;	m_0269775	setKey	
 		p	1		key	
 	m	()Ljava/lang/String;	m_8870654	getTranslationKey	
-c	net/minecraft/unmapped/C_4242413	net/minecraft/network/packet/MenuSlotUpdatePacket	
+c	net/minecraft/unmapped/C_4242413	net/minecraft/network/packet/InventoryMenuSlotContentPacket	
 	f	I	f_5214619	menuId	
-	f	I	f_4521711	slotId	
-	f	Lnet/minecraft/unmapped/C_2454309;	f_1774294	stack	
+	f	I	f_4521711	slot	
+	f	Lnet/minecraft/unmapped/C_2454309;	f_1774294	item	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666	m_7216666	
 		p	1		p_1	
@@ -311,8 +311,8 @@ c	net/minecraft/unmapped/C_4689255	net/minecraft/inventory/menu/FurnaceMenu
 	f	I	f_3055574	fuelTime	
 	f	I	f_1143058	totalFuelTime	
 	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_4808571;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		playerInventory	
+		p	2		furnace	
 	m	()V	m_2689257	m_2689257	
 	m	(II)V	m_1703987	m_1703987	
 		p	1		p_1	
@@ -334,18 +334,18 @@ c	net/minecraft/unmapped/C_5217418
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_7523250	m_7523250	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_6676768;II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			menu
+		p	2			width
+		p	3			height
 	m	(Lnet/minecraft/unmapped/C_6676768;[Lnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			menu
+		p	2			items
 c	net/minecraft/unmapped/C_5385258
 	f	J	f_6358029	creationTime	
 c	net/minecraft/unmapped/C_5509210	net/minecraft/network/packet/EntityEquipmentPacket	
 	f	I	f_0515401	id	
-	f	I	f_1178594	equipmentSlot	
-	f	I	f_6592098	itemId	
+	f	I	f_1178594	slot	
+	f	I	f_6592098	item	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
@@ -363,24 +363,24 @@ c	net/minecraft/unmapped/C_5571887
 	f	Lnet/minecraft/unmapped/C_0915802;	f_4850872	option	
 	f	I	f_4850872		option
 	m	(IIILnet/minecraft/unmapped/C_0915802;Ljava/lang/String;F)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		id	
+		p	2		x	
+		p	3		y	
+		p	4		option	
+		p	5		message	
+		p	6		value	
 	m	(IIIILjava/lang/String;F)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			id
+		p	2			x
+		p	3			y
+		p	4			option
+		p	5			message
+		p	6			value
 c	net/minecraft/unmapped/C_5596610	net/minecraft/inventory/menu/ChestMenu	
-	f	Lnet/minecraft/unmapped/C_5818647;	f_4152907	chest	
+	f	Lnet/minecraft/unmapped/C_5818647;	f_4152907	inventory	
 	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_5818647;)V	<init>	<init>	
-		p	1		chest	
-		p	2		playerInventory	
+		p	1		playerInventory	
+		p	2		inventory	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_3822211	m_3822211	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_5714220
@@ -408,7 +408,7 @@ c	net/minecraft/unmapped/C_5818647
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_7523250	isValid	
 		p	1		player	
 c	net/minecraft/unmapped/C_5956487
-	m	(IIILnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_5962613	clickSlot	
+	m	(IIILnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_5962613	m_5962613	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -417,19 +417,19 @@ c	net/minecraft/unmapped/C_5956487
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_6013256
-	f	Lnet/minecraft/unmapped/C_7400754;	f_6076566		f_6076566
+	f	Lnet/minecraft/unmapped/C_7400754;	f_6076566		sentInventory
 	m	()V	m_0699542	m_0699542	
-	m	()V	m_9400309	m_9400309	
+	m	()V	m_9400309	sendInventory	
 	m	()V	m_9043205	m_9043205	
-	m	()V	m_0825697		m_0825697
+	m	()V	m_0825697		sendInventory
 c	net/minecraft/unmapped/C_6106967	net/minecraft/inventory/InventoryListener	
 	m	(Lnet/minecraft/unmapped/C_2810918;)V	m_0825880	onInventoryChanged	
 		p	1		inventory	
 c	net/minecraft/unmapped/C_6306298	net/minecraft/inventory/menu/InventoryMenu	
-	f	Ljava/util/List;	f_2821281	stacks	
+	f	Ljava/util/List;	f_2821281	items	
 	f	Ljava/util/List;	f_4272064	slots	
 	f	I	f_2081509	networkId	
-	f	S	f_7986051	nextActionNetworkId	
+	f	S	f_7986051	nextInteractionId	
 	f	Ljava/util/List;	f_0321065	listeners	
 	f	Ljava/util/Set;	f_9362778	restrictedPlayers	
 	m	()V	<init>	<init>	
@@ -437,34 +437,35 @@ c	net/minecraft/unmapped/C_6306298	net/minecraft/inventory/menu/InventoryMenu
 		p	1		slot	
 	m	()V	m_2689257	updateListeners	
 	m	(I)Lnet/minecraft/unmapped/C_2711798;	m_9339183	getSlot	
-		p	1		id	
+		p	1		slot	
 	m	(IILnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_6198367	onClickSlot	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		slot	
+		p	2		button	
+		p	3		player	
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_8155886	close	
 		p	1		player	
-	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_4452870	onContentChanged	
+	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_4452870	onContentsChanged	
 		p	1		inventory	
-	m	(ILnet/minecraft/unmapped/C_2454309;)V	m_2816267	setStack	
-		p	1		id	
-		p	2		stack	
-	m	([Lnet/minecraft/unmapped/C_2454309;)V	m_5945247	setStacks	
-		p	1		stacks	
+	m	(ILnet/minecraft/unmapped/C_2454309;)V	m_2816267	setItem	
+		p	1		slot	
+		p	2		item	
+	m	([Lnet/minecraft/unmapped/C_2454309;)V	m_5945247	setItems	
+		p	1		items	
 	m	(II)V	m_1703987	setData	
 		p	1		id	
 		p	2		value	
-	m	(Lnet/minecraft/unmapped/C_7400754;)S	m_3488828	getNextActionNetworkId	
+	m	(Lnet/minecraft/unmapped/C_7400754;)S	m_3488828	nextInteractionId	
 		p	1		inventory	
-	m	(S)V	m_1237578	m_1237578	
-		p	1		p_1	
-	m	(S)V	m_6319470	m_6319470	
-		p	1		p_1	
+	m	(S)V	m_1237578	deleteBackup	
+		p	1		id	
+	m	(S)V	m_6319470	rollbackToBackup	
+		p	1		id	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_3822211	isValid	
 		p	1		player	
-c	net/minecraft/unmapped/C_6626902
+c	net/minecraft/unmapped/C_6626902	net/minecraft/inventory/menu/PlayerMenu__6626902	net/minecraft/client/gui/screen/inventory/menu/SurvivalInventoryScreen__6626902
 	f	Lnet/minecraft/unmapped/C_9482064;	f_8658192	parent	
-	f	Lnet/minecraft/unmapped/C_3342272;	f_8658192		parent
+	f	Lnet/minecraft/unmapped/C_3342272;	f_8658192		f_8658192
+	f	I	f_6911632	parentCurrentInt	f_6911632
 	m	(Lnet/minecraft/unmapped/C_9482064;Lnet/minecraft/unmapped/C_5818647;IIII)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -491,17 +492,17 @@ c	net/minecraft/unmapped/C_6682111
 		p	5		p_5	
 		p	6		p_6	
 	m	(IIILnet/minecraft/unmapped/C_0915802;Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		id	
+		p	2		x	
+		p	3		y	
+		p	4		option	
+		p	5		message	
 	m	()Lnet/minecraft/unmapped/C_0915802;	m_1023401	getOption	
 c	net/minecraft/unmapped/C_6721637	net/minecraft/entity/projectile/EggEntity	
 	f	I	f_7974962	blockX	
 	f	I	f_7941944	blockY	
 	f	I	f_9526975	blockZ	
-	f	I	f_5335315	blockId	
+	f	I	f_5335315	block	
 	f	Z	f_3294350	inGround	
 	f	I	f_9421376	shake	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_0747785	thrower	
@@ -512,19 +513,19 @@ c	net/minecraft/unmapped/C_6721637	net/minecraft/entity/projectile/EggEntity
 	m	(D)Z	m_4981405	m_4981405	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		world	
+		p	2		thrower	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
-	m	(DDDFF)V	m_4522800	m_4522800	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
+	m	(DDDFF)V	m_4522800	thrown	
+		p	1		velocityX	
+		p	3		velocityY	
+		p	5		velocityZ	
+		p	7		power	
+		p	8		variance	
 	m	(DDD)V	m_4212338	m_4212338	
 		p	1		p_1	
 		p	3		p_3	
@@ -547,62 +548,66 @@ c	net/minecraft/unmapped/C_7250084
 		p	2		args	
 	m	(Lnet/minecraft/unmapped/C_8915528;)V	m_5571191	handleSelectSlot	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_8731920;)V	m_4969638	handleOpenMenu	
+	m	(Lnet/minecraft/unmapped/C_8731920;)V	m_4969638	handleOpenInventoryMenu	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_8804126;)V	m_8195729	handleCloseMenu	
+	m	(Lnet/minecraft/unmapped/C_8804126;)V	m_8195729	handleCloseInventoryMenu	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_9663005;)V	m_5991620	handleMenuClickSlot	
+	m	(Lnet/minecraft/unmapped/C_9663005;)V	m_5991620	handleInventoryMenuClickSlot	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_4242413;)V	m_8326508	handleMenuSlotUpdate	
+	m	(Lnet/minecraft/unmapped/C_4242413;)V	m_8326508	handleInventoryMenuSlotContent	
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_5509210;)V	m_3793497	handleEntityEquipment	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_2183633;)V	m_6598026	handleConfirmMenuAction	
+	m	(Lnet/minecraft/unmapped/C_2183633;)V	m_6598026	handleInventoryMenuConfirm	
 		p	1		packet	
 	m	(Ljava/lang/String;)V	m_9470147		onDisconnect
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_8423495;)V	m_5571191		handleSelectSlot
-		p	1			p_1
+		p	1			reason
+	m	(Lnet/minecraft/unmapped/C_8423495;)V	m_5571191		handlePlayerHeldItem
+		p	1			packet
+	m	(Lnet/minecraft/unmapped/C_8100953;)V	m_7381476	handleInventoryMenuContent	handlePlayerInventory
+	m	(Lnet/minecraft/unmapped/C_4320303;)V	m_2457836	handleInventoryMenuData	handleItemPickup
+	m	(Lnet/minecraft/unmapped/C_2999845;)V	m_7917741	handleSignBlockEntityUpdate	handleBlockEntityUpdate
 c	net/minecraft/unmapped/C_7400754
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_7351377		f_7351377
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2642844	setCursorStack	
-		p	1		stack	
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_6047712	getCursorStack	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_7351377		crafting
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2642844	setCursorItem	
+		p	1		item	
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_6047712	getCursorItem	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_7523250	m_7523250	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_7400754;)Z	m_4496667		m_4496667
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_2454309;)Z	m_0170089		m_0170089
-		p	1			p_1
-		p	2			p_2
-	m	()Lnet/minecraft/unmapped/C_7400754;	m_6548764		m_6548764
+	m	(Lnet/minecraft/unmapped/C_7400754;)Z	m_4496667		contentEquals
+		p	1			other
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_2454309;)Z	m_0170089		itemsEqual
+		p	1			item1
+		p	2			item2
+	m	()Lnet/minecraft/unmapped/C_7400754;	m_6548764		copy
 c	net/minecraft/unmapped/C_7873567
-	f	Z	f_8529205		f_8529205
+	f	Z	f_8529205		noSendingBlockEntityUpdates
 	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_0572533		m_0572533
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_7887747
-	m	([B)Lnet/minecraft/unmapped/C_2018497;	m_2711055		m_2711055
-		p	0			p_0
-	m	(Lnet/minecraft/unmapped/C_2018497;)[B	m_1104048		m_1104048
-		p	0			p_0
+	m	([B)Lnet/minecraft/unmapped/C_2018497;	m_2711055		readCompressed
+		p	0			data
+	m	(Lnet/minecraft/unmapped/C_2018497;)[B	m_1104048		writeCompressed
+		p	0			nbt
 c	net/minecraft/unmapped/C_7952195
 	m	(IIILnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_5962613	clickSlot	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		menuId	
+		p	2		slot	
+		p	3		button	
+		p	4		player	
 	m	(ILnet/minecraft/unmapped/C_9590849;)V	m_3697196	closeMenu	
 		p	1		menuId	
 		p	2		player	
-c	net/minecraft/unmapped/C_8100953
+c	net/minecraft/unmapped/C_8100953	net/minecraft/network/packet/InventoryMenuContentPacket	net/minecraft/network/packet/PlayerInventoryPacket
+	f	I	f_5133386	menuId	type
 	m	(I[Lnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			type
+		p	2			items
 c	net/minecraft/unmapped/C_8620458
-	f	I	f_1988036		f_1988036
+	f	I	f_1988036		updatesThisTick
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_9913522	checkNearestLog	
 		c	Check if there is a log at the expected position given the metadata of the leaves.\nThe leaves' metadata encodes the direction in which the nearest log can be found.	
 		p	1		world	
@@ -617,26 +622,26 @@ c	net/minecraft/unmapped/C_8620458
 		p	4		z	
 		p	5		range	
 		p	6		dir	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3403964		m_3403964
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8049436		m_8049436
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_4897786		m_4897786
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-c	net/minecraft/unmapped/C_8731920	net/minecraft/network/packet/OpenMenuPacket	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3403964		updateNeighborLogProximity
+		p	1			world
+		p	2			neighborX
+		p	3			neighborY
+		p	4			neighborZ
+		p	5			proximity
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8049436		updateLogProximity
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_4897786		getLogProximity
+		p	1			world
+		p	2			neighborX
+		p	3			neighborY
+		p	4			neighborZ
+		p	5			proximity
+c	net/minecraft/unmapped/C_8731920	net/minecraft/network/packet/OpenInventoryMenuPacket	
 	f	I	f_0032017	menuId	
-	f	I	f_2155112	menuType	
+	f	I	f_2155112	type	
 		c	The type of inventory menu. The possible values are:\n<br>0: container (e.g. chest)\n<br>1: crafting table\n<br>2: furnace\n<br>3: dispenser\n<br>4: enchanting table\n<br>5: brewing stand\n<br>6: trader (i.e. villager)\n<br>7: beacon\n<br>8: anvil\n<br>9: hopper\n<br>10: dropper\n<br>11: horse with chest	
 	f	Ljava/lang/String;	f_3623730	displayName	
 	f	I	f_0691625	size	
@@ -648,7 +653,7 @@ c	net/minecraft/unmapped/C_8731920	net/minecraft/network/packet/OpenMenuPacket
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
-c	net/minecraft/unmapped/C_8804126	net/minecraft/network/packet/CloseMenuPacket	
+c	net/minecraft/unmapped/C_8804126	net/minecraft/network/packet/CloseInventoryMenuPacket	
 	f	I	f_4941850	id	
 	m	()V	<init>	<init>	
 	m	(I)V	<init>	<init>	
@@ -660,15 +665,15 @@ c	net/minecraft/unmapped/C_8804126	net/minecraft/network/packet/CloseMenuPacket
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
-c	net/minecraft/unmapped/C_8876491
-	m	(Lnet/minecraft/unmapped/C_3366538;DDDFF)V	m_3992255	render	
+c	net/minecraft/unmapped/C_8876491	net/minecraft/client/render/entity/FireballRenderer	net/minecraft/client/render/entity/SnowballRenderer
+	m	(Lnet/minecraft/unmapped/C_3366538;DDDFF)V	m_3992255	m_3992255	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	6		p_6	
 		p	8		p_8	
 		p	9		p_9	
-	m	(Lnet/minecraft/unmapped/C_0963252;DDDFF)V	m_3992255		render
+	m	(Lnet/minecraft/unmapped/C_0963252;DDDFF)V	m_3992255		m_3992255
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
@@ -687,35 +692,35 @@ c	net/minecraft/unmapped/C_8915528	net/minecraft/network/packet/SelectSlotPacket
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666	m_7216666	
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
-c	net/minecraft/unmapped/C_8975022	net/minecraft/client/options/GameOptions__1	
+c	net/minecraft/unmapped/C_8975022	net/minecraft/client/options/GameOptions__8975022	
 	f	[I	f_3530304	f_3530304	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_8980628
 	m	(Ljava/lang/String;Ljava/lang/String;)Z	m_5786061	bindHttpTexture	
-		p	1		path	
-		p	2		defaultPath	
+		p	1		url	
+		p	2		backup	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	m_5786061		bindHttpTexture
-		p	1			p_1
-		p	2			p_2
+		p	1			url
+		p	2			backup
 c	net/minecraft/unmapped/C_9441491
-	f	Lnet/minecraft/unmapped/C_0519776;	f_5256776		f_5256776
+	f	Lnet/minecraft/unmapped/C_0519776;	f_5256776		menu
 	m	(Lnet/minecraft/unmapped/C_7400754;Lnet/minecraft/unmapped/C_5553933;III)V	<init>	<init>	
-		p	1		inventory	
+		p	1		playerInventory	
 		p	2		world	
 		p	3		x	
 		p	4		y	
 		p	5		z	
 	m	(Lnet/minecraft/unmapped/C_7400754;)V	<init>		<init>
-		p	1			p_1
+		p	1			playerInventory
 c	net/minecraft/unmapped/C_9482064	net/minecraft/inventory/menu/PlayerMenu	
 	f	Lnet/minecraft/unmapped/C_5217418;	f_2746177	craftingInventory	
 	f	Lnet/minecraft/unmapped/C_5818647;	f_2652402	resultInventory	
-	f	Z	f_4937661	isServer	
+	f	Z	f_4937661	active	
 	m	(Lnet/minecraft/unmapped/C_7400754;)V	<init>	<init>	
 		p	1		inventory	
 	m	(Lnet/minecraft/unmapped/C_7400754;Z)V	<init>	<init>	
 		p	1		inventory	
-		p	2		isServer	
+		p	2		active	
 	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_4452870	m_4452870	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_8155886	m_8155886	
@@ -728,11 +733,11 @@ c	net/minecraft/unmapped/C_9482745
 c	net/minecraft/unmapped/C_9546418	net/minecraft/inventory/slot/CraftingResultSlot	
 	f	Lnet/minecraft/unmapped/C_5818647;	f_5933378	craftingInventory	
 	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_5818647;III)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		craftingInventory	
+		p	2		resultInventory	
+		p	3		id	
+		p	4		x	
+		p	5		y	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3397298	m_3397298	
 		p	1		p_1	
 	m	()V	m_1468841	m_1468841	
@@ -754,38 +759,38 @@ c	net/minecraft/unmapped/C_9590849
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_6827329	m_6827329	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_6827329	onCursorItemChanged	
+		p	1		item	
 	m	()V	m_3247694	m_3247694	
-	m	()V	m_3722722		m_3722722
+	m	()V	m_3722722		openCraftingMenu
 c	net/minecraft/unmapped/C_9639106
 	f	Lnet/minecraft/unmapped/C_6306298;	f_1320343	menu	
-	f	Ljava/util/List;	f_1320343		menu
+	f	Ljava/util/List;	f_1320343		menuSlots
 	m	(Lnet/minecraft/unmapped/C_6306298;)V	<init>	<init>	
 		p	1		menu	
 	m	()V	m_3593494	m_3593494	
-	m	(Lnet/minecraft/unmapped/C_2711798;)V	m_4259029	drawSlot	
-		p	1		invSlot	
+	m	(Lnet/minecraft/unmapped/C_2711798;)V	m_4259029	renderSlot	
+		p	1		slot	
 	m	(Lnet/minecraft/unmapped/C_2711798;II)Z	m_3419545	isMouseOverSlot	
-		p	1		invSlot	
+		p	1		slot	
 		p	2		mouseX	
 		p	3		mouseY	
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_0350299;)V	m_4259029		drawSlot
-		p	1			p_1
-c	net/minecraft/unmapped/C_9663005	net/minecraft/network/packet/MenuClickSlotPacket	
+	m	(Lnet/minecraft/unmapped/C_0350299;)V	m_4259029		renderSlot
+		p	1			slot
+c	net/minecraft/unmapped/C_9663005	net/minecraft/network/packet/InventoryMenuClickSlotPacket	
 	f	I	f_3645835	menuId	
-	f	I	f_8832886	slotId	
+	f	I	f_8832886	slot	
 	f	I	f_5557630	clickData	
-	f	S	f_6686096	actionId	
-	f	Lnet/minecraft/unmapped/C_2454309;	f_2070428	stack	
+	f	S	f_6686096	interactionId	
+	f	Lnet/minecraft/unmapped/C_2454309;	f_2070428	item	
 	m	()V	<init>	<init>	
 	m	(IIILnet/minecraft/unmapped/C_2454309;S)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		menuId	
+		p	2		slotId	
+		p	3		clickData	
+		p	4		item	
+		p	5		interactionId	
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666	m_7216666	
 		p	1		p_1	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
@@ -793,53 +798,53 @@ c	net/minecraft/unmapped/C_9663005	net/minecraft/network/packet/MenuClickSlotPac
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
-c	net/minecraft/unmapped/C_0350299		net/minecraft/unmapped/C_0350299
-	f	Lnet/minecraft/unmapped/C_9639106;	f_8759901		f_8759901
-	f	I	f_3014574		f_3014574
-	f	I	f_5144866		f_5144866
+c	net/minecraft/unmapped/C_0350299		net/minecraft/client/gui/screen/inventory/menu/InventoryMenuSlot
+	f	Lnet/minecraft/unmapped/C_9639106;	f_8759901		menuScreen
+	f	I	f_3014574		x
+	f	I	f_5144866		y
 	m	(Lnet/minecraft/unmapped/C_9639106;Lnet/minecraft/unmapped/C_5818647;III)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(II)Z	m_7140626		m_7140626
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_0519776		net/minecraft/unmapped/C_0519776
-	f	Lnet/minecraft/unmapped/C_5217418;	f_7385352		f_7385352
-	f	Lnet/minecraft/unmapped/C_5818647;	f_8339988		f_8339988
+		p	1			menuScreen
+		p	2			inventory
+		p	3			id
+		p	4			x
+		p	5			y
+	m	(II)Z	m_7140626		mouseClicked
+		p	1			mouseX
+		p	2			mouseY
+c	net/minecraft/unmapped/C_0519776		net/minecraft/client/gui/screen/inventory/menu/CraftingTableMenu
+	f	Lnet/minecraft/unmapped/C_5217418;	f_7385352		inventory
+	f	Lnet/minecraft/unmapped/C_5818647;	f_8339988		resultInventory
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_7448225		m_7448225
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_0166710		m_0166710
 		p	1			p_1
-c	net/minecraft/unmapped/C_4065940		net/minecraft/unmapped/C_4065940
-	f	Lnet/minecraft/unmapped/C_5818647;	f_2887743		f_2887743
+c	net/minecraft/unmapped/C_4065940		net/minecraft/client/gui/screen/inventory/menu/CraftingResultSlot
+	f	Lnet/minecraft/unmapped/C_5818647;	f_2887743		craftingInventory
 	m	(Lnet/minecraft/unmapped/C_9639106;Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_5818647;III)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			screen
+		p	2			craftingInventory
+		p	3			inventory
+		p	4			id
+		p	5			x
+		p	6			y
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3397298		m_3397298
 		p	1			p_1
 	m	()V	m_1468841		m_1468841
-c	net/minecraft/unmapped/C_6676768		net/minecraft/unmapped/C_6676768
+c	net/minecraft/unmapped/C_6676768		net/minecraft/client/gui/screen/inventory/menu/InventoryMenu
 	f	Ljava/util/List;	f_5994600		f_5994600
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_0166710		m_0166710
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_7448225		m_7448225
-		p	1			p_1
-c	net/minecraft/unmapped/C_8423495		net/minecraft/unmapped/C_8423495
-	f	I	f_6980188		f_6980188
-	f	I	f_8218473		f_8218473
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_0166710		close
+		p	1			player
+	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_7448225		onContentsChanged
+		p	1			inventory
+c	net/minecraft/unmapped/C_8423495		net/minecraft/network/packet/PlayerHeldItemPacket
+	f	I	f_6980188		id
+	f	I	f_8218473		item
 	m	()V	<init>		<init>
 	m	(II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			id
+		p	2			item
 	m	(Ljava/io/DataInputStream;)V	m_4792371		m_4792371
 		p	1			p_1
 	m	(Ljava/io/DataOutputStream;)V	m_6110406		m_6110406
@@ -847,27 +852,16 @@ c	net/minecraft/unmapped/C_8423495		net/minecraft/unmapped/C_8423495
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666		m_7216666
 		p	1			p_1
 	m	()I	m_4040470		m_4040470
-c	net/minecraft/unmapped/C_8593502		net/minecraft/unmapped/C_8593502
-	f	Lnet/minecraft/unmapped/C_5217418;	f_4487339		f_4487339
-	f	Lnet/minecraft/unmapped/C_5818647;	f_6012367		f_6012367
+c	net/minecraft/unmapped/C_8593502		net/minecraft/client/gui/screen/inventory/menu/PlayerMenu
+	f	Lnet/minecraft/unmapped/C_5217418;	f_4487339		craftingInventory
+	f	Lnet/minecraft/unmapped/C_5818647;	f_6012367		resultInventory
 	m	([Lnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			p_1
+		p	1			items
 	m	(Lnet/minecraft/unmapped/C_5818647;)V	m_7448225		m_7448225
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_0166710		m_0166710
 		p	1			p_1
-c	net/minecraft/unmapped/C_4553622	net/minecraft/network/Connection__3	net/minecraft/network/RemoteConnection__2
-c	net/minecraft/unmapped/C_5510478	net/minecraft/network/Connection__2	net/minecraft/network/RemoteConnection__1
-c	net/minecraft/unmapped/C_6529692	net/minecraft/network/Connection__1	net/minecraft/network/RemoteConnection__3
-c	net/minecraft/unmapped/C_7961705	net/minecraft/block/Block__2	net/minecraft/block/Block__1
-c	net/minecraft/unmapped/C_9895803	net/minecraft/block/Block__1	net/minecraft/block/Block__2
-c	net/minecraft/unmapped/C_2950556	net/minecraft/client/MinecraftApplet__2	net/minecraft/unmapped/C_2950556
-c	net/minecraft/unmapped/C_3987516	net/minecraft/client/Minecraft__1	net/minecraft/unmapped/C_3987516
-c	net/minecraft/unmapped/C_6812394	net/minecraft/client/MinecraftApplet__1	net/minecraft/unmapped/C_6812394
-c	net/minecraft/unmapped/C_7007471	net/minecraft/client/crash/CrashPanel__C_7007471	net/minecraft/unmapped/C_7007471
-c	net/minecraft/unmapped/C_8053256	net/minecraft/client/Minecraft__2	net/minecraft/unmapped/C_8053256
-c	net/minecraft/unmapped/C_9690984	net/minecraft/client/Minecraft__3	net/minecraft/unmapped/C_9690984
-c	net/minecraft/unmapped/C_2611543	net/minecraft/client/Minecraft__4	net/minecraft/unmapped/C_2611543
-c	net/minecraft/unmapped/C_0266497	net/minecraft/client/MinecraftCanvas__3	net/minecraft/unmapped/C_0266497
-c	net/minecraft/unmapped/C_1351724	net/minecraft/client/MinecraftCanvas__1	net/minecraft/unmapped/C_1351724
-c	net/minecraft/unmapped/C_5870897	net/minecraft/client/MinecraftCanvas__2	net/minecraft/unmapped/C_5870897
+c	net/minecraft/unmapped/C_4320303	net/minecraft/network/packet/InventoryMenuDataPacket	net/minecraft/network/packet/ItemPickupPacket
+	f	I	f_8128619	menuId	id
+	f	I	f_9907227	dataId	count
+	f	I	f_8151759	value	metadata

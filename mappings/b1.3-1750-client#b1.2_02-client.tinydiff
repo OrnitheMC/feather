@@ -3,14 +3,14 @@ c	net/minecraft/client/Minecraft
 	f	Lnet/minecraft/client/Minecraft;	f_7951283	INSTANCE	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_2096674	camera	
 	f	Lnet/minecraft/unmapped/C_5478016;	f_3063307	worldStorageSource	
-	f	Ljava/lang/String;	f_4031610		f_4031610
-	f	I	f_3447210		f_3447210
+	f	Ljava/lang/String;	f_4031610		loadmapUser
+	f	I	f_3447210		loadmapId
 	m	()Lnet/minecraft/unmapped/C_5478016;	m_5293485	getWorldStorageSource	
 	m	(Ljava/lang/String;Ljava/lang/String;J)V	m_5272083	startGame	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_0997363	convertWorld	
+		p	1		saveName	
+		p	2		name	
+		p	3		seed	
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_0997363	convertWorldAndStartGame	
 		p	1		saveName	
 		p	2		name	
 	m	()Z	m_2642237	isDisplayGui	
@@ -20,16 +20,16 @@ c	net/minecraft/client/Minecraft
 	m	(Ljava/lang/String;)Z	m_8644291	isIllegalChatMessage	
 		p	1		message	
 	m	(Ljava/lang/String;)V	m_5272083		startGame
-		p	1			p_1
-c	net/minecraft/unmapped/C_0162482	net/minecraft/unmapped/C_0162482	
-	f	I	f_2822243	f_2822243	
-	f	J	f_6288074	f_6288074	
+		p	1			saveName
+c	net/minecraft/unmapped/C_0162482	net/minecraft/network/packet/Packet__Tracker	
+	f	I	f_2822243	count	
+	f	J	f_6288074	size	
 	m	()V	<init>	<init>	
-	m	(I)V	m_3324686	m_3324686	
-		p	1		p_1	
+	m	(I)V	m_3324686	update	
+		p	1		size	
 	m	(Lnet/minecraft/unmapped/C_1981412;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_0183907	net/minecraft/client/gui/screen/TexturePackScreen__TexturePackList	
+c	net/minecraft/unmapped/C_0183907	net/minecraft/client/gui/screen/TexturePacksScreen__TexturePackList	
 	f	Lnet/minecraft/unmapped/C_2131741;	f_4093489	f_4093489	
 	m	(Lnet/minecraft/unmapped/C_2131741;)V	<init>	<init>	
 		p	1		p_1	
@@ -74,7 +74,7 @@ c	net/minecraft/unmapped/C_0281639	net/minecraft/world/storage/AlphaWorldStorage
 		p	2		name	
 		p	3		createPlayerDataDir	
 	m	()V	m_3464405	writeSessionLock	
-	m	()Ljava/io/File;	m_5319974	getDir	
+	m	()Ljava/io/File;	m_5319974	getDirectory	
 	m	()V	m_8310025	m_8310025	
 	m	(Lnet/minecraft/unmapped/C_3198459;)Lnet/minecraft/unmapped/C_3015672;	m_6737332	m_6737332	
 		p	1		p_1	
@@ -146,7 +146,7 @@ c	net/minecraft/unmapped/C_1023567
 	m	()V	m_5422640	m_5422640	
 	m	(Ljava/lang/String;)V	m_9290236	m_9290236	
 		p	1		p_1	
-	m	()V	m_3456363		m_3456363
+	m	()V	m_3456363		beforeTick
 c	net/minecraft/unmapped/C_1214754
 	m	()V	m_0432621	m_0432621	
 	m	()V	m_5422640	m_5422640	
@@ -156,8 +156,8 @@ c	net/minecraft/unmapped/C_1241852
 	m	()Z	m_6626541		isTranslucent
 c	net/minecraft/unmapped/C_1331819
 	f	Z	f_7400378	ambientOcclusion	
-	f	Z	f_8058174	hudEnabled	
-	f	Z	f_0893418	debugProfilerEnabled	
+	f	Z	f_8058174	hideGui	
+	f	Z	f_0893418	debugEnabled	
 	f	Z	f_4516605	discreteScroll	
 	f	Z	f_4083654	smoothCamera	
 	f	Z	f_8726358	debugCamera	
@@ -170,21 +170,21 @@ c	net/minecraft/unmapped/C_1441789
 	f	Ljava/lang/String;	f_3134505	confirmText	
 	f	Ljava/lang/String;	f_6032117	abortText	
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V	<init>	<init>	
-		p	1		parent	
+		p	1		listener	
 		p	2		title	
 		p	3		description	
 		p	4		confirmText	
 		p	5		abortText	
 		p	6		id	
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;Ljava/lang/String;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			parent
+		p	2			title
+		p	3			description
+		p	4			id
 c	net/minecraft/unmapped/C_1860331
 	f	[Lnet/minecraft/unmapped/C_0915802;	f_4605434	RENDER_OPTIONS	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_1981412	net/minecraft/network/packet/Packet__1	
+c	net/minecraft/unmapped/C_1981412	net/minecraft/network/packet/Packet__1981412	
 c	net/minecraft/unmapped/C_2085240	net/minecraft/world/chunk/storage/RegionFile__ChunkOutputStream	
 	f	I	f_0677921	chunkX	
 	f	I	f_9424464	chunkZ	
@@ -196,12 +196,12 @@ c	net/minecraft/unmapped/C_2085240	net/minecraft/world/chunk/storage/RegionFile_
 	m	()V	close	close	
 c	net/minecraft/unmapped/C_2131741
 	f	Lnet/minecraft/unmapped/C_0183907;	f_7057284	texturePacks	
-	f	I	f_6937333		f_6937333
-	f	I	f_6660084		f_6660084
-	f	I	f_4427564		f_4427564
-	f	I	f_1385039		f_1385039
-	f	I	f_4064823		f_4064823
-	f	I	f_2912781		f_2912781
+	f	I	f_6937333		lastY
+	f	I	f_6660084		minY
+	f	I	f_4427564		maxY
+	f	I	f_1385039		minX
+	f	I	f_4064823		maxX
+	f	I	f_2912781		draggingY
 	m	(Lnet/minecraft/unmapped/C_2131741;)Lnet/minecraft/client/Minecraft;	m_1844425	m_1844425	
 		p	0		p_0	
 	m	(Lnet/minecraft/unmapped/C_2131741;)Lnet/minecraft/client/Minecraft;	m_1780997	m_1780997	
@@ -226,14 +226,14 @@ c	net/minecraft/unmapped/C_2131741
 		p	0		p_0	
 	m	(Lnet/minecraft/unmapped/C_2131741;)Lnet/minecraft/unmapped/C_3831727;	m_6124896	m_6124896	
 		p	0		p_0	
-	m	(IIII)V	m_9591241		m_9591241
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(IIII)V	m_9591241		renderHoleBackground
+		p	1			minY
+		p	2			maxY
+		p	3			bottomAlpha
+		p	4			topAlpha
 c	net/minecraft/unmapped/C_2144954
 	f	[Ljava/lang/Class;	f_5422681	MONSTER_TYPES	
-	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;)Z	m_6540563	spawnMonstersAndWakePlayers	
+	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;)Z	m_6540563	spawnMonstersAndWakeUpPlayers	
 		p	0		world	
 		p	1		players	
 c	net/minecraft/unmapped/C_2207032	net/minecraft/world/storage/AlphaWorldStorageSource	
@@ -274,23 +274,23 @@ c	net/minecraft/unmapped/C_2226122	net/minecraft/world/storage/RegionWorldStorag
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_3893367;)Z	m_1146771	m_1146771	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Ljava/io/File;Ljava/util/ArrayList;Ljava/util/ArrayList;)V	m_8129461	collectData	
+	m	(Ljava/io/File;Ljava/util/ArrayList;Ljava/util/ArrayList;)V	m_8129461	collectAlphaChunkFiles	
 		p	1		dir	
-		p	2		dimensions	
-		p	3		data	
-	m	(Ljava/io/File;Ljava/util/ArrayList;IILnet/minecraft/unmapped/C_3893367;)V	m_6320299	writeDimensionData	
+		p	2		chunkFiles	
+		p	3		chunkDirectories	
+	m	(Ljava/io/File;Ljava/util/ArrayList;IILnet/minecraft/unmapped/C_3893367;)V	m_6320299	convertAlphaChunksToRegions	
 		p	1		dir	
-		p	2		data	
+		p	2		chunkFiles	
 		p	3		index	
 		p	4		total	
 		p	5		listener	
-	m	(Ljava/util/ArrayList;IILnet/minecraft/unmapped/C_3893367;)V	m_7941757	deleteData	
-		p	1		dir	
+	m	(Ljava/util/ArrayList;IILnet/minecraft/unmapped/C_3893367;)V	m_7941757	deleteAlphaChunkFiles	
+		p	1		chunkDirectories	
 		p	2		index	
 		p	3		total	
 		p	4		listener	
 c	net/minecraft/unmapped/C_2306016
-	m	()Lnet/minecraft/unmapped/C_8180393;	m_6515054	m_6515054	
+	m	()Lnet/minecraft/unmapped/C_8180393;	m_6515054	getLastNode	
 c	net/minecraft/unmapped/C_2457489	net/minecraft/util/math/Facings	
 	f	[I	f_2718822	TO_DIR	
 	f	[I	f_9408285	OPPOSITE	
@@ -311,26 +311,26 @@ c	net/minecraft/unmapped/C_2794365
 		p	2		x	
 		p	4		y	
 		p	6		z	
-		p	8		scaleFactor	
+		p	8		scale	
 		p	9		r	
 		p	10		g	
 		p	11		b	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
+		p	1			world
+		p	2			x
+		p	4			y
+		p	6			z
 	m	(Lnet/minecraft/unmapped/C_5553933;DDDF)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
-c	net/minecraft/unmapped/C_2875689	net/minecraft/world/storage/RegionWorldStorageSource__C_2875689	
+		p	1			world
+		p	2			x
+		p	4			y
+		p	6			z
+		p	8			scale
+c	net/minecraft/unmapped/C_2875689	net/minecraft/world/storage/RegionWorldStorageSource__AlphaChunkDirectoryFilter	
 	f	Ljava/util/regex/Pattern;	f_0642861	PATTERN	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/File;)Z	accept	accept	
-		p	1		f	
+		p	1		file	
 	m	(Lnet/minecraft/unmapped/C_3770828;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
@@ -346,19 +346,19 @@ c	net/minecraft/unmapped/C_2925725	net/minecraft/client/gui/widget/TextFieldWidg
 	f	Z	f_2992813	focused	
 	f	Z	f_3286373	editable	
 	m	(Lnet/minecraft/unmapped/C_3831727;IIIILjava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		textRenderer	
+		p	2		x	
+		p	3		y	
+		p	4		width	
+		p	5		height	
+		p	6		text	
 	m	(Ljava/lang/String;)V	m_1464552	setText	
 		p	1		text	
 	m	()Ljava/lang/String;	m_4862541	getText	
 	m	()V	m_0296611	tick	
 	m	(CI)V	m_1973329	keyPressed	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		chr	
+		p	2		key	
 	m	(III)V	m_1129375	mouseClicked	
 		p	1		mouseX	
 		p	2		mouseY	
@@ -383,8 +383,8 @@ c	net/minecraft/unmapped/C_3015107	net/minecraft/world/chunk/storage/RegionChunk
 	m	()V	m_3669721	m_3669721	
 	m	()V	m_1409064	m_1409064	
 c	net/minecraft/unmapped/C_3198459
-	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_3015672;	m_6041517		m_6041517
-		p	1			p_1
+	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_3015672;	m_6041517		createChunkStorage
+		p	1			dir
 c	net/minecraft/unmapped/C_3216249
 	f	Z	f_1523692	ambientOcclusion	
 		c	ambient occlusion i.e. smooth lighting.	
@@ -405,7 +405,7 @@ c	net/minecraft/unmapped/C_3216249
 	f	F	f_0424769	bottomSouthEastVertexAmbientOcclusionLight	
 	f	F	f_3031153	topNorthWestVertexAmbientOcclusionLight	
 	f	F	f_3217184	topWestEdgeAmbientOcclusionLight	
-	f	F	f_9006704	topSouthWestAmbientOcclusionLight	
+	f	F	f_9006704	topSouthWestVertexAmbientOcclusionLight	
 	f	F	f_4157855	topNorthEdgeAmbientOcclusionLight	
 	f	F	f_0784463	topNorthEastVertexAmbientOcclusionLight	
 	f	F	f_2984957	topEastEdgeAmbientOcclusionLight	
@@ -424,7 +424,7 @@ c	net/minecraft/unmapped/C_3216249
 	f	F	f_4542949	vertex2G	
 	f	F	f_0356970	vertex3G	
 	f	F	f_7465748	vertex4G	
-	f	F	f_9244947	vretex1B	
+	f	F	f_9244947	vertex1B	
 	f	F	f_3309017	vertex2B	
 	f	F	f_4338525	vertex3B	
 	f	F	f_5094651	vertex4B	
@@ -440,17 +440,17 @@ c	net/minecraft/unmapped/C_3216249
 	f	Z	f_8449549	bottomEastEdgeTranslucent	
 	f	Z	f_3116233	bottomWestEdgeTranslucent	
 	f	Z	f_4984294	bottomSouthEdgeTranslucent	
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_3404509	tessellateBed	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_3404509	tesselateBed	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_3691302	tessellateRepeater	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_3691302	tesselateRepeater	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;IIIFFF)Z	m_0777586	tessellateWithMaxAmbientOcclusion	
+	m	(Lnet/minecraft/unmapped/C_1241852;IIIFFF)Z	m_0777586	tesselateWithMaxAmbientOcclusion	
 		p	1		block	
 		p	2		x	
 		p	3		y	
@@ -483,12 +483,12 @@ c	net/minecraft/unmapped/C_3338851	net/minecraft/world/chunk/storage/RegionIo
 			c	the absolute x-coordinate of the chunk	
 		p	2		chunkZ	
 			c	the absolute z-coordinate of the chunk	
-	m	()V	m_8456707	clear	
+	m	()V	m_8456707	flush	
 		c	Closes every region file in the cache, flushing them to the file system.	
-	m	(Ljava/io/File;II)I	m_1389076	m_1389076	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/io/File;II)I	m_1389076	getChunkSize	
+		p	0		worldDir	
+		p	1		chunkX	
+		p	2		chunkZ	
 	m	(Ljava/io/File;II)Ljava/io/DataInputStream;	m_9924761	getChunkInputStream	
 		c	@return an input stream for the specified chunk.	
 		p	0		worldDir	
@@ -510,27 +510,27 @@ c	net/minecraft/unmapped/C_3362006
 	f	Lnet/minecraft/unmapped/C_6607881;	f_2581166	camera	
 	f	Lnet/minecraft/unmapped/C_9590849;	f_2581166		camera
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_1331819;F)V	m_3742790	prepare	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		world	
+		p	2		textureManager	
+		p	3		textRenderer	
+		p	4		camera	
+		p	5		options	
+		p	6		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_1331819;F)V	m_3742790		prepare
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			world
+		p	2			textureManager
+		p	3			textRenderer
+		p	4			camera
+		p	5			options
+		p	6			tickDelta
 c	net/minecraft/unmapped/C_3629466	net/minecraft/client/gui/screen/VideoOptionsScreen	
 	f	Lnet/minecraft/unmapped/C_3020744;	f_2657148	parent	
 	f	Ljava/lang/String;	f_7209881	title	
 	f	Lnet/minecraft/unmapped/C_1331819;	f_3035598	options	
 	f	[Lnet/minecraft/unmapped/C_0915802;	f_1535378	VIDEO_OPTIONS	
 	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_1331819;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		parent	
+		p	2		options	
 	m	()V	m_3593494	m_3593494	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793	m_7971793	
 		p	1		p_1	
@@ -549,16 +549,16 @@ c	net/minecraft/unmapped/C_3674802	net/minecraft/util/math/BlockPos
 		p	2		y	
 		p	3		z	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		pos	
+		p	1		p_1	
 	m	()I	hashCode	hashCode	
 	m	(Lnet/minecraft/unmapped/C_3674802;)I	m_1153077	compareTo	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		pos	
+		p	1		o	
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_4784877	BED	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_5571348	REPEATER	
-c	net/minecraft/unmapped/C_3770828	net/minecraft/world/storage/RegionWorldStorageSource__1	
+c	net/minecraft/unmapped/C_3770828	net/minecraft/world/storage/RegionWorldStorageSource__3770828	
 c	net/minecraft/unmapped/C_3872623	net/minecraft/world/storage/EmptyWorldStorage	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/unmapped/C_6152184;	m_1613201	m_1613201	
@@ -580,15 +580,17 @@ c	net/minecraft/unmapped/C_3940616
 		p	4		camera	
 		p	5		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_9590849;F)V	m_9928184		prepare
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			world
+		p	2			textureManager
+		p	3			textRenderer
+		p	4			camera
+		p	5			tickDelta
 c	net/minecraft/unmapped/C_3988806
 	m	(Lnet/minecraft/unmapped/C_6849228;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2018497;)V	m_5709057
 		p	0		chunk	
-		p	3			p_3
+		p	3			nbt
+		p	1		world	chunk
+		p	2		nbt	world
 c	net/minecraft/unmapped/C_4405393	net/minecraft/world/storage/WorldSaveInfo	
 	f	Ljava/lang/String;	f_9967336	saveName	
 	f	Ljava/lang/String;	f_3611296	name	
@@ -609,7 +611,7 @@ c	net/minecraft/unmapped/C_4405393	net/minecraft/world/storage/WorldSaveInfo
 	m	(Lnet/minecraft/unmapped/C_4405393;)I	m_8091047	compareTo	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		info	
+		p	1		o	
 c	net/minecraft/unmapped/C_4594583	net/minecraft/block/BedBlock	
 	f	[[I	f_9181585	BED_OFFSETS	
 	m	(I)V	<init>	<init>	
@@ -663,15 +665,15 @@ c	net/minecraft/unmapped/C_4594583	net/minecraft/block/BedBlock
 c	net/minecraft/unmapped/C_5185137
 	f	[C	f_4584085	INVALID_FILE_CHARS	
 c	net/minecraft/unmapped/C_5385258
-	f	Ljava/util/HashMap;	f_7540714	f_7540714	
-	f	I	f_6240326	f_6240326	
+	f	Ljava/util/HashMap;	f_7540714	trackers	
+	f	I	f_6240326	incomingCount	
 c	net/minecraft/unmapped/C_5478016	net/minecraft/world/storage/WorldStorageSource	
 	m	()Ljava/lang/String;	m_7075826	getName	
 	m	(Ljava/lang/String;Z)Lnet/minecraft/unmapped/C_5528202;	m_0190283	get	
 		p	1		saveName	
 		p	2		createPlayerDataDir	
 	m	()Ljava/util/List;	m_7840427	getAll	
-	m	()V	m_9169783	clearIo	
+	m	()V	m_9169783	flush	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_6152184;	m_7688776	getData	
 		p	1		saveName	
 	m	(Ljava/lang/String;)V	m_0893658	delete	
@@ -699,15 +701,15 @@ c	net/minecraft/unmapped/C_5553933
 	f	Lnet/minecraft/unmapped/C_6152184;	f_0991863	data	
 	f	Z	f_8691223	allPlayersSleeping	
 	f	J	f_1618367		ticks
-	f	I	f_6988360		spawnpointX
-	f	I	f_9398901		spawnpointY
-	f	I	f_7237409		spawnpointZ
-	f	Ljava/io/File;	f_1707582		f_1707582
-	f	Ljava/io/File;	f_2537859		dir
+	f	I	f_6988360		spawnPointX
+	f	I	f_9398901		spawnPointY
+	f	I	f_7237409		spawnPointZ
+	f	Ljava/io/File;	f_1707582		dir
+	f	Ljava/io/File;	f_2537859		saveDir
 	f	J	f_1783857		seed
-	f	Lnet/minecraft/unmapped/C_2018497;	f_4300305		f_4300305
+	f	Lnet/minecraft/unmapped/C_2018497;	f_4300305		playerData
 	f	J	f_8535327		sizeOnDisk
-	f	Ljava/lang/String;	f_9320105		f_9320105
+	f	Ljava/lang/String;	f_9320105		saveName
 	m	(Lnet/minecraft/unmapped/C_5528202;Ljava/lang/String;Lnet/minecraft/unmapped/C_3198459;J)V	<init>	<init>	
 		p	1		storage	
 		p	2		name	
@@ -727,7 +729,7 @@ c	net/minecraft/unmapped/C_5553933
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 		p	5		delay	
 	m	()J	m_7021533	getSeed	
 	m	()J	m_0604488	getTime	
@@ -735,40 +737,40 @@ c	net/minecraft/unmapped/C_5553933
 	m	(Lnet/minecraft/unmapped/C_3674802;)V	m_3711633	setSpawnPoint	
 		p	1		pos	
 	m	()Lnet/minecraft/unmapped/C_6152184;	m_6536808	getData	
-	m	()V	m_7508483	updateSleepingPlayers	
-	m	()V	m_7705847	wakeSleepingPlayers	
-	m	()Z	m_5178441	canSkipNight	
-	m	(Ljava/io/File;Ljava/lang/String;)Lnet/minecraft/unmapped/C_2018497;	m_9312594		m_9312594
-		p	0			p_0
-		p	1			p_1
-	m	(Ljava/io/File;Ljava/lang/String;)V	m_9583644		m_9583644
-		p	0			p_0
-		p	1			p_1
-	m	([Ljava/io/File;)V	m_4805602		m_4805602
-		p	0			p_0
+	m	()V	m_7508483	updatePlayersSleepingStatus	
+	m	()V	m_7705847	wakeUpAllPlayers	
+	m	()Z	m_5178441	canSleepThroughNights	
+	m	(Ljava/io/File;Ljava/lang/String;)Lnet/minecraft/unmapped/C_2018497;	m_9312594		getWorldData
+		p	0			gameDir
+		p	1			saveName
+	m	(Ljava/io/File;Ljava/lang/String;)V	m_9583644		deleteWorld
+		p	0			gameDir
+		p	1			saveName
+	m	([Ljava/io/File;)V	m_4805602		deleteFilesRecursively
+		p	0			files
 	m	(Ljava/io/File;Ljava/lang/String;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			dir
+		p	2			saveName
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_3198459;J)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			saveName
+		p	2			dimension
+		p	3			seed
 	m	(Ljava/io/File;Ljava/lang/String;J)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			dir
+		p	2			saveName
+		p	3			seed
 	m	(Ljava/io/File;Ljava/lang/String;JLnet/minecraft/unmapped/C_3198459;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	5			p_5
+		p	1			dir
+		p	2			saveName
+		p	3			seed
+		p	5			dimension
 	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_9848147;	m_7881827		createChunkCache
-		p	1			p_1
+		p	1			dir
 	m	(IIII)V	m_2640654		scheduleTick
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			blockId
+		p	4			block
 c	net/minecraft/unmapped/C_5705147
 	f	Ljava/text/DateFormat;	f_8966312	dateFormat	
 	f	I	f_8115601	selectedWorldId	
@@ -809,7 +811,7 @@ c	net/minecraft/unmapped/C_5705147
 		p	0		selectWorldScreen	
 	m	(Lnet/minecraft/unmapped/C_5705147;)Ljava/lang/String;	m_5964905	getConversionText	
 		p	0		selectWorldScreen	
-	m	()V	m_7555169		m_7555169
+	m	()V	m_7555169		addButtons
 c	net/minecraft/unmapped/C_5722573
 	m	(Lnet/minecraft/unmapped/C_3294178;)V	m_1069615	m_1069615	
 		p	1		p_1	
@@ -850,22 +852,22 @@ c	net/minecraft/unmapped/C_5999076	net/minecraft/client/gui/widget/ListWidget
 		p	6		entryHeight	
 	m	()I	m_3791031	size	
 	m	(IZ)V	m_0479322	entryClicked	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		index	
+		p	2		doubleClick	
 	m	(I)Z	m_5993229	isEntrySelected	
 		p	1		index	
 	m	()I	m_2038715	getHeight	
 	m	()V	m_3059161	renderBackground	
 	m	(IIIILnet/minecraft/unmapped/C_5786166;)V	m_2768810	renderEntry	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		index	
+		p	2		x	
+		p	3		y	
+		p	4		height	
 		p	5		tesselator	
 	m	(Ljava/util/List;II)V	m_3400964	setScrollButtonIds	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		buttons	
+		p	2		upButtonId	
+		p	3		downButtonId	
 	m	()V	m_7189774	capScrolling	
 		c	prevents you from scrolling out too far	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_4541082	buttonClicked	
@@ -951,7 +953,7 @@ c	net/minecraft/unmapped/C_6152184	net/minecraft/world/WorldData
 		p	1		time	
 	m	(J)V	m_0926705	setSizeOnDisk	
 		p	1		size	
-	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7226560	setInitialized	
+	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7226560	setPlayerData	
 		p	1		playerData	
 	m	(III)V	m_7590541	setSpawnPoint	
 		p	1		x	
@@ -988,16 +990,16 @@ c	net/minecraft/unmapped/C_6607881
 	m	()Z	m_2256977	isSleeping	
 c	net/minecraft/unmapped/C_7056743
 	f	Lnet/minecraft/unmapped/C_2925725;	f_7365700	serverField	
-	f	I	f_5282305		f_5282305
-	f	Ljava/lang/String;	f_4784337		f_4784337
+	f	I	f_5282305		ticks
+	f	Ljava/lang/String;	f_4784337		address
 	m	(III)V	m_7362766	m_7362766	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_7141926
-	m	(II)I	m_1427709	toLong	
-		p	0		p_0	
-		p	1		p_1	
+	m	(II)I	m_1427709	toInt	
+		p	0		chunkX	
+		p	1		chunkZ	
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_3294178;)V	m_1069615	handlePlayerSleep	
 		p	1		packet	
@@ -1038,11 +1040,11 @@ c	net/minecraft/unmapped/C_7450921	net/minecraft/client/gui/screen/world/CreateW
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_7554847	net/minecraft/world/storage/RegionWorldStorageSource__DataFilenameFilter	
+c	net/minecraft/unmapped/C_7554847	net/minecraft/world/storage/RegionWorldStorageSource__AlphaChunkFilenameFilter	
 	f	Ljava/util/regex/Pattern;	f_3960483	PATTERN	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/File;Ljava/lang/String;)Z	accept	accept	
-		p	1		f	
+		p	1		file	
 		p	2		name	
 	m	(Lnet/minecraft/unmapped/C_3770828;)V	<init>	<init>	
 		p	1		p_1	
@@ -1092,27 +1094,27 @@ c	net/minecraft/unmapped/C_7809327	net/minecraft/world/chunk/storage/RegionFile
 	f	J	f_8458524	lastModifiedTime	
 	m	(Ljava/io/File;)V	<init>	<init>	
 		p	1		file	
-	m	()I	m_4717507	m_4717507	
-	m	(Ljava/lang/String;)V	m_0841701	m_0841701	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_5625757	m_5625757	
-		p	1		p_1	
-	m	(Ljava/lang/String;IILjava/lang/String;)V	m_9642749	m_9642749	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Ljava/lang/String;IIILjava/lang/String;)V	m_6319419	m_6319419	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Ljava/lang/String;IILjava/lang/String;)V	m_5084927	m_5084927	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	()I	m_4717507	resetBytesWritten	
+	m	(Ljava/lang/String;)V	m_0841701	print	
+		p	1		s	
+	m	(Ljava/lang/String;)V	m_5625757	println	
+		p	1		s	
+	m	(Ljava/lang/String;IILjava/lang/String;)V	m_9642749	print	
+		p	1		action	
+		p	2		chunkX	
+		p	3		chunkZ	
+		p	4		s	
+	m	(Ljava/lang/String;IIILjava/lang/String;)V	m_6319419	print	
+		p	1		action	
+		p	2		chunkX	
+		p	3		chunkZ	
+		p	4		size	
+		p	5		s	
+	m	(Ljava/lang/String;IILjava/lang/String;)V	m_5084927	println	
+		p	1		action	
+		p	2		chunkX	
+		p	3		chunkZ	
+		p	4		s	
 	m	(II)Ljava/io/DataInputStream;	m_7883952	getChunkInputStream	
 		p	1		chunkX	
 		p	2		chunkZ	
@@ -1191,34 +1193,34 @@ c	net/minecraft/unmapped/C_8180393
 		p	0		x	
 		p	1		y	
 		p	2		z	
-c	net/minecraft/unmapped/C_8265238	net/minecraft/world/chunk/storage/DataFile	
+c	net/minecraft/unmapped/C_8265238	net/minecraft/world/chunk/storage/AlphaChunkFile	
 	f	Ljava/io/File;	f_0922565	file	
 	f	I	f_9781263	chunkX	
 	f	I	f_9433963	chunkZ	
 	m	(Ljava/io/File;)V	<init>	<init>	
 		p	1		file	
-	m	(Lnet/minecraft/unmapped/C_8265238;)I	m_9650533	m_9650533	
+	m	(Lnet/minecraft/unmapped/C_8265238;)I	m_9650533	compareTo	
 		p	1		p_1	
 	m	()Ljava/io/File;	m_6981038	getFile	
 	m	()I	m_7177482	getChunkX	
 	m	()I	m_8974357	getChunkZ	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		other	
+		p	1		o	
 c	net/minecraft/unmapped/C_8398976
 	m	(Lnet/minecraft/unmapped/C_6607881;ID)I	m_4843024	render	
 		p	1		camera	
-		p	2		type	
+		p	2		layer	
 		p	3		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_6607881;Z)Z	m_8473502	compileChunks	
 		p	1		camera	
-		p	2		dontDoExtraLogic	
+		p	2		force	
 	m	(Lnet/minecraft/unmapped/C_9590849;ID)I	m_4843024		render
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			camera
+		p	2			layer
+		p	3			tickDelta
 	m	(Lnet/minecraft/unmapped/C_9590849;Z)Z	m_8473502		compileChunks
-		p	1			p_1
-		p	2			p_2
+		p	1			camera
+		p	2			force
 c	net/minecraft/unmapped/C_8651652
 	f	Z	f_1657835	overlayMessageTinted	
 	m	(Ljava/lang/String;)V	m_3199587	translate	
@@ -1333,19 +1335,19 @@ c	net/minecraft/unmapped/C_9079092
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
 		p	1		camera	
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	<init>		<init>
-		p	1			p_1
+		p	1			camera
 c	net/minecraft/unmapped/C_9139005
 	m	(Lnet/minecraft/unmapped/C_9590849;DDD)V	m_5345635	m_5345635	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	6		p_6	
-	m	(Lnet/minecraft/unmapped/C_9590849;DDD)V	m_9312774	applyTranslation	
+	m	(Lnet/minecraft/unmapped/C_9590849;DDD)V	m_9312774	m_9312774	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	6		p_6	
-	m	(Lnet/minecraft/unmapped/C_9590849;FFF)V	m_1613686	applyRotation	
+	m	(Lnet/minecraft/unmapped/C_9590849;FFF)V	m_1613686	m_1613686	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -1387,29 +1389,29 @@ c	net/minecraft/unmapped/C_9436529
 c	net/minecraft/unmapped/C_9590849
 	f	Z	f_0251257	sleeping	
 	f	Lnet/minecraft/unmapped/C_3674802;	f_7151967	sleepingPos	
-	f	I	f_2284811	sleepTimer	
-	f	F	f_9748824	sleepOffsetX	
-	f	F	f_8968937	sleepOffsetY	
-	f	F	f_0905964	sleepOffsetZ	
+	f	I	f_2284811	sleepingTime	
+	f	F	f_9748824	sleepingCameraOffsetX	
+	f	F	f_8968937	sleepingCameraOffsetY	
+	f	F	f_0905964	sleepingCameraOffsetZ	
 	m	()V	m_1700770	m_1700770	
 	m	()Z	m_6522268	m_6522268	
 	m	()V	m_0432621	setEyeHeight	
-	m	()V	m_5422640	m_5422640	
+	m	()V	m_5422640	addRespawnParticles	
 	m	()Z	m_9931460	m_9931460	
 	m	(III)Z	m_3004585	trySleep	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(I)V	m_8899992	onEnterBed	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(I)V	m_8899992	setSleepingCameraOffset	
 		p	1		facing	
 	m	(ZZ)V	m_4175826	wakeUp	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Z	m_1315484	isValidSleepingPos	
-	m	()F	m_7450971	getRespawnFacingAngle	
+		p	1		resetSleepTimer	
+		p	2		updateAllPlayersSleeping	
+	m	()Z	m_1315484	checkSleepingPosition	
+	m	()F	m_7450971	getSleepingCameraAngle	
 	m	()Z	m_2256977	m_2256977	
-	m	()Z	m_4562852	isSleptEnough	
-	m	()I	m_1889890	getSleepTimer	
+	m	()Z	m_4562852	isSleepingLongEnough	
+	m	()I	m_1889890	getSleepingTime	
 	m	(Ljava/lang/String;)V	m_9290236	addMessage	
 		p	1		message	
 c	net/minecraft/unmapped/C_9739154
@@ -1418,32 +1420,33 @@ c	net/minecraft/unmapped/C_9739154
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/unmapped/C_0932780		net/minecraft/unmapped/C_0932780
-	f	I	f_7177981		f_7177981
-	f	I	f_0809651		f_0809651
+c	net/minecraft/unmapped/C_0932780		net/minecraft/client/world/chunk/MultiplayerChunkCache__ChunkPos
+	f	I	f_7177981		x
+	f	I	f_0809651		z
 	m	(II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			x
+		p	2			z
 	m	(Ljava/lang/Object;)Z	equals		equals
 		p	1			p_1
 	m	()I	hashCode		hashCode
-c	net/minecraft/unmapped/C_8593406		net/minecraft/unmapped/C_8593406
-	f	[Lnet/minecraft/unmapped/C_6849228;	f_1145022		f_1145022
-	f	Lnet/minecraft/unmapped/C_5553933;	f_9442623		f_9442623
-	f	Lnet/minecraft/unmapped/C_3015672;	f_9348117		f_9348117
-	f	[B	f_6542603		f_6542603
+c	net/minecraft/unmapped/C_8593406		net/minecraft/world/chunk/ReadOnlyChunkCache
+	f	[Lnet/minecraft/unmapped/C_6849228;	f_1145022		chunks
+	f	Lnet/minecraft/unmapped/C_5553933;	f_9442623		world
+	f	Lnet/minecraft/unmapped/C_3015672;	f_9348117		storage
+	f	[B	f_6542603		blocksForNewChunks
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3015672;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			storage
 	m	(II)Z	m_8714752		m_8714752
 		p	1			p_1
 		p	2			p_2
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366		m_8872366
 		p	1			p_1
 		p	2			p_2
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6463720		m_6463720
-		p	1			p_1
-		p	2			p_2
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6463720		loadChunkFromStorage
+		c		Loads the chunk at the given chunk coordinates from storage.
+		p	1			chunkX
+		p	2			chunkZ
 	m	(Lnet/minecraft/unmapped/C_9848147;II)V	m_4129669		m_4129669
 		p	1			p_1
 		p	2			p_2
@@ -1454,7 +1457,7 @@ c	net/minecraft/unmapped/C_8593406		net/minecraft/unmapped/C_8593406
 	m	()Z	m_0299043		m_0299043
 	m	()Z	m_6553566		m_6553566
 	m	()Ljava/lang/String;	m_9169256		m_9169256
-c	net/minecraft/unmapped/C_9092862		net/minecraft/unmapped/C_9092862
+c	net/minecraft/unmapped/C_9092862		net/minecraft/client/gui/screen/world/DeleteWorldScreen
 	m	(Lnet/minecraft/unmapped/C_3020744;)V	<init>		<init>
 		p	1			p_1
 	m	()V	m_7555169		m_7555169

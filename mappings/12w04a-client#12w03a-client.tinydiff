@@ -6,18 +6,18 @@ c	net/minecraft/unmapped/C_0168865
 		p	3		port	
 c	net/minecraft/unmapped/C_0201752
 	m	()Z	m_3298301	m_3298301	
-c	net/minecraft/unmapped/C_0258280	net/minecraft/client/render/entity/CatRenderer	
+c	net/minecraft/unmapped/C_0258280	net/minecraft/client/render/entity/OcelotRenderer	
 	m	(Lnet/minecraft/unmapped/C_7503776;F)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_1549236;DDDFF)V	m_5664510	render	
+	m	(Lnet/minecraft/unmapped/C_1549236;DDDFF)V	m_5664510	m_5664510	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
 		p	6		p_6	
 		p	8		p_8	
 		p	9		p_9	
-	m	(Lnet/minecraft/unmapped/C_1549236;F)V	m_0141507	scale	
+	m	(Lnet/minecraft/unmapped/C_1549236;F)V	m_0141507	m_0141507	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_9699490	m_9699490	
@@ -43,17 +43,17 @@ c	net/minecraft/unmapped/C_0539808
 	m	()Z	m_3298301	canBePunched	
 c	net/minecraft/unmapped/C_0975786	net/minecraft/entity/ai/goal/FleeEntityGoal	
 	f	Lnet/minecraft/unmapped/C_5622853;	f_0939141	mob	
-	f	D	f_3675936	f_3675936	
-	f	D	f_7199254	f_7199254	
-	f	D	f_4749667	f_4749667	
-	f	F	f_2077917	f_2077917	
-	f	F	f_5197730	slowSpeed	
-	f	F	f_0283214	fastSpeed	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_8220085	f_8220085	
+	f	D	f_3675936	targetX	
+	f	D	f_7199254	targetY	
+	f	D	f_4749667	targetZ	
+	f	F	f_2077917	navigationSpeed	
+	f	F	f_5197730	speedWhenFar	
+	f	F	f_0283214	speedWhenClose	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_8220085	target	
 	m	(Lnet/minecraft/unmapped/C_5622853;FF)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		mob	
+		p	2		speedWhenFar	
+		p	3		speedWhenClose	
 	m	()Z	m_9549250	m_9549250	
 	m	()Z	m_4540487	m_4540487	
 	m	()V	m_3836415	m_3836415	
@@ -66,12 +66,12 @@ c	net/minecraft/unmapped/C_0975786	net/minecraft/entity/ai/goal/FleeEntityGoal
 	m	(I)V	m_1135505	m_1135505	
 		p	1		p_1	
 	m	()Z	m_9478616	m_9478616	
-c	net/minecraft/unmapped/C_1006946	net/minecraft/entity/living/mob/MobVisibilityCache	
+c	net/minecraft/unmapped/C_1006946	net/minecraft/entity/mob/MobVisibilityCache	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_7631766	mob	
 	f	Ljava/util/ArrayList;	f_5974551	visibleEntities	
 	f	Ljava/util/ArrayList;	f_6669454	invisibleEntities	
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		mob	
 	m	()V	m_1570063	clear	
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_9558190	canSee	
 		p	1		p_1	
@@ -83,7 +83,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	4		z	
 c	net/minecraft/unmapped/C_1350658
 	m	()Z	m_3298301	m_3298301	
-c	net/minecraft/unmapped/C_1549236	net/minecraft/entity/living/mob/passive/animal/tamable/OcelotEntity	
+c	net/minecraft/unmapped/C_1549236	net/minecraft/entity/mob/animal/tameable/OcelotEntity	
 	f	Lnet/minecraft/unmapped/C_8114740;	f_9425312	temptGoal	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		world	
@@ -143,13 +143,13 @@ c	net/minecraft/unmapped/C_3107711
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_3186487
-	m	(F)V	m_7620805	m_7620805	
-		p	1		p_1	
-c	net/minecraft/unmapped/C_3307156	net/minecraft/unmapped/C_3307156	
-	f	Lnet/minecraft/unmapped/C_5553933;	f_8833585	f_8833585	
-	f	Lnet/minecraft/unmapped/C_1549236;	f_0753210	f_0753210	
+	m	(F)V	m_7620805	setSpeed	
+		p	1		speed	
+c	net/minecraft/unmapped/C_3307156	net/minecraft/entity/ai/goal/OcelotAttackChickenGoal	
+	f	Lnet/minecraft/unmapped/C_5553933;	f_8833585	world	
+	f	Lnet/minecraft/unmapped/C_1549236;	f_0753210	ocelot	
 	m	(Lnet/minecraft/unmapped/C_1549236;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		ocelot	
 	m	()V	m_6054577	m_6054577	
 c	net/minecraft/unmapped/C_3325732
 	m	()Z	m_6682221	m_6682221	
@@ -179,7 +179,7 @@ c	net/minecraft/unmapped/C_4116648
 		p	4		speed	
 		p	5		divergence	
 	m	()Z	m_3298301	m_3298301	
-c	net/minecraft/unmapped/C_4144966	net/minecraft/entity/thrown/ExperienceBottleEntity	
+c	net/minecraft/unmapped/C_4144966	net/minecraft/entity/projectile/ExperienceBottleEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		world	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
@@ -254,11 +254,11 @@ c	net/minecraft/unmapped/C_4865161
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_5025378	net/minecraft/entity/ai/goal/ProjectileAttackGoal	
-	f	Lnet/minecraft/unmapped/C_5553933;	f_4775830	f_4775830	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_6977682	entity	
+	f	Lnet/minecraft/unmapped/C_5553933;	f_4775830	world	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_6977682	mob	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_8741608	target	
-	f	I	f_9861370	updateCountdownTicks	
-	f	F	f_7681633	mobSpeed	
+	f	I	f_9861370	ticksUntilNextAttack	
+	f	F	f_7681633	speed	
 	f	I	f_8438549	seenTargetTicks	
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	<init>	<init>	
 		p	1		p_1	
@@ -267,7 +267,7 @@ c	net/minecraft/unmapped/C_5025378	net/minecraft/entity/ai/goal/ProjectileAttack
 	m	()Z	m_4540487	m_4540487	
 	m	()V	m_7242457	m_7242457	
 	m	()V	m_3798730	m_3798730	
-	m	()V	m_7043303	m_7043303	
+	m	()V	m_7043303	shootProjectile	
 	m	()I	m_5043911	m_5043911	
 	m	(I)V	m_1135505	m_1135505	
 		p	1		p_1	
@@ -342,12 +342,12 @@ c	net/minecraft/unmapped/C_6436002	net/minecraft/entity/ai/goal/EscapeSunlightGo
 	m	()Z	m_9478616	m_9478616	
 c	net/minecraft/unmapped/C_6607881
 	f	Lnet/minecraft/unmapped/C_1006946;	f_2719103	visibilityCache	
-	f	F	f_1727901	movementSpeed	
+	f	F	f_1727901	speed	
 	m	()Lnet/minecraft/unmapped/C_1006946;	m_8075528	getVisibilityCache	
-	m	()F	m_1512035	getMovementSpeed	
-	m	(F)V	m_8516392	setMovementSpeed	
-		p	1		movementSpeed	
-	m	()V	m_0456005	mobTick	
+	m	()F	m_1512035	getSpeed	
+	m	(F)V	m_8516392	setSpeed	
+		p	1		speed	
+	m	()V	m_0456005	mobAiTick	
 c	net/minecraft/unmapped/C_6934379	net/minecraft/item/FireChargeItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -359,19 +359,19 @@ c	net/minecraft/unmapped/C_6934379	net/minecraft/item/FireChargeItem
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/unmapped/C_7019121
+c	net/minecraft/unmapped/C_7019121	net/minecraft/entity/mob/animal/tameable/WolfEntity	net/minecraft/entity/mob/animal/WolfEntity
 	m	()V	m_0456005	m_0456005	
-	m	()Lnet/minecraft/unmapped/C_6607881;	m_3241276		m_3241276
-	m	(Z)V	m_2993404		m_2993404
-		p	1			p_1
-	m	()Ljava/lang/String;	m_9131874		m_9131874
-	m	(Ljava/lang/String;)V	m_4842218		m_4842218
-		p	1			p_1
-	m	()Z	m_3372281		m_3372281
-	m	(Z)V	m_1831165		m_1831165
-		p	1			p_1
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_3241276		getOwnerMob
+	m	(Z)V	m_2993404		addFeedingParticle
+		p	1			breeding
+	m	()Ljava/lang/String;	m_9131874		getOwner
+	m	(Ljava/lang/String;)V	m_4842218		setOwner
+		p	1			name
+	m	()Z	m_3372281		isTame
+	m	(Z)V	m_1831165		setTame
+		p	1			tame
 c	net/minecraft/unmapped/C_7669754
-	f	Ljava/lang/String;	f_5635295		VALID_CHAT_CHARACTERS
+	f	Ljava/lang/String;	f_5635295		VALID_CHARACTERS
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_7842113
 	m	(Lnet/minecraft/unmapped/C_8030141;III)Z	m_1015100	m_1015100	
@@ -380,7 +380,7 @@ c	net/minecraft/unmapped/C_7842113
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_8114740	net/minecraft/entity/ai/goal/TemptGoal	
-	f	Lnet/minecraft/unmapped/C_5622853;	f_5600872	entity	
+	f	Lnet/minecraft/unmapped/C_5622853;	f_5600872	mob	
 	f	F	f_8752114	speed	
 	f	D	f_3979674	targetX	
 	f	D	f_7534421	targetY	
@@ -391,8 +391,8 @@ c	net/minecraft/unmapped/C_8114740	net/minecraft/entity/ai/goal/TemptGoal
 	f	I	f_1767394	delay	
 	f	Z	f_9338188	active	
 	m	(Lnet/minecraft/unmapped/C_5622853;F)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		mob	
+		p	2		speed	
 	m	()Z	m_9549250	m_9549250	
 	m	()Z	m_4540487	m_4540487	
 	m	()V	m_3836415	m_3836415	
@@ -416,11 +416,11 @@ c	net/minecraft/unmapped/C_8300121
 	m	()Z	m_3298301	m_3298301	
 c	net/minecraft/unmapped/C_8818528
 	f	I	f_8020744	f_8020744	
-	f	I	f_4923092	f_4923092	
+	f	I	f_4923092	chanceToStartGoal	
 	m	(Lnet/minecraft/unmapped/C_6607881;FI)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		target	
+		p	2		range	
+		p	3		chanceToStartGoal	
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_9090249	m_9090249	
 		p	1		p_1	
 	m	()Lnet/minecraft/unmapped/C_6607881;	m_6896494	m_6896494	
@@ -428,7 +428,7 @@ c	net/minecraft/unmapped/C_8818528
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_9184792	net/minecraft/entity/living/mob/passive/animal/tamable/TameableEntity	
+c	net/minecraft/unmapped/C_9184792	net/minecraft/entity/mob/animal/tameable/TameableEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	m_1700770	m_1700770	
@@ -456,8 +456,8 @@ c	net/minecraft/unmapped/C_9229053
 		p	3		followRange	
 	m	(Z)V	m_3749333	setAvoidSunlight	
 		p	1		avoidSunLight	
-	m	(F)V	m_7620805	setSpeed	
-		p	1		speed	
+	m	(F)V	m_7620805	m_7620805	
+		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2

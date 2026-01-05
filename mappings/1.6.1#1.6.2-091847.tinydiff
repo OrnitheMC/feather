@@ -56,9 +56,9 @@ c	net/minecraft/unmapped/C_3353736
 	f	I	f_8007362		ownerLastAttackedTime
 c	net/minecraft/unmapped/C_3478281
 	m	(Lnet/minecraft/unmapped/C_9713437;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		sprite	
 	m	(Lnet/minecraft/unmapped/C_9713437;Ljava/lang/String;)V	<init>		<init>
-		p	1			stitchHolder
+		p	1			sprite
 		p	2			reason
 c	net/minecraft/unmapped/C_3499589
 	f	Ljava/util/List;	f_1090414	readQueue	
@@ -149,8 +149,10 @@ c	net/minecraft/unmapped/C_6013256
 		p	1			serverBrand
 	m	()Ljava/lang/String;	m_4921756		getServerBrand
 c	net/minecraft/unmapped/C_6088271
-	f	Ljava/util/HashMap;	f_9135712	sprites	
-	f	Ljava/util/Map;	f_9135712		sprites
+	f	Ljava/util/HashMap;	f_9135712	stitchedSprites	
+		c	All sprites that were successfully stitched into this texture atlas.\nSprites from {@link sourcedSprites} that could not be loaded were not stitched.	
+	f	Ljava/util/Map;	f_9135712		stitchedSprites
+		c		All sprites that were successfully stitched into this texture atlas.\nSprites from {@link sourcedSprites} that could not be loaded were not stitched.
 c	net/minecraft/unmapped/C_6232047
 	m	()V	m_3930330		clearModifiers
 c	net/minecraft/unmapped/C_6607881
@@ -182,9 +184,9 @@ c	net/minecraft/unmapped/C_7873567
 		p	0			p_0
 c	net/minecraft/unmapped/C_8099772
 	m	(Z)V	m_7986874	detachLeash	
-		p	1		p_1	
+		p	1		sync	
 	m	(ZZ)V	m_7986874		detachLeash
-		p	1			sendPacket
+		p	1			sync
 		p	2			dropItem
 c	net/minecraft/unmapped/C_8105098
 	f	Z	f_1158359		IS_MAC
@@ -202,17 +204,17 @@ c	net/minecraft/unmapped/C_9184792
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_3231771		m_3231771
 		p	1			p_1
 c	net/minecraft/unmapped/C_9470286
-	m	(III)Z	m_0824679		isInsideStructureBounds
+	m	(III)Z	m_0824679		isInsideBounds
 		p	1			x
 		p	2			y
 		p	3			z
 c	net/minecraft/unmapped/C_9590849
-	m	(Lnet/minecraft/unmapped/C_6607881;Z)V	m_8820907	m_8820907	
-		p	1		livingEntity	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_6607881;Z)V	m_8820907	wolvesAttack	
+		p	1		target	
+		p	2		wasAttackedByTarget	
 	m	()Lnet/minecraft/unmapped/C_4143404;	m_9485094	getScoreboardTeam	
 	m	()Lnet/minecraft/unmapped/C_3177907;	m_9485094		m_9485094
-c	net/minecraft/unmapped/C_0065212		net/minecraft/entity/living/mob/hostile/ZombieEntity__1
+c	net/minecraft/unmapped/C_0065212		net/minecraft/entity/living/mob/monster/ZombieEntity__0065212
 c	net/minecraft/unmapped/C_3177907		net/minecraft/scoreboard/team/AbstractTeam
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3177907;)Z	m_1995990		isAlliedTo
@@ -222,7 +224,7 @@ c	net/minecraft/unmapped/C_3177907		net/minecraft/scoreboard/team/AbstractTeam
 		p	1			member
 	m	()Z	m_1979947		showFriendlyInvisibles
 	m	()Z	m_0205039		allowFriendlyFire
-c	net/minecraft/unmapped/C_3198674		net/minecraft/client/world/ClientWorld__4
+c	net/minecraft/unmapped/C_3198674		net/minecraft/client/world/ClientWorld__3198674
 	f	Lnet/minecraft/unmapped/C_7873567;	f_3193901		f_3193901
 	m	(Lnet/minecraft/unmapped/C_7873567;)V	<init>		<init>
 		p	1			p_1
@@ -241,30 +243,30 @@ c	net/minecraft/unmapped/C_6574227		net/minecraft/network/packet/EntityAttribute
 	m	()Ljava/lang/String;	m_2312231		getId
 	m	()D	m_7775209		getBaseValue
 	m	()Ljava/util/Collection;	m_5723325		getModifiers
-c	net/minecraft/unmapped/C_7041913		net/minecraft/entity/living/mob/hostile/ZombieEntity__Data
-	f	Z	f_2439021		isBaby
-	f	Z	f_5155846		isVillager
+c	net/minecraft/unmapped/C_7041913		net/minecraft/entity/living/mob/monster/ZombieEntity__Data
+	f	Z	f_2439021		baby
+	f	Z	f_5155846		villager
 	f	Lnet/minecraft/unmapped/C_4316830;	f_8134666		zombieEntity
 	m	(Lnet/minecraft/unmapped/C_4316830;ZZ)V	<init>		<init>
 		p	1			p_1
-		p	2			isBaby
-		p	3			isVillager
+		p	2			baby
+		p	3			villager
 	m	(Lnet/minecraft/unmapped/C_4316830;ZZLnet/minecraft/unmapped/C_0065212;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_9297634		net/minecraft/network/packet/OpenSignEditorPacket
-	f	I	f_0186924		x
-	f	I	f_3448257		y
-	f	I	f_9889829		z
-	f	I	f_9445493		action
+	f	I	f_0186924		action
+	f	I	f_3448257		x
+	f	I	f_9889829		y
+	f	I	f_9445493		z
 	m	()V	<init>		<init>
 	m	(IIII)V	<init>		<init>
-		p	1			x
-		p	2			y
-		p	3			z
-		p	4			action
+		p	1			action
+		p	2			x
+		p	3			y
+		p	4			z
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666		m_7216666
 		p	1			p_1
 	m	(Ljava/io/DataInput;)V	m_4792371		m_4792371
@@ -272,27 +274,15 @@ c	net/minecraft/unmapped/C_9297634		net/minecraft/network/packet/OpenSignEditorP
 	m	(Ljava/io/DataOutput;)V	m_6110406		m_6110406
 		p	1			p_1
 	m	()I	m_4040470		m_4040470
-c	net/minecraft/unmapped/C_9578973		net/minecraft/client/world/ClientWorld__3
+c	net/minecraft/unmapped/C_9578973		net/minecraft/client/world/ClientWorld__9578973
 	f	Lnet/minecraft/unmapped/C_7873567;	f_2981698		f_2981698
 	m	(Lnet/minecraft/unmapped/C_7873567;)V	<init>		<init>
 		p	1			p_1
 	m	()Ljava/lang/String;	m_0521398		call
 	m	()Ljava/lang/Object;	call		call
-c	net/minecraft/unmapped/C_9830960		net/minecraft/client/Minecraft__3
+c	net/minecraft/unmapped/C_9830960		net/minecraft/client/Minecraft__9830960
 	f	Lnet/minecraft/unmapped/C_8105098;	f_3385690		f_3385690
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>		<init>
 		p	1			p_1
 	m	()Ljava/lang/String;	m_3001296		call
 	m	()Ljava/lang/Object;	call		call
-c	net/minecraft/unmapped/C_2619780	net/minecraft/client/Minecraft__11	net/minecraft/client/Minecraft__12
-c	net/minecraft/unmapped/C_4394019	net/minecraft/client/Minecraft__8	net/minecraft/client/Minecraft__9
-c	net/minecraft/unmapped/C_4563671	net/minecraft/client/Minecraft__6	net/minecraft/client/Minecraft__7
-c	net/minecraft/unmapped/C_5100772	net/minecraft/client/Minecraft__10	net/minecraft/client/Minecraft__11
-c	net/minecraft/unmapped/C_5160100	net/minecraft/client/Minecraft__7	net/minecraft/client/Minecraft__8
-c	net/minecraft/unmapped/C_5362986	net/minecraft/client/Minecraft__5	net/minecraft/client/Minecraft__6
-c	net/minecraft/unmapped/C_7145858	net/minecraft/client/Minecraft__3	net/minecraft/client/Minecraft__4
-	m	()Ljava/lang/String;	m_5150530	m_5150530	call
-c	net/minecraft/unmapped/C_8612369	net/minecraft/client/Minecraft__12	net/minecraft/client/Minecraft__13
-c	net/minecraft/unmapped/C_9216568	net/minecraft/client/Minecraft__9	net/minecraft/client/Minecraft__10
-c	net/minecraft/unmapped/C_9361497	net/minecraft/client/Minecraft__4	net/minecraft/client/Minecraft__5
-	m	()Ljava/lang/String;	m_7420333	m_7420333	call

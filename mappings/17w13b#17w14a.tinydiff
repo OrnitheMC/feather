@@ -43,13 +43,13 @@ c	net/minecraft/unmapped/C_0381885
 	m	()Z	m_7626070		isGuiOpen
 	m	()Z	m_6508788		isFilteringCraftable
 c	net/minecraft/unmapped/C_0539808
-	m	(Lnet/minecraft/unmapped/C_0539808;I)V	m_8759800	onKillEntity	
-		p	1		entity	
+	m	(Lnet/minecraft/unmapped/C_0539808;I)V	m_8759800	takeKillScore	
+		p	1		victim	
 		p	2		score	
-	m	(Lnet/minecraft/unmapped/C_0539808;ILnet/minecraft/unmapped/C_1161898;)V	m_8759800		onKillEntity
-		p	1			entityKilled
+	m	(Lnet/minecraft/unmapped/C_0539808;ILnet/minecraft/unmapped/C_1161898;)V	m_8759800		takeKillScore
+		p	1			victim
 		p	2			score
-		p	3			damageSource
+		p	3			source
 c	net/minecraft/unmapped/C_0975919
 	f	Lnet/minecraft/unmapped/C_9548941;	f_4265340		distance
 	m	(Lnet/minecraft/unmapped/C_0561170;)V	<init>	<init>	
@@ -143,7 +143,7 @@ c	net/minecraft/unmapped/C_2447160
 	f	Lnet/minecraft/unmapped/C_6076926;	f_0391540		CURED_ZOMBIE_VILLAGER
 	f	Lnet/minecraft/unmapped/C_8548560;	f_9224357		VILLAGER_TRADE
 c	net/minecraft/unmapped/C_3020744
-	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	m_6663854		renderTooltip
+	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	m_6663854		getTooltip
 		p	1			stack
 c	net/minecraft/unmapped/C_3180769
 	f	Z	f_7167161		dirty
@@ -397,15 +397,15 @@ c	net/minecraft/unmapped/C_5684040
 	m	(Ljava/util/UUID;I)V	m_5534424		startConverting
 		p	1			converter
 		p	2			ticks
-c	net/minecraft/unmapped/C_5872628	net/minecraft/C_82ogxgckg	
-	f	Lnet/minecraft/unmapped/C_2454309;	f_3344057	f_3344057	
-	f	I	f_6334237	f_6334237	
-	f	I	f_0320275	f_0320275	
+c	net/minecraft/unmapped/C_5872628	net/minecraft/client/gui/recipebook/GhostIngredient	
+	f	Lnet/minecraft/unmapped/C_2454309;	f_3344057	item	
+	f	I	f_6334237	x	
+	f	I	f_0320275	y	
 	f	Z	f_5435281	f_5435281	
 	m	(Lnet/minecraft/unmapped/C_2454309;IIZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		stack	
+		p	2		x	
+		p	3		y	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_5956487
 	m	(ILjava/util/List;Lnet/minecraft/unmapped/C_9590849;Z)V	m_1074314	placeRecipe	
@@ -439,11 +439,11 @@ c	net/minecraft/unmapped/C_6187210
 		p	2			p_2
 	m	()Ljava/util/List;	m_2901807		m_2901807
 c	net/minecraft/unmapped/C_6188183
-	f	Z	f_0639680		visible
+	f	Z	f_0639680		guiOpen
 	f	Z	f_7356431		filteringCraftable
-	m	()Z	m_5422252		isVisible
-	m	(Z)V	m_2952414		setVisible
-		p	1			visible
+	m	()Z	m_5422252		isGuiOpen
+	m	(Z)V	m_2952414		setGuiOpen
+		p	1			guiOpen
 	m	()Z	m_8645191		isFilteringCraftable
 	m	(Z)V	m_7772392		setFilteringCraftable
 		p	1			filteringCraftable
@@ -561,7 +561,7 @@ c	net/minecraft/unmapped/C_7240405
 		p	2			value
 	m	(ILjava/nio/channels/FileChannel;JI)I	setBytes		setBytes
 		p	1			index
-		p	2			out
+		p	2			in
 		p	3			position
 		p	5			length
 	m	(ILjava/lang/CharSequence;Ljava/nio/charset/Charset;)I	setCharSequence		setCharSequence
@@ -593,7 +593,7 @@ c	net/minecraft/unmapped/C_7240405
 	m	(J)Lio/netty/buffer/ByteBuf;	writeLongLE		writeLongLE
 		p	1			value
 	m	(Ljava/nio/channels/FileChannel;JI)I	writeBytes		writeBytes
-		p	1			channel
+		p	1			in
 		p	2			position
 		p	4			length
 	m	(Ljava/lang/CharSequence;Ljava/nio/charset/Charset;)I	writeCharSequence		writeCharSequence
@@ -620,7 +620,7 @@ c	net/minecraft/unmapped/C_7240405
 	m	(Ljava/lang/Object;)Lio/netty/buffer/ByteBuf;	touch		touch
 		p	1			p_1
 	m	(Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;	touch		touch
-		p	1			obj
+		p	1			hint
 	m	()Lio/netty/util/ReferenceCounted;	touch		touch
 c	net/minecraft/unmapped/C_7562764
 	f	I	f_2161067		ticks
@@ -704,17 +704,17 @@ c	net/minecraft/unmapped/C_9309533
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	m_5111151		copy
 		p	1			value
 c	net/minecraft/unmapped/C_9441491
-	f	Lnet/minecraft/unmapped/C_8545792;	f_7333376	f_7333376	
-	f	Lnet/minecraft/unmapped/C_5621868;	f_7333376		f_7333376
+	f	Lnet/minecraft/unmapped/C_8545792;	f_7333376	recipeBookButton	
+	f	Lnet/minecraft/unmapped/C_5621868;	f_7333376		recipeBookButton
 	m	()V	m_8984281		m_8984281
 c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_0539808;I)V	m_8759800	m_8759800	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Ljava/util/Collection;	m_7892993	m_7892993	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_0539808;)Ljava/util/Collection;	m_7892993	handleTeamKill	
+		p	1		entity	
 c	net/minecraft/unmapped/C_9639106
-	m	(II)V	m_1779891		renderToolTip
+	m	(II)V	m_1779891		renderTooltip
 		p	1			x
 		p	2			y
 c	net/minecraft/unmapped/C_1492065		net/minecraft/entity/ai/goal/PerchOnShoulderGoal
@@ -735,23 +735,23 @@ c	net/minecraft/unmapped/C_1606480		net/minecraft/client/gui/recipebook/GhostRec
 	m	(I)Lnet/minecraft/unmapped/C_1606480$C_4786456;	m_0877152		getIngredient
 		p	1			index
 	m	(Lnet/minecraft/unmapped/C_1606480$C_4786456;)V	m_7596138		addIngredient
-		p	1			p_1
+		p	1			ingredient
 	m	()I	m_7818556		size
 	m	()Lnet/minecraft/unmapped/C_2361607;	m_8181599		getRecipe
 	m	(Lnet/minecraft/unmapped/C_2361607;)V	m_8068879		setRecipe
 		p	1			recipe
 c	net/minecraft/unmapped/C_1606480$C_4786456		GhostIngredient
-	f	Lnet/minecraft/unmapped/C_2454309;	f_3344057		f_3344057
+	f	Lnet/minecraft/unmapped/C_2454309;	f_3344057		stack
 	f	I	f_6334237		x
 	f	I	f_0320275		y
 	f	Z	f_5435281		f_5435281
 	m	(Lnet/minecraft/unmapped/C_2454309;IIZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			stack
+		p	2			x
+		p	3			y
 		p	4			p_4
 c	net/minecraft/unmapped/C_3089894		net/minecraft/client/gui/toast/ToastGui
-	f	Lnet/minecraft/unmapped/C_0561170;	f_4721370		f_4721370
+	f	Lnet/minecraft/unmapped/C_0561170;	f_4721370		TOASTS_LOCATION
 	f	Lnet/minecraft/unmapped/C_8105098;	f_5749491		minecraft
 	f	[Lnet/minecraft/unmapped/C_3089894$C_4004237;	f_5024484		toasts
 	f	Ljava/util/Deque;	f_5406239		queue
@@ -759,41 +759,41 @@ c	net/minecraft/unmapped/C_3089894		net/minecraft/client/gui/toast/ToastGui
 		p	1			minecraft
 	m	(Lnet/minecraft/unmapped/C_7799337;)V	m_8063533		render
 		p	1			window
-	m	(Lnet/minecraft/unmapped/C_1322485;)V	m_7828843		m_7828843
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_1322485;)V	m_7828843		addAdvancement
+		p	1			advancement
 	m	()V	m_3434915		m_3434915
 	m	()V	m_3495818		clear
-	m	(Lnet/minecraft/unmapped/C_3089894$C_4004237;)V	m_5938090		m_5938090
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_3089894$C_4004237;)V	m_5938090		queue
+		p	1			toast
 	m	()Z	m_4142377		m_4142377
 	m	()Lnet/minecraft/unmapped/C_0561170;	m_0283004		m_0283004
 	m	(Lnet/minecraft/unmapped/C_3089894;)Lnet/minecraft/unmapped/C_8105098;	m_6421456		getMinecraft
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_3089894$1		1
-c	net/minecraft/unmapped/C_3089894$C_2276250		C_2276250
-	f	J	f_6179419		f_6179419
+c	net/minecraft/unmapped/C_3089894$C_2276250		AbstractToast
+	f	J	f_6179419		animationTime
 	f	Lnet/minecraft/unmapped/C_3089894;	f_2122158		f_2122158
 	m	(Lnet/minecraft/unmapped/C_3089894;)V	<init>		<init>
 		p	1			p_1
-	m	()J	m_2377284		m_2377284
+	m	()J	m_2377284		getAnimationTime
 	m	(Lnet/minecraft/unmapped/C_3089894;Lnet/minecraft/unmapped/C_3089894$1;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_3089894$C_4004237		C_4004237
-	m	()Z	m_1088833		m_1088833
-c	net/minecraft/unmapped/C_3089894$C_8360213		C_8360213
-	f	Lnet/minecraft/unmapped/C_1322485;	f_3422114		f_3422114
+c	net/minecraft/unmapped/C_3089894$C_4004237		ToastInstance
+	m	()Z	m_1088833		render
+c	net/minecraft/unmapped/C_3089894$C_8360213		AdvancementToast
+	f	Lnet/minecraft/unmapped/C_1322485;	f_3422114		advancement
 	f	Lnet/minecraft/unmapped/C_3089894;	f_5443288		f_5443288
 	m	(Lnet/minecraft/unmapped/C_3089894;Lnet/minecraft/unmapped/C_1322485;)V	<init>		<init>
 		p	1			p_1
-		p	2			p_2
+		p	2			advancement
 	m	()Z	m_1088833		m_1088833
 	m	(Lnet/minecraft/unmapped/C_3089894;Lnet/minecraft/unmapped/C_1322485;Lnet/minecraft/unmapped/C_3089894$1;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_3089894$C_9155402		C_9155402
+c	net/minecraft/unmapped/C_3089894$C_9155402		RecipeToast
 	f	Lnet/minecraft/unmapped/C_3089894;	f_3077875		f_3077875
 	m	(Lnet/minecraft/unmapped/C_3089894;)V	<init>		<init>
 		p	1			p_1
@@ -827,15 +827,15 @@ c	net/minecraft/unmapped/C_3824276		net/minecraft/advancement/criterion/KilledTr
 		p	2			p_2
 c	net/minecraft/unmapped/C_3824276$C_2024337		Instance
 	f	Lnet/minecraft/unmapped/C_0975919;	f_8727796		predicate
-	f	Lnet/minecraft/unmapped/C_4288772;	f_4600076		damageSource
+	f	Lnet/minecraft/unmapped/C_4288772;	f_4600076		killingBlow
 	m	(Lnet/minecraft/unmapped/C_0561170;Lnet/minecraft/unmapped/C_0975919;Lnet/minecraft/unmapped/C_4288772;)V	<init>		<init>
 		p	1			id
 		p	2			predicate
-		p	3			damageSource
+		p	3			killingBlow
 	m	(Lnet/minecraft/unmapped/C_3292284;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_1161898;)Z	m_7978276		run
 		p	1			player
 		p	2			entity
-		p	3			damageSource
+		p	3			killingBlow
 c	net/minecraft/unmapped/C_3824276$C_6390442		PlayerListener
 	f	Lnet/minecraft/unmapped/C_3180769;	f_0293089		player
 	f	Ljava/util/Set;	f_2886894		listener

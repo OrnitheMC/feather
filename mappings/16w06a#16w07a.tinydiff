@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_1250058
-	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2441996;I)V	m_2968970	onBlockChanged	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2441996;I)V	m_2968970		onBlockChanged
+	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2441996;I)V	m_2968970	notifyBlockChanged	
+		p	1		pos	
+		p	2		oldState	
+		p	3		newState	
+		p	4		flags	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2441996;I)V	m_2968970		notifyBlockChanged
 		p	1			world
 		p	2			pos
 		p	3			oldState
@@ -29,9 +29,9 @@ c	net/minecraft/unmapped/C_4830307$1
 	f	Lnet/minecraft/unmapped/C_4830307;	f_5106012	f_5106012	
 	f	Lnet/minecraft/unmapped/C_9264598;	f_1790008		f_1790008
 	f	Lnet/minecraft/unmapped/C_4830307;	f_2098683		f_2098683
-	m	(Lnet/minecraft/unmapped/C_8889465;)Lcom/google/common/base/Predicate;	m_5831748	m_5831748	
+	m	(Lnet/minecraft/unmapped/C_8889465;)Lcom/google/common/base/Predicate;	m_5831748	apply	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_8889465;)Lcom/google/common/base/Predicate;	m_2434049		m_2434049
+	m	(Lnet/minecraft/unmapped/C_8889465;)Lcom/google/common/base/Predicate;	m_2434049		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_4976084
 	m	(I)I	m_5491186		wrapDegrees
@@ -62,10 +62,10 @@ c	net/minecraft/unmapped/C_5660126
 	f	Lnet/minecraft/unmapped/C_5577922;	f_0105546		IN_WALL_SHAPE_Z
 	f	Lnet/minecraft/unmapped/C_5577922;	f_2369728		IN_WALL_SHAPE_X
 c	net/minecraft/unmapped/C_5722573
-	m	(Ljava/lang/String;Ljava/lang/String;)Z	m_8608150		m_8608150
+	m	(Ljava/lang/String;Ljava/lang/String;)Z	m_8608150		checkServerResourcePackUri
 		p	1			p_1
 		p	2			p_2
-	m	(Ljava/lang/String;)Lcom/google/common/util/concurrent/FutureCallback;	m_7069882		m_7069882
+	m	(Ljava/lang/String;)Lcom/google/common/util/concurrent/FutureCallback;	m_7069882		createServerResourcePackDownloadCallback
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_5722573;Ljava/lang/String;)Lcom/google/common/util/concurrent/FutureCallback;	m_9635601		m_9635601
 		p	0			p_0
@@ -80,9 +80,9 @@ c	net/minecraft/unmapped/C_5722573$1
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;)V	onSuccess	onSuccess	
-		p	1		p_1	
+		p	1		result	
 	m	(Ljava/lang/Throwable;)V	onFailure	onFailure	
-		p	1		p_1	
+		p	1		t	
 	m	(Lnet/minecraft/unmapped/C_5722573;Ljava/lang/String;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -100,6 +100,10 @@ c	net/minecraft/unmapped/C_5722573$2
 	f	Lnet/minecraft/unmapped/C_5722573;	f_2098683	f_2098683	
 	f	Ljava/lang/String;	f_0473830		f_0473830
 	f	Lnet/minecraft/unmapped/C_5722573;	f_0095458		f_0095458
+	m	(Ljava/lang/Object;)V	onSuccess
+		p	1		p_1	result
+	m	(Ljava/lang/Throwable;)V	onFailure
+		p	1		p_1	t
 c	net/minecraft/unmapped/C_5722573$3
 	f	Ljava/lang/String;	f_6463613	f_6463613	
 	f	Ljava/lang/String;	f_8176466	f_8176466	
@@ -160,11 +164,11 @@ c	net/minecraft/unmapped/C_6886891
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/unmapped/C_7948993	net/minecraft/block/BlockWithCulling	
-	f	Z	f_0953177	fancyGraphics	
+c	net/minecraft/unmapped/C_7948993	net/minecraft/block/TranslucentBlock	
+	f	Z	f_0953177	culling	
 	m	(Lnet/minecraft/unmapped/C_8048208;Z)V	<init>	<init>	
 		p	1		material	
-		p	2		fancyGraphics	
+		p	2		culling	
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_1635166	m_1635166	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)Z	m_9355066	m_9355066	
@@ -191,6 +195,7 @@ c	net/minecraft/unmapped/C_8398976
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_8620458
+	f	Z	f_9098363	renderCutout	culling
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)Z	m_9355066		m_9355066
 		p	1			p_1
 		p	2			p_2
@@ -204,17 +209,17 @@ c	net/minecraft/unmapped/C_8889465$1
 c	net/minecraft/unmapped/C_8889465$1$1
 	f	Lnet/minecraft/unmapped/C_8889465$1;	f_2457218	f_2457218	
 	f	Lnet/minecraft/unmapped/C_8889465$1;	f_5934021		f_5934021
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5010285	m_5010285	
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5010285	apply	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5375718		m_5375718
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5375718		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_8889465$2
 c	net/minecraft/unmapped/C_8889465$2$1
 	f	Lnet/minecraft/unmapped/C_8889465$2;	f_7696435	f_7696435	
 	f	Lnet/minecraft/unmapped/C_8889465$2;	f_9505988		f_9505988
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_8010354	m_8010354	
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_8010354	apply	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_8070373		m_8070373
+	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_8070373		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_9221482
 	f	Lnet/minecraft/unmapped/C_7721249;	f_0585198		ENTITY_ZOMBIE_VILLAGER_AMBIENT

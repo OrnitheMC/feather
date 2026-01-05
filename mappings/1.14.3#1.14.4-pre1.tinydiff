@@ -92,7 +92,7 @@ c	net/minecraft/unmapped/C_2441996$C_1470089
 	m	(Lnet/minecraft/unmapped/C_2441996$C_1470089;)[Z	m_8088180		m_8088180
 		p	0			p_0
 c	net/minecraft/unmapped/C_2528621
-	m	()V	m_0446779		m_0446779
+	m	()V	m_0446779		waitForTasks
 c	net/minecraft/unmapped/C_3667978
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2984321;)Z	m_1015100		m_1015100
 		p	1			p_1
@@ -381,10 +381,10 @@ c	net/minecraft/unmapped/C_8814877
 		p	1			p_1
 	m	()V	m_0774498		m_0774498
 c	net/minecraft/unmapped/C_9404652
-	f	Ljava/util/Optional;	f_1994471	f_1994471	
-	f	Ljava/util/Optional;	f_7666477	f_7666477	
-	f	Ljava/util/OptionalInt;	f_1994471		f_1994471
-	f	Ljava/util/OptionalInt;	f_7666477		f_7666477
+	f	Ljava/util/Optional;	f_1994471	preferredVideoModeWidth	
+	f	Ljava/util/Optional;	f_7666477	preferredVideoModeHeight	
+	f	Ljava/util/OptionalInt;	f_1994471		preferredVideoModeWidth
+	f	Ljava/util/OptionalInt;	f_7666477		preferredVideoModeHeight
 	m	(IILjava/util/Optional;Ljava/util/Optional;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -555,7 +555,7 @@ c	com/mojang/realmsclient/dto/RealmsServer		com/mojang/realmsclient/dto/RealmsSe
 	m	()V	<clinit>		<clinit>
 c	com/mojang/realmsclient/dto/RealmsServer$1		1
 	m	()V	<init>		<init>
-	m	(Lcom/mojang/realmsclient/dto/PlayerInfo;Lcom/mojang/realmsclient/dto/PlayerInfo;)I	m_6905396		m_6905396
+	m	(Lcom/mojang/realmsclient/dto/PlayerInfo;Lcom/mojang/realmsclient/dto/PlayerInfo;)I	m_6905396		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
@@ -565,7 +565,7 @@ c	com/mojang/realmsclient/dto/RealmsServer$a		a
 	f	Ljava/lang/String;	f_3702962		f_3702962
 	m	(Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
-	m	(Lcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/realmsclient/dto/RealmsServer;)I	m_7504974		m_7504974
+	m	(Lcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/realmsclient/dto/RealmsServer;)I	m_7504974		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
@@ -808,23 +808,23 @@ c	com/mojang/realmsclient/dto/WorldTemplatePaginatedList		com/mojang/realmsclien
 	m	(Ljava/lang/String;)Lcom/mojang/realmsclient/dto/WorldTemplatePaginatedList;	parse		parse
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_0145713		net/minecraft/unmapped/C_0145713
-	f	[I	f_2513295		f_2513295
-	f	I	f_8721290		f_8721290
-	f	I	f_7261264		f_7261264
+c	net/minecraft/unmapped/C_0145713		net/minecraft/realms/RealmsSkinImageProcessor
+	f	[I	f_2513295		data
+	f	I	f_8721290		width
+	f	I	f_7261264		height
 	m	()V	<init>		<init>
-	m	(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;	m_7907071		m_7907071
-		p	1			p_1
-	m	(IIII)V	m_1509895		m_1509895
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(IIII)V	m_1417517		m_1417517
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;	m_7907071		process
+		p	1			image
+	m	(IIII)V	m_1509895		doLegacyTransparencyHack
+		p	1			u1
+		p	2			v1
+		p	3			u2
+		p	4			v2
+	m	(IIII)V	m_1417517		setOpaque
+		p	1			u1
+		p	2			v1
+		p	3			u2
+		p	4			v2
 c	net/minecraft/unmapped/C_0169072		net/minecraft/unmapped/C_0169072
 	f	Lnet/minecraft/unmapped/C_9684604;	f_1412023		f_1412023
 	m	()V	<init>		<init>
@@ -1753,7 +1753,7 @@ c	net/minecraft/unmapped/C_1506493		net/minecraft/unmapped/C_1506493
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_1506493$1		1
 	m	()V	<init>		<init>
-	m	(Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	m_6509111		m_6509111
+	m	(Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	m_6509111		load
 		p	1			p_1
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	load		load
 		p	1			p_1
@@ -1818,7 +1818,7 @@ c	net/minecraft/unmapped/C_2507640		net/minecraft/unmapped/C_2507640
 	m	()Ljava/util/List;	m_4655317		m_4655317
 c	net/minecraft/unmapped/C_2507640$1		1
 	m	()V	<init>		<init>
-	m	(Lcom/mojang/realmsclient/dto/RegionPingResult;Lcom/mojang/realmsclient/dto/RegionPingResult;)I	m_3553294		m_3553294
+	m	(Lcom/mojang/realmsclient/dto/RegionPingResult;Lcom/mojang/realmsclient/dto/RegionPingResult;)I	m_3553294		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
@@ -4537,7 +4537,7 @@ c	net/minecraft/unmapped/C_7150973$C_2839575		C_2839575
 	f	Lnet/minecraft/unmapped/C_7150973$C_1278987;	f_5026045		f_5026045
 	f	Ljava/lang/String;	f_7223319		f_7223319
 	f	Ljava/lang/String;	f_7852437		f_7852437
-	m	(Lnet/minecraft/unmapped/C_7150973$C_2839575;)I	m_5465012		m_5465012
+	m	(Lnet/minecraft/unmapped/C_7150973$C_2839575;)I	m_5465012		compareTo
 		p	1			p_1
 	m	(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
@@ -4587,7 +4587,7 @@ c	net/minecraft/unmapped/C_7150973$C_8312317		C_8312317
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_7150973$C_8312317;)I	m_7352671		m_7352671
+	m	(Lnet/minecraft/unmapped/C_7150973$C_8312317;)I	m_7352671		compareTo
 		p	1			p_1
 	m	()I	m_2040635		m_2040635
 	m	()I	m_2846090		m_2846090
@@ -4601,7 +4601,7 @@ c	net/minecraft/unmapped/C_7150973$C_8312317		C_8312317
 c	net/minecraft/unmapped/C_7150973$C_8489744		C_8489744
 	f	Ljava/lang/String;	f_4377443		f_4377443
 	f	Ljava/lang/Long;	f_2839208		f_2839208
-	m	(Lnet/minecraft/unmapped/C_7150973$C_8489744;)I	m_3545678		m_3545678
+	m	(Lnet/minecraft/unmapped/C_7150973$C_8489744;)I	m_3545678		compareTo
 		p	1			p_1
 	m	(Ljava/lang/String;Ljava/lang/Long;)V	<init>		<init>
 		p	1			p_1

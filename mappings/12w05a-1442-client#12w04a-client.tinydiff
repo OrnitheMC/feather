@@ -5,11 +5,11 @@ c	net/minecraft/unmapped/C_0218708	net/minecraft/entity/ai/goal/AbstractDoorInte
 	f	I	f_7175239	doorY	
 	f	I	f_7979053	doorZ	
 	f	Lnet/minecraft/unmapped/C_7842113;	f_6079599	doorBlock	
-	f	Z	f_8478228	f_8478228	
+	f	Z	f_8478228	shouldCloseDoor	
 	f	Z	f_7261998	shouldStop	
 	f	F	f_6315701	offsetX	
 	f	F	f_1498622	offsetZ	
-	f	I	f_5483402	f_5483402	
+	f	I	f_5483402	ticksLeft	
 	m	(Lnet/minecraft/unmapped/C_6607881;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -27,7 +27,7 @@ c	net/minecraft/unmapped/C_0218708	net/minecraft/entity/ai/goal/AbstractDoorInte
 		p	1		p_1	
 	m	()Z	m_9478616	m_9478616	
 c	net/minecraft/unmapped/C_0490004
-	f	Z	f_4926002	f_4926002	
+	f	Z	f_4926002	canOpenDoors	
 	m	(Lnet/minecraft/unmapped/C_8030141;Z)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -35,25 +35,25 @@ c	net/minecraft/unmapped/C_0490004
 		p	1			world
 c	net/minecraft/unmapped/C_0975786
 	f	Lnet/minecraft/unmapped/C_0539808;	f_8848210	target	
-	f	F	f_8176014	distance	
-	f	Lnet/minecraft/unmapped/C_2306016;	f_5836122	fleePath	
+	f	F	f_8176014	range	
+	f	Lnet/minecraft/unmapped/C_2306016;	f_5836122	path	
 	f	Lnet/minecraft/unmapped/C_9229053;	f_1627560	navigation	
 	f	Ljava/lang/Class;	f_0842606	targetType	
-	f	D	f_3675936		f_3675936
-	f	D	f_7199254		f_7199254
-	f	D	f_4749667		f_4749667
-	f	F	f_2077917		f_2077917
-	f	Lnet/minecraft/unmapped/C_6607881;	f_8220085		f_8220085
+	f	D	f_3675936		targetX
+	f	D	f_7199254		targetY
+	f	D	f_4749667		targetZ
+	f	F	f_2077917		navigationSpeed
+	f	Lnet/minecraft/unmapped/C_6607881;	f_8220085		target
 	m	(Lnet/minecraft/unmapped/C_5622853;Ljava/lang/Class;FFF)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		mob	
+		p	2		targetType	
+		p	3		range	
+		p	4		speedWhenFar	
+		p	5		speedWhenClose	
 	m	(Lnet/minecraft/unmapped/C_5622853;FF)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			mob
+		p	2			speedWhenFar
+		p	3			speedWhenClose
 c	net/minecraft/unmapped/C_1006946
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_9558190	canSee	
 		p	1		entity	
@@ -80,36 +80,36 @@ c	net/minecraft/unmapped/C_1582062
 		p	1		p_1	
 c	net/minecraft/unmapped/C_1713911	net/minecraft/world/village/SavedVillageData	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_1562446	world	
-	f	Ljava/util/List;	f_4379729	villagerPositions	
-	f	Ljava/util/List;	f_8914739	newDoors	
+	f	Ljava/util/List;	f_4379729	pendingUpdates	
+	f	Ljava/util/List;	f_8914739	pendingDoors	
 	f	Ljava/util/List;	f_9626451	villages	
 	f	I	f_7112017	ticks	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		world	
-	m	(III)V	m_5855273	addVillagerPosition	
+	m	(III)V	m_5855273	markForUpdate	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 	m	()V	m_7158089	tick	
-	m	()V	m_4953857	removeVillagesWithoutDoors	
-	m	(IIII)Lnet/minecraft/unmapped/C_5708472;	m_6452442	getClosestVillage	
+	m	()V	m_4953857	removeEmptyVillages	
+	m	(IIII)Lnet/minecraft/unmapped/C_5708472;	m_6452442	getNearestVillage	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		range	
-	m	()V	m_6114664	removeOldestVillagerPosition	
-	m	()V	m_2740405	addDoorsToVillages	
-	m	(Lnet/minecraft/unmapped/C_3674802;)V	m_3033587	findDoorsAround	
+	m	()V	m_6114664	runPendingUpdate	
+	m	()V	m_2740405	addPendingDoors	
+	m	(Lnet/minecraft/unmapped/C_3674802;)V	m_3033587	addOrUpdateDoorsAround	
 		p	1		pos	
-	m	(III)Z	m_7667368	getDoor	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(III)V	m_2082538	addNewDoor	
+	m	(III)Z	m_7667368	hasDoor	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(III)Z	m_0221884	hasVillagerPosition	
+	m	(III)V	m_2082538	addDoor	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(III)Z	m_0221884	isMarkedForUpdate	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -142,10 +142,10 @@ c	net/minecraft/unmapped/C_2538104
 		p	1		p_1	
 c	net/minecraft/unmapped/C_2711798
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_2454309;)V	m_0695010	onQuickMoved	
-		p	1		oldStack	
-		p	2		newStack	
+		p	1		oldItem	
+		p	2		newItem	
 	m	(Lnet/minecraft/unmapped/C_2454309;I)V	m_6163826	onQuickMoved	
-		p	1		stack	
+		p	1		item	
 		p	2		amount	
 c	net/minecraft/unmapped/C_2810918
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7916945	m_7916945	
@@ -288,20 +288,20 @@ c	net/minecraft/unmapped/C_5708472	net/minecraft/world/village/Village
 		p	1		ticks	
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_7084961	getCenter	
 	m	()I	m_6667713	getRadius	
-	m	(III)Lnet/minecraft/unmapped/C_9549896;	m_9515346	getClosestDoor	
+	m	(III)Lnet/minecraft/unmapped/C_9549896;	m_9515346	getNearestDoor	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(III)Z	m_9637049	getDoor	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(III)Z	m_9637049	hasDoor	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(Lnet/minecraft/unmapped/C_9549896;)V	m_9514680	addDoor	
 		p	1		door	
-	m	()Z	m_6701385	hasNoDoors	
-	m	(I)V	m_5838302	cleanUpDoors	
-		p	1		p_1	
-	m	(III)Z	m_3889739	isWoodenDoor	
+	m	()Z	m_6701385	isEmpty	
+	m	(I)V	m_5838302	removeInvalidDoors	
+		p	1		ticks	
+	m	(III)Z	m_3889739	isDoor	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -310,7 +310,7 @@ c	net/minecraft/unmapped/C_5714220
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7916945	m_7916945	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_5818647
-	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7916945	removeStackQuietly	
+	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7916945	removeItemQuietly	
 		p	1		slot	
 c	net/minecraft/unmapped/C_6385582
 	f	Lnet/minecraft/unmapped/C_3674802;	f_5330992	f_5330992	
@@ -325,22 +325,22 @@ c	net/minecraft/unmapped/C_6606781
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7916945	m_7916945	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_6607881
-	m	()Z	m_2670295		m_2670295
-	m	()Lnet/minecraft/unmapped/C_0539808;	m_7600753		m_7600753
+	m	()Z	m_2670295		hasLookTarget
+	m	()Lnet/minecraft/unmapped/C_0539808;	m_7600753		getLookTarget
 c	net/minecraft/unmapped/C_7019121
-	f	Lnet/minecraft/unmapped/C_3193702;	f_4572191		f_4572191
+	f	Lnet/minecraft/unmapped/C_3193702;	f_4572191		sitGoal
 	m	()V	m_2135259		m_2135259
-	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_7837298		m_7837298
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_7837298		walkOrTeleportToOwner
+		p	1			owner
+		p	2			distance
 	m	()Z	m_8049752		m_8049752
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743		m_4575743
 	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_3419281		m_3419281
 		p	1			p_1
 		p	2			p_2
-	m	()Z	m_8112098		m_8112098
-	m	(Z)V	m_8269893		m_8269893
-		p	1			p_1
+	m	()Z	m_8112098		isSitting
+	m	(Z)V	m_8269893		setSitting
+		p	1			sitting
 c	net/minecraft/unmapped/C_7051878
 	m	(Lnet/minecraft/unmapped/C_8030141;III)Z	m_1015100	m_1015100	
 		p	1		p_1	
@@ -393,7 +393,7 @@ c	net/minecraft/unmapped/C_9229053
 		p	2		speed	
 	m	()Lnet/minecraft/unmapped/C_2306016;	m_8954160	getPath	
 	m	(Lnet/minecraft/unmapped/C_2306016;)V	m_6903096	trimPath	
-		p	1		p_1	
+		p	1		path	
 c	net/minecraft/unmapped/C_9482745
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7916945	m_7916945	
 		p	1		p_1	
@@ -410,7 +410,7 @@ c	net/minecraft/unmapped/C_9549896	net/minecraft/world/village/VillageDoor
 	f	I	f_2297029	z	
 	f	I	f_9563247	indoorsOffsetX	
 	f	I	f_3647664	indoorsOffsetZ	
-	f	I	f_3080209	lastVillageTick	
+	f	I	f_3080209	lastUpdateTick	
 	m	(IIIIII)V	<init>	<init>	
 		p	1		x	
 		p	2		y	

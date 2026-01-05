@@ -1,28 +1,28 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0539808
-	f	I	f_0470256		f_0470256
-	f	I	f_5711542		f_5711542
+	f	I	f_0470256		breathCapacity
+	f	I	f_5711542		breath
 	m	()I	m_2477999	getBreath	
 	m	(I)V	m_3521250	setBreath	
 		p	1		breath	
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0807932	is	
 		p	1		entity	
 c	net/minecraft/unmapped/C_0607826
-	f	I	f_8195269		f_8195269
-	f	I	f_1378839		f_1378839
-	f	I	f_8725098		f_8725098
+	f	I	f_8195269		damage
+	f	I	f_1378839		damagedTimer
+	f	I	f_8725098		damagedSwingDir
 	m	(I)V	m_3795038	setDamage	
 		p	1		damage	
 	m	()I	m_1515300	getDamage	
-	m	(I)V	m_1375950	setBreakingWindow	
+	m	(I)V	m_1375950	setDamagedTimer	
 		c	When a boat is hit it starts wiggling. You need to consequitively hit it in that window to be able to do\nenough damage until the boat breaks. This method sets that value in the datatracker.\nThe value is initially set to 10 when hit and decreases by one each tick when the boat is not hit.	
-		p	1		value	
-	m	()I	m_4392568	getBreakingWindow	
+		p	1		ticks	
+	m	()I	m_4392568	getDamagedTimer	
 		c	When a boat is hit it starts wiggling. You need to consequitively hit it in that window to be able to do\nenough damage until the boat breaks. This method gets that value in the datatracker.\nThe value is initially set to 10 when hit and decreases by one each tick when the boat is not hit.	
-	m	(I)V	m_5094158	setAnitmationSide	
+	m	(I)V	m_5094158	setDamagedSwingDirection	
 		c	This value determines on which side the wiggle animation starts.\nSee {@link net.minecraft.client.render.entity.BoatRenderer#render}}\n    -1:     start to the right\n     1:     start to the left\nDefault: 1	
-		p	1		value	
-	m	()I	m_6541172	getAnimationSide	
+		p	1		dir	
+	m	()I	m_6541172	getDamagedSwingDirection	
 c	net/minecraft/unmapped/C_0674816
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_1241852;)F	m_5853631	m_5853631	
 		p	1		p_1	
@@ -69,11 +69,11 @@ c	net/minecraft/unmapped/C_2144954
 		c	This map keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that do not allow\nmob spawning, but do contribute to the mob cap.	
 	f	Ljava/util/Set;	f_7536298		mobSpawningChunks
 		c		This set keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that are lazy chunks,\nwhich do not allow mob spawning, but to contribute to the mob cap.
-	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;)Z	m_2442438		m_2442438
-		p	0			p_0
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;)Z	m_2442438		spawnMonstersAndWakeUpPlayers
+		p	0			world
+		p	1			players
 c	net/minecraft/unmapped/C_2306016
-	m	()Lnet/minecraft/unmapped/C_8180393;	m_5516884		m_5516884
+	m	()Lnet/minecraft/unmapped/C_8180393;	m_5516884		getLastNode
 c	net/minecraft/unmapped/C_2608212
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0807932	m_0807932	
 		p	1		p_1	
@@ -112,9 +112,9 @@ c	net/minecraft/unmapped/C_4551488
 	m	()V	m_3731768	tickEndCrystalInteraction	
 		c	End crystal related actions that should be performed every tick.\n    - Disconnect from the crystal if it is removed\n    - If connected to a crystal, heal with a 1/10 chance each tick\n      (on average this means it heals every 10 ticks)\n    - Search for the nearest crystal and connect to it if valid	
 	m	()V	m_5672057	m_5672057	
-	m	(Ljava/util/List;)V	m_3593572	flingLivingEntities	
+	m	(Ljava/util/List;)V	m_3593572	flingMobs	
 		p	1		entities	
-	m	(Ljava/util/List;)V	m_6332823	damageLivingEntities	
+	m	(Ljava/util/List;)V	m_6332823	damageMobs	
 		p	1		entities	
 	m	()V	m_3473757	chooseTarget	
 	m	(II)V	m_8545629	createPortal	
@@ -179,8 +179,8 @@ c	net/minecraft/unmapped/C_5349997	net/minecraft/block/DragonEggBlock
 	m	()Z	m_6174711	m_6174711	
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_5385258
-	f	Lnet/minecraft/unmapped/C_0739569;	f_4614286		f_4614286
-	f	I	f_0970228		f_0970228
+	f	Lnet/minecraft/unmapped/C_0739569;	f_4614286		trackers
+	f	I	f_0970228		incomingCount
 c	net/minecraft/unmapped/C_5533224
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7842021	m_7842021	
 		p	1		p_1	
@@ -193,16 +193,16 @@ c	net/minecraft/unmapped/C_5537602
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		blockId	
+		p	5		block	
 		p	6		metadata	
 c	net/minecraft/unmapped/C_5553933
 	m	(IIIII)V	m_8146961	loadScheduledTick	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 		p	5		delay	
-	m	(IIIZ)Z	m_3675118	isOpaqueFullCube	
+	m	(IIIZ)Z	m_3675118	isSolidBlockingCube	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -249,10 +249,10 @@ c	net/minecraft/unmapped/C_8305266
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7842021	m_7842021	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8869969	net/minecraft/entity/EnderCrystalEntity	
-	f	I	f_5747851	age	
+	f	I	f_5747851	renderTicks	
 	f	I	f_8036738	explosionCountdown	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		world	
 	m	()Z	m_7750295	m_7750295	
 	m	()V	m_1700770	m_1700770	
 	m	()V	m_7274048	m_7274048	
@@ -290,22 +290,23 @@ c	net/minecraft/unmapped/C_9469238
 		p	2		y	
 		p	3		z	
 		p	4		side	
+	m	(Lnet/minecraft/unmapped/C_8030141;IIII)Z	m_0134390	connectsTo	shouldConnectTo
 c	net/minecraft/unmapped/C_9482745
-	f	I	f_8254875		f_8254875
-	f	I	f_2913573		f_2913573
-	f	I	f_9234117		f_9234117
+	f	I	f_8254875		damage
+	f	I	f_2913573		damagedTimer
+	f	I	f_9234117		damagedSwingDir
 	m	()Z	m_6725589	hasFuel	
 	m	(Z)V	m_6179832	setHasFuel	
 		p	1		hasFuel	
-	m	(I)V	m_5124812	setDamageWobbleStrength	
-		p	1		strength	
-	m	()I	m_7734358	getDamageWobbleStrength	
-	m	(I)V	m_2242598	setDamageWobbleTicks	
+	m	(I)V	m_5124812	setDamage	
+		p	1		damage	
+	m	()I	m_7734358	getDamage	
+	m	(I)V	m_2242598	setDamagedTimer	
 		p	1		ticks	
-	m	()I	m_2133556	getDamageWobbleTicks	
-	m	(I)V	m_4626336	setDamageWobbleSide	
-		p	1		ticks	
-	m	()I	m_8944050	getDamageWobbleSide	
+	m	()I	m_2133556	getDamagedTimer	
+	m	(I)V	m_4626336	setDamagedSwingDirection	
+		p	1		dir	
+	m	()I	m_8944050	getDamagedSwingDirection	
 c	net/minecraft/unmapped/C_9753638
 	m	(Z)V	<init>	<init>	
 		p	1		p_1	

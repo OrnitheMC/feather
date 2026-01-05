@@ -37,7 +37,7 @@ c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_6010579	STANDING_SIGN	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_5159777	WOODEN_DOOR	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_5255430	LADDER	
-	f	[Z	f_5383163		f_5383163
+	f	[Z	f_5383163		IS_CUBE
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Lnet/minecraft/unmapped/C_5577922;	m_9063555	getOutlineShape	
 		p	1		world	
 		p	2		x	
@@ -55,13 +55,13 @@ c	net/minecraft/unmapped/C_1241852
 		p	4		z	
 		p	5		player	
 	m	(III)Lnet/minecraft/unmapped/C_5577922;	m_9063555		getOutlineShape
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 	m	(III)Lnet/minecraft/unmapped/C_5577922;	m_4350289		getCollisionShape
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_1264786
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	m_3000450	
 		p	1		p_1	
@@ -91,8 +91,8 @@ c	net/minecraft/unmapped/C_1857222	net/minecraft/block/entity/SignBlockEntity
 c	net/minecraft/unmapped/C_2133983	net/minecraft/client/gui/screen/inventory/menu/SignEditScreen	
 	f	Ljava/lang/String;	f_2668794	title	
 	f	Lnet/minecraft/unmapped/C_1857222;	f_6619092	sign	
-	f	I	f_9434274	ticksSinceOpened	
-	f	I	f_4169511	currentRow	
+	f	I	f_9434274	ticks	
+	f	I	f_4169511	row	
 	m	(Lnet/minecraft/unmapped/C_1857222;)V	<init>	<init>	
 		p	1		sign	
 	m	()V	m_3593494	m_3593494	
@@ -108,7 +108,7 @@ c	net/minecraft/unmapped/C_2133983	net/minecraft/client/gui/screen/inventory/men
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_2144954
-	f	Ljava/util/Random;	f_7485346	f_7485346	
+	f	Ljava/util/Random;	f_7485346	random	
 c	net/minecraft/unmapped/C_3362006
 	m	(Ljava/lang/Class;)Lnet/minecraft/unmapped/C_8980628;	m_5179684	getRenderer	
 		p	1		type	
@@ -119,10 +119,10 @@ c	net/minecraft/unmapped/C_3362006
 		p	4		p_4	
 		p	5		p_5	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_9590849;F)V	m_3742790		prepare
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			textureManager
+		p	3			camera
+		p	4			tickDelta
 c	net/minecraft/unmapped/C_3466810
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	m_3000450	
 		p	1		p_1	
@@ -155,7 +155,7 @@ c	net/minecraft/unmapped/C_3747079
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_0438528	SIGN	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_1160402	WOODEN_DOOR	
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	use	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	useOn	
 		p	1		stack	
 		p	2		player	
 		p	3		world	
@@ -163,13 +163,13 @@ c	net/minecraft/unmapped/C_3755722
 		p	5		y	
 		p	6		z	
 		p	7		face	
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450		use
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450		useOn
+		p	1			stack
+		p	2			world
+		p	3			x
+		p	4			y
+		p	5			z
+		p	6			face
 c	net/minecraft/unmapped/C_3813953	net/minecraft/block/SignBlock	
 	f	Ljava/lang/Class;	f_9438609	blockEntityType	
 	m	(ILjava/lang/Class;)V	<init>	<init>	
@@ -210,19 +210,19 @@ c	net/minecraft/unmapped/C_3940616	net/minecraft/client/render/block/entity/Bloc
 	m	(Lnet/minecraft/unmapped/C_3622326;)Lnet/minecraft/unmapped/C_7180857;	m_7566729	getRenderer	
 		p	1		blockEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_9590849;F)V	m_9928184	prepare	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		textureManager	
+		p	3		textRenderer	
+		p	4		camera	
+		p	5		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_3622326;F)V	m_3594295	render	
 		p	1		blockEntity	
 		p	2		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_3622326;DDDF)V	m_6262702	render	
 		p	1		blockEntity	
-		p	2		x	
-		p	4		y	
-		p	6		z	
+		p	2		dx	
+		p	4		dy	
+		p	6		dz	
 		p	8		tickDelta	
 	m	()Lnet/minecraft/unmapped/C_3831727;	m_8858472	getTextRenderer	
 	m	()V	<clinit>	<clinit>	
@@ -277,10 +277,10 @@ c	net/minecraft/unmapped/C_5445172
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_5537602
-	m	(DDD)V	m_2048573		m_2048573
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
+	m	(DDD)V	m_2048573		prepare
+		p	1			d
+		p	3			e
+		p	5			f
 c	net/minecraft/unmapped/C_5553933
 	m	(IIIIII)V	m_9626998	notifyRegionChanged	
 		p	1		minX	
@@ -290,14 +290,14 @@ c	net/minecraft/unmapped/C_5553933
 		p	5		maxY	
 		p	6		maxZ	
 c	net/minecraft/unmapped/C_5577922
-	m	(DDD)Lnet/minecraft/unmapped/C_5577922;	m_6080548	setMoved	
+	m	(DDD)Lnet/minecraft/unmapped/C_5577922;	m_6080548	move	
 		p	1		dx	
 		p	3		dy	
 		p	5		dz	
-	m	(DDD)V	m_6080548		setMoved
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
+	m	(DDD)V	m_6080548		move
+		p	1			dx
+		p	3			dy
+		p	5			dz
 c	net/minecraft/unmapped/C_6607881
 	m	()Z	m_8431337	isClimbing	
 c	net/minecraft/unmapped/C_6849228
@@ -308,7 +308,7 @@ c	net/minecraft/unmapped/C_7008218	net/minecraft/client/render/model/block/entit
 	f	Lnet/minecraft/unmapped/C_6697291;	f_8844455	pole	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_7028449
-	f	Ljava/util/List;	f_4904106	blockEntities	
+	f	Ljava/util/List;	f_4904106	renderableBlockEntities	
 c	net/minecraft/unmapped/C_7051878
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
@@ -324,9 +324,9 @@ c	net/minecraft/unmapped/C_7180857	net/minecraft/client/render/block/entity/Bloc
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_3622326;DDDF)V	m_2494919	render	
 		p	1		blockEntity	
-		p	2		x	
-		p	4		y	
-		p	6		z	
+		p	2		dx	
+		p	4		dy	
+		p	6		dz	
 		p	8		tickDelta	
 	m	(Ljava/lang/String;)V	m_2169266	bindTexture	
 		p	1		path	
@@ -369,7 +369,7 @@ c	net/minecraft/unmapped/C_7233506	net/minecraft/block/LadderBlock
 		p	5		p_5	
 	m	(Ljava/util/Random;)I	m_2862578	m_2862578	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_7589055	net/minecraft/item/RedstoneItem	
+c	net/minecraft/unmapped/C_7589055	net/minecraft/item/DoorItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	m_3000450	
@@ -392,7 +392,7 @@ c	net/minecraft/unmapped/C_7753067
 		p	3			p_3
 c	net/minecraft/unmapped/C_7842113	net/minecraft/block/DoorBlock	
 	m	(I)V	<init>	<init>	
-		p	1		p_1	
+		p	1		id	
 	m	(II)I	m_8325719	m_8325719	
 		p	1		p_1	
 		p	2		p_2	
@@ -442,15 +442,15 @@ c	net/minecraft/unmapped/C_7842113	net/minecraft/block/DoorBlock
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-	m	(I)I	m_2622302	setOpen	
-		p	0		p_0	
+	m	(I)I	m_2622302	getFacing	
+		p	0		metadata	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_4879729	m_4879729	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_8398976
-	f	Ljava/util/List;	f_5253078	globalBlockEntities	
+	f	Ljava/util/List;	f_5253078	blockEntitiesToBeRendered	
 c	net/minecraft/unmapped/C_9568451
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	m_3000450	
 		p	1		p_1	
@@ -469,8 +469,7 @@ c	net/minecraft/unmapped/C_9568451
 		p	6			p_6
 c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_1857222;)V	m_9360072	openSignEditor	
-		c	Open a sign or command block editor.	
-		p	1		p_1	
+		p	1		sign	
 c	net/minecraft/unmapped/C_9761743
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
@@ -490,29 +489,37 @@ c	net/minecraft/unmapped/C_9974801	net/minecraft/client/render/block/entity/Sign
 		p	4		p_4	
 		p	6		p_6	
 		p	8		p_8	
-c	net/minecraft/unmapped/C_0678370		net/minecraft/unmapped/C_0678370
-	f	[B	f_3684639		f_3684639
-	f	Ljava/util/Random;	f_2053469		f_2053469
-	f	Lnet/minecraft/unmapped/C_5553933;	f_2495597		f_2495597
-	f	[I	f_4553159		f_4553159
-	f	I	f_4172635		f_4172635
-	f	I	f_4413532		f_4413532
-	f	D	f_8932722		f_8932722
-	f	D	f_5531920		f_5531920
-	f	D	f_1393292		f_1393292
-	f	D	f_0445573		f_0445573
-	f	I	f_6979990		f_6979990
-	f	I	f_0951401		f_0951401
-	f	I	f_1841026		f_1841026
-	f	[[I	f_3401457		f_3401457
+c	net/minecraft/unmapped/C_0678370		net/minecraft/world/gen/feature/TreeFeature
+	f	[B	f_3684639		MINOR_AXES
+		c		Given a branch's major axis {@code a} this array stores that branch's minor\naxes at indices {@code a} and {@code a + 3}.\n\n<p>\nA branch's major axis is the axis along which it has the greatest length.\n\n<p>\nThe axes are as follows:\n<br> 0: x\n<br> 1: y\n<br> 2: z
+	f	Ljava/util/Random;	f_2053469		random
+	f	Lnet/minecraft/unmapped/C_5553933;	f_2495597		world
+	f	[I	f_4553159		origin
+		c		The position of the base of the tree.
+	f	I	f_4172635		height
+		c		Total height of the tree, including the canopy.
+	f	I	f_4413532		trunkHeight
+		c		Height of just the trunk of the tree.
+	f	D	f_8932722		trunkScale
+		c		The portion of the total height of the tree that is taken up by the trunk.
+	f	D	f_5531920		branchSlope
+	f	D	f_1393292		branchLengthScale
+	f	D	f_0445573		foliageDensity
+	f	I	f_6979990		trunkWidth
+		c		The width of the trunk, can be 1 or 2.
+	f	I	f_0951401		maxTrunkHeight
+	f	I	f_1841026		foliageClusterHeight
+	f	[[I	f_3401457		branches
+		c		Base and tip coordinates for each branch in the tree. The base of a branch is\nplaced at some height on the trunk, so the base x- and z-coordinates match\nthose of the trunk, and do not need to be stored. The remaining coordinates\nare stored in int arrays of length 4:\n\n<br> {\n<br> &nbsp; tip x-coordinate,\n<br> &nbsp; tip y-coordinate,\n<br> &nbsp; tip z-coordinate,\n<br> &nbsp; base y-coordinate\n<br> }
 	m	()V	<init>		<init>
-	m	([I[II)V	m_4372363		m_4372363
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	([I[I)I	m_8729351		m_8729351
-		p	1			p_1
-		p	2			p_2
+	m	([I[II)V	m_4372363		placeBranch
+		p	1			from
+		p	2			to
+		p	3			log
+	m	([I[I)I	m_8729351		tryBranch
+		c		Check if a branch can be placed between the two given positions.\n\n@return -1 if the branch can be placed, or the maximum possible length of the\n        branch along its major axis.
+		p	1			from
+		p	2			to
 	m	(DDD)V	m_2048573		m_2048573
 		p	1			p_1
 		p	3			p_3

@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0539808
 	m	()F	m_4815215	getHeadYaw	
-c	net/minecraft/unmapped/C_0867369	net/minecraft/unmapped/C_0867369	
-	f	Lnet/minecraft/unmapped/C_5553933;	f_4059128	f_4059128	
-	f	Lnet/minecraft/unmapped/C_7019121;	f_8676756	f_8676756	
+c	net/minecraft/unmapped/C_0867369	net/minecraft/entity/ai/goal/AttackWithOwnerGoal	
+	f	Lnet/minecraft/unmapped/C_5553933;	f_4059128	world	
+	f	Lnet/minecraft/unmapped/C_7019121;	f_8676756	wolf	
 	m	(Lnet/minecraft/unmapped/C_7019121;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		wolf	
 	m	()V	m_0097591	m_0097591	
 	m	()V	m_3422886	m_3422886	
 c	net/minecraft/unmapped/C_1430573
@@ -41,7 +41,7 @@ c	net/minecraft/unmapped/C_1518925
 	m	(Ljava/lang/String;ILjava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-		p	3			p_3
+		p	3			key
 c	net/minecraft/unmapped/C_1929235
 	m	()Z	m_4324221	m_4324221	
 c	net/minecraft/unmapped/C_2221425
@@ -55,12 +55,12 @@ c	net/minecraft/unmapped/C_2221425
 c	net/minecraft/unmapped/C_2262578	net/minecraft/entity/ai/goal/AnimalBreedGoal	
 	f	Lnet/minecraft/unmapped/C_8253973;	f_1679871	animal	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_9796630	world	
-	f	Lnet/minecraft/unmapped/C_8253973;	f_9922931	animalTwo	
+	f	Lnet/minecraft/unmapped/C_8253973;	f_9922931	mate	
 	f	I	f_6572231	breedTimer	
 	f	F	f_8016618	speedModifier	
 	m	(Lnet/minecraft/unmapped/C_8253973;F)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		animal	
+		p	2		speedModifier	
 	m	()Z	m_9549250	m_9549250	
 	m	()Z	m_4540487	m_4540487	
 	m	()V	m_7242457	m_7242457	
@@ -80,12 +80,12 @@ c	net/minecraft/unmapped/C_2306016
 	m	(I)V	m_0512367	setCurrentIndex	
 		p	1		index	
 	m	(Lnet/minecraft/unmapped/C_0539808;I)Lnet/minecraft/unmapped/C_0557736;	m_1629118	getPos	
-		p	1		entity	
+		p	1		target	
 		p	2		index	
 	m	(Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_0557736;	m_5663151	getCurrentPos	
-		p	1		entity	
+		p	1		target	
 	m	(Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_0557736;	m_1629118		getPos
-		p	1			p_1
+		p	1			target
 c	net/minecraft/unmapped/C_2516302	net/minecraft/entity/ai/control/BodyControl	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_1503940	entity	
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
@@ -111,8 +111,8 @@ c	net/minecraft/unmapped/C_3193702	net/minecraft/entity/ai/goal/SitGoal
 	m	()Z	m_9478616	m_9478616	
 	m	()Z	m_4540487	m_4540487	
 c	net/minecraft/unmapped/C_3198459
-	f	Z	f_1925911		isNether
-	m	()Z	m_4324221	isOverworld	
+	f	Z	f_1925911		unnatural
+	m	()Z	m_4324221	isNatural	
 c	net/minecraft/unmapped/C_3392835	net/minecraft/network/packet/EntityHeadAnglesPacket	
 	f	I	f_2666035	id	
 	f	B	f_9731060	headYaw	
@@ -129,26 +129,26 @@ c	net/minecraft/unmapped/C_3392835	net/minecraft/network/packet/EntityHeadAngles
 	m	()I	m_4040470	m_4040470	
 c	net/minecraft/unmapped/C_3807678
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		mob	
 	m	(DDDF)V	m_6390708	update	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		speed	
 	m	(FFF)F	m_8509130	clampAndWrapAngle	
 		p	1		yaw1	
 		p	2		yaw2	
 		p	3		maxOffset	
 			c	The maximum offset that is allowed between the yaw1 and yaw2	
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			mob
+		p	2			speed
 	m	(DDD)V	m_6390708		update
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-	m	(F)V	m_4962216		m_4962216
-		p	1			p_1
+		p	1			x
+		p	3			y
+		p	5			z
+	m	(F)V	m_4962216		setSpeed
+		p	1			speed
 c	net/minecraft/unmapped/C_4156170
 	f	I	f_3629184	baseHeight	
 	f	Z	f_8669157	placeVines	
@@ -222,13 +222,13 @@ c	net/minecraft/unmapped/C_5192843	net/minecraft/entity/ai/goal/FollowOwnerGoal
 		p	1		p_1	
 	m	()Z	m_9478616	m_9478616	
 c	net/minecraft/unmapped/C_5438730
-	f	I	f_6288262	lastHeadPitch	
+	f	I	f_6288262	lastHeadYaw	
 c	net/minecraft/unmapped/C_5540234
 	m	(JLnet/minecraft/unmapped/C_1518925;)[Lnet/minecraft/unmapped/C_5540234;	m_7450475	init	
 		p	0		seed	
 		p	2		generatorType	
 	m	(J)[Lnet/minecraft/unmapped/C_5540234;	m_7450475		init
-		p	0			p_0
+		p	0			seed
 c	net/minecraft/unmapped/C_5553933
 	m	(III)Z	m_8077422	isHumid	
 		p	1		x	
@@ -264,15 +264,18 @@ c	net/minecraft/unmapped/C_6385582
 c	net/minecraft/unmapped/C_6607881
 	f	Lnet/minecraft/unmapped/C_6607881;	f_7318912	attacker	
 	f	Lnet/minecraft/unmapped/C_2516302;	f_7726987	bodyControl	
-	f	Lnet/minecraft/unmapped/C_8159814;	f_6553682	target	
-	m	()Lnet/minecraft/unmapped/C_8159814;	m_5132113	getTarget	
+	f	Lnet/minecraft/unmapped/C_8159814;	f_6553682	attackTarget	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_8574314	lastAttackedMob	attacker
+		c	The last mob this entity attacked.	
+	m	()Lnet/minecraft/unmapped/C_8159814;	m_5132113	getAttackTarget	
 	m	()Lnet/minecraft/unmapped/C_6607881;	m_9814525	getAttacker	
-	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_9034656	setAttackTarget	
-		p	1		target	
+	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_9034656	setLastAttackedMob	
+		p	1		entity	
 	m	()F	m_4815215	m_4815215	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_3916798	damageAttackTarget	
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_3916798	tryDamage	
 		p	1		target	
-	m	()F	m_9814525		getAttacker
+	m	()F	m_9814525		getTargetSpeed
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_1734555	getLastAttackedMob	getAttacker
 c	net/minecraft/unmapped/C_6823216	net/minecraft/world/gen/feature/BushFeature	
 	f	I	f_9764720	leavesVariant	
 	f	I	f_0572672	logVariant	
@@ -288,13 +291,13 @@ c	net/minecraft/unmapped/C_6823216	net/minecraft/world/gen/feature/BushFeature
 c	net/minecraft/unmapped/C_6928498
 	f	Lnet/minecraft/unmapped/C_6928498;	f_6189178	JUNGLE	
 	f	Lnet/minecraft/unmapped/C_6928498;	f_7955268	JUNGLE_HILLS	
-	m	(Ljava/util/Random;)Lnet/minecraft/unmapped/C_5537602;	m_8288248	getRandomGrass	
+	m	(Ljava/util/Random;)Lnet/minecraft/unmapped/C_5537602;	m_8288248	pickPlant	
 		p	1		random	
 	m	()Z	m_3086587	isHumid	
 c	net/minecraft/unmapped/C_7019121
-	f	Lnet/minecraft/unmapped/C_3193702;	f_2053380	f_2053380	
+	f	Lnet/minecraft/unmapped/C_3193702;	f_2053380	sitGoal	
 	m	()Z	m_6682221	m_6682221	
-	m	()Lnet/minecraft/unmapped/C_6607881;	m_0456005	m_0456005	
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_0456005	getOwnerMob	
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_3916798	m_3916798	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_5991226	m_5991226	
@@ -315,18 +318,18 @@ c	net/minecraft/unmapped/C_7901749
 		p	6		z	
 c	net/minecraft/unmapped/C_7985395	net/minecraft/entity/ai/goal/ActiveTargetGoal	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_6730133	target	
-	f	F	f_8046303	f_8046303	
+	f	F	f_8046303	range	
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	m_0097591	m_0097591	
 c	net/minecraft/unmapped/C_8159814	net/minecraft/entity/ai/goal/TrackTargetGoal	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_7808799	entity	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_7808799	mob	
 	m	()V	<init>	<init>	
-	m	()V	m_0097591	m_0097591	
-	m	()Lnet/minecraft/unmapped/C_6607881;	m_5421528	m_5421528	
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_4051524	m_4051524	
-		p	1		p_1	
+	m	()V	m_0097591	tick	
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_5421528	getMob	
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_4051524	setMob	
+		p	1		mob	
 c	net/minecraft/unmapped/C_8173586
 	f	Lnet/minecraft/unmapped/C_6607881;	f_7854016	entity	
 	f	Lnet/minecraft/unmapped/C_5904422;	f_7854016		entity
@@ -357,9 +360,27 @@ c	net/minecraft/unmapped/C_8683549
 		p	3		parent	
 		p	4		generatorType	
 	m	(JLnet/minecraft/unmapped/C_5540234;)V	<init>		<init>
+		p	1			seed
+		p	3			parent
+c	net/minecraft/unmapped/C_9086492
+	m	(DDDF)Z	m_6026864	moveTo	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		speed	
+	m	(Lnet/minecraft/unmapped/C_6607881;F)Z	m_5771439	moveTo	
+		p	1		entity	
+		p	2		speed	
+	m	()V	m_4324727	stop	
+	m	(DDDF)V	m_6026864		moveTo
 		p	1			p_1
 		p	3			p_3
-c	net/minecraft/unmapped/C_9086492
+		p	5			p_5
+		p	7			p_7
+	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5771439		moveTo
+		p	1			p_1
+		p	2			p_2
+c	net/minecraft/unmapped/C_9229053
 	m	(DDDF)Z	m_6026864	m_6026864	
 		p	1		p_1	
 		p	3		p_3	
@@ -368,27 +389,9 @@ c	net/minecraft/unmapped/C_9086492
 	m	(Lnet/minecraft/unmapped/C_6607881;F)Z	m_5771439	m_5771439	
 		p	1		p_1	
 		p	2		p_2	
-	m	()V	m_4324727	m_4324727	
-	m	(DDDF)V	m_6026864		m_6026864
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5771439		m_5771439
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_9229053
-	m	(DDDF)Z	m_6026864	moveTo	
-		p	1		x	
-		p	3		y	
-		p	5		z	
-		p	7		speed	
-	m	(Lnet/minecraft/unmapped/C_6607881;F)Z	m_5771439	findPath	
-		p	1		p_1	
-		p	2		p_2	
 	m	()V	m_1285481	m_1285481	
 	m	()V	m_7088709	updatePath	
-	m	()V	m_4324727	stop	
+	m	()V	m_4324727	m_4324727	
 	m	()Z	m_0071216	canUpdatePath	
 	m	()Z	m_4958019	isInLiquid	
 	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_0557736;III)Z	m_3885880	canMoveDirectly	
@@ -417,12 +420,12 @@ c	net/minecraft/unmapped/C_9229053
 		p	7		pos	
 		p	8		distanceX	
 		p	10		distanceZ	
-	m	(DDDF)V	m_6026864		moveTo
+	m	(DDDF)V	m_6026864		m_6026864
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
 		p	7			p_7
-	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5771439		findPath
+	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5771439		m_5771439
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_9595731	net/minecraft/world/biome/JungleBiome	
@@ -437,3 +440,6 @@ c	net/minecraft/unmapped/C_9595731	net/minecraft/world/biome/JungleBiome
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
+c	net/minecraft/unmapped/C_5904422
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_3916798	m_3916798	attack
+		p	1		p_1	target

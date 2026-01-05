@@ -35,9 +35,9 @@ c	net/minecraft/unmapped/C_1161898
 	m	()Z	m_0344189	isFire	
 c	net/minecraft/unmapped/C_1189578
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
-c	net/minecraft/unmapped/C_1318505	net/minecraft/block/entity/EnchantingTableBlockEntity	
-	f	I	f_2866569	f_2866569	
-	f	I	f_3736945	f_3736945	
+c	net/minecraft/unmapped/C_1318505	net/minecraft/block/entity/CauldronBlockEntity	
+	f	I	f_2866569	liquidLevel	
+	f	I	f_3736945	liquidId	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_4740132	m_4740132	
 		p	1		p_1	
@@ -52,7 +52,7 @@ c	net/minecraft/unmapped/C_1925128
 		p	1		p_1	
 c	net/minecraft/unmapped/C_2018497
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
-c	net/minecraft/unmapped/C_2082251	net/minecraft/entity/thrown/ThrownEntity	
+c	net/minecraft/unmapped/C_2082251	net/minecraft/entity/projectile/EnderPearlEntity	
 	f	I	f_6099129	blockX	
 	f	I	f_8168265	blockY	
 	f	I	f_8682074	blockZ	
@@ -68,12 +68,12 @@ c	net/minecraft/unmapped/C_2082251	net/minecraft/entity/thrown/ThrownEntity
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
 		p	1		world	
 		p	2		thrower	
-	m	(DDDFF)V	m_3686906	m_3686906	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
+	m	(DDDFF)V	m_3686906	thrown	
+		p	1		velocityX	
+		p	3		velocityY	
+		p	5		velocityZ	
+		p	7		power	
+		p	8		variance	
 	m	()V	m_7274048	m_7274048	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_1129840	m_1129840	
 		p	1		p_1	
@@ -91,15 +91,15 @@ c	net/minecraft/unmapped/C_2454309
 c	net/minecraft/unmapped/C_2670477
 	f	Z	f_4110768	hardcore	
 	m	(JIZZ)V	<init>	<init>	
-		p	1		p_1	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		seed	
+		p	3		gameMode	
+		p	4		generateStructures	
+		p	5		hardcore	
 	m	()Z	m_5408639	isHardcore	
 	m	(JIZ)V	<init>		<init>
-		p	1			p_1
-		p	3			p_3
-		p	4			p_4
+		p	1			seed
+		p	3			gameMode
+		p	4			generateStructures
 c	net/minecraft/unmapped/C_3225627
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	copy	
 c	net/minecraft/unmapped/C_3242141
@@ -133,7 +133,7 @@ c	net/minecraft/unmapped/C_3488550
 	m	()I	m_8279418	getId	
 	m	()Z	m_8707482	isInstant	
 	m	()Z	m_1740831	isUsable	
-	m	()Lnet/minecraft/unmapped/C_3488550;	m_4673345	m_4673345	
+	m	()Lnet/minecraft/unmapped/C_3488550;	m_4673345	setUsable	
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_7606650	POTION	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_0376191	GLASS_BOTTLE	
@@ -150,9 +150,9 @@ c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_9975817	RECORD_STRAD	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_6144939	RECORD_WARD	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_1852205	RECORD_11	
-	f	Ljava/lang/String;	f_6062983	brewingRecipe	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3755722;	m_0875621	setBrewingRecipe	
-		p	1		recipe	
+	f	Ljava/lang/String;	f_6062983	potionIngredient	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3755722;	m_0875621	setPotionIngredient	
+		p	1		ingredient	
 c	net/minecraft/unmapped/C_4015822
 	m	()I	m_2548208	m_2548208	
 	m	()Z	m_1903739	m_1903739	
@@ -184,16 +184,16 @@ c	net/minecraft/unmapped/C_5318159
 c	net/minecraft/unmapped/C_5362195
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_5385258
-	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2454309;	m_5940976	readItemStack	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/io/DataOutputStream;)V	m_1303332	writeItemStack	
-		p	1		output	
-		p	2		p_2	
+	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2454309;	m_5940976	readItem	
+		p	1		input	
+	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/io/DataOutputStream;)V	m_1303332	writeItem	
+		p	1		item	
+		p	2		output	
 	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2018497;	m_7758725	readCompound	
-		p	1		p_1	
+		p	1		input	
 	m	(Lnet/minecraft/unmapped/C_2018497;Ljava/io/DataOutputStream;)V	m_4581587	writeCompound	
-		p	1		output	
-		p	2		p_2	
+		p	1		nbt	
+		p	2		output	
 c	net/minecraft/unmapped/C_5578771
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_5587144
@@ -228,7 +228,7 @@ c	net/minecraft/unmapped/C_6269816
 	m	()I	m_2548208	m_2548208	
 c	net/minecraft/unmapped/C_6607881
 	f	I	f_2385937	jumpingCooldown	
-	f	Z	f_4766713		f_4766713
+	f	Z	f_4766713		jumpingCooldown
 	m	()I	m_2548208	getMaxHealth	
 	m	()I	m_7111628	getHealth	
 	m	(I)V	m_9455713	setHealth	
@@ -276,7 +276,7 @@ c	net/minecraft/unmapped/C_8052742
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_8253973
 	f	I	f_2323774	f_2323774	
-	f	I	f_1109299	loveTicks	
+	f	I	f_1109299	inLoveTimer	
 	f	I	f_0739074	breedingTicks	
 	m	()V	m_0095412	m_0095412	
 	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_3419281	m_3419281	
@@ -284,7 +284,7 @@ c	net/minecraft/unmapped/C_8253973
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_8253973;)V	m_6743426	breed	
 		c	Breed with the other animal and create heart particles.	
-		p	1		other	
+		p	1		mate	
 	m	(Lnet/minecraft/unmapped/C_8253973;)Lnet/minecraft/unmapped/C_8253973;	m_4865538	makeChild	
 		p	1		other	
 	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_4707075	m_4707075	
@@ -292,25 +292,25 @@ c	net/minecraft/unmapped/C_8253973
 		p	2		p_2	
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743	m_4575743	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_5991226	isBreedingItem	
-		p	1		stack	
+		p	1		item	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_4185556	m_4185556	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8492283
 	m	()I	m_2548208	m_2548208	
 	m	(Lnet/minecraft/unmapped/C_8253973;)Lnet/minecraft/unmapped/C_8253973;	m_4865538	m_4865538	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_8523418	net/minecraft/item/AppleItem	
+c	net/minecraft/unmapped/C_8523418	net/minecraft/item/GoldenAppleItem	
 	m	(IIFZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_8574306	net/minecraft/item/PotionItem	
-	f	Ljava/util/HashMap;	f_1306318	potionEffectCache	
+	f	Ljava/util/HashMap;	f_1306318	potionEffectsByMetadataCache	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	m_9386117	getPotionEffects	
-		p	1		item	
+		p	1		stack	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_2771990	m_2771990	
 		p	1		p_1	
 		p	2		p_2	
@@ -331,12 +331,12 @@ c	net/minecraft/unmapped/C_8574306	net/minecraft/item/PotionItem
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
-c	net/minecraft/unmapped/C_8595425	net/minecraft/entity/living/effect/PotionHelper	
-	f	Ljava/util/HashMap;	f_2450676	RECIPES	
-	f	Ljava/util/HashMap;	f_7265311	EFFECT_CACHE	
-	f	[Ljava/lang/String;	f_4669772	NAMES	
+c	net/minecraft/unmapped/C_8595425	net/minecraft/entity/mob/effect/PotionHelper	
+	f	Ljava/util/HashMap;	f_2450676	DURATION_RECIPES	
+	f	Ljava/util/HashMap;	f_7265311	AMPLIFIER_RECIPES	
+	f	[Ljava/lang/String;	f_4669772	PREFIXES	
 	m	()V	<init>	<init>	
-	m	(II)Z	m_9871096	hasFlag	
+	m	(II)Z	m_9871096	isFlagEnabled	
 		p	0		metadata	
 		p	1		flag	
 	m	(II)I	m_6432419	getFlag	
@@ -345,20 +345,21 @@ c	net/minecraft/unmapped/C_8595425	net/minecraft/entity/living/effect/PotionHelp
 	m	(II)I	m_8565685	getFlagInverse	
 		p	0		metadata	
 		p	1		flag	
-	m	(ZZZIIII)I	m_5337533	updatePotionEffectMetadata	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		flag	
-		p	5		p_5	
+	m	(ZZZIIII)I	m_5337533	evaluateMetadata	
+		p	0		invert	
+		p	1		multiply	
+		p	2		negate	
+		p	3		operator	
+		p	4		operand	
+		p	5		multiplier	
 		p	6		metadata	
-	m	(I)I	m_0348258	getAmountOfOnes	
-		p	0		p_0	
-	m	(Ljava/lang/String;III)I	m_7277715	getEffectAmplifier	
+	m	(I)I	m_0348258	countSetFlags	
+		p	0		metadata	
+	m	(Ljava/lang/String;III)I	m_7277715	parseRecipe	
+		c	Parses the given potion using the given recipe between the given bounds, then returns\na number based on which conditions of the recipe are met.\n<p>\nThe recipe string encodes how to parse the potion by reading specific "flags" on the\nitem metadata. A flag {@code n} represents the {@code n}th least significant bit in\nthe item metadata.\n<p>\nThe recipe string reads like an expression: a series of sub-expressions and '|' (OR)\nand '&' (AND) operators. It is evaluated from left to right, and the operators act\nsimilarly to their boolean operator equivalents.\n<br>- '|': evaluates to the preceding expression if that evaluates to more than\n{@code 0}, otherwise evaluates to the succeeding expression\n<br>- '&': evaluates to {@code 0} if either the preceding or succeeding expression\nevaluates to {@code 0}, otherwise evaluates to the largest between the two, picking\nthe second in case they are equal\n<p>\nThe sub-expressions are also evaluated from left to right, as a series of\nstatements, where each statement is an operator-number pair. Each statement is\nevaluated independently, and the values of all statements added together give the\nvalue of the entire sub-expression. Any operator without a number directly following\nit is ignored.\n<p>\nThere are three operators that interpret the following number as a flag:\n<br>- '+': evaluates to {@code 1} if the flag is set in the metadata, otherwise\n{@code 0} (can be implicit for the first statement of a sub-expression)\n<br>- '-': evaluates to {@code -1} if the flag is set in the metadata, otherwise\n{@code 0}\n<br>- '!': evaluates to {@code 0} if the flag is set in the metadata, otherwise\n{@code 1}\n<p>\nThere are three comparison operators:\n<br>- '=': evaluates to {@code 1} if the number of set flags in the metadata is\nequal to the operand, otherwise {@code 0}\n<br>- '>': evaluates to {@code 1} if the number of set flags in the metadata is\nlarger than the operand, otherwise {@code 0}\n<br>- '<': evaluates to {@code 1} if the number of set flags in the metadata is\nless than the operand, otherwise {@code 0}\n<p>\nLastly, there is the '*' operator, which multiplies the preceding statement by the\nfollowing number.\n<p>\nAs an example, let's parse the following recipe\n<br> {@code "0 & +1 & -2 & !3 & 0-1!2*3 & =2 & >3 | <4"}\n<br> on the following metadata {@code 0b0011} (truncated to four bits for\nreadability).\n<p>\nFirst we break the expression up into sub-expressions, and evaluate those.\n<p>\n{@code "0"} evaluates to {@code 1}, since the {@code 0} flag is set.\n<p>\n{@code "+1"} evaluates to {@code 1}, since the {@code 1} flag is set.\n<p>\n{@code "-2"} evaluates to {@code 0}, since the {@code 2} flag is not set.\n<p>\n{@code "!3"} evaluates to {@code 1}, since the {@code 3} flag is not set.\n<p>\n{@code "0-1!2*3"} breaks up into four statements:\n<br> {@code "0"} evaluates to {@code 1}, since the {@code 0} flag is set.\n<br> - {@code "-1"} evaluates to {@code -1}, since the {@code 1} flag is set.\n<br> - {@code "!2"} evaluates to {@code 1}, since the {@code 2} flag is not set.\n<br> - {@code "*3"} multiplies the previous statement by {@code 3}.\n<br> - {@code "0-1!2*3"} then evaluates to {@code 1 - 1 + 1*3 = 3}.\n<p>\n{@code "=2"} evaluates to {@code 1}, since exactly two flags are set.\n<p>\n{@code ">3"} evaluates to {@code 0}, since not more than three flags are set.\n<p>\n{@code "<4"} evaluates to {@code 1}, since less than four flags are set.\n<p>\nThen parsing the '|' and '&' operators, we can insert brackets to make clear how\nthe expression is evaluated:\n<br> {@code "0 & (+1 & (-2 & (!3 & (0-1!2*3 & (=2 & (>3 | <4))))))"}\n<br> Working through the brackets from inside out, expression evaluates like so:\n<p>\n{@code ">3 | <4"} evaluates to {@code "<4"}, since {@code ">3"} evaluates to {@code 0}.\n<p>\n{@code "=2 & <4"} evaluates to {@code <4}, since {@code "=2"} and {@code "<4"} both\nevaluate to {@code 1}.\n<p>\n{@code "0-1!2*3 & <4"} evaluates to {@code "0-1!2*3"}, since that evaluates to\n{@code 3}, whereas {@code "<4"} evaluates to {@code 1}. Neither result is {@code 0},\nand {@code 3 > 1}.\n<p>\n{@code "!3 & 0-1!2*3"} evaluates to {@code "0-1!2*3"}, since that evaluates to\n{@code 3}, whereas {@code "!3"} evaluates to {@code 1}. Neither result is {@code 0},\nand {@code 1 > 3}.\n<p>\n{@code "-2 & 0-1!2*3"} evaluates to {@code 0}, since {@code "-2"} evaluates to\n{@code 0}.\n<p> Since the remaining operations are all '&', the entire expression evaluates to\n{@code 0}.	
 		p	0		recipe	
-		p	1		start	
-		p	2		end	
+		p	1		from	
+		p	2		to	
 		p	3		metadata	
 	m	(I)Ljava/util/List;	m_4849770	getStatusEffects	
 		p	0		p_0	

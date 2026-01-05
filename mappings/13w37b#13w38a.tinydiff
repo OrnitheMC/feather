@@ -3,8 +3,8 @@ c	net/minecraft/server/MinecraftServer
 	m	(Z)V	m_7640190	saveWorlds	
 		p	1		silent	
 	m	(ZZ)V	m_7640190		saveWorlds
-		p	1			p_1
-		p	2			p_2
+		p	1			silent
+		p	2			flush
 c	net/minecraft/unmapped/C_0163020
 	m	(IIIIII)V	m_3739705	m_3739705	
 		p	1		p_1	
@@ -35,8 +35,8 @@ c	net/minecraft/unmapped/C_0259655
 	f	I	f_7885650		shaderIndex
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>	<init>	
 		p	1		minecraft	
-	m	(I)I	m_5098619	m_5098619	
-		p	0		p_0	
+	m	(I)I	m_5098619	getTargetFrameRate	
+		p	0		max	
 	m	(Lnet/minecraft/unmapped/C_8105098;Lnet/minecraft/unmapped/C_6577431;)V	<init>		<init>
 		p	1			minecraft
 		p	2			resourceManager
@@ -54,14 +54,14 @@ c	net/minecraft/unmapped/C_0539808
 c	net/minecraft/unmapped/C_0640744
 	f	I	f_7415364		mipLevel
 	m	(IIZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		maxWidth	
+		p	2		maxHeight	
+		p	3		updatesize	
 	m	(IIZI)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		maxWidth	
+		p	2		maxHeight	
+		p	3		updateSize	
+		p	4		holderSize	
 	m	(I)I	m_8799828	smallestEncompassingPowerOfTwo	
 		p	0		p_0	
 	m	(IIZII)V	<init>		<init>
@@ -79,7 +79,7 @@ c	net/minecraft/unmapped/C_0640744
 c	net/minecraft/unmapped/C_0915802
 	f	Lnet/minecraft/unmapped/C_0915802;	f_1602545		SATURATION
 	f	Lnet/minecraft/unmapped/C_0915802;	f_5231418		FBO_ENABLE
-	f	Lnet/minecraft/unmapped/C_0915802;	f_3207737		f_3207737
+	f	Lnet/minecraft/unmapped/C_0915802;	f_3207737		POSTPROCESS_ENABLE
 	f	Lnet/minecraft/unmapped/C_0915802;	f_9448342		MAPMAP_LEVELS
 	f	Lnet/minecraft/unmapped/C_0915802;	f_9061839		ANISOTROPIC_FILTERING
 	f	F	f_9959609		step
@@ -120,15 +120,15 @@ c	net/minecraft/unmapped/C_0915802
 c	net/minecraft/unmapped/C_0979881
 	f	[I	f_1283506		MIPMAP_BUFFER
 	m	([IIIIIZZ)V	m_6943440	upload	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	0		image	
+		p	1		offsetX	
+		p	2		offsetY	
+		p	3		x	
+		p	4		y	
+		p	5		blur	
+		p	6		mipmap	
 	m	(Z)V	m_5213405	setTextureFilter	
-		p	0		p_0	
+		p	0		blur	
 	m	(II[I)[[I	m_0712387		generateMipmaps
 		p	0			p_0
 		p	1			p_1
@@ -163,7 +163,7 @@ c	net/minecraft/unmapped/C_0979881
 		p	6			blur
 		p	7			clamped
 		p	8			mipmap
-	m	(IIIIF)V	m_0566541		prepareImage
+	m	(IIIIF)V	m_0566541		prepare
 		p	0			id
 		p	1			mipmapLevel
 		p	2			width
@@ -179,7 +179,7 @@ c	net/minecraft/unmapped/C_0979881
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_1250058
-	m	()V	m_9738936		onEntityChanged
+	m	()V	m_9738936		notifyEntityChanged
 c	net/minecraft/unmapped/C_1324297
 	f	Lnet/minecraft/unmapped/C_0539808;	f_6550401		entity
 	m	()V	<init>	<init>	
@@ -187,7 +187,7 @@ c	net/minecraft/unmapped/C_1324297
 		p	1			entity
 c	net/minecraft/unmapped/C_1331819
 	f	Z	f_8981302		fboEnable
-	f	Z	f_1945697		f_1945697
+	f	Z	f_1945697		postProcessEnable
 	f	I	f_5593428		mipmapLevels
 	f	I	f_1730073		anisotropicFiltering
 	f	F	f_9418188		saturation
@@ -280,7 +280,7 @@ c	net/minecraft/unmapped/C_3362006
 		p	6		dz	
 		p	8		yaw	
 		p	9		tickDelta	
-	m	(Lnet/minecraft/unmapped/C_0539808;F)Z	m_0072484		renderSecondPass
+	m	(Lnet/minecraft/unmapped/C_0539808;F)Z	m_0072484		render
 		p	1			entity
 		p	2			tickDelta
 	m	(Lnet/minecraft/unmapped/C_0539808;FZ)Z	m_7883401		render
@@ -303,7 +303,7 @@ c	net/minecraft/unmapped/C_3362006
 		p	9			tickDelta
 		p	10			skipHitbox
 c	net/minecraft/unmapped/C_3629466
-	f	Z	f_5285473	f_5285473	
+	f	Z	f_5285473	is64BitJava	
 	f	Lnet/minecraft/unmapped/C_1630332;	f_1552795		listWidget
 	m	(III)V	m_7362766		m_7362766
 		p	1			p_1
@@ -315,12 +315,12 @@ c	net/minecraft/unmapped/C_3629466
 		p	3			p_3
 c	net/minecraft/unmapped/C_3784880
 	m	(IIIIII)V	m_3739705	mouseClicked	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		index	
+		p	2		mouseX	
+		p	3		mouseY	
+		p	4		button	
+		p	5		entryMouseX	
+		p	6		entryMouseY	
 	m	(IIIIII)Z	m_3739705		mouseClicked
 		p	1			index
 		p	2			mouseX
@@ -368,13 +368,13 @@ c	net/minecraft/unmapped/C_4257480
 	m	(I)[I	m_6860639	getFrame	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_1676943;)V	m_7876655	load	
-		p	1		p_1	
+		p	1		resource	
 	m	(I)[[I	m_6860639		getFrame
 		p	1			frame
 	m	(Lnet/minecraft/unmapped/C_1676943;IZ)V	m_7876655		load
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			resource
+		p	2			mipmaps
+		p	3			anisotropicFiltering
 	m	([I)V	m_7832851		interpolateColor
 		p	1			p_1
 	m	([II)[I	m_1403736		applyAnisotropicFiltering
@@ -417,21 +417,21 @@ c	net/minecraft/unmapped/C_5571887
 	f	F	f_2103909		min
 	f	F	f_8335754		max
 	m	(IIILnet/minecraft/unmapped/C_0915802;Ljava/lang/String;F)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		id	
+		p	2		x	
+		p	3		y	
+		p	4		option	
+		p	5		message	
+		p	6		value	
 	m	(IIILnet/minecraft/unmapped/C_0915802;)V	<init>		<init>
-		p	1			x
-		p	2			y
-		p	3			id
+		p	1			id
+		p	2			x
+		p	3			y
 		p	4			option
 	m	(IIILnet/minecraft/unmapped/C_0915802;FF)V	<init>		<init>
-		p	1			x
-		p	2			y
-		p	3			id
+		p	1			id
+		p	2			x
+		p	3			y
 		p	4			option
 		p	5			min
 		p	6			max
@@ -470,7 +470,7 @@ c	net/minecraft/unmapped/C_5722573
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_1012616	encodeUTF8	
 		p	0		s	
 	m	(Ljava/lang/String;)Z	m_7412504		checkSession
-		p	1			p_1
+		p	1			serverId
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_5837633
 	m	()V	m_4770059	bindWrite	
@@ -560,14 +560,14 @@ c	net/minecraft/unmapped/C_8398976
 c	net/minecraft/unmapped/C_8406714
 	m	()V	m_7128145		clear
 c	net/minecraft/unmapped/C_8643842
-	m	(Ljava/net/URL;)Ljava/lang/String;	m_2413922		m_2413922
-		p	0			p_0
-	m	(Ljava/net/URL;Ljava/lang/String;Ljava/net/Proxy;Ljava/lang/String;Z)Ljava/lang/String;	m_2527458		m_2527458
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/net/URL;)Ljava/lang/String;	m_2413922		get
+		p	0			url
+	m	(Ljava/net/URL;Ljava/lang/String;Ljava/net/Proxy;Ljava/lang/String;Z)Ljava/lang/String;	m_2527458		post
+		p	0			url
+		p	1			data
+		p	2			proxy
+		p	3			type
+		p	4			silent
 c	net/minecraft/unmapped/C_8726576
 	m	(II)Ljava/lang/String;	m_5149177
 		p	2		p_2	
@@ -599,10 +599,10 @@ c	net/minecraft/unmapped/C_8980628
 	f	Z	f_8164911		isStatic
 		c		Unused field.
 	m	()Z	m_8573198		isStatic
-	m	()Lnet/minecraft/unmapped/C_8980628;	m_3183395		m_3183395
+	m	()Lnet/minecraft/unmapped/C_8980628;	m_3183395		setStatic
 c	net/minecraft/unmapped/C_8983523
-	f	Lcom/google/gson/JsonParser;	f_6381742		f_6381742
-	m	()Lcom/google/gson/JsonParser;	m_6703418		getLogger
+	f	Lcom/google/gson/JsonParser;	f_6381742		JSON_PARSER
+	m	()Lcom/google/gson/JsonParser;	m_6703418		m_6703418
 c	net/minecraft/unmapped/C_9083739
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7842021		m_7842021
 		p	1			p_1
@@ -630,13 +630,13 @@ c	net/minecraft/unmapped/C_9296493
 		p	6			p_6
 c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_8300121;	m_2045457	dropItem	
-		p	1		p_1	
+		p	1		item	
 	m	(Lnet/minecraft/unmapped/C_2454309;Z)Lnet/minecraft/unmapped/C_8300121;	m_2211846	dropItem	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		item	
+		p	2		dead	
 	m	(Lnet/minecraft/unmapped/C_2454309;Z)Lnet/minecraft/unmapped/C_8300121;	m_2045457		dropItem
 		p	1			item
-		p	2			unused
+		p	2			dead
 	m	(Lnet/minecraft/unmapped/C_2454309;ZZ)Lnet/minecraft/unmapped/C_8300121;	m_2211846		dropItem
 		p	1			item
 		p	2			velocityFromPlayerDirection
@@ -659,7 +659,7 @@ c	net/minecraft/unmapped/C_9785392
 	m	()V	<init>		<init>
 	m	(J)V	<init>		<init>
 		p	1			value
-c	net/minecraft/unmapped/C_0218211		com/mojang/blaze3d/shaders/DummyUniform
+c	net/minecraft/unmapped/C_0218211		net/minecraft/client/render/shaders/DummyUniform
 	m	()V	<init>		<init>
 	m	(F)V	m_1456501		m_1456501
 		p	1			p_1
@@ -837,7 +837,7 @@ c	net/minecraft/unmapped/C_2266228		net/minecraft/client/render/Effect
 	m	()Lnet/minecraft/unmapped/C_2279408;	m_9209280		getFragmentProgram
 	m	()I	m_3811462		getId
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_2279408		com/mojang/blaze3d/shaders/Program
+c	net/minecraft/unmapped/C_2279408		net/minecraft/client/render/shaders/Program
 	f	Lnet/minecraft/unmapped/C_7089149;	f_7271188		type
 	f	Ljava/lang/String;	f_8766414		name
 	f	I	f_7205711		id
@@ -896,7 +896,7 @@ c	net/minecraft/unmapped/C_4331928		net/minecraft/client/render/PostPass
 	m	(F)V	m_7953452		process
 		p	1			tickDelta
 	m	()Lnet/minecraft/unmapped/C_2266228;	m_5385513		getEffect
-c	net/minecraft/unmapped/C_4811147		com/mojang/blaze3d/shaders/Uniform
+c	net/minecraft/unmapped/C_4811147		net/minecraft/client/render/shaders/Uniform
 	f	I	f_8204879		location
 	f	I	f_4884607		count
 	f	I	f_5698889		type
@@ -965,7 +965,7 @@ c	net/minecraft/unmapped/C_4811147		com/mojang/blaze3d/shaders/Uniform
 	m	()V	m_0461028		uploadAsInteger
 	m	()V	m_7629511		uploadAsFloat
 	m	()V	m_4762544		uploadAsMatrix
-c	net/minecraft/unmapped/C_7089149		com/mojang/blaze3d/shaders/Program__Type
+c	net/minecraft/unmapped/C_7089149		net/minecraft/client/render/shaders/Program__Type
 	f	Lnet/minecraft/unmapped/C_7089149;	f_4013316		VERTEX
 	f	Lnet/minecraft/unmapped/C_7089149;	f_6321659		FRAGMENT
 	f	Ljava/lang/String;	f_6922273		name
@@ -992,7 +992,7 @@ c	net/minecraft/unmapped/C_7732918		net/minecraft/client/gui/widget/LabelWidget
 	f	I	f_6672935		height
 	f	I	f_7292152		x
 	f	I	f_9095252		y
-	f	Ljava/util/ArrayList;	f_8383579		texts
+	f	Ljava/util/ArrayList;	f_8383579		text
 	f	Z	f_3638290		centered
 	f	Z	f_2494156		visible
 	f	Z	f_3151686		hasBorder
@@ -1010,8 +1010,8 @@ c	net/minecraft/unmapped/C_7732918		net/minecraft/client/gui/widget/LabelWidget
 		p	1			minecraft
 		p	2			mouseX
 		p	3			mouseY
-c	net/minecraft/unmapped/C_7812796		net/minecraft/server/ChainedJsonException__1
-c	net/minecraft/unmapped/C_8392006		net/minecraft/client/options/GameOptions__Option__1
+c	net/minecraft/unmapped/C_7812796		net/minecraft/server/ChainedJsonException__7812796
+c	net/minecraft/unmapped/C_8392006		net/minecraft/client/options/GameOptions__Option__8392006
 	m	(Ljava/lang/String;ILjava/lang/String;ZZFFF)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1098,14 +1098,14 @@ c	net/minecraft/unmapped/C_8980040		net/minecraft/client/gui/widget/OptionListWi
 		p	2			x
 		p	3			y
 		p	4			option
-	m	(I)Lnet/minecraft/unmapped/C_1898615;	m_5328724		getEntry
+	m	(I)Lnet/minecraft/unmapped/C_1898615;	m_5328724		m_5328724
 		p	1			p_1
 	m	()I	m_3791031		m_3791031
 	m	()I	m_6519286		m_6519286
 	m	()I	m_3021017		m_3021017
 	m	(I)Lnet/minecraft/unmapped/C_3784880;	m_7118949		m_7118949
 		p	1			p_1
-c	net/minecraft/unmapped/C_9347131		com/mojang/blaze3d/shaders/BlendMode
+c	net/minecraft/unmapped/C_9347131		net/minecraft/client/render/shaders/BlendMode
 	f	Lnet/minecraft/unmapped/C_9347131;	f_5347294		lastApplied
 	f	I	f_8997602		srcColorFactor
 	f	I	f_9460748		srcAlphaFactor
@@ -1135,7 +1135,7 @@ c	net/minecraft/unmapped/C_9347131		com/mojang/blaze3d/shaders/BlendMode
 		p	5			blendFunc
 	m	()V	m_8991197		apply
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			obj
+		p	1			p_1
 	m	()I	hashCode		hashCode
 	m	()Z	m_3354525		isOpaque
 	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/unmapped/C_9347131;	m_9121281		fromJson
@@ -1145,7 +1145,7 @@ c	net/minecraft/unmapped/C_9347131		com/mojang/blaze3d/shaders/BlendMode
 	m	(Ljava/lang/String;)I	m_3494023		stringToBlendFactor
 		p	0			s
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_9899625		com/mojang/blaze3d/shaders/ProgramManager
+c	net/minecraft/unmapped/C_9899625		net/minecraft/client/render/shaders/ProgramManager
 	f	Lnet/minecraft/unmapped/C_9899625;	f_7601417		instance
 	m	()V	m_1460388		createInstance
 	m	()Lnet/minecraft/unmapped/C_9899625;	m_5260596		getInstance

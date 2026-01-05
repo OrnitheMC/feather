@@ -29,7 +29,7 @@ c	net/minecraft/server/MinecraftServer
 		p	1		demo	
 	m	()Lnet/minecraft/unmapped/C_5478016;	m_8443540	getWorldStorageSource	
 	m	()V	m_7997783	deleteWorldAndStop	
-	m	()Ljava/lang/String;	m_1857933	m_1857933	
+	m	()Ljava/lang/String;	m_1857933	getResourcePackUrl	
 	m	(Lnet/minecraft/unmapped/C_7377641;)V	m_7142032	m_7142032	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_7377641;)V	m_7339992	m_7339992	
@@ -44,8 +44,8 @@ c	net/minecraft/server/MinecraftServer
 c	net/minecraft/unmapped/C_0153978	net/minecraft/item/VariantBlockItem	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_7095465	spriteProvider	
 	m	(ILnet/minecraft/unmapped/C_1241852;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		id	
+		p	2		spriteProvider	
 	m	(I)I	m_2014915	m_2014915	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/lang/String;	m_4716122	m_4716122	
@@ -78,8 +78,8 @@ c	net/minecraft/unmapped/C_0674634	net/minecraft/item/LogItem
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/lang/String;	m_4716122	m_4716122	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_0674995
-	f	Z	f_4741900	created	
-	m	()Z	m_2532852	m_2532852	
+	f	Z	f_4741900	enabled	
+	m	()Z	m_2532852	isEnabled	
 c	net/minecraft/unmapped/C_0981775
 	m	()V	m_1193036	m_1193036	
 c	net/minecraft/unmapped/C_0987157
@@ -89,12 +89,12 @@ c	net/minecraft/unmapped/C_1008454
 		p	1		channel	
 		p	2		data	
 c	net/minecraft/unmapped/C_1119254
-	f	I	f_0754687		f_0754687
+	f	I	f_0754687		dimension
 	m	(Lnet/minecraft/unmapped/C_3865296;)V	<init>	<init>	
 		p	1		world	
 	m	(Lnet/minecraft/unmapped/C_3865296;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			dimension
 c	net/minecraft/unmapped/C_1184371
 	f	[Ljava/lang/String;	f_2346709	VARIANTS	
 	m	()V	<clinit>	<clinit>	
@@ -124,7 +124,7 @@ c	net/minecraft/unmapped/C_2207032
 	m	([Ljava/io/File;)V	m_3461181	deleteFilesAndDirs	
 		p	0		files	
 	m	(Ljava/lang/String;Z)Lnet/minecraft/unmapped/C_5528202;	m_0190283	m_0190283	get
-		p	1		p_1	worldName
+		p	1		p_1	saveName
 		p	2		p_2	createPlayerDataDir
 c	net/minecraft/unmapped/C_2226122
 	m	()V	m_9169783	m_9169783	
@@ -141,7 +141,7 @@ c	net/minecraft/unmapped/C_3292284
 		p	1		url	
 		p	2		resolution	
 	m	(Z)V	m_6143011		tickPlayer
-		p	1			p_1
+		p	1			syncChunks
 c	net/minecraft/unmapped/C_3422238
 	m	()V	m_3247694	m_3247694	
 c	net/minecraft/unmapped/C_3480712
@@ -195,7 +195,7 @@ c	net/minecraft/unmapped/C_3865296
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Z)Z	m_8298230	doScheduledTicks	
+	m	(Z)Z	m_8298230	m_8298230	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_6849228;Z)Ljava/util/List;	m_6709283	m_6709283	
 		p	1		p_1	
@@ -206,7 +206,7 @@ c	net/minecraft/unmapped/C_3865296
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_7646740	getForcedSpawnPoint	
 	m	(ZLnet/minecraft/unmapped/C_3893367;)V	m_1455089	save	
 		p	1		saveEntities	
-		p	2		progressListener	
+		p	2		listener	
 	m	()V	m_1193036	saveData	
 	m	()Lnet/minecraft/unmapped/C_9590849;	m_8937728	m_8937728	
 	m	(J)V	m_1121864	changeTime	
@@ -236,7 +236,7 @@ c	net/minecraft/unmapped/C_5478016
 	m	(Ljava/lang/String;Z)Lnet/minecraft/unmapped/C_5528202;	m_0190283	get	
 		p	1		saveName	
 		p	2		createPlayerDataDir	
-	m	()V	m_9169783	clearIo	
+	m	()V	m_9169783	flush	
 	m	(Ljava/lang/String;)V	m_0893658	delete	
 		p	1		saveName	
 c	net/minecraft/unmapped/C_5528202
@@ -250,8 +250,8 @@ c	net/minecraft/unmapped/C_5528202
 c	net/minecraft/unmapped/C_5553933
 	f	Ljava/util/TreeSet;	f_2126056		scheduledTicksInOrder
 	f	Ljava/util/Set;	f_2452287		scheduledTicks
-	f	J	f_4697076		f_4697076
-	f	Z	f_2333606		f_2333606
+	f	J	f_4697076		initTimeMillis
+	f	Z	f_2333606		isNew
 	f	Z	f_2805361		allPlayersSleeping
 	f	[Lnet/minecraft/unmapped/C_0268929;	f_9365283		BONUS_CHEST_LOOT_TABLE
 	m	()V	m_9823778		placeBonusChest
@@ -261,14 +261,14 @@ c	net/minecraft/unmapped/C_5553933
 		p	2			progressListener
 	m	()V	m_0669234		saveData
 	m	()V	m_9881372		clearWeather
-	m	(DDD)Lnet/minecraft/unmapped/C_9590849;	m_6148394		getClosestPlayer
+	m	(DDD)Lnet/minecraft/unmapped/C_9590849;	m_6148394		getNearestPlayer
 		p	1			x
 		p	3			z
 		p	5			range
 	m	(J)V	m_1426257		changeTime
 		p	1			time
-	m	()V	m_6438039		wakeSleepingPlayers
-	m	()Z	m_8513114		canSkipNight
+	m	()V	m_6438039		wakeUpAllPlayers
+	m	()Z	m_8513114		canSleepThroughNights
 	m	(Lnet/minecraft/unmapped/C_0902334;III)Lnet/minecraft/unmapped/C_2129018;	m_3200473		pickSpawnEntry
 		p	1			category
 		p	2			x
@@ -279,8 +279,8 @@ c	net/minecraft/unmapped/C_5981136
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/unmapped/C_6028829
 	m	(I)Z	m_8767345	shouldConnectTo	
-		p	0		blockId	
-c	net/minecraft/unmapped/C_6066025	net/minecraft/snooper/Snooper__1	
+		p	0		block	
+c	net/minecraft/unmapped/C_6066025	net/minecraft/snooper/Snooper__6066025	
 	f	Lnet/minecraft/unmapped/C_7377641;	f_3203363	f_3203363	
 	m	(Lnet/minecraft/unmapped/C_7377641;)V	<init>	<init>	
 		p	1		p_1	
@@ -297,14 +297,14 @@ c	net/minecraft/unmapped/C_6152184
 	m	(Ljava/util/List;)Lnet/minecraft/unmapped/C_2018497;	m_2423881		toNbt
 		p	1			players
 c	net/minecraft/unmapped/C_6386154
-	m	()Ljava/lang/String;	m_0995165	getToolMaterial	
+	m	()Ljava/lang/String;	m_0995165	getTierName	
 c	net/minecraft/unmapped/C_7141926
 	m	(Lnet/minecraft/unmapped/C_0539808;)D	m_7427006		m_7427006
 		p	1			p_1
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_9094020;)V	m_5867769	handleSoundEvent	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_6804812;)V	m_5867769		handleChunkUpdate
+	m	(Lnet/minecraft/unmapped/C_6804812;)V	m_5867769		handleLoadWorldChunk
 		p	1			packet
 c	net/minecraft/unmapped/C_7282397
 	m	(Lnet/minecraft/unmapped/C_6152184;Lnet/minecraft/unmapped/C_9590849;)V	m_1784604	m_1784604	
@@ -392,20 +392,20 @@ c	net/minecraft/unmapped/C_8138780	net/minecraft/server/DemoServerPlayerInteract
 		p	6		p_6	
 		p	7		p_7	
 c	net/minecraft/unmapped/C_8456884
-	m	()Ljava/lang/String;	m_4152224	getMaterialAsString	
+	m	()Ljava/lang/String;	m_4152224	getTierName	
 c	net/minecraft/unmapped/C_8480899	net/minecraft/server/world/DemoServerWorld	
 	f	J	f_5200833	SEED	
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_5528202;Ljava/lang/String;I)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		server	
+		p	2		storage	
+		p	3		name	
+		p	4		dimension	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_8498621	net/minecraft/unmapped/C_8498621	
-	f	Lnet/minecraft/unmapped/C_1241852;	f_9130533	f_9130533	
+c	net/minecraft/unmapped/C_8498621	net/minecraft/item/StoneBrickBlockItem	
+	f	Lnet/minecraft/unmapped/C_1241852;	f_9130533	block	
 	m	(ILnet/minecraft/unmapped/C_1241852;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		id	
+		p	2		block	
 	m	(I)I	m_2014915	m_2014915	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/lang/String;	m_4716122	m_4716122	
@@ -460,8 +460,8 @@ c	net/minecraft/unmapped/C_9232485
 		p	6			worldHeight
 		p	7			maxPlayerCount
 c	net/minecraft/unmapped/C_9568451
-	f	Lnet/minecraft/unmapped/C_4580495;	f_9562188	material	
-	m	()Ljava/lang/String;	m_3208664	getAsString	
+	f	Lnet/minecraft/unmapped/C_4580495;	f_9562188	tier	
+	m	()Ljava/lang/String;	m_3208664	getTierName	
 c	net/minecraft/unmapped/C_9848147
 	m	()I	m_1486221	size	
 c	net/minecraft/unmapped/C_9992501
@@ -489,23 +489,23 @@ c	net/minecraft/unmapped/C_9992501
 		p	3			z
 		p	4			dimension
 	m	()V	m_1847261		m_1847261
-c	net/minecraft/unmapped/C_0858167		net/minecraft/server/command/ToggleDownfallCommand
+c	net/minecraft/unmapped/C_0858167		net/minecraft/server/command/ServerToggleDownfallCommand
 	m	()V	<init>		<init>
 	m	()V	m_7621275		m_7621275
-c	net/minecraft/unmapped/C_4557607		net/minecraft/server/command/GameModeCommand
+c	net/minecraft/unmapped/C_4557607		net/minecraft/server/command/ServerGameModeCommand
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_9015779		m_9015779
 		p	1			p_1
 	m	()[Ljava/lang/String;	m_3498106		m_3498106
-c	net/minecraft/unmapped/C_4969846		net/minecraft/world/chunk/ServerChunkCache
+c	net/minecraft/unmapped/C_4969846		net/minecraft/world/chunk/ChunkCache
 	f	Ljava/util/Set;	f_0298037		chunksToUnload
 	f	Lnet/minecraft/unmapped/C_6849228;	f_6602032		empty
 	f	Lnet/minecraft/unmapped/C_9848147;	f_6733855		generator
 	f	Lnet/minecraft/unmapped/C_3015672;	f_7318980		storage
-	f	Lnet/minecraft/unmapped/C_1431328;	f_3401527		chunkMap
+	f	Lnet/minecraft/unmapped/C_1431328;	f_3401527		chunksByPos
 	f	Ljava/util/List;	f_5757952		chunks
 	f	Lnet/minecraft/unmapped/C_5553933;	f_3105653		world
-	f	I	f_9019699		unloadAttempts
+	f	I	f_9019699		nextChunkToUnload
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3015672;Lnet/minecraft/unmapped/C_9848147;)V	<init>		<init>
 		p	1			world
 		p	2			storage
@@ -513,7 +513,7 @@ c	net/minecraft/unmapped/C_4969846		net/minecraft/world/chunk/ServerChunkCache
 	m	(II)Z	m_8714752		m_8714752
 		p	1			p_1
 		p	2			p_2
-	m	(II)V	m_8158742		scheduleUnload
+	m	(II)V	m_8158742		unloadChunk
 		p	1			chunkX
 		p	2			chunkZ
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715		m_0804715
@@ -522,7 +522,8 @@ c	net/minecraft/unmapped/C_4969846		net/minecraft/world/chunk/ServerChunkCache
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366		m_8872366
 		p	1			p_1
 		p	2			p_2
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_1388291		loadChunk
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_1388291		loadChunkFromStorage
+		c		Loads the world chunk at the given chunk coordinates from storage.
 		p	1			chunkX
 		p	2			chunkZ
 	m	(Lnet/minecraft/unmapped/C_6849228;)V	m_5503385		saveEntities
@@ -550,16 +551,16 @@ c	net/minecraft/unmapped/C_4969846		net/minecraft/world/chunk/ServerChunkCache
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/unmapped/C_5756712		net/minecraft/server/command/GiveCommand
+c	net/minecraft/unmapped/C_5756712		net/minecraft/server/command/ServerGiveCommand
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_1756870		m_1756870
 		p	1			p_1
 	m	()[Ljava/lang/String;	m_2763145		m_2763145
-c	net/minecraft/unmapped/C_6728507		net/minecraft/server/command/HelpCommand
+c	net/minecraft/unmapped/C_6728507		net/minecraft/server/command/ServerHelpCommand
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1730529;)Ljava/util/List;	m_5450025		m_5450025
 		p	1			p_1
-c	net/minecraft/unmapped/C_6804812		net/minecraft/network/packet/ChunkUpdatePacket
+c	net/minecraft/unmapped/C_6804812		net/minecraft/network/packet/LoadWorldChunkPacket
 	f	I	f_0271035		chunkX
 	f	I	f_8115521		chunkZ
 	f	Z	f_4641070		load
@@ -575,18 +576,18 @@ c	net/minecraft/unmapped/C_6804812		net/minecraft/network/packet/ChunkUpdatePack
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666		m_7216666
 		p	1			p_1
 	m	()I	m_4040470		m_4040470
-c	net/minecraft/unmapped/C_7705477		net/minecraft/server/command/ExperienceCommand
+c	net/minecraft/unmapped/C_7705477		net/minecraft/server/command/ServerExperienceCommand
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_6503279		m_6503279
 		p	1			p_1
 	m	()[Ljava/lang/String;	m_9264003		m_9264003
-c	net/minecraft/unmapped/C_7937524		net/minecraft/snooper/Snooper__1
+c	net/minecraft/unmapped/C_7937524		net/minecraft/snooper/Snooper__7937524
 	f	Lnet/minecraft/unmapped/C_7377641;	f_9590105		f_9590105
 	m	(Lnet/minecraft/unmapped/C_7377641;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()V	run		run
-c	net/minecraft/unmapped/C_9570954		net/minecraft/server/command/TimeCommand
+c	net/minecraft/unmapped/C_9570954		net/minecraft/server/command/ServerTimeCommand
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_1730529;I)V	m_9034782		m_9034782
 		p	1			p_1
@@ -594,43 +595,30 @@ c	net/minecraft/unmapped/C_9570954		net/minecraft/server/command/TimeCommand
 	m	(Lnet/minecraft/unmapped/C_1730529;I)V	m_3180396		m_3180396
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_0175717	net/minecraft/server/command/GameModeCommand	net/minecraft/command/AbstractGameModeCommand
+c	net/minecraft/unmapped/C_0175717	net/minecraft/server/command/GameModeCommand	net/minecraft/command/GameModeCommand
 c	net/minecraft/unmapped/C_0837523	net/minecraft/server/command/MeCommand	net/minecraft/command/MeCommand
 c	net/minecraft/unmapped/C_1611620	net/minecraft/server/command/exception/InvalidNumberException	net/minecraft/command/exception/InvalidNumberException
-c	net/minecraft/unmapped/C_1657254	net/minecraft/server/dedicated/command/ListCommand	net/minecraft/server/command/ListCommand
 c	net/minecraft/unmapped/C_1730529	net/minecraft/server/command/source/CommandSource	net/minecraft/command/source/CommandSource
-c	net/minecraft/unmapped/C_2320485	net/minecraft/server/dedicated/command/BanIpCommand	net/minecraft/server/command/BanIpCommand
 c	net/minecraft/unmapped/C_2615737	net/minecraft/server/command/KillCommand	net/minecraft/command/KillCommand
 c	net/minecraft/unmapped/C_2691400	net/minecraft/server/command/exception/CommandNotFoundException	net/minecraft/command/exception/CommandNotFoundException
-c	net/minecraft/unmapped/C_2742332	net/minecraft/server/command/TimeCommand	net/minecraft/command/AbstractTimeCommand
-c	net/minecraft/unmapped/C_2796127	net/minecraft/server/dedicated/command/PardonCommand	net/minecraft/server/command/PardonCommand
-c	net/minecraft/unmapped/C_2808109	net/minecraft/server/dedicated/command/DeOpCommand	net/minecraft/server/command/DeOpCommand
+c	net/minecraft/unmapped/C_2742332	net/minecraft/server/command/TimeCommand	net/minecraft/command/TimeCommand
 c	net/minecraft/unmapped/C_2912205	net/minecraft/server/command/handler/CommandListener	net/minecraft/command/handler/CommandListener
-c	net/minecraft/unmapped/C_3009546	net/minecraft/server/command/GiveCommand	net/minecraft/command/AbstractGiveCommand
+c	net/minecraft/unmapped/C_3009546	net/minecraft/server/command/GiveCommand	net/minecraft/command/GiveCommand
 c	net/minecraft/unmapped/C_3250247	net/minecraft/server/world/PortalForcer	net/minecraft/world/PortalForcer
-c	net/minecraft/unmapped/C_3273171	net/minecraft/server/dedicated/command/BanListCommand	net/minecraft/server/command/BanListCommand
-c	net/minecraft/unmapped/C_3390001	net/minecraft/client/resource/language/I18n	net/minecraft/resource/language/I18n
-c	net/minecraft/unmapped/C_4116835	net/minecraft/server/command/ToggleDownfallCommand	net/minecraft/command/AbstractToggleDownfallCommand
+c	net/minecraft/unmapped/C_4116835	net/minecraft/server/command/ToggleDownfallCommand	net/minecraft/command/ToggleDownfallCommand
 c	net/minecraft/unmapped/C_4875473	net/minecraft/server/command/exception/PlayerNotFoundException	net/minecraft/command/exception/PlayerNotFoundException
-c	net/minecraft/unmapped/C_5255973	net/minecraft/server/dedicated/command/SaveAllCommand	net/minecraft/server/command/SaveAllCommand
-c	net/minecraft/unmapped/C_5288556	net/minecraft/server/dedicated/command/StopCommand	net/minecraft/server/command/StopCommand
 c	net/minecraft/unmapped/C_5335372	net/minecraft/server/command/handler/CommandManager	net/minecraft/command/handler/CommandManager
 c	net/minecraft/unmapped/C_5385216	net/minecraft/server/command/SayCommand	net/minecraft/command/SayCommand
-c	net/minecraft/unmapped/C_5615470	net/minecraft/server/dedicated/command/OpCommand	net/minecraft/server/command/OpCommand
 c	net/minecraft/unmapped/C_5917668	net/minecraft/server/command/AbstractCommand	net/minecraft/command/AbstractCommand
-c	net/minecraft/unmapped/C_5986433	net/minecraft/server/dedicated/command/SaveOffCommand	net/minecraft/server/command/SaveOffCommand
-c	net/minecraft/unmapped/C_6255335	net/minecraft/server/command/ExperienceCommand	net/minecraft/command/AbstractExperienceCommand
-c	net/minecraft/unmapped/C_6371508	net/minecraft/server/dedicated/command/WhitelistCommand	net/minecraft/server/command/WhitelistCommand
+c	net/minecraft/unmapped/C_6255335	net/minecraft/server/command/ExperienceCommand	net/minecraft/command/ExperienceCommand
 c	net/minecraft/unmapped/C_6466407	net/minecraft/server/command/handler/CommandRegistry	net/minecraft/command/handler/CommandRegistry
 c	net/minecraft/unmapped/C_6466836	net/minecraft/server/world/ScheduledTick	net/minecraft/world/ScheduledTick
-c	net/minecraft/unmapped/C_6842557	net/minecraft/server/dedicated/command/BanCommand	net/minecraft/server/command/BanCommand
-c	net/minecraft/unmapped/C_6916496	net/minecraft/server/dedicated/command/SaveOnCommand	net/minecraft/server/command/SaveOnCommand
 c	net/minecraft/unmapped/C_7238350	net/minecraft/server/command/exception/IncorrectUsageException	net/minecraft/command/exception/IncorrectUsageException
-c	net/minecraft/unmapped/C_7365744	net/minecraft/server/command/HelpCommand	net/minecraft/command/AbstractHelpCommand
+c	net/minecraft/unmapped/C_7365744	net/minecraft/server/command/HelpCommand	net/minecraft/command/HelpCommand
 c	net/minecraft/unmapped/C_8003398	net/minecraft/server/command/exception/CommandException	net/minecraft/command/exception/CommandException
 c	net/minecraft/unmapped/C_8183022	net/minecraft/server/command/handler/CommandHandler	net/minecraft/command/handler/CommandHandler
 c	net/minecraft/unmapped/C_8433864	net/minecraft/server/command/Command	net/minecraft/command/Command
-c	net/minecraft/unmapped/C_8730824	net/minecraft/server/dedicated/command/KickCommand	net/minecraft/server/command/KickCommand
 c	net/minecraft/unmapped/C_8767726	net/minecraft/server/command/exception/CommandSyntaxException	net/minecraft/command/exception/CommandSyntaxException
 c	net/minecraft/unmapped/C_9270193	net/minecraft/server/command/TpCommand	net/minecraft/command/TpCommand
-c	net/minecraft/unmapped/C_9456817	net/minecraft/server/dedicated/command/PardonIpCommand	net/minecraft/server/command/PardonIpCommand
+c	net/minecraft/unmapped/C_2670477
+	m	()Lnet/minecraft/unmapped/C_2670477;	m_2302434	enableBonusChest	enableCommands

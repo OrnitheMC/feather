@@ -26,10 +26,10 @@ c	net/minecraft/unmapped/C_0792283
 		p	10		p_10	
 		p	12		p_12	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
+		p	1			world
+		p	2			x
+		p	4			y
+		p	6			z
 c	net/minecraft/unmapped/C_0987157
 	m	()Z	m_0403320		m_0403320
 c	net/minecraft/unmapped/C_1156131	net/minecraft/world/gen/feature/DungeonFeature	
@@ -50,14 +50,14 @@ c	net/minecraft/unmapped/C_3015672
 	m	()V	m_8069445		m_8069445
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_2084190	SADDLE	
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)V	m_8441103	attackEntity	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)V	m_8441103	attack	
+		p	1		stack	
+		p	2		target	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)V	m_4911788	interact	
 		p	1		stack	
 		p	2		entity	
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_8441103		attackEntity
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_8441103		attack
+		p	1			stack
 c	net/minecraft/unmapped/C_3944207	net/minecraft/item/SaddleItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -68,7 +68,7 @@ c	net/minecraft/unmapped/C_3944207	net/minecraft/item/SaddleItem
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_3948776	net/minecraft/client/render/block/entity/MobSpawnerRenderer	
-	f	Ljava/util/Map;	f_1935865	f_1935865	
+	f	Ljava/util/Map;	f_1935865	models	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_3622326;DDDF)V	m_2494919	m_2494919	
 		p	1		p_1	
@@ -83,10 +83,10 @@ c	net/minecraft/unmapped/C_3988806
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_5553933
-	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_5577922;)Ljava/util/List;	m_0759498	getEntities	
+	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_5577922;)Ljava/util/List;	m_0759498	getEntitiesOfType	
 		p	1		type	
 		p	2		bounds	
-	m	()V	m_2289208		m_2289208
+	m	()V	m_2289208		prepare
 c	net/minecraft/unmapped/C_5622853
 	m	(DDD)Z	m_8724935	m_8724935	
 		p	1		p_1	
@@ -106,7 +106,7 @@ c	net/minecraft/unmapped/C_5904422
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_6057159
-	f	Z	f_6340505	f_6340505	
+	f	Z	f_6340505	saddled	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_4185556	m_4185556	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_6386154
@@ -116,29 +116,31 @@ c	net/minecraft/unmapped/C_6386154
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_8441103		m_8441103
 		p	1			p_1
 c	net/minecraft/unmapped/C_6607881
-	m	()V	m_3049425	doSpawnEffects	
-	m	(DDD)Z	m_8724935	isValidSpawnPosition	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(FFF)Z	m_8724935		isValidSpawnPosition
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	()V	m_3049425	animateSpawn	
+	m	(DDD)Z	m_8724935	canSpawn	
+		c	Checks collision and spawn enviroment to see if a position is a valid spawn point.	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+	m	(FFF)Z	m_8724935		canSpawn
+		c		Checks collision and spawn enviroment to see if a position is a valid spawn point.
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_6769358
 	m	(F)V	<init>	<init>	
 		p	1		reduction	
 c	net/minecraft/unmapped/C_6849228
-	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_5577922;Ljava/util/List;)V	m_7629703	getEntities	
+	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_5577922;Ljava/util/List;)V	m_7629703	getEntitiesOfType	
 		p	1		type	
-		p	2		box	
+		p	2		bounds	
 		p	3		entities	
 	m	(Lnet/minecraft/unmapped/C_3622326;)V	m_0612835		m_0612835
 		p	1			p_1
 c	net/minecraft/unmapped/C_7258034	net/minecraft/client/render/entity/PigRenderer	
 	m	(Lnet/minecraft/unmapped/C_7503776;Lnet/minecraft/unmapped/C_7503776;F)V	<init>	<init>	
-		p	1		baseModel	
-		p	2		sadelledModel	
+		p	1		model	
+		p	2		saddleModel	
 		p	3		shadowSize	
 	m	(Lnet/minecraft/unmapped/C_6607881;I)Z	m_6142922	m_6142922	
 		p	1		p_1	
@@ -195,7 +197,7 @@ c	net/minecraft/unmapped/C_9482745
 c	net/minecraft/unmapped/C_9608041
 	m	()Z	m_0403320		m_0403320
 c	net/minecraft/unmapped/C_9848147
-	m	()Z	m_0403320		m_0403320
+	m	()Z	m_0403320		tick
 c	net/minecraft/unmapped/C_0353782		net/minecraft/unmapped/C_0353782
 	f	[S	f_3186026		f_3186026
 	f	S	f_2051157		f_2051157

@@ -10,15 +10,15 @@ c	net/minecraft/unmapped/C_1872000
 c	net/minecraft/unmapped/C_2144954
 	f	Ljava/util/Set;	f_6065855	mobSpawningChunks	
 		c	This set keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that are lazy chunks,\nwhich do not allow mob spawning, but to contribute to the mob cap.	
-	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_3893367;)I	m_7552313	tick	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_3893367;)I	m_7552313	run	
+		p	1		world	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_3893367;)I	m_7552313		tick
-		p	1			p_1
+		p	3		listener	
+	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_3893367;)I	m_7552313		run
+		p	1			world
 		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	3			around
+		p	4			listener
 c	net/minecraft/unmapped/C_2363721
 	m	()Ljava/lang/String;	m_4151868	m_4151868	
 	m	()Ljava/lang/String;	m_5045007	m_5045007	
@@ -35,38 +35,35 @@ c	net/minecraft/unmapped/C_5553933
 	f	Ljava/util/List;	f_5515055	players	
 	f	Ljava/util/Set;	f_6004148	tickingChunks	
 	f	I	f_7824841	ambientSoundCooldown	
-	f	Lnet/minecraft/unmapped/C_0539808;	f_6053391		f_6053391
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_7348673	addPlayer	
+	f	Lnet/minecraft/unmapped/C_0539808;	f_6053391		player
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_7348673	loadPlayer	
 		p	1		player	
-	m	(Lnet/minecraft/unmapped/C_0539808;D)Lnet/minecraft/unmapped/C_9590849;	m_9305371	getClosestPlayer	
+	m	(Lnet/minecraft/unmapped/C_0539808;D)Lnet/minecraft/unmapped/C_9590849;	m_9305371	getNearestPlayer	
 		p	1		entity	
 		p	2		range	
-	m	(DDDD)Lnet/minecraft/unmapped/C_9590849;	m_2156022	getClosestPlayer	
+	m	(DDDD)Lnet/minecraft/unmapped/C_9590849;	m_2156022	getNearestPlayer	
 		p	1		x	
 		p	3		y	
 		p	5		z	
 		p	7		range	
-	m	()V	m_7348673		addPlayer
-	m	(DDDLjava/lang/String;F)V	m_0876826		m_0876826
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-		p	8			p_8
-	m	()Lnet/minecraft/unmapped/C_0539808;	m_0519267		m_0519267
+	m	()V	m_7348673		loadPlayer
+	m	(DDDLjava/lang/String;F)V	m_0876826		playSound
+		p	1			x
+		p	3			y
+		p	5			z
+		p	7			sound
+		p	8			volume
+	m	()Lnet/minecraft/unmapped/C_0539808;	m_0519267		getPlayers
 c	net/minecraft/unmapped/C_6607881
-	f	Lnet/minecraft/unmapped/C_0539808;	f_7658269	target	
-		c	The entity that is currently being targetted by the LivingEntity	
-	f	I	f_0595533	targetTime	
-		c	How many ticks should an entity be targetted for	
-	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_1010750	turnHeadAtEntity	
-		p	1		p_1	
-		p	2		p_2	
-	m	(FFF)F	m_2936680	getRotation	
-		c	gets the new rotation. This uses current position and next position along with a max rotation to not get any funcky effects.	
-		p	1		currentRotation	
-		p	2		nextRotation	
-		p	3		maxIncrement	
+	f	Lnet/minecraft/unmapped/C_0539808;	f_7658269	lookTarget	
+	f	I	f_0595533	lookTimer	
+	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_1010750	lookAt	
+		p	1		target	
+		p	2		maxRotationChange	
+	m	(FFF)F	m_2936680	lerpRotation	
+		p	1		from	
+		p	2		to	
+		p	3		maxChange	
 c	net/minecraft/unmapped/C_7141926	net/minecraft/util/math/ChunkPos	
 	f	I	f_7567534	x	
 	f	I	f_7647784	z	
@@ -75,4 +72,4 @@ c	net/minecraft/unmapped/C_7141926	net/minecraft/util/math/ChunkPos
 		p	2		z	
 	m	()I	hashCode	hashCode	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		obj	
+		p	1		p_1	

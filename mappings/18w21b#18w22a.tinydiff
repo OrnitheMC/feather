@@ -103,16 +103,16 @@ c	net/minecraft/unmapped/C_2144954
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_2337436
-	f	F	f_9867075		f_9867075
+	f	F	f_9867075		bodyAngle
 	m	(Lnet/minecraft/unmapped/C_4316830;FFF)V	m_0576608		m_0576608
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(FFF)F	m_0639435		m_0639435
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(FFF)F	m_0639435		lerp
+		p	1			min
+		p	2			max
+		p	3			delta
 	m	(Lnet/minecraft/unmapped/C_6607881;FFF)V	m_4618476		m_4618476
 		p	1			p_1
 		p	2			p_2
@@ -128,8 +128,8 @@ c	net/minecraft/unmapped/C_3060676
 c	net/minecraft/unmapped/C_3447311
 	m	(B)V	m_4909384		m_4909384
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_1821693;)V	m_9471923		m_9471923
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_1821693;)V	m_9471923		addParticles
+		p	1			type
 c	net/minecraft/unmapped/C_3484082
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_0705111;Ljava/util/Random;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_1607741;)Z	m_2429366	m_2429366	
 		p	1		p_1	
@@ -325,10 +325,10 @@ c	net/minecraft/unmapped/C_5185137
 	f	[C	f_2011850	INVALID_STRUCTURE_FILE_CHARS	
 c	net/minecraft/unmapped/C_5503280
 	m	(IILnet/minecraft/unmapped/C_7122918;I)I	m_0633433	update	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		z	
+		p	3		isOpaque	
+		p	4		y	
 	m	(Lnet/minecraft/unmapped/C_3674802$C_0067708;IILnet/minecraft/unmapped/C_7122918;I)I	m_0633433		update
 		p	1			pos
 		p	2			x
@@ -406,13 +406,13 @@ c	net/minecraft/unmapped/C_7393212
 		c	The portion of the total height of the tree that is taken up by the trunk.	
 	f	D	f_8297813	branchSlope	
 	f	D	f_4398047	branchLengthScale	
-	f	D	f_2744277	branchDensity	
+	f	D	f_2744277	foliageDensity	
 	f	I	f_7417552	trunkWidth	
 		c	The width of the trunk, can be 1 or 2.	
 	f	I	f_0679110	maxTrunkHeight	
 	f	I	f_5189817	foliageClusterHeight	
-	f	Lnet/minecraft/unmapped/C_2441996;	f_7027128		f_7027128
-	f	Lnet/minecraft/unmapped/C_2441996;	f_1346066		f_1346066
+	f	Lnet/minecraft/unmapped/C_2441996;	f_7027128		LOG
+	f	Lnet/minecraft/unmapped/C_2441996;	f_1346066		LEAVES
 	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;Ljava/util/Random;IILjava/util/List;)V	m_1810153	makeBranches	
 		p	1		p_1	
 		p	2		p_2	
@@ -465,47 +465,47 @@ c	net/minecraft/unmapped/C_7393212
 		p	4		p_4	
 		p	5		p_5	
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;F)V	m_1264895		placeCluster
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			pos
+		p	3			radius
 	m	(II)F	m_6956647		getTreeShape
-		p	1			p_1
-		p	2			p_2
+		p	1			treeHeight
+		p	2			trunkHeight
 	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3674802;Z)I	m_1400732		tryBranch
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			logPositions
+		p	2			world
+		p	3			from
+		p	4			to
 		p	5			p_5
 	m	(Lnet/minecraft/unmapped/C_9844932;ILnet/minecraft/unmapped/C_3674802;Ljava/util/List;)V	m_9336670		placeFoliage
-		p	1			p_1
+		p	1			world
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 	m	(II)Z	m_7568390		shouldPlaceBranch
-		p	1			p_1
-		p	2			p_2
-	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;I)V	m_2344906		m_2344906
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			treeHeight
+		p	2			trunkHeight
+	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;I)V	m_2344906		placeTrunk
+		p	1			logPositions
+		p	2			world
+		p	3			pos
+		p	4			height
 	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;ILnet/minecraft/unmapped/C_3674802;Ljava/util/List;)V	m_5250610		placeBranches
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			logPositions
+		p	2			world
+		p	3			baseY
+		p	4			base
+		p	5			positions
 	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Ljava/util/Random;Lnet/minecraft/unmapped/C_3674802;)Z	m_0953950		m_0953950
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;I)I	m_6781756		m_6781756
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;I)I	m_6781756		canPlace
+		p	1			logPositions
+		p	2			world
+		p	3			pos
+		p	4			height
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_7516737
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_4360192;Lnet/minecraft/unmapped/C_3544601;FFF)Z	m_0760943	m_0760943	
@@ -545,9 +545,9 @@ c	net/minecraft/unmapped/C_7668990
 		p	3			p_3
 		p	4			p_4
 	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;)V	m_4291574		placeLog
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			logPositions
+		p	2			world
+		p	3			pos
 c	net/minecraft/unmapped/C_7955273
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)V	m_8024917		m_8024917
 		p	1			p_1
@@ -656,9 +656,9 @@ c	net/minecraft/unmapped/C_8825627
 		p	3			p_3
 		p	4			p_4
 	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;)V	m_2290100		placeLog
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			logPositions
+		p	2			world
+		p	3			pos
 c	net/minecraft/unmapped/C_8886052
 	f	Lcom/google/common/collect/ImmutableTable;	f_4737477	neighbors	
 	f	Lcom/google/common/collect/Table;	f_4737477		neighbors
@@ -699,7 +699,7 @@ c	net/minecraft/unmapped/C_9152773
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_9229053
-	m	()Lnet/minecraft/unmapped/C_3674802;	m_1416205		m_1416205
+	m	()Lnet/minecraft/unmapped/C_3674802;	m_1416205		getTarget
 c	net/minecraft/unmapped/C_9344854
 	m	()V	m_7274048	m_7274048	
 	m	()V	m_7985335		m_7985335

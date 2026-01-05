@@ -67,18 +67,18 @@ c	net/minecraft/unmapped/C_0539808
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_0809709		getControllingPassenger
 	m	()Ljava/util/List;	m_6308416		getPassengers
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_5613735		hasPassenger
-		p	1			p_1
-	m	()Ljava/util/Collection;	m_7475487		m_7475487
-	m	(Ljava/lang/Class;)Ljava/util/Collection;	m_6446107		m_6446107
-		p	1			p_1
-	m	(Ljava/lang/Class;Ljava/util/Set;)V	m_5849592		m_5849592
-		p	1			p_1
-		p	2			p_2
+		p	1			entity
+	m	()Ljava/util/Collection;	m_7475487		getAllUniquePassengers
+	m	(Ljava/lang/Class;)Ljava/util/Collection;	m_6446107		getAllUniquePassengersOfType
+		p	1			entityClass
+	m	(Ljava/lang/Class;Ljava/util/Set;)V	m_5849592		getAllUniquePassengersOfType
+		p	1			entityClass
+		p	2			passengers
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_3141282		getVehicle
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_6989343		hasSameVehicle
 		p	1			other
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1411174		m_1411174
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1411174		isPassenger
+		p	1			entity
 	m	()Z	m_7331429		isLogicalSideForUpdatingMovement
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_4838019		getMount
 c	net/minecraft/unmapped/C_0557736
@@ -86,15 +86,15 @@ c	net/minecraft/unmapped/C_0557736
 c	net/minecraft/unmapped/C_0607826
 	f	Z	f_9647046	empty	
 	f	D	f_7899229	speedBoost	
-	f	I	f_3587166	velocity	
-	f	D	f_5825262	boatX	
-	f	D	f_2174062	boatY	
-	f	D	f_9523855	boatZ	
-	f	D	f_7238197	boatYaw	
-	f	D	f_8847298	boatPitch	
-	f	D	f_5038938	boatVelocityX	
-	f	D	f_0817662	boatVelocityY	
-	f	D	f_1495656	boatVelocityZ	
+	f	I	f_3587166	lerpSteps	
+	f	D	f_5825262	lerpX	
+	f	D	f_2174062	lerpY	
+	f	D	f_9523855	lerpZ	
+	f	D	f_7238197	lerpYaw	
+	f	D	f_8847298	lerpPitch	
+	f	D	f_5038938	lerpVelocityX	
+	f	D	f_0817662	lerpVelocityY	
+	f	D	f_1495656	lerpVelocityZ	
 	f	Lnet/minecraft/unmapped/C_6101761;	f_8921641		BOAT_TYPE
 	f	[Lnet/minecraft/unmapped/C_6101761;	f_2972433		LEFT_PADDLE_MOVING
 	f	[F	f_6367054		f_6367054
@@ -187,8 +187,8 @@ c	net/minecraft/unmapped/C_0640744
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_1023567
-	f	Z	f_2608366		lastOnGround
-	f	Z	f_1025642		riding
+	f	Z	f_2608366		sentOnGround
+	f	Z	f_1025642		rowing
 	f	[Z	f_2308218		f_2308218
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_6537603	m_6537603	
 		p	1		p_1	
@@ -197,7 +197,7 @@ c	net/minecraft/unmapped/C_1023567
 		p	2			p_2
 	m	()V	m_7968444		m_7968444
 	m	()V	m_1849804		m_1849804
-	m	()Z	m_1476195		isRiding
+	m	()Z	m_1476195		isRowing
 c	net/minecraft/unmapped/C_1444189
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_6537603	m_6537603	
 		p	1		p_1	
@@ -252,24 +252,24 @@ c	net/minecraft/unmapped/C_2747331
 	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_7503776;FFFFFFF)V	m_7708451	renderEnchantmentGlint	
 		p	1		entity	
 		p	2		model	
-		p	3		handSwingAmount	
-		p	4		handSwing	
+		p	3		walkAnimationProgress	
+		p	4		walkAnimationSpeed	
 		p	5		tickDelta	
-		p	6		age	
-		p	7		headYaw	
-		p	8		headPitch	
+		p	6		bob	
+		p	7		yaw	
+		p	8		pitch	
 		p	9		scale	
 	m	(Lnet/minecraft/unmapped/C_7639596;Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_7503776;FFFFFFF)V	m_7708451		renderEnchantmentGlint
 		p	0			renderer
 		p	1			entity
 		p	2			model
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
-		p	9			p_9
+		p	3			walkAnimationProgress
+		p	4			walkAnimationSpeed
+		p	5			tickDelta
+		p	6			bob
+		p	7			yaw
+		p	8			pitch
+		p	9			scale
 c	net/minecraft/unmapped/C_2842201
 	f	Lnet/minecraft/unmapped/C_0539808;	f_4571909	mob	
 	f	Lnet/minecraft/unmapped/C_8099772;	f_4571909		mob
@@ -353,9 +353,9 @@ c	net/minecraft/unmapped/C_4257480
 		p	1			p_1
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_7171701;Z)V	m_3578200		m_3578200
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_7171701;Z)V	m_3578200		setSize
+		p	1			info
+		p	2			overrideHeightWithWidth
 	m	(Lnet/minecraft/unmapped/C_1676943;I)V	m_7876655		load
 		p	1			resource
 		p	2			p_2
@@ -379,8 +379,8 @@ c	net/minecraft/unmapped/C_4726459
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_5438730
-	f	Lnet/minecraft/unmapped/C_0539808;	f_3667716	rider	
-	f	Ljava/util/List;	f_3667716		rider
+	f	Lnet/minecraft/unmapped/C_0539808;	f_3667716	vehicle	
+	f	Ljava/util/List;	f_3667716		passengers
 c	net/minecraft/unmapped/C_5553933
 	m	(Lnet/minecraft/unmapped/C_5385258;)V	m_5099199		sendPacketToServer
 		p	1			packet
@@ -408,11 +408,11 @@ c	net/minecraft/unmapped/C_6088271
 	m	(Lnet/minecraft/unmapped/C_0561170;I)Lnet/minecraft/unmapped/C_0561170;	m_2280147	getResourceId	
 		p	1		textureId	
 		p	2		mipmaps	
-	m	(Lnet/minecraft/unmapped/C_6577431;Lnet/minecraft/unmapped/C_4257480;)Z	m_5337521		m_5337521
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_6577431;Lnet/minecraft/unmapped/C_4257480;)Z	m_5337521		loadSprite
+		p	1			resourceManager
+		p	2			sprite
 	m	(Lnet/minecraft/unmapped/C_4257480;)Lnet/minecraft/unmapped/C_0561170;	m_2280147		getResourceId
-		p	1			p_1
+		p	1			sprite
 c	net/minecraft/unmapped/C_6124529
 	m	(Lnet/minecraft/unmapped/C_0539808;)F	m_1536542	m_1536542	
 		p	1		p_1	
@@ -420,13 +420,13 @@ c	net/minecraft/unmapped/C_6124529
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_6607881
-	f	I	f_1949529		f_1949529
+	f	I	f_1949529		flyingTicks
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_6537603	m_6537603	
 		p	1		p_1	
-	m	()V	m_2220391		m_2220391
+	m	()V	m_2220391		flyingTick
 	m	()V	m_7968444		m_7968444
 	m	()Z	m_1567581		isFallFlying
-	m	()I	m_3092279		m_3092279
+	m	()I	m_3092279		getFlyingTicks
 c	net/minecraft/unmapped/C_6607881$1
 	f	Lnet/minecraft/unmapped/C_3177907;	f_0472046	f_0472046	
 	f	Lnet/minecraft/unmapped/C_3177907$C_7237051;	f_0164499	f_0164499	
@@ -436,10 +436,10 @@ c	net/minecraft/unmapped/C_6607881$1
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700	m_4180700	
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700	apply	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	apply	apply	
-		p	1		p_1	
+		p	1		entity	
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_6607881$2	2	
 	f	[I	f_7525161	f_7525161	
@@ -447,26 +447,28 @@ c	net/minecraft/unmapped/C_6607881$2	2
 c	net/minecraft/unmapped/C_7197771
 	f	I	f_3417677	id	
 	f	I	f_0576132	type	id
-		c	The type of attachment. The possible values are:\n<br>0: mounting on e.g. a minecart or a boat\n<br>1: attaching a leash on an entity	
+		c	The type of attachment. The possible values are:\n<br>0: mounting on e.g. a minecart, boat, or horse\n<br>1: attaching a leash on an entity	
+	f	I	f_9006236	attachedId	leashHolderId
 	m	(ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)V	<init>	<init>	
 		p	1		type	
 		p	2		entity	
-		p	3		holder	
+		p	3		attached	
 	m	()I	m_2552946	getId	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)V	<init>		<init>
 		p	1			entity
-		p	2			holder
+		p	2			leashHolder
 	m	()I	m_8037492	getType	getId
+	m	()I	m_5834650	getAttachedId	getLeashHolderId
 c	net/minecraft/unmapped/C_7240405
 	m	([I)Lnet/minecraft/unmapped/C_7240405;	m_9180669		writeIntArray
 		p	1			data
 	m	()[I	m_1016254		readIntArray
 c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_3926084	handleEntityAttach	
+	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_3926084	handleAttachEntity	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_7636321		handleEntityAttach
+	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_7636321		handleAttachEntity
 		p	1			packet
-	m	(Lnet/minecraft/unmapped/C_8154101;)V	m_3926084		handleVehiclePassengers
+	m	(Lnet/minecraft/unmapped/C_8154101;)V	m_3926084		handleEntityPassengers
 		p	1			packet
 	m	(Lnet/minecraft/unmapped/C_3564214;)V	m_2387007		handleVehicleMove
 		p	1			packet
@@ -486,12 +488,12 @@ c	net/minecraft/unmapped/C_8009477
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_8099772
-	f	Ljava/util/Map;	f_0223487		f_0223487
-	m	(Lnet/minecraft/unmapped/C_6124529;)F	m_3692545		m_3692545
-		p	1			p_1
+	f	Ljava/util/Map;	f_0223487		pathfindingPenalties
+	m	(Lnet/minecraft/unmapped/C_6124529;)F	m_3692545		getPathfindingPenalty
+		p	1			type
 	m	(Lnet/minecraft/unmapped/C_6124529;F)V	m_3751248		setPathfindingPenalty
-		p	1			p_1
-		p	2			p_2
+		p	1			type
+		p	2			penalty
 c	net/minecraft/unmapped/C_8105098
 	f	Lnet/minecraft/unmapped/C_6490875;	f_1659452		debugRenderer
 c	net/minecraft/unmapped/C_8180393
@@ -511,7 +513,7 @@ c	net/minecraft/unmapped/C_8878495$6		6
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700		m_4180700
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
 		p	1			entity
@@ -529,7 +531,7 @@ c	net/minecraft/unmapped/C_9418545
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_8535550		getDisplayEntity
 c	net/minecraft/unmapped/C_9615057
 	m	()D	m_7441248	getX	
-	m	()D	m_8055298	getY	
+	m	()D	m_8055298	getMinY	
 	m	()D	m_3236511	getZ	
 	m	()F	m_1631409	getYaw	
 	m	()F	m_2245923	getPitch	
@@ -538,7 +540,7 @@ c	net/minecraft/unmapped/C_9615057
 		p	1		hasPos	
 	m	(D)D	m_7441248		getX
 		p	1			defaultX
-	m	(D)D	m_8055298		getY
+	m	(D)D	m_8055298		getMinY
 		p	1			defaultY
 	m	(D)D	m_3236511		getZ
 		p	1			defaultZ
@@ -658,19 +660,19 @@ c	net/minecraft/unmapped/C_6630516		net/minecraft/network/packet/c2s/play/Vehicl
 	m	()F	m_0158035		getPitch
 	m	(Lnet/minecraft/unmapped/C_5444260;)V	m_7216666		m_7216666
 		p	1			p_1
-c	net/minecraft/unmapped/C_7171701		net/minecraft/unmapped/C_7171701
+c	net/minecraft/unmapped/C_7171701		net/minecraft/client/render/platform/PngInfo
 	f	I	f_3050072		width
 	f	I	f_0152800		height
 	m	(Ljava/io/InputStream;)V	<init>		<init>
 		p	1			inputStream
-	m	(Lnet/minecraft/unmapped/C_1676943;)Lnet/minecraft/unmapped/C_7171701;	m_8384517		m_8384517
+	m	(Lnet/minecraft/unmapped/C_1676943;)Lnet/minecraft/unmapped/C_7171701;	m_8384517		of
 		p	0			resource
-c	net/minecraft/unmapped/C_8154101		net/minecraft/network/packet/s2c/play/VehiclePassengersS2CPacket
-	f	I	f_8384888		vehicleId
+c	net/minecraft/unmapped/C_8154101		net/minecraft/network/packet/s2c/play/EntityPassengersS2CPacket
+	f	I	f_8384888		id
 	f	[I	f_0468179		passengerIds
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	<init>		<init>
-		p	1			vehicle
+		p	1			entity
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_4792371		m_4792371
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_6110406		m_6110406
@@ -678,7 +680,7 @@ c	net/minecraft/unmapped/C_8154101		net/minecraft/network/packet/s2c/play/Vehicl
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_4676178		m_4676178
 		p	1			p_1
 	m	()[I	m_3040551		getPassengerIds
-	m	()I	m_5004994		getVehicleId
+	m	()I	m_5004994		getId
 	m	(Lnet/minecraft/unmapped/C_5444260;)V	m_7216666		m_7216666
 		p	1			p_1
 c	net/minecraft/unmapped/C_8341989		net/minecraft/client/render/entity/layer/ElytraLayer

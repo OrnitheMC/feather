@@ -13,24 +13,24 @@ c	net/minecraft/unmapped/C_0259655
 c	net/minecraft/unmapped/C_0279598
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_0915802
-	f	Lnet/minecraft/unmapped/C_0915802;	f_3207737	f_3207737	
+	f	Lnet/minecraft/unmapped/C_0915802;	f_3207737	POSTPROCESS_ENABLE	
 c	net/minecraft/unmapped/C_1023567
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_7121925	m_7121925	
 c	net/minecraft/unmapped/C_1241852
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4839982	m_4839982	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4952508	m_4952508	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_3995948	m_3995948	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_1241852;)I	m_8369968	m_8369968	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_1241852;)I	m_3157258	m_3157258	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_0244472	isConductor	
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4839982	isOpaqueCube	
+		p	0		block	
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4952508	isTranslucent	
+		p	0		block	
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_3995948	usesNeighborLight	
+		p	0		block	
+	m	(Lnet/minecraft/unmapped/C_1241852;)I	m_8369968	getLight	
+		p	0		block	
+	m	(Lnet/minecraft/unmapped/C_1241852;)I	m_3157258	getOpacity	
+		p	0		block	
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_0244472	isSolid	
 		c	Returns whether the block with the given id conducts redstone signals.	
 		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_8030141;III)F	m_9326356	getLightLevel	
+	m	(Lnet/minecraft/unmapped/C_8030141;III)F	m_9326356	getBrightness	
 		p	1		world	
 		p	2		x	
 		p	3		y	
@@ -44,14 +44,13 @@ c	net/minecraft/unmapped/C_1241852
 		c		An opaque block is a full cube with no transparency.
 	m	()I	m_3157258		getOpacity
 	m	()Z	m_4952508		isTranslucent
-	m	()I	m_8369968		getLightLevel
+	m	()I	m_8369968		getLight
 	m	()Z	m_3995948		usesNeighborLight
 	m	()Lnet/minecraft/unmapped/C_8048208;	m_8228353		getMaterial
-	m	()Z	m_0244472		isConductor
-		c		Returns whether this block conducts redstone signals.
+	m	()Z	m_0244472		isSolid
 	m	()F	m_4038745		getAmbientOcclusionLight
 c	net/minecraft/unmapped/C_1331819
-	f	Z	f_1945697	f_1945697	
+	f	Z	f_1945697	postProcessEnable	
 c	net/minecraft/unmapped/C_1428858
 	m	(Lnet/minecraft/unmapped/C_8030141;III)F	m_9326356	m_9326356	
 		p	1		p_1	
@@ -103,7 +102,7 @@ c	net/minecraft/unmapped/C_3747079
 c	net/minecraft/unmapped/C_4281786
 	m	()Lnet/minecraft/unmapped/C_3755722;	m_2067641	m_2067641	
 c	net/minecraft/unmapped/C_5233418
-	m	()Ljava/util/List;	m_2960739	m_2960739	
+	m	()Ljava/util/List;	m_2960739	values	
 	m	()Ljava/util/Iterator;	iterator		iterator
 c	net/minecraft/unmapped/C_5255973
 	m	()I	m_5251718	m_5251718	
@@ -127,10 +126,10 @@ c	net/minecraft/unmapped/C_5553933
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(III)Z	m_7761085	isOpaqueCube	
-		p	1		x	
-		p	2		y	
-		p	3		z	
+	m	(III)Z	m_7761085	m_7761085	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
 	m	(III)Z	m_9239141	m_9239141	
 		p	1		p_1	
 		p	2		p_2	
@@ -147,6 +146,10 @@ c	net/minecraft/unmapped/C_5553933
 		p	1			x
 		p	2			y
 		p	3			z
+	m	(III)F	m_3899705	m_3899705	getBrightness
+		p	1		p_1	x
+		p	2		p_2	y
+		p	3		p_3	z
 c	net/minecraft/unmapped/C_5585855
 	f	Z	f_6848441		openGl21
 c	net/minecraft/unmapped/C_5699383
@@ -162,7 +165,7 @@ c	net/minecraft/unmapped/C_7051878
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_7135514
-	m	()Ljava/util/List;	m_2142526	m_2142526	
+	m	()Ljava/util/List;	m_2142526	values	
 	m	()Ljava/util/Iterator;	iterator		iterator
 c	net/minecraft/unmapped/C_7201699
 	m	(ILnet/minecraft/unmapped/C_2454309;)Z	m_1967459	m_1967459	
@@ -186,11 +189,12 @@ c	net/minecraft/unmapped/C_8030141
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(III)Z	m_7761085	isOpaqueCube	
+	m	(III)Z	m_7761085	isSolidRender	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(III)Z	m_9239141	isRedstoneConductor	
+	m	(III)Z	m_9239141	isSolidBlock	
+		c		Returns whether the block at the given position conducts redstone signals.
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -214,11 +218,11 @@ c	net/minecraft/unmapped/C_8275823
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(III)I	m_1288454	getLightLevel	
+	m	(III)I	m_1288454	getRawBrightness	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(IIIZ)I	m_9529532	getLightLevel	
+	m	(IIIZ)I	m_9529532	getRawBrightness	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -254,15 +258,15 @@ c	net/minecraft/unmapped/C_9876986
 	f	Lnet/minecraft/unmapped/C_2348249;	f_6644471	f_6644471	
 c	net/minecraft/unmapped/C_9890847
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_1241852;IZII)V	m_5180141	updateState	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		block	
+		p	6		metadata	
+		p	7		updateNeighbors	
+		p	8		distanceToTripwire	
+		p	9		tripwireMetadata	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIIZIZII)V	m_5180141		updateState
 		p	1			world
 		p	2			x
@@ -330,4 +334,4 @@ c	net/minecraft/unmapped/C_8930592		net/minecraft/client/render/MapRenderer__Tex
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_9141137		net/minecraft/client/render/MapRenderer__1
+c	net/minecraft/unmapped/C_9141137		net/minecraft/client/render/MapRenderer__9141137

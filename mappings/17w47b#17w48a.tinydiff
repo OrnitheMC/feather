@@ -3,7 +3,7 @@ c	net/minecraft/server/MinecraftServer
 	f	Lnet/minecraft/unmapped/C_7585705;	f_5135649		craftingManager
 	m	()Lnet/minecraft/unmapped/C_7585705;	m_6768970		getCraftingManager
 c	net/minecraft/unmapped/C_0124899
-	f	Lorg/apache/logging/log4j/Logger;	f_2250380		f_2250380
+	f	Lorg/apache/logging/log4j/Logger;	f_2250380		LOGGER
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_4718640		m_4718640
 		p	0			p_0
 		p	1			p_1
@@ -20,11 +20,11 @@ c	net/minecraft/unmapped/C_0224916
 		p	4		guiOpen	
 		p	5		filteringCraftable	
 	m	(Lnet/minecraft/unmapped/C_0224916$C_6802319;Ljava/util/Collection;Ljava/util/Collection;ZZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			state
+		p	2			recipes
+		p	3			highlighted
+		p	4			guiOpen
+		p	5			filteringCraftable
 c	net/minecraft/unmapped/C_0241772
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_9169667		serialize
 		p	1			buffer
@@ -40,12 +40,12 @@ c	net/minecraft/unmapped/C_0381885
 	m	()Lnet/minecraft/unmapped/C_2361607;	m_1269059	getRecipe	
 	m	()Lnet/minecraft/unmapped/C_0561170;	m_1269059		getRecipe
 c	net/minecraft/unmapped/C_0512768
-	f	Ljava/util/BitSet;	f_4488370	f_4488370	
-	f	Ljava/util/BitSet;	f_5590603	f_5590603	
-	f	Ljava/util/BitSet;	f_8255131	f_8255131	
-	f	Ljava/util/Set;	f_4488370		f_4488370
-	f	Ljava/util/Set;	f_5590603		f_5590603
-	f	Ljava/util/Set;	f_8255131		f_8255131
+	f	Ljava/util/BitSet;	f_4488370	craftable	
+	f	Ljava/util/BitSet;	f_5590603	fitting	
+	f	Ljava/util/BitSet;	f_8255131	known	
+	f	Ljava/util/Set;	f_4488370		craftable
+	f	Ljava/util/Set;	f_5590603		fitting
+	f	Ljava/util/Set;	f_8255131		known
 c	net/minecraft/unmapped/C_0666056
 	f	I	f_3286459		minX
 	f	I	f_9281662		minY
@@ -165,7 +165,7 @@ c	net/minecraft/unmapped/C_0674995
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_0899618
-	m	()V	m_6967584		m_6967584
+	m	()V	m_6967584		clear
 c	net/minecraft/unmapped/C_1023567
 	f	Lnet/minecraft/unmapped/C_6188183;	f_3651781	recipeBook	
 	f	Lnet/minecraft/unmapped/C_4693257;	f_3651781		recipeBook
@@ -206,9 +206,9 @@ c	net/minecraft/unmapped/C_1241852
 		p	2			p_2
 		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_7345216;	m_8549571		getInteractionShape
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			state
+		p	2			world
+		p	3			pos
 c	net/minecraft/unmapped/C_1361861
 	f	[Lnet/minecraft/unmapped/C_3544601$C_7482212;	f_4360413		AXES
 	m	(IIIZ)Z	m_0513088	set	
@@ -275,9 +275,9 @@ c	net/minecraft/unmapped/C_1630803
 c	net/minecraft/unmapped/C_1656849
 	m	()Z	m_2729805		m_2729805
 c	net/minecraft/unmapped/C_1713479
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_7345216;	m_2623703		m_2623703
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_7345216;	m_2623703		getInteractionShape
+		p	1			world
+		p	2			pos
 c	net/minecraft/unmapped/C_1872000
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_8352124		m_8352124
 		p	0			p_0
@@ -375,10 +375,10 @@ c	net/minecraft/unmapped/C_3504190
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Ljava/util/Random;J)Ljava/util/List;	m_2421021		getQuads
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			state
+		p	2			face
+		p	3			random
+		p	4			seed
 c	net/minecraft/unmapped/C_3865296
 	m	()Lnet/minecraft/unmapped/C_7585705;	m_1710441		m_1710441
 c	net/minecraft/unmapped/C_3866728
@@ -485,12 +485,12 @@ c	net/minecraft/unmapped/C_5313722
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_5405916
-	f	Lnet/minecraft/unmapped/C_7585705;	f_0462675		f_0462675
+	f	Lnet/minecraft/unmapped/C_7585705;	f_0462675		craftingManager
 	m	()V	<init>	<init>	
 	m	()Ljava/util/List;	m_6976001	getRecipes	
 	m	()Ljava/util/List;	m_8402458	getHighlight	
 	m	(Lnet/minecraft/unmapped/C_7585705;)V	<init>		<init>
-		p	1			p_1
+		p	1			craftingManager
 c	net/minecraft/unmapped/C_5437350
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_0561170;)V	<init>		<init>
@@ -518,9 +518,9 @@ c	net/minecraft/unmapped/C_5956487
 		p	2		statHandler	
 		p	3		recipes	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2854223;Lnet/minecraft/unmapped/C_4693257;)Lnet/minecraft/unmapped/C_1023567;	m_2055645		createPlayer
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			stats
+		p	3			recipeBook
 c	net/minecraft/unmapped/C_6028829
 	f	[Lnet/minecraft/unmapped/C_7345216;	f_8321332		shapes
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_7345216;	m_0239391		m_0239391
@@ -928,7 +928,7 @@ c	net/minecraft/unmapped/C_2704409		net/minecraft/block/shape/DisjointIndexMerge
 	m	(Lnet/minecraft/unmapped/C_8926833$C_8178531;)Z	m_7588509		iterateSections
 		p	1			consumer
 	m	(I)D	getDouble		getDouble
-		p	1			position
+		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_8926833$C_8178531;III)Z	m_8384050		m_8384050
 		p	0			p_0
 		p	1			x
@@ -959,7 +959,7 @@ c	net/minecraft/unmapped/C_8113396		net/minecraft/crafting/recipe/RecipeSerializ
 		p	1			buffer
 		p	2			recipe
 	m	()Ljava/lang/String;	m_0360484		getName
-c	net/minecraft/unmapped/C_9698407		net/minecraft/unmapped/C_9698407
+c	net/minecraft/unmapped/C_9698407		net/minecraft/entity/damage/NetherBedDamageSource
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_9550253;	m_0775408		m_0775408
 		p	1			p_1

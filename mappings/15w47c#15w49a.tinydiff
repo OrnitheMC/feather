@@ -1,13 +1,13 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0330124
-	f	Z	f_6512453		allowStructures
+	f	Z	f_6512453		placeStructures
 	m	(Lnet/minecraft/unmapped/C_5553933;J)V	<init>	<init>	
 		p	1		world	
 		p	2		seed	
 	m	(Lnet/minecraft/unmapped/C_5553933;ZJ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			placeStructures
+		p	3			seed
 c	net/minecraft/unmapped/C_0349999
 	f	Lnet/minecraft/unmapped/C_2609740;	f_3172325		CM_AVIATED
 	m	(I)Lnet/minecraft/unmapped/C_2609740;	m_4219884	blockMined	
@@ -78,12 +78,12 @@ c	net/minecraft/unmapped/C_1241852
 		p	1			state
 c	net/minecraft/unmapped/C_1250058
 	m	(Lnet/minecraft/unmapped/C_7721249;DDDFF)V	m_7675868	playSound	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
-		p	8		p_8	
-		p	9		p_9	
+		p	1		sound	
+		p	2		x	
+		p	4		y	
+		p	6		z	
+		p	8		volume	
+		p	9		pitch	
 c	net/minecraft/unmapped/C_1428858
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_4596341		m_4596341
 		p	1			p_1
@@ -116,14 +116,14 @@ c	net/minecraft/unmapped/C_1951812
 c	net/minecraft/unmapped/C_2011750
 	m	()Lnet/minecraft/unmapped/C_0646374;	m_7605283		m_7605283
 c	net/minecraft/unmapped/C_2082251
-	m	(FFFFF)V	m_1897788	setVelocity	
+	m	(FFFFF)V	m_1897788	thrown	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_0539808;FFFFF)V	m_1897788		setVelocity
-		p	1			shooter
+	m	(Lnet/minecraft/unmapped/C_0539808;FFFFF)V	m_1897788		thrown
+		p	1			thrower
 		p	2			pitch
 		p	3			yaw
 		p	4			roll
@@ -131,7 +131,7 @@ c	net/minecraft/unmapped/C_2082251
 		p	6			divergence
 c	net/minecraft/unmapped/C_2134645
 	f	Lnet/minecraft/unmapped/C_7674520;	f_2965576	SUSPENDED	
-	f	Lnet/minecraft/unmapped/C_5577922;	f_3591547	f_3591547	
+	f	Lnet/minecraft/unmapped/C_5577922;	f_3591547	ATTACHED_SHAPE	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1241852;)V	m_7735018	m_7735018	
 		p	1		p_1	
 		p	2		p_2	
@@ -180,7 +180,7 @@ c	net/minecraft/unmapped/C_2983776$C_6631302
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_3118916	net/minecraft/client/gui/screen/resourcepack/BuiltInResourcePackEntry	net/minecraft/client/gui/screen/resourcepack/ServerResourcePackEntry
+c	net/minecraft/unmapped/C_3118916	net/minecraft/client/gui/screen/resourcepack/DefaultResourcePackEntry	net/minecraft/client/gui/screen/resourcepack/ServerResourcePackEntry
 	m	(Lnet/minecraft/unmapped/C_2131741;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2131741;Lnet/minecraft/unmapped/C_7532262;)V	<init>		<init>
@@ -263,13 +263,13 @@ c	net/minecraft/unmapped/C_4116393
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_4116648
-	m	(FFFFF)V	m_7517040	setVelocity	
+	m	(FFFFF)V	m_7517040	shoot	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_0539808;FFFFF)V	m_7517040		setVelocity
+	m	(Lnet/minecraft/unmapped/C_0539808;FFFFF)V	m_7517040		shoot
 		p	1			shooter
 		p	2			pitch
 		p	3			yaw
@@ -357,11 +357,11 @@ c	net/minecraft/unmapped/C_5553933
 		p	9			p_9
 		p	10			p_10
 c	net/minecraft/unmapped/C_5587144
-	m	(Lnet/minecraft/unmapped/C_6607881;DDD)Z	m_3277500	tryTeleport	
-		p	0		p_0	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+	m	(Lnet/minecraft/unmapped/C_6607881;DDD)Z	m_3277500	teleportTo	
+		p	0		teleporter	
+		p	1		x	
+		p	3		y	
+		p	5		z	
 	m	(DDD)Z	m_2054615		teleportTo
 		p	1			x
 		p	3			y
@@ -519,10 +519,10 @@ c	net/minecraft/unmapped/C_8878495$5
 		p	3		p_3	
 		p	5		p_5	
 		p	7		p_7	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1971666	m_1971666	
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1971666	apply	
 		p	1		p_1	
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_2715079		m_2715079
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_2715079		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_8878495$6
 	f	Lnet/minecraft/unmapped/C_0539808;	f_4871694	f_4871694	
@@ -536,14 +536,14 @@ c	net/minecraft/unmapped/C_8878495$6
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700	m_4180700	
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700	apply	
 		p	1		p_1	
 	m	(DDDD)V	<init>		<init>
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
 		p	7			p_7
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1971666		m_1971666
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1971666		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_8878495$7		7
 	f	Lnet/minecraft/unmapped/C_0539808;	f_4871694		f_4871694
@@ -553,20 +553,20 @@ c	net/minecraft/unmapped/C_8878495$7		7
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700		m_4180700
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4180700		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			e
+		p	1			entity
 c	net/minecraft/unmapped/C_8883923
-	f	Lnet/minecraft/unmapped/C_6101761;	f_2319173		f_2319173
+	f	Lnet/minecraft/unmapped/C_6101761;	f_2319173		SHEARED
 	m	()V	m_1700770		m_1700770
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_4360192;Lnet/minecraft/unmapped/C_2454309;)Z	m_5581222		m_5581222
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	()Z	m_8475921		m_8475921
-	m	(Z)V	m_3392728		m_3392728
-		p	1			p_1
+	m	()Z	m_8475921		isSheared
+	m	(Z)V	m_3392728		setSheared
+		p	1			sheared
 	m	()Lnet/minecraft/unmapped/C_7721249;	m_7792981		m_7792981
 	m	()Lnet/minecraft/unmapped/C_7721249;	m_5045007		m_5045007
 	m	()Lnet/minecraft/unmapped/C_7721249;	m_1699770		m_1699770
@@ -654,10 +654,10 @@ c	net/minecraft/unmapped/C_9539741
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_9590849
-	m	(Lnet/minecraft/unmapped/C_8300121;)V	m_9669532	spawnDroppedItem	
+	m	(Lnet/minecraft/unmapped/C_8300121;)V	m_9669532	spawnItem	
 		p	1		item	
-	m	(Lnet/minecraft/unmapped/C_8300121;)Lnet/minecraft/unmapped/C_2454309;	m_9669532		spawnDroppedItem
-		p	1			stack
+	m	(Lnet/minecraft/unmapped/C_8300121;)Lnet/minecraft/unmapped/C_2454309;	m_9669532		spawnItem
+		p	1			item
 	m	()Z	m_4120079		isCreative
 c	net/minecraft/unmapped/C_9621687
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)Z	m_2809682	place	
@@ -689,8 +689,3 @@ c	net/minecraft/unmapped/C_8669942		net/minecraft/client/gui/screen/resourcepack
 	m	(Lnet/minecraft/unmapped/C_2131741;)V	<init>		<init>
 		p	1			p_1
 	m	()Ljava/lang/String;	m_1754854		m_1754854
-c	net/minecraft/unmapped/C_4077617
-	f	Ljava/util/List;	f_5157834	widgets	packs
-	m	(Lnet/minecraft/unmapped/C_8105098;IILjava/util/List;)V	<init>
-		p	4		widgets	packs
-	m	()Ljava/util/List;	m_4478574	getWidgets	getPacks

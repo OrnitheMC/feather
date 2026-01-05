@@ -2,9 +2,9 @@ tiny	2	0
 c	net/minecraft/client/Minecraft
 	m	()V	m_8166453	doPick	
 c	net/minecraft/unmapped/C_0539808
-	m	()Z	m_0739792	isSwimming	
-	m	(Z)V	m_4131238	setSwimming	
-		p	1		swimming	
+	m	()Z	m_0739792	isUsingItem	
+	m	(Z)V	m_4131238	setUsingItem	
+		p	1		usingItem	
 c	net/minecraft/unmapped/C_0674634
 	f	Lnet/minecraft/unmapped/C_1241852;	f_2129913	log	
 	m	(ILnet/minecraft/unmapped/C_1241852;)V	<init>	<init>	
@@ -20,31 +20,30 @@ c	net/minecraft/unmapped/C_1023567
 c	net/minecraft/unmapped/C_1161898
 	m	(Lnet/minecraft/unmapped/C_4116648;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_9315417	arrow	
 		p	0		arrow	
-		p	1		entity	
-	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_9701339	fire	
-		p	0		projectileEntity	
-		p	1		entity	
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_3895579	thrownProjectile	
-		p	0		projectile	
-		p	1		attacker	
+		p	1		shooter	
+	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_9701339	fireball	
+		p	0		fireball	
+		p	1		shooter	
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_3895579	thrown	
+		p	0		thrown	
+		p	1		thrower	
 	m	(Lnet/minecraft/unmapped/C_4116648;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_9315417		arrow
 		p	0			p_0
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_9701339		fire
+	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_9701339		fireball
 		p	0			p_0
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_3895579		thrownProjectile
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_3895579		thrown
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_1214754
-	f	Z	f_6063784	holdingItems	
+	f	Z	f_6063784	usingItem	
 	f	Lnet/minecraft/unmapped/C_2454309;	f_0002160		f_0002160
 	f	I	f_0434433		f_0434433
 	m	()V	m_6221946		m_6221946
 c	net/minecraft/unmapped/C_1316134
-	f	I	f_8670161	unloadAttempts	
+	f	I	f_8670161	nextChunkToUnload	
 	m	(II)V	m_9772073	unloadChunk	
-		c	Queue the chunk at the given chunk coordinates to be unloaded.\nThis will happen the next time this chunk source is ticked.	
 		p	1		chunkX	
 		p	2		chunkZ	
 c	net/minecraft/unmapped/C_1331819
@@ -53,16 +52,16 @@ c	net/minecraft/unmapped/C_1331819
 c	net/minecraft/unmapped/C_2167183
 	f	I	f_4392910	difficulty	
 	m	(BBJII)V	<init>	<init>	
-		p	1		dimensionId	
+		p	1		dimension	
 		p	2		difficulty	
 		p	3		seed	
 		p	5		worldHeight	
 		p	6		gameMode	
 	m	(BJII)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	5			p_5
+		p	1			dimension
+		p	2			seed
+		p	4			worldHeight
+		p	5			gameMode
 c	net/minecraft/unmapped/C_2501864
 	m	(II)I	m_8325719	m_8325719	
 		p	1		p_1	
@@ -147,21 +146,21 @@ c	net/minecraft/unmapped/C_5722573
 	m	(Lnet/minecraft/unmapped/C_7588380;)V	m_6679158	m_6679158	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_5956487
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2861872	dropStackFromCreativeMenu	
-		p	1		stack	
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2861872	m_2861872	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_6306298
-	m	(IIZLnet/minecraft/unmapped/C_9590849;)V	m_0199404	quickMoveStack	
-		p	1		id	
-		p	2		clickData	
-		p	3		p_3	
+	m	(IIZLnet/minecraft/unmapped/C_9590849;)V	m_0199404	clickSlot	
+		p	1		slot	
+		p	2		button	
+		p	3		quickMove	
 		p	4		player	
 c	net/minecraft/unmapped/C_6382639
-	f	Lnet/minecraft/unmapped/C_0539808;	f_9669185	projectile	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_9669185		projectile
+	f	Lnet/minecraft/unmapped/C_0539808;	f_9669185	shooter	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_9669185		shooter
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)V	<init>	<init>	
 		p	1		name	
-		p	2		entity	
-		p	3		projectile	
+		p	2		projectile	
+		p	3		shooter	
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -169,13 +168,13 @@ c	net/minecraft/unmapped/C_6382639
 c	net/minecraft/unmapped/C_6607881
 	m	()Z	m_0876818	shouldShowNameTag	
 c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_7588380;)V	m_6679158	handleAddXpOrb	
+	m	(Lnet/minecraft/unmapped/C_7588380;)V	m_6679158	handleAddExperienceOrb	
 		p	1		packet	
 c	net/minecraft/unmapped/C_7400754
-	m	(IZ)V	m_2955308	pickItem	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/unmapped/C_7588380	net/minecraft/network/packet/AddXpOrbPacket	
+	m	(IZ)V	m_2955308	selectSlot	
+		p	1		block	
+		p	2		creativeMode	
+c	net/minecraft/unmapped/C_7588380	net/minecraft/network/packet/AddExperienceOrbPacket	
 	f	I	f_7042540	id	
 	f	I	f_7054074	x	
 	f	I	f_4377997	y	
@@ -202,8 +201,8 @@ c	net/minecraft/unmapped/C_7873567
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_7952195
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2861872	m_2861872	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2861872	dropItemFromCreativeMenu	
+		p	1		item	
 c	net/minecraft/unmapped/C_8633065
 	f	[Lnet/minecraft/unmapped/C_7141926;	f_2684292	positions	
 	f	I	f_7678142		f_7678142
@@ -214,9 +213,9 @@ c	net/minecraft/unmapped/C_8718968
 c	net/minecraft/unmapped/C_9232485
 	f	B	f_3407255	maxPlayerCount	
 c	net/minecraft/unmapped/C_9590849
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_0276088	getItemInHand	
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_0276088	getItemInUse	
 	m	()I	m_3098348	getItemUseTimer	
-	m	()Z	m_2916573	isUsingItem	
+	m	()Z	m_2916573	hasItemInUse	
 	m	()I	m_0647487	getRemainingItemUseDuration	
 	m	()Z	m_0876818	m_0876818	
 	m	(Z)Z	m_8914955	canEat	

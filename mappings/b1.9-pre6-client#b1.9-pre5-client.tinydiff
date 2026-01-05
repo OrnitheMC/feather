@@ -1,36 +1,36 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
-	m	(ZIZ)V	m_9990242	m_9990242	
-		p	1		p_1	
-		p	2		dimensionId	
-		p	3		p_3	
-	m	(ZI)V	m_9990242		m_9990242
-		p	1			p_1
-		p	2			p_2
+	m	(ZIZ)V	m_9990242	respawnPlayer	
+		p	1		worldSpawn	
+		p	2		dimension	
+		p	3		keepInventory	
+	m	(ZI)V	m_9990242		respawnPlayer
+		p	1			worldSpawn
+		p	2			dimension
 c	net/minecraft/unmapped/C_0539808
-	f	I	f_6475390		f_6475390
-	f	I	f_1297340		f_1297340
+	f	I	f_6475390		breathCapacity
+	f	I	f_1297340		breath
 	m	()I	m_2477999	getBreath	
 	m	(I)V	m_3521250	setBreath	
 		p	1		breath	
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0807932	is	
 		p	1		entity	
 c	net/minecraft/unmapped/C_0607826
-	f	I	f_5335231		f_5335231
-	f	I	f_7642449		f_7642449
-	f	I	f_8511082		f_8511082
+	f	I	f_5335231		damage
+	f	I	f_7642449		damagedTimer
+	f	I	f_8511082		damagedSwingDir
 	m	(I)V	m_3795038	setDamage	
 		p	1		damage	
 	m	()I	m_1515300	getDamage	
-	m	(I)V	m_1375950	setBreakingWindow	
+	m	(I)V	m_1375950	setDamagedTimer	
 		c	When a boat is hit it starts wiggling. You need to consequitively hit it in that window to be able to do\nenough damage until the boat breaks. This method sets that value in the datatracker.\nThe value is initially set to 10 when hit and decreases by one each tick when the boat is not hit.	
-		p	1		value	
-	m	()I	m_4392568	getBreakingWindow	
+		p	1		ticks	
+	m	()I	m_4392568	getDamagedTimer	
 		c	When a boat is hit it starts wiggling. You need to consequitively hit it in that window to be able to do\nenough damage until the boat breaks. This method gets that value in the datatracker.\nThe value is initially set to 10 when hit and decreases by one each tick when the boat is not hit.	
-	m	(I)V	m_5094158	setAnitmationSide	
+	m	(I)V	m_5094158	setDamagedSwingDirection	
 		c	This value determines on which side the wiggle animation starts.\nSee {@link net.minecraft.client.render.entity.BoatRenderer#render}}\n    -1:     start to the right\n     1:     start to the left\nDefault: 1	
-		p	1		value	
-	m	()I	m_6541172	getAnimationSide	
+		p	1		dir	
+	m	()I	m_6541172	getDamagedSwingDirection	
 c	net/minecraft/unmapped/C_0674816
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_1241852;)F	m_5853631	m_5853631	
 		p	1		p_1	
@@ -68,13 +68,13 @@ c	net/minecraft/unmapped/C_1324297
 	m	(I)S	m_7101587	getShort	
 		p	1		id	
 c	net/minecraft/unmapped/C_1331819
-	f	[Ljava/lang/String;	f_4945651	PARTICLE_LEVEL_SETTINGS	
-	f	I	f_2099028	particleLevel	
+	f	[Ljava/lang/String;	f_4945651	PARTICLE_SETTINGS	
+	f	I	f_2099028	particles	
 c	net/minecraft/unmapped/C_1427941	net/minecraft/client/render/entity/EnderCrystalRenderer	
 	f	I	f_7139626	version	
 	f	Lnet/minecraft/unmapped/C_7503776;	f_8664752	model	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_8869969;DDDFF)V	m_2816922	render	
+	m	(Lnet/minecraft/unmapped/C_8869969;DDDFF)V	m_2816922	m_2816922	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
@@ -108,15 +108,15 @@ c	net/minecraft/unmapped/C_2144954
 		c	This map keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that do not allow\nmob spawning, but do contribute to the mob cap.	
 	f	Ljava/util/Set;	f_6065855		mobSpawningChunks
 		c		This set keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that are lazy chunks,\nwhich do not allow mob spawning, but to contribute to the mob cap.
-	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;)Z	m_6540563		spawnMonstersAndWakePlayers
+	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;)Z	m_6540563		spawnMonstersAndWakeUpPlayers
 		p	0			world
 		p	1			players
 c	net/minecraft/unmapped/C_2306016
-	m	()Lnet/minecraft/unmapped/C_8180393;	m_6515054		m_6515054
+	m	()Lnet/minecraft/unmapped/C_8180393;	m_6515054		getLastNode
 c	net/minecraft/unmapped/C_2594473	net/minecraft/client/gui/screen/CreditsScreen	
 	f	I	f_4814726	ticksOpen	
 	f	Ljava/util/List;	f_7413848	creditTextLines	
-	f	[I	f_1327189	f_1327189	
+	f	[I	f_1327189	creditTextHeights	
 	f	I	f_6208508	creditsHeight	
 	f	F	f_4012289	speed	
 	m	()V	<init>	<init>	
@@ -151,7 +151,7 @@ c	net/minecraft/unmapped/C_2842713
 c	net/minecraft/unmapped/C_3167010
 	f	Lnet/minecraft/unmapped/C_3167010;	f_1817470	NOT_SAFE	
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_5349997;III)Z	m_7919106	tessellateDragonEgg	
+	m	(Lnet/minecraft/unmapped/C_5349997;III)Z	m_7919106	tesselateDragonEgg	
 		p	1		block	
 		p	2		x	
 		p	3		y	
@@ -207,16 +207,16 @@ c	net/minecraft/unmapped/C_4551488
 	m	()V	m_3731768	tickEndCrystalInteraction	
 		c	End crystal related actions that should be performed every tick.\n    - Disconnect from the crystal if it is removed\n    - If connected to a crystal, heal with a 1/10 chance each tick\n      (on average this means it heals every 10 ticks)\n    - Search for the nearest crystal and connect to it if valid	
 	m	()V	m_3090346	m_3090346	
-	m	(Ljava/util/List;)V	m_3593572	flingLivingEntities	
+	m	(Ljava/util/List;)V	m_3593572	flingMobs	
 		p	1		entities	
-	m	(Ljava/util/List;)V	m_6332823	damageLivingEntities	
+	m	(Ljava/util/List;)V	m_6332823	damageMobs	
 		p	1		entities	
 	m	()V	m_3473757	chooseTarget	
 	m	(II)V	m_8545629	createPortal	
 		c	Creates the portal after defeating the dragon. This is created around this.x and this.z.	
 		p	1		x	
 		p	2		z	
-	m	()I	m_8116444	m_8116444	
+	m	()I	m_8116444	getDisplayHealth	
 c	net/minecraft/unmapped/C_4976084
 	m	(III)I	m_1109374	clamp	
 		p	0		x	
@@ -275,8 +275,8 @@ c	net/minecraft/unmapped/C_5349997	net/minecraft/block/DragonEggBlock
 	m	()Z	m_6174711	m_6174711	
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_5385258
-	f	Lnet/minecraft/unmapped/C_0739569;	f_7540714		f_7540714
-	f	I	f_6240326		f_6240326
+	f	Lnet/minecraft/unmapped/C_0739569;	f_7540714		trackers
+	f	I	f_6240326		incomingCount
 c	net/minecraft/unmapped/C_5533224
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_7842021	m_7842021	
 		p	1		p_1	
@@ -289,16 +289,16 @@ c	net/minecraft/unmapped/C_5537602
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		blockId	
+		p	5		block	
 		p	6		metadata	
 c	net/minecraft/unmapped/C_5553933
 	m	(IIIII)V	m_8146961	loadScheduledTick	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 		p	5		delay	
-	m	(IIIZ)Z	m_3675118	isOpaqueFullCube	
+	m	(IIIZ)Z	m_3675118	isSolidBlockingCube	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -328,19 +328,19 @@ c	net/minecraft/unmapped/C_7393212
 		p	1		p_1	
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_7400754
-	m	(II)I	m_4661195	indexOfItemWithMetaData	
-		p	1		itemId	
+	m	(II)I	m_4661195	getSlot	
+		p	1		item	
 		p	2		metadata	
-	m	(IIZZ)V	m_2955308	pickItem	
-		p	1		itemId	
+	m	(IIZZ)V	m_2955308	selectSlot	
+		p	1		item	
 		p	2		metadata	
 		p	3		damageable	
 		p	4		creativeMode	
 	m	(Lnet/minecraft/unmapped/C_7400754;)V	m_7412451	copy	
 		p	1		inventory	
-	m	(IZ)V	m_2955308		pickItem
-		p	1			p_1
-		p	2			p_2
+	m	(IZ)V	m_2955308		selectSlot
+		p	1			block
+		p	2			creativeMode
 c	net/minecraft/unmapped/C_7450921
 	f	Ljava/lang/String;	f_7040546	seed	
 	f	Ljava/lang/String;	f_5071810	worldName	
@@ -359,10 +359,10 @@ c	net/minecraft/unmapped/C_8502309
 c	net/minecraft/unmapped/C_8651652
 	m	()V	m_6800224	renderBossBars	
 c	net/minecraft/unmapped/C_8869969	net/minecraft/entity/EnderCrystalEntity	
-	f	I	f_5747851	age	
+	f	I	f_5747851	renderTicks	
 	f	I	f_8036738	explosionCountdown	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		world	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>	<init>	
 		p	1		world	
 		p	2		x	
@@ -407,21 +407,21 @@ c	net/minecraft/unmapped/C_9469238
 		p	3		z	
 		p	4		side	
 c	net/minecraft/unmapped/C_9482745
-	f	I	f_9783433		f_9783433
-	f	I	f_1911180		f_1911180
-	f	I	f_5828726		f_5828726
+	f	I	f_9783433		damage
+	f	I	f_1911180		damagedTimer
+	f	I	f_5828726		damagedSwingDir
 	m	()Z	m_6725589	hasFuel	
 	m	(Z)V	m_6179832	setHasFuel	
 		p	1		hasFuel	
-	m	(I)V	m_5124812	setDamageWobbleStrength	
-		p	1		strength	
-	m	()I	m_7734358	getDamageWobbleStrength	
-	m	(I)V	m_2242598	setDamageWobbleTicks	
+	m	(I)V	m_5124812	setDamage	
+		p	1		damage	
+	m	()I	m_7734358	getDamage	
+	m	(I)V	m_2242598	setDamagedTimer	
 		p	1		ticks	
-	m	()I	m_2133556	getDamageWobbleTicks	
-	m	(I)V	m_4626336	setDamageWobbleSide	
-		p	1		ticks	
-	m	()I	m_8944050	getDamageWobbleSide	
+	m	()I	m_2133556	getDamagedTimer	
+	m	(I)V	m_4626336	setDamagedSwingDirection	
+		p	1		dir	
+	m	()I	m_8944050	getDamagedSwingDirection	
 c	net/minecraft/unmapped/C_9753638
 	m	(Z)V	<init>	<init>	
 		p	1		p_1	

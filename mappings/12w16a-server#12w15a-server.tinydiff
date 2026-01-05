@@ -3,8 +3,8 @@ c	net/minecraft/server/MinecraftServer
 	f	Lnet/minecraft/server/MinecraftServer;	f_1995187	instance	
 	f	Lnet/minecraft/unmapped/C_8183022;	f_7081300	commandHandler	
 	f	Lnet/minecraft/unmapped/C_0908689;	f_7081300		commandHandler
-	m	(Ljava/lang/String;)V	m_5239762	info	
-		p	1		message	
+	m	(Ljava/lang/String;)V	m_5239762	m_5239762	
+		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_1730529;Ljava/lang/String;)Ljava/util/List;	m_5128471	getCommandSuggestions	
 		p	1		source	
 		p	2		command	
@@ -27,7 +27,7 @@ c	net/minecraft/unmapped/C_0168865	net/minecraft/network/packet/ClientSettingsPa
 	m	()I	m_4040470	m_4040470	
 	m	()Ljava/lang/String;	m_3836447	getLanguage	
 	m	()I	m_8253693	getViewDistance	
-c	net/minecraft/unmapped/C_0175717	net/minecraft/command/AbstractGameModeCommand	
+c	net/minecraft/unmapped/C_0175717	net/minecraft/command/GameModeCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -73,7 +73,7 @@ c	net/minecraft/unmapped/C_0837523	net/minecraft/command/MeCommand
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)Ljava/util/List;	m_0376737	m_0376737	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_0858167	net/minecraft/server/command/ToggleDownfallCommand	
+c	net/minecraft/unmapped/C_0858167	net/minecraft/server/command/ServerToggleDownfallCommand	
 	m	()V	<init>	<init>	
 	m	()V	m_7621275	m_7621275	
 c	net/minecraft/unmapped/C_1567607
@@ -112,15 +112,15 @@ c	net/minecraft/unmapped/C_2320485	net/minecraft/server/command/BanIpCommand
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_1730529;Ljava/lang/String;)V	m_9169755	banIp	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		source	
+		p	2		ip	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_2381425
-	m	(Ljava/util/Random;[Lnet/minecraft/unmapped/C_0268929;Lnet/minecraft/unmapped/C_1582062;I)V	m_4108100		m_4108100
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Ljava/util/Random;[Lnet/minecraft/unmapped/C_0268929;Lnet/minecraft/unmapped/C_1582062;I)V	m_4108100		placeLootInChest
+		p	0			random
+		p	1			loot
+		p	2			chest
+		p	3			attempts
 c	net/minecraft/unmapped/C_2615737	net/minecraft/command/KillCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
@@ -129,15 +129,15 @@ c	net/minecraft/unmapped/C_2615737	net/minecraft/command/KillCommand
 		p	2		p_2	
 c	net/minecraft/unmapped/C_2670477
 	f	Z	f_2484064	allowCommands	
-	f	Z	f_7823733	hasBonusChest	
-	m	()Lnet/minecraft/unmapped/C_2670477;	m_2302434	enableBonusChest	
-	m	()Z	m_6464140	hasBonusChest	
+	f	Z	f_7823733	generateBonusChest	
+	m	()Lnet/minecraft/unmapped/C_2670477;	m_2302434	enableCommands	
+	m	()Z	m_6464140	generateBonusChest	
 c	net/minecraft/unmapped/C_2691400	net/minecraft/command/exception/CommandNotFoundException	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_2742332	net/minecraft/command/AbstractTimeCommand	
+c	net/minecraft/unmapped/C_2742332	net/minecraft/command/TimeCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -181,7 +181,7 @@ c	net/minecraft/unmapped/C_2948655
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	m_1318661	m_1318661	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_3009546	net/minecraft/command/AbstractGiveCommand	
+c	net/minecraft/unmapped/C_3009546	net/minecraft/command/GiveCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -229,11 +229,12 @@ c	net/minecraft/unmapped/C_3767424
 		p	2			chunkZ
 		p	3			playerChunkX
 		p	4			playerChunkZ
+	m	()I	m_9834219	getChunkViewDistance	getViewDistance
 c	net/minecraft/unmapped/C_3865296
 	m	(Lnet/minecraft/unmapped/C_2670477;)V	m_4018030	m_4018030	
 		p	1		p_1	
 	m	()V	m_4018030		m_4018030
-c	net/minecraft/unmapped/C_4116835	net/minecraft/command/AbstractToggleDownfallCommand	
+c	net/minecraft/unmapped/C_4116835	net/minecraft/command/ToggleDownfallCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -241,11 +242,11 @@ c	net/minecraft/unmapped/C_4116835	net/minecraft/command/AbstractToggleDownfallC
 		p	2		p_2	
 	m	()V	m_7621275	toggleDownfall	
 c	net/minecraft/unmapped/C_4556759
-	m	(Ljava/lang/String;)V	m_5239762	m_5239762	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_5239762	info	
+		p	1		message	
 	m	(Ljava/lang/String;)V	m_3031403		sendMessage
 		p	1			message
-c	net/minecraft/unmapped/C_4557607	net/minecraft/server/command/GameModeCommand	
+c	net/minecraft/unmapped/C_4557607	net/minecraft/server/command/ServerGameModeCommand	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_9015779	m_9015779	
 		p	1		p_1	
@@ -310,7 +311,7 @@ c	net/minecraft/unmapped/C_5615470	net/minecraft/server/command/OpCommand
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)Ljava/util/List;	m_0376737	m_0376737	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_5756712	net/minecraft/server/command/GiveCommand	
+c	net/minecraft/unmapped/C_5756712	net/minecraft/server/command/ServerGiveCommand	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_1756870	m_1756870	
 		p	1		p_1	
@@ -367,7 +368,7 @@ c	net/minecraft/unmapped/C_5986433	net/minecraft/server/command/SaveOffCommand
 		p	2		p_2	
 c	net/minecraft/unmapped/C_6152184
 	f	Z	f_6434313	allowCommands	
-c	net/minecraft/unmapped/C_6255335	net/minecraft/command/AbstractExperienceCommand	
+c	net/minecraft/unmapped/C_6255335	net/minecraft/command/ExperienceCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -435,7 +436,7 @@ c	net/minecraft/unmapped/C_7250084
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_0168865;)V	m_7479576	handleClientSettings	
 		p	1		packet	
-c	net/minecraft/unmapped/C_7705477	net/minecraft/server/command/ExperienceCommand	
+c	net/minecraft/unmapped/C_7705477	net/minecraft/server/command/ServerExperienceCommand	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_6503279	m_6503279	
 		p	1		p_1	
@@ -496,7 +497,7 @@ c	net/minecraft/unmapped/C_9456817	net/minecraft/server/command/PardonIpCommand
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)Ljava/util/List;	m_0376737	m_0376737	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_9570954	net/minecraft/server/command/TimeCommand	
+c	net/minecraft/unmapped/C_9570954	net/minecraft/server/command/ServerTimeCommand	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_1730529;I)V	m_9034782	m_9034782	
 		p	1		p_1	
@@ -506,7 +507,7 @@ c	net/minecraft/unmapped/C_9570954	net/minecraft/server/command/TimeCommand
 		p	2		p_2	
 c	net/minecraft/unmapped/C_9590849
 	m	(I)V	m_2325657	setGameMode	
-		p	1		p_1	
+		p	1		gameMode	
 	m	()Ljava/lang/String;	m_2446786	m_2446786	
 	m	()Lnet/minecraft/unmapped/C_0759248;	m_7248813	getLanguage	
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	m_1318661	m_1318661	
@@ -522,7 +523,7 @@ c	net/minecraft/unmapped/C_9992501
 		p	1		enforce	
 	m	(Ljava/lang/String;)Ljava/util/List;	m_1272395	getAtIp	
 		p	1		ip	
-	m	()I	m_8388212		getChunkViewDistance
+	m	()I	m_8388212		getViewDistance
 	m	(Ljava/lang/String;Ljava/lang/String;)V	m_1902829		sendMessageToPlayer
 		p	1			name
 		p	2			message

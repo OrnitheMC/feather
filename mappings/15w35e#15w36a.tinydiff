@@ -27,18 +27,18 @@ c	net/minecraft/server/MinecraftServer
 c	net/minecraft/unmapped/C_0539808
 	m	()Lnet/minecraft/server/MinecraftServer;	m_2489918		m_2489918
 c	net/minecraft/unmapped/C_0899004
-	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_5256841	m_5256841	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_5256841	getStructure	
+		p	1		location	
 	m	(Lnet/minecraft/unmapped/C_0561170;)Z	m_0365041	loadFromNbt	
-		p	1		p_1	
+		p	1		location	
 	m	(Lnet/minecraft/unmapped/C_0561170;)Z	m_5296086	save	
-		p	1		p_1	
-	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_5256841		get
+		p	1		location	
+	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_5256841		getStructure
 		p	1			server
 		p	2			location
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_0561170;)Z	m_0365041		loadFromNbt
-		p	1			p_1
-		p	2			p_2
+		p	1			server
+		p	2			location
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_0561170;)Z	m_5296086		save
 		p	1			server
 		p	2			location
@@ -250,8 +250,8 @@ c	net/minecraft/unmapped/C_3177907$C_7237051		CollisionRule
 		p	4			id
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_3422238
-	f	I	f_5132310	HOOKED_ENTITY_ID	
-	f	Lnet/minecraft/unmapped/C_6101761;	f_5132310		HOOKED_ENTITY_ID
+	f	I	f_5132310	shake	
+	f	Lnet/minecraft/unmapped/C_6101761;	f_5132310		HOOKED_ENTITY
 	m	(Lnet/minecraft/unmapped/C_6101761;)V	m_8901560		m_8901560
 		p	1			p_1
 	m	(B)V	m_4909384		m_4909384
@@ -360,14 +360,14 @@ c	net/minecraft/unmapped/C_5313722
 c	net/minecraft/unmapped/C_5313722$1
 	m	()Lnet/minecraft/server/MinecraftServer;	m_2489918		m_2489918
 c	net/minecraft/unmapped/C_5553933
-	m	(DDDDD)Lnet/minecraft/unmapped/C_9590849;	m_3707762	getClosestPlayer	
+	m	(DDDDD)Lnet/minecraft/unmapped/C_9590849;	m_3707762	getNearestPlayer	
 		p	1		p_1	
 		p	3		p_3	
 		p	5		p_5	
 		p	7		p_7	
 		p	9		p_9	
 	m	()Lnet/minecraft/server/MinecraftServer;	m_0183331		getServer
-	m	(DDDDDLcom/google/common/base/Function;Lcom/google/common/base/Predicate;)Lnet/minecraft/unmapped/C_9590849;	m_3707762		getClosestPlayer
+	m	(DDDDDLcom/google/common/base/Function;Lcom/google/common/base/Predicate;)Lnet/minecraft/unmapped/C_9590849;	m_3707762		getNearestPlayer
 		p	1			x
 		p	3			y
 		p	5			z
@@ -376,12 +376,12 @@ c	net/minecraft/unmapped/C_5553933
 		p	11			distanceMultiplier
 		p	12			predicate
 c	net/minecraft/unmapped/C_5587144
-	f	Lnet/minecraft/unmapped/C_2441996;	f_7568955	f_7568955	
-	f	Lnet/minecraft/unmapped/C_6101761;	f_8448941	angerTime	
-	f	Z	f_3380124	angry	
-	f	I	f_8448941		angerTime
-	f	I	f_3380124		angry
-	m	()Z	m_5405922	m_5405922	
+	f	Lnet/minecraft/unmapped/C_2441996;	f_7568955	AIR	
+	f	Lnet/minecraft/unmapped/C_6101761;	f_8448941	CARRIED_BLOCK_METADATA	
+	f	Z	f_3380124	attackedByPlayer	
+	f	I	f_8448941		creepySoundTime
+	f	I	f_3380124		targetChangeTime
+	m	()Z	m_5405922	isCarryingBlock	
 	m	(Z)V	m_0041163	setAngry	
 		p	1		angry	
 	m	(Lnet/minecraft/unmapped/C_5587144;Z)Z	m_8403643	m_8403643	
@@ -392,7 +392,7 @@ c	net/minecraft/unmapped/C_5587144
 	m	()Lnet/minecraft/unmapped/C_2441996;	m_6146638	m_6146638	
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_6142038		m_6142038
 		p	1			p_1
-	m	()V	m_8586658		playAngrySound
+	m	()V	m_8586658		playCreepySound
 	m	(Lnet/minecraft/unmapped/C_6101761;)V	m_8901560		m_8901560
 		p	1			p_1
 c	net/minecraft/unmapped/C_5587144$C_7709656
@@ -402,10 +402,10 @@ c	net/minecraft/unmapped/C_5587144$C_7709656$1		1
 	f	Lnet/minecraft/unmapped/C_5587144$C_7709656;	f_7480250		f_7480250
 	m	(Lnet/minecraft/unmapped/C_5587144$C_7709656;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_8216031		m_8216031
+	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_8216031		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			p_1
+		p	1			player
 c	net/minecraft/unmapped/C_6297924
 	m	(FLnet/minecraft/unmapped/C_6912424;)V	m_1542224		m_1542224
 		p	1			p_1
@@ -449,7 +449,7 @@ c	net/minecraft/unmapped/C_7143605
 		p	0			onlineMode
 	m	()Z	m_9538069		isOnlineMode
 c	net/minecraft/unmapped/C_7592368
-c	net/minecraft/unmapped/C_7592368$C_7533076	GolemActiveTargetGoal	
+c	net/minecraft/unmapped/C_7592368$C_7533076	ActiveTargetGoal	
 	m	(Lnet/minecraft/unmapped/C_5622853;Ljava/lang/Class;IZZLcom/google/common/base/Predicate;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -474,20 +474,20 @@ c	net/minecraft/unmapped/C_7592368$C_7533076$1	1
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_8580167	apply	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	apply	apply	
-		p	1		entity	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_7592368$1		1
 	f	Lnet/minecraft/unmapped/C_7592368;	f_0653706		f_0653706
 	m	(Lnet/minecraft/unmapped/C_7592368;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_8099772;)Z	m_4515042		m_4515042
+	m	(Lnet/minecraft/unmapped/C_8099772;)Z	m_4515042		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_7985395
 c	net/minecraft/unmapped/C_7985395$1
-	f	Lcom/google/common/base/Predicate;	f_5955365	filter	
+	f	Lcom/google/common/base/Predicate;	f_5955365	f_5955365	
 	f	Lnet/minecraft/unmapped/C_5622853;	f_1103205	f_1103205	
-	f	Lnet/minecraft/unmapped/C_7985395;	f_4949769	targetGoal	
+	f	Lnet/minecraft/unmapped/C_7985395;	f_4949769	f_4949769	
 	f	Lcom/google/common/base/Predicate;	f_8720404		f_8720404
 	f	Lnet/minecraft/unmapped/C_7985395;	f_6082220		f_6082220
 	m	(Lnet/minecraft/unmapped/C_7985395;Lcom/google/common/base/Predicate;Lnet/minecraft/unmapped/C_5622853;)V	<init>	<init>	
@@ -499,13 +499,13 @@ c	net/minecraft/unmapped/C_7985395$1
 	m	(Lnet/minecraft/unmapped/C_7985395;Lcom/google/common/base/Predicate;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_4888444		m_4888444
+	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_4888444		apply
 		p	1			p_1
 c	net/minecraft/unmapped/C_7985395$2		2
 	f	Lnet/minecraft/unmapped/C_7985395;	f_4949769		f_4949769
 	m	(Lnet/minecraft/unmapped/C_7985395;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_9590849;)Ljava/lang/Double;	m_5260111		m_5260111
+	m	(Lnet/minecraft/unmapped/C_9590849;)Ljava/lang/Double;	m_5260111		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	apply		apply
 		p	1			p_1
@@ -513,20 +513,20 @@ c	net/minecraft/unmapped/C_8475339
 	f	Ljava/lang/String;	f_9093123		collisionRule
 	m	()Ljava/lang/String;	m_8589484		getCollisionRule
 c	net/minecraft/unmapped/C_8643842
-	m	(Ljava/net/URL;Ljava/util/Map;Z)Ljava/lang/String;	m_7150979	postTo	
+	m	(Ljava/net/URL;Ljava/util/Map;Z)Ljava/lang/String;	m_7150979	post	
 		p	0		url	
-		p	1		hasmap	
-		p	2		quietly	
-	m	(Ljava/net/URL;Ljava/lang/String;Z)Ljava/lang/String;	m_3097902	postTo	
+		p	1		data	
+		p	2		silent	
+	m	(Ljava/net/URL;Ljava/lang/String;Z)Ljava/lang/String;	m_3097902	post	
 		p	0		url	
-		p	1		contentLength	
-		p	2		quietly	
-	m	(Ljava/net/URL;Ljava/util/Map;ZLjava/net/Proxy;)Ljava/lang/String;	m_7150979		postTo
+		p	1		data	
+		p	2		silent	
+	m	(Ljava/net/URL;Ljava/util/Map;ZLjava/net/Proxy;)Ljava/lang/String;	m_7150979		post
 		p	0			url
 		p	1			data
 		p	2			silent
 		p	3			proxy
-	m	(Ljava/net/URL;Ljava/lang/String;ZLjava/net/Proxy;)Ljava/lang/String;	m_3097902		postTo
+	m	(Ljava/net/URL;Ljava/lang/String;ZLjava/net/Proxy;)Ljava/lang/String;	m_3097902		post
 		p	0			url
 		p	1			data
 		p	2			silent
@@ -567,12 +567,12 @@ c	net/minecraft/unmapped/C_9467359
 		p	1			entries
 c	net/minecraft/unmapped/C_9668676
 	f	[Ljava/lang/String;	f_9140153	f_9140153	
-c	net/minecraft/unmapped/C_6686615		net/minecraft/unmapped/C_6686615
-	m	(FI)F	m_4944748		m_4944748
-		p	0			p_0
-		p	1			p_1
-	m	(FI)F	m_4368311		m_4368311
-		p	0			p_0
-		p	1			p_1
+c	net/minecraft/unmapped/C_6686615		net/minecraft/entity/damage/DamageHelper
+	m	(FI)F	m_4944748		getDamageAfterArmor
+		p	0			damage
+		p	1			protection
+	m	(FI)F	m_4368311		getDamageAfterEnchantments
+		p	0			damage
+		p	1			protection
 c	net/minecraft/unmapped/C_3865296
 	m	()Lnet/minecraft/server/MinecraftServer;	m_0183331	getServer	m_0183331

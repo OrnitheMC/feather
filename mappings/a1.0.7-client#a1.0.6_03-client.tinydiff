@@ -4,7 +4,7 @@ c	net/minecraft/unmapped/C_0168865
 c	net/minecraft/unmapped/C_0506965
 	m	()I	m_3270342		m_3270342
 c	net/minecraft/unmapped/C_0539808
-	f	Z	f_5233737	isLoaded	
+	f	Z	f_5233737	inChunk	
 	f	I	f_6593214	chunkX	
 	f	I	f_1699830	chunkY	
 	f	I	f_1378082	chunkZ	
@@ -22,21 +22,21 @@ c	net/minecraft/unmapped/C_4652455
 	m	()I	m_3270342		m_3270342
 c	net/minecraft/unmapped/C_4804187
 	m	()I	m_3270342		m_3270342
-c	net/minecraft/unmapped/C_4843960	net/minecraft/unmapped/C_4843960	
-	f	I	f_2683570	f_2683570	
-	f	I	f_4850946	f_4850946	
-	f	I	f_2129794	f_2129794	
-	f	I	f_0770744	f_0770744	
-	f	I	f_9691341	f_9691341	
-	f	I	f_4635169	f_4635169	
+c	net/minecraft/unmapped/C_4843960	net/minecraft/client/world/MultiplayerWorld__BlockReset	
+	f	I	f_2683570	x	
+	f	I	f_4850946	y	
+	f	I	f_2129794	z	
+	f	I	f_0770744	delay	
+	f	I	f_9691341	block	
+	f	I	f_4635169	metadata	
 	f	Lnet/minecraft/unmapped/C_7873567;	f_1100432	f_1100432	
 	m	(Lnet/minecraft/unmapped/C_7873567;IIIII)V	<init>	<init>	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		block	
+		p	6		metadata	
 c	net/minecraft/unmapped/C_5257938
 	m	()I	m_3270342		m_3270342
 c	net/minecraft/unmapped/C_5385258
@@ -58,13 +58,13 @@ c	net/minecraft/unmapped/C_5956487
 		p	1		p_1	
 c	net/minecraft/unmapped/C_5981136
 	m	()I	m_3270342		m_3270342
-c	net/minecraft/unmapped/C_6013256	net/minecraft/client/entity/living/player/LocalPlayerEntity	
+c	net/minecraft/unmapped/C_6013256	net/minecraft/client/entity/mob/player/LocalClientPlayerEntity	
 	f	Lnet/minecraft/unmapped/C_5722573;	f_2408973	networkHandler	
-	f	D	f_5923652	lastX	
-	f	D	f_7931322	lastMinY	
-	f	D	f_4411739	lastY	
-	f	F	f_5654353	lastYaw	
-	f	F	f_4936627	lastPitch	
+	f	D	f_5923652	sentX	
+	f	D	f_7931322	sentMinY	
+	f	D	f_4411739	sentY	
+	f	F	f_5654353	sentYaw	
+	f	F	f_4936627	sentPitch	
 	m	(Lnet/minecraft/client/Minecraft;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_8730536;Lnet/minecraft/unmapped/C_5722573;)V	<init>	<init>	
 		p	1		minecraft	
 		p	2		world	
@@ -79,7 +79,7 @@ c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_9615057;)V	m_8434667	handlePlayerMove	
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_7748732;)V	m_8434667		handlePlayerMove
-		p	1			p_1
+		p	1			packet
 c	net/minecraft/unmapped/C_7662890	net/minecraft/network/packet/PlayerMovePacket__Position	
 	m	(DDDZ)V	<init>	<init>	
 		p	1		p_1	
@@ -90,22 +90,29 @@ c	net/minecraft/unmapped/C_7662890	net/minecraft/network/packet/PlayerMovePacket
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_7748732
-	f	D	f_5314337		f_5314337
-	f	D	f_3747767		f_3747767
-	f	D	f_9142942		f_9142942
-	f	F	f_2816476		f_2816476
-	f	F	f_3194936		f_3194936
-	f	Z	f_4917190		f_4917190
+c	net/minecraft/unmapped/C_7748732	net/minecraft/network/packet/PlayerMovePacket__PositionAndAngles	net/minecraft/network/packet/PlayerMovePacket
+	f	D	f_5314337		x
+	f	D	f_3747767		minY
+	f	D	f_9142942		y
+	f	F	f_2816476		yaw
+	f	F	f_3194936		pitch
+	f	Z	f_4917190		onGround
 	m	()V	<init>		<init>
 	m	()I	m_3270342		m_3270342
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666		m_7216666
 		p	1			p_1
+	m	(DDDFFZ)V	<init>
+		p	1		p_1	x
+		p	3		p_3	minY
+		p	5		p_5	y
+		p	7		p_7	yaw
+		p	8		p_8	pitch
+		p	9		p_9	onGround
 c	net/minecraft/unmapped/C_7754971
 	m	()I	m_3270342		m_3270342
 c	net/minecraft/unmapped/C_7873567
-	f	Ljava/util/LinkedList;	f_7529188	scheduledBlockChanges	
-	m	(IIIIII)V	m_1475224	clearScheduledBlockChanges	
+	f	Ljava/util/LinkedList;	f_7529188	blockResets	
+	m	(IIIIII)V	m_1475224	clearBlockResets	
 		p	1		minX	
 		p	2		minY	
 		p	3		minZ	
@@ -132,7 +139,7 @@ c	net/minecraft/unmapped/C_7873567
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 		p	5		metadata	
 c	net/minecraft/unmapped/C_7927468	net/minecraft/network/packet/PlayerMovePacket__Angles	
 	m	(FFZ)V	<init>	<init>	
@@ -168,3 +175,4 @@ c	net/minecraft/unmapped/C_9615057	net/minecraft/network/packet/PlayerMovePacket
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
 		p	1		p_1	
+c	net/minecraft/unmapped/C_1023567	net/minecraft/client/entity/mob/player/InputClientPlayerEntity	net/minecraft/client/entity/mob/player/LocalClientPlayerEntity

@@ -47,11 +47,11 @@ c	net/minecraft/unmapped/C_0286265
 c	net/minecraft/unmapped/C_0487112
 	f	Lnet/minecraft/unmapped/C_5537602;	f_6622505		magmaVein
 c	net/minecraft/unmapped/C_0539808
-	f	Lnet/minecraft/unmapped/C_6101761;	f_6305687		f_6305687
+	f	Lnet/minecraft/unmapped/C_6101761;	f_6305687		NO_GRAVITY
 	m	()V	m_2792894	load	
 	m	()Z	m_2856590		isNoGravity
 	m	(Z)V	m_5119666		setNoGravity
-		p	1			p_1
+		p	1			noGravity
 	m	()Lnet/minecraft/unmapped/C_7150949;	m_5219175		getRotation
 	m	()Lnet/minecraft/unmapped/C_0557736;	m_3048111		getRotation3d
 c	net/minecraft/unmapped/C_0557736
@@ -59,8 +59,8 @@ c	net/minecraft/unmapped/C_0557736
 	m	(Lnet/minecraft/unmapped/C_7150949;)Lnet/minecraft/unmapped/C_0557736;	m_9659943		fromRotation
 		p	0			rot
 	m	(FF)Lnet/minecraft/unmapped/C_0557736;	m_5458728		fromRotation
-		p	0			p_0
-		p	1			p_1
+		p	0			pitch
+		p	1			yaw
 c	net/minecraft/unmapped/C_0693187
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/Random;Lnet/minecraft/unmapped/C_3674802;)V	m_0869981		m_0869981
 		p	1			p_1
@@ -277,15 +277,15 @@ c	net/minecraft/unmapped/C_2485529
 		p	5		z	
 		p	6		facing	
 		p	7		generationDepth	
-	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/unmapped/C_3544601;I)Lnet/minecraft/unmapped/C_2381425;	m_0262500	syntheticAddPiece	
-		p	0		piece	
-		p	1		piecesList	
-		p	2		random	
-		p	3		x	
-		p	4		y	
-		p	5		z	
-		p	6		facing	
-		p	7		type	
+	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/unmapped/C_3544601;I)Lnet/minecraft/unmapped/C_2381425;	m_0262500	m_0262500	
+		p	0		p_0	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+		p	4		p_4	
+		p	5		p_5	
+		p	6		p_6	
+		p	7		p_7	
 	m	(Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/unmapped/C_3544601;ILnet/minecraft/unmapped/C_6878131$C_4013422;)Lnet/minecraft/unmapped/C_2485529$C_9875017;	m_6965554		createPiece
 		p	0			pieces
 		p	1			random
@@ -304,7 +304,7 @@ c	net/minecraft/unmapped/C_2485529
 		p	5			z
 		p	6			facing
 		p	7			depth
-	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/unmapped/C_3544601;I)Lnet/minecraft/unmapped/C_2485529$C_9875017;	m_0262500		syntheticAddPiece
+	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;IIILnet/minecraft/unmapped/C_3544601;I)Lnet/minecraft/unmapped/C_2485529$C_9875017;	m_0262500		m_0262500
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -331,7 +331,7 @@ c	net/minecraft/unmapped/C_2485529$C_2892364
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;Lnet/minecraft/unmapped/C_3544601;)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_6878131$C_4013422;)V	<init>		<init>
 		p	1			depth
@@ -360,7 +360,7 @@ c	net/minecraft/unmapped/C_2485529$C_6142211
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;Lnet/minecraft/unmapped/C_3544601;)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		direction	
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_6878131$C_4013422;)V	<init>		<init>
 		p	1			depth
@@ -379,7 +379,7 @@ c	net/minecraft/unmapped/C_2485529$C_8294315
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;Lnet/minecraft/unmapped/C_3544601;)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_6878131$C_4013422;)V	<init>		<init>
 		p	1			depth
@@ -409,8 +409,8 @@ c	net/minecraft/unmapped/C_2485529$C_9875017		MineshaftPiece
 c	net/minecraft/unmapped/C_2620694
 	f	I	f_3500229		limit
 	m	([Lnet/minecraft/unmapped/C_3735648;Lnet/minecraft/unmapped/C_8197819;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		conditions	
+		p	2		count	
 	m	([Lnet/minecraft/unmapped/C_3735648;Lnet/minecraft/unmapped/C_8197819;I)V	<init>		<init>
 		p	1			conditions
 		p	2			count
@@ -423,7 +423,7 @@ c	net/minecraft/unmapped/C_2670477
 	m	(JLnet/minecraft/unmapped/C_2670477$C_3802308;ZZLnet/minecraft/unmapped/C_1518925;)V	<init>	<init>	
 		p	1		seed	
 		p	3		gameMode	
-		p	4		allowStructures	
+		p	4		generateStructures	
 		p	5		hardcore	
 		p	6		generatorType	
 	m	()Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_0928992	getGameMode	
@@ -444,8 +444,8 @@ c	net/minecraft/unmapped/C_2670477$C_3802308	GameMode
 	f	Lnet/minecraft/unmapped/C_2670477$C_3802308;	f_8884907	CREATIVE	
 	f	Lnet/minecraft/unmapped/C_2670477$C_3802308;	f_4071379	ADVENTURE	
 	f	Lnet/minecraft/unmapped/C_2670477$C_3802308;	f_1944140	SPECTATOR	
-	f	I	f_7307031	index	
-	f	Ljava/lang/String;	f_6832914	id	
+	f	I	f_7307031	id	
+	f	Ljava/lang/String;	f_6832914	key	
 	f	Ljava/lang/String;	f_8676901	shortId	
 	f	[Lnet/minecraft/unmapped/C_2670477$C_3802308;	f_0723688	f_0723688	
 	m	()[Lnet/minecraft/unmapped/C_2670477$C_3802308;	values	values	
@@ -457,22 +457,22 @@ c	net/minecraft/unmapped/C_2670477$C_3802308	GameMode
 		p	3		index	
 		p	4		id	
 		p	5		shortId	
-	m	()I	m_3974161	getIndex	
-	m	()Ljava/lang/String;	m_9535666	getId	
+	m	()I	m_3974161	getId	
+	m	()Ljava/lang/String;	m_9535666	getKey	
 	m	(Lnet/minecraft/unmapped/C_1851782;)V	m_9041122	apply	
 		p	1		abilities	
 	m	()Z	m_7162009	restrictsWorldModification	
 	m	()Z	m_8143463	isCreative	
 	m	()Z	m_8333467	isSurvival	
-	m	(I)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_1847581	byIndex	
-		p	0		index	
-	m	(ILnet/minecraft/unmapped/C_2670477$C_3802308;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_5804953	byIndexOrDefault	
-		p	0		index	
+	m	(I)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_1847581	byId	
+		p	0		id	
+	m	(ILnet/minecraft/unmapped/C_2670477$C_3802308;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_5804953	byIdOrDefault	
+		p	0		id	
 		p	1		defaultValue	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_3857699	byId	
-		p	0		id	
-	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_2670477$C_3802308;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_6837841	byIdOrDefault	
-		p	0		id	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_3857699	byKey	
+		p	0		key	
+	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_2670477$C_3802308;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_6837841	byKeyOrDefault	
+		p	0		key	
 		p	1		defaultValue	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_2777792
@@ -546,7 +546,7 @@ c	net/minecraft/unmapped/C_3325732$C_9041140		StrayType
 c	net/minecraft/unmapped/C_3424041
 c	net/minecraft/unmapped/C_3424041$C_1240765
 	f	Z	f_5978493	desert	
-	f	I	f_5978493		type
+	f	I	f_5978493		variant
 	f	Z	f_6240517		zombie
 	m	(Z)V	m_7287359	setDesert	
 		p	1		desert	
@@ -566,7 +566,7 @@ c	net/minecraft/unmapped/C_3424041$C_1240765
 		p	4			y
 		p	5			z
 		p	6			bounds
-	m	(I)V	m_7287359		setType
+	m	(I)V	m_7287359		setVariant
 		p	1			type
 c	net/minecraft/unmapped/C_3424041$C_5763709
 	f	Z	f_2880999	isDesertVillage	
@@ -709,7 +709,7 @@ c	net/minecraft/unmapped/C_4316830
 	m	()V	m_5495393	m_5495393	
 	m	()Lnet/minecraft/unmapped/C_8562284;	m_6845253		getType
 	m	(Lnet/minecraft/unmapped/C_8562284;)V	m_7673258		setType
-		p	1			p_1
+		p	1			type
 	m	()Ljava/lang/String;	m_6689989		m_6689989
 c	net/minecraft/unmapped/C_4316830$C_5975803		HuskType
 	m	()V	<init>		<init>
@@ -732,9 +732,9 @@ c	net/minecraft/unmapped/C_4872219
 	m	()F	m_4641066		m_4641066
 c	net/minecraft/unmapped/C_4879372
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5517808;)V	m_6393844	place	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		world	
+		p	2		pos	
+		p	3		settings	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5517808;)V	m_8634675		place
 		p	1			world
 		p	2			pos
@@ -881,17 +881,17 @@ c	net/minecraft/unmapped/C_6152184
 	f	Lnet/minecraft/unmapped/C_2670477$C_3802308;	f_9077617	defaultGameMode	
 	f	Lnet/minecraft/unmapped/C_0666081;	f_9077617		defaultGameMode
 	m	()Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_7930298	getDefaultGamemode	
-	m	(Lnet/minecraft/unmapped/C_2670477$C_3802308;)V	m_8334198	setDefaultGamemode	
+	m	(Lnet/minecraft/unmapped/C_2670477$C_3802308;)V	m_8334198	setDefaultGameMode	
 		p	1		gameMode	
-	m	(Lnet/minecraft/unmapped/C_6152184;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_3955648	getDefaultGameMode	
-		p	0		properties	
+	m	(Lnet/minecraft/unmapped/C_6152184;)Lnet/minecraft/unmapped/C_2670477$C_3802308;	m_3955648	m_3955648	
+		p	0		p_0	
 	m	()Lnet/minecraft/unmapped/C_0666081;	m_7930298		getDefaultGameMode
 	m	(Lnet/minecraft/unmapped/C_0666081;)V	m_8334198		setDefaultGameMode
 		p	1			gameMode
-	m	(Lnet/minecraft/unmapped/C_6152184;)Lnet/minecraft/unmapped/C_0666081;	m_3955648		getDefaultGameMode
+	m	(Lnet/minecraft/unmapped/C_6152184;)Lnet/minecraft/unmapped/C_0666081;	m_3955648		m_3955648
 		p	0			p_0
 c	net/minecraft/unmapped/C_6172538
-c	net/minecraft/unmapped/C_6172538$C_9065776	LanServerInfo	
+c	net/minecraft/unmapped/C_6172538$C_9065776	LanServer	
 	f	Ljava/lang/String;	f_0309667	motd	
 	f	Ljava/lang/String;	f_6203066	port	
 	f	J	f_6951609	lastTickTime	
@@ -910,15 +910,15 @@ c	net/minecraft/unmapped/C_6296773$C_4887575
 		p	1		p_1	
 		p	2		p_2	
 		p	3		id	
-		p	4		name	
-		p	5		key	
+		p	4		key	
+		p	5		name	
 		p	6		color	
 	m	(Ljava/lang/String;IILjava/lang/String;Ljava/lang/String;Lnet/minecraft/unmapped/C_9335057;I)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			id
-		p	4			name
-		p	5			key
+		p	4			key
+		p	5			name
 		p	6			color
 		p	7			particleColor
 	m	()I	m_3863463		getParticleColor
@@ -1014,7 +1014,7 @@ c	net/minecraft/unmapped/C_8105098
 	f	Z	f_1395113	f_1395113	
 	f	Z	f_0060232	f_0060232	
 	f	Z	f_8370368	f_8370368	
-	m	()Ljava/util/Map;	m_9745719	m_9745719	
+	m	()Ljava/util/Map;	m_9745719	getHttpRequestProperties	
 c	net/minecraft/unmapped/C_8173586
 	m	(Lnet/minecraft/unmapped/C_6607881;D)V	m_2372942		tryAttack
 		p	1			target
@@ -1130,8 +1130,8 @@ c	net/minecraft/unmapped/C_8452767
 	f	Lnet/minecraft/unmapped/C_0561170;	f_2106384		STRAY
 c	net/minecraft/unmapped/C_8822714
 	m	(Lnet/minecraft/unmapped/C_2670477$C_3802308;Lnet/minecraft/server/MinecraftServer;)V	m_9659802	setDefault	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		gameMode	
+		p	2		server	
 	m	(Lnet/minecraft/unmapped/C_0666081;Lnet/minecraft/server/MinecraftServer;)V	m_9659802		setDefault
 		p	1			gameMode
 		p	2			server
@@ -1143,8 +1143,8 @@ c	net/minecraft/unmapped/C_8830502
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_8983523
-	m	(Lnet/minecraft/unmapped/C_8983523;)Ljava/lang/String;	m_8064719	getServerId	
-		p	0		serverLoginNetworkHandler	
+	m	(Lnet/minecraft/unmapped/C_8983523;)Ljava/lang/String;	m_8064719	m_8064719	
+		p	0		p_0	
 c	net/minecraft/unmapped/C_9006363
 	f	Lnet/minecraft/unmapped/C_0561170;	f_6686119		f_6686119
 c	net/minecraft/unmapped/C_9012949
@@ -1172,7 +1172,7 @@ c	net/minecraft/unmapped/C_9232485
 		p	1		entityId	
 		p	2		gameMode	
 		p	3		hardcore	
-		p	4		dimensionId	
+		p	4		dimension	
 		p	5		difficulty	
 		p	6		maxPlayerCount	
 		p	7		generatorType	
@@ -1229,11 +1229,11 @@ c	net/minecraft/unmapped/C_9785392
 c	net/minecraft/unmapped/C_9992501
 	f	Lnet/minecraft/unmapped/C_2670477$C_3802308;	f_0477263	defaultGameMode	
 	f	Lnet/minecraft/unmapped/C_0666081;	f_0477263		defaultGameMode
-	m	(Lnet/minecraft/unmapped/C_2670477$C_3802308;)V	m_2606881	setDefaultGamemode	
-		p	1		gamemode	
+	m	(Lnet/minecraft/unmapped/C_2670477$C_3802308;)V	m_2606881	setDefaultGameMode	
+		p	1		gameMode	
 	m	(Lnet/minecraft/unmapped/C_0666081;)V	m_2606881		setDefaultGameMode
 		p	1			gameMode
-c	net/minecraft/unmapped/C_0000422		net/minecraft/entity/living/mob/hostile/SkeletonType
+c	net/minecraft/unmapped/C_0000422		net/minecraft/entity/living/mob/monster/SkeletonType
 	f	Lnet/minecraft/unmapped/C_0000422;	f_3435753		NORMAL
 	f	Lnet/minecraft/unmapped/C_0000422;	f_3310279		WITHER
 	f	Lnet/minecraft/unmapped/C_0000422;	f_0721981		STRAY
@@ -1312,7 +1312,7 @@ c	net/minecraft/unmapped/C_0666081		net/minecraft/world/GameMode
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_0666081;	m_3857699		byKey
 		p	0			key
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_0666081;)Lnet/minecraft/unmapped/C_0666081;	m_6837841		byKeyOrDefault
-		p	0			id
+		p	0			key
 		p	1			defaultValue
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_1077561		net/minecraft/block/MagmaBlock
@@ -1617,7 +1617,7 @@ c	net/minecraft/unmapped/C_7304770		net/minecraft/client/render/entity/layer/Str
 		p	7			p_7
 		p	8			p_8
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_8562284		net/minecraft/entity/living/mob/hostile/ZombieType
+c	net/minecraft/unmapped/C_8562284		net/minecraft/entity/living/mob/monster/ZombieType
 	f	Lnet/minecraft/unmapped/C_8562284;	f_4330362		NORMAL
 	f	Lnet/minecraft/unmapped/C_8562284;	f_1964484		VILLAGER_FARMER
 	f	Lnet/minecraft/unmapped/C_8562284;	f_2450545		VILLAGER_LIBRARIAN
@@ -1644,7 +1644,7 @@ c	net/minecraft/unmapped/C_8562284		net/minecraft/entity/living/mob/hostile/Zomb
 	m	(I)Lnet/minecraft/unmapped/C_8562284;	m_5861143		byProfession
 		p	0			profession
 	m	()Lnet/minecraft/unmapped/C_1160932;	m_0786436		getName
-	m	()Z	m_9859165		m_9859165
+	m	()Z	m_9859165		isSunSensitive
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_8575933		net/minecraft/client/render/debug/WaterRenderer
 	f	Lnet/minecraft/unmapped/C_8105098;	f_4332201		minecraft

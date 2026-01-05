@@ -1,14 +1,14 @@
 tiny	2	0
 c	net/minecraft/client/C_5664496
-	f	Lnet/minecraft/unmapped/C_1703615;	f_2311908	f_2311908	
-	f	Lnet/minecraft/unmapped/C_2366878;	f_7652878	f_7652878	
-	m	(IIII)V	m_0092759	m_0092759	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(I)V	m_0092759		m_0092759
-		p	1			p_1
+	f	Lnet/minecraft/unmapped/C_1703615;	f_2311908	waterSprite	
+	f	Lnet/minecraft/unmapped/C_2366878;	f_7652878	lavaSprite	
+	m	(IIII)V	m_0092759	createWorld	
+		p	1		size	
+		p	2		shape	
+		p	3		type	
+		p	4		theme	
+	m	(I)V	m_0092759		createWorld
+		p	1			size
 c	net/minecraft/unmapped/C_0256098
 	m	(Ljava/lang/String;Ljava/io/File;)Lnet/minecraft/unmapped/C_8806455;	m_9143237	load	
 		p	1		path	
@@ -17,21 +17,24 @@ c	net/minecraft/unmapped/C_0256098
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_0259655
-	f	Ljava/text/DecimalFormat;	f_8054979	f_8054979	
+	f	Ljava/text/DecimalFormat;	f_8054979	screenshotIdFormat	
 c	net/minecraft/unmapped/C_0539808
-	f	I	f_6659111	fireResistance	
+	f	I	f_6659111	safeOnFireTime	
+		c	The number of ticks an entity can stay in a fire and step out without staying on fire.	
 	f	I	f_4398228	onFireTimer	
 		c	The number of ticks left for which this entity will be on fire.	
 c	net/minecraft/unmapped/C_0774916	net/minecraft/block/FireBlock	
-	f	[I	f_9218750	burnChance	
-	f	[I	f_7285878	spreadChance	
+	f	[I	f_9218750	flammability	
+		c	How quickly the a block catches fire.	
+	f	[I	f_7285878	burnChance	
+		c	How quickly a block burns up and gets destroyed.	
 	m	(II)V	<init>	<init>	
 		p	1		id	
 		p	2		sprite	
-	m	(III)V	m_5629697	registerBurnProperties	
-		p	1		blockId	
-		p	2		burnChance	
-		p	3		spreadChance	
+	m	(III)V	m_5629697	setFlammable	
+		p	1		block	
+		p	2		flammability	
+		p	3		burnChance	
 	m	(III)Lnet/minecraft/unmapped/C_5577922;	m_4350289	m_4350289	
 		p	1		p_1	
 		p	2		p_2	
@@ -47,67 +50,69 @@ c	net/minecraft/unmapped/C_0774916	net/minecraft/block/FireBlock
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIIILjava/util/Random;)V	m_4758944	m_4758944	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6637579	m_6637579	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIIILjava/util/Random;)V	m_4758944	burnNeighbor	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		chance	
+		p	6		random	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6637579	hasFlammableNeighbor	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 	m	()Z	m_0674178	m_0674178	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_3183220	canBurn	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_3652624	m_3652624	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_3183220	isFlammable	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_3652624	getFlammability	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		min	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_9130741	m_9130741	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(I)Z	m_6725604	m_6725604	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8540354	m_8540354	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2436862	m_2436862	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(I)Z	m_6725604	isFlammable	
+		p	1		block	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8540354	spread	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2436862	spreadTo	
+		p	0		world	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 c	net/minecraft/unmapped/C_1022696
-	m	()V	m_3915071	m_3915071	
+	m	()V	m_3915071	onItemUsed	
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_0774916;	f_6109727	FIRE	
-	f	F	f_5491034	miningSpeed	
-	f	I	f_5491034		miningSpeed
-	m	()Z	m_0674178	hasCollision	
+	f	F	f_5491034	miningTime	
+	f	I	f_5491034		miningTime
+	m	()Z	m_0674178	canRayTrace	
 	m	(Lnet/minecraft/unmapped/C_9590849;)I	m_0646926	getMiningSpeed	
-		p	1		p_1	
-	m	(F)Lnet/minecraft/unmapped/C_1241852;	m_5406685		m_5406685
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_1467728		m_1467728
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	()I	m_3343046		m_3343046
+		p	1		player	
+	m	(F)Lnet/minecraft/unmapped/C_1241852;	m_5406685		setMiningSpeed
+		c		Sets this block's mining speed. The given value is in blocks per tick, which is then\nconverted to blocks per second and rounded down to a whole number.\n\n<p>\nNOTE: this method should only be used during the block's creation before it is registered.
+		p	1			miningSpeed
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_1467728		onPlaced
+		c		Called when this block is placed by an entity.
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+	m	()I	m_3343046		getMiningTime
 c	net/minecraft/unmapped/C_1264786	net/minecraft/item/BlockItem	
-	f	I	f_5874804	blockId	
+	f	I	f_5874804	block	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3000450	m_3000450	
@@ -118,23 +123,23 @@ c	net/minecraft/unmapped/C_1264786	net/minecraft/item/BlockItem
 		p	5		p_5	
 		p	6		p_6	
 c	net/minecraft/unmapped/C_1703615	net/minecraft/client/render/texture/WaterSprite	
-	f	[F	f_8073243	image0	
-	f	[F	f_4739750	image1	
-	f	[F	f_3435997	f_3435997	
-	f	[F	f_6408760	f_6408760	
+	f	[F	f_8073243	current	
+	f	[F	f_4739750	next	
+	f	[F	f_3435997	heat	
+	f	[F	f_6408760	heatDelta	
 	f	I	f_8467511	ticks	
 	m	()V	<init>	<init>	
 	m	()V	m_5407865	m_5407865	
 c	net/minecraft/unmapped/C_1872000
 	f	Lnet/minecraft/client/C_1331819;	f_9261647	options	
-	m	(Lnet/minecraft/client/C_1331819;)V	m_8643571	m_8643571	
-		p	1		p_1	
+	m	(Lnet/minecraft/client/C_1331819;)V	m_8643571	load	
+		p	1		options	
 	m	()V	m_1108475	volumeChanged	
-	m	()V	m_8643571		m_8643571
+	m	()V	m_8643571		load
 c	net/minecraft/unmapped/C_2454309
 	f	I	f_9064670		f_9064670
 	m	(I)V	<init>	<init>	
-		p	1		p_1	
+		p	1		id	
 	m	()Lnet/minecraft/unmapped/C_3755722;	m_2410511	getItem	
 	m	(Lnet/minecraft/unmapped/C_1241852;)V	<init>		<init>
 		p	1			p_1
@@ -144,8 +149,8 @@ c	net/minecraft/unmapped/C_2454309
 c	net/minecraft/unmapped/C_2643505	net/minecraft/item/FoodItem	
 	f	I	f_8483389	hungerPoints	
 	m	(II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		item	
+		p	2		hungerPoints	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;)Z	m_3205185	m_3205185	
 		p	1		p_1	
 		p	2		p_2	
@@ -155,42 +160,42 @@ c	net/minecraft/unmapped/C_2910311
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8647977		m_8647977
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8647977		tryFall
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;FFFI)V	m_5308705	tessellateBottomFace	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_1241852;FFFI)V	m_1833462	tessellateTopFace	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_1241852;IIII)V	m_5308705		tessellateBottomFace
+	m	(Lnet/minecraft/unmapped/C_1241852;FFFI)V	m_5308705	tesselateBottomFace	
+		p	1		block	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		sprite	
+	m	(Lnet/minecraft/unmapped/C_1241852;FFFI)V	m_1833462	tesselateTopFace	
+		p	1		block	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		sprite	
+	m	(Lnet/minecraft/unmapped/C_1241852;IIII)V	m_5308705		tesselateBottomFace
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_1241852;IIII)V	m_1833462		tessellateTopFace
+	m	(Lnet/minecraft/unmapped/C_1241852;IIII)V	m_1833462		tesselateTopFace
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_3747079
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_9828053	m_9828053	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_9828053	handleLavaCollisions	
+		p	0		world	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	()Z	m_0674178	m_0674178	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_1467728		m_1467728
 		p	1			p_1
@@ -205,7 +210,7 @@ c	net/minecraft/unmapped/C_3755722	net/minecraft/item/Item
 	m	(I)V	<init>	<init>	
 		p	1		id	
 	m	()I	m_9183979	getSprite	
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3000450	use	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3000450	useOn	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -213,13 +218,13 @@ c	net/minecraft/unmapped/C_3755722	net/minecraft/item/Item
 		p	5		p_5	
 		p	6		p_6	
 	m	(Lnet/minecraft/unmapped/C_1241852;)F	m_5853631	getMiningSpeed	
-		p	1		p_1	
+		p	1		block	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;)Z	m_3205185	startUsing	
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_4257480
-	f	I	f_5526904	f_5526904	
+	f	I	f_5526904	copyTo	
 c	net/minecraft/unmapped/C_4360335
 	f	[F	f_1718580		f_1718580
 	f	[F	f_7237767		f_7237767
@@ -228,15 +233,15 @@ c	net/minecraft/unmapped/C_4360335
 		p	1		p_1	
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_4393193
-	f	[Ljava/lang/String;	f_9025279	f_9025279	
-	f	[Ljava/lang/String;	f_1773455	f_1773455	
-	f	[Ljava/lang/String;	f_7141696	f_7141696	
-	f	[Ljava/lang/String;	f_7764053	f_7764053	
-	f	I	f_5745147	f_5745147	
-	f	I	f_3692802	f_3692802	
-	f	I	f_8065768	f_8065768	
-	f	I	f_9959653	f_9959653	
-	m	()V	m_5312327	m_5312327	
+	f	[Ljava/lang/String;	f_9025279	types	
+	f	[Ljava/lang/String;	f_1773455	shapes	
+	f	[Ljava/lang/String;	f_7141696	sizes	
+	f	[Ljava/lang/String;	f_7764053	themes	
+	f	I	f_5745147	selectedType	
+	f	I	f_3692802	selectedShape	
+	f	I	f_8065768	selectedSize	
+	f	I	f_9959653	selectedTheme	
+	m	()V	m_5312327	addButtons	
 c	net/minecraft/unmapped/C_4769518	net/minecraft/item/FlintAndSteelItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -262,64 +267,64 @@ c	net/minecraft/unmapped/C_5353187
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_5376418
-	f	I	f_7113452	f_7113452	
-	f	Z	f_8767089	f_8767089	
-	f	Z	f_1849679	f_1849679	
-	f	Z	f_0645994	f_0645994	
-	f	I	f_5831401	f_5831401	
-	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_5594167	m_5594167	
-		p	1		p_1	
+	f	I	f_7113452	surroundingGroundHeight	
+	f	Z	f_8767089	island	
+	f	Z	f_1849679	floating	
+	f	Z	f_0645994	flat	
+	f	I	f_5831401	theme	
+	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_5594167	placeTrees	
+		p	1		world	
 c	net/minecraft/unmapped/C_5553933
-	f	I	f_3241378	f_3241378	
-	f	I	f_0183464	f_0183464	
-	f	I	f_4971921	f_4971921	
-	f	F	f_6732352	f_6732352	
-	f	Z	f_8865895		f_8865895
+	f	I	f_3241378	surroundingWaterBlock	
+	f	I	f_0183464	surroundingGroundHeight	
+	f	I	f_4971921	cloudHeight	
+	f	F	f_6732352	skyBrightness	
+	f	Z	f_8865895		growTrees
 	f	[I	f_5560112		f_5560112
-	m	(III)Z	m_5677809	m_5677809	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()I	m_6307946	m_6307946	
-	m	()I	m_6053275	m_6053275	
+	m	(III)Z	m_5677809	isDarkEnoughForMushrooms	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	()I	m_6307946	getSurroundingGroundHeight	
+	m	()I	m_6053275	getSurroundingWaterHeight	
 	m	(Lnet/minecraft/unmapped/C_5577922;)Z	m_7197503	containsFireSource	
 		p	1		bounds	
-	m	(III)B	m_4165411	m_4165411	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(III)B	m_4165411	getRawBrightness	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(FFFLjava/lang/String;FF)V	m_1301388	playSound	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(IIII)V	m_8239439	m_8239439	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		name	
+		p	5		volume	
+		p	6		pitch	
+	m	(IIII)V	m_8239439	extinguishFire	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		face	
 	m	()V	m_9896192		m_9896192
-	m	()F	m_6307946		m_6307946
-	m	()F	m_6053275		m_6053275
+	m	()F	m_6307946		getSurroundingGroundHeight
+	m	()F	m_6053275		getSurroundingWaterHeight
 c	net/minecraft/unmapped/C_7400754
-	m	(I)Z	m_3622700		m_3622700
-		p	1			p_1
+	m	(I)Z	m_3622700		removeOne
+		p	1			item
 c	net/minecraft/unmapped/C_7952195
 	m	(III)Z	m_3937629	finishMiningBlock	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(IIII)Z	m_5458213		m_5458213
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(IIII)Z	m_5458213		placeBlock
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			block
 	m	(III)V	m_3937629		finishMiningBlock
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_8456884	net/minecraft/item/ToolItem	
 	f	[Lnet/minecraft/unmapped/C_1241852;	f_9177785	effectiveBlocks	
 	f	F	f_4430732	miningSpeed	

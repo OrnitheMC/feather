@@ -18,7 +18,7 @@ c	net/minecraft/unmapped/C_0960638
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_0119861	m_0119861	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_6086449		getOrCreateHeightMap
+	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_6086449		populateHeightMap
 		p	1			type
 	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_4981067		m_4981067
 		p	1			key
@@ -44,19 +44,19 @@ c	net/minecraft/unmapped/C_4879372
 		p	4		p_4	
 		p	5		p_5	
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5517808;I)Z	m_9448477		place
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			pos
+		p	3			settings
+		p	4			flags
 	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5660241;Lnet/minecraft/unmapped/C_5517808;I)Z	m_6393844		place
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			world
+		p	2			pos
+		p	3			processor
+		p	4			settings
+		p	5			flags
 c	net/minecraft/unmapped/C_5503280
 	m	(I)V	m_8109364	populate	
-		p	1		p_1	
+		p	1		y	
 	m	()V	m_8109364		populate
 c	net/minecraft/unmapped/C_5836214
 	m	(Lnet/minecraft/unmapped/C_2367458;)Lnet/minecraft/unmapped/C_4932706;	m_6165332		m_6165332
@@ -71,10 +71,10 @@ c	net/minecraft/unmapped/C_5938267
 		p	2		p_2	
 	m	()Lnet/minecraft/unmapped/C_9548941;	m_4014523	getPitch	
 	m	(Lnet/minecraft/unmapped/C_9548941;)V	m_0753014	setPitch	
-		p	1		p_1	
+		p	1		pitch	
 	m	()Lnet/minecraft/unmapped/C_9548941;	m_0665736	getYaw	
 	m	(Lnet/minecraft/unmapped/C_9548941;)V	m_9535666	setYaw	
-		p	1		p_1	
+		p	1		yaw	
 	m	(Lnet/minecraft/unmapped/C_0627712;Ljava/util/function/ToDoubleFunction;)Ljava/util/function/Predicate;	m_0102036		buildRotationPredicate
 		p	1			value
 		p	2			getter
@@ -115,9 +115,9 @@ c	net/minecraft/unmapped/C_9379659
 		p	2			pos
 		p	3			state
 		p	4			blockState
-	m	(Lnet/minecraft/unmapped/C_2137190;Lnet/minecraft/unmapped/C_3674802;)I	m_7872014		getNeighborSources
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_2137190;Lnet/minecraft/unmapped/C_3674802;)I	m_7872014		findNeighborSources
+		p	1			world
+		p	2			pos
 c	net/minecraft/unmapped/C_9930848
 	m	(Lnet/minecraft/unmapped/C_2367458;)Lnet/minecraft/unmapped/C_4932706;	m_8607032		m_8607032
 		p	0			p_0
@@ -132,19 +132,19 @@ c	net/minecraft/unmapped/C_0627712		net/minecraft/advancement/criterion/WrappedN
 		p	2			max
 	m	()Ljava/lang/Float;	m_7634263		getMin
 	m	()Ljava/lang/Float;	m_9757706		getMax
-	m	(Lcom/mojang/brigadier/StringReader;ZLjava/util/function/Function;)Lnet/minecraft/unmapped/C_0627712;	m_4402421		m_4402421
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-	m	(Lcom/mojang/brigadier/StringReader;Z)Ljava/lang/Float;	m_4008870		m_4008870
-		p	0			p_0
-		p	1			p_1
-	m	(Lcom/mojang/brigadier/StringReader;Z)Z	m_9501312		m_9501312
-		p	0			p_0
-		p	1			p_1
-	m	(Ljava/lang/Float;Ljava/util/function/Function;)Ljava/lang/Float;	m_4196134		m_4196134
-		p	0			p_0
-		p	1			p_1
+	m	(Lcom/mojang/brigadier/StringReader;ZLjava/util/function/Function;)Lnet/minecraft/unmapped/C_0627712;	m_4402421		fromString
+		p	0			reader
+		p	1			doublePrecision
+		p	2			processor
+	m	(Lcom/mojang/brigadier/StringReader;Z)Ljava/lang/Float;	m_4008870		valueFromString
+		p	0			reader
+		p	1			doublePrecision
+	m	(Lcom/mojang/brigadier/StringReader;Z)Z	m_9501312		isValidInput
+		p	0			reader
+		p	1			doublePrecision
+	m	(Ljava/lang/Float;Ljava/util/function/Function;)Ljava/lang/Float;	m_4196134		process
+		p	0			value
+		p	1			processor
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_1026308		net/minecraft/unmapped/C_1026308
 	f	Lcom/google/common/collect/ImmutableMap;	f_0011283		f_0011283

@@ -5,22 +5,22 @@ c	net/minecraft/unmapped/C_0201752
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
 		p	1		world	
 		p	2		thrower	
-	m	(DDDFF)V	m_1487417	setVelocity	
+	m	(DDDFF)V	m_1487417	thrown	
 		p	1		velocityX	
 		p	3		velocityY	
 		p	5		velocityZ	
-		p	7		scale	
-		p	8		noise	
+		p	7		power	
+		p	8		variance	
 c	net/minecraft/unmapped/C_0539808
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_4185556	interact	
 		p	1		player	
 c	net/minecraft/unmapped/C_0607826
-	f	I	f_3587166	velocity	
-	f	D	f_5825262	boatX	
-	f	D	f_2174062	boatY	
-	f	D	f_9523855	boatZ	
-	f	D	f_7238197	boatYaw	
-	f	D	f_8847298	boatPitch	
+	f	I	f_3587166	lerpSteps	
+	f	D	f_5825262	lerpX	
+	f	D	f_2174062	lerpY	
+	f	D	f_9523855	lerpZ	
+	f	D	f_7238197	lerpYaw	
+	f	D	f_8847298	lerpPitch	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>	<init>	
 		p	1		world	
 		p	2		x	
@@ -36,17 +36,17 @@ c	net/minecraft/unmapped/C_0809390
 c	net/minecraft/unmapped/C_1119254
 	m	(Lnet/minecraft/unmapped/C_0539808;II)V	m_6163278	startTracking	
 		p	1		entity	
-		p	2		trackedDistance	
-		p	3		tracingFrequency	
+		p	2		trackingRange	
+		p	3		updateInterval	
 	m	(Lnet/minecraft/unmapped/C_0539808;IIZ)V	m_5687531	startTracking	
 		p	1		entity	
-		p	2		trackedDistance	
-		p	3		tracingFrequency	
-		p	4		alwaysUpdateVelocity	
+		p	2		trackingRange	
+		p	3		updateInterval	
+		p	4		syncVelocity	
 	m	(Lnet/minecraft/unmapped/C_0539808;II)V	m_5687531		startTracking
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			entity
+		p	2			trackingRange
+		p	3			updateInterval
 c	net/minecraft/unmapped/C_1428858
 	m	(Lnet/minecraft/unmapped/C_8030141;III)V	m_5507773	m_5507773	
 		p	1		p_1	
@@ -86,7 +86,7 @@ c	net/minecraft/unmapped/C_2128050
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2454309;)Z	m_1220212	useItem	
 		p	1		player	
 		p	2		world	
-		p	3		stack	
+		p	3		itemInHand	
 c	net/minecraft/unmapped/C_2260785
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_3205185	m_3205185	
 		p	1		p_1	
@@ -102,30 +102,31 @@ c	net/minecraft/unmapped/C_2643505
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_3198459
-	f	Z	f_1925911	isNether	
+	f	Z	f_1925911	unnatural	
 	f	Z	f_6656194	yeetsWater	
+	f	Z	f_1711371	noSky	unnatural
 c	net/minecraft/unmapped/C_3292284
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_6537603	m_6537603	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_3422238
-	f	I	f_7977112	steps	
-	f	D	f_7333561	fishingBobberX	
-	f	D	f_1604282	fishingBobberY	
-	f	D	f_5409995	fishingBobberZ	
-	f	D	f_1560214	fishingBobberYaw	
-	f	D	f_5007424	fishingBobberPitch	
+	f	I	f_7977112	lerpSteps	
+	f	D	f_7333561	lerpX	
+	f	D	f_1604282	lerpY	
+	f	D	f_5409995	lerpZ	
+	f	D	f_1560214	lerpYaw	
+	f	D	f_5007424	lerpPitch	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)V	<init>	<init>	
 		p	1		world	
-		p	2		player	
-	m	(DDDFF)V	m_0705559	setVelocity	
+		p	2		thrower	
+	m	(DDDFF)V	m_0705559	thrown	
 		p	1		velocityX	
 		p	3		velocityY	
 		p	5		velocityZ	
 		p	7		scale	
 		p	8		min	
-	m	()I	m_1766231	retract	
+	m	()I	m_1766231	retrieve	
 c	net/minecraft/unmapped/C_3747079
-	f	I	f_2689026		f_2689026
+	f	I	f_2689026		decay
 c	net/minecraft/unmapped/C_3755722
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_3205185	startUsing	
 		p	1		stack	
@@ -137,7 +138,7 @@ c	net/minecraft/unmapped/C_3865296
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/io/File;Ljava/lang/String;I)V	<init>	<init>	
 		p	1		server	
 		p	2		dir	
-		p	3		name	
+		p	3		saveName	
 		p	4		dimension	
 	m	(Lnet/minecraft/unmapped/C_0539808;Z)V	m_8101082	m_8101082	
 		p	1		p_1	
@@ -154,27 +155,27 @@ c	net/minecraft/unmapped/C_3865296
 	m	(I)Lnet/minecraft/unmapped/C_0539808;	m_5131426	getEntity	
 		p	1		networkId	
 	m	(Ljava/io/File;Ljava/lang/String;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			dir
+		p	2			saveName
+		p	3			dimension
 c	net/minecraft/unmapped/C_4281786
 	f	I	f_1637900	angerValue	
-	f	Z	f_7742093		f_7742093
+	f	Z	f_7742093		angerValue
 c	net/minecraft/unmapped/C_5438730
-	f	Z	f_1102022	f_1102022	
+	f	Z	f_1102022	riding	
 	f	D	f_0886323	velocityX	
 	f	D	f_4586419	velocityY	
 	f	D	f_6893109	velocityZ	
-	f	Z	f_9026947	alwaysUpdateVelocity	
+	f	Z	f_9026947	syncVelocity	
 	m	(Lnet/minecraft/unmapped/C_0539808;IIZ)V	<init>	<init>	
 		p	1		entity	
-		p	2		trackedDistance	
-		p	3		tracingFrequency	
-		p	4		alwaysUpdateVelocity	
+		p	2		trackingRange	
+		p	3		updateInterval	
+		p	4		syncVelocity	
 	m	(Lnet/minecraft/unmapped/C_0539808;II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			entity
+		p	2			trackingRange
+		p	3			updateInterval
 c	net/minecraft/unmapped/C_5553933
 	m	(Lnet/minecraft/unmapped/C_9590849;III)Z	m_2375561	canModify	
 		p	1		player	
@@ -204,20 +205,21 @@ c	net/minecraft/unmapped/C_6057159
 		p	1		p_1	
 c	net/minecraft/unmapped/C_6607881
 	f	I	f_3298987	prevHealth	
+	f	I	f_9977162	prevDamageTaken	prevHealth
 	m	(I)V	m_9413880	applyDamage	
-		p	1		p_1	
+		p	1		amount	
 c	net/minecraft/unmapped/C_6688469
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_3205185	m_3205185	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_7197771	net/minecraft/network/packet/EntityAttachPacket	
+c	net/minecraft/unmapped/C_7197771	net/minecraft/network/packet/RideEntityPacket	
 	f	I	f_3417677	id	
-	f	I	f_9006236	holderId	
+	f	I	f_9006236	mountId	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		entity	
+		p	2		mount	
 	m	()I	m_4040470	m_4040470	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
@@ -228,38 +230,38 @@ c	net/minecraft/unmapped/C_7197771	net/minecraft/network/packet/EntityAttachPack
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_5977019;)V	m_0516322	handleEntityVelocity	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_3926084	handleEntityAttach	
+	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_3926084	handleRideEntity	
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_2076519;)V	m_9185796	handleInteractEntity	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_8121748;)V	m_3706706		m_3706706
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_8121748;)V	m_3706706		handleAddFishingBobber
+		p	1			packet
 c	net/minecraft/unmapped/C_7400754
-	m	(I)I	m_7450750	indexOfItem	
-		p	1		itemId	
-	m	(I)Z	m_4650010	consumeOne	
-		p	1		itemId	
+	m	(I)I	m_7450750	getSlot	
+		p	1		item	
+	m	(I)Z	m_4650010	removeOne	
+		p	1		item	
 c	net/minecraft/unmapped/C_8492283
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_4185556	m_4185556	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8620458
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_4045682	m_4045682	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_1189574	m_1189574	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_1683328	m_1683328	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_4045682	updateNeighborLogProximity	
+		p	1		world	
+		p	2		neighborX	
+		p	3		neighborY	
+		p	4		neighborZ	
+		p	5		proximity	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_1189574	updateLogProximity	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_1683328	getLogProximity	
+		p	1		world	
+		p	2		neighborX	
+		p	3		neighborY	
+		p	4		neighborZ	
+		p	5		proximity	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILjava/util/Random;)V	m_7197439	m_7197439	
 		p	1		p_1	
 		p	2		p_2	
@@ -281,18 +283,18 @@ c	net/minecraft/unmapped/C_9918773
 	f	D	f_2459126		f_2459126
 	f	D	f_6643239		f_6643239
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_8121748		net/minecraft/unmapped/C_8121748
-	f	I	f_6687951		f_6687951
-	f	I	f_9119854		f_9119854
-	f	I	f_8080889		f_8080889
-	f	I	f_3644154		f_3644154
-	f	B	f_4982400		f_4982400
-	f	B	f_4732088		f_4732088
-	f	B	f_8781273		f_8781273
+c	net/minecraft/unmapped/C_8121748		net/minecraft/network/packet/AddFishingBobberPacket
+	f	I	f_6687951		id
+	f	I	f_9119854		x
+	f	I	f_8080889		y
+	f	I	f_3644154		z
+	f	B	f_4982400		velocityX
+	f	B	f_4732088		velocityY
+	f	B	f_8781273		velocityZ
 	f	I	f_8153450		f_8153450
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_0539808;I)V	<init>		<init>
-		p	1			p_1
+		p	1			entity
 		p	2			p_2
 	m	(Ljava/io/DataInputStream;)V	m_4792371		m_4792371
 		p	1			p_1

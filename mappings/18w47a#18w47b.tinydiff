@@ -9,9 +9,9 @@ c	net/minecraft/unmapped/C_0636026
 c	net/minecraft/unmapped/C_0960638
 	m	([Lnet/minecraft/unmapped/C_5503280$C_6055071;)V	m_1987965	m_1987965	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_2692668	m_2692668	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_6086449	getOrCreateHeightMap	
+	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_2692668	addHeightMap	
+		p	1		type	
+	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_6086449	populateHeightMap	
 		p	1		type	
 	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;)Lnet/minecraft/unmapped/C_5503280;	m_4981067	m_4981067	
 		p	1		key	
@@ -35,7 +35,7 @@ c	net/minecraft/unmapped/C_1126235$2		2
 		p	1			p_1
 c	net/minecraft/unmapped/C_1712153	net/minecraft/world/biome/BiomeCache	
 	f	Lnet/minecraft/unmapped/C_7235516;	f_2309435	source	
-	f	Lcom/google/common/cache/LoadingCache;	f_1441942	f_1441942	
+	f	Lcom/google/common/cache/LoadingCache;	f_1441942	entries	
 	m	(Lnet/minecraft/unmapped/C_7235516;)V	<init>	<init>	
 		p	1		source	
 	m	(II)Lnet/minecraft/unmapped/C_1712153$C_8764295;	m_1316273	getEntry	
@@ -45,7 +45,7 @@ c	net/minecraft/unmapped/C_1712153	net/minecraft/world/biome/BiomeCache
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	m_2658360	tick	
-	m	(II)[Lnet/minecraft/unmapped/C_6928498;	m_4794726	getBiomesInChunk	
+	m	(II)[Lnet/minecraft/unmapped/C_6928498;	m_4794726	getBiomes	
 		p	1		x	
 		p	2		z	
 	m	(Lnet/minecraft/unmapped/C_1712153;)Lnet/minecraft/unmapped/C_7235516;	m_3450108	getBiomeSource	
@@ -54,7 +54,7 @@ c	net/minecraft/unmapped/C_1712153$1	1
 	f	Lnet/minecraft/unmapped/C_1712153;	f_9171644	f_9171644	
 	m	(Lnet/minecraft/unmapped/C_1712153;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_7141926;)Lnet/minecraft/unmapped/C_1712153$C_8764295;	m_2240085	m_2240085	
+	m	(Lnet/minecraft/unmapped/C_7141926;)Lnet/minecraft/unmapped/C_1712153$C_8764295;	m_2240085	load	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	load	load	
 		p	1		p_1	
@@ -89,7 +89,7 @@ c	net/minecraft/unmapped/C_2441996
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_2708985
-	f	I	f_3096436	samplerCount	
+	f	I	f_3096436	levels	
 	m	(D)D	m_4639895
 		p	1		p_1	
 		p	0			p_0
@@ -234,10 +234,10 @@ c	net/minecraft/unmapped/C_5865989
 	f	J	f_1909944		f_1909944
 	f	J	f_0691639		f_0691639
 	m	(IIJJ)V	<init>	<init>	
-		p	1		p_1	
+		p	1		maxCache	
 		p	2		p_2	
-		p	3		p_3	
-		p	5		p_5	
+		p	3		seed	
+		p	5		seedMixup	
 	m	(IJJ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -251,8 +251,8 @@ c	net/minecraft/unmapped/C_5865989
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_5077341;	m_3867290		m_3867290
 c	net/minecraft/unmapped/C_6289416
-	m	([I)I	m_0888319	m_0888319	
-		p	1		p_1	
+	m	([I)I	m_0888319	pickInt	
+		p	1		ints	
 	m	(II)I	m_7551845		m_7551845
 		p	1			p_1
 		p	2			p_2
@@ -265,20 +265,20 @@ c	net/minecraft/unmapped/C_6553606
 	f	Lnet/minecraft/unmapped/C_6553606;	f_0028916		f_0028916
 c	net/minecraft/unmapped/C_7122918	net/minecraft/world/Predicate	
 	m	(Ljava/lang/Object;Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;)Z	test	test	
-		p	1		o	
+		p	1		t	
 		p	2		world	
 		p	3		pos	
 c	net/minecraft/unmapped/C_7235516
 	m	()V	m_1976244	m_1976244	
-c	net/minecraft/unmapped/C_7332071	net/minecraft/unmapped/C_7332071	
-	f	J	f_1302800	f_1302800	
-	f	J	f_9363831	f_9363831	
-	f	J	f_0080625	f_0080625	
-	f	Lnet/minecraft/unmapped/C_5077341;	f_9995529	f_9995529	
+c	net/minecraft/unmapped/C_7332071	net/minecraft/world/biome/context/AreaContext	
+	f	J	f_1302800	seed	
+	f	J	f_9363831	rval	
+	f	J	f_0080625	seedMixup	
+	f	Lnet/minecraft/unmapped/C_5077341;	f_9995529	biomeNoise	
 	m	(J)V	<init>	<init>	
-		p	1		p_1	
-	m	(J)V	m_5712739	m_5712739	
-		p	1		p_1	
+		p	1		seedMixup	
+	m	(J)V	m_5712739	init	
+		p	1		seed	
 	m	(JJ)V	m_2559583	m_2559583	
 		p	1		p_1	
 		p	3		p_3	

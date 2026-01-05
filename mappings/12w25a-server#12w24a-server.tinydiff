@@ -13,7 +13,7 @@ c	net/minecraft/server/MinecraftServer
 		p	2		allowCommands	
 	m	()V	m_7640190		saveWorlds
 	m	()Ljava/lang/String;	m_3739797		publish
-c	net/minecraft/unmapped/C_0241277	net/minecraft/util/math/Box__1	
+c	net/minecraft/unmapped/C_0241277	net/minecraft/util/math/Box__0241277	
 	m	()V	<init>	<init>	
 	m	()Lnet/minecraft/unmapped/C_9704214;	m_6986081	initialValue	
 	m	()Ljava/lang/Object;	initialValue	initialValue	
@@ -34,15 +34,15 @@ c	net/minecraft/unmapped/C_0413198	net/minecraft/util/math/Vec3dPool
 	m	()V	m_7212361	tick	
 c	net/minecraft/unmapped/C_0415052
 	f	I	f_7963523	uses	
-	m	()I	m_8011622	m_8011622	
+	m	()I	m_8011622	getUses	
 	m	()V	m_1825008	use	
 c	net/minecraft/unmapped/C_0557736
-	f	Ljava/lang/ThreadLocal;	f_8620120	CACHE	
-	f	Ljava/lang/ThreadLocal;	f_8046878		CACHE
-	f	Ljava/lang/ThreadLocal;	f_8102004		nextCacheIndex
-	m	()Lnet/minecraft/unmapped/C_0413198;	m_8200625	getCache	
-	m	()V	m_5222762		resetCache
-	m	(DDD)Lnet/minecraft/unmapped/C_0557736;	m_9199010		ofCache
+	f	Ljava/lang/ThreadLocal;	f_8620120	POOL	
+	f	Ljava/lang/ThreadLocal;	f_8046878		POOL
+	f	Ljava/lang/ThreadLocal;	f_8102004		POOL_INDEX
+	m	()Lnet/minecraft/unmapped/C_0413198;	m_8200625	getPool	
+	m	()V	m_5222762		resetPool
+	m	(DDD)Lnet/minecraft/unmapped/C_0557736;	m_9199010		fromPool
 		p	0			x
 		p	2			y
 		p	4			z
@@ -52,7 +52,7 @@ c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_2425494	SPRUCE_STAIRS	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_8846155	BIRCH_STAIRS	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_1353634	JUNGLE_STAIRS	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)F	m_7303643	getMiningSpeed	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)F	m_7303643	getMiningTime	
 		p	1		world	
 		p	2		x	
 		p	3		y	
@@ -64,7 +64,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	3		x	
 		p	4		y	
 		p	5		z	
-	m	()F	m_7303643		getMiningSpeed
+	m	()F	m_7303643		getMiningTime
 	m	(Lnet/minecraft/unmapped/C_9590849;)F	m_0646926		getMiningSpeed
 		p	1			player
 c	net/minecraft/unmapped/C_1428858
@@ -74,30 +74,30 @@ c	net/minecraft/unmapped/C_1428858
 		p	2		baseBlock	
 		p	3		type	
 	m	(ILnet/minecraft/unmapped/C_1241852;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			id
+		p	2			baseBlock
 c	net/minecraft/unmapped/C_1555023
 	m	(Lnet/minecraft/unmapped/C_4223822;Z)Ljava/lang/String;	m_3739797	m_3739797	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Ljava/lang/String;	m_3739797		m_3739797
-c	net/minecraft/unmapped/C_1984964	net/minecraft/util/math/Vec3d__1	
+c	net/minecraft/unmapped/C_1984964	net/minecraft/util/math/Vec3d__1984964	
 	m	()V	<init>	<init>	
-	m	()Lnet/minecraft/unmapped/C_0413198;	m_5145398	m_5145398	
+	m	()Lnet/minecraft/unmapped/C_0413198;	m_5145398	initialValue	
 	m	()Ljava/lang/Object;	initialValue	initialValue	
 c	net/minecraft/unmapped/C_2097769
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5533221		m_5533221
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5533221		addLoveParticles
+		p	1			mob
 c	net/minecraft/unmapped/C_2454309
 	m	(Lnet/minecraft/unmapped/C_5553933;IIIILnet/minecraft/unmapped/C_9590849;)V	m_1964899	mineBlock	
 		p	1		world	
-		p	2		blockId	
+		p	2		block	
 		p	3		x	
 		p	4		y	
 		p	5		z	
 		p	6		player	
 	m	(IIIILnet/minecraft/unmapped/C_9590849;)V	m_1964899		mineBlock
-		p	1			blockId
+		p	1			block
 		p	2			x
 		p	3			y
 		p	4			z
@@ -122,14 +122,14 @@ c	net/minecraft/unmapped/C_3755722
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;IIIILnet/minecraft/unmapped/C_6607881;)Z	m_4864163	mineBlock	
 		p	1		stack	
 		p	2		world	
-		p	3		blockId	
+		p	3		block	
 		p	4		x	
 		p	5		y	
 		p	6		z	
 		p	7		entity	
 	m	(Lnet/minecraft/unmapped/C_2454309;IIIILnet/minecraft/unmapped/C_6607881;)Z	m_4864163		mineBlock
 		p	1			stack
-		p	2			blockId
+		p	2			block
 		p	3			x
 		p	4			y
 		p	5			z
@@ -153,7 +153,7 @@ c	net/minecraft/unmapped/C_3843922
 		p	9			p_9
 c	net/minecraft/unmapped/C_4116648
 	f	I	f_9116028	pickup	
-	f	Z	f_1190502		f_1190502
+	f	Z	f_1190502		player
 c	net/minecraft/unmapped/C_4279601
 	f	[B	f_8517181	nonce	
 	m	(Ljava/security/PrivateKey;)[B	m_8398514	getNonce	
@@ -165,12 +165,12 @@ c	net/minecraft/unmapped/C_5553933
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_5577922
-	f	Ljava/lang/ThreadLocal;	f_9858174	CACHE	
-	f	Ljava/lang/ThreadLocal;	f_7113088		CACHE
-	f	Ljava/lang/ThreadLocal;	f_6726525		nextCacheIndex
-	m	()Lnet/minecraft/unmapped/C_9704214;	m_1171447	getCache	
-	m	()V	m_6653863		resetCache
-	m	(DDDDDD)Lnet/minecraft/unmapped/C_5577922;	m_1417615		ofCache
+	f	Ljava/lang/ThreadLocal;	f_9858174	POOL	
+	f	Ljava/lang/ThreadLocal;	f_7113088		POOL
+	f	Ljava/lang/ThreadLocal;	f_6726525		POOL_INDEX
+	m	()Lnet/minecraft/unmapped/C_9704214;	m_1171447	getPool	
+	m	()V	m_6653863		resetPool
+	m	(DDDDDD)Lnet/minecraft/unmapped/C_5577922;	m_1417615		fromPool
 		p	0			minX
 		p	2			minY
 		p	4			minZ
@@ -218,7 +218,7 @@ c	net/minecraft/unmapped/C_8813417
 	f	Ljava/util/Set;	f_9658979		damagedBlocks
 c	net/minecraft/unmapped/C_8814877
 	f	Z	f_3838840	levelUp	
-	f	Lnet/minecraft/unmapped/C_0415052;	f_7637935	tradingPlayer	
+	f	Lnet/minecraft/unmapped/C_0415052;	f_7637935	lastSuccessfulTradeOffer	
 c	net/minecraft/unmapped/C_8983523
 	f	[B	f_0319434	nonce	
 c	net/minecraft/unmapped/C_9094020
@@ -238,7 +238,7 @@ c	net/minecraft/unmapped/C_9590849
 		p	1		player	
 		p	2		comesFromTheEnd	
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_2442031		copyFrom
-		p	1			p_1
+		p	1			other
 c	net/minecraft/unmapped/C_9704214	net/minecraft/util/math/BoxPool	
 	f	I	f_5162781	trimPeriod	
 	f	I	f_2288354	trimSize	
@@ -265,19 +265,19 @@ c	net/minecraft/unmapped/C_9992501
 		p	2		fromPlayer	
 		p	3		world	
 	m	()V	m_9197741	onServerClosed	
-c	net/minecraft/unmapped/C_2935475		net/minecraft/util/math/Vec3d__2
+c	net/minecraft/unmapped/C_2935475		net/minecraft/util/math/Vec3d__2935475
 	m	()V	<init>		<init>
-	m	()Ljava/lang/Integer;	m_7589333		m_7589333
+	m	()Ljava/lang/Integer;	m_7589333		initialValue
 	m	()Ljava/lang/Object;	initialValue		initialValue
-c	net/minecraft/unmapped/C_3811161		net/minecraft/util/math/Box__2
+c	net/minecraft/unmapped/C_3811161		net/minecraft/util/math/Box__3811161
 	m	()V	<init>		<init>
-	m	()Ljava/util/List;	m_0523529		m_0523529
+	m	()Ljava/util/List;	m_0523529		initialValue
 	m	()Ljava/lang/Object;	initialValue		initialValue
-c	net/minecraft/unmapped/C_5073472		net/minecraft/util/math/Box__1
+c	net/minecraft/unmapped/C_5073472		net/minecraft/util/math/Box__5073472
 	m	()V	<init>		<init>
-	m	()Ljava/lang/Integer;	m_9429513		m_9429513
+	m	()Ljava/lang/Integer;	m_9429513		initialValue
 	m	()Ljava/lang/Object;	initialValue		initialValue
-c	net/minecraft/unmapped/C_8215583		net/minecraft/util/math/Vec3d__1
+c	net/minecraft/unmapped/C_8215583		net/minecraft/util/math/Vec3d__8215583
 	m	()V	<init>		<init>
-	m	()Ljava/util/List;	m_4294624		m_4294624
+	m	()Ljava/util/List;	m_4294624		initialValue
 	m	()Ljava/lang/Object;	initialValue		initialValue

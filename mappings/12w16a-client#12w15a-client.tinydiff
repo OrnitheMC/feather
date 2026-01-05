@@ -1,29 +1,29 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
-	f	Lnet/minecraft/unmapped/C_8183022;	f_0679549	f_0679549	
+	f	Lnet/minecraft/unmapped/C_8183022;	f_0679549	commandManager	
 	f	Z	f_4502515	demo	
-	m	(Ljava/lang/String;Ljava/lang/String;Z)V	m_5495307	m_5495307	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V	m_6868991	m_6868991	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Ljava/lang/String;Ljava/lang/String;Z)V	m_5495307	start	
+		p	0		username	
+		p	1		sessionId	
+		p	2		demo	
+	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V	m_6868991	startAndConnect	
+		p	0		username	
+		p	1		sessionId	
+		p	2		server	
+		p	3		demo	
 	m	(Z)V	m_4706002	setDemo	
 		p	1		demo	
-	m	()Z	m_7633905	idDemo	
-	m	()Lnet/minecraft/unmapped/C_8183022;	m_4824766	m_4824766	
+	m	()Z	m_7633905	isDemo	
+	m	()Lnet/minecraft/unmapped/C_8183022;	m_4824766	getCommandHandler	
 	m	()Lnet/minecraft/client/Minecraft;	m_0408063	getInstance	
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_5495307		m_5495307
-		p	0			p_0
-		p	1			p_1
-	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	m_6868991		m_6868991
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_0175717	net/minecraft/command/AbstractGameModeCommand	
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_5495307		start
+		p	0			username
+		p	1			sessionId
+	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	m_6868991		startAndConnect
+		p	0			username
+		p	1			sessionId
+		p	2			server
+c	net/minecraft/unmapped/C_0175717	net/minecraft/command/GameModeCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -76,7 +76,7 @@ c	net/minecraft/unmapped/C_1023567
 		p	1		p_1	
 	m	(I)V	m_2325657	m_2325657	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_1112792	net/minecraft/client/command/TimeCommand	
+c	net/minecraft/unmapped/C_1112792	net/minecraft/client/command/ClientTimeCommand	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_1730529;I)V	m_9034782	m_9034782	
 		p	1		p_1	
@@ -114,11 +114,11 @@ c	net/minecraft/unmapped/C_1730529	net/minecraft/command/source/CommandSource
 		p	1		message	
 		p	2		args	
 c	net/minecraft/unmapped/C_2381425
-	m	(Ljava/util/Random;[Lnet/minecraft/unmapped/C_0268929;Lnet/minecraft/unmapped/C_1582062;I)V	m_6174072		m_6174072
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Ljava/util/Random;[Lnet/minecraft/unmapped/C_0268929;Lnet/minecraft/unmapped/C_1582062;I)V	m_6174072		placeLootInChest
+		p	0			random
+		p	1			loot
+		p	2			chest
+		p	3			attempts
 c	net/minecraft/unmapped/C_2615737	net/minecraft/command/KillCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
@@ -127,10 +127,10 @@ c	net/minecraft/unmapped/C_2615737	net/minecraft/command/KillCommand
 		p	2		p_2	
 c	net/minecraft/unmapped/C_2670477
 	f	Z	f_2484064	allowCommands	
-	f	Z	f_7823733	hasBonusChest	
+	f	Z	f_7823733	generateBonusChest	
 	m	()Lnet/minecraft/unmapped/C_2670477;	m_2302434	enableBonusChest	
 	m	()Lnet/minecraft/unmapped/C_2670477;	m_2979965	enableCommands	
-	m	()Z	m_6464140	hasBonusChest	
+	m	()Z	m_6464140	generateBonusChest	
 	m	(I)I	m_7050511	getGameModeById	
 		p	0		id	
 c	net/minecraft/unmapped/C_2691400	net/minecraft/command/exception/CommandNotFoundException	
@@ -138,7 +138,7 @@ c	net/minecraft/unmapped/C_2691400	net/minecraft/command/exception/CommandNotFou
 	m	(Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_2742332	net/minecraft/command/AbstractTimeCommand	
+c	net/minecraft/unmapped/C_2742332	net/minecraft/command/TimeCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -170,9 +170,9 @@ c	net/minecraft/unmapped/C_2925725
 		p	2		cursorPosition	
 		p	3		skipOverSpaces	
 	m	(II)I	m_7878089		getWordSkipPosition
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_3009546	net/minecraft/command/AbstractGiveCommand	
+		p	1			wordOffset
+		p	2			cursorPosition
+c	net/minecraft/unmapped/C_3009546	net/minecraft/command/GiveCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -193,12 +193,12 @@ c	net/minecraft/unmapped/C_3813953
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/unmapped/C_3961854	net/minecraft/client/command/GiveCommand	
+c	net/minecraft/unmapped/C_3961854	net/minecraft/client/command/ClientGiveCommand	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_1756870	m_1756870	
 		p	1		p_1	
 	m	()[Ljava/lang/String;	m_2763145	m_2763145	
-c	net/minecraft/unmapped/C_4116835	net/minecraft/command/AbstractToggleDownfallCommand	
+c	net/minecraft/unmapped/C_4116835	net/minecraft/command/ToggleDownfallCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -228,7 +228,7 @@ c	net/minecraft/unmapped/C_5335372	net/minecraft/command/handler/CommandManager
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_5366040	net/minecraft/client/command/ExperienceCommand	
+c	net/minecraft/unmapped/C_5366040	net/minecraft/client/command/ClientExperienceCommand	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_6503279	m_6503279	
 		p	1		p_1	
@@ -293,10 +293,10 @@ c	net/minecraft/unmapped/C_5917668	net/minecraft/command/AbstractCommand
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_6152184
 	f	Z	f_6434313	allowCommands	
-	m	(I)V	m_8334198	setDefaultGamemode	
+	m	(I)V	m_8334198	setDefaultGameMode	
 		p	1		gameMode	
 	m	()Z	m_7099373	allowCommands	
-c	net/minecraft/unmapped/C_6255335	net/minecraft/command/AbstractExperienceCommand	
+c	net/minecraft/unmapped/C_6255335	net/minecraft/command/ExperienceCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;[Ljava/lang/String;)V	m_2644869	m_2644869	
@@ -308,7 +308,7 @@ c	net/minecraft/unmapped/C_6255335	net/minecraft/command/AbstractExperienceComma
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_6503279	getPlayer	
 		p	1		name	
 	m	()[Ljava/lang/String;	m_9264003	getPlayerNames	
-c	net/minecraft/unmapped/C_6290467	net/minecraft/client/command/GameModeCommand	
+c	net/minecraft/unmapped/C_6290467	net/minecraft/client/command/ClientGameModeCommand	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9590849;	m_9015779	m_9015779	
 		p	1		p_1	
@@ -346,7 +346,7 @@ c	net/minecraft/unmapped/C_6982053
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/unmapped/C_7187442	net/minecraft/client/command/ToggleDownfallCommand	
+c	net/minecraft/unmapped/C_7187442	net/minecraft/client/command/ClientToggleDownfallCommand	
 	m	()V	<init>	<init>	
 	m	()V	m_7621275	m_7621275	
 c	net/minecraft/unmapped/C_7250084
@@ -388,13 +388,13 @@ c	net/minecraft/unmapped/C_7753067
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_7952195
-	m	(FZIIII)V	m_5546639	m_5546639	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+	m	(FZIIII)V	m_5546639	render	
+		p	1		tickDelta	
+		p	2		screenOpen	
+		p	3		mouseX	
+		p	4		mouseY	
+		p	5		screenWidth	
+		p	6		screenHeight	
 c	net/minecraft/unmapped/C_8003398	net/minecraft/command/exception/CommandException	
 	f	[Ljava/lang/Object;	f_2712840	args	
 	m	(Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>	
@@ -403,7 +403,7 @@ c	net/minecraft/unmapped/C_8003398	net/minecraft/command/exception/CommandExcept
 	m	()[Ljava/lang/Object;	m_6322322	getArgs	
 c	net/minecraft/unmapped/C_8138780	net/minecraft/world/DemoPlayerInteractionManager	
 	f	Z	f_4389609	sentHelp	
-	f	Z	f_7611670	demoEnded	
+	f	Z	f_7611670	demoExpired	
 	f	I	f_6131597	reminderTicks	
 	f	I	f_7951439	ticks	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
@@ -468,8 +468,8 @@ c	net/minecraft/unmapped/C_8433864	net/minecraft/command/Command
 c	net/minecraft/unmapped/C_8480899	net/minecraft/world/DemoWorld	
 	f	J	f_5200833	SEED	
 	m	(Lnet/minecraft/unmapped/C_5528202;Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		storage	
+		p	2		name	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3198459;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -481,13 +481,13 @@ c	net/minecraft/unmapped/C_8767726	net/minecraft/command/exception/CommandSyntax
 		p	2		p_2	
 c	net/minecraft/unmapped/C_8938952
 	m	(IILnet/minecraft/unmapped/C_0759248;)V	m_9567536	initWidgetsNormal	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		topY	
+		p	2		rowHeight	
+		p	3		language	
 	m	(IILnet/minecraft/unmapped/C_0759248;)V	m_2509371	initWidgetsDemo	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		topY	
+		p	2		rowHeight	
+		p	3		language	
 	m	(ZI)V	m_7743236	m_7743236	
 		p	1		p_1	
 		p	2		p_2	
@@ -499,8 +499,8 @@ c	net/minecraft/unmapped/C_9469238
 		p	4		p_4	
 c	net/minecraft/unmapped/C_9590849
 	m	(I)V	m_2325657	setGameMode	
-		p	1		p_1	
-	m	()Ljava/lang/String;	m_2446786	m_2446786	
+		p	1		gameMode	
+	m	()Ljava/lang/String;	m_2446786	getSourceName	
 	m	()Lnet/minecraft/unmapped/C_0759248;	m_7248813	getLanguage	
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	m_1318661	m_1318661	
 		p	1		p_1	

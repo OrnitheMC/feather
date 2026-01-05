@@ -7,12 +7,12 @@ c	net/minecraft/server/MinecraftServer
 		p	5		generatorType	
 	m	(Lnet/minecraft/unmapped/C_5478016;Ljava/lang/String;J)V	m_8050829		loadWorld
 		p	1			storageSource
-		p	2			worldDirName
+		p	2			saveName
 		p	3			seed
 c	net/minecraft/unmapped/C_0759248
 	f	Z	f_6833655	unicode	
-c	net/minecraft/unmapped/C_0905826	net/minecraft/unmapped/C_0905826	
-c	net/minecraft/unmapped/C_1361158	net/minecraft/world/biome/layer/AddDeepOceanLayer	
+c	net/minecraft/unmapped/C_0905826	net/minecraft/entity/ai/control/MobControl	
+c	net/minecraft/unmapped/C_1361158	net/minecraft/world/biome/layer/RegionHillsLayer	
 	m	(JLnet/minecraft/unmapped/C_5540234;)V	<init>	<init>	
 		p	1		seed	
 		p	3		parent	
@@ -32,23 +32,23 @@ c	net/minecraft/unmapped/C_1518925	net/minecraft/world/gen/WorldGeneratorType
 	m	(Ljava/lang/String;ILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_1518925;	m_9231068	byId	
-		p	0		id	
+		p	3		key	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_1518925;	m_9231068	byKey	
+		p	0		key	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1929235
 	m	()I	m_8694000	m_8694000	
 c	net/minecraft/unmapped/C_2167183
 	f	Lnet/minecraft/unmapped/C_1518925;	f_3213198	generatorType	
 	m	(BBJLnet/minecraft/unmapped/C_1518925;II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
+		p	1		dimension	
+		p	2		difficulty	
+		p	3		seed	
+		p	5		generatorType	
+		p	6		worldHeight	
+		p	7		gameMode	
 	m	(BBJII)V	<init>		<init>
-		p	1			dimensionId
+		p	1			dimension
 		p	2			difficulty
 		p	3			seed
 		p	5			worldHeight
@@ -62,15 +62,15 @@ c	net/minecraft/unmapped/C_2670477
 	m	(JIZZLnet/minecraft/unmapped/C_1518925;)V	<init>	<init>	
 		p	1		seed	
 		p	3		gameMode	
-		p	4		allowStructures	
+		p	4		generateStructures	
 		p	5		hardcore	
 		p	6		generatorType	
 	m	()Lnet/minecraft/unmapped/C_1518925;	m_3697296	getGeneratorType	
 	m	(JIZZ)V	<init>		<init>
-		p	1			p_1
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			seed
+		p	3			gameMode
+		p	4			generateStructures
+		p	5			hardcore
 c	net/minecraft/unmapped/C_3120382	net/minecraft/entity/ai/goal/GoalSelector	
 	f	Ljava/util/ArrayList;	f_1758000	goals	
 	f	Ljava/util/ArrayList;	f_6085796	activeGoals	
@@ -132,17 +132,17 @@ c	net/minecraft/unmapped/C_3807678	net/minecraft/entity/ai/control/MovementContr
 	f	F	f_7912981	speed	
 	f	Z	f_8114503	moving	
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		mob	
+		p	2		speed	
 	m	(DDD)V	m_6390708	update	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(F)V	m_4962216	m_4962216	
-		p	1		p_1	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+	m	(F)V	m_4962216	setSpeed	
+		p	1		speed	
 	m	()V	m_0741527	tick	
 c	net/minecraft/unmapped/C_3980755	net/minecraft/entity/ai/goal/Goal	
-	f	Ljava/util/ArrayList;	f_8372626	f_8372626	
+	f	Ljava/util/ArrayList;	f_8372626	controls	
 	m	()V	<init>	<init>	
 	m	()Z	m_9549250	canStart	
 	m	()Z	m_4540487	shouldContinue	
@@ -150,8 +150,8 @@ c	net/minecraft/unmapped/C_3980755	net/minecraft/entity/ai/goal/Goal
 	m	()V	m_3836415	start	
 	m	()V	m_7242457	stop	
 	m	()V	m_3798730	tick	
-	m	(Lnet/minecraft/unmapped/C_0905826;)V	m_1587970	m_1587970	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_0905826;)V	m_1587970	addControl	
+		p	1		control	
 	m	()Ljava/util/ArrayList;	m_5043911	getControls	
 c	net/minecraft/unmapped/C_4316830
 	m	()V	m_2135259	m_2135259	
@@ -178,7 +178,7 @@ c	net/minecraft/unmapped/C_5487998	net/minecraft/entity/ai/goal/LookAroundGoal
 	m	()V	m_7242457	m_7242457	
 	m	()Z	m_9478616	m_9478616	
 	m	()Z	m_4540487	m_4540487	
-c	net/minecraft/unmapped/C_5652087	net/minecraft/world/biome/layer/ShoreLayer	
+c	net/minecraft/unmapped/C_5652087	net/minecraft/world/biome/layer/HumidLakesLayer	
 	m	(JLnet/minecraft/unmapped/C_5540234;)V	<init>	<init>	
 		p	1		seed	
 		p	3		parent	
@@ -217,23 +217,22 @@ c	net/minecraft/unmapped/C_6385582	net/minecraft/entity/ai/goal/WanderAroundGoal
 	m	()V	m_7242457	m_7242457	
 	m	()Z	m_9478616	m_9478616	
 c	net/minecraft/unmapped/C_6607881
-	f	Lnet/minecraft/unmapped/C_6607881;	f_8574314	attackTarget	
-		c	The target that this entity is currently attacking.	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_8574314	attacker	
 	f	Lnet/minecraft/unmapped/C_3257017;	f_8235147	lookControl	
 	f	Lnet/minecraft/unmapped/C_3807678;	f_3958044	movementControl	
-	f	Lnet/minecraft/unmapped/C_9086492;	f_6479057	pathNavigation	
+	f	Lnet/minecraft/unmapped/C_9086492;	f_6479057	navigation	
 	f	Lnet/minecraft/unmapped/C_3120382;	f_7676474	goals	
 	m	()Lnet/minecraft/unmapped/C_3257017;	m_6634241	getLookControl	
-	m	()Lnet/minecraft/unmapped/C_3807678;	m_9762017	getDamageTracker	
+	m	()Lnet/minecraft/unmapped/C_3807678;	m_9762017	getMovementControl	
 	m	()Lnet/minecraft/unmapped/C_9086492;	m_2393660	getPathNavigation	
 	m	()Ljava/util/Random;	m_6983043	getRandom	
-	m	()Lnet/minecraft/unmapped/C_6607881;	m_1734555	getAttackTarget	
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_1734555	getAttacker	
 	m	()I	m_8170636	getDespawnTimer	
 	m	(F)V	m_4974211	setForwardSpeed	
 		p	1		forwardSpeed	
 	m	(Z)V	m_6222805	setJumping	
 		p	1		jumping	
-	m	()F	m_9814525	getAttacker	
+	m	()F	m_9814525	getTargetSpeed	
 	m	()V	m_6026338	serverTickAi	
 c	net/minecraft/unmapped/C_6928498
 	f	Lnet/minecraft/unmapped/C_6928498;	f_9444609	BEACH	
@@ -275,10 +274,10 @@ c	net/minecraft/unmapped/C_8252988
 		p	3		baseColor	
 		p	4		spotsColor	
 	m	(Ljava/lang/Class;Ljava/lang/String;IZ)V	m_0930588		register
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	0			type
+		p	1			key
+		p	2			id
+		p	3			addSpawnEgg
 c	net/minecraft/unmapped/C_8891094	net/minecraft/world/gen/chunk/FlatChunkGenerator	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_1785703	world	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
@@ -314,15 +313,15 @@ c	net/minecraft/unmapped/C_8891094	net/minecraft/world/gen/chunk/FlatChunkGenera
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/unmapped/C_9086492	net/minecraft/unmapped/C_9086492	
-	m	(DDD)V	m_6026864	m_6026864	
+c	net/minecraft/unmapped/C_9086492	net/minecraft/entity/ai/pathing/Navigation	
+	m	(DDD)V	m_6026864	moveTo	
 		p	1		p_1	
 		p	3		p_3	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439	m_5771439	
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439	moveTo	
 		p	1		p_1	
-	m	()V	m_2563935	m_2563935	
-	m	()Z	m_8790397	m_8790397	
+	m	()V	m_2563935	tick	
+	m	()Z	m_8790397	isDone	
 c	net/minecraft/unmapped/C_9229053	net/minecraft/entity/ai/pathing/PathNavigation	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_4778830	mob	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_1846957	world	
@@ -331,14 +330,14 @@ c	net/minecraft/unmapped/C_9229053	net/minecraft/entity/ai/pathing/PathNavigatio
 	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(DDD)V	m_6026864	moveTo	
+	m	(DDD)V	m_6026864	m_6026864	
 		p	1		p_1	
 		p	3		p_3	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439	findPath	
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439	m_5771439	
 		p	1		p_1	
-	m	()V	m_2563935	tick	
-	m	()Z	m_8790397	isDone	
+	m	()V	m_2563935	m_2563935	
+	m	()Z	m_8790397	m_8790397	
 c	net/minecraft/unmapped/C_9232485
 	f	Lnet/minecraft/unmapped/C_1518925;	f_9455824	generatorType	
 	m	(Ljava/lang/String;IJLnet/minecraft/unmapped/C_1518925;IBBBB)V	<init>	<init>	
@@ -352,11 +351,13 @@ c	net/minecraft/unmapped/C_9232485
 		p	9		p_9	
 		p	10		p_10	
 	m	(Ljava/lang/String;IJIBBBB)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
-		p	9			p_9
+		p	1			username
+		p	2			gameVersion
+		p	3			seed
+		p	5			gameMode
+		p	6			dimension
+		p	7			difficulty
+		p	8			worldHeight
+		p	9			maxPlayerCount
+c	net/minecraft/unmapped/C_5317213	net/minecraft/world/biome/layer/DownfallLayer	net/minecraft/world/biome/layer/TemperatureLayer
+c	net/minecraft/unmapped/C_6766966	net/minecraft/world/biome/layer/TemperatureLayer	net/minecraft/world/biome/layer/DownfallLayer

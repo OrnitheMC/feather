@@ -50,6 +50,11 @@ c	net/minecraft/realms/RealmsScreen
 	m	()V	narrateLabels		narrateLabels
 	m	(Lnet/minecraft/realms/RealmsGuiEventListener;)Z	isFocused		isFocused
 		p	1			p_1
+	m	(ZI)V	confirmResult
+		p	1		result	p_1
+		p	2		id	p_2
+	m	(Ljava/lang/String;)Ljava/lang/String;	getLocalizedString
+		p	0		key	p_0
 c	net/minecraft/realms/RealmsScreenProxy
 	m	(Ljava/lang/String;)V	bindFace	bindFace	
 		p	0		p_0	
@@ -82,19 +87,19 @@ c	net/minecraft/unmapped/C_1241852
 		p	2		world	
 		p	3		pos	
 c	net/minecraft/unmapped/C_1630332
-	f	Lnet/minecraft/unmapped/C_8105098;	f_6478921	f_6478921	
-	f	I	f_8553895	f_8553895	
+	f	Lnet/minecraft/unmapped/C_8105098;	f_6478921	minecraft	
+	f	I	f_8553895	itemHeight	
 	f	Ljava/util/List;	f_8478883	children	
-	f	I	f_7600999	f_7600999	
-	f	I	f_9973269	f_9973269	
+	f	I	f_7600999	width	
+	f	I	f_9973269	height	
 	f	Z	f_1988699	f_1988699	
 	f	I	f_0891150	f_0891150	
 	f	D	f_2391400	f_2391400	
-	f	Z	f_8885865	f_8885865	
-	f	Z	f_9003124	f_9003124	
-	f	I	f_9303777	f_9303777	
+	f	Z	f_8885865	renderSelectionHighlight	
+	f	Z	f_9003124	renderHeader	
+	f	I	f_9303777	headerHeight	
 	f	Z	f_1270941	f_1270941	
-	f	Lnet/minecraft/unmapped/C_1630332$C_1775830;	f_6923079	f_6923079	
+	f	Lnet/minecraft/unmapped/C_1630332$C_1775830;	f_6923079	selected	
 	f	I	DRAG_OUTSIDE		DRAG_OUTSIDE
 	f	Lnet/minecraft/unmapped/C_8105098;	minecraft		minecraft
 	f	I	itemHeight		itemHeight
@@ -109,36 +114,36 @@ c	net/minecraft/unmapped/C_1630332
 	f	I	headerHeight		headerHeight
 	f	Z	scrolling		scrolling
 	f	Lnet/minecraft/unmapped/C_1630332$C_1775830;	selected		selected
-	m	(ZI)V	m_2495325	m_2495325	
-		p	1		p_1	
-		p	2		p_2	
-	m	()I	m_4119602	m_4119602	
-	m	()Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_2151241	m_2151241	
-	m	(Lnet/minecraft/unmapped/C_1630332$C_1775830;)V	m_8784623	m_8784623	
-		p	1		p_1	
+	m	(ZI)V	m_2495325	setHeader	
+		p	1		renderHeader	
+		p	2		headerHeight	
+	m	()I	m_4119602	getRowWidth	
+	m	()Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_2151241	getSelected	
+	m	(Lnet/minecraft/unmapped/C_1630332$C_1775830;)V	m_8784623	setSelected	
+		p	1		selected	
 	m	()Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_4186820	m_4186820	
 	m	()V	m_6294367	clear	
 	m	(I)Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_8290284	getEntry	
 		p	1		index	
 	m	(Lnet/minecraft/unmapped/C_1630332$C_1775830;)I	m_8276884	add	
-		p	1		p_1	
-	m	()I	m_7222269	m_7222269	
+		p	1		entry	
+	m	()I	m_7222269	size	
 	m	(ZZ)V	onFocusChanged	onFocusChanged	
 		p	1		p_1	
 		p	2		p_2	
-	m	(I)Z	m_0867276	m_0867276	
-		p	1		p_1	
-	m	(DD)Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_4433076	m_4433076	
-		p	1		p_1	
-		p	3		p_3	
-	m	(IIII)V	m_9976896	m_9976896	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(I)V	m_9605833	m_9605833	
-		p	1		p_1	
-	m	()I	m_9609164	m_9609164	
+	m	(I)Z	m_0867276	isSelected	
+		p	1		index	
+	m	(DD)Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_4433076	getEntryAt	
+		p	1		x	
+		p	3		y	
+	m	(IIII)V	m_9976896	setBounds	
+		p	1		width	
+		p	2		height	
+		p	3		minY	
+		p	4		maxY	
+	m	(I)V	m_9605833	setX	
+		p	1		minX	
+	m	()I	m_9609164	getHeight	
 	m	(II)V	m_2776767	m_2776767	
 		p	1		p_1	
 		p	2		p_2	
@@ -185,7 +190,7 @@ c	net/minecraft/unmapped/C_1630332
 	m	(Z)Z	m_5620210	m_5620210	
 		p	1		p_1	
 	m	(Z)V	setRenderSelection		setRenderSelection
-		p	1			renderSelection
+		p	1			renderSelectionHighlight
 	m	(ZI)V	setRenderHeader		setRenderHeader
 		p	1			renderHeader
 		p	2			headerHeight
@@ -219,7 +224,7 @@ c	net/minecraft/unmapped/C_1630332
 	m	(IILnet/minecraft/unmapped/C_5786166;)V	renderHeader		renderHeader
 		p	1			x
 		p	2			y
-		p	3			tessellator
+		p	3			tesselator
 	m	()V	renderBackground		renderBackground
 	m	(II)V	renderDecorations		renderDecorations
 		p	1			mouseX
@@ -596,9 +601,9 @@ c	net/minecraft/unmapped/C_4316830$C_1448581
 		p	3			p_3
 		p	5			p_5
 c	net/minecraft/unmapped/C_4744955
-	m	(Lnet/minecraft/unmapped/C_2891045;Lnet/minecraft/unmapped/C_3674802;)I	m_1082002	m_1082002	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_2891045;Lnet/minecraft/unmapped/C_3674802;)I	m_1082002	getBrightness	
+		p	1		type	
+		p	2		pos	
 c	net/minecraft/unmapped/C_4966580
 	m	(DDI)Z	mouseReleased	mouseReleased	
 		p	1		p_1	

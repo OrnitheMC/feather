@@ -1,6 +1,6 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
-	f	Lnet/minecraft/unmapped/C_6607881;	f_9451027		f_9451027
+	f	Lnet/minecraft/unmapped/C_6607881;	f_9451027		targetEntity
 c	net/minecraft/unmapped/C_0539808
 	m	()Z	m_7087374		hasLiquidCollision
 c	net/minecraft/unmapped/C_0567922
@@ -30,7 +30,7 @@ c	net/minecraft/unmapped/C_2131741
 	m	(Lnet/minecraft/unmapped/C_2131741;)Lnet/minecraft/client/Minecraft;	m_0545067		m_0545067
 		p	0			p_0
 c	net/minecraft/unmapped/C_2454309
-	m	(ILjava/util/Random;)Z	m_4433411		damage
+	m	(ILjava/util/Random;)Z	m_4433411		takeDamage
 		c		Applies damage to this item stack and returns whether it is past the maximum damage value.
 		p	1			amount
 		p	2			random
@@ -39,20 +39,20 @@ c	net/minecraft/unmapped/C_2669673
 c	net/minecraft/unmapped/C_3362006
 	f	Lnet/minecraft/unmapped/C_6607881;	f_8173247		targetEntity
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_1331819;F)V	m_3742790	prepare	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		world	
+		p	2		textureManager	
+		p	3		textRenderer	
+		p	4		camera	
+		p	5		options	
+		p	6		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0876962;Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_1331819;F)V	m_3742790		prepare
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	1			world
+		p	2			textureManager
+		p	3			textRenderer
+		p	4			camera
+		p	5			targetEntity
+		p	6			options
+		p	7			tickDelta
 c	net/minecraft/unmapped/C_3544601
 	m	()I	m_4154762		getOffsetY
 c	net/minecraft/unmapped/C_4895885
@@ -116,7 +116,7 @@ c	net/minecraft/unmapped/C_8124234
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		entity	
+		p	4		player	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_6607881;)I	m_6382874		getFacingForPlacement
 		p	0			world
 		p	1			x
@@ -171,7 +171,7 @@ c	net/minecraft/unmapped/C_0089468		net/minecraft/network/packet/ScoreboardScore
 	f	Ljava/lang/String;	f_5097277		owner
 	f	Ljava/lang/String;	f_6978733		objective
 	f	I	f_3797398		score
-	f	I	f_7268786		action
+	f	I	f_7268786		updateMode
 		c		The type of score update.\n<br>0: set score\n<br>1: remove score
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3526030;I)V	<init>		<init>
@@ -235,14 +235,14 @@ c	net/minecraft/unmapped/C_0814381		net/minecraft/scoreboard/Scoreboard
 		p	0			slot
 	m	(Ljava/lang/String;)I	m_9710479		getDisplaySlot
 		p	0			location
-c	net/minecraft/unmapped/C_0934552		net/minecraft/scoreboard/ScoreboardScore__1
+c	net/minecraft/unmapped/C_0934552		net/minecraft/scoreboard/ScoreboardScore__0934552
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3526030;Lnet/minecraft/unmapped/C_3526030;)I	m_4544122		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
-		p	1			score1
-		p	2			score2
+		p	1			o1
+		p	2			o2
 c	net/minecraft/unmapped/C_1028001		net/minecraft/scoreboard/criterion/ScoreboardCriterion
 	f	Ljava/util/Map;	f_4625302		BY_NAME
 	f	Lnet/minecraft/unmapped/C_1028001;	f_9119493		DUMMY
@@ -288,7 +288,7 @@ c	net/minecraft/unmapped/C_1613096		net/minecraft/client/render/texture/FlippedS
 	m	()Ljava/lang/String;	m_9759061		m_9759061
 	m	()I	m_5616270		m_5616270
 	m	()I	m_2863338		m_2863338
-c	net/minecraft/unmapped/C_1806796		net/minecraft/item/ArmorItem__1
+c	net/minecraft/unmapped/C_1806796		net/minecraft/item/ArmorItem__1806796
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3335560;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2454309;	m_3792046		m_3792046
 		p	1			p_1
@@ -315,10 +315,10 @@ c	net/minecraft/unmapped/C_3526030		net/minecraft/scoreboard/ScoreboardScore
 	m	()Ljava/lang/String;	m_2012228		getOwner
 	m	()Lnet/minecraft/unmapped/C_0814381;	m_3959020		getScoreboard
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_3773824		net/minecraft/entity/EntityFilter__CanPickupItemsFilter
-	f	Lnet/minecraft/unmapped/C_2454309;	f_9141069		stack
+c	net/minecraft/unmapped/C_3773824		net/minecraft/entity/EntityFilter__CanPickUpItemsFilter
+	f	Lnet/minecraft/unmapped/C_2454309;	f_9141069		item
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			stack
+		p	1			item
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1473293		m_1473293
 		p	1			p_1
 c	net/minecraft/unmapped/C_3945557		net/minecraft/scoreboard/ScoreboardObjective
@@ -375,7 +375,7 @@ c	net/minecraft/unmapped/C_4192341		net/minecraft/server/command/ScoreboardComma
 		p	1			p_1
 		p	2			p_2
 	m	()Ljava/util/List;	m_7569108		getObjectives
-c	net/minecraft/unmapped/C_4614909		net/minecraft/Bootstrap__4
+c	net/minecraft/unmapped/C_4614909		net/minecraft/Bootstrap__4614909
 	f	Z	f_6986011		ignited
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3335560;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2454309;	m_3792046		m_3792046
@@ -383,7 +383,7 @@ c	net/minecraft/unmapped/C_4614909		net/minecraft/Bootstrap__4
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_3335560;)V	m_7572345		m_7572345
 		p	1			p_1
-c	net/minecraft/unmapped/C_5104661		net/minecraft/Bootstrap__5
+c	net/minecraft/unmapped/C_5104661		net/minecraft/Bootstrap__5104661
 	f	Z	f_7579152		dyed
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3335560;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2454309;	m_3792046		m_3792046
@@ -431,7 +431,7 @@ c	net/minecraft/unmapped/C_8280553		net/minecraft/scoreboard/SavedScoreboardData
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_5693434;	m_8253871		objectivesToNbt
 	m	()Lnet/minecraft/unmapped/C_5693434;	m_0605042		scoresToNbt
-c	net/minecraft/unmapped/C_8418764		net/minecraft/Bootstrap__6
+c	net/minecraft/unmapped/C_8418764		net/minecraft/Bootstrap__8418764
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_3335560;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2454309;	m_3792046		m_3792046
 		p	1			p_1
@@ -450,18 +450,4 @@ c	net/minecraft/unmapped/C_9166080		net/minecraft/network/packet/ScoreboardDispl
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666		m_7216666
 		p	1			p_1
 	m	()I	m_4040470		m_4040470
-c	net/minecraft/unmapped/C_1370944	net/minecraft/Bootstrap__4	net/minecraft/Bootstrap__3
-c	net/minecraft/unmapped/C_1736773	net/minecraft/Bootstrap__6	net/minecraft/Bootstrap__8
-c	net/minecraft/unmapped/C_4440484	net/minecraft/Bootstrap__5	net/minecraft/Bootstrap__7
-c	net/minecraft/unmapped/C_4999413	net/minecraft/Bootstrap__11	net/minecraft/Bootstrap__13
-c	net/minecraft/unmapped/C_5121935	net/minecraft/Bootstrap__3	net/minecraft/Bootstrap__2
-c	net/minecraft/unmapped/C_5994497	net/minecraft/Bootstrap__2	net/minecraft/Bootstrap__14
-c	net/minecraft/unmapped/C_6289161	net/minecraft/Bootstrap__7	net/minecraft/Bootstrap__9
-c	net/minecraft/unmapped/C_6886603	net/minecraft/Bootstrap__9	net/minecraft/Bootstrap__11
-c	net/minecraft/unmapped/C_7123234	net/minecraft/C_34cxdtxuh	net/minecraft/item/MinecartItem__1
-	f	Lnet/minecraft/unmapped/C_2673437;	f_5229445	normal	fallback
-c	net/minecraft/unmapped/C_7525977	net/minecraft/Bootstrap__8	net/minecraft/Bootstrap__10
-c	net/minecraft/unmapped/C_9473488	net/minecraft/Bootstrap__8__1	net/minecraft/Bootstrap__10__1
-	f	Lnet/minecraft/unmapped/C_2454309;	f_6565046	f_6565046	stack
-	f	Lnet/minecraft/unmapped/C_7525977;	f_4490485	f_4490485	parent
-c	net/minecraft/unmapped/C_5226639	net/minecraft/Bootstrap__10	net/minecraft/Bootstrap__12
+c	net/minecraft/unmapped/C_7123234	net/minecraft/Bootstrap__7123234	net/minecraft/item/MinecartItem__7123234

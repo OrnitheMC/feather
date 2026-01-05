@@ -2,7 +2,7 @@ tiny	2	0
 c	net/minecraft/client/Minecraft
 	f	Lnet/minecraft/unmapped/C_2975244;	f_3075017	crashReport	
 	f	Lnet/minecraft/unmapped/C_4301088;	f_0964723	server	
-	m	(Lnet/minecraft/unmapped/C_2975244;)V	m_6209333	crash	
+	m	(Lnet/minecraft/unmapped/C_2975244;)V	m_6209333	integratedServerCrashed	
 		p	1		crashReport	
 	m	()Z	m_9805322	isSingleplayer	
 c	net/minecraft/unmapped/C_0390784
@@ -18,11 +18,11 @@ c	net/minecraft/unmapped/C_0563666	net/minecraft/server/network/ListenThread
 	f	Ljava/util/HashMap;	f_1994394	addresses	
 	f	I	f_1249074	connectionCounter	
 	f	Ljava/net/ServerSocket;	f_3242935	socket	
-	f	Lnet/minecraft/unmapped/C_1228817;	f_1814316	networkIo	
+	f	Lnet/minecraft/unmapped/C_1228817;	f_1814316	listener	
 	f	Ljava/net/InetAddress;	f_6780375	address	
 	f	I	f_7827986	port	
 	m	(Lnet/minecraft/unmapped/C_1228817;Ljava/net/InetAddress;I)V	<init>	<init>	
-		p	1		networkIo	
+		p	1		listener	
 		p	2		address	
 		p	3		port	
 	m	()V	m_2981968	tick	
@@ -32,13 +32,13 @@ c	net/minecraft/unmapped/C_0563666	net/minecraft/server/network/ListenThread
 	m	(Ljava/net/InetAddress;)Z	m_2934211	isLocal	
 		p	0		address	
 	m	(Ljava/net/Socket;)V	m_0402437	close	
-		p	1		p_1	
+		p	1		socket	
 	m	()V	m_9299728	close	
 	m	()Ljava/net/InetAddress;	m_7474712	getAddress	
 	m	()I	m_6744935	getPort	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_0875224
-	m	()I	m_5243130	m_5243130	
+	m	()I	m_5243130	getLocalPort	
 c	net/minecraft/unmapped/C_1228817
 	f	Ljava/util/List;	f_9098705	connections	
 	f	Ljava/util/ArrayList;	f_9098705		connections
@@ -85,14 +85,14 @@ c	net/minecraft/unmapped/C_2975244
 c	net/minecraft/unmapped/C_3061522	net/minecraft/server/dedicated/DedicatedConnectionListener	
 	f	Lnet/minecraft/unmapped/C_0563666;	f_3418983	listenThread	
 	m	(Lnet/minecraft/unmapped/C_7773862;Ljava/net/InetAddress;I)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		server	
+		p	2		address	
+		p	3		port	
 	m	()V	m_6782594	m_6782594	
 	m	()V	m_0181861	m_0181861	
 	m	()Lnet/minecraft/unmapped/C_1555023;	m_1969147	m_1969147	
 	m	(Ljava/net/Socket;)V	m_1770251	close	
-		p	1		p_1	
+		p	1		socket	
 	m	()Lnet/minecraft/unmapped/C_7773862;	m_7524482	m_7524482	
 c	net/minecraft/unmapped/C_3755722
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)Z	m_4911788	interact	
@@ -116,11 +116,11 @@ c	net/minecraft/unmapped/C_3843922
 	m	()F	m_2818499	getPlayerVelocityY	
 	m	()F	m_5774447	getPlayerVelocityZ	
 	m	(DDDFLjava/util/Set;)V	<init>		<init>
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-		p	8			p_8
+		p	1			x
+		p	3			y
+		p	5			z
+		p	7			power
+		p	8			damagedBlocks
 c	net/minecraft/unmapped/C_3944207
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)Z	m_4911788	m_4911788	
 		p	1		p_1	
@@ -146,18 +146,18 @@ c	net/minecraft/unmapped/C_5553933
 		p	8		volume	
 		p	9		pitch	
 c	net/minecraft/unmapped/C_6152184
-	f	Lnet/minecraft/unmapped/C_8848952;	f_3877914		f_3877914
-	m	()Lnet/minecraft/unmapped/C_5818647;	m_5696653		m_5696653
+	f	Lnet/minecraft/unmapped/C_8848952;	f_3877914		enderChest
+	m	()Lnet/minecraft/unmapped/C_5818647;	m_5696653		getEnderChest
 c	net/minecraft/unmapped/C_7059150
-	f	Ljava/nio/IntBuffer;	f_9570830	f_9570830	
-	f	Ljava/nio/ByteBuffer;	f_3718795		byteBuffer
-	f	[B	f_7324813		f_7324813
-	m	(Ljava/io/File;)Ljava/io/File;	m_0949415	m_0949415	
-		p	0		p_0	
-	m	([III)V	m_6889798	m_6889798	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	f	Ljava/nio/IntBuffer;	f_9570830	pixels	
+	f	Ljava/nio/ByteBuffer;	f_3718795		pixels
+	f	[B	f_7324813		colorBuffer
+	m	(Ljava/io/File;)Ljava/io/File;	m_0949415	nextScreenshotFile	
+		p	0		dir	
+	m	([III)V	m_6889798	resize	
+		p	0		pixels	
+		p	1		width	
+		p	2		height	
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_1566859;)V	m_3833868	handleClientStatus	
 		p	1		packet	
@@ -168,10 +168,10 @@ c	net/minecraft/unmapped/C_7773862
 	m	()Z	m_8325482	hasGui	
 	m	()Ljava/lang/String;	m_3739797	publish	
 	m	()V	m_7208530		onServerCrashed
-	m	(Lnet/minecraft/unmapped/C_5270789;)V	m_6011241		m_6011241
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_5270789;)V	m_6011241		addTickable
+		p	1			tickable
 c	net/minecraft/unmapped/C_7873567
-	f	Ljava/util/LinkedList;	f_7529188		scheduledBlockChanges
+	f	Ljava/util/LinkedList;	f_7529188		blockResets
 c	net/minecraft/unmapped/C_8299809
 	f	Lnet/minecraft/unmapped/C_5818647;	f_3639891		f_3639891
 	m	()V	m_5270584	onOpen	
@@ -257,103 +257,103 @@ c	net/minecraft/unmapped/C_9890847
 		p	7			p_7
 		p	8			p_8
 		p	9			p_9
-c	net/minecraft/unmapped/C_0657028		net/minecraft/unmapped/C_1514397__1
+c	net/minecraft/unmapped/C_0657028		net/minecraft/server/dedicated/gui/DedicatedServerGui__0657028
 	f	Ljavax/swing/JTextField;	f_0419683		f_0419683
 	f	Lnet/minecraft/unmapped/C_1514397;	f_9022158		f_9022158
 	m	(Lnet/minecraft/unmapped/C_1514397;Ljavax/swing/JTextField;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/awt/event/ActionEvent;)V	actionPerformed		actionPerformed
-		p	1			p_1
-c	net/minecraft/unmapped/C_0671443		net/minecraft/unmapped/C_0671443
-	f	Ljava/text/DecimalFormat;	f_7679413		f_7679413
-	f	[I	f_2154665		f_2154665
-	f	I	f_9029209		f_9029209
-	f	[Ljava/lang/String;	f_6408221		f_6408221
-	f	Lnet/minecraft/unmapped/C_7773862;	f_2657199		f_2657199
+		p	1			e
+c	net/minecraft/unmapped/C_0671443		net/minecraft/server/dedicated/gui/PlayerStatsGui
+	f	Ljava/text/DecimalFormat;	f_7679413		AVG_TICK_FORMAT
+	f	[I	f_2154665		memoryUsePercentage
+	f	I	f_9029209		memoryUsage
+	f	[Ljava/lang/String;	f_6408221		lines
+	f	Lnet/minecraft/unmapped/C_7773862;	f_2657199		server
 	m	(Lnet/minecraft/unmapped/C_7773862;)V	<init>		<init>
-		p	1			p_1
-	m	()V	m_9385904		m_9385904
-	m	([J)D	m_4327897		m_4327897
-		p	1			p_1
+		p	1			server
+	m	()V	m_9385904		update
+	m	([J)D	m_4327897		average
+		p	1			longs
 	m	(Ljava/awt/Graphics;)V	paint		paint
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0671443;)V	m_9247583		m_9247583
-		p	0			p_0
+		p	1			graphics
+	m	(Lnet/minecraft/unmapped/C_0671443;)V	m_9247583		update
+		p	0			statGui
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_0725273		net/minecraft/client/world/MultiplayerWorld__ScheduledBlockChange
+c	net/minecraft/unmapped/C_0725273		net/minecraft/client/world/ClientWorld__BlockReset
 	f	I	f_3560284		x
 	f	I	f_9059595		y
 	f	I	f_6096042		z
 	f	I	f_4843531		delay
-	f	I	f_2072161		blockId
+	f	I	f_2072161		block
 	f	I	f_5316112		metadata
-c	net/minecraft/unmapped/C_1514397		net/minecraft/unmapped/C_1514397
-	f	Ljava/util/logging/Logger;	f_1146431		f_1146431
-	f	Z	f_8807088		f_8807088
-	f	Lnet/minecraft/unmapped/C_1555023;	f_3187436		f_3187436
+c	net/minecraft/unmapped/C_1514397		net/minecraft/server/dedicated/gui/DedicatedServerGui
+	f	Ljava/util/logging/Logger;	f_1146431		LOGGER
+	f	Z	f_8807088		enabled
+	f	Lnet/minecraft/unmapped/C_1555023;	f_3187436		server
 	m	(Lnet/minecraft/unmapped/C_1555023;)V	<init>		<init>
-		p	1			p_1
-	m	()Ljavax/swing/JComponent;	m_9512626		m_9512626
-	m	()Ljavax/swing/JComponent;	m_8446826		m_8446826
-	m	()Ljavax/swing/JComponent;	m_7429561		m_7429561
-	m	()Z	m_2312769		m_2312769
-	m	(Lnet/minecraft/unmapped/C_1514397;)Lnet/minecraft/unmapped/C_1555023;	m_8717279		m_8717279
-		p	0			p_0
+		p	1			server
+	m	()Ljavax/swing/JComponent;	m_9512626		createStatsPanel
+	m	()Ljavax/swing/JComponent;	m_8446826		createPlaysPanel
+	m	()Ljavax/swing/JComponent;	m_7429561		createLogPanel
+	m	()Z	m_2312769		isEnabled
+	m	(Lnet/minecraft/unmapped/C_1514397;)Lnet/minecraft/unmapped/C_1555023;	m_8717279		getServerFrom
+		p	0			dedicatedServerGui
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_5410080		net/minecraft/unmapped/C_5410080
-	f	[I	f_4805501		f_4805501
-	f	I	f_2750305		f_2750305
-	f	Ljava/util/logging/Formatter;	f_5659727		f_5659727
-	f	Ljavax/swing/JTextArea;	f_6635672		f_6635672
+c	net/minecraft/unmapped/C_5410080		net/minecraft/server/dedicated/gui/LogHandler
+	f	[I	f_4805501		logDeltas
+	f	I	f_2750305		logDeltaIndex
+	f	Ljava/util/logging/Formatter;	f_5659727		formatter
+	f	Ljavax/swing/JTextArea;	f_6635672		textArea
 	m	(Ljavax/swing/JTextArea;)V	<init>		<init>
-		p	1			p_1
+		p	1			textArea
 	m	()V	close		close
 	m	()V	flush		flush
 	m	(Ljava/util/logging/LogRecord;)V	publish		publish
-		p	1			p_1
-c	net/minecraft/unmapped/C_5942562		net/minecraft/unmapped/C_0671443__1
-	f	Lnet/minecraft/unmapped/C_0671443;	f_3665490		f_3665490
+		p	1			logRecord
+c	net/minecraft/unmapped/C_5942562		net/minecraft/server/dedicated/gui/PlayerStatsGui__5942562
+	f	Lnet/minecraft/unmapped/C_0671443;	f_3665490		playerStatsGui
 	m	(Lnet/minecraft/unmapped/C_0671443;)V	<init>		<init>
 		p	1			p_1
 	m	(Ljava/awt/event/ActionEvent;)V	actionPerformed		actionPerformed
-		p	1			p_1
-c	net/minecraft/unmapped/C_6046858		net/minecraft/unmapped/C_6046858
-	f	Lnet/minecraft/unmapped/C_7773862;	f_5512775		f_5512775
-	f	I	f_0914474		f_0914474
+		p	1			e
+c	net/minecraft/unmapped/C_6046858		net/minecraft/server/dedicated/gui/PlayerListGui
+	f	Lnet/minecraft/unmapped/C_7773862;	f_5512775		server
+	f	I	f_0914474		tick
 	m	(Lnet/minecraft/unmapped/C_7773862;)V	<init>		<init>
-		p	1			p_1
+		p	1			server
 	m	()V	m_1976244		m_1976244
-c	net/minecraft/unmapped/C_7761411		net/minecraft/unmapped/C_1514397__2
+c	net/minecraft/unmapped/C_7761411		net/minecraft/server/dedicated/gui/DedicatedServerGui__7761411
 	f	Lnet/minecraft/unmapped/C_1514397;	f_4164647		f_4164647
 	m	(Lnet/minecraft/unmapped/C_1514397;)V	<init>		<init>
 		p	1			p_1
 	m	(Ljava/awt/event/FocusEvent;)V	focusGained		focusGained
-		p	1			p_1
-c	net/minecraft/unmapped/C_8184581		net/minecraft/unmapped/C_5410080__1
+		p	1			e
+c	net/minecraft/unmapped/C_8184581		net/minecraft/server/dedicated/gui/LogHandler__8184581
 	f	Lnet/minecraft/unmapped/C_5410080;	f_5601627		f_5601627
 	m	(Lnet/minecraft/unmapped/C_5410080;)V	<init>		<init>
 		p	1			p_1
 	m	(Ljava/util/logging/LogRecord;)Ljava/lang/String;	format		format
-		p	1			p_1
-c	net/minecraft/unmapped/C_8217617		net/minecraft/unmapped/C_8217617
-	f	Ljava/util/ArrayList;	f_7346654		f_7346654
-	f	Ljava/util/HashMap;	f_0674534		f_0674534
-	f	Ljava/net/ServerSocket;	f_3454487		f_3454487
-	f	Ljava/lang/Thread;	f_2820231		f_2820231
-	f	I	f_2189369		f_2189369
+		p	1			logRecord
+c	net/minecraft/unmapped/C_8217617		net/minecraft/server/dedicated/DedicatedConnectionListener
+	f	Ljava/util/ArrayList;	f_7346654		pendingConnections
+	f	Ljava/util/HashMap;	f_0674534		addresses
+	f	Ljava/net/ServerSocket;	f_3454487		socket
+	f	Ljava/lang/Thread;	f_2820231		thread
+	f	I	f_2189369		connectionCounter
 	m	(Lnet/minecraft/unmapped/C_1555023;Ljava/net/InetAddress;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_8983523;)V	m_9409661		m_9409661
-		p	1			p_1
+		p	1			server
+		p	2			address
+		p	3			port
+	m	(Lnet/minecraft/unmapped/C_8983523;)V	m_9409661		addPendingConnection
+		p	1			connection
 	m	()V	m_0181861		m_0181861
 	m	()Lnet/minecraft/unmapped/C_1555023;	m_1002789		m_1002789
-	m	(Ljava/net/Socket;)V	m_0501339		m_0501339
-		p	1			p_1
-	m	(Ljava/net/InetAddress;)Z	m_8373716		m_8373716
-		p	0			p_0
+	m	(Ljava/net/Socket;)V	m_0501339		close
+		p	1			socket
+	m	(Ljava/net/InetAddress;)Z	m_8373716		isLocal
+		p	0			address
 	m	()Lnet/minecraft/unmapped/C_7773862;	m_7524482		m_7524482
 	m	(Lnet/minecraft/unmapped/C_8217617;)Ljava/net/ServerSocket;	m_3282864		m_3282864
 		p	0			p_0
@@ -366,7 +366,7 @@ c	net/minecraft/unmapped/C_8217617		net/minecraft/unmapped/C_8217617
 	m	(Lnet/minecraft/unmapped/C_8217617;Lnet/minecraft/unmapped/C_8983523;)V	m_7365314		m_7365314
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/unmapped/C_9708685		net/minecraft/unmapped/C_8217617__1
+c	net/minecraft/unmapped/C_9708685		net/minecraft/server/dedicated/DedicatedConnectionListener__9708685
 	f	Lnet/minecraft/unmapped/C_1555023;	f_7916304		f_7916304
 	f	Lnet/minecraft/unmapped/C_8217617;	f_0644534		f_0644534
 	m	(Lnet/minecraft/unmapped/C_8217617;Ljava/lang/String;Lnet/minecraft/unmapped/C_1555023;)V	<init>		<init>

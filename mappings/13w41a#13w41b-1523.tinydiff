@@ -16,7 +16,7 @@ c	net/minecraft/unmapped/C_0089468
 	m	()Ljava/lang/String;	m_1689143		getOwner
 	m	()Ljava/lang/String;	m_3370684		getObjective
 	m	()I	m_3876860		getScore
-	m	()I	m_9644791		getAction
+	m	()I	m_9644791		getUpdateMode
 c	net/minecraft/unmapped/C_0332750
 	f	Ljava/lang/String;	f_7210216	message	
 	f	Lnet/minecraft/unmapped/C_9550253;	f_7210216		message
@@ -34,7 +34,7 @@ c	net/minecraft/unmapped/C_1024668
 	m	()F	m_5744632		getSaturation
 c	net/minecraft/unmapped/C_1063627
 	m	(Lnet/minecraft/unmapped/C_8949651;)V	<init>	<init>	
-		p	1		statHandler	
+		p	1		stats	
 	m	(Ljava/util/Map;)V	<init>		<init>
 		p	1			stats
 	m	()Ljava/util/Map;	m_2514966		getStats
@@ -60,16 +60,11 @@ c	net/minecraft/unmapped/C_1514880
 	m	()B	m_4746722		getHeadYaw
 c	net/minecraft/unmapped/C_1567607
 	m	()J	m_5846259		getTimeMillis
-c	net/minecraft/unmapped/C_1747432	net/minecraft/C_07fmxxrgd	net/minecraft/network/packet/s2c/play/PlayerMoveS2CPacket
-	f	D	f_3161483	f_3161483	
-	f	Z	f_1707615	f_1707615	
-	f	Z	f_8293346	f_8293346	
-	f	D	f_6367415	f_6367415	x
-	f	D	f_3290622	f_3290622	y
-	f	D	f_9715207	f_9715207	z
-	f	F	f_3114225	f_3114225	yaw
-	f	F	f_2888628	f_2888628	pitch
-	f	Z	f_3507537	f_3507537	onGround
+c	net/minecraft/unmapped/C_1747432
+	f	D	f_3161483	y	
+	f	Z	f_1707615	hasPos	
+	f	Z	f_8293346	hasAngles	
+	f	D	f_3290622	minY	y
 	m	(DDDFFZ)V	<init>		<init>
 		p	1			x
 		p	3			y
@@ -83,24 +78,22 @@ c	net/minecraft/unmapped/C_1747432	net/minecraft/C_07fmxxrgd	net/minecraft/netwo
 	m	()F	m_8696198		getYaw
 	m	()F	m_7581272		getPitch
 	m	()Z	m_5072312		getOnGround
-	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_4220269	m_4220269	apply
 c	net/minecraft/unmapped/C_2049773
 	m	()I	m_9955975		getSlot
 c	net/minecraft/unmapped/C_2167183
 	f	I	f_9175774	worldHeight	
 	f	Lnet/minecraft/unmapped/C_1518925;	f_3213198	generatorType	
-	f	I	f_4647807	dimensionId	worldHeight
 	m	(ILnet/minecraft/unmapped/C_9550096;Lnet/minecraft/unmapped/C_1518925;ILnet/minecraft/unmapped/C_4223822;)V	<init>	<init>	
-		p	1		dimensionId	
+		p	1		dimension	
 		p	2		difficulty	
 		p	3		generatorType	
 		p	4		worldHeight	
 		p	5		gameMode	
 	m	(ILnet/minecraft/unmapped/C_9550096;Lnet/minecraft/unmapped/C_4223822;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()I	m_0277191		getDimensionId
+		p	1			dimension
+		p	2			difficulty
+		p	3			gameMode
+	m	()I	m_0277191		getDimension
 	m	()Lnet/minecraft/unmapped/C_9550096;	m_9342684		getDifficulty
 	m	()Lnet/minecraft/unmapped/C_4223822;	m_9637459		getGameMode
 c	net/minecraft/unmapped/C_2183633
@@ -130,7 +123,7 @@ c	net/minecraft/unmapped/C_3027966
 	m	()I	m_4938445		getZ
 	m	()B	m_0969940		getYaw
 	m	()B	m_0277560		getPitch
-	m	()I	m_3645800		getHeldItemId
+	m	()I	m_3645800		getMainHandItem
 c	net/minecraft/unmapped/C_3294178
 	f	I	f_1848356	action	
 	m	(Lnet/minecraft/unmapped/C_0539808;IIII)V	<init>	<init>	
@@ -208,7 +201,7 @@ c	net/minecraft/unmapped/C_4052742
 c	net/minecraft/unmapped/C_4242413
 	m	()I	m_9248223		getMenuId
 	m	()I	m_9963062		getSlotId
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_9033198		getStack
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_9033198		getItem
 c	net/minecraft/unmapped/C_4320303
 	m	()I	m_0034296		getMenuId
 	m	()I	m_7779849		getDataId
@@ -291,7 +284,7 @@ c	net/minecraft/unmapped/C_6403501
 c	net/minecraft/unmapped/C_6465203
 	m	()I	m_5660781		getId
 	m	()I	m_7113811		getAction
-c	net/minecraft/unmapped/C_6530806	net/minecraft/client/network/handler/ClientPlayNetworkHandler__2	net/minecraft/client/render/texture/TextureAtlas__3
+c	net/minecraft/unmapped/C_6530806	net/minecraft/client/network/handler/ClientPlayNetworkHandler__6530806	net/minecraft/client/render/texture/TextureAtlas__6530806
 	f	Lnet/minecraft/unmapped/C_9550253;	f_4088389	f_4088389	
 	f	Lnet/minecraft/unmapped/C_5722573;	f_9198106	f_9198106	
 	f	Lnet/minecraft/unmapped/C_4257480;	f_4088389		sprite
@@ -302,7 +295,6 @@ c	net/minecraft/unmapped/C_6530806	net/minecraft/client/network/handler/ClientPl
 	m	(Lnet/minecraft/unmapped/C_6088271;Lnet/minecraft/unmapped/C_4257480;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	()Ljava/lang/String;	m_1846078	m_1846078	call
 c	net/minecraft/unmapped/C_6583725
 	m	()I	m_9382166		getType
 c	net/minecraft/unmapped/C_6794980
@@ -317,7 +309,7 @@ c	net/minecraft/unmapped/C_7037764
 c	net/minecraft/unmapped/C_7197771
 	m	()I	m_8037492		getType
 	m	()I	m_2552946		getId
-	m	()I	m_5834650		getHolderId
+	m	()I	m_5834650		getAttachedId
 c	net/minecraft/unmapped/C_7345897
 	f	B	f_4906465	effect	
 	f	I	f_4906465		effect
@@ -336,16 +328,16 @@ c	net/minecraft/unmapped/C_7759616
 	m	(ILnet/minecraft/unmapped/C_5553933;)Lnet/minecraft/unmapped/C_8307016;	m_4651756		getMapData
 		p	0			id
 		p	1			world
-c	net/minecraft/unmapped/C_7784888	net/minecraft/C_80gpjzzer	
+c	net/minecraft/unmapped/C_7784888	net/minecraft/network/packet/s2c/play/PlayerMoveS2CPacket__PositionAndAngles	
 	m	()V	<init>	<init>	
 	m	(DDDDFFZ)V	<init>	<init>	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	9		p_9	
-		p	10		p_10	
-		p	11		p_11	
+		p	1		x	
+		p	3		minY	
+		p	5		y	
+		p	7		z	
+		p	9		yaw	
+		p	10		pitch	
+		p	11		onGround	
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_4792371	m_4792371	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_6110406	m_6110406	
@@ -354,13 +346,13 @@ c	net/minecraft/unmapped/C_7784888	net/minecraft/C_80gpjzzer
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8100953
 	m	()I	m_8299457		getMenuId
-	m	()[Lnet/minecraft/unmapped/C_2454309;	m_0424709		getStacks
+	m	()[Lnet/minecraft/unmapped/C_2454309;	m_0424709		getItems
 c	net/minecraft/unmapped/C_8105098
 	m	()Z	m_7685041		checkIs64Bit
 c	net/minecraft/unmapped/C_8120996
 	m	()I	m_4835053		getAction
 	m	()I	m_8157139		getData
-c	net/minecraft/unmapped/C_8135083	net/minecraft/C_58jtgmcuh	
+c	net/minecraft/unmapped/C_8135083	net/minecraft/network/packet/s2c/play/PlayerMoveS2CPacket__Angles	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_4792371	m_4792371	
 		p	1		p_1	
@@ -378,7 +370,7 @@ c	net/minecraft/unmapped/C_8385625
 	m	()Ljava/lang/String;	m_9444730		getPlayerName
 	m	()Z	m_9312938		getOnline
 	m	()I	m_7265629		getPing
-c	net/minecraft/unmapped/C_8434849	net/minecraft/C_48afgrwmh	
+c	net/minecraft/unmapped/C_8434849	net/minecraft/network/packet/s2c/play/PlayerMoveS2CPacket__Position	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_4792371	m_4792371	
 		p	1		p_1	
@@ -406,7 +398,7 @@ c	net/minecraft/unmapped/C_8731920
 	m	()I	m_3128706		getOwnerId
 c	net/minecraft/unmapped/C_8915528
 	m	()I	m_7474125		getSlot
-c	net/minecraft/unmapped/C_9086718	net/minecraft/client/network/handler/ClientPlayNetworkHandler__1	net/minecraft/client/render/texture/TextureAtlas__1
+c	net/minecraft/unmapped/C_9086718	net/minecraft/client/network/handler/ClientPlayNetworkHandler__9086718	net/minecraft/client/render/texture/TextureAtlas__9086718
 	f	Lnet/minecraft/unmapped/C_0332750;	f_0696860	f_0696860	
 	f	Lnet/minecraft/unmapped/C_5722573;	f_0426376	f_0426376	
 	f	Lnet/minecraft/unmapped/C_4257480;	f_0696860		sprite
@@ -417,7 +409,6 @@ c	net/minecraft/unmapped/C_9086718	net/minecraft/client/network/handler/ClientPl
 	m	(Lnet/minecraft/unmapped/C_6088271;Lnet/minecraft/unmapped/C_4257480;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	()Ljava/lang/String;	m_8332681	m_8332681	call
 c	net/minecraft/unmapped/C_9166080
 	m	()I	m_1080469		getSlot
 	m	()Ljava/lang/String;	m_3019243		getObjective
@@ -449,15 +440,12 @@ c	net/minecraft/unmapped/C_9232485
 	m	()Lnet/minecraft/unmapped/C_9550096;	m_3668053		getDifficulty
 	m	()I	m_8776777		getMaxPlayerCount
 c	net/minecraft/unmapped/C_9297634
-	f	I	f_0186924	x	
-	f	I	f_3448257	y	x
-	f	I	f_9889829	z	y
-	f	I	f_9445493	action	z
+	f	I	f_0186924	action	
 	m	(IIII)V	<init>	<init>	
-		p	1		x	
-		p	2		y	
-		p	3		z	
-		p	4		action	
+		p	1		action	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 	m	(III)V	<init>		<init>
 		p	1			x
 		p	2			y
@@ -501,7 +489,7 @@ c	net/minecraft/unmapped/C_9560633
 	m	()[B	m_7000354		getData
 c	net/minecraft/unmapped/C_9594057
 	m	()I	m_4532974		getSlotId
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_1625028		getStack
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_1625028		getItem
 c	net/minecraft/unmapped/C_9615057
 	m	()D	m_7441248		getX
 	m	()D	m_8055298		getMinY
@@ -516,10 +504,10 @@ c	net/minecraft/unmapped/C_9615057
 		p	1			hasPos
 c	net/minecraft/unmapped/C_9663005
 	m	()I	m_0927276		getMenuId
-	m	()I	m_1279457		getSlotId
+	m	()I	m_1279457		getSlot
 	m	()I	m_6888963		getClickData
 	m	()S	m_5403604		getActionId
-	m	()Lnet/minecraft/unmapped/C_2454309;	m_2968944		getStack
+	m	()Lnet/minecraft/unmapped/C_2454309;	m_2968944		getItem
 	m	()I	m_9225732		getAction
 c	net/minecraft/unmapped/C_9959562
 	m	()I	m_2844091		getX
@@ -529,7 +517,7 @@ c	net/minecraft/unmapped/C_9959562
 	m	()I	m_6081548		getData
 c	net/minecraft/unmapped/C_9985439
 	m	()I	m_7734823		getId
-c	net/minecraft/unmapped/C_1773920		net/minecraft/client/render/texture/TextureAtlasSprite__1
+c	net/minecraft/unmapped/C_1773920		net/minecraft/client/render/texture/TextureAtlasSprite__1773920
 	f	[[I	f_7203578		frames
 	f	Lnet/minecraft/unmapped/C_4257480;	f_6520502		sprite
 	m	(Lnet/minecraft/unmapped/C_4257480;[[I)V	<init>		<init>
@@ -537,13 +525,13 @@ c	net/minecraft/unmapped/C_1773920		net/minecraft/client/render/texture/TextureA
 		p	2			p_2
 	m	()Ljava/lang/String;	m_8826304		call
 	m	()Ljava/lang/Object;	call		call
-c	net/minecraft/unmapped/C_3525592		net/minecraft/client/Minecraft__6
+c	net/minecraft/unmapped/C_3525592		net/minecraft/client/Minecraft__3525592
 	f	Lnet/minecraft/unmapped/C_8105098;	f_8194127		f_8194127
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>		<init>
 		p	1			p_1
 	m	()Ljava/lang/String;	m_0186080		call
 	m	()Ljava/lang/Object;	call		call
-c	net/minecraft/unmapped/C_7056538		net/minecraft/client/render/texture/TextureAtlas__2
+c	net/minecraft/unmapped/C_7056538		net/minecraft/client/render/texture/TextureAtlas__7056538
 	f	Lnet/minecraft/unmapped/C_4257480;	f_4173684		sprite
 	f	Lnet/minecraft/unmapped/C_6088271;	f_2606771		texture
 	m	(Lnet/minecraft/unmapped/C_6088271;Lnet/minecraft/unmapped/C_4257480;)V	<init>		<init>
@@ -551,25 +539,3 @@ c	net/minecraft/unmapped/C_7056538		net/minecraft/client/render/texture/TextureA
 		p	2			p_2
 	m	()Ljava/lang/String;	m_1624694		call
 	m	()Ljava/lang/Object;	call		call
-c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_1747432;)V	m_8434667
-		p	1		p_1	packet
-c	net/minecraft/unmapped/C_2619780	net/minecraft/client/Minecraft__13	net/minecraft/client/Minecraft__14
-	m	()Ljava/lang/String;	m_8252660	m_8252660	call
-c	net/minecraft/unmapped/C_4394019	net/minecraft/client/Minecraft__10	net/minecraft/client/Minecraft__11
-	m	()Ljava/lang/String;	m_8418756	m_8418756	call
-c	net/minecraft/unmapped/C_4563671	net/minecraft/client/Minecraft__8	net/minecraft/client/Minecraft__9
-	m	()Ljava/lang/String;	m_2473095	m_2473095	call
-c	net/minecraft/unmapped/C_5100772	net/minecraft/client/Minecraft__12	net/minecraft/client/Minecraft__13
-	m	()Ljava/lang/String;	m_3863477	m_3863477	call
-c	net/minecraft/unmapped/C_5160100	net/minecraft/client/Minecraft__9	net/minecraft/client/Minecraft__10
-	m	()Ljava/lang/String;	m_0789350	m_0789350	call
-c	net/minecraft/unmapped/C_5362986	net/minecraft/client/Minecraft__7	net/minecraft/client/Minecraft__8
-c	net/minecraft/unmapped/C_8612369	net/minecraft/client/Minecraft__14	net/minecraft/client/Minecraft__15
-	m	()Ljava/lang/String;	m_3026083	m_3026083	call
-c	net/minecraft/unmapped/C_9216568	net/minecraft/client/Minecraft__11	net/minecraft/client/Minecraft__12
-	m	()Ljava/lang/String;	m_2029182	m_2029182	call
-c	net/minecraft/unmapped/C_7484650	net/minecraft/client/network/handler/ClientPlayNetworkHandler__3	net/minecraft/client/network/handler/ClientPlayNetworkHandler__1
-	f	Ljava/lang/String;	f_2481949	f_2481949	name
-	f	Lnet/minecraft/unmapped/C_5722573;	f_5967342	f_5967342	networkHandler
-c	net/minecraft/unmapped/C_2388842	net/minecraft/client/Minecraft__6	net/minecraft/client/Minecraft__7

@@ -29,7 +29,7 @@ c	net/minecraft/unmapped/C_0124899
 	f	Ljava/lang/Object;	f_3760132		f_3760132
 	f	Ljava/util/Set;	f_6021447		f_6021447
 	f	Z	f_7568416		f_7568416
-c	net/minecraft/unmapped/C_0160606	net/minecraft/inventory/menu/EnchantingTableMenu__2	
+c	net/minecraft/unmapped/C_0160606	net/minecraft/inventory/menu/EnchantingTableMenu__0160606	
 	f	Lnet/minecraft/unmapped/C_9368229;	f_9732692	f_9732692	
 	m	(Lnet/minecraft/unmapped/C_9368229;Ljava/lang/String;I)V	<init>	<init>	
 		p	1		p_1	
@@ -61,7 +61,7 @@ c	net/minecraft/unmapped/C_0658987
 	m	()Ljava/lang/String;	m_4226010	getName	
 	m	()Ljava/lang/String;	toString	toString	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		object	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_1014639
 	m	()V	m_1913203	m_1913203	
 c	net/minecraft/unmapped/C_1161898
@@ -71,18 +71,18 @@ c	net/minecraft/unmapped/C_1161898
 c	net/minecraft/unmapped/C_1197137	net/minecraft/enchantment/EnchantmentHelper	
 	f	Ljava/util/Random;	f_9795591	RANDOM	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_7400754;Lnet/minecraft/unmapped/C_1161898;)I	m_7252291	m_7252291	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_7400754;Lnet/minecraft/unmapped/C_1161898;)I	m_7252291	modifyProtection	
+		p	0		player	
+		p	1		source	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_9038482	ENCHANTING_TABLE	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_8842972	BREWING_STAND	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_0227401	CAULDRON	
-	f	Lnet/minecraft/unmapped/C_1241852;	f_5209106	END_PORTAL	
-	f	Lnet/minecraft/unmapped/C_1241852;	f_3848822	END_PORTAL_FRAME	
+	f	Lnet/minecraft/unmapped/C_1241852;	f_5209106	SKY_PORTAL	
+	f	Lnet/minecraft/unmapped/C_1241852;	f_3848822	SKY_PORTAL_FRAME	
 	m	()V	m_1913203	resetShape	
-c	net/minecraft/unmapped/C_1318505
+c	net/minecraft/unmapped/C_1318505	net/minecraft/block/entity/EnchantingTableBlockEntity	net/minecraft/block/entity/CauldronBlockEntity
 	f	I	f_5551221	ticks	
 	f	F	f_2178062	pageAngle	
 	f	F	f_9264142	lastPageAngle	
@@ -94,8 +94,8 @@ c	net/minecraft/unmapped/C_1318505
 	f	F	f_9432827	lastPageRotation	
 	f	F	f_2008117	rotation	
 	f	Ljava/util/Random;	f_7599560	RANDOM	
-	f	I	f_2866569		f_2866569
-	f	I	f_3736945		f_3736945
+	f	I	f_2866569		liquidLevel
+	f	I	f_3736945		liquidId
 	m	()V	m_1055699	m_1055699	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_4740132		m_4740132
@@ -113,7 +113,7 @@ c	net/minecraft/unmapped/C_2454309
 c	net/minecraft/unmapped/C_2810918	net/minecraft/inventory/SimpleInventory	
 	f	Ljava/lang/String;	f_0434555	name	
 	f	I	f_5891820	size	
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_5501598	stacks	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_5501598	items	
 	f	Ljava/util/List;	f_8406143	listeners	
 	m	(Ljava/lang/String;I)V	<init>	<init>	
 		p	1		name	
@@ -180,16 +180,16 @@ c	net/minecraft/unmapped/C_3481595
 	m	()V	m_1913203	m_1913203	
 c	net/minecraft/unmapped/C_3488550
 	f	Z	f_1589902	harmful	
-	f	D	f_5551329	effectiveness	
+	f	D	f_5551329	durationMultiplier	
 	f	I	f_5976054	potionColor	
 	m	(IZI)V	<init>	<init>	
 		p	1		id	
 		p	2		harmful	
 		p	3		potionColor	
-	m	()Ljava/lang/String;	m_8870654	m_8870654	
-	m	(D)Lnet/minecraft/unmapped/C_3488550;	m_3966373	setEffectiveness	
-		p	1		effectiveness	
-	m	()D	m_8183785	getEffectiveness	
+	m	()Ljava/lang/String;	m_8870654	getTranslationKey	
+	m	(D)Lnet/minecraft/unmapped/C_3488550;	m_3966373	setDurationMultiplier	
+		p	1		durationMultiplier	
+	m	()D	m_8183785	getDurationMultiplier	
 	m	(I)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_3755722
@@ -198,11 +198,11 @@ c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_6149712	CAULDRON	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_2985165	EYE_OF_ENDER	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_7606650		POTION
-	m	()Ljava/lang/String;	m_7871327	getBrewingRecipe	
-	m	()Z	m_1042816	hasBrewingRecipe	
+	m	()Ljava/lang/String;	m_7871327	asPotionIngredient	
+	m	()Z	m_1042816	isPotionIngredient	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_0804807	isEnchantable	
 		p	1		stack	
-c	net/minecraft/unmapped/C_3874411	net/minecraft/entity/living/mob/GolemEntity	
+c	net/minecraft/unmapped/C_3874411	net/minecraft/entity/mob/GolemEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	(F)V	m_0228715	m_0228715	
@@ -253,8 +253,8 @@ c	net/minecraft/unmapped/C_5272265	net/minecraft/world/gen/structure/StrongholdP
 	f	Z	f_2097441	hasSpawner	
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
-		p	2		p_2	
-		p	3		box	
+		p	2		random	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -284,19 +284,21 @@ c	net/minecraft/unmapped/C_5303533	net/minecraft/enchantment/ProtectionEnchantme
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_5542904	net/minecraft/block/entity/BrewingStandBlockEntity	
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_9868739	inputs	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_9868739	inventory	
+		c	Brewing stand inventory slots. 0-2 are potion slots, 3 is the ingredient slot.	
 	f	I	f_9696595	timer	
-	f	I	f_2101163	hasInput	
+	f	I	f_2101163	hasPotion	
+		c	For each potion slot, whether that slot has a potion in it.	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2448201	m_2448201	
 	m	()I	m_2930514	m_2930514	
 	m	()V	m_1055699	m_1055699	
 	m	()I	m_7008997	getTimer	
-	m	()Z	m_1649218	canFinishBrewing	
-	m	()V	m_8936459	finishBrewing	
-	m	(ILnet/minecraft/unmapped/C_2454309;)I	m_1352698	updatePotion	
+	m	()Z	m_1649218	canBrew	
+	m	()V	m_8936459	brew	
+	m	(ILnet/minecraft/unmapped/C_2454309;)I	m_1352698	applyIngredient	
 		p	1		metadata	
-		p	2		potion	
+		p	2		ingredient	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_4740132	m_4740132	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7291294	m_7291294	
@@ -314,7 +316,7 @@ c	net/minecraft/unmapped/C_5542904	net/minecraft/block/entity/BrewingStandBlockE
 		p	1		p_1	
 	m	()V	m_6217589	m_6217589	
 	m	()V	m_7226012	m_7226012	
-	m	()I	m_7362732	findFilledInputs	
+	m	()I	m_7362732	findHasPotion	
 c	net/minecraft/unmapped/C_6106967	net/minecraft/inventory/InventoryListener	
 	m	(Lnet/minecraft/unmapped/C_2810918;)V	m_0825880	onInventoryChanged	
 		p	1		inventory	
@@ -343,17 +345,17 @@ c	net/minecraft/unmapped/C_6675180
 	m	(Ljava/lang/Class;)Ljava/lang/Class;	m_2019250	setType	
 		p	0		type	
 	m	(Lnet/minecraft/unmapped/C_6207273;Ljava/util/List;Ljava/util/Random;IIIII)Lnet/minecraft/unmapped/C_1678345;	m_7522149		createPiece
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	0			weight
+		p	1			pieces
+		p	2			random
+		p	3			x
+		p	4			y
+		p	5			z
+		p	6			facing
+		p	7			generationDepth
 c	net/minecraft/unmapped/C_6849228
-	f	Z	f_3840639	recheckGap	
-c	net/minecraft/unmapped/C_6873751	net/minecraft/world/gen/structure/StrongholdPieces__EndPortalRoom__1	
+	f	Z	f_3840639	recheckGaps	
+c	net/minecraft/unmapped/C_6873751	net/minecraft/world/gen/structure/StrongholdPieces__EndPortalRoom__6873751	
 	f	Lnet/minecraft/unmapped/C_5272265;	f_5743706	f_5743706	
 	m	(Lnet/minecraft/unmapped/C_5272265;)V	<init>	<init>	
 		p	1		p_1	
@@ -363,7 +365,7 @@ c	net/minecraft/unmapped/C_6873751	net/minecraft/world/gen/structure/StrongholdP
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/unmapped/C_7030522	net/minecraft/block/EndPortalBlock	
+c	net/minecraft/unmapped/C_7030522	net/minecraft/block/SkyPortalBlock	
 	m	(ILnet/minecraft/unmapped/C_8048208;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -383,7 +385,7 @@ c	net/minecraft/unmapped/C_7030522	net/minecraft/block/EndPortalBlock
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/unmapped/C_7199680	net/minecraft/inventory/menu/EnchantingTableMenu__1	
+c	net/minecraft/unmapped/C_7199680	net/minecraft/inventory/menu/EnchantingTableMenu__7199680	
 	f	Lnet/minecraft/unmapped/C_9368229;	f_4644346	f_4644346	
 	m	(Lnet/minecraft/unmapped/C_9368229;Lnet/minecraft/unmapped/C_5818647;III)V	<init>	<init>	
 		p	1		p_1	
@@ -395,19 +397,19 @@ c	net/minecraft/unmapped/C_7199680	net/minecraft/inventory/menu/EnchantingTableM
 		p	1		p_1	
 c	net/minecraft/unmapped/C_7400754
 	m	()Ljava/util/List;	m_0885021	m_0885021	
-c	net/minecraft/unmapped/C_7765350	net/minecraft/unmapped/C_7765350	
-	f	Lnet/minecraft/unmapped/C_0230498;	f_5764830	f_5764830	
-	f	I	f_8188234	f_8188234	
+c	net/minecraft/unmapped/C_7765350	net/minecraft/enchantment/EnchantmentEntry	
+	f	Lnet/minecraft/unmapped/C_0230498;	f_5764830	enchantment	
+	f	I	f_8188234	level	
 c	net/minecraft/unmapped/C_8124234
 	m	()V	m_1913203	m_1913203	
 c	net/minecraft/unmapped/C_8253973
 	m	()Z	m_8006655	m_8006655	
 c	net/minecraft/unmapped/C_8525326	net/minecraft/util/profiler/Profiler	
-	f	Z	f_6348242	isProfiling	
+	f	Z	f_6348242	profiling	
 	f	Ljava/util/List;	f_7191707	locations	
 	f	Ljava/util/List;	f_2607920	times	
 	f	Ljava/lang/String;	f_2076640	currentLocation	
-	f	Ljava/util/Map;	f_0376908	locationToTime	
+	f	Ljava/util/Map;	f_0376908	timesByLocation	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)V	m_8238460	push	
 		p	0		location	
@@ -416,13 +418,13 @@ c	net/minecraft/unmapped/C_8525326	net/minecraft/util/profiler/Profiler
 		p	0		location	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_8574306
-	m	(I)Ljava/util/List;	m_1083787	getEffectsFromMetadata	
+	m	(I)Ljava/util/List;	m_1083787	getPotionEffects	
 		p	1		metadata	
 c	net/minecraft/unmapped/C_8595425
-	f	Ljava/lang/String;	f_6342113	UNCRAFTABLE	
+	f	Ljava/lang/String;	f_6342113	NONE	
 	f	Ljava/lang/String;	f_2825102	SUGAR	
 	f	Ljava/lang/String;	f_3716469	GHAST_TEAR	
-	f	Ljava/lang/String;	f_9514920	POISON	
+	f	Ljava/lang/String;	f_9514920	SPIDER_EYE	
 	f	Ljava/lang/String;	f_1363854	FERMENTED_SPIDER_EYE	
 	f	Ljava/lang/String;	f_9120308	BLAZE_POWDER	
 	f	Ljava/lang/String;	f_1284936	MAGMA_CREAM	
@@ -430,19 +432,20 @@ c	net/minecraft/unmapped/C_8595425
 	f	Ljava/lang/String;	f_7038077	GLOWSTONE	
 	m	(IZ)Ljava/util/List;	m_4849770	getStatusEffects	
 		p	0		metadata	
-		p	1		ignoreUsability	
-	m	(IIZZZ)I	m_4331705	updateMetadata	
+		p	1		custom	
+	m	(IIZZZ)I	m_4331705	modifyMetadata	
 		p	0		metadata	
 		p	1		flag	
-		p	2		remove	
+		p	2		disable	
 		p	3		toggle	
-		p	4		clear	
-	m	(ILjava/lang/String;)I	m_7329318	updateMetadata	
+		p	4		require	
+	m	(ILjava/lang/String;)I	m_7329318	applyIngredient	
+		c	Performs the next step in a brewing recipe by applying the given ingredient to the\ngiven potion item metadata.\n<p>\nThe ingredient string encodes how to modify the potion through operations on the item\nmetadata. This is mostly done through operations on specific "flags". A flag {@code n}\nrepresents the {@code n}th least significant bit in the item metadata.\n<p>\nThe ingredient string is evaluated from left to right, as a series of statements,\nwhere each statement is an operator-flag pair. Numbers represent flags, while non-\ndigit characters represent operators. Any operator without a number directly following\nit is ignored.\n<p>\nThere are four operators ingredients can use:\n<br>- '+': enables the flag\n<br>- '-': disables the flag\n<br>- '!': toggles the flag\n<br>- '&': requires the flag to be enabled, clears the entire item metadata otherwise\n<p>\nWhile the '+', '-', and '!' operators only modify single flags, the '&' operator can\nmodify the whole item metadata. This means an '&' operation can override any other\noperations preceding it.\n<p>\nAs an example, let's apply the following ingredient\n<br> {@code "+0-1!2&3+1-2!3"}\n<br> on the following metadata {@code 0b0011} (truncated to four bits for\nreadability).\n<p>\nWe break the expression into its component statements and apply them one by one.\n<p>\n{@code "+0"} enables the {@code 0} flag, metadata is now {@code 0b0011}.\n<p>\n{@code "-1"} disables the {@code 1} flag, metadata is now {@code 0b0001}.\n<p>\n{@code "!2"} toggles the {@code 2} flag, metadata is now {@code 0b0101}.\n<p>\n{@code "&3"} requires the {@code 3} flag, metadata is now {@code 0b0000}.\n<p>\n{@code "+1"} enables the {@code 1} flag, metadata is now {@code 0b0010}.\n<p>\n{@code "-2"} disables the {@code 2} flag, metadata is now {@code 0b0010}.\n<p>\n{@code "!3"} toggles the {@code 3} flag, metadata is now {@code 0b0110}.	
 		p	0		metadata	
-		p	1		recipe	
+		p	1		ingredient	
 	m	(I)Ljava/util/List;	m_4849770		getStatusEffects
 		p	0			p_0
-c	net/minecraft/unmapped/C_8792738	net/minecraft/block/entity/EndPortalBlockEntity	
+c	net/minecraft/unmapped/C_8792738	net/minecraft/block/entity/SkyPortalBlockEntity	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_8853985	net/minecraft/inventory/menu/BrewingStandMenu	
 	f	Lnet/minecraft/unmapped/C_5542904;	f_2548064	brewingStand	
@@ -477,7 +480,7 @@ c	net/minecraft/unmapped/C_9070697	net/minecraft/inventory/menu/BrewingStandMenu
 		p	1		p_1	
 	m	()I	m_8462429	m_8462429	
 c	net/minecraft/unmapped/C_9368229	net/minecraft/inventory/menu/EnchantingTableMenu	
-	f	Lnet/minecraft/unmapped/C_5818647;	f_0850353	enchantingTable	
+	f	Lnet/minecraft/unmapped/C_5818647;	f_0850353	inventory	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_9756379	world	
 	f	I	f_2094191	x	
 	f	I	f_5817887	y	
@@ -548,14 +551,14 @@ c	net/minecraft/unmapped/C_9932820	net/minecraft/block/CauldronBlock
 	m	(ILjava/util/Random;)I	m_7534654	m_7534654	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_9971267	net/minecraft/world/gen/structure/StrongholdPieces__1	
+c	net/minecraft/unmapped/C_9971267	net/minecraft/world/gen/structure/StrongholdPieces__9971267	
 	m	(Ljava/lang/Class;II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	(I)Z	m_8963643	m_8963643	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_9986135	net/minecraft/block/EndPortalFrameBlock	
+c	net/minecraft/unmapped/C_9986135	net/minecraft/block/SkyPortalFrameBlock	
 	m	(I)V	<init>	<init>	
 		p	1		id	
 	m	(II)I	m_8325719	m_8325719	
@@ -568,9 +571,8 @@ c	net/minecraft/unmapped/C_9986135	net/minecraft/block/EndPortalFrameBlock
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_9992501
-	m	(Lnet/minecraft/unmapped/C_3292284;I)V	m_4701203	teleportToDimension	
+	m	(Lnet/minecraft/unmapped/C_3292284;I)V	m_4701203	changeDimension	
 		p	1		player	
 		p	2		dimension	
-	m	(Lnet/minecraft/unmapped/C_3292284;)V	m_4701203		teleportToDimension
+	m	(Lnet/minecraft/unmapped/C_3292284;)V	m_4701203		changeDimension
 		p	1			player
-c	net/minecraft/unmapped/C_8455444	net/minecraft/world/gen/structure/StrongholdPieces__2	net/minecraft/world/gen/structure/StrongholdPieces__1

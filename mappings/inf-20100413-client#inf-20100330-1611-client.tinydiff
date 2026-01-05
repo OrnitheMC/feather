@@ -1,42 +1,50 @@
 tiny	2	0
 c	net/minecraft/client/C_5664496
-	f	J	f_7172439	f_7172439	
-	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_8675683	m_8675683	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/lang/String;)V	m_9890357	m_9890357	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_9890357		m_9890357
-		p	1			p_1
+	f	J	f_7172439	lastTickTime	
+	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_8675683	setWorld	
+		p	1		world	
+	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/lang/String;)V	m_9890357	setWorld	
+		p	1		world	
+		p	2		message	
+	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_9890357		setWorld
+		p	1			world
 c	net/minecraft/unmapped/C_0539808
 	f	Z	f_2106970	blocksBuilding	
-	m	(Lnet/minecraft/unmapped/C_2018497;)Z	m_4886802	writeNbtNoRider	
+	m	(Lnet/minecraft/unmapped/C_2018497;)Z	m_4886802	writeNbt	
 		p	1		nbt	
-	m	()V	m_8944389		m_8944389
-	m	()Ljava/lang/String;	m_1061793		m_1061793
-c	net/minecraft/unmapped/C_0678370	net/minecraft/unmapped/C_0678370	
-	f	[B	f_3684639	f_3684639	
-	f	Ljava/util/Random;	f_2053469	f_2053469	
-	f	Lnet/minecraft/unmapped/C_5553933;	f_2495597	f_2495597	
-	f	[I	f_4553159	f_4553159	
-	f	I	f_4172635	f_4172635	
-	f	I	f_4413532	f_4413532	
-	f	D	f_8932722	f_8932722	
-	f	D	f_5531920	f_5531920	
-	f	D	f_1393292	f_1393292	
-	f	D	f_0445573	f_0445573	
-	f	I	f_6979990	f_6979990	
-	f	I	f_0951401	f_0951401	
-	f	I	f_1841026	f_1841026	
-	f	[[I	f_3401457	f_3401457	
+	m	()V	m_8944389		remove
+	m	()Ljava/lang/String;	m_1061793		getId
+c	net/minecraft/unmapped/C_0678370	net/minecraft/world/gen/feature/TreeFeature	
+	f	[B	f_3684639	MINOR_AXES	
+		c	Given a branch's major axis {@code a} this array stores that branch's minor\naxes at indices {@code a} and {@code a + 3}.\n\n<p>\nA branch's major axis is the axis along which it has the greatest length.\n\n<p>\nThe axes are as follows:\n<br> 0: x\n<br> 1: y\n<br> 2: z	
+	f	Ljava/util/Random;	f_2053469	random	
+	f	Lnet/minecraft/unmapped/C_5553933;	f_2495597	world	
+	f	[I	f_4553159	origin	
+		c	The position of the base of the tree.	
+	f	I	f_4172635	height	
+		c	Total height of the tree, including the canopy.	
+	f	I	f_4413532	trunkHeight	
+		c	Height of just the trunk of the tree.	
+	f	D	f_8932722	trunkScale	
+		c	The portion of the total height of the tree that is taken up by the trunk.	
+	f	D	f_5531920	branchSlope	
+	f	D	f_1393292	branchLengthScale	
+	f	D	f_0445573	foliageDensity	
+	f	I	f_6979990	trunkWidth	
+		c	The width of the trunk, can be 1 or 2.	
+	f	I	f_0951401	maxTrunkHeight	
+	f	I	f_1841026	foliageClusterHeight	
+	f	[[I	f_3401457	branches	
+		c	Base and tip coordinates for each branch in the tree. The base of a branch is\nplaced at some height on the trunk, so the base x- and z-coordinates match\nthose of the trunk, and do not need to be stored. The remaining coordinates\nare stored in int arrays of length 4:\n\n<br> {\n<br> &nbsp; tip x-coordinate,\n<br> &nbsp; tip y-coordinate,\n<br> &nbsp; tip z-coordinate,\n<br> &nbsp; base y-coordinate\n<br> }	
 	m	()V	<init>	<init>	
-	m	([I[II)V	m_4372363	m_4372363	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	([I[I)I	m_8729351	m_8729351	
-		p	1		p_1	
-		p	2		p_2	
+	m	([I[II)V	m_4372363	placeBranch	
+		p	1		from	
+		p	2		to	
+		p	3		log	
+	m	([I[I)I	m_8729351	tryBranch	
+		c	Check if a branch can be placed between the two given positions.\n\n@return -1 if the branch can be placed, or the maximum possible length of the\n        branch along its major axis.	
+		p	1		from	
+		p	2		to	
 	m	(DDD)V	m_2048573	m_2048573	
 		p	1		p_1	
 		p	3		p_3	
@@ -49,8 +57,8 @@ c	net/minecraft/unmapped/C_0678370	net/minecraft/unmapped/C_0678370
 		p	5		p_5	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_0987157
-	f	Lnet/minecraft/unmapped/C_2708985;	f_4386868	f_4386868	
-	f	Lnet/minecraft/unmapped/C_2708985;	f_2528650	surfaceNoise	
+	f	Lnet/minecraft/unmapped/C_2708985;	f_4386868	perlinNoise2	
+	f	Lnet/minecraft/unmapped/C_2708985;	f_2528650	perlinNoise3	
 c	net/minecraft/unmapped/C_1023567
 	m	()Ljava/lang/String;	m_1061793		m_1061793
 c	net/minecraft/unmapped/C_1350658
@@ -60,20 +68,20 @@ c	net/minecraft/unmapped/C_1498011
 		p	1			p_1
 	m	()Ljava/lang/String;	m_1061793		m_1061793
 c	net/minecraft/unmapped/C_2144954	net/minecraft/world/NaturalSpawner	
-	f	I	f_9444230	f_9444230	
-	f	Ljava/lang/Class;	f_5193624	f_5193624	
-	f	[Ljava/lang/Class;	f_7760202	f_7760202	
+	f	I	f_9444230	cap	
+	f	Ljava/lang/Class;	f_5193624	baseType	
+	f	[Ljava/lang/Class;	f_7760202	types	
 	m	(ILjava/lang/Class;[Ljava/lang/Class;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		cap	
+		p	2		baseType	
+		p	3		types	
+	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_0040095	tick	
+		p	1		world	
+	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5902900;)I	m_7552313	run	
+		p	1		world	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_0040095	m_0040095	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5902900;)I	m_7552313	tick	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	3		around	
+		p	4		listener	
 c	net/minecraft/unmapped/C_2363721
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
 		p	1			p_1
@@ -93,15 +101,15 @@ c	net/minecraft/unmapped/C_4316830
 		p	1			p_1
 	m	()Ljava/lang/String;	m_1061793		m_1061793
 c	net/minecraft/unmapped/C_5353187
-	f	Lnet/minecraft/unmapped/C_2144954;	f_2183395	f_2183395	
-	f	Lnet/minecraft/unmapped/C_2144954;	f_5616045	f_5616045	
+	f	Lnet/minecraft/unmapped/C_2144954;	f_2183395	monsterSpawner	
+	f	Lnet/minecraft/unmapped/C_2144954;	f_5616045	animalSpawner	
 c	net/minecraft/unmapped/C_5537602
-	m	(DDD)V	m_2048573	m_2048573	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
+	m	(DDD)V	m_2048573	prepare	
+		p	1		d	
+		p	3		e	
+		p	5		f	
 c	net/minecraft/unmapped/C_5553933
-	f	Z	f_5995036	fresh	
+	f	Z	f_5995036	isNew	
 	m	(III)I	m_1925786	getRawBrightness	
 		p	1		x	
 		p	2		y	
@@ -115,17 +123,17 @@ c	net/minecraft/unmapped/C_5553933
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(Lnet/minecraft/unmapped/C_5577922;)Z	m_3429992	canBuildIn	
-		p	1		box	
+	m	(Lnet/minecraft/unmapped/C_5577922;)Z	m_3429992	isUnobstructed	
+		p	1		bounds	
 	m	()I	m_5227310	m_5227310	
-	m	()I	m_3113518	m_3113518	
+	m	()I	m_3113518	getLightUpdateCount	
 	m	()Z	m_9717220	doLightUpdates	
 	m	(Ljava/lang/Class;)I	m_8410365	getEntityCount	
 		p	1		type	
 	m	(III)I	m_1546061		getRawBrightness
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 	m	()V	m_9717220		doLightUpdates
 c	net/minecraft/unmapped/C_5622853
 	m	(FFF)Z	m_8724935	m_8724935	
@@ -133,8 +141,8 @@ c	net/minecraft/unmapped/C_5622853
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_5705147
-	f	Z	f_6917802	worldLoaded	
-c	net/minecraft/unmapped/C_5902900	net/minecraft/unmapped/C_5902900	
+	f	Z	f_6917802	selected	
+c	net/minecraft/unmapped/C_5902900	net/minecraft/util/ProgressListener	
 c	net/minecraft/unmapped/C_5904422
 	m	(FFF)Z	m_8724935	m_8724935	
 		p	1		p_1	
@@ -150,33 +158,34 @@ c	net/minecraft/unmapped/C_6063722
 c	net/minecraft/unmapped/C_6435650
 	m	()Ljava/lang/String;	m_1061793		m_1061793
 c	net/minecraft/unmapped/C_6607881
-	m	(FFF)Z	m_8724935	isValidSpawnPosition	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(FFF)Z	m_8724935	canSpawn	
+		c	Checks collision and spawn enviroment to see if a position is a valid spawn point.	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	()Ljava/lang/String;	m_1061793		m_1061793
 c	net/minecraft/unmapped/C_6849228
 	f	[Ljava/util/List;	f_6611626	entities	
-	f	Z	f_4980706	f_4980706	
+	f	Z	f_4980706	savedEntities	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_4806932	addEntity	
 		p	1		entity	
 	m	(Lnet/minecraft/unmapped/C_0539808;I)V	m_5991766	removeEntity	
 		p	1		entity	
 		p	2		chunkY	
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;Ljava/util/List;)V	m_8657161	m_8657161	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;Ljava/util/List;)V	m_8657161	getEntities	
+		p	1		exclude	
+		p	2		bounds	
+		p	3		entities	
 	m	()I	m_2020330	m_2020330	
-	m	(Z)Z	m_0432779	m_0432779	
-		p	1		p_1	
+	m	(Z)Z	m_0432779	shouldSave	
+		p	1		saveEntities	
 c	net/minecraft/unmapped/C_8252988	net/minecraft/entity/Entities	
 	f	Ljava/util/Map;	f_5560461	KEY_TO_TYPE	
 	f	Ljava/util/Map;	f_4348479	TYPE_TO_KEY	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/Class;Ljava/lang/String;)V	m_0930588	register	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		type	
+		p	1		key	
 	m	(Lnet/minecraft/unmapped/C_2018497;Lnet/minecraft/unmapped/C_5553933;)Lnet/minecraft/unmapped/C_0539808;	m_5938147	create	
 		p	0		nbt	
 		p	1		world	

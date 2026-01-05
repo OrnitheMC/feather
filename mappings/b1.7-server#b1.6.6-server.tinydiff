@@ -1,8 +1,8 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0539808
-	f	F	f_8782199	f_8782199	
+	f	F	f_8782199	minimumBrightness	
 c	net/minecraft/unmapped/C_1056918	net/minecraft/block/PistonHeadBlock	
-	f	I	f_6132145	pistonHeadSprite	
+	f	I	f_6132145	forcedSprite	
 	m	(II)V	<init>	<init>	
 		p	1		id	
 		p	2		sprite	
@@ -51,13 +51,13 @@ c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_3226243		MOVING_BLOCK
 	m	()Lnet/minecraft/unmapped/C_1241852;	m_2676859	setUnbreakable	
 		c	Sets this block as unbreakable by setting its strength to -1. Note that this changes both\nthe block's mining speed and its blast resistance.\n\n<p>\nNOTE: this method should only be used during the block's creation before it is registered.	
-	m	()F	m_7303643	getMiningSpeed	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_2454309;)V	m_6793083	dropItems	
+	m	()F	m_7303643	getMiningTime	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_2454309;)V	m_6793083	dropItem	
 		p	1		world	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		stack	
+		p	5		item	
 	m	()I	m_1582100	getPistonMoveBehavior	
 		c	Returns how this block interacts with pistons. The following values are accepted:\n<br>- 0: this block can be pushed and pulled by pistons.\n<br>- 1: this block is broken when pushed.\n<br>- 2: this block cannot be pushed or pulled by pistons.	
 c	net/minecraft/unmapped/C_1428858
@@ -160,7 +160,7 @@ c	net/minecraft/unmapped/C_5243081	net/minecraft/block/MovingBlock
 		p	4		p_4	
 		p	5		p_5	
 	m	(IIIZZ)Lnet/minecraft/unmapped/C_3622326;	m_5915640	createMovingBlockEntity	
-		p	0		movedBlockId	
+		p	0		movedBlock	
 		p	1		movedMetadata	
 		p	2		facing	
 		p	3		extending	
@@ -180,7 +180,7 @@ c	net/minecraft/unmapped/C_5243081	net/minecraft/block/MovingBlock
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		movedBlockId	
+		p	5		movedBlock	
 		p	6		progress	
 		p	7		facing	
 	m	(Lnet/minecraft/unmapped/C_8030141;III)Lnet/minecraft/unmapped/C_6100478;	m_4572390	getMovingBlockEntity	
@@ -211,10 +211,14 @@ c	net/minecraft/unmapped/C_5553933
 	f	Z	f_9535828	isTickingBlockEntities	
 	m	(Ljava/util/Collection;)V	m_0320445	loadBlockEntities	
 		p	1		blockEntities	
+	m	(III)Lnet/minecraft/unmapped/C_3622326;	m_8048103	m_8048103	getBlockEntity
+		p	1		p_1	x
+		p	2		p_2	y
+		p	3		p_3	z
 c	net/minecraft/unmapped/C_5622853
-	m	()V	m_7580829	setNewWanderingPath	
+	m	()V	m_7580829	updateWanderingPath	
 c	net/minecraft/unmapped/C_6100478	net/minecraft/block/entity/MovingBlockEntity	
-	f	I	f_5939301	movedBlockId	
+	f	I	f_5939301	movedBlock	
 	f	I	f_2511264	movedMetadata	
 	f	I	f_0072895	facing	
 	f	Z	f_8342559	extending	
@@ -224,12 +228,12 @@ c	net/minecraft/unmapped/C_6100478	net/minecraft/block/entity/MovingBlockEntity
 	f	Ljava/util/List;	f_5280913	movedEntities	
 	m	()V	<init>	<init>	
 	m	(IIIZZ)V	<init>	<init>	
-		p	1		movedBlockId	
+		p	1		movedBlock	
 		p	2		movedMetadata	
 		p	3		facing	
 		p	4		extending	
 		p	5		source	
-	m	()I	m_4343063	getMovedBlockId	
+	m	()I	m_4343063	getMovedBlock	
 	m	()I	m_1210226	m_1210226	
 	m	()Z	m_8561473	isExtending	
 	m	()I	m_4671615	getFacing	
@@ -336,13 +340,13 @@ c	net/minecraft/unmapped/C_8124234	net/minecraft/block/PistonBaseBlock
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		entity	
+		p	4		player	
 	m	(ILnet/minecraft/unmapped/C_5553933;III)Z	m_1680891	canMoveBlock	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	0		block	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_9775312	canExtend	
 		p	0		world	
 		p	1		x	
@@ -369,13 +373,13 @@ c	net/minecraft/unmapped/C_8620458
 		p	5		p_5	
 		p	6		p_6	
 c	net/minecraft/unmapped/C_9469238
-	m	(Lnet/minecraft/unmapped/C_8030141;IIII)Z	m_0134390	connectsTo	
+	m	(Lnet/minecraft/unmapped/C_8030141;IIII)Z	m_0134390	shouldConnectTo	
 		p	0		world	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		side	
-	m	(Lnet/minecraft/unmapped/C_8030141;III)Z	m_0134390		connectsTo
+	m	(Lnet/minecraft/unmapped/C_8030141;III)Z	m_0134390		shouldConnectTo
 		p	0			world
 		p	1			x
 		p	2			y

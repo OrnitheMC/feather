@@ -1,5 +1,5 @@
 tiny	2	0
-c	net/minecraft/unmapped/C_0800862	net/minecraft/unmapped/C_0800862	
+c	net/minecraft/unmapped/C_0800862	net/minecraft/server/world/ServerWorld__0800862	
 	f	Lnet/minecraft/unmapped/C_3865296;	f_9777630	f_9777630	
 	m	(Lnet/minecraft/unmapped/C_3865296;ILjava/lang/Class;[Ljava/lang/Class;)V	<init>	<init>	
 		p	1		p_1	
@@ -31,32 +31,32 @@ c	net/minecraft/unmapped/C_1514880	net/minecraft/network/packet/AddMobPacket
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
 c	net/minecraft/unmapped/C_2144954	net/minecraft/world/NaturalSpawner	
-	f	I	f_3573684	f_3573684	
-	f	Ljava/lang/Class;	f_2529785	f_2529785	
-	f	[Ljava/lang/Class;	f_8261189	f_8261189	
+	f	I	f_3573684	cap	
+	f	Ljava/lang/Class;	f_2529785	baseType	
+	f	[Ljava/lang/Class;	f_8261189	types	
 	f	Ljava/util/Set;	f_7536298	mobSpawningChunks	
 		c	This set keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that are lazy chunks,\nwhich do not allow mob spawning, but to contribute to the mob cap.	
 	m	(ILjava/lang/Class;[Ljava/lang/Class;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_8607493	m_8607493	
-		p	1		p_1	
+		p	1		cap	
+		p	2		baseType	
+		p	3		types	
+	m	(Lnet/minecraft/unmapped/C_5553933;)V	m_8607493	tick	
+		p	1		world	
 	m	(Lnet/minecraft/unmapped/C_5553933;II)Lnet/minecraft/unmapped/C_1842758;	m_2544799	getRandomPosInChunk	
-		p	1		chunkX	
-		p	2		chunkZ	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_3893367;)I	m_7552313	tick	
-		p	1		p_1	
+		p	1		world	
+		p	2		chunkX	
+		p	3		chunkZ	
+	m	(Lnet/minecraft/unmapped/C_5553933;ILnet/minecraft/unmapped/C_3893367;)I	m_7552313	run	
+		p	1		world	
 		p	2		p_2	
-		p	3		p_3	
+		p	3		listener	
 c	net/minecraft/unmapped/C_2363721
 	m	()D	m_7168636	m_7168636	
 c	net/minecraft/unmapped/C_3865296
-	f	Lnet/minecraft/unmapped/C_2144954;	f_3700547	f_3700547	
-	f	Lnet/minecraft/unmapped/C_2144954;	f_6239007	f_6239007	
+	f	Lnet/minecraft/unmapped/C_2144954;	f_3700547	monsterSpawner	
+	f	Lnet/minecraft/unmapped/C_2144954;	f_6239007	animalSpawner	
 	m	()V	m_0812377	m_0812377	
-c	net/minecraft/unmapped/C_4179163	net/minecraft/entity/living/mob/Monster	
+c	net/minecraft/unmapped/C_4179163	net/minecraft/entity/mob/monster/Monster	
 c	net/minecraft/unmapped/C_5553933
 	m	(Ljava/lang/Class;)I	m_8410365	getEntityCount	
 		p	1		type	
@@ -78,15 +78,16 @@ c	net/minecraft/unmapped/C_6028829	net/minecraft/block/FenceBlock
 		p	4		p_4	
 	m	()Z	m_1635166	m_1635166	
 	m	()I	m_3977441	m_3977441	
-c	net/minecraft/unmapped/C_6055429	net/minecraft/entity/EntityCategoryProvider	
+c	net/minecraft/unmapped/C_6055429	net/minecraft/entity/SpawnableEntity	
+	c	An entity that spawns naturally.	
 c	net/minecraft/unmapped/C_6607881
-	f	Z	f_7854127	f_7854127	
-	f	I	f_0862222	bodyTrackingIncrements	
-	f	D	f_5094063	serverX	
-	f	D	f_7065948	serverY	
-	f	D	f_6352819	serverZ	
-	f	D	f_1913106	serverYaw	
-	f	D	f_8811307	serverPitch	
+	f	Z	f_7854127	interpolateOnly	
+	f	I	f_0862222	lerpSteps	
+	f	D	f_5094063	lerpX	
+	f	D	f_7065948	lerpY	
+	f	D	f_6352819	lerpZ	
+	f	D	f_1913106	lerpYaw	
+	f	D	f_8811307	lerpPitch	
 	f	F	f_1241371	f_1241371	
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_1514880;)V	m_9552498	handleAddMob	
@@ -103,8 +104,8 @@ c	net/minecraft/unmapped/C_8252988
 	m	(Lnet/minecraft/unmapped/C_0539808;)I	m_9775641	getId	
 		p	0		entity	
 	m	(Ljava/lang/Class;Ljava/lang/String;)V	m_0930588		register
-		p	0			p_0
-		p	1			p_1
+		p	0			type
+		p	1			key
 c	net/minecraft/unmapped/C_8442234	net/minecraft/network/packet/WorldTimePacket	
 	f	J	f_9934360	time	
 	m	()V	<init>	<init>	

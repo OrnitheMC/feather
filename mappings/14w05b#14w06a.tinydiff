@@ -29,7 +29,7 @@ c	net/minecraft/unmapped/C_0539808
 	f	F	f_7176867	eyeHeightSneakOffset	
 	f	Lnet/minecraft/unmapped/C_6872246;	f_5997114	size	
 	m	()F	m_0866957	getEyeHeight	
-	m	()F	m_9401628	yShadowOrigin	
+	m	()F	m_9401628	getShadowHeightOffset	
 	m	()V	m_5135469		doSplashEffect
 	m	()Lnet/minecraft/unmapped/C_5577922;	m_8022439		getShape
 	m	(Lnet/minecraft/unmapped/C_5577922;)V	m_9162011		setShape
@@ -43,7 +43,7 @@ c	net/minecraft/unmapped/C_0557736
 c	net/minecraft/unmapped/C_0567922
 	m	()I	m_2337713		m_2337713
 c	net/minecraft/unmapped/C_0593414
-	f	I	f_0522109	ticksUntilNextJump	
+	f	I	f_0522109	jumpTimer	
 	m	()V	m_2135259	m_2135259	
 	m	(I)V	m_8901560		m_8901560
 		p	1			p_1
@@ -91,7 +91,7 @@ c	net/minecraft/unmapped/C_1028001
 	f	[Lnet/minecraft/unmapped/C_1028001;	f_7579322		KILLED_BY_TEAM_BY_COLOR
 c	net/minecraft/unmapped/C_1155256
 	m	()I	m_2337713		m_2337713
-c	net/minecraft/unmapped/C_1156048	net/minecraft/entity/Entity__5	
+c	net/minecraft/unmapped/C_1156048	net/minecraft/entity/Entity__1156048	
 	f	[I	f_9058371	f_9058371	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1196893
@@ -205,12 +205,12 @@ c	net/minecraft/unmapped/C_2669673
 	m	()I	m_2337713		m_2337713
 	m	()I	m_1863884		m_1863884
 c	net/minecraft/unmapped/C_2747331
-	m	()V	m_5705402	m_5705402	
-	m	(FFFF)V	m_3573017	m_3573017	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	()V	m_5705402	clearColor	
+	m	(FFFF)V	m_3573017	setColor	
+		p	1		a	
+		p	2		r	
+		p	3		g	
+		p	4		b	
 c	net/minecraft/unmapped/C_2755677
 	m	()I	m_2337713		m_2337713
 c	net/minecraft/unmapped/C_2791959
@@ -391,12 +391,12 @@ c	net/minecraft/unmapped/C_3544601
 		p	3			id
 		p	4			opposite
 		p	5			idHorizontal
-		p	6			name
+		p	6			key
 		p	7			axisDir
 		p	8			axis
 		p	9			normal
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3544601;	m_2656971		byName
-		p	0			name
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3544601;	m_2656971		byKey
+		p	0			key
 	m	()Lnet/minecraft/unmapped/C_2033463;	m_1692555		getNormal
 c	net/minecraft/unmapped/C_3807678
 	m	()D	m_9808365		getX
@@ -483,11 +483,11 @@ c	net/minecraft/unmapped/C_4976084
 		p	0			x
 		p	1			interval
 c	net/minecraft/unmapped/C_5030414
-	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;I)Z	m_9538167	tessellateAnvil	
+	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;I)Z	m_9538167	tesselateAnvil	
 		p	1		anvil	
 		p	2		pos	
 		p	3		metadata	
-	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;I)Z	m_9538167		tessellateAnvil
+	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;I)Z	m_9538167		tesselateAnvil
 		p	1			anvil
 		p	2			pos
 		p	3			world
@@ -512,10 +512,10 @@ c	net/minecraft/unmapped/C_5496464	net/minecraft/client/render/block/CrossBlockR
 c	net/minecraft/unmapped/C_5533224
 	m	()I	m_2337713		m_2337713
 c	net/minecraft/unmapped/C_5553933
-	m	(Lnet/minecraft/unmapped/C_0539808;D)Lnet/minecraft/unmapped/C_9590849;	m_9200375	getClosestPlayerToAttack	
+	m	(Lnet/minecraft/unmapped/C_0539808;D)Lnet/minecraft/unmapped/C_9590849;	m_9200375	getNearestPlayerToAttack	
 		p	1		entity	
 		p	2		range	
-	m	(DDDD)Lnet/minecraft/unmapped/C_9590849;	m_7654946	getClosestPlayerToAttack	
+	m	(DDDD)Lnet/minecraft/unmapped/C_9590849;	m_7654946	getNearestPlayerToAttack	
 		p	1		entityX	
 		p	3		entityY	
 		p	5		entityZ	
@@ -553,10 +553,10 @@ c	net/minecraft/unmapped/C_5585855
 	f	I	f_0106077		GL_OPERAND1_ALPHA
 	f	I	f_3198439		GL_OPERAND2_ALPHA
 c	net/minecraft/unmapped/C_5587144
-	f	I	f_5703427	teleportCountdown	
-		c	A 30 tick countdown that delays enderman teleportation after it becomes possible	
-	f	I	f_7606938	angryStareCooldown	
-		c	Cooldown that adds a delay before an enderman becomes angry.\nA player must stare at an enderman for 5 ticks before it becomes angry	
+	f	I	f_5703427	targetFarAwayTicks	
+		c	A counter that increments each tick where its target is more than 16 blocks away from this enderman.	
+	f	I	f_7606938	ticksSinceCreepySound	
+		c	The number of ticks that have elapsed since a creepy sound effect has been played\nwhile the enderman has a target.	
 	f	Lnet/minecraft/unmapped/C_0539808;	f_0606223	lastTarget	
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743	m_4575743	
 	m	()F	m_6131251		m_6131251
@@ -576,18 +576,18 @@ c	net/minecraft/unmapped/C_5616692
 	f	B	f_1843132		flags
 	m	()Z	m_9717268		getParticles
 c	net/minecraft/unmapped/C_5622853
-	f	Lnet/minecraft/unmapped/C_0539808;	f_5509521	target	
-	f	Z	f_1913423	wasAttacking	
+	f	Lnet/minecraft/unmapped/C_0539808;	f_5509521	walkTarget	
+	f	Z	f_1913423	stoppedMoving	
 	f	I	f_5987394	fastMovementCooldown	
-	m	()Z	m_8049752	wasAttacking	
+	m	()Z	m_8049752	hasStoppedMoving	
 	m	()V	m_2135259	m_2135259	
-	m	()V	m_7580829	setNewWanderingPath	
-	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_3419281	attack	
+	m	()V	m_7580829	updateWanderingPath	
+	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_3419281	targetInSight	
 		p	1		target	
-		p	2		power	
-	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743	findClosestAttackablePlayer	
-	m	()Lnet/minecraft/unmapped/C_0539808;	m_0571478	getTarget	
-	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_9656661	setTarget	
+		p	2		distance	
+	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743	findTarget	
+	m	()Lnet/minecraft/unmapped/C_0539808;	m_0571478	getWalkTarget	
+	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_9656661	setWalkTarget	
 		p	1		target	
 c	net/minecraft/unmapped/C_5658871
 	m	()I	m_2337713		m_2337713
@@ -682,19 +682,19 @@ c	net/minecraft/unmapped/C_6232047
 		p	1			modifier
 c	net/minecraft/unmapped/C_6269816
 	f	I	f_2052711	collisionCheckCooldown	
-	f	D	f_4924946	wanderTargetX	
-	f	D	f_0850703	wanderTargetY	
-	f	D	f_4873241	wanderTargetZ	
+	f	D	f_4924946	floatTargetX	
+	f	D	f_0850703	floatTargetY	
+	f	D	f_4873241	floatTargetZ	
 	f	Lnet/minecraft/unmapped/C_0539808;	f_0048204	target	
-	f	I	f_3439197	aggressiveCooldown	
-	f	I	f_2061059	attackCooldown	
-	f	I	f_2941549	shootingCooldown	
+	f	I	f_3439197	findTargetTimer	
+	f	I	f_2061059	lastChargeTicks	
+	f	I	f_2941549	chargeTicks	
 	m	()V	m_2135259	m_2135259	
-	m	(DDDD)Z	m_8061322	willCollide	
-		p	1		x	
-		p	3		y	
-		p	5		z	
-		p	7		steps	
+	m	(DDDD)Z	m_8061322	canReachTarget	
+		p	1		targetX	
+		p	3		targetY	
+		p	5		targetZ	
+		p	7		distance	
 	m	(Z)V	m_1502889		setCharging
 		p	1			charging
 	m	()I	m_2353420		getFireballStrength
@@ -716,12 +716,12 @@ c	net/minecraft/unmapped/C_6385582
 c	net/minecraft/unmapped/C_6465443
 	m	()I	m_2337713		m_2337713
 c	net/minecraft/unmapped/C_6607881
-	f	I	f_6316647	attackTime	
+	f	I	f_6316647	attackTimer	
 	m	()Z	m_6682221	aiEnabled	
-	m	()V	m_2135259	tickDespawn	
+	m	()V	m_2135259	aiTick	
 	m	()F	m_0866957	m_0866957	
-	m	()V	m_0992030		aiEnabled
-	m	()V	m_3525047		m_3525047
+	m	()V	m_0992030		jumpInWater
+	m	()V	m_3525047		jumpInLava
 c	net/minecraft/unmapped/C_6695579
 	f	Ljava/util/List;	f_8301245	worlds	
 	f	Lorg/apache/logging/log4j/Logger;	f_2130391		LOGGER
@@ -732,19 +732,19 @@ c	net/minecraft/unmapped/C_6695579
 	m	(Lnet/minecraft/unmapped/C_8030141;)V	m_1504557	pushWorld	
 		p	1		world	
 	m	()V	m_7799118	popWorld	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;)V	m_9691004	renderWithSprite	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;)V	m_9691004	renderMiningProgress	
 		p	1		block	
 		p	2		pos	
 		p	3		sprite	
 	m	(Lnet/minecraft/unmapped/C_1241852;)Lnet/minecraft/unmapped/C_3216249;	m_0657806	getRenderer	
 		p	1		block	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)V	m_9863009	render	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)V	m_9863009	renderMovingBlock	
 		p	1		block	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3275936	render	
 		p	1		block	
 		p	2		pos	
-	m	(I)Z	m_6010025	isGui3d	
+	m	(I)Z	m_6010025	isItem3d	
 		p	0		type	
 	m	()V	m_5842872		registerModels
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_7184938;)V	m_4928472		registerColoredBlockModels
@@ -754,12 +754,12 @@ c	net/minecraft/unmapped/C_6695579
 		p	1			block
 		p	2			metadata
 		p	3			model
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_8030141;)V	m_9691004		renderWithSprite
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_8030141;)V	m_9691004		renderMiningProgress
 		p	1			block
 		p	2			pos
 		p	3			sprite
 		p	4			world
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;)V	m_9863009		render
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;)V	m_9863009		renderMovingBlock
 		p	1			block
 		p	2			pos
 		p	3			world
@@ -770,14 +770,14 @@ c	net/minecraft/unmapped/C_6695579
 	m	(Lnet/minecraft/unmapped/C_1241852;I)I	m_7919009		getReference
 		p	1			block
 		p	2			metadata
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;)Z	m_1848984		tessellate
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;)Z	m_1848984		render
 		p	1			block
 		p	2			pos
 		p	3			world
 	m	(Lnet/minecraft/unmapped/C_6577431;Ljava/lang/String;)Lnet/minecraft/unmapped/C_7184938;	m_1481432		loadModel
 		p	0			resourceManager
 		p	1			i
-	m	(Lnet/minecraft/unmapped/C_1241852;I)Z	m_6010025		isGui3d
+	m	(Lnet/minecraft/unmapped/C_1241852;I)Z	m_6010025		isItem3d
 		p	1			block
 		p	2			metadata
 c	net/minecraft/unmapped/C_6804573
@@ -787,11 +787,11 @@ c	net/minecraft/unmapped/C_6815022
 	m	()F	m_6131251		m_6131251
 	m	(B)V	m_4909384		m_4909384
 		p	1			p_1
-	m	(FFF)V	m_5100887		m_5100887
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()Z	m_7967128		m_7967128
+	m	(FFF)V	m_5100887		setTarget
+		p	1			x
+		p	2			y
+		p	3			z
+	m	()Z	m_7967128		hasTarget
 	m	(Lnet/minecraft/unmapped/C_6815022;)Z	m_6302077		m_6302077
 		p	0			p_0
 c	net/minecraft/unmapped/C_6849228
@@ -861,7 +861,7 @@ c	net/minecraft/unmapped/C_7525125
 c	net/minecraft/unmapped/C_7592368
 	m	()Z	m_6682221	m_6682221	
 c	net/minecraft/unmapped/C_7639596
-	f	Lnet/minecraft/unmapped/C_9507262;	f_0585666	f_0585666	
+	f	Lnet/minecraft/unmapped/C_9507262;	f_0585666	armorLayer	
 	f	Ljava/nio/FloatBuffer;	f_1130827		tintBuffer
 	f	Z	f_2829043		solidRender
 	m	(Lnet/minecraft/unmapped/C_6607881;FFFFFFF)V	m_4466167	m_4466167	
@@ -900,7 +900,7 @@ c	net/minecraft/unmapped/C_7639596
 	m	(Lnet/minecraft/unmapped/C_6607881;FZ)Z	m_2879796		setupOverlayColor
 		p	1			entity
 		p	2			tickDelta
-		p	3			p_3
+		p	3			alwaysRender
 	m	()V	m_6561897		tearDownOverlayColor
 	m	(Z)V	m_6948071		setSolidRender
 		p	1			solidRender
@@ -913,17 +913,17 @@ c	net/minecraft/unmapped/C_7662890
 		p	9		onGround	
 	m	(DDDZ)V	<init>		<init>
 		p	1			x
-		p	3			y
+		p	3			minY
 		p	5			z
 		p	7			onGround
 c	net/minecraft/unmapped/C_7669754
 	m	(Ljava/lang/String;)V	m_9590958	sendMessage	
 		p	1		message	
-	m	(Ljava/lang/String;)V	m_3241916		m_3241916
-		p	1			p_1
+	m	(Ljava/lang/String;)V	m_3241916		sendMessage
+		p	1			message
 	m	(Ljava/lang/String;Z)V	m_9590958		sendMessage
-		p	1			p_1
-		p	2			p_2
+		p	1			message
+		p	2			addLocally
 c	net/minecraft/unmapped/C_7748732
 	m	(DDDDFFZ)V	<init>	<init>	
 		p	1		x	
@@ -935,7 +935,7 @@ c	net/minecraft/unmapped/C_7748732
 		p	11		onGround	
 	m	(DDDFFZ)V	<init>		<init>
 		p	1			x
-		p	3			y
+		p	3			minY
 		p	5			z
 		p	7			yaw
 		p	8			pitch
@@ -965,25 +965,23 @@ c	net/minecraft/unmapped/C_8070146
 	m	()I	m_2337713		m_2337713
 c	net/minecraft/unmapped/C_8099772
 	f	F	f_6920373	standardPitch	
-	f	Lnet/minecraft/unmapped/C_0539808;	f_0312786	currentTarget	
-	f	I	f_2455455	angryCountdown	
-		c	The countdown that decids how long it should keep attacking the same target	
-	f	Lnet/minecraft/unmapped/C_3807678;	f_3858260	motionControl	movementControl
+	f	Lnet/minecraft/unmapped/C_0539808;	f_0312786	lookTarget	
+	f	I	f_2455455	lookTimer	
 	m	()Z	m_6682221	m_6682221	
 	m	()V	m_2135259	m_2135259	
-	m	()V	m_4630837	initSpawningEquipment	
-	m	()V	m_9186884	enchantEquipmentItemStack	
+	m	()V	m_4630837	addRandomEquipment	
+	m	()V	m_9186884	enchantEquipment	
 	m	(Lnet/minecraft/unmapped/C_2928020;)Lnet/minecraft/unmapped/C_2928020;	m_7592700	initialize	
 		p	1		entityData	
 	m	(B)V	m_4909384		m_4909384
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_2716056;)V	m_4630837		initSpawningEquipment
-		p	1			localDifficulty
-	m	(Lnet/minecraft/unmapped/C_2716056;)V	m_9186884		enchantEquipmentItemStack
-		p	1			localDifficulty
+	m	(Lnet/minecraft/unmapped/C_2716056;)V	m_4630837		addRandomEquipment
+		p	1			difficulty
+	m	(Lnet/minecraft/unmapped/C_2716056;)V	m_9186884		enchantEquipment
+		p	1			difficulty
 	m	(Lnet/minecraft/unmapped/C_2716056;Lnet/minecraft/unmapped/C_2928020;)Lnet/minecraft/unmapped/C_2928020;	m_7592700		initialize
 		p	1			localDifficulty
-		p	2			entityData
+		p	2			data
 c	net/minecraft/unmapped/C_8124234
 	m	()I	m_1863884		m_1863884
 c	net/minecraft/unmapped/C_8159814
@@ -1002,14 +1000,14 @@ c	net/minecraft/unmapped/C_8253973
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_8253973;)V	m_6743426	breed	
 		c	Breed with the other animal and create heart particles.	
-		p	1		other	
+		p	1		mate	
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743	m_4575743	
 c	net/minecraft/unmapped/C_8300121
 	m	()I	m_7328745		getAge
 	m	()V	m_0668624		setNeverDespawn
 c	net/minecraft/unmapped/C_8370969
-	f	Lnet/minecraft/unmapped/C_9507262;	f_0441385	f_0441385	
-	f	Lnet/minecraft/unmapped/C_0022305;	f_1559101	f_1559101	
+	f	Lnet/minecraft/unmapped/C_9507262;	f_0441385	zombieArmorLayer	
+	f	Lnet/minecraft/unmapped/C_0022305;	f_1559101	zombieVillagerArmorLayer	
 	f	Ljava/util/List;	f_3564137		zombieVillagerModel2
 	f	Ljava/util/List;	f_1849101		zombieVillagerModel3
 c	net/minecraft/unmapped/C_8398976
@@ -1059,9 +1057,9 @@ c	net/minecraft/unmapped/C_9012949
 c	net/minecraft/unmapped/C_9083739
 	m	()I	m_2337713		m_2337713
 c	net/minecraft/unmapped/C_9139005
-	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_7408231	renderPlayerRightHandModel	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_7106153;)V	m_7408231		renderPlayerRightHandModel
+	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_7408231	renderRightHand	
+		p	1		player	
+	m	(Lnet/minecraft/unmapped/C_7106153;)V	m_7408231		renderRightHand
 		p	1			player
 c	net/minecraft/unmapped/C_9214806
 	m	()I	m_2337713		m_2337713
@@ -1076,14 +1074,12 @@ c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_7345223;)V	m_6291435	openLockableMenu	
 		p	1		menuProvider	
 	m	()V	m_6026338		m_6026338
-	m	(Lnet/minecraft/unmapped/C_0539808;)Ljava/util/Collection;	m_7892993		m_7892993
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_0539808;)Ljava/util/Collection;	m_7892993		handleTeamKill
+		p	1			entity
 	m	()F	m_6131251		m_6131251
 c	net/minecraft/unmapped/C_9615057
 	f	D	f_5020153	y	
-	f	D	f_6347010	minY	y
 	m	()D	m_9821216	getY	
-	m	()D	m_8055298	getMinY	getY
 c	net/minecraft/unmapped/C_9776365
 	m	(Lnet/minecraft/unmapped/C_9776365;)Lnet/minecraft/unmapped/C_0076427;	m_2199875	m_2199875	
 		p	0		p_0	
@@ -1119,13 +1115,13 @@ c	net/minecraft/unmapped/C_0170652		net/minecraft/crafting/recipe/RepairRecipe
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_6900912		m_6900912
 	m	(Lnet/minecraft/unmapped/C_5217418;)[Lnet/minecraft/unmapped/C_2454309;	m_6319443		m_6319443
 		p	1			p_1
-c	net/minecraft/unmapped/C_0507026		net/minecraft/client/render/entity/ZombiePigmanRenderer__1
+c	net/minecraft/unmapped/C_0507026		net/minecraft/client/render/entity/ZombiePigmanRenderer__0507026
 	f	Lnet/minecraft/unmapped/C_7715246;	f_5958309		f_5958309
 	m	(Lnet/minecraft/unmapped/C_7715246;Lnet/minecraft/unmapped/C_7639596;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()V	m_8680944		m_8680944
-c	net/minecraft/unmapped/C_0819633		net/minecraft/entity/living/mob/hostile/EndermanEntity__PlaceBlockGoal
+c	net/minecraft/unmapped/C_0819633		net/minecraft/entity/living/mob/monster/EndermanEntity__PlaceBlockGoal
 	f	Lnet/minecraft/unmapped/C_5587144;	f_6031774		enderman
 	m	(Lnet/minecraft/unmapped/C_5587144;)V	<init>		<init>
 		p	1			enderman
@@ -1169,7 +1165,7 @@ c	net/minecraft/unmapped/C_2019151		net/minecraft/client/render/block/BlockModel
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3732811		m_3732811
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;FFF)Z	m_5833331		tessellateWithAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;FFF)Z	m_5833331		tesselateWithAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			r
@@ -1181,7 +1177,7 @@ c	net/minecraft/unmapped/C_2019151		net/minecraft/client/render/block/BlockModel
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFF)I	m_3088040		tessellateFaceWithAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFF)I	m_3088040		tesselateFaceWithAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			sprite
@@ -1193,7 +1189,7 @@ c	net/minecraft/unmapped/C_2019151		net/minecraft/client/render/block/BlockModel
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFFI)V	m_7128555		tessellateFaceWithoutAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFFI)V	m_7128555		tesselateFaceWithoutAmbientOcclusion
 		p	1			block
 		p	2			pos
 		p	3			sprite
@@ -1204,7 +1200,7 @@ c	net/minecraft/unmapped/C_2019151		net/minecraft/client/render/block/BlockModel
 		p	8			lightColor
 	m	(Lnet/minecraft/unmapped/C_7184938;)V	m_8403322		setModel
 		p	1			model
-c	net/minecraft/unmapped/C_2380768		net/minecraft/entity/living/mob/hostile/SilverfishEntity__InfestStoneGoal
+c	net/minecraft/unmapped/C_2380768		net/minecraft/entity/living/mob/monster/SilverfishEntity__InfestStoneGoal
 	f	Lnet/minecraft/unmapped/C_1753171;	f_0671886		silverfish
 	f	Lnet/minecraft/unmapped/C_3544601;	f_2973717		dir
 	f	Z	f_9070299		infest
@@ -1213,7 +1209,7 @@ c	net/minecraft/unmapped/C_2380768		net/minecraft/entity/living/mob/hostile/Silv
 	m	()Z	m_9549250		m_9549250
 	m	()Z	m_4540487		m_4540487
 	m	()V	m_3836415		m_3836415
-c	net/minecraft/unmapped/C_2461706		net/minecraft/world/biome/Biome__1
+c	net/minecraft/unmapped/C_2461706		net/minecraft/world/biome/Biome__2461706
 	f	[I	f_2325241		f_2325241
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_2716056		net/minecraft/world/LocalDifficulty
@@ -1231,10 +1227,10 @@ c	net/minecraft/unmapped/C_2716056		net/minecraft/world/LocalDifficulty
 		p	2			timeOfDay
 		p	4			inhabitedTime
 		p	6			moonSize
-c	net/minecraft/unmapped/C_3041222		net/minecraft/unmapped/C_3041222
-	f	Lnet/minecraft/unmapped/C_6815022;	f_6659209		f_6659209
+c	net/minecraft/unmapped/C_3041222		net/minecraft/entity/living/mob/water/SquidEntity__SwimAroundGoal
+	f	Lnet/minecraft/unmapped/C_6815022;	f_6659209		squid
 	m	(Lnet/minecraft/unmapped/C_6815022;)V	<init>		<init>
-		p	1			p_1
+		p	1			squid
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
 c	net/minecraft/unmapped/C_3148470		net/minecraft/entity/ai/goal/MobEntityPlayerTargetGoal
@@ -1253,22 +1249,24 @@ c	net/minecraft/unmapped/C_3148470		net/minecraft/entity/ai/goal/MobEntityPlayer
 	m	(Lnet/minecraft/unmapped/C_3148470;)Lnet/minecraft/unmapped/C_8099772;	m_2022467		m_2022467
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_3170674		net/minecraft/entity/ai/goal/MobEntityPlayerTargetGoal__1
+c	net/minecraft/unmapped/C_3170674		net/minecraft/entity/ai/goal/MobEntityPlayerTargetGoal__3170674
 	f	Lnet/minecraft/unmapped/C_3148470;	f_2802027		f_2802027
 	m	(Lnet/minecraft/unmapped/C_3148470;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1473293		m_1473293
 		p	1			p_1
-c	net/minecraft/unmapped/C_3342438		net/minecraft/entity/living/mob/GhastEntity__GhastLookGoal
+c	net/minecraft/unmapped/C_3342438		net/minecraft/entity/living/mob/monster/GhastEntity__LookAroundGoal
 	f	Lnet/minecraft/unmapped/C_6269816;	f_6670703		ghast
 	m	(Lnet/minecraft/unmapped/C_6269816;)V	<init>		<init>
 		p	1			ghast
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_3504752		net/minecraft/entity/living/mob/hostile/EndermanEntity__LookAtPlayerGoal
-	f	Lnet/minecraft/unmapped/C_9590849;	f_7144667		target
-	f	I	f_3895227		lookAtPlayerWarmup
-	f	I	f_5329889		ticksSinceUnseenTeleport
+c	net/minecraft/unmapped/C_3504752		net/minecraft/entity/living/mob/monster/EndermanEntity__LookAtPlayerGoal
+	f	Lnet/minecraft/unmapped/C_9590849;	f_7144667		pendingTarget
+	f	I	f_3895227		creepySoundTimer
+		c		A timer that counts down while the enderman has a target, after which a creepy sound will be played.
+	f	I	f_5329889		targetFarAwayTicks
+		c		A counter that increments each tick where its target is more than 16 blocks away from this enderman.
 	f	Lnet/minecraft/unmapped/C_5587144;	f_7292859		enderman
 	m	(Lnet/minecraft/unmapped/C_5587144;)V	<init>		<init>
 		p	1			enderman
@@ -1277,88 +1275,88 @@ c	net/minecraft/unmapped/C_3504752		net/minecraft/entity/living/mob/hostile/Ende
 	m	()V	m_7242457		m_7242457
 	m	()Z	m_4540487		m_4540487
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_3825469		net/minecraft/entity/living/mob/GhastEntity__GhastMovementControl
+c	net/minecraft/unmapped/C_3825469		net/minecraft/entity/living/mob/monster/GhastEntity__MovementControl
 	f	Lnet/minecraft/unmapped/C_6269816;	f_1653557		ghast
-	f	I	f_0451570		floatDuration
+	f	I	f_0451570		cooldown
 	m	(Lnet/minecraft/unmapped/C_6269816;)V	<init>		<init>
 		p	1			ghast
 	m	()V	m_0741527		m_0741527
-	m	(DDDD)Z	m_7783322		canReach
-		p	1			x
-		p	3			y
-		p	5			z
-		p	7			distance
-c	net/minecraft/unmapped/C_3944742		net/minecraft/entity/living/mob/SlimeEntity__MoveAroundGoal
-	f	Lnet/minecraft/unmapped/C_0593414;	f_1177501		entity
+	m	(DDDD)Z	m_7783322		hasLineOfSight
+		p	1			targetX
+		p	3			targetY
+		p	5			targetZ
+		p	7			range
+c	net/minecraft/unmapped/C_3944742		net/minecraft/entity/living/mob/monster/SlimeEntity__JumpAroundGoal
+	f	Lnet/minecraft/unmapped/C_0593414;	f_1177501		slime
 	m	(Lnet/minecraft/unmapped/C_0593414;)V	<init>		<init>
-		p	1			entity
+		p	1			slime
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_4048583		net/minecraft/entity/living/mob/hostile/EndermanEntity__PickUpBlockGoal
+c	net/minecraft/unmapped/C_4048583		net/minecraft/entity/living/mob/monster/EndermanEntity__PickUpBlockGoal
 	f	Lnet/minecraft/unmapped/C_5587144;	f_7572049		enderman
 	m	(Lnet/minecraft/unmapped/C_5587144;)V	<init>		<init>
 		p	1			enderman
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_4343325		net/minecraft/entity/living/mob/hostile/SpiderEntity__TargetGoal
+c	net/minecraft/unmapped/C_4343325		net/minecraft/entity/living/mob/monster/SpiderEntity__TargetGoal
 	m	(Lnet/minecraft/unmapped/C_2363721;)V	<init>		<init>
 		p	1			p_1
 	m	()Z	m_9549250		m_9549250
-c	net/minecraft/unmapped/C_4461663		com/mojang/blaze3d/vertex/DefaultVertexFormat
+c	net/minecraft/unmapped/C_4461663		net/minecraft/client/render/vertex/DefaultVertexFormat
 	f	Lnet/minecraft/unmapped/C_2713005;	f_5066503		BLOCK
 	f	Lnet/minecraft/unmapped/C_2713005;	f_7717301		BLOCK_NORMALS
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_5364099		net/minecraft/entity/living/mob/GhastEntity__ShootFireballGoal
+c	net/minecraft/unmapped/C_5364099		net/minecraft/entity/living/mob/monster/GhastEntity__ShootFireballGoal
 	f	Lnet/minecraft/unmapped/C_6269816;	f_8800133		ghast
-	f	I	f_2934639		chargeTime
+	f	I	f_2934639		chargeTicks
 	m	(Lnet/minecraft/unmapped/C_6269816;)V	<init>		<init>
 		p	1			ghast
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3836415		m_3836415
 	m	()V	m_7242457		m_7242457
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_5643080		net/minecraft/entity/EntityFilter__5
+c	net/minecraft/unmapped/C_5643080		net/minecraft/entity/EntityFilter__5643080
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_1473293		m_1473293
 		p	1			p_1
-c	net/minecraft/unmapped/C_5802636		net/minecraft/unmapped/C_5802636
-	f	Lnet/minecraft/unmapped/C_4015822;	f_7163011		f_7163011
-	f	I	f_3161876		f_3161876
-	f	I	f_8151479		f_8151479
+c	net/minecraft/unmapped/C_5802636		net/minecraft/entity/living/mob/monster/BlazeEntity__AttackGoal
+	f	Lnet/minecraft/unmapped/C_4015822;	f_7163011		blaze
+	f	I	f_3161876		step
+	f	I	f_8151479		ticks
 	m	(Lnet/minecraft/unmapped/C_4015822;)V	<init>		<init>
-		p	1			p_1
+		p	1			blaze
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3836415		m_3836415
 	m	()V	m_7242457		m_7242457
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_5863811		net/minecraft/entity/living/mob/SlimeEntity__LeapTowardsTargetGoal
+c	net/minecraft/unmapped/C_5863811		net/minecraft/entity/living/mob/monster/SlimeEntity__RandomDirectionGoal
 	f	Lnet/minecraft/unmapped/C_0593414;	f_7891220		entity
-	f	F	f_5184728		f_5184728
-	f	I	f_5086512		f_5086512
+	f	F	f_5184728		direction
+	f	I	f_5086512		cooldown
 	m	(Lnet/minecraft/unmapped/C_0593414;)V	<init>		<init>
 		p	1			entity
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_6436871		net/minecraft/entity/living/mob/SlimeEntity__MovementControl
-	f	F	f_0320074		f_0320074
+c	net/minecraft/unmapped/C_6436871		net/minecraft/entity/living/mob/monster/SlimeEntity__MovementControl
+	f	F	f_0320074		yaw
 	f	I	f_2476217		jumpCooldownTicks
 	f	Lnet/minecraft/unmapped/C_0593414;	f_4779214		entity
-	f	Z	f_4934007		hasTarget
+	f	Z	f_4934007		aggressive
 	m	(Lnet/minecraft/unmapped/C_0593414;)V	<init>		<init>
 		p	1			entity
-	m	(FZ)V	m_4769048		m_4769048
-		p	1			p_1
-		p	2			hasTarget
-	m	(D)V	m_5893741		m_5893741
+	m	(FZ)V	m_4769048		setDirection
+		p	1			yaw
+		p	2			aggressive
+	m	(D)V	m_5893741		setSpeed
 		p	1			speed
 	m	()V	m_0741527		m_0741527
-c	net/minecraft/unmapped/C_6609267		net/minecraft/client/render/entity/ZombieBaseRenderer__1
+c	net/minecraft/unmapped/C_6609267		net/minecraft/client/render/entity/ZombieRenderer__6609267
 	f	Lnet/minecraft/unmapped/C_8370969;	f_6810856		f_6810856
 	m	(Lnet/minecraft/unmapped/C_8370969;Lnet/minecraft/unmapped/C_7639596;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()V	m_8680944		m_8680944
-c	net/minecraft/unmapped/C_6833902		net/minecraft/entity/living/mob/hostile/SilverfishEntity__WakeUpFriendsGoal
+c	net/minecraft/unmapped/C_6833902		net/minecraft/entity/living/mob/monster/SilverfishEntity__WakeUpFriendsGoal
 	f	Lnet/minecraft/unmapped/C_1753171;	f_5903889		silverfish
 	f	I	f_6607444		cooldown
 	m	(Lnet/minecraft/unmapped/C_1753171;)V	<init>		<init>
@@ -1366,7 +1364,7 @@ c	net/minecraft/unmapped/C_6833902		net/minecraft/entity/living/mob/hostile/Silv
 	m	()V	m_9474976		onDamaged
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_6908992		net/minecraft/entity/living/mob/hostile/SpiderEntity__SpiderAttackGoal
+c	net/minecraft/unmapped/C_6908992		net/minecraft/entity/living/mob/monster/SpiderEntity__SpiderAttackGoal
 	m	(Lnet/minecraft/unmapped/C_2363721;)V	<init>		<init>
 		p	1			p_1
 	m	()Z	m_4540487		m_4540487
@@ -1395,14 +1393,14 @@ c	net/minecraft/unmapped/C_7184938		net/minecraft/client/resource/model/BakedMod
 	m	()Z	m_3258534		isOffsetZ
 	m	()Z	m_8857616		isOffset
 	m	()Z	m_2956109		isGui3d
-c	net/minecraft/unmapped/C_7219862		net/minecraft/entity/living/mob/GhastEntity__FloatAroundGoal
+c	net/minecraft/unmapped/C_7219862		net/minecraft/entity/living/mob/monster/GhastEntity__MoveAroundGoal
 	f	Lnet/minecraft/unmapped/C_6269816;	f_9556705		ghast
 	m	(Lnet/minecraft/unmapped/C_6269816;)V	<init>		<init>
 		p	1			ghast
 	m	()Z	m_9549250		m_9549250
 	m	()Z	m_4540487		m_4540487
 	m	()V	m_3836415		m_3836415
-c	net/minecraft/unmapped/C_7469195		net/minecraft/client/render/entity/SkeletonRenderer__1
+c	net/minecraft/unmapped/C_7469195		net/minecraft/client/render/entity/SkeletonRenderer__7469195
 	f	Lnet/minecraft/unmapped/C_9006363;	f_3261466		f_3261466
 	m	(Lnet/minecraft/unmapped/C_9006363;Lnet/minecraft/unmapped/C_7639596;)V	<init>		<init>
 		p	1			p_1
@@ -1441,19 +1439,19 @@ c	net/minecraft/unmapped/C_8078626		net/minecraft/client/entity/particle/Barrier
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-c	net/minecraft/unmapped/C_8181996		net/minecraft/entity/living/mob/hostile/ZombiePigmanEntity__ZombiePigmanRevengeGoal
+c	net/minecraft/unmapped/C_8181996		net/minecraft/entity/living/mob/monster/ZombiePigmanEntity__RevengeGoal
 	m	(Lnet/minecraft/unmapped/C_4281786;)V	<init>		<init>
 		p	1			pigman
 	m	(Lnet/minecraft/unmapped/C_5622853;Lnet/minecraft/unmapped/C_6607881;)V	m_3281506		m_3281506
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_8424126		net/minecraft/entity/living/mob/SlimeEntity__SwimAroundGoal
-	f	Lnet/minecraft/unmapped/C_0593414;	f_7615451		entity
+c	net/minecraft/unmapped/C_8424126		net/minecraft/entity/living/mob/monster/SlimeEntity__SwimAroundGoal
+	f	Lnet/minecraft/unmapped/C_0593414;	f_7615451		slime
 	m	(Lnet/minecraft/unmapped/C_0593414;)V	<init>		<init>
-		p	1			entity
+		p	1			slime
 	m	()Z	m_9549250		m_9549250
 	m	()V	m_3798730		m_3798730
-c	net/minecraft/unmapped/C_8552441		net/minecraft/client/render/entity/GiantRenderer__1
+c	net/minecraft/unmapped/C_8552441		net/minecraft/client/render/entity/GiantRenderer__8552441
 	f	Lnet/minecraft/unmapped/C_1212414;	f_0121447		f_0121447
 	m	(Lnet/minecraft/unmapped/C_1212414;Lnet/minecraft/unmapped/C_7639596;)V	<init>		<init>
 		p	1			p_1
@@ -1481,9 +1479,9 @@ c	net/minecraft/unmapped/C_9551096		net/minecraft/entity/ai/pathing/WallClimberP
 		p	1			p_1
 		p	2			p_2
 	m	()V	m_2563935		m_2563935
-c	net/minecraft/unmapped/C_9674265		net/minecraft/entity/living/mob/SlimeEntity__MoveTowardsTargetGoal
+c	net/minecraft/unmapped/C_9674265		net/minecraft/entity/living/mob/monster/SlimeEntity__AttackGoal
 	f	Lnet/minecraft/unmapped/C_0593414;	f_7308954		slime
-	f	I	f_9304701		f_9304701
+	f	I	f_9304701		stopTimer
 	m	(Lnet/minecraft/unmapped/C_0593414;)V	<init>		<init>
 		p	1			entity
 	m	()Z	m_9549250		m_9549250

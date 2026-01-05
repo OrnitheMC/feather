@@ -30,18 +30,18 @@ c	net/minecraft/unmapped/C_1322485
 		p	0			p_0
 		p	1			style
 c	net/minecraft/unmapped/C_1353256
-	f	[I	f_6507517		f_6507517
+	f	[I	f_6507517		STEPS_TO_CHECK
 	m	()Z	m_8519588	m_8519588	
-	m	(Lnet/minecraft/unmapped/C_3674802;III)Z	m_5303056		m_5303056
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_3674802;III)Z	m_2514223		m_2514223
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_3674802;III)Z	m_5303056		isWaterClear
+		p	1			pos
+		p	2			dx
+		p	3			dz
+		p	4			distance
+	m	(Lnet/minecraft/unmapped/C_3674802;III)Z	m_2514223		isSurfaceClear
+		p	1			pos
+		p	2			dx
+		p	3			dz
+		p	4			distance
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_1361861
 	m	(Lnet/minecraft/unmapped/C_1361861$C_6533070;)V	m_7249279		forEachFace
@@ -269,11 +269,11 @@ c	net/minecraft/unmapped/C_3945557
 	m	(Lnet/minecraft/unmapped/C_6237110;)V	m_5262635		m_5262635
 		p	1			style
 c	net/minecraft/unmapped/C_4011766
-	m	(IIII)V	m_0845837	m_0845837	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(IIII)V	m_0845837	prepare	
+		p	0		id	
+		p	1		mipmapLevel	
+		p	2		width	
+		p	3		height	
 	m	(Lnet/minecraft/unmapped/C_7131921$C_0506307;III)V	m_9065985		m_9065985
 		p	0			p_0
 		p	1			p_1
@@ -284,7 +284,7 @@ c	net/minecraft/unmapped/C_4011766
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_7131921$C_0506307;IIII)V	m_0845837		m_0845837
+	m	(Lnet/minecraft/unmapped/C_7131921$C_0506307;IIII)V	m_0845837		prepare
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -519,8 +519,8 @@ c	net/minecraft/unmapped/C_6495889
 	m	(D)Z	mouseScrolled		mouseScrolled
 		p	1			p_1
 c	net/minecraft/unmapped/C_6607881
-	m	()V	m_0992030	aiEnabled	
-	m	()V	m_3525047	m_3525047	
+	m	()V	m_0992030	jumpInWater	
+	m	()V	m_3525047	jumpInLava	
 	m	(Lnet/minecraft/unmapped/C_9086953;)V	m_6877816		m_6877816
 		p	1			p_1
 c	net/minecraft/unmapped/C_6729817
@@ -591,17 +591,17 @@ c	net/minecraft/unmapped/C_7131921
 	m	(II)B	m_8601920		getLuminanceOrAlpha
 		p	1			x
 		p	2			y
-	m	(Lorg/lwjgl/stb/STBTTFontinfo;IIIFFFFII)V	m_6635167		m_6635167
-		p	1			p_1
+	m	(Lorg/lwjgl/stb/STBTTFontinfo;IIIFFFFII)V	m_6635167		copyFromFont
+		p	1			fontInfo
 		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	3			width
+		p	4			height
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
 		p	8			p_8
-		p	9			p_9
-		p	10			p_10
+		p	9			xoffset
+		p	10			yoffset
 c	net/minecraft/unmapped/C_7131921$C_0506307		InternalGlFormat
 	f	Lnet/minecraft/unmapped/C_7131921$C_0506307;	f_4085110		RGBA
 	f	Lnet/minecraft/unmapped/C_7131921$C_0506307;	f_1185737		RGB
@@ -757,12 +757,12 @@ c	net/minecraft/unmapped/C_7846162
 	m	()F	m_6194748		m_6194748
 	m	()F	m_0831354		m_0831354
 c	net/minecraft/unmapped/C_7873567
-	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1821693;Z)V	m_8971852		m_8971852
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(DDDLnet/minecraft/unmapped/C_1821693;)V	m_7020273		m_7020273
+	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1821693;Z)V	m_8971852		addDripParticles
+		p	1			pos
+		p	2			state
+		p	3			type
+		p	4			top
+	m	(DDDLnet/minecraft/unmapped/C_1821693;)V	m_7020273		addDripParticle
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
@@ -777,10 +777,10 @@ c	net/minecraft/unmapped/C_7975444
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/unmapped/C_8105098
-	f	Lnet/minecraft/unmapped/C_4399780;	f_7716697	shadowTextRenderer	
-	f	Lnet/minecraft/unmapped/C_0561170;	f_3992496		f_3992496
-	f	Lnet/minecraft/unmapped/C_0561170;	f_5831376		f_5831376
-	f	Lnet/minecraft/unmapped/C_6948337;	f_7716697		shadowTextRenderer
+	f	Lnet/minecraft/unmapped/C_4399780;	f_7716697	enchantingPhraseRenderer	
+	f	Lnet/minecraft/unmapped/C_0561170;	f_3992496		DEFAULT_FONT_LOCATION
+	f	Lnet/minecraft/unmapped/C_0561170;	f_5831376		ALT_FONT_LOCATION
+	f	Lnet/minecraft/unmapped/C_6948337;	f_7716697		fontManager
 	m	()Lnet/minecraft/unmapped/C_6948337;	m_9176337		getFontManager
 c	net/minecraft/unmapped/C_8345387
 	m	(Lnet/minecraft/unmapped/C_4354908;Lnet/minecraft/unmapped/C_1716360;Lio/netty/util/concurrent/Future;)V	m_2151399	m_2151399	
@@ -803,7 +803,7 @@ c	net/minecraft/unmapped/C_8463458
 	m	()Z	m_2703913		isColored
 	m	()F	m_0858246		getOversample
 	m	()F	m_7032718		m_7032718
-	m	()F	m_6732963		m_6732963
+	m	()F	m_6732963		getBearingY
 c	net/minecraft/unmapped/C_8494354
 	m	(Lnet/minecraft/unmapped/C_6237110;)V	m_1161793		m_1161793
 		p	1			style
@@ -843,7 +843,7 @@ c	net/minecraft/unmapped/C_8969287
 c	net/minecraft/unmapped/C_9159727
 	m	()Z	m_5368806		m_5368806
 c	net/minecraft/unmapped/C_9379659
-	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3469856;)Z	m_9369451	m_9369451	
+	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3469856;)Z	m_9369451	canHoldFluid	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -855,29 +855,29 @@ c	net/minecraft/unmapped/C_9379659
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3469856;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Z	m_5529350		m_5529350
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3469856;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_6075177;)Z	m_1820730		m_1820730
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
-	m	(Lnet/minecraft/unmapped/C_6075177;)Z	m_1467285		m_1467285
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3469856;)Z	m_9369451		m_9369451
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3469856;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Z	m_5529350		canFlowDownInto
+		p	1			world
+		p	2			fluid
+		p	3			from
+		p	4			fromState
+		p	5			to
+		p	6			toState
+	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3469856;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_6075177;)Z	m_1820730		canFlowThrough
+		p	1			world
+		p	2			fluid
+		p	3			from
+		p	4			fromState
+		p	5			dir
+		p	6			to
+		p	7			toState
+		p	8			state
+	m	(Lnet/minecraft/unmapped/C_6075177;)Z	m_1467285		isSourceOfThisType
+		p	1			state
+	m	(Lnet/minecraft/unmapped/C_5250955;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3469856;)Z	m_9369451		canHoldFluid
+		p	1			world
+		p	2			pos
+		p	3			state
+		p	4			fluid
 c	net/minecraft/unmapped/C_9470286
 	m	(Lnet/minecraft/unmapped/C_0705111;Ljava/util/Random;IIII)Lnet/minecraft/unmapped/C_7141926;	m_1401668		getPotentialFeatureChunkPos
 		p	1			generator
@@ -906,7 +906,7 @@ c	net/minecraft/unmapped/C_9685768
 	m	()Lnet/minecraft/unmapped/C_9550253;	m_6124997	m_6124997	
 c	net/minecraft/unmapped/C_9698407
 	m	(Lnet/minecraft/unmapped/C_6237110;)V	m_8772362		m_8772362
-		p	0			p_0
+		p	0			style
 c	net/minecraft/unmapped/C_9733634
 	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_6237110;)V	m_2080048		m_2080048
 		p	0			p_0

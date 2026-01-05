@@ -26,18 +26,18 @@ c	net/minecraft/unmapped/C_1792356	net/minecraft/entity/ai/goal/TrackIronGolemTa
 c	net/minecraft/unmapped/C_2167183
 	f	J	f_7097965		seed
 	m	(IBLnet/minecraft/unmapped/C_1518925;II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		dimension	
+		p	2		difficulty	
+		p	3		generatorType	
+		p	4		worldHeight	
+		p	5		gameMode	
 	m	(IBJLnet/minecraft/unmapped/C_1518925;II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	1			dimension
+		p	2			difficulty
+		p	3			seed
+		p	5			generatorType
+		p	6			worldHeight
+		p	7			gameMode
 c	net/minecraft/unmapped/C_2240002
 	f	Lnet/minecraft/unmapped/C_6607881;	f_7064794	target	
 	f	Lnet/minecraft/unmapped/C_8814877;	f_7064794		target
@@ -54,8 +54,8 @@ c	net/minecraft/unmapped/C_3014809	net/minecraft/entity/ai/goal/ActiveTargetGoal
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare	compare	
-		p	1		entity1	
-		p	2		entity2	
+		p	1		p_1	
+		p	2		p_2	
 c	net/minecraft/unmapped/C_3551236	net/minecraft/entity/ai/goal/GoToEntityTargetGoal	
 	f	Lnet/minecraft/unmapped/C_5622853;	f_2122138	entity	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_6506340	targetEntity	
@@ -96,8 +96,8 @@ c	net/minecraft/unmapped/C_5553933
 		p	2		y	
 		p	3		z	
 c	net/minecraft/unmapped/C_5660126
-	m	(I)I	m_4628580		m_4628580
-		p	0			p_0
+	m	(I)I	m_4628580		getFacing
+		p	0			metadata
 c	net/minecraft/unmapped/C_5708472
 	f	Ljava/util/List;	f_6052763	attackers	
 	f	I	f_6970928	golems	
@@ -118,23 +118,23 @@ c	net/minecraft/unmapped/C_5708472
 	m	()V	m_8020365	updateIronGolemCount	
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_4166896	addOrUpdateAttacker	
 		p	1		attacker	
-	m	(Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_6607881;	m_0499774	getClosestAttacker	
+	m	(Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_6607881;	m_0499774	getNearestAttacker	
 		p	1		entity	
 	m	()V	m_0477010	cleanUpAttackers	
-	m	()V	m_5838302	cleanUpDoors	
-	m	(I)V	m_5838302		cleanUpDoors
-		p	1			p_1
+	m	()V	m_5838302	removeInvalidDoors	
+	m	(I)V	m_5838302		removeInvalidDoors
+		p	1			ticks
 c	net/minecraft/unmapped/C_6607881
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_8337329	setAttacker	
 		p	1		attacker	
 c	net/minecraft/unmapped/C_6849228
-	f	I	f_7470066	queuedLightChecks	
+	f	I	f_7470066	nextBorderLightCheck	
 	m	(III)I	m_0302229	getOpacityAt	
 		p	1		localX	
 		p	2		y	
 		p	3		localZ	
-	m	()V	m_5537231	clearLightChecks	
-	m	()V	m_0463658	checkLight	
+	m	()V	m_5537231	resetBorderLightChecks	
+	m	()V	m_0463658	checkBorderLight	
 c	net/minecraft/unmapped/C_7159708
 	m	(III)I	m_0302229	m_0302229	
 		p	1		p_1	
@@ -143,7 +143,7 @@ c	net/minecraft/unmapped/C_7159708
 	m	(II)Z	m_3541347	m_3541347	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_7592368	net/minecraft/entity/living/mob/IronGolemEntity	
+c	net/minecraft/unmapped/C_7592368	net/minecraft/entity/mob/IronGolemEntity	
 	f	I	f_4450686	mobTickCooldown	
 	f	Lnet/minecraft/unmapped/C_5708472;	f_5087798	village	
 	f	I	f_1327570	attackTicksLeft	
@@ -181,12 +181,12 @@ c	net/minecraft/unmapped/C_7968335	net/minecraft/entity/ai/goal/IronGolemLookGoa
 c	net/minecraft/unmapped/C_7985395
 	f	Lnet/minecraft/unmapped/C_3014809;	f_6252142	comparator	
 	m	(Lnet/minecraft/unmapped/C_6607881;Ljava/lang/Class;FIZZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		mob	
+		p	2		targetType	
+		p	3		range	
+		p	4		chanceToStartGoal	
+		p	5		checkVisibility	
+		p	6		checkCanNavigate	
 c	net/minecraft/unmapped/C_8159814
 	f	Z	f_1608748	checkCanNavigate	
 	m	(Lnet/minecraft/unmapped/C_6607881;FZZ)V	<init>	<init>	
@@ -200,7 +200,7 @@ c	net/minecraft/unmapped/C_8814877
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8847310	net/minecraft/world/village/Village__Attacker	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_2069351	attacker	
-	f	I	f_9884895	ticks	
+	f	I	f_9884895	lastUpdateTick	
 	f	Lnet/minecraft/unmapped/C_5708472;	f_0729138	village	
 	m	(Lnet/minecraft/unmapped/C_5708472;Lnet/minecraft/unmapped/C_6607881;I)V	<init>	<init>	
 		p	1		p_1	
@@ -221,7 +221,7 @@ c	net/minecraft/unmapped/C_9005195	net/minecraft/entity/ai/goal/FollowGolemGoal
 c	net/minecraft/unmapped/C_9229053
 	m	()V	m_6903096	trimPath	
 	m	(Lnet/minecraft/unmapped/C_2306016;)V	m_6903096		trimPath
-		p	1			p_1
+		p	1			path
 c	net/minecraft/unmapped/C_9232485
 	f	J	f_5086097		seed
 	m	(Ljava/lang/String;ILnet/minecraft/unmapped/C_1518925;IIBBB)V	<init>	<init>	

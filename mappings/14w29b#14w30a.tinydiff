@@ -19,11 +19,11 @@ c	net/minecraft/unmapped/C_0266138
 	m	(Lnet/minecraft/unmapped/C_1241852;)V	m_2628837	render	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2628837		render
-		p	1			stack
+		p	1			item
 c	net/minecraft/unmapped/C_0539808
 	m	()Z	m_1078910		isSilent
 	m	(Z)V	m_4587013		setSilent
-		p	1			p_1
+		p	1			silent
 c	net/minecraft/unmapped/C_0658987
 	f	Lorg/apache/logging/log4j/Logger;	f_7121140		LOGGER
 	m	()V	<clinit>		<clinit>
@@ -66,7 +66,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	4			state
 		p	5			blockEntity
 c	net/minecraft/unmapped/C_1250058
-	m	()V	m_9738936	onEntityChanged	
+	m	()V	m_9738936	notifyEntityChanged	
 c	net/minecraft/unmapped/C_1331819
 	f	Z	f_6096380	advancedOpengl	
 c	net/minecraft/unmapped/C_1440477
@@ -84,37 +84,37 @@ c	net/minecraft/unmapped/C_1440477
 c	net/minecraft/unmapped/C_1610187
 	f	Lorg/apache/logging/log4j/Logger;	f_4696848		LOGGER
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_1895985	net/minecraft/client/render/world/RenderChunkStorage	
+c	net/minecraft/unmapped/C_1895985	net/minecraft/client/render/world/ChunkRenderer	
 	f	Lnet/minecraft/unmapped/C_3674802;	f_6879913	origin	
-	f	D	f_1293079	cameraX	
-	f	D	f_1802639	cameraY	
-	f	D	f_4564971	cameraZ	
-	f	Ljava/nio/IntBuffer;	f_2884900	glList	
+	f	D	f_1293079	offsetX	
+	f	D	f_1802639	offsetY	
+	f	D	f_4564971	offsetZ	
+	f	Ljava/nio/IntBuffer;	f_2884900	glListBuffer	
 	f	Ljava/util/List;	f_4890429	chunks	
-	f	Z	f_8735875	renderingLeft	
-	f	Z	f_8780809	doNotFlipGlList	
+	f	Z	f_8735875	initialized	
+	f	Z	f_8780809	rendered	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_3674802;DDD)V	m_6649386	m_6649386	
+	m	(Lnet/minecraft/unmapped/C_3674802;DDD)V	m_6649386	init	
 		p	1		origin	
 		p	2		cameraX	
 		p	4		cameraY	
 		p	6		cameraZ	
-	m	(Lnet/minecraft/unmapped/C_3674802;)Z	m_8405137	m_8405137	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_3674802;)Z	m_8405137	isAt	
+		p	1		pos	
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_1365242	getOrigin	
-	m	(I)V	m_4478083	addNewIdToGlList	
-		p	1		id	
+	m	(I)V	m_4478083	addGlList	
+		p	1		glList	
 	m	(Lnet/minecraft/unmapped/C_7028449;)V	m_3077641	addChunk	
 		p	1		chunk	
 	m	(Lnet/minecraft/unmapped/C_3333682;)V	m_4389031	renderLayer	
 		p	1		layer	
 	m	()V	m_9844188	render	
 	m	()V	m_9825814	glTranslatef	
-	m	(Lnet/minecraft/unmapped/C_3333682;)V	m_8923851	m_8923851	
+	m	(Lnet/minecraft/unmapped/C_3333682;)V	m_8923851	renderWithVbo	
 		p	1		layer	
 	m	()V	m_9137168	m_9137168	
-	m	()V	m_4954327	reset	
-c	net/minecraft/unmapped/C_1955653	net/minecraft/client/render/CompiledChunkComparator	
+	m	()V	m_4954327	clear	
+c	net/minecraft/unmapped/C_1955653	net/minecraft/client/render/world/DistanceChunkSorter	
 	f	D	f_9651376	cameraX	
 	f	D	f_1264212	cameraY	
 	f	D	f_5395774	cameraZ	
@@ -124,8 +124,8 @@ c	net/minecraft/unmapped/C_1955653	net/minecraft/client/render/CompiledChunkComp
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare	compare	
-		p	1		chunk1	
-		p	2		chunk2	
+		p	1		p_1	
+		p	2		p_2	
 c	net/minecraft/unmapped/C_2018497
 	m	()Z	m_8686998	isEmpty	
 	m	()Z	m_6319368		m_6319368
@@ -156,18 +156,18 @@ c	net/minecraft/unmapped/C_2454309
 	m	(Ljava/lang/String;Z)Lnet/minecraft/unmapped/C_2018497;	m_2337373		getNbt
 		p	1			key
 		p	2			orCreate
-c	net/minecraft/unmapped/C_2728826	net/minecraft/client/util/RenderDistanceSortingFilter	
-	f	I	f_7428435	offsetX	
-	f	I	f_6586148	offsetZ	
+c	net/minecraft/unmapped/C_2728826	net/minecraft/client/render/world/DistanceChunkRendererSorter	
+	f	I	f_7428435	cameraX	
+	f	I	f_6586148	cameraZ	
 	m	(II)V	<init>	<init>	
-		p	1		offsetX	
-		p	2		offsetZ	
+		p	1		cameraX	
+		p	2		cameraZ	
 	m	(Lnet/minecraft/unmapped/C_1895985;Lnet/minecraft/unmapped/C_1895985;)I	m_2999159	compare	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare	compare	
-		p	1		storage1	
-		p	2		storage2	
+		p	1		p_1	
+		p	2		p_2	
 c	net/minecraft/unmapped/C_2896536
 	f	I	f_9452987	type	
 	f	Lnet/minecraft/unmapped/C_4701530;	f_3981924		type
@@ -246,7 +246,7 @@ c	net/minecraft/unmapped/C_3504190
 c	net/minecraft/unmapped/C_3543146
 	m	()Ljava/lang/String;	m_2645411		getModelType
 c	net/minecraft/unmapped/C_3544601
-	m	(FFF)Lnet/minecraft/unmapped/C_3544601;	m_1064030		getClosest
+	m	(FFF)Lnet/minecraft/unmapped/C_3544601;	m_1064030		getNearest
 		p	0			dx
 		p	1			dy
 		p	2			dz
@@ -340,7 +340,7 @@ c	net/minecraft/unmapped/C_5693434
 	f	Lorg/apache/logging/log4j/Logger;	f_6961563		LOGGER
 	m	()Z	m_6319368		m_6319368
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_6162612	net/minecraft/server/world/ServerWorld__1	
+c	net/minecraft/unmapped/C_6162612	net/minecraft/server/world/ServerWorld__6162612	
 c	net/minecraft/unmapped/C_6559556
 	m	(Lnet/minecraft/unmapped/C_0539808;I)V	m_6322299	addEmitter	
 		p	1		target	
@@ -399,7 +399,7 @@ c	net/minecraft/unmapped/C_7028449
 	m	(Lnet/minecraft/unmapped/C_3333682;Lnet/minecraft/unmapped/C_2326439;)I	m_5095556	getGlList	
 		p	1		layer	
 		p	2		compiled	
-	m	(Lnet/minecraft/unmapped/C_8847418;)V	m_0357066	updateVisibility	
+	m	(Lnet/minecraft/unmapped/C_8847418;)V	m_0357066	cull	
 		p	1		culler	
 	m	()Z	m_8263433	isEmpty	
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_4170504	getCenter	
@@ -448,38 +448,38 @@ c	net/minecraft/unmapped/C_8328177
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_8398976
-	f	Ljava/util/List;	f_5253078	globalBlockEntities	
-	f	Ljava/util/List;	f_2775791	pendingChunks	
-	f	[Lnet/minecraft/unmapped/C_7028449;	f_6849064	compiledChunks	
-	f	[Lnet/minecraft/unmapped/C_7028449;	f_2222405	chunkStorage	
-	f	I	f_6542687	translucentGlList	
+	f	Ljava/util/List;	f_5253078	blockEntitiesToBeRendered	
+	f	Ljava/util/List;	f_2775791	dirtyChunks	
+	f	[Lnet/minecraft/unmapped/C_7028449;	f_6849064	sortedChunks	
+	f	[Lnet/minecraft/unmapped/C_7028449;	f_2222405	chunks	
+	f	I	f_6542687	chunksGlList	
 	f	I	f_9589198	chunkBoundsGlList	
-	f	Ljava/nio/IntBuffer;	f_5815579	arbOcclusionBuffer	
-	f	Z	f_9940188	glArbOcclusion	
+	f	Ljava/nio/IntBuffer;	f_5815579	occlusionBuffer	
+	f	Z	f_9940188	occlusion	
 	f	I	f_0367927	starsGlList	
 	f	I	f_3694268	lightSkyGlList	
 	f	I	f_3113621	darkSkyGlList	
-	f	I	f_3591859	chunkGridMinX	
-	f	I	f_7899367	chunkGridMinY	
-	f	I	f_2929446	chunkGridMinZ	
-	f	I	f_0136546	chunkGridMaxX	
-	f	I	f_5895585	chunkGridMaxY	
-	f	I	f_4078785	chunkGridMaxZ	
+	f	I	f_3591859	minChunkX	
+	f	I	f_7899367	minChunkY	
+	f	I	f_2929446	minChunkZ	
+	f	I	f_0136546	maxChunkX	
+	f	I	f_5895585	maxChunkY	
+	f	I	f_4078785	maxChunkZ	
 	f	Z	f_7868031	shouldRebuildStaticEntities	
-	f	D	f_3776429	prevCameraX	
-	f	D	f_2308249	prevCameraY	
-	f	D	f_9240713	prevCameraZ	
-	f	Ljava/nio/IntBuffer;	f_9055179	occlusionBuffer	
+	f	D	f_3776429	cameraX	
+	f	D	f_2308249	cameraY	
+	f	D	f_9240713	cameraZ	
+	f	Ljava/nio/IntBuffer;	f_9055179	occlusionQueryBuffer	
 	f	I	f_2057730	chunkCount	
 	f	I	f_7816152	invisibleChunkCount	
-	f	I	f_3311390	glArbOccludedChunkCount	
+	f	I	f_3311390	occludedChunkCount	
 	f	I	f_5476568	compiledChunkCount	
-	f	I	f_3761417	chunkSortIndex	
-	f	Ljava/util/List;	f_4777570	renderList	
-	f	[Lnet/minecraft/unmapped/C_1895985;	f_2276984	renderStages	
-	f	I	f_0853478	frustumUpdateIndex	
-	f	Ljava/util/Set;	f_5253078		globalBlockEntities
-	f	Ljava/util/Set;	f_2775791		pendingChunks
+	f	I	f_3761417	chunkCheckIndex	
+	f	Ljava/util/List;	f_4777570	chunksInCurrentLayer	
+	f	[Lnet/minecraft/unmapped/C_1895985;	f_2276984	chunkRenderers	
+	f	I	f_0853478	cullStep	
+	f	Ljava/util/Set;	f_5253078		blockEntitiesToBeRendered
+	f	Ljava/util/Set;	f_2775791		dirtyChunks
 	f	Ljava/util/List;	f_1996236		compiledChunks
 	f	Lnet/minecraft/unmapped/C_2528546;	f_2150000		chunkStorage
 	f	Lnet/minecraft/unmapped/C_2713005;	f_0846544		skyVertexFormat
@@ -502,17 +502,14 @@ c	net/minecraft/unmapped/C_8398976
 	f	D	f_9283560		lastCameraY
 	f	D	f_3975529		lastCameraZ
 	f	Z	f_8314381		viewChanged
-	f	D	f_7700050	cameraX	chunkSectionCameraX
-	f	D	f_7276458	cameraY	chunkSectionCameraY
-	f	D	f_3568764	cameraZ	chunkSectionCameraZ
-	f	I	f_3719740	chunkGridSizeX	starsGlList
-	f	I	f_5788315	chunkGridSizeY	lightSkyGlList
-	f	I	f_8962769	chunkGridSizeZ	darkSkyGlList
+	f	I	f_3719740	chunkCountX	starsGlList
+	f	I	f_5788315	chunkCountY	lightSkyGlList
+	f	I	f_8962769	chunkCountZ	darkSkyGlList
 	m	(Z)V	m_2729219	reloadGlArbOcclusion	
 		p	1		wasEnabled	
 	m	()V	m_4672684	renderStars	
 	m	()V	m_9738936	m_9738936	
-	m	(III)V	m_8756527	updateRenderBoundaries	
+	m	(III)V	m_8756527	sortChunks	
 		p	1		cameraX	
 		p	2		cameraY	
 		p	3		cameraZ	
@@ -521,10 +518,10 @@ c	net/minecraft/unmapped/C_8398976
 		p	2		layer	
 		p	3		tickDelta	
 		p	5		anaglyphRenderPass	
-	m	(II)V	m_8204524	queryGlArbOcclusion	
+	m	(II)V	m_8204524	checkOcclusionQueries	
 		p	1		from	
 		p	2		to	
-	m	(IILnet/minecraft/unmapped/C_3333682;D)I	m_5966782	render	
+	m	(IILnet/minecraft/unmapped/C_3333682;D)I	m_5966782	renderChunks	
 		p	1		from	
 		p	2		to	
 		p	3		layer	
@@ -532,7 +529,7 @@ c	net/minecraft/unmapped/C_8398976
 	m	(JLnet/minecraft/unmapped/C_0539808;)V	m_4101174	compileChunksUntil	
 		p	1		time	
 		p	3		camera	
-	m	(Lnet/minecraft/unmapped/C_8847418;F)V	m_3595684	updateFrustums	
+	m	(Lnet/minecraft/unmapped/C_8847418;F)V	m_3595684	cullChunks	
 		p	1		culler	
 		p	2		tickDelta	
 	m	()V	m_9342876		renderDarkSky
@@ -544,7 +541,7 @@ c	net/minecraft/unmapped/C_8398976
 	m	()V	m_0537528		renderStars
 	m	(Lnet/minecraft/unmapped/C_8373595;)V	m_4672684		renderStars
 		p	1			bufferBuilder
-	m	()V	m_8143425		resetPendingChunks
+	m	()V	m_8143425		resetDirtyChunks
 	m	(Lnet/minecraft/unmapped/C_0539808;DLnet/minecraft/unmapped/C_8847418;I)V	m_4843024		setupRender
 		p	1			camera
 		p	2			tickDelta
@@ -559,8 +556,8 @@ c	net/minecraft/unmapped/C_8398976
 		p	3			y
 		p	5			z
 	m	(Lnet/minecraft/unmapped/C_0539808;D)Ljavax/vecmath/Vector3f;	m_1662587		getLookVector
-		p	1			p_1
-		p	2			p_2
+		p	1			camera
+		p	2			tickDelta
 	m	(Lnet/minecraft/unmapped/C_3333682;DILnet/minecraft/unmapped/C_0539808;)I	m_4364373		render
 		p	1			layer
 		p	2			tickDelta
@@ -569,11 +566,10 @@ c	net/minecraft/unmapped/C_8398976
 	m	(J)V	m_4101174		compileChunksUntil
 		p	1			time
 	m	()V	m_6441091		onViewChanged
-	m	()V	m_0637355	deleteGlLists	clear
 c	net/minecraft/unmapped/C_8980628
-	m	(Lnet/minecraft/unmapped/C_5577922;)V	m_8310938	drawBox	
-		p	0		box	
-c	net/minecraft/unmapped/C_9079092	net/minecraft/client/render/world/PendingChunkComparator	
+	m	(Lnet/minecraft/unmapped/C_5577922;)V	m_8310938	renderShapeFlat	
+		p	0		shape	
+c	net/minecraft/unmapped/C_9079092	net/minecraft/client/render/world/DirtyChunkSorter	
 	f	Lnet/minecraft/unmapped/C_0539808;	f_4585186	camera	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	<init>	<init>	
 		p	1		camera	
@@ -581,8 +577,8 @@ c	net/minecraft/unmapped/C_9079092	net/minecraft/client/render/world/PendingChun
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare	compare	
-		p	1		chunk1	
-		p	2		chunk2	
+		p	1		p_1	
+		p	2		p_2	
 c	net/minecraft/unmapped/C_9139005
 	f	Z	f_4396069		thinArms
 	m	(Lnet/minecraft/unmapped/C_3362006;Z)V	<init>		<init>
@@ -610,7 +606,7 @@ c	net/minecraft/unmapped/C_9450178	net/minecraft/client/render/world/ChunkBounds
 		p	1		pending	
 c	net/minecraft/unmapped/C_9685768
 	f	Lnet/minecraft/unmapped/C_7077852;	f_8734219		LEGACY_DATA
-c	net/minecraft/unmapped/C_9693816	net/minecraft/client/render/GlCapabilities	
+c	net/minecraft/unmapped/C_9693816	net/minecraft/client/render/OpenGlCapabilities	
 	m	()Z	m_3986591	glArbOcclusionQuery	
 c	net/minecraft/unmapped/C_0534376		net/minecraft/server/integrated/IntegratedCommandManager
 	m	()V	<init>		<init>
@@ -665,10 +661,10 @@ c	net/minecraft/unmapped/C_2528546		net/minecraft/client/render/world/RenderChun
 	m	(DD)V	m_9096813		updateCameraPos
 		p	1			x
 		p	3			z
-	m	(III)I	m_1722847		index
-		p	1			x
-		p	2			y
-		p	3			z
+	m	(III)I	m_1722847		coordinate
+		p	1			origin
+		p	2			chunk
+		p	3			size
 	m	(IIIIII)V	m_6092577		markDirty
 		p	1			minX
 		p	2			minY
@@ -678,14 +674,14 @@ c	net/minecraft/unmapped/C_2528546		net/minecraft/client/render/world/RenderChun
 		p	6			maxZ
 	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_7028449;	m_2651380		getChunk
 		p	1			pos
-c	net/minecraft/unmapped/C_2658292		net/minecraft/server/world/ServerWorld__1
+c	net/minecraft/unmapped/C_2658292		net/minecraft/server/world/ServerWorld__2658292
 	f	Lnet/minecraft/unmapped/C_3865296;	f_9949461		f_9949461
 	m	(Lnet/minecraft/unmapped/C_3865296;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_0609704		test
+	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_0609704		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			entity
+		p	1			input
 c	net/minecraft/unmapped/C_2663676		net/minecraft/client/render/block/entity/BannerRenderer__CachedTexture
 	f	J	f_9141185		cachedTime
 	f	Lnet/minecraft/unmapped/C_0561170;	f_7511883		texture
@@ -697,7 +693,7 @@ c	net/minecraft/unmapped/C_3202188		net/minecraft/client/render/block/entity/Ban
 	f	Lnet/minecraft/unmapped/C_0561170;	f_9495931		BASE_TEXTURE
 	f	Lnet/minecraft/unmapped/C_4480679;	f_8770106		model
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_9398647;DDDFI)V	m_7766703		render
+	m	(Lnet/minecraft/unmapped/C_9398647;DDDFI)V	m_7766703		m_7766703
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
@@ -726,7 +722,7 @@ c	net/minecraft/unmapped/C_3312684		net/minecraft/client/render/world/GlListRend
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_3333682;)V	m_7058082		m_7058082
 		p	1			p_1
-c	net/minecraft/unmapped/C_4131182		net/minecraft/crafting/BannerRecipes__1
+c	net/minecraft/unmapped/C_4131182		net/minecraft/crafting/recipe/BannerRecipes__4131182
 c	net/minecraft/unmapped/C_4480679		net/minecraft/client/render/model/block/entity/BannerModel
 	f	Lnet/minecraft/unmapped/C_6697291;	f_4755510		flag
 	f	Lnet/minecraft/unmapped/C_6697291;	f_8669905		pole
@@ -768,7 +764,7 @@ c	net/minecraft/unmapped/C_5221116		net/minecraft/item/BannerItem
 	m	()Lnet/minecraft/unmapped/C_0191817;	m_0373645		m_0373645
 	m	(Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_5291991;	m_5775681		getBaseColor
 		p	1			stack
-c	net/minecraft/unmapped/C_5318431		net/minecraft/server/command/AchievementCommand__1
+c	net/minecraft/unmapped/C_5318431		net/minecraft/server/command/AchievementCommand__5318431
 	f	Lnet/minecraft/unmapped/C_3292284;	f_6894407		f_6894407
 	f	Lnet/minecraft/unmapped/C_2609740;	f_2521906		f_2521906
 	f	Lnet/minecraft/unmapped/C_5948807;	f_9423761		f_9423761
@@ -879,21 +875,21 @@ c	net/minecraft/unmapped/C_6310092		net/minecraft/client/render/texture/LayeredC
 	m	(Lnet/minecraft/unmapped/C_6577431;)V	m_4115833		m_4115833
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_6375433		net/minecraft/client/render/item/ItemRenderer__8
+c	net/minecraft/unmapped/C_6375433		net/minecraft/client/render/entity/ItemRenderer__6375433
 	f	Lnet/minecraft/unmapped/C_6823239;	f_9896018		f_9896018
 	m	(Lnet/minecraft/unmapped/C_6823239;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_6390485;	m_1991184		m_1991184
 		p	1			p_1
-c	net/minecraft/unmapped/C_6485688		net/minecraft/server/command/TargetSelector__3
+c	net/minecraft/unmapped/C_6485688		net/minecraft/server/command/TargetSelector__6485688
 	f	Lnet/minecraft/unmapped/C_5577922;	f_9513546		f_9513546
 	m	(Lnet/minecraft/unmapped/C_5577922;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0101162		test
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0101162		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
-		p	1			entity
-c	net/minecraft/unmapped/C_6719916		net/minecraft/crafting/BannerRecipes__DuplicatePattern
+		p	1			input
+c	net/minecraft/unmapped/C_6719916		net/minecraft/crafting/recipe/BannerRecipes__DuplicatePattern
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_5217418;Lnet/minecraft/unmapped/C_5553933;)Z	m_8374711		m_8374711
 		p	1			p_1
@@ -906,7 +902,7 @@ c	net/minecraft/unmapped/C_6719916		net/minecraft/crafting/BannerRecipes__Duplic
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_4131182;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_7173622		net/minecraft/crafting/BannerRecipes__AddPattern
+c	net/minecraft/unmapped/C_7173622		net/minecraft/crafting/recipe/BannerRecipes__AddPattern
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_5217418;Lnet/minecraft/unmapped/C_5553933;)Z	m_8374711		m_8374711
 		p	1			p_1
@@ -921,7 +917,7 @@ c	net/minecraft/unmapped/C_7173622		net/minecraft/crafting/BannerRecipes__AddPat
 		p	1			inventory
 	m	(Lnet/minecraft/unmapped/C_4131182;)V	<init>		<init>
 		p	1			p_1
-c	net/minecraft/unmapped/C_7189885		net/minecraft/block/BannerBlock__1
+c	net/minecraft/unmapped/C_7189885		net/minecraft/block/BannerBlock__7189885
 	f	[I	f_2300750		f_2300750
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_7296650		net/minecraft/client/render/world/RenderChunkFactory
@@ -930,7 +926,7 @@ c	net/minecraft/unmapped/C_7296650		net/minecraft/client/render/world/RenderChun
 		p	2			worldRenderer
 		p	3			pos
 		p	4			index
-c	net/minecraft/unmapped/C_7415248		net/minecraft/client/render/block/entity/BannerRenderer__1
+c	net/minecraft/unmapped/C_7415248		net/minecraft/client/render/block/entity/BannerRenderer__7415248
 c	net/minecraft/unmapped/C_7860579		net/minecraft/client/render/world/GlListRenderChunk
 	f	I	f_8614715		list
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_8398976;Lnet/minecraft/unmapped/C_3674802;I)V	<init>		<init>
@@ -1014,7 +1010,7 @@ c	net/minecraft/unmapped/C_9398647		net/minecraft/block/entity/BannerBlockEntity
 	f	Ljava/lang/String;	f_4073651		texture
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1225539		set
-		p	1			stack
+		p	1			item
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7291294		m_7291294
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_4740132		m_4740132
@@ -1022,15 +1018,15 @@ c	net/minecraft/unmapped/C_9398647		net/minecraft/block/entity/BannerBlockEntity
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_0196138		m_0196138
 	m	()I	m_4166080		getBase
 	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_3724750		getBaseColor
-		p	0			stack
+		p	0			item
 	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_1546445		getPatternCount
-		p	0			stack
+		p	0			item
 	m	()Ljava/util/List;	m_2606465		getPatterns
 	m	()Ljava/util/List;	m_2317748		getColors
 	m	()Ljava/lang/String;	m_9991315		getTexture
 	m	()V	m_2484874		setPatterns
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_8641092		removeLastPattern
-		p	0			stack
+		p	0			item
 c	net/minecraft/unmapped/C_9551380		net/minecraft/block/BannerBlock__Standing
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_1241852;)V	m_7735018		m_7735018
@@ -1043,38 +1039,7 @@ c	net/minecraft/unmapped/C_9551380		net/minecraft/block/BannerBlock__Standing
 	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_5249160		m_5249160
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_9264598;	m_3079613		m_3079613
-c	net/minecraft/unmapped/C_9575469		net/minecraft/crafting/BannerRecipes
+c	net/minecraft/unmapped/C_9575469		net/minecraft/crafting/recipe/BannerRecipes
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_7585705;)V	m_4158814		register
 		p	1			manager
-c	net/minecraft/unmapped/C_0898773	net/minecraft/client/render/item/ItemRenderer__4	net/minecraft/client/render/item/ItemRenderer__5
-c	net/minecraft/unmapped/C_3565574	net/minecraft/client/render/item/ItemRenderer__2	net/minecraft/client/render/item/ItemRenderer__3
-c	net/minecraft/unmapped/C_4848817	net/minecraft/client/render/item/ItemRenderer__3	net/minecraft/client/render/item/ItemRenderer__4
-c	net/minecraft/unmapped/C_0262898	net/minecraft/server/command/TargetSelector__8	net/minecraft/server/command/TargetSelector__9
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_5927158	m_5927158	test
-c	net/minecraft/unmapped/C_1522442	net/minecraft/server/command/TargetSelector__3	net/minecraft/server/command/TargetSelector__4
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)I	m_2888118	m_2888118	compare
-	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare
-		p	1		p_1	entity1
-		p	2		p_2	entity2
-c	net/minecraft/unmapped/C_2862430	net/minecraft/server/command/TargetSelector__5	net/minecraft/server/command/TargetSelector__6
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_6290318	m_6290318	test
-c	net/minecraft/unmapped/C_3098759	net/minecraft/server/command/TargetSelector__10	net/minecraft/server/command/TargetSelector__11
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_4305657	m_4305657	test
-c	net/minecraft/unmapped/C_6016944	net/minecraft/server/command/TargetSelector__9	net/minecraft/server/command/TargetSelector__10
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_6163668	m_6163668	test
-c	net/minecraft/unmapped/C_8122720	net/minecraft/server/command/TargetSelector__4	net/minecraft/server/command/TargetSelector__5
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0479968	m_0479968	test
-	m	(Ljava/lang/Object;)Z	apply
-		p	1		p_1	entity
-c	net/minecraft/unmapped/C_8356814	net/minecraft/server/command/TargetSelector__7	net/minecraft/server/command/TargetSelector__8
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_6480052	m_6480052	test
-c	net/minecraft/unmapped/C_9272309	net/minecraft/server/command/TargetSelector__6	net/minecraft/server/command/TargetSelector__7
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_9426461	m_9426461	test
-c	net/minecraft/unmapped/C_1850345	net/minecraft/server/command/TargetSelector__11	net/minecraft/server/command/TargetSelector__12
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_6476968	m_6476968	test
-c	net/minecraft/unmapped/C_7500451	net/minecraft/client/render/item/ItemRenderer__6	net/minecraft/client/render/item/ItemRenderer__7
-c	net/minecraft/unmapped/C_7501962	net/minecraft/client/render/item/ItemRenderer__7	net/minecraft/client/render/item/ItemRenderer__9
-c	net/minecraft/unmapped/C_8092435	net/minecraft/client/render/item/ItemRenderer__5	net/minecraft/client/render/item/ItemRenderer__6
-c	net/minecraft/unmapped/C_9680141	net/minecraft/client/render/item/ItemRenderer__8	net/minecraft/client/render/item/ItemRenderer__10
-c	net/minecraft/unmapped/C_1348858	net/minecraft/client/render/item/ItemRenderer__9	net/minecraft/client/render/item/ItemRenderer__2

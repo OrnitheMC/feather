@@ -1,24 +1,24 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0539808
-	m	(Z)V	m_4131238	setSwimming	
-		p	1		swimming	
+	m	(Z)V	m_4131238	setUsingItem	
+		p	1		usingItem	
 c	net/minecraft/unmapped/C_1161898
 	m	(Lnet/minecraft/unmapped/C_4116648;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_9315417	arrow	
 		p	0		arrow	
-		p	1		entity	
-	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_9701339	fire	
-		p	0		projectileEntity	
-		p	1		entity	
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_3895579	thrownProjectile	
-		p	0		projectile	
-		p	1		attacker	
+		p	1		shooter	
+	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_9701339	fireball	
+		p	0		fireball	
+		p	1		shooter	
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_1161898;	m_3895579	thrown	
+		p	0		thrown	
+		p	1		thrower	
 	m	(Lnet/minecraft/unmapped/C_4116648;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_9315417		arrow
 		p	0			p_0
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_9701339		fire
+	m	(Lnet/minecraft/unmapped/C_3366538;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_9701339		fireball
 		p	0			p_0
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_3895579		thrownProjectile
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;)Lnet/minecraft/unmapped/C_1161898;	m_3895579		thrown
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_2128050
@@ -26,17 +26,18 @@ c	net/minecraft/unmapped/C_2128050
 		p	1		world	
 c	net/minecraft/unmapped/C_2167183
 	f	I	f_2893626	gameMode	
+	f	I	f_4392910	difficulty	gameMode
 	m	(BBJII)V	<init>	<init>	
-		p	1		dimensionId	
+		p	1		dimension	
 		p	2		difficulty	
 		p	3		seed	
 		p	5		worldHeight	
 		p	6		gameMode	
 	m	(BJII)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	5			p_5
+		p	1			dimension
+		p	2			seed
+		p	4			worldHeight
+		p	5			gameMode
 c	net/minecraft/unmapped/C_2501864
 	m	(II)I	m_8325719	m_8325719	
 		p	1		p_1	
@@ -87,8 +88,8 @@ c	net/minecraft/unmapped/C_4517657
 	m	(Lnet/minecraft/unmapped/C_9590849;)I	m_0760854	m_0760854	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_4969846
-	f	I	f_9019699	unloadAttempts	
-	m	(II)V	m_8158742	scheduleUnload	
+	f	I	f_9019699	nextChunkToUnload	
+	m	(II)V	m_8158742	unloadChunk	
 		p	1		chunkX	
 		p	2		chunkZ	
 c	net/minecraft/unmapped/C_5253250
@@ -118,18 +119,18 @@ c	net/minecraft/unmapped/C_5587144
 		p	1		metadata	
 	m	()I	m_2791937	getCarriedBlockMetadata	
 c	net/minecraft/unmapped/C_6306298
-	m	(IIZLnet/minecraft/unmapped/C_9590849;)V	m_0199404	quickMoveStack	
-		p	1		id	
-		p	2		clickData	
-		p	3		p_3	
+	m	(IIZLnet/minecraft/unmapped/C_9590849;)V	m_0199404	clickSlot	
+		p	1		slot	
+		p	2		button	
+		p	3		quickMove	
 		p	4		player	
 c	net/minecraft/unmapped/C_6382639
-	f	Lnet/minecraft/unmapped/C_0539808;	f_9669185	projectile	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_9669185		projectile
+	f	Lnet/minecraft/unmapped/C_0539808;	f_9669185	shooter	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_9669185		shooter
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_0539808;)V	<init>	<init>	
 		p	1		name	
-		p	2		entity	
-		p	3		projectile	
+		p	2		projectile	
+		p	3		shooter	
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -137,9 +138,9 @@ c	net/minecraft/unmapped/C_6382639
 c	net/minecraft/unmapped/C_6607881
 	m	()Z	m_0876818	shouldShowNameTag	
 c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_7588380;)V	m_6679158	handleAddXpOrb	
+	m	(Lnet/minecraft/unmapped/C_7588380;)V	m_6679158	handleAddExperienceOrb	
 		p	1		packet	
-c	net/minecraft/unmapped/C_7588380	net/minecraft/network/packet/AddXpOrbPacket	
+c	net/minecraft/unmapped/C_7588380	net/minecraft/network/packet/AddExperienceOrbPacket	
 	f	I	f_7042540	id	
 	f	I	f_7054074	x	
 	f	I	f_4377997	y	
@@ -165,24 +166,24 @@ c	net/minecraft/unmapped/C_8718968
 c	net/minecraft/unmapped/C_9232485
 	f	B	f_3407255	maxPlayerCount	
 	m	(Ljava/lang/String;IJIBBBB)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
+		p	1		username	
+		p	2		gameVersion	
+		p	3		seed	
+		p	5		gameMode	
+		p	6		dimension	
+		p	7		difficulty	
+		p	8		worldHeight	
+		p	9		maxPlayerCount	
 	m	(Ljava/lang/String;IJIBBB)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
+		p	1			userName
+		p	2			gameVersion
+		p	3			seed
+		p	5			gameMode
+		p	6			dimension
+		p	7			difficulty
+		p	8			worldHeight
 c	net/minecraft/unmapped/C_9590849
-	m	()Z	m_2916573	isUsingItem	
+	m	()Z	m_2916573	hasItemInUse	
 	m	()Z	m_0876818	m_0876818	
 	m	(Z)Z	m_8914955	canEat	
 		p	1		ignoreHunger	

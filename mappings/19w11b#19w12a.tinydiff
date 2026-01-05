@@ -1,7 +1,7 @@
 tiny	2	0
 c	net/minecraft/realms/RealmsBridge
 	m	(Lnet/minecraft/unmapped/C_3020744;)Lnet/minecraft/unmapped/C_6894203;	getNotificationScreen	getNotificationScreen	
-		p	1		p_1	
+		p	1		parent	
 	m	(Lnet/minecraft/unmapped/C_3020744;)Lnet/minecraft/realms/RealmsScreenProxy;	getNotificationScreen		getNotificationScreen
 		p	1			p_1
 c	net/minecraft/realms/RealmsButton
@@ -102,7 +102,7 @@ c	net/minecraft/unmapped/C_0539808
 		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_3674802;)D	m_3957443	getSquaredDistanceToCenter	
 		p	1		pos	
-	m	(DDD)D	m_6557161	getDistanceTo	
+	m	(DDD)D	m_6557161	distanceTo	
 		p	1		x	
 		p	3		y	
 		p	5		z	
@@ -866,7 +866,7 @@ c	net/minecraft/unmapped/C_1872000$C_5240861	System
 	m	(Lnet/minecraft/unmapped/C_1872000;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Ljava/lang/String;)Z	playing	playing	
-		p	1		channel	
+		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_1872000;Lnet/minecraft/unmapped/C_1872000$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1080,9 +1080,9 @@ c	net/minecraft/unmapped/C_2348249
 	f	Z	f_8690685	hovered	
 	f	Z	f_3831222	active	
 	f	Z	f_1990467	visible	
-	f	F	f_8509897	f_8509897	
+	f	F	f_8509897	alpha	
 	f	J	f_4644638	f_4644638	
-	f	Z	f_9791501	f_9791501	
+	f	Z	f_9791501	focused	
 	f	Lnet/minecraft/unmapped/C_0561170;	WIDGETS_LOCATION		WIDGETS_LOCATION
 	f	I	NARRATE_DELAY_MOUSE		NARRATE_DELAY_MOUSE
 	f	I	NARRATE_DELAY_FOCUS		NARRATE_DELAY_FOCUS
@@ -1113,8 +1113,8 @@ c	net/minecraft/unmapped/C_2348249
 		p	2		mouseX	
 		p	3		mouseY	
 	m	(DD)V	m_6397447	m_6397447	
-		p	1		p_1	
-		p	3		p_3	
+		p	1		mouseX	
+		p	3		mouseY	
 	m	(DD)V	m_7808619	release	
 		p	1		mouseX	
 		p	3		mouseY	
@@ -1151,11 +1151,11 @@ c	net/minecraft/unmapped/C_2348249
 	m	()I	m_8567079	getWidth	
 	m	(I)V	m_5692328	setWidth	
 		p	1		width	
-	m	(F)V	m_0009314	m_0009314	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_3290795	m_3290795	
-		p	1		p_1	
-	m	()Ljava/lang/String;	m_6692220	m_6692220	
+	m	(F)V	m_0009314	setAlpha	
+		p	1		alpha	
+	m	(Ljava/lang/String;)V	m_3290795	setMessage	
+		p	1		message	
+	m	()Ljava/lang/String;	m_6692220	getMessage	
 	m	(Z)I	getYImage		getYImage
 		p	1			hovered
 	m	(IIF)V	render		render
@@ -1226,8 +1226,8 @@ c	net/minecraft/unmapped/C_2448106
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_2528621
-	m	(Ljava/lang/Runnable;)V	m_4773106		m_4773106
-		p	1			p_1
+	m	(Ljava/lang/Runnable;)V	m_4773106		executeBlocking
+		p	1			task
 c	net/minecraft/unmapped/C_2539806
 	m	(IIF)V	m_0251012	m_0251012	
 		p	1		p_1	
@@ -1252,94 +1252,94 @@ c	net/minecraft/unmapped/C_2594473
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_2597265	net/minecraft/unmapped/C_2597265	
-	f	Ljava/nio/FloatBuffer;	f_1922512	f_1922512	
-	f	Ljava/nio/FloatBuffer;	f_6881498	f_6881498	
-	f	Ljava/nio/FloatBuffer;	f_0636020	f_0636020	
-	f	Ljava/util/Map;	f_7675847	f_7675847	
-	f	Z	f_1450461	f_1450461	
-	f	Ljava/lang/String;	f_1781260	f_1781260	
-	f	J	f_3538792	f_3538792	
-	f	J	f_5119988	f_5119988	
+c	net/minecraft/unmapped/C_2597265	paulscode/sound/libraries/LibraryLWJGL3	
+	f	Ljava/nio/FloatBuffer;	f_1922512	listenerPositionAL	
+	f	Ljava/nio/FloatBuffer;	f_6881498	listenerOrientation	
+	f	Ljava/nio/FloatBuffer;	f_0636020	listenerVelocity	
+	f	Ljava/util/Map;	f_7675847	ALBufferMap	
+	f	Z	f_1450461	alPitchSupported	
+	f	Ljava/lang/String;	f_1781260	stage	
+	f	J	f_3538792	deviceHandle	
+	f	J	f_5119988	context	
 	m	()V	<init>	<init>	
 	m	()V	init	init	
 	m	(I)Lpaulscode/sound/Channel;	createChannel	createChannel	
-		p	1		p_1	
+		p	1		type	
 	m	()V	cleanup	cleanup	
 	m	(Lpaulscode/sound/FilenameURL;)Z	loadSound	loadSound	
-		p	1		p_1	
+		p	1		filenameURL	
 	m	(Lpaulscode/sound/SoundBuffer;Ljava/lang/String;)Z	loadSound	loadSound	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		buffer	
+		p	2		identifier	
 	m	(Ljava/lang/String;)V	unloadSound	unloadSound	
-		p	1		p_1	
+		p	1		filename	
 	m	(F)V	setMasterVolume	setMasterVolume	
-		p	1		p_1	
+		p	1		value	
 	m	(ZZZLjava/lang/String;Lpaulscode/sound/FilenameURL;FFFIF)V	newSource	newSource	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
-		p	10		p_10	
+		p	1		priority	
+		p	2		toStream	
+		p	3		toLoop	
+		p	4		sourcename	
+		p	5		filenameURL	
+		p	6		x	
+		p	7		y	
+		p	8		z	
+		p	9		attModel	
+		p	10		distOrRoll	
 	m	(Ljavax/sound/sampled/AudioFormat;ZLjava/lang/String;FFFIF)V	rawDataStream	rawDataStream	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
+		p	1		audioFormat	
+		p	2		priority	
+		p	3		sourcename	
+		p	4		x	
+		p	5		y	
+		p	6		z	
+		p	7		attModel	
+		p	8		distOrRoll	
 	m	(ZZZLjava/lang/String;Lpaulscode/sound/FilenameURL;FFFIFZ)V	quickPlay	quickPlay	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
-		p	10		p_10	
-		p	11		p_11	
+		p	1		priority	
+		p	2		toStream	
+		p	3		toLoop	
+		p	4		sourcename	
+		p	5		filenameURL	
+		p	6		x	
+		p	7		y	
+		p	8		z	
+		p	9		attModel	
+		p	10		distOrRoll	
+		p	11		temporary	
 	m	(Ljava/util/HashMap;)V	copySources	copySources	
-		p	1		p_1	
+		p	1		srcMap	
 	m	(FFF)V	setListenerPosition	setListenerPosition	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(F)V	setListenerAngle	setListenerAngle	
-		p	1		p_1	
+		p	1		angle	
 	m	(FFFFFF)V	setListenerOrientation	setListenerOrientation	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		lookX	
+		p	2		lookY	
+		p	3		lookZ	
+		p	4		upX	
+		p	5		upY	
+		p	6		upZ	
 	m	(Lpaulscode/sound/ListenerData;)V	setListenerData	setListenerData	
-		p	1		p_1	
+		p	1		l	
 	m	(FFF)V	setListenerVelocity	setListenerVelocity	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	()V	dopplerChanged	dopplerChanged	
-	m	()Z	m_9332966	m_9332966	
-	m	()Z	m_5349499	m_5349499	
-	m	(ZZ)Z	m_7803580	m_7803580	
-		p	0		p_0	
-		p	1		p_1	
+	m	()Z	m_9332966	checkALError	
+	m	()Z	m_5349499	alPitchSupported	
+	m	(ZZ)Z	m_7803580	alPitchSupported	
+		p	0		action	
+		p	1		value	
 	m	()Ljava/lang/String;	getClassName	getClassName	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_2597265$C_5275629	C_5275629	
+c	net/minecraft/unmapped/C_2597265$C_5275629	Exception	
 	m	(Ljava/lang/String;I)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		message	
+		p	2		type	
 c	net/minecraft/unmapped/C_2686800
 	f	Lcom/google/common/collect/ImmutableSet;	f_2730033		f_2730033
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_4402181;Lcom/google/common/collect/ImmutableSet;)V	<init>	<init>	
@@ -1394,17 +1394,17 @@ c	net/minecraft/unmapped/C_2691939
 		p	5		color1	
 		p	6		color2	
 	m	(Lnet/minecraft/unmapped/C_4399780;Ljava/lang/String;III)V	m_2717572	drawCenteredString	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		textRenderer	
+		p	2		text	
+		p	3		centerX	
+		p	4		y	
+		p	5		color	
 	m	(Lnet/minecraft/unmapped/C_4399780;Ljava/lang/String;III)V	m_6649515	drawString	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		textRenderer	
+		p	2		text	
+		p	3		x	
+		p	4		y	
+		p	5		color	
 	m	(IIIIII)V	m_4354119	drawTexture	
 		p	1		x	
 		p	2		y	
@@ -1446,86 +1446,86 @@ c	net/minecraft/unmapped/C_2691939
 		p	8		scaleU	
 		p	9		scaleV	
 	m	(IIII)V	hLine		hLine
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			x1
+		p	2			x2
+		p	3			y
+		p	4			color
 	m	(IIII)V	vLine		vLine
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			x
+		p	2			y1
+		p	3			y2
+		p	4			color
 	m	(IIIII)V	fill		fill
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	0			x1
+		p	1			y1
+		p	2			x2
+		p	3			y2
+		p	4			color
 	m	(IIIIII)V	fillGradient		fillGradient
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			x1
+		p	2			y1
+		p	3			x2
+		p	4			y2
+		p	5			color1
+		p	6			color2
 	m	(Lnet/minecraft/unmapped/C_4399780;Ljava/lang/String;III)V	drawCenteredString		drawCenteredString
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			textRenderer
+		p	2			text
+		p	3			centerX
+		p	4			y
+		p	5			color
 	m	(Lnet/minecraft/unmapped/C_4399780;Ljava/lang/String;III)V	drawRightAlignedString		drawRightAlignedString
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			textRenderer
+		p	2			text
+		p	3			rightX
+		p	4			y
+		p	5			color
 	m	(Lnet/minecraft/unmapped/C_4399780;Ljava/lang/String;III)V	drawString		drawString
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			textRenderer
+		p	2			text
+		p	3			x
+		p	4			y
+		p	5			color
 	m	(IIIIII)V	blit		blit
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			x
+		p	2			y
+		p	3			u
+		p	4			v
+		p	5			width
+		p	6			height
 	m	(FFIIII)V	blit		blit
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			x
+		p	2			y
+		p	3			u
+		p	4			v
+		p	5			width
+		p	6			height
 	m	(IILnet/minecraft/unmapped/C_4257480;II)V	blit		blit
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			x
+		p	2			y
+		p	3			sprite
+		p	4			width
+		p	5			height
 	m	(IIFFIIFF)V	blit		blit
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	0			x
+		p	1			y
+		p	2			u
+		p	3			v
+		p	4			width
+		p	5			height
+		p	6			scaleU
+		p	7			scaleV
 	m	(IIFFIIIIFF)V	blit		blit
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
-		p	9			p_9
+		p	0			x
+		p	1			y
+		p	2			u
+		p	3			v
+		p	4			textureWidth
+		p	5			textureHeight
+		p	6			width
+		p	7			height
+		p	8			scaleU
+		p	9			scaleV
 c	net/minecraft/unmapped/C_2721768
 	f	I	f_8761935	f_8761935	
 	m	(Lnet/minecraft/unmapped/C_8814877;Ljava/util/Set;)V	m_5797689
@@ -1915,19 +1915,19 @@ c	net/minecraft/unmapped/C_3020744
 	m	(Lnet/minecraft/unmapped/C_2348249;)Lnet/minecraft/unmapped/C_2348249;	m_1572243	addButton	
 		p	1		button	
 	m	(Lnet/minecraft/unmapped/C_2454309;II)V	m_2625306	renderTooltip	
-		p	1		stack	
-		p	2		x	
-		p	3		y	
-	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	m_6663854	renderTooltip	
+		p	1		item	
+		p	2		mouseX	
+		p	3		mouseY	
+	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	m_6663854	getTooltip	
 		p	1		stack	
 	m	(Ljava/lang/String;II)V	m_5774293	renderTooltip	
 		p	1		text	
-		p	2		x	
-		p	3		y	
+		p	2		mouseX	
+		p	3		mouseY	
 	m	(Ljava/util/List;II)V	m_9128141	renderTooltip	
 		p	1		text	
-		p	2		x	
-		p	3		y	
+		p	2		mouseX	
+		p	3		mouseY	
 	m	(Lnet/minecraft/unmapped/C_9550253;II)V	m_5542769	renderTextHoverEffect	
 		p	1		text	
 		p	2		x	
@@ -1997,73 +1997,73 @@ c	net/minecraft/unmapped/C_3020744
 	m	()Z	shouldCloseOnEsc		shouldCloseOnEsc
 	m	()V	onClose		onClose
 	m	(Lnet/minecraft/unmapped/C_2348249;)Lnet/minecraft/unmapped/C_2348249;	addButton		addButton
-		p	1			p_1
+		p	1			button
 	m	(Lnet/minecraft/unmapped/C_2454309;II)V	renderTooltip		renderTooltip
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			item
+		p	2			mouseX
+		p	3			mouseY
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	getTooltipFromItem		getTooltipFromItem
-		p	1			p_1
+		p	1			stack
 	m	(Ljava/lang/String;II)V	renderTooltip		renderTooltip
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			text
+		p	2			mouseX
+		p	3			mouseY
 	m	(Ljava/util/List;II)V	renderTooltip		renderTooltip
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			text
+		p	2			mouseX
+		p	3			mouseY
 	m	(Lnet/minecraft/unmapped/C_9550253;II)V	renderComponentHoverEffect		renderComponentHoverEffect
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			text
+		p	2			x
+		p	3			y
 	m	(Ljava/lang/String;Z)V	insertText		insertText
-		p	1			p_1
-		p	2			p_2
+		p	1			text
+		p	2			replace
 	m	(Lnet/minecraft/unmapped/C_9550253;)Z	handleComponentClicked		handleComponentClicked
-		p	1			p_1
+		p	1			text
 	m	(Ljava/lang/String;)V	sendMessage		sendMessage
-		p	1			p_1
+		p	1			message
 	m	(Ljava/lang/String;Z)V	sendMessage		sendMessage
-		p	1			p_1
-		p	2			p_2
+		p	1			message
+		p	2			addToChat
 	m	(Lnet/minecraft/unmapped/C_8105098;II)V	init		init
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			minecraft
+		p	2			width
+		p	3			height
 	m	(II)V	setSize		setSize
-		p	1			p_1
-		p	2			p_2
+		p	1			width
+		p	2			height
 	m	()Ljava/util/List;	children		children
 	m	()V	init		init
 	m	()V	tick		tick
 	m	()V	removed		removed
 	m	()V	renderBackground		renderBackground
 	m	(I)V	renderBackground		renderBackground
-		p	1			p_1
+		p	1			offset
 	m	(I)V	renderDirtBackground		renderDirtBackground
-		p	1			p_1
+		p	1			offset
 	m	()Z	isPauseScreen		isPauseScreen
 	m	(Ljava/net/URI;)V	openLink		openLink
-		p	1			p_1
+		p	1			link
 	m	()Z	hasControlDown		hasControlDown
 	m	()Z	hasShiftDown		hasShiftDown
 	m	()Z	hasAltDown		hasAltDown
 	m	(I)Z	isCut		isCut
-		p	0			p_0
+		p	0			key
 	m	(I)Z	isPaste		isPaste
-		p	0			p_0
+		p	0			key
 	m	(I)Z	isCopy		isCopy
-		p	0			p_0
+		p	0			key
 	m	(I)Z	isSelectAll		isSelectAll
-		p	0			p_0
+		p	0			key
 	m	(Lnet/minecraft/unmapped/C_8105098;II)V	resize		resize
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			minecraft
+		p	2			width
+		p	3			height
 	m	(Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;)V	wrapScreenError		wrapScreenError
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
+		p	0			r
+		p	1			title
+		p	2			name
 	m	(Ljava/lang/String;CI)Z	isValidCharacterForName		isValidCharacterForName
 		p	1			p_1
 		p	2			p_2
@@ -2106,17 +2106,17 @@ c	net/minecraft/unmapped/C_3257017
 c	net/minecraft/unmapped/C_3325732
 	f	Lnet/minecraft/unmapped/C_6101761;	f_5400501	AGGRESSIVE	
 	m	()V	m_1700770	m_1700770	
-	m	()Z	m_5792722	isAggressive	
-	m	(Z)V	m_6542542	setAggressive	
-		p	1		aggressive	
+	m	()Z	m_5792722	m_5792722	
+	m	(Z)V	m_6542542	m_6542542	
+		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_3325952
-	f	Lnet/minecraft/unmapped/C_3755722;	f_8749460	f_8749460	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5257371	f_5257371	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_8184968		f_8184968
-	f	Lnet/minecraft/unmapped/C_3755722;	f_1594839		f_1594839
-	f	Lnet/minecraft/unmapped/C_3755722;	f_6013820		f_6013820
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5703718		f_5703718
+	f	Lnet/minecraft/unmapped/C_3755722;	f_8749460	SANDSTONE_SLAB	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5257371	RED_SANDSTONE_SLAB	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_8184968		SANDSTONE_SLAB
+	f	Lnet/minecraft/unmapped/C_3755722;	f_1594839		CUT_SANDSTONE_SLAB
+	f	Lnet/minecraft/unmapped/C_3755722;	f_6013820		RED_SANDSTONE_SLAB
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5703718		CUT_RED_SANDSTONE_SLAB
 c	net/minecraft/unmapped/C_3342272
 	m	()V	m_2450377	m_2450377	
 	m	()V	m_3593494	m_3593494	
@@ -2201,8 +2201,8 @@ c	net/minecraft/unmapped/C_3622827
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_3628668
-	f	Lnet/minecraft/unmapped/C_1241852;	f_4231473		f_4231473
-	f	Lnet/minecraft/unmapped/C_1241852;	f_8193025		f_8193025
+	f	Lnet/minecraft/unmapped/C_1241852;	f_4231473		CUT_SANDSTONE_SLAB
+	f	Lnet/minecraft/unmapped/C_1241852;	f_8193025		CUT_RED_SANDSTONE_SLAB
 c	net/minecraft/unmapped/C_3629466
 	m	()V	m_3593494	m_3593494	
 	m	()V	m_8984281	m_8984281	
@@ -2331,30 +2331,30 @@ c	net/minecraft/unmapped/C_3982444$C_5867065
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	net/minecraft/unmapped/C_4034488	net/minecraft/unmapped/C_4034488	
-	f	Ljava/nio/IntBuffer;	f_9671776	f_9671776	
-	f	I	f_7182009	f_7182009	
-	f	I	f_1354296	f_1354296	
-	f	F	f_1414190	f_1414190	
+c	net/minecraft/unmapped/C_4034488	paulscode/sound/libraries/ChannelLWJGL3OpenAL	
+	f	Ljava/nio/IntBuffer;	f_9671776	ALSource	
+	f	I	f_7182009	ALFormat	
+	f	I	f_1354296	sampleRate	
+	f	F	f_1414190	millisPreviouslyPlayed	
 	m	(ILjava/nio/IntBuffer;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		type	
+		p	2		src	
 	m	()V	cleanup	cleanup	
-	m	(Ljava/nio/IntBuffer;)Z	m_8809514	m_8809514	
-		p	1		p_1	
+	m	(Ljava/nio/IntBuffer;)Z	m_8809514	attachBuffer	
+		p	1		buf	
 	m	(Ljavax/sound/sampled/AudioFormat;)V	setAudioFormat	setAudioFormat	
-		p	1		p_1	
-	m	(II)V	m_9390830	m_9390830	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		audioFormat	
+	m	(II)V	m_9390830	setFormat	
+		p	1		format	
+		p	2		rate	
 	m	(Ljava/util/LinkedList;)Z	preLoadBuffers	preLoadBuffers	
-		p	1		p_1	
+		p	1		bufferList	
 	m	([B)Z	queueBuffer	queueBuffer	
-		p	1		p_1	
+		p	1		buffer	
 	m	([B)I	feedRawAudioData	feedRawAudioData	
-		p	1		p_1	
-	m	(I)F	m_3863843	m_3863843	
-		p	1		p_1	
+		p	1		buffer	
+	m	(I)F	m_3863843	millisInBuffer	
+		p	1		alBufferi	
 	m	()F	millisecondsPlayed	millisecondsPlayed	
 	m	()I	buffersProcessed	buffersProcessed	
 	m	()V	flush	flush	
@@ -2364,7 +2364,7 @@ c	net/minecraft/unmapped/C_4034488	net/minecraft/unmapped/C_4034488
 	m	()V	stop	stop	
 	m	()V	rewind	rewind	
 	m	()Z	playing	playing	
-	m	()Z	m_7997584	m_7997584	
+	m	()Z	m_7997584	checkALError	
 c	net/minecraft/unmapped/C_4077617
 	m	(IILnet/minecraft/unmapped/C_5786166;)V	m_9525267	m_9525267	
 		p	1		p_1	
@@ -2462,7 +2462,7 @@ c	net/minecraft/unmapped/C_4429340$1
 c	net/minecraft/unmapped/C_4435278
 	m	()Z	m_5368806		m_5368806
 c	net/minecraft/unmapped/C_4446418	net/minecraft/unmapped/C_4446418	
-	m	()Lnet/minecraft/unmapped/C_5708222;	m_8624254	m_8624254	
+	m	()Lnet/minecraft/unmapped/C_5708222;	m_8624254	get	
 	m	()Z	m_8905958	m_8905958	
 	m	(Z)V	m_1812825	m_1812825	
 		p	1		p_1	
@@ -2663,7 +2663,7 @@ c	net/minecraft/unmapped/C_4764327$C_9189886		C_9189886
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_4886193
-	m	()Z	m_5792722	m_5792722	
+	m	()Z	m_5792722	isAggressive	
 	m	(Z)V	m_6542542	setAggressive	
 		p	1		aggressive	
 c	net/minecraft/unmapped/C_4966580
@@ -2937,7 +2937,7 @@ c	net/minecraft/unmapped/C_5570075$9
 	m	()V	m_9319498	m_9319498	
 	m	()V	onPress		onPress
 c	net/minecraft/unmapped/C_5571887
-	f	Lnet/minecraft/unmapped/C_1331819;	f_4926127	f_4926127	
+	f	Lnet/minecraft/unmapped/C_1331819;	f_4926127	options	
 	f	D	f_4574660	value	
 	f	Lnet/minecraft/unmapped/C_1331819;	options		options
 	f	D	value		value
@@ -2968,7 +2968,7 @@ c	net/minecraft/unmapped/C_5571887
 	m	(DD)V	m_7808619	m_7808619	
 		p	1		p_1	
 		p	3		p_3	
-	m	()V	m_7531467	m_7531467	
+	m	()V	m_7531467	update	
 	m	()V	m_8748433	m_8748433	
 	m	(Z)I	getYImage		getYImage
 		p	1			p_1
@@ -3103,12 +3103,12 @@ c	net/minecraft/unmapped/C_5736583
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_5751893
-	m	()Ljava/util/List;	m_6789466	m_6789466	
-	m	()Z	m_2870654	m_2870654	
-	m	(Z)V	m_7779188	m_7779188	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_7283471;)V	m_4432319	m_4432319	
-		p	1		p_1	
+	m	()Ljava/util/List;	m_6789466	getChildren	
+	m	()Z	m_2870654	isDragging	
+	m	(Z)V	m_7779188	setDragging	
+		p	1		dragging	
+	m	(Lnet/minecraft/unmapped/C_7283471;)V	m_4432319	setFocused	
+		p	1		focused	
 	m	(DDI)Z	m_6876900	m_6876900	
 		p	1		p_1	
 		p	3		p_3	
@@ -3132,7 +3132,7 @@ c	net/minecraft/unmapped/C_5751893
 	m	(Z)V	setDragging		setDragging
 		p	1			dragging
 	m	(Lnet/minecraft/unmapped/C_7283471;)V	setFocused		setFocused
-		p	1			focussed
+		p	1			focused
 	m	(DDI)Z	mouseClicked		mouseClicked
 		p	1			p_1
 		p	3			p_3
@@ -3240,7 +3240,7 @@ c	net/minecraft/unmapped/C_5999076
 	f	Z	renderHeader		renderHeader
 	f	I	headerHeight		headerHeight
 	f	Z	scrolling		scrolling
-	m	(IIII)V	m_0260390	updateBounds	
+	m	(IIII)V	m_0260390	setBounds	
 		p	1		width	
 		p	2		height	
 		p	3		minY	
@@ -3278,7 +3278,7 @@ c	net/minecraft/unmapped/C_5999076
 	m	(IILnet/minecraft/unmapped/C_5786166;)V	m_9525267	renderHeader	
 		p	1		x	
 		p	2		y	
-		p	3		tessellator	
+		p	3		tesselator	
 	m	(II)V	m_6715763	headerClicked	
 		p	1		x	
 		p	2		y	
@@ -3291,8 +3291,8 @@ c	net/minecraft/unmapped/C_5999076
 	m	()V	m_7189774	capScrolling	
 		c	prevents you from scrolling out too far	
 	m	()I	m_6867946	getMaxScroll	
-	m	(I)V	m_2513938	m_2513938	
-		p	1		p_1	
+	m	(I)V	m_2513938	scrollToEntry	
+		p	1		index	
 	m	()I	m_0467656	getScrollAmount	
 	m	(DD)Z	m_5752726	isMouseInList	
 		p	1		mouseX	
@@ -3331,7 +3331,7 @@ c	net/minecraft/unmapped/C_5999076
 		p	2		p_2	
 		p	3		p_3	
 	m	(I)V	m_4868929	m_4868929	
-		p	1		p_1	
+		p	1		index	
 	m	(CI)Z	m_7686433	m_7686433	
 		p	1		p_1	
 		p	2		p_2	
@@ -3353,7 +3353,7 @@ c	net/minecraft/unmapped/C_5999076
 		p	3		topAlpha	
 		p	4		bottomAlpha	
 	m	(I)V	m_3867153	setX	
-		p	1		x	
+		p	1		minX	
 	m	()I	m_6703043	getEntryHeight	
 	m	(IIII)V	updateSize		updateSize
 		p	1			width
@@ -3395,7 +3395,7 @@ c	net/minecraft/unmapped/C_5999076
 	m	(IILnet/minecraft/unmapped/C_5786166;)V	renderHeader		renderHeader
 		p	1			x
 		p	2			y
-		p	3			tessellator
+		p	3			tesselator
 	m	(II)V	clickedHeader		clickedHeader
 		p	1			x
 		p	2			y
@@ -3406,6 +3406,7 @@ c	net/minecraft/unmapped/C_5999076
 		p	1			x
 		p	3			y
 	m	()V	capYPosition		capYPosition
+		c		prevents you from scrolling out too far
 	m	()I	getMaxScroll		getMaxScroll
 	m	(I)V	centerScrollOn		centerScrollOn
 		p	1			index
@@ -3415,6 +3416,7 @@ c	net/minecraft/unmapped/C_5999076
 		p	3			mouseY
 	m	()I	getScrollBottom		getScrollBottom
 	m	(I)V	scroll		scroll
+		c		scroll a given amount. A positive amount will scroll down and a negative one scroll up
 		p	1			amount
 	m	(IIF)V	render		render
 		p	1			p_1
@@ -3871,12 +3873,12 @@ c	net/minecraft/unmapped/C_6863048
 	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_7624804;)D	m_5797792		m_5797792
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/unmapped/C_6894203	net/minecraft/client/gui/screen/WrappedRealmsScreen	
-	f	Lnet/minecraft/realms/RealmsScreen;	f_8171489	screen	
+c	net/minecraft/unmapped/C_6894203	net/minecraft/realms/RealmsScreenProxy	
+	f	Lnet/minecraft/realms/RealmsScreen;	f_8171489	delegate	
 	f	Lorg/apache/logging/log4j/Logger;	f_2051766	f_2051766	
 	m	(Lnet/minecraft/realms/RealmsScreen;)V	<init>	<init>	
-		p	1		screen	
-	m	()Lnet/minecraft/realms/RealmsScreen;	m_9300068	get	
+		p	1		delegate	
+	m	()Lnet/minecraft/realms/RealmsScreen;	m_9300068	getDelegate	
 	m	(Lnet/minecraft/unmapped/C_8105098;II)V	m_0116202	m_0116202	
 		p	1		p_1	
 		p	2		p_2	
@@ -3928,7 +3930,7 @@ c	net/minecraft/unmapped/C_6894203	net/minecraft/client/gui/screen/WrappedRealms
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	m_2450377	m_2450377	
-	m	()I	m_1296946	fontHeight	
+	m	()I	m_1296946	getFontHeight	
 	m	(Ljava/lang/String;)I	m_9389924	m_9389924	
 		p	1		p_1	
 	m	(Ljava/lang/String;III)V	m_3012027	m_3012027	
@@ -4118,12 +4120,12 @@ c	net/minecraft/unmapped/C_7224555
 	f	Z	f_7278028	dragging	
 	f	Lnet/minecraft/unmapped/C_7283471;	focused		focused
 	f	Z	isDragging		isDragging
-	m	()Z	m_2870654	isDragging	
-	m	(Z)V	m_7779188	setDragging	
-		p	1		dragging	
+	m	()Z	m_2870654	m_2870654	
+	m	(Z)V	m_7779188	m_7779188	
+		p	1		p_1	
 	m	()Lnet/minecraft/unmapped/C_7283471;	m_3400362	m_3400362	
-	m	(Lnet/minecraft/unmapped/C_7283471;)V	m_4432319	setFocused	
-		p	1		focused	
+	m	(Lnet/minecraft/unmapped/C_7283471;)V	m_4432319	m_4432319	
+		p	1		p_1	
 	m	()Z	isDragging		isDragging
 	m	(Z)V	setDragging		setDragging
 		p	1			p_1
@@ -4131,39 +4133,39 @@ c	net/minecraft/unmapped/C_7224555
 	m	(Lnet/minecraft/unmapped/C_7283471;)V	setFocused		setFocused
 		p	1			p_1
 c	net/minecraft/unmapped/C_7240405
-	m	()Ljava/lang/String;	m_9705382		m_9705382
+	m	()Ljava/lang/String;	m_9705382		readString
 c	net/minecraft/unmapped/C_7283471
-	m	(DDI)Z	m_6876900	m_6876900	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(DDI)Z	m_8189075	m_8189075	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(DDIDD)Z	m_5133790	m_5133790	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	6		p_6	
-		p	8		p_8	
-	m	(DDD)Z	m_7243048	m_7243048	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-	m	(III)Z	m_0817357	m_0817357	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(CI)Z	m_7686433	m_7686433	
-		p	1		p_1	
-		p	2		p_2	
+	m	(DDI)Z	m_6876900	mouseClicked	
+		p	1		mouseX	
+		p	3		mouseY	
+		p	5		button	
+	m	(DDI)Z	m_8189075	mouseReleased	
+		p	1		mouseX	
+		p	3		mouseY	
+		p	5		button	
+	m	(DDIDD)Z	m_5133790	mouseDragged	
+		p	1		mouseX	
+		p	3		mouseY	
+		p	5		button	
+		p	6		dx	
+		p	8		dy	
+	m	(DDD)Z	m_7243048	mouseScrolled	
+		p	1		mouseX	
+		p	3		mouseY	
+		p	5		amount	
+	m	(III)Z	m_0817357	keyPressed	
+		p	1		key	
+		p	2		scancode	
+		p	3		mods	
+	m	(CI)Z	m_7686433	charTyped	
+		p	1		chr	
+		p	2		mods	
 	m	(Z)V	m_7062414	changeFocus	
-		p	1		focussed	
+		p	1		focused	
 	m	()Z	m_9957849	m_9957849	
 	m	(DD)Z	m_7947581	m_7947581	
-		p	1		p_1	
-		p	3		p_3	
+		p	1		mouseX	
+		p	3		mouseY	
 	m	(DDI)Z	mouseClicked		mouseClicked
 		p	1			mouseX
 		p	3			mouseY
@@ -4190,7 +4192,7 @@ c	net/minecraft/unmapped/C_7283471
 		p	1			chr
 		p	2			mods
 	m	(Z)V	onFocusChanged		onFocusChanged
-		p	1			p_1
+		p	1			focused
 	m	()Z	isPartOfFocusCycle		isPartOfFocusCycle
 	m	(DD)Z	isMouseOver		isMouseOver
 		p	1			mouseX
@@ -4277,7 +4279,7 @@ c	net/minecraft/unmapped/C_7450921$9
 c	net/minecraft/unmapped/C_7492943
 	m	()Lnet/minecraft/unmapped/C_2033463;	m_7679954		m_7679954
 c	net/minecraft/unmapped/C_7586919
-	m	()Lnet/minecraft/unmapped/C_7283471;	m_3400362	m_3400362	
+	m	()Lnet/minecraft/unmapped/C_7283471;	m_3400362	getFocused	
 	m	(DDI)Z	m_6876900	m_6876900	
 		p	1		p_1	
 		p	3		p_3	
@@ -4385,7 +4387,7 @@ c	net/minecraft/unmapped/C_7669754
 		p	3			p_3
 	m	()Z	isPauseScreen		isPauseScreen
 c	net/minecraft/unmapped/C_7732918
-	m	(IIF)V	m_0251012	render	
+	m	(IIF)V	m_0251012	m_0251012	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -4404,69 +4406,69 @@ c	net/minecraft/unmapped/C_7768310
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_7775554	net/minecraft/unmapped/C_7775554	
-	f	Lnet/minecraft/unmapped/C_4034488;	f_4619284	f_4619284	
-	f	Ljava/nio/IntBuffer;	f_1856005	f_1856005	
-	f	Ljava/nio/FloatBuffer;	f_0975100	f_0975100	
-	f	Ljava/nio/FloatBuffer;	f_5642990	f_5642990	
-	f	Ljava/nio/FloatBuffer;	f_9234419	f_9234419	
+c	net/minecraft/unmapped/C_7775554	paulscode/sound/libraries/SourceLWJGL3OpenAL	
+	f	Lnet/minecraft/unmapped/C_4034488;	f_4619284	channelOpenAL	
+	f	Ljava/nio/IntBuffer;	f_1856005	myBuffer	
+	f	Ljava/nio/FloatBuffer;	f_0975100	listenerPosition	
+	f	Ljava/nio/FloatBuffer;	f_5642990	sourcePosition	
+	f	Ljava/nio/FloatBuffer;	f_9234419	sourceVelocity	
 	m	(Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;ZZZLjava/lang/String;Lpaulscode/sound/FilenameURL;Lpaulscode/sound/SoundBuffer;FFFIFZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
-		p	10		p_10	
-		p	11		p_11	
-		p	12		p_12	
-		p	13		p_13	
-		p	14		p_14	
+		p	1		listenerPosition	
+		p	2		myBuffer	
+		p	3		priority	
+		p	4		toStream	
+		p	5		toLoop	
+		p	6		sourcename	
+		p	7		filenameURL	
+		p	8		soundBuffer	
+		p	9		x	
+		p	10		y	
+		p	11		z	
+		p	12		attModel	
+		p	13		distOrRoll	
+		p	14		temporary	
 	m	(Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;Lpaulscode/sound/Source;Lpaulscode/sound/SoundBuffer;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		listenerPosition	
+		p	2		myBuffer	
+		p	3		old	
+		p	4		soundBuffer	
 	m	(Ljava/nio/FloatBuffer;Ljavax/sound/sampled/AudioFormat;ZLjava/lang/String;FFFIF)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
+		p	1		listenerPosition	
+		p	2		audioFormat	
+		p	3		priority	
+		p	4		sourcename	
+		p	5		x	
+		p	6		y	
+		p	7		z	
+		p	8		attModel	
+		p	9		distOrRoll	
 	m	()Z	incrementSoundSequence	incrementSoundSequence	
 	m	()V	listenerMoved	listenerMoved	
 	m	(FFF)V	setPosition	setPosition	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	()V	positionChanged	positionChanged	
-	m	()V	m_8107823	m_8107823	
+	m	()V	m_8107823	checkPitch	
 	m	(Z)V	setLooping	setLooping	
-		p	1		p_1	
+		p	1		lp	
 	m	(I)V	setAttenuation	setAttenuation	
-		p	1		p_1	
+		p	1		model	
 	m	(F)V	setDistOrRoll	setDistOrRoll	
-		p	1		p_1	
+		p	1		dr	
 	m	(FFF)V	setVelocity	setVelocity	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(F)V	setPitch	setPitch	
-		p	1		p_1	
+		p	1		value	
 	m	(Lpaulscode/sound/Channel;)V	play	play	
-		p	1		p_1	
+		p	1		c	
 	m	()Z	preLoad	preLoad	
-	m	()V	m_3346717	m_3346717	
-	m	()V	m_5364341	m_5364341	
-	m	()V	m_5988730	m_5988730	
-	m	()Z	m_2166916	m_2166916	
+	m	()V	m_3346717	resetALInformation	
+	m	()V	m_5364341	calculateDistance	
+	m	()V	m_5988730	calculateGain	
+	m	()Z	m_2166916	checkALError	
 c	net/minecraft/unmapped/C_7806741	net/minecraft/unmapped/C_7806741	
 	f	Lnet/minecraft/realms/RealmsSimpleScrolledSelectionList;	f_3624230	f_3624230	
 	m	(Lnet/minecraft/realms/RealmsSimpleScrolledSelectionList;IIIII)V	<init>	<init>	
@@ -5186,8 +5188,8 @@ c	net/minecraft/unmapped/C_9639106
 	m	()Z	isPauseScreen		isPauseScreen
 	m	()V	tick		tick
 c	net/minecraft/unmapped/C_9681331
-	m	()Lnet/minecraft/unmapped/C_3674802;	m_1098585		m_1098585
-	m	()Lnet/minecraft/unmapped/C_3674802;	m_5560937		m_5560937
+	m	()Lnet/minecraft/unmapped/C_3674802;	m_1098585		origin
+	m	()Lnet/minecraft/unmapped/C_3674802;	m_5560937		center
 c	net/minecraft/unmapped/C_9693979
 	m	(IIF)V	m_0251012	m_0251012	
 		p	1		p_1	
@@ -5233,16 +5235,16 @@ c	net/minecraft/unmapped/C_9865051
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_9888543
-	m	(IIF)V	m_0251012	m_0251012	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(IIF)V	m_0251012	render	
+		p	1		mouseX	
+		p	2		mouseY	
+		p	3		tickDelta	
 	m	(IIF)V	render		render
 		p	1			mouseX
 		p	2			mouseY
 		p	3			tickDelta
-c	net/minecraft/unmapped/C_9954218	net/minecraft/client/gui/widget/WrappedRealmsButton	
-	f	Lnet/minecraft/realms/RealmsButton;	f_4629038	button	
+c	net/minecraft/unmapped/C_9954218	net/minecraft/realms/RealmsButtonProxy	
+	f	Lnet/minecraft/realms/RealmsButton;	f_4629038	delegate	
 	m	(Lnet/minecraft/realms/RealmsButton;IILjava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -5273,7 +5275,7 @@ c	net/minecraft/unmapped/C_9954218	net/minecraft/client/gui/widget/WrappedRealms
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	()Lnet/minecraft/realms/RealmsButton;	m_7950454	get	
+	m	()Lnet/minecraft/realms/RealmsButton;	m_7950454	m_7950454	
 	m	(Z)I	m_8274414	m_8274414	
 		p	1		p_1	
 	m	(Z)I	m_7979642	getSuperYImage	

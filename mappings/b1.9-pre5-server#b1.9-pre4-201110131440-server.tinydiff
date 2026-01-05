@@ -64,9 +64,9 @@ c	net/minecraft/unmapped/C_2561388
 	m	()V	<clinit>	<clinit>	
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_2823810
-	m	(Lnet/minecraft/unmapped/C_1161898;I)Z	m_7929562	m_7929562	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_1161898;I)Z	m_7929562	doTakeDamage	
+		p	1		source	
+		p	2		amount	
 c	net/minecraft/unmapped/C_3060676
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_3198459
@@ -135,14 +135,14 @@ c	net/minecraft/unmapped/C_5362195
 c	net/minecraft/unmapped/C_5445172
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_5542904
-	f	I	f_4415141	ingredientId	
+	f	I	f_4415141	ingredient	
 c	net/minecraft/unmapped/C_5553933
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_7404460	getForcedSpawnPoint	
 	m	()V	m_7252593	toggleDownfall	
-	m	(Lnet/minecraft/unmapped/C_0539808;D)Lnet/minecraft/unmapped/C_9590849;	m_9200375	getClosestPlayerToAttack	
+	m	(Lnet/minecraft/unmapped/C_0539808;D)Lnet/minecraft/unmapped/C_9590849;	m_9200375	getNearestPlayerToAttack	
 		p	1		entity	
 		p	2		range	
-	m	(DDDD)Lnet/minecraft/unmapped/C_9590849;	m_7654946	getClosestPlayerToAttack	
+	m	(DDDD)Lnet/minecraft/unmapped/C_9590849;	m_7654946	getNearestPlayerToAttack	
 		p	1		entityX	
 		p	3		entityY	
 		p	5		entityZ	
@@ -207,19 +207,19 @@ c	net/minecraft/unmapped/C_7233506
 c	net/minecraft/unmapped/C_7330382
 	m	(Lnet/minecraft/unmapped/C_0230498;)Z	m_0880509	m_0880509	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_7430075	net/minecraft/network/packet/DeserializedPacketCounter	net/minecraft/network/packet/Packet__DeserializedPacketCounter
+c	net/minecraft/unmapped/C_7430075	net/minecraft/network/packet/PacketTracker	net/minecraft/network/packet/Packet__Tracker
 	f	Z	f_5581270	dewit	
-	f	Ljava/util/Map;	f_2057442	AMOUNT	
+	f	Ljava/util/Map;	f_2057442	COUNT	
 	f	Ljava/util/Map;	f_5751267	SIZE	
 	f	Ljava/lang/Object;	f_5645834	LOCK	
-	f	I	f_4046558		f_4046558
-	f	J	f_5839691		f_5839691
+	f	I	f_4046558		count
+	f	J	f_5839691		size
 	m	(IJ)V	m_5393346	update	
 		p	0		id	
 		p	1		size	
 	m	()V	<clinit>	<clinit>	
 	m	(I)V	m_5393346		update
-		p	1			p_1
+		p	1			size
 	m	(Lnet/minecraft/unmapped/C_7143245;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_7640150
@@ -244,20 +244,20 @@ c	net/minecraft/unmapped/C_8177352
 c	net/minecraft/unmapped/C_8253973
 	f	I	f_2323774		f_2323774
 	m	()V	m_1700770	m_1700770	
-	m	()I	m_2348586	m_2348586	
-	m	(I)V	m_1751614	m_1751614	
-		p	1		p_1	
+	m	()I	m_2348586	getAge	
+	m	(I)V	m_1751614	setAge	
+		p	1		age	
 c	net/minecraft/unmapped/C_8922447
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_9070697
 	f	Lnet/minecraft/unmapped/C_9590849;	f_5480080	player	
 	m	(Lnet/minecraft/unmapped/C_8853985;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5818647;III)V	<init>	<init>	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	2		player	
+		p	3		inventory	
+		p	4		id	
+		p	5		x	
+		p	6		z	
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1468841	m_1468841	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_8853985;Lnet/minecraft/unmapped/C_5818647;III)V	<init>		<init>
@@ -273,10 +273,10 @@ c	net/minecraft/unmapped/C_9375022
 c	net/minecraft/unmapped/C_9469238
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_9594057
-	f	Lnet/minecraft/unmapped/C_2454309;	f_7136994	stack	
-	f	I	f_9790123		f_9790123
-	f	I	f_5979485		f_5979485
-	f	I	f_9531792		f_9531792
+	f	Lnet/minecraft/unmapped/C_2454309;	f_7136994	item	
+	f	I	f_9790123		item
+	f	I	f_5979485		size
+	f	I	f_9531792		metadata
 c	net/minecraft/unmapped/C_9739154
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_9761743
@@ -294,4 +294,4 @@ c	net/minecraft/unmapped/C_9932820
 	m	()I	m_2337713	m_2337713	
 c	net/minecraft/unmapped/C_9986135
 	m	()I	m_2337713	m_2337713	
-c	net/minecraft/unmapped/C_7143245		net/minecraft/network/packet/Packet__1
+c	net/minecraft/unmapped/C_7143245		net/minecraft/network/packet/Packet__7143245

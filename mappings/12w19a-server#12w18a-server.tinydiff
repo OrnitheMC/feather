@@ -3,28 +3,28 @@ c	net/minecraft/server/MinecraftServer
 	f	Z	f_5129622	bonusChestEnabled	
 	m	(Z)V	m_9691059	enableBonusChest	
 		p	1		bonusChestEnabled	
-c	net/minecraft/unmapped/C_0008286	net/minecraft/unmapped/C_0008286	
-c	net/minecraft/unmapped/C_0188833	net/minecraft/unmapped/C_0188833	
-	f	Lnet/minecraft/unmapped/C_3428392;	f_0863373	f_0863373	
-	f	Lnet/minecraft/unmapped/C_9048693;	f_4979057	f_4979057	
-	f	[B	f_1661944	f_1661944	
-	f	[B	f_8915503	f_8915503	
-	f	I	f_0851651	f_0851651	
-	f	I	f_7100778	f_7100778	
-	f	Z	f_6967980	f_6967980	
+c	net/minecraft/unmapped/C_0008286	org/bouncycastle/crypto/CipherParameters	
+c	net/minecraft/unmapped/C_0188833	org/bouncycastle/crypto/io/CipherInputStream	
+	f	Lnet/minecraft/unmapped/C_3428392;	f_0863373	bufferedBlockCipher	
+	f	Lnet/minecraft/unmapped/C_9048693;	f_4979057	streamCipher	
+	f	[B	f_1661944	buf	
+	f	[B	f_8915503	inBuf	
+	f	I	f_0851651	bufOff	
+	f	I	f_7100778	maxBuf	
+	f	Z	f_6967980	finalized	
 	m	(Ljava/io/InputStream;Lnet/minecraft/unmapped/C_9048693;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	()I	m_8994001	m_8994001	
+		p	1		is	
+		p	2		cipher	
+	m	()I	m_8994001	nextChunk	
 	m	()I	read	read	
 	m	([B)I	read	read	
-		p	1		p_1	
+		p	1		b	
 	m	([BII)I	read	read	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		b	
+		p	2		off	
+		p	3		len	
 	m	(J)J	skip	skip	
-		p	1		p_1	
+		p	1		n	
 	m	()I	available	available	
 	m	()V	close	close	
 	m	()Z	markSupported	markSupported	
@@ -37,23 +37,23 @@ c	net/minecraft/unmapped/C_0302554	net/minecraft/unmapped/C_0302554
 		p	1		p_1	
 		p	2		p_2	
 	m	()Ljava/lang/Throwable;	getCause	getCause	
-c	net/minecraft/unmapped/C_0752678	net/minecraft/unmapped/C_0752678	
-	f	[I	f_2185327	f_2185327	
-	f	[I	f_4740962	f_4740962	
-	f	I	f_9639932	f_9639932	
-	f	[B	f_1840427	f_1840427	
-	f	[B	f_5079980	f_5079980	
-	f	Z	f_3979523	f_3979523	
-	f	[B	f_5547333	f_5547333	
-	f	I	f_5697193	f_5697193	
+c	net/minecraft/unmapped/C_0752678	org/bouncycastle/crypto/engines/HC256Engine	
+	f	[I	f_2185327	p	
+	f	[I	f_4740962	q	
+	f	I	f_9639932	cnt	
+	f	[B	f_1840427	key	
+	f	[B	f_5079980	iv	
+	f	Z	f_3979523	initialized	
+	f	[B	f_5547333	buf	
+	f	I	f_5697193	idx	
 	m	()V	<init>	<init>	
-	m	()I	m_4288407	m_4288407	
-	m	()V	m_3996664	m_3996664	
-	m	()Ljava/lang/String;	m_5277695	m_5277695	
-	m	(ZLnet/minecraft/unmapped/C_0008286;)V	m_3736884	m_3736884	
-		p	1		p_1	
-		p	2		p_2	
-	m	()B	m_8400712	m_8400712	
+	m	()I	m_4288407	step	
+	m	()V	m_3996664	init	
+	m	()Ljava/lang/String;	m_5277695	getAlgorithmName	
+	m	(ZLnet/minecraft/unmapped/C_0008286;)V	m_3736884	init	
+		p	1		forEncryption	
+		p	2		params	
+	m	()B	m_8400712	getByte	
 	m	([BII[BI)V	m_7714349	m_7714349	
 		p	1		p_1	
 		p	2		p_2	
@@ -62,41 +62,41 @@ c	net/minecraft/unmapped/C_0752678	net/minecraft/unmapped/C_0752678
 		p	5		p_5	
 	m	(B)B	m_1156482	m_1156482	
 		p	1		p_1	
-	m	(II)I	m_4865574	m_4865574	
-		p	0		p_0	
-		p	1		p_1	
+	m	(II)I	m_4865574	rotateRight	
+		p	0		x	
+		p	1		bits	
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_5994377	COCOA	
 c	net/minecraft/unmapped/C_1263976	org/bouncycastle/asn1/ASN1Object	
 	m	()V	<init>	<init>	
 	m	()I	hashCode	hashCode	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		o	
+		p	1		p_1	
 	m	()Lnet/minecraft/unmapped/C_9661665;	m_2016500	m_2016500	
 c	net/minecraft/unmapped/C_1518925
 	f	Lnet/minecraft/unmapped/C_1518925;	f_0114524	LARGE_BIOMES	
-c	net/minecraft/unmapped/C_1590125	net/minecraft/unmapped/C_1590125	
+c	net/minecraft/unmapped/C_1590125	org/bouncycastle/crypto/RuntimeCryptoException	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		message	
 c	net/minecraft/unmapped/C_1610187
-	m	(ZLjava/security/Key;)Lnet/minecraft/unmapped/C_9048693;	m_9981711	m_9981711	
-		p	0		p_0	
-		p	1		p_1	
-c	net/minecraft/unmapped/C_1813707	net/minecraft/unmapped/C_1813707	
-	f	[B	f_6198440	f_6198440	
+	m	(ZLjava/security/Key;)Lnet/minecraft/unmapped/C_9048693;	m_9981711	setupCipher	
+		p	0		encrypt	
+		p	1		key	
+c	net/minecraft/unmapped/C_1813707	org/bouncycastle/crypto/params/KeyParameter	
+	f	[B	f_6198440	key	
 	m	([B)V	<init>	<init>	
-		p	1		p_1	
+		p	1		key	
 	m	([BII)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()[B	m_2820952	m_2820952	
+		p	1		key	
+		p	2		keyOff	
+		p	3		keyLen	
+	m	()[B	m_2820952	getKey	
 c	net/minecraft/unmapped/C_2042216	org/bouncycastle/jcajce/provider/config/ProviderConfigurationPermission	
 	f	Ljava/lang/String;	f_6832269	actions	
 	f	I	f_0726092	permissionMask	
 	m	(Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		name	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	<init>	<init>	
 		p	1		name	
 		p	2		actions	
@@ -106,7 +106,7 @@ c	net/minecraft/unmapped/C_2042216	org/bouncycastle/jcajce/provider/config/Provi
 	m	(Ljava/security/Permission;)Z	implies	implies	
 		p	1		permission	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		obj	
+		p	1		p_1	
 	m	()I	hashCode	hashCode	
 c	net/minecraft/unmapped/C_2229816	org/bouncycastle/jcajce/provider/config/ProviderConfiguration	
 c	net/minecraft/unmapped/C_2600179	org/bouncycastle/asn1/pkcs/PKCSObjectIdentifiers	
@@ -276,16 +276,16 @@ c	net/minecraft/unmapped/C_2847255	org/bouncycastle/asn1/DERObjectIdentifier
 	m	(Ljava/lang/String;)Z	m_6199545	isValidIdentifier	
 		p	0		identifier	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_2849807	net/minecraft/unmapped/C_2849807	
-	f	[B	f_0401068	f_0401068	
-	f	Lnet/minecraft/unmapped/C_0008286;	f_3315788	f_3315788	
+c	net/minecraft/unmapped/C_2849807	org/bouncycastle/crypto/params/ParametersWithIV	
+	f	[B	f_0401068	iv	
+	f	Lnet/minecraft/unmapped/C_0008286;	f_3315788	parameters	
 	m	(Lnet/minecraft/unmapped/C_0008286;[BII)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	()[B	m_2564001	m_2564001	
-	m	()Lnet/minecraft/unmapped/C_0008286;	m_5120148	m_5120148	
+		p	1		parameters	
+		p	2		iv	
+		p	3		ivOff	
+		p	4		ivLen	
+	m	()[B	m_2564001	getIV	
+	m	()Lnet/minecraft/unmapped/C_0008286;	m_5120148	getParameters	
 c	net/minecraft/unmapped/C_3106743	net/minecraft/block/CocoaBlock	
 	m	(I)V	<init>	<init>	
 		p	1		id	
@@ -359,31 +359,31 @@ c	net/minecraft/unmapped/C_3109340	org/bouncycastle/jce/provider/BouncyCastlePro
 	m	(Lnet/minecraft/unmapped/C_3109340;)V	m_6002134	m_6002134	
 		p	0		p_0	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_3428392	net/minecraft/unmapped/C_3428392	
-	f	[B	f_8915569	f_8915569	
-	f	I	f_5624281	f_5624281	
-	f	Lnet/minecraft/unmapped/C_7163329;	f_1931350	f_1931350	
-	f	Z	f_2578337	f_2578337	
-	f	Z	f_4773420	f_4773420	
+c	net/minecraft/unmapped/C_3428392	org/bouncycastle/crypto/BufferedBlockCipher	
+	f	[B	f_8915569	buf	
+	f	I	f_5624281	bufOff	
+	f	Lnet/minecraft/unmapped/C_7163329;	f_1931350	cipher	
+	f	Z	f_2578337	partialBlockOkay	
+	f	Z	f_4773420	pgpCFB	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_7163329;)V	<init>	<init>	
-		p	1		p_1	
-	m	()I	m_2209106	m_2209106	
-	m	(I)I	m_8666092	m_8666092	
-		p	1		p_1	
-	m	(I)I	m_8728418	m_8728418	
-		p	1		p_1	
-	m	([BII[BI)I	m_8161257	m_8161257	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	([BI)I	m_7980259	m_7980259	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	m_8657539	m_8657539	
-c	net/minecraft/unmapped/C_3674509	org/bouncycastle/jce/provider/BouncyCastleProvider__1	
+		p	1		cipher	
+	m	()I	m_2209106	getBlockSize	
+	m	(I)I	m_8666092	getUpdateOutputSize	
+		p	1		len	
+	m	(I)I	m_8728418	getOutputSize	
+		p	1		len	
+	m	([BII[BI)I	m_8161257	processBytes	
+		p	1		in	
+		p	2		inOff	
+		p	3		len	
+		p	4		out	
+		p	5		outOff	
+	m	([BI)I	m_7980259	doFinal	
+		p	1		out	
+		p	2		outOff	
+	m	()V	m_8657539	reset	
+c	net/minecraft/unmapped/C_3674509	org/bouncycastle/jce/provider/BouncyCastleProvider__3674509	
 	f	Lnet/minecraft/unmapped/C_3109340;	f_5313465	f_5313465	
 	m	(Lnet/minecraft/unmapped/C_3109340;)V	<init>	<init>	
 		p	1		p_1	
@@ -392,71 +392,71 @@ c	net/minecraft/unmapped/C_4120457	org/bouncycastle/jcajce/provider/config/Confi
 c	net/minecraft/unmapped/C_5265607	org/bouncycastle/asn1/ASN1ObjectIdentifier	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_5265607;	m_0697021	m_0697021	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_5265607;	m_0697021	branch	
+		p	1		branchID	
 c	net/minecraft/unmapped/C_5587144
-	f	Z	f_4279140		f_4279140
+	f	Z	f_4279140		angry
 	m	(Z)V	m_0041163	setAngry	
 		p	1		angry	
 c	net/minecraft/unmapped/C_5764537	org/bouncycastle/jce/provider/BouncyCastleProviderConfiguration	
-	f	Ljava/security/Permission;	f_3606354	f_3606354	
-	f	Ljava/security/Permission;	f_5839620	f_5839620	
-	f	Ljava/security/Permission;	f_2688126	f_2688126	
-	f	Ljava/security/Permission;	f_4073779	f_4073779	
-	f	Ljava/lang/ThreadLocal;	f_8884067	f_8884067	
-	f	Ljava/lang/ThreadLocal;	f_3777985	f_3777985	
+	f	Ljava/security/Permission;	f_3606354	BC_EC_LOCAL_PERMISSION	
+	f	Ljava/security/Permission;	f_5839620	BC_EC_PERMISSION	
+	f	Ljava/security/Permission;	f_2688126	BC_DH_LOCAL_PERMISSION	
+	f	Ljava/security/Permission;	f_4073779	BC_DH_PERMISSION	
+	f	Ljava/lang/ThreadLocal;	f_8884067	ecThreadSpec	
+	f	Ljava/lang/ThreadLocal;	f_3777985	dhThreadSpec	
 	m	()V	<init>	<init>	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_7163329	net/minecraft/unmapped/C_7163329	
-	m	()Ljava/lang/String;	m_9047593	m_9047593	
-	m	()I	m_5280002	m_5280002	
-	m	([BI[BI)I	m_1695211	m_1695211	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	()V	m_0059320	m_0059320	
+c	net/minecraft/unmapped/C_7163329	org/bouncycastle/crypto/BlockCipher	
+	m	()Ljava/lang/String;	m_9047593	getAlgorithmName	
+	m	()I	m_5280002	getBlockSize	
+	m	([BI[BI)I	m_1695211	processBlock	
+		p	1		in	
+		p	2		inOff	
+		p	3		out	
+		p	4		outOff	
+	m	()V	m_0059320	reset	
 c	net/minecraft/unmapped/C_7393303	org/bouncycastle/jcajce/provider/util/AlgorithmProvider	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_4120457;)V	m_3514811	configure	
-		p	1		p_1	
+		p	1		provider	
 c	net/minecraft/unmapped/C_8442065	org/bouncycastle/asn1/ASN1Encodable	
 	m	()Lnet/minecraft/unmapped/C_9661665;	m_2016500	toASN1Primitive	
 c	net/minecraft/unmapped/C_8480899
 	f	Lnet/minecraft/unmapped/C_2670477;	f_4513356	SETTINGS	
-c	net/minecraft/unmapped/C_9048693	net/minecraft/unmapped/C_9048693	
-	m	(B)B	m_1156482	m_1156482	
-		p	1		p_1	
-	m	([BII[BI)V	m_7714349	m_7714349	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+c	net/minecraft/unmapped/C_9048693	org/bouncycastle/crypto/StreamCipher	
+	m	(B)B	m_1156482	returnByte	
+		p	1		in	
+	m	([BII[BI)V	m_7714349	processBytes	
+		p	1		in	
+		p	2		inOff	
+		p	3		inLen	
+		p	4		out	
+		p	5		outOff	
 c	net/minecraft/unmapped/C_9060828	org/bouncycastle/util/Strings	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_0232811	toLowerCase	
 		p	0		string	
-c	net/minecraft/unmapped/C_9421095	net/minecraft/unmapped/C_9421095	
+c	net/minecraft/unmapped/C_9421095	org/bouncycastle/crypto/DataLengthException	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_9596663	net/minecraft/unmapped/C_9596663	
-	f	Lnet/minecraft/unmapped/C_3428392;	f_9449324	f_9449324	
-	f	Lnet/minecraft/unmapped/C_9048693;	f_7779273	f_7779273	
-	f	[B	f_4381764	f_4381764	
-	f	[B	f_2522466	f_2522466	
+c	net/minecraft/unmapped/C_9596663	org/bouncycastle/crypto/io/CipherOutputStream	
+	f	Lnet/minecraft/unmapped/C_3428392;	f_9449324	bufferedBlockCipher	
+	f	Lnet/minecraft/unmapped/C_9048693;	f_7779273	streamCipher	
+	f	[B	f_4381764	oneByte	
+	f	[B	f_2522466	buf	
 	m	(Ljava/io/OutputStream;Lnet/minecraft/unmapped/C_9048693;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		os	
+		p	2		cipher	
 	m	(I)V	write	write	
-		p	1		p_1	
+		p	1		b	
 	m	([B)V	write	write	
-		p	1		p_1	
+		p	1		b	
 	m	([BII)V	write	write	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		b	
+		p	2		off	
+		p	3		len	
 	m	()V	flush	flush	
 	m	()V	close	close	
 c	net/minecraft/unmapped/C_9661665	org/bouncycastle/asn1/ASN1Primitive	

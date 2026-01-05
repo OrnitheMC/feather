@@ -87,7 +87,7 @@ c	net/minecraft/unmapped/C_0837523
 c	net/minecraft/unmapped/C_1155256
 	f	[Ljava/lang/String;	f_5542247	VARIANTS	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_1156048	net/minecraft/entity/Entity__1	
+c	net/minecraft/unmapped/C_1156048	net/minecraft/entity/Entity__1156048	
 	f	[I	f_9058371	f_9058371	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1241852
@@ -108,35 +108,35 @@ c	net/minecraft/unmapped/C_1610187	net/minecraft/network/encryption/EncryptionUt
 	f	Ljava/nio/charset/Charset;	f_3706465	ISO_8859_1	
 	m	()V	<init>	<init>	
 	m	()Ljava/security/KeyPair;	m_8061218	generateKeyPair	
-	m	(Ljava/lang/String;Ljava/security/PublicKey;Ljavax/crypto/SecretKey;)[B	m_9540160	generateServerId	
-		p	0		baseServerId	
+	m	(Ljava/lang/String;Ljava/security/PublicKey;Ljavax/crypto/SecretKey;)[B	m_9540160	digest	
+		p	0		data	
 		p	1		publicKey	
 		p	2		secretKey	
-	m	(Ljava/lang/String;[[B)[B	m_0804475	hash	
+	m	(Ljava/lang/String;[[B)[B	m_0804475	digest	
 		p	0		algorithm	
 		p	1		data	
-	m	([B)Ljava/security/PublicKey;	m_8164588	reconstitutePublicKey	
+	m	([B)Ljava/security/PublicKey;	m_8164588	generatePublicKey	
 		p	0		data	
 	m	(Ljava/security/PrivateKey;[B)Ljavax/crypto/SecretKey;	m_4285294	decryptSecretKey	
 		p	0		privateKey	
-		p	1		encryptedSecretKey	
+		p	1		data	
 	m	(Ljava/security/Key;[B)[B	m_6194328	decrypt	
 		p	0		key	
 		p	1		data	
-	m	(ILjava/security/Key;[B)[B	m_9125125	crypt	
-		p	0		opMode	
+	m	(ILjava/security/Key;[B)[B	m_9125125	cipher	
+		p	0		opmode	
 		p	1		key	
 		p	2		data	
-	m	(ILjava/lang/String;Ljava/security/Key;)Ljavax/crypto/Cipher;	m_7498900	crypt	
-		p	0		opMode	
-		p	1		algorithm	
+	m	(ILjava/lang/String;Ljava/security/Key;)Ljavax/crypto/Cipher;	m_7498900	setupCipher	
+		p	0		opmode	
+		p	1		transformation	
 		p	2		key	
 	m	(Ljavax/crypto/SecretKey;Ljava/io/OutputStream;)Ljava/io/OutputStream;	m_9701315	encrypt	
 		p	0		secretKey	
-		p	1		output	
+		p	1		os	
 	m	(Ljavax/crypto/SecretKey;Ljava/io/InputStream;)Ljava/io/InputStream;	m_6178266	decrypt	
 		p	0		secretKey	
-		p	1		input	
+		p	1		is	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_2320485
 	m	(Lnet/minecraft/unmapped/C_1730529;)Ljava/lang/String;	m_5298415	m_5298415	
@@ -185,7 +185,7 @@ c	net/minecraft/unmapped/C_3499589
 	f	I	f_1816817		WRITE_THREAD_COUNTER
 	m	(Ljava/net/Socket;Ljava/lang/String;Lnet/minecraft/unmapped/C_7250084;Ljava/security/PrivateKey;)V	<init>	<init>	
 		p	1		socket	
-		p	2		address	
+		p	2		name	
 		p	3		listener	
 		p	4		privateKey	
 	m	()V	m_1105585	decryptInput	
@@ -245,16 +245,18 @@ c	net/minecraft/unmapped/C_5385258
 		p	0		input	
 	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2454309;	m_5940976
 		p	0		input	
-		p	1			p_1
+		p	1			input
 	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/io/DataOutputStream;)V	m_1303332
-		p	0		stack	
-		p	2			p_2
+		p	0		item	
+		p	2			output
+		p	1		output	item
 	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2018497;	m_7758725
 		p	0		input	
-		p	1			p_1
+		p	1			input
 	m	(Lnet/minecraft/unmapped/C_2018497;Ljava/io/DataOutputStream;)V	m_4581587
 		p	0		nbt	
-		p	2			p_2
+		p	2			output
+		p	1		output	nbt
 c	net/minecraft/unmapped/C_5391657	net/minecraft/text/StringUtils	
 	f	Ljava/util/regex/Pattern;	f_2900510	PATTERN	
 	m	()V	<init>	<init>	
@@ -315,7 +317,7 @@ c	net/minecraft/unmapped/C_6466407
 	f	Ljava/util/Set;	f_6540351	commands	
 	m	(Lnet/minecraft/unmapped/C_1730529;)Ljava/util/List;	m_3454216	m_3454216	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_6728507	net/minecraft/server/command/HelpCommand	
+c	net/minecraft/unmapped/C_6728507	net/minecraft/server/command/ServerHelpCommand	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_1730529;)Ljava/util/List;	m_5450025	m_5450025	
 		p	1		p_1	
@@ -353,7 +355,7 @@ c	net/minecraft/unmapped/C_7250084
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_0168865;)V	m_7479576	handleHandshake	handleClientSettings
 	m	(Lnet/minecraft/unmapped/C_9547548;)V	m_8185232	handleKey	handleHandshake
-c	net/minecraft/unmapped/C_7365744	net/minecraft/command/AbstractHelpCommand	
+c	net/minecraft/unmapped/C_7365744	net/minecraft/command/HelpCommand	
 	m	()V	<init>	<init>	
 	m	()Ljava/lang/String;	m_2274818	m_2274818	
 	m	(Lnet/minecraft/unmapped/C_1730529;)Ljava/lang/String;	m_5298415	m_5298415	
@@ -383,7 +385,7 @@ c	net/minecraft/unmapped/C_8457140	net/minecraft/item/WrittenBookItem
 c	net/minecraft/unmapped/C_8730824
 	m	(Lnet/minecraft/unmapped/C_1730529;)Ljava/lang/String;	m_5298415	m_5298415	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_8931582	net/minecraft/unmapped/C_8931582	
+c	net/minecraft/unmapped/C_8931582	net/minecraft/item/MonsterEggItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(I)I	m_2014915	m_2014915	
@@ -399,9 +401,9 @@ c	net/minecraft/unmapped/C_8983523
 	m	(Lnet/minecraft/unmapped/C_4279601;)V	m_7906493	m_7906493	
 		p	1		p_1	
 	m	()V	m_7472492	acceptLogin	
-	m	(Lnet/minecraft/unmapped/C_8983523;)Lnet/minecraft/server/MinecraftServer;	m_2811029	getServer	
-		p	0		serverLoginNetworkHandler	
-	m	(Lnet/minecraft/unmapped/C_8983523;)Ljavax/crypto/SecretKey;	m_2234362	getProfile	
+	m	(Lnet/minecraft/unmapped/C_8983523;)Lnet/minecraft/server/MinecraftServer;	m_2811029	m_2811029	
+		p	0		p_0	
+	m	(Lnet/minecraft/unmapped/C_8983523;)Ljavax/crypto/SecretKey;	m_2234362	m_2234362	
 		p	0		p_0	
 	m	(Lnet/minecraft/unmapped/C_8983523;)Ljava/lang/String;	m_9756412	m_9756412	
 		p	0		p_0	

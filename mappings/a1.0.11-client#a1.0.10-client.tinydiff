@@ -1,9 +1,9 @@
 tiny	2	0
-c	net/minecraft/unmapped/C_0593414	net/minecraft/entity/living/mob/SlimeEntity	
-	f	F	f_3070472	targetStretch	
+c	net/minecraft/unmapped/C_0593414	net/minecraft/entity/mob/monster/SlimeEntity	
+	f	F	f_3070472	stretch	
 	f	F	f_9068894	lastStretch	
-	f	I	f_0522109	ticksUntilNextJump	
-	f	I	f_1081992	f_1081992	
+	f	I	f_0522109	jumpTimer	
+	f	I	f_1081992	size	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	(I)V	m_8633318	setSize	
@@ -25,7 +25,7 @@ c	net/minecraft/unmapped/C_0608787	net/minecraft/item/PlaceableItem
 	f	I	f_1078980	block	
 	m	(ILnet/minecraft/unmapped/C_1241852;)V	<init>	<init>	
 		p	1		id	
-		p	2		p_2	
+		p	2		block	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_3000450	m_3000450	
 		p	1		p_1	
 		p	2		p_2	
@@ -38,8 +38,8 @@ c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_7494346	CLAY	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_5472511	REEDS	
 c	net/minecraft/unmapped/C_2313930
-	f	Z	f_1854242	f_1854242	
-	f	Z	f_4955480	aimingBow	
+	f	Z	f_1854242	itemInLeftHand	
+	f	Z	f_4955480	itemInRightHand	
 c	net/minecraft/unmapped/C_2358978	net/minecraft/world/gen/feature/SugarcaneFeature	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/Random;III)Z	m_5378046	m_5378046	
@@ -84,12 +84,12 @@ c	net/minecraft/unmapped/C_2755677
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_3649818	tessellateCactus	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_3649818	tesselateCactus	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;IIIFFF)Z	m_4036405	renderCactus	
+	m	(Lnet/minecraft/unmapped/C_1241852;IIIFFF)Z	m_4036405	tesselateCactus	
 		p	1		block	
 		p	2		x	
 		p	3		y	
@@ -106,17 +106,17 @@ c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_0349933	SLIMEBALL	
 	m	()Z	m_8135976	isHandheld	
 c	net/minecraft/unmapped/C_3813953
-	f	I	f_8615265		f_8615265
+	f	I	f_8615265		dropItem
 	m	(ILjava/lang/Class;Z)V	<init>	<init>	
 		p	1		id	
 		p	2		blockEntityType	
 		p	3		standing	
 	m	(ILjava/lang/Class;IZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-c	net/minecraft/unmapped/C_4179163	net/minecraft/entity/living/mob/Monster	
+		p	1			id
+		p	2			blockEntityType
+		p	3			dropItem
+		p	4			standing
+c	net/minecraft/unmapped/C_4179163	net/minecraft/entity/mob/monster/Monster	
 c	net/minecraft/unmapped/C_5201828
 	f	Lnet/minecraft/unmapped/C_0539808;	f_9761907	collector	
 		c	The collector that is picking up the entity.	
@@ -125,14 +125,14 @@ c	net/minecraft/unmapped/C_5201828
 		p	1		world	
 		p	2		entity	
 		p	3		collector	
-		p	4		yOffset	
+		p	4		offsetY	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;F)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			entity
+		p	3			collector
+		p	4			offsetY
 c	net/minecraft/unmapped/C_5385258
-	f	Z	f_5372185	hasBlockData	
+	f	Z	f_5372185	shouldDelay	
 		c	True if this packet contains block (entity) data.\n<br>\nNote: this field is unused since 1.4.3.	
 c	net/minecraft/unmapped/C_5786166
 	m	(FFF)V	m_7032710	addOffset	
@@ -142,7 +142,7 @@ c	net/minecraft/unmapped/C_5786166
 c	net/minecraft/unmapped/C_6386154
 	m	()Z	m_8135976	m_8135976	
 c	net/minecraft/unmapped/C_6489331	net/minecraft/world/gen/feature/ClayPatchFeature	
-	f	I	f_0755180	clayId	
+	f	I	f_0755180	clay	
 	f	I	f_6926284	size	
 	m	(I)V	<init>	<init>	
 		p	1		size	
@@ -156,12 +156,12 @@ c	net/minecraft/unmapped/C_6607881
 	m	()F	m_9491259	getSoundVolume	
 c	net/minecraft/unmapped/C_6697291
 	m	(FFFIII)V	m_1062222	addBox	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		sizeX	
+		p	5		sizeY	
+		p	6		sizeZ	
 c	net/minecraft/unmapped/C_7640150	net/minecraft/block/SugarCaneBlock	
 	m	(II)V	<init>	<init>	
 		p	1		id	
@@ -257,7 +257,7 @@ c	net/minecraft/unmapped/C_8732981	net/minecraft/client/render/entity/SlimeRende
 	m	(Lnet/minecraft/unmapped/C_7503776;F)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_0593414;F)V	m_4994328	scale	
+	m	(Lnet/minecraft/unmapped/C_0593414;F)V	m_4994328	m_4994328	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_9699490	m_9699490	

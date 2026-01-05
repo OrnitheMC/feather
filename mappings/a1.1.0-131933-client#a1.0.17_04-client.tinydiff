@@ -20,7 +20,7 @@ c	net/minecraft/unmapped/C_1137800	net/minecraft/network/packet/SpawnPointPacket
 c	net/minecraft/unmapped/C_1241852
 	f	[Z	f_6224779	HAS_BLOCK_ENTITY	
 c	net/minecraft/unmapped/C_1250058
-	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_9039270	onBlockEntityChanged	
+	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_9039270	notifyBlockEntityChanged	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -29,18 +29,18 @@ c	net/minecraft/unmapped/C_1872000
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_2454309
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_4190376	copy	
-c	net/minecraft/unmapped/C_2999845	net/minecraft/network/packet/SignUpdatePacket	
+c	net/minecraft/unmapped/C_2999845	net/minecraft/network/packet/BlockEntityUpdatePacket	
 	f	I	f_0389151	x	
 	f	I	f_8026297	y	
 	f	I	f_4542857	z	
-	f	[B	f_7158550	f_7158550	
-	f	Lnet/minecraft/unmapped/C_2018497;	f_6735416	f_6735416	
+	f	[B	f_7158550	data	
+	f	Lnet/minecraft/unmapped/C_2018497;	f_6735416	nbt	
 	m	()V	<init>	<init>	
 	m	(IIILnet/minecraft/unmapped/C_3622326;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		blockEntity	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
@@ -51,7 +51,7 @@ c	net/minecraft/unmapped/C_2999845	net/minecraft/network/packet/SignUpdatePacket
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_9717794	COMPASS	
 c	net/minecraft/unmapped/C_4257480
-	f	I	f_7715468	type	
+	f	I	f_7715468	atlas	
 	m	(Lnet/minecraft/unmapped/C_0876962;)V	m_2706008	bind	
 		p	1		textureManager	
 c	net/minecraft/unmapped/C_4808571
@@ -63,9 +63,9 @@ c	net/minecraft/unmapped/C_5553933
 		p	3		z	
 		p	4		blockEntity	
 	m	(III)V	m_0572533		notifyBlockEntityChanged
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_5722573
 	m	(Lnet/minecraft/unmapped/C_8100953;)V	m_7381476	m_7381476	
 		p	1		p_1	
@@ -77,49 +77,49 @@ c	net/minecraft/unmapped/C_5944992	net/minecraft/client/render/texture/CompassSp
 	f	[F	f_6641963	f_6641963	
 	f	[F	f_2601572	f_2601572	
 	f	Lnet/minecraft/client/Minecraft;	f_0186630	minecraft	
-	f	[I	f_1566875	image	
+	f	[I	f_1566875	compass	
 	f	D	f_5199934	angle	
 	f	D	f_2037163	angleDelta	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
 		p	1		minecraft	
 	m	()V	m_5407865	m_5407865	
 c	net/minecraft/unmapped/C_6013256
-	f	I	f_3664427	f_3664427	
-	f	Lnet/minecraft/unmapped/C_7400754;	f_6076566	f_6076566	
+	f	I	f_3664427	ticksSinceSendInventory	
+	f	Lnet/minecraft/unmapped/C_7400754;	f_6076566	sentInventory	
 c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_8100953;)V	m_7381476	handleInventoryMenu	
+	m	(Lnet/minecraft/unmapped/C_8100953;)V	m_7381476	handlePlayerInventory	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_2999845;)V	m_7917741	handleSignBlockEntityUpdate	
+	m	(Lnet/minecraft/unmapped/C_2999845;)V	m_7917741	handleBlockEntityUpdate	
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_1137800;)V	m_0455939	handleSpawnPoint	
 		p	1		packet	
 c	net/minecraft/unmapped/C_7400754
 	f	Z	f_4848933	dirty	
-	m	(Lnet/minecraft/unmapped/C_7400754;)Z	m_4496667	m_4496667	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_2454309;)Z	m_0170089	m_0170089	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Lnet/minecraft/unmapped/C_7400754;	m_6548764	m_6548764	
+	m	(Lnet/minecraft/unmapped/C_7400754;)Z	m_4496667	contentEquals	
+		p	1		other	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_2454309;)Z	m_0170089	itemsEqual	
+		p	1		item1	
+		p	2		item2	
+	m	()Lnet/minecraft/unmapped/C_7400754;	m_6548764	copy	
 c	net/minecraft/unmapped/C_7873567
-	f	Z	f_8529205	f_8529205	
+	f	Z	f_8529205	noSendingBlockEntityUpdates	
 	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_0572533	m_0572533	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_7887747
-	m	([B)Lnet/minecraft/unmapped/C_2018497;	m_2711055	m_2711055	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_2018497;)[B	m_1104048	m_1104048	
-		p	0		p_0	
-c	net/minecraft/unmapped/C_8100953	net/minecraft/network/packet/InventoryMenuPacket	
-	f	I	f_5133386	menuId	
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_8823412	stacks	
+	m	([B)Lnet/minecraft/unmapped/C_2018497;	m_2711055	readCompressed	
+		p	0		data	
+	m	(Lnet/minecraft/unmapped/C_2018497;)[B	m_1104048	writeCompressed	
+		p	0		nbt	
+c	net/minecraft/unmapped/C_8100953	net/minecraft/network/packet/PlayerInventoryPacket	
+	f	I	f_5133386	type	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_8823412	items	
 	m	()V	<init>	<init>	
 	m	(I[Lnet/minecraft/unmapped/C_2454309;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		type	
+		p	2		items	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
@@ -134,9 +134,10 @@ c	net/minecraft/unmapped/C_8398976
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_9029783
-	m	()V	m_4717471	cancel	
+	m	()V	m_4717471	shutdown	
+	m	()V	m_5855120	forceReload	shutdown
 c	net/minecraft/unmapped/C_9693816
-	f	Z	f_1503338	ACTIVE	
+	f	Z	f_1503338	USE_OCCLUSION_QUERY	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1148827		net/minecraft/unmapped/C_1148827
 	m	()V	<init>		<init>

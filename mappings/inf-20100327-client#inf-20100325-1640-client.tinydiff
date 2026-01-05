@@ -1,39 +1,41 @@
 tiny	2	0
 c	net/minecraft/client/C_0877775
-	m	(Ljava/lang/String;)V	m_9292931	m_9292931	
-		p	1		p_1	
-	m	(I)V	m_1154571	m_1154571	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_9292931	progressStage	
+		p	1		stage	
+	m	(I)V	m_1154571	progressPercentage	
+		p	1		percentage	
 	m	()V	<init>	<init>	
-	m	(Ljava/io/InputStream;)Lnet/minecraft/unmapped/C_2018497;	m_1070817	m_1070817	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_2018497;Ljava/io/OutputStream;)V	m_5551645	m_5551645	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Ljava/io/InputStream;)Lnet/minecraft/unmapped/C_2018497;	m_1070817	readCompressed	
+		p	0		is	
+	m	(Lnet/minecraft/unmapped/C_2018497;Ljava/io/OutputStream;)V	m_5551645	writeCompressed	
+		p	0		nbt	
+		p	1		os	
 	m	(Ljava/lang/String;)V	m_1154571		m_1154571
 		p	1			p_1
+	m	(Ljava/lang/String;)V	m_0983733	progressStart	m_0983733
+		p	1		title	p_1
 c	net/minecraft/client/C_5664496
-	f	Ljava/io/File;	f_9479876	f_9479876	
-	m	()Ljava/io/File;	m_7340082	m_7340082	
-	m	(Ljava/lang/String;)V	m_5272083	m_5272083	
-		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_2707581	m_2707581	
-		p	1		p_1	
-	m	()V	m_9990242	m_9990242	
+	f	Ljava/io/File;	f_9479876	workingDirectory	
+	m	()Ljava/io/File;	m_7340082	getWorkingDirectory	
+	m	(Ljava/lang/String;)V	m_5272083	startGame	
+		p	1		saveName	
+	m	(Ljava/lang/String;)V	m_2707581	prepareWorld	
+		p	1		saveName	
+	m	()V	m_9990242	respawnPlayer	
 c	net/minecraft/unmapped/C_0539808
-	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7690388	writeEntityNbt	
+	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7690388	writeNbtWithoutId	
 		p	1		nbt	
-	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_3608898	readEntityNbt	
+	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_3608898	readNbt	
 		p	1		nbt	
-	m	()Ljava/lang/String;	m_1061793	m_1061793	
+	m	()Ljava/lang/String;	m_1061793	getId	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7694759	readCustomNbt	
 		p	1		nbt	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_1129840	writeCustomNbt	
 		p	1		nbt	
 	m	([D)Lnet/minecraft/unmapped/C_5693434;	m_4393775	toNbtList	
-		p	0		p_0	
+		p	0		values	
 c	net/minecraft/unmapped/C_0987157
-	f	Ljava/util/Random;	f_3952515		f_3952515
+	f	Ljava/util/Random;	f_3952515		brickRandom
 	f	Lnet/minecraft/unmapped/C_2708985;	f_4682337		f_4682337
 	f	Lnet/minecraft/unmapped/C_2708985;	f_8421429		f_8421429
 	f	Lnet/minecraft/unmapped/C_2708985;	f_1600301		f_1600301
@@ -47,7 +49,7 @@ c	net/minecraft/unmapped/C_0987157
 	m	(Z)V	m_2192709	m_2192709	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
-		p	1			p_1
+		p	1			world
 c	net/minecraft/unmapped/C_1023567
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_1129840	m_1129840	
 		p	1		p_1	
@@ -69,15 +71,15 @@ c	net/minecraft/unmapped/C_1350658
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7694759	m_7694759	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_1441789	net/minecraft/client/gui/screen/ConfirmScreen	
-	f	Lnet/minecraft/unmapped/C_3020744;	f_1860582	parent	
+	f	Lnet/minecraft/unmapped/C_3020744;	f_1860582	listener	
 	f	Ljava/lang/String;	f_6214191	title	
 	f	Ljava/lang/String;	f_7114120	description	
 	f	I	f_5789322	id	
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;Ljava/lang/String;I)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		parent	
+		p	2		title	
+		p	3		description	
+		p	4		id	
 	m	()V	m_3593494	m_3593494	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793	m_7971793	
 		p	1		p_1	
@@ -117,9 +119,9 @@ c	net/minecraft/unmapped/C_2018497
 	m	(Ljava/lang/String;J)V	m_7177295	putLong	
 		p	1		key	
 		p	2		value	
-	m	(Ljava/lang/String;F)V	m_2391638	m_2391638	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;F)V	m_2391638	putFloat	
+		p	1		key	
+		p	2		value	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	m_1991972	putString	
 		p	1		key	
 		p	2		value	
@@ -132,8 +134,8 @@ c	net/minecraft/unmapped/C_2018497
 	m	(Ljava/lang/String;Z)V	m_0815577	putBoolean	
 		p	1		key	
 		p	2		value	
-	m	(Ljava/lang/String;)Z	m_0016466	m_0016466	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Z	m_0016466	contains	
+		p	1		key	
 	m	(Ljava/lang/String;)B	m_6724527	getByte	
 		p	1		key	
 	m	(Ljava/lang/String;)S	m_9488035	getShort	
@@ -142,8 +144,8 @@ c	net/minecraft/unmapped/C_2018497
 		p	1		key	
 	m	(Ljava/lang/String;)J	m_7737691	getLong	
 		p	1		key	
-	m	(Ljava/lang/String;)F	m_3941822	m_3941822	
-		p	1		p_1	
+	m	(Ljava/lang/String;)F	m_3941822	getFloat	
+		p	1		key	
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_1107321	getString	
 		p	1		key	
 	m	(Ljava/lang/String;)[B	m_2735530	getByteArray	
@@ -166,12 +168,12 @@ c	net/minecraft/unmapped/C_2454309
 	m	(Lnet/minecraft/unmapped/C_2018497;)Lnet/minecraft/unmapped/C_2018497;	m_6391280	writeNbt	
 		p	1		nbt	
 c	net/minecraft/unmapped/C_2691939
-	m	(IIIII)V	m_5774577		m_5774577
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(IIIII)V	m_5774577		fill
+		p	0			x1
+		p	1			y1
+		p	2			x2
+		p	3			y2
+		p	4			color
 c	net/minecraft/unmapped/C_2708985
 	m	(I)V	<init>		<init>
 		p	1			p_1
@@ -192,8 +194,8 @@ c	net/minecraft/unmapped/C_3225627	net/minecraft/nbt/NbtElement
 		p	1		input	
 	m	()B	m_0346400	getType	
 	m	()Ljava/lang/String;	m_8998501	getName	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3225627;	m_4457344	m_4457344	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3225627;	m_4457344	setName	
+		p	1		name	
 	m	(Ljava/io/DataInput;)Lnet/minecraft/unmapped/C_3225627;	m_1023512	deserialize	
 		p	0		input	
 	m	(Lnet/minecraft/unmapped/C_3225627;Ljava/io/DataOutput;)V	m_0479039	serialize	
@@ -240,7 +242,7 @@ c	net/minecraft/unmapped/C_4808571
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7291294	m_7291294	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_6154030	getFuelTime	
-		p	0		p_0	
+		p	0		fuel	
 c	net/minecraft/unmapped/C_5058702	net/minecraft/nbt/NbtDouble	
 	f	D	f_1560513	value	
 	m	()V	<init>	<init>	
@@ -280,32 +282,32 @@ c	net/minecraft/unmapped/C_5423347
 	f	Ljava/lang/String;	f_5772328	name	
 c	net/minecraft/unmapped/C_5553933
 	f	J	f_1618367	ticks	
-	f	I	f_6988360	spawnpointX	
-	f	I	f_9398901	spawnpointY	
-	f	I	f_7237409	spawnpointZ	
-	f	Ljava/io/File;	f_2537859	dir	
+	f	I	f_6988360	spawnPointX	
+	f	I	f_9398901	spawnPointY	
+	f	I	f_7237409	spawnPointZ	
+	f	Ljava/io/File;	f_2537859	saveDir	
 	f	J	f_1783857	seed	
-	f	Lnet/minecraft/unmapped/C_2018497;	f_4300305	f_4300305	
+	f	Lnet/minecraft/unmapped/C_2018497;	f_4300305	playerData	
 	f	J	f_8535327	sizeOnDisk	
 	f	I	f_1618367		ticks
-	f	F	f_6988360		spawnpointX
-	f	F	f_9398901		spawnpointY
-	f	F	f_7237409		spawnpointZ
-	m	(Ljava/io/File;Ljava/lang/String;)Lnet/minecraft/unmapped/C_2018497;	m_9312594	m_9312594	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Ljava/io/File;Ljava/lang/String;)V	m_9583644	m_9583644	
-		p	0		p_0	
-		p	1		p_1	
-	m	([Ljava/io/File;)V	m_4805602	m_4805602	
-		p	0		p_0	
+	f	F	f_6988360		spawnPointX
+	f	F	f_9398901		spawnPointY
+	f	F	f_7237409		spawnPointZ
+	m	(Ljava/io/File;Ljava/lang/String;)Lnet/minecraft/unmapped/C_2018497;	m_9312594	getWorldData	
+		p	0		gameDir	
+		p	1		saveName	
+	m	(Ljava/io/File;Ljava/lang/String;)V	m_9583644	deleteWorld	
+		p	0		gameDir	
+		p	1		saveName	
+	m	([Ljava/io/File;)V	m_4805602	deleteFilesRecursively	
+		p	0		files	
 	m	(Ljava/io/File;Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	()V	m_7348673	addPlayer	
+		p	1		dir	
+		p	2		saveName	
+	m	()V	m_7348673	loadPlayer	
 	m	(Z)V	m_4779679	save	
-		p	1		p_1	
-	m	()V	m_7247331	waitIfSaving	
+		p	1		saveEntities	
+	m	()V	m_7247331	forceSave	
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_5578771	net/minecraft/nbt/NbtShort	
 	f	S	f_1180706	value	
@@ -339,7 +341,7 @@ c	net/minecraft/unmapped/C_5693434	net/minecraft/nbt/NbtList
 		p	1		p_1	
 	m	()B	m_0346400	m_0346400	
 	m	()Ljava/lang/String;	toString	toString	
-	m	(Lnet/minecraft/unmapped/C_3225627;)V	m_0728373	add	
+	m	(Lnet/minecraft/unmapped/C_3225627;)V	m_0728373	addElement	
 		p	1		element	
 	m	(I)Lnet/minecraft/unmapped/C_3225627;	m_1033512	get	
 		p	1		index	
@@ -352,10 +354,10 @@ c	net/minecraft/unmapped/C_5705147	net/minecraft/client/gui/screen/world/SelectW
 	m	()V	m_3593494	m_3593494	
 	m	(I)Ljava/lang/String;	m_8741831	getWorldName	
 		p	1		p_1	
-	m	()V	m_7555169	m_7555169	
+	m	()V	m_7555169	addButtons	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793	m_7971793	
 		p	1		p_1	
-	m	(I)V	m_6024650	loadWorld	
+	m	(I)V	m_6024650	selectWorld	
 		p	1		id	
 	m	(IIF)V	m_7261014	m_7261014	
 		p	1		p_1	
@@ -401,18 +403,18 @@ c	net/minecraft/unmapped/C_6684392	net/minecraft/nbt/NbtByteArray
 c	net/minecraft/unmapped/C_6849228
 	f	Z	f_6288246	dirty	
 		c	Used to check if this chunk has changes that need to be saved to disk.	
-	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8402936	m_8402936	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2018497;)Lnet/minecraft/unmapped/C_6849228;	m_2208916	m_2208916	
-		p	0		p_0	
-		p	1		p_1	
-	m	(II)Z	m_7184090		m_7184090
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8402936	writeNbt	
+		p	1		nbt	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2018497;)Lnet/minecraft/unmapped/C_6849228;	m_2208916	fromNbt	
+		p	0		world	
+		p	1		nbt	
+	m	(II)Z	m_7184090		isAt
+		p	1			chunkX
+		p	2			chunkZ
 c	net/minecraft/unmapped/C_7400754
-	m	()V	m_2515885	m_2515885	
+	m	()V	m_2515885	dropAll	
 c	net/minecraft/unmapped/C_7952195
-	m	()V	m_9083158		m_9083158
+	m	()V	m_9083158		init
 c	net/minecraft/unmapped/C_8052742	net/minecraft/nbt/NbtInt	
 	f	I	f_0021113	value	
 	m	()V	<init>	<init>	
@@ -435,7 +437,7 @@ c	net/minecraft/unmapped/C_8300121
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7694759	m_7694759	
 		p	1		p_1	
 	m	()Ljava/lang/String;	m_1061793	m_1061793	
-c	net/minecraft/unmapped/C_9092862	net/minecraft/unmapped/C_9092862	
+c	net/minecraft/unmapped/C_9092862	net/minecraft/client/gui/screen/world/DeleteWorldScreen	
 	m	(Lnet/minecraft/unmapped/C_3020744;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	m_7555169	m_7555169	
@@ -457,17 +459,17 @@ c	net/minecraft/unmapped/C_9590849
 		p	1		p_1	
 	m	()Ljava/lang/String;	m_1061793	m_1061793	
 c	net/minecraft/unmapped/C_9608041
-	f	Ljava/io/File;	f_0536911	f_0536911	
+	f	Ljava/io/File;	f_0536911	saveDir	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_3968020	world	
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/io/File;Lnet/minecraft/unmapped/C_9848147;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(II)Ljava/io/File;	m_0435515	m_0435515	
-		p	1		p_1	
-		p	2		p_2	
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_3415056	loadChunk	
-		c	Load the chunk at the given chunk coordinates from storage.	
+		p	1		world	
+		p	2		saveDir	
+		p	3		generator	
+	m	(II)Ljava/io/File;	m_0435515	getChunkFile	
+		p	1		chunkX	
+		p	2		chunkZ	
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_3415056	loadChunkFromStorage	
+		c	Loads the world chunk at the given chunk coordinates from storage.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(Lnet/minecraft/unmapped/C_6849228;)V	m_9971713	saveChunk	
@@ -475,7 +477,7 @@ c	net/minecraft/unmapped/C_9608041
 	m	(Z)V	m_2192709	m_2192709	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_9848147;)V	<init>		<init>
-		p	1			p_1
+		p	1			generator
 c	net/minecraft/unmapped/C_9785392	net/minecraft/nbt/NbtLong	
 	f	J	f_4174882	value	
 	m	()V	<init>	<init>	
@@ -489,12 +491,12 @@ c	net/minecraft/unmapped/C_9785392	net/minecraft/nbt/NbtLong
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/unmapped/C_9848147
 	m	(Z)V	m_2192709	save	
-		p	1		p_1	
-c	net/minecraft/client/C_5708128		net/minecraft/client/C_5708128
+		p	1		saveEntities	
+c	net/minecraft/client/C_5708128		net/minecraft/client/ClientWorldStorage
 	m	(Lnet/minecraft/client/C_5664496;Lnet/minecraft/unmapped/C_2411117;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_0388903		net/minecraft/unmapped/C_0388903
+		p	1			minecraft
+		p	2			listener
+c	net/minecraft/unmapped/C_0388903		net/minecraft/client/gui/screen/world/SaveWorldScreen
 	m	(Lnet/minecraft/unmapped/C_3020744;)V	<init>		<init>
 		p	1			p_1
 	m	()Ljava/awt/FileDialog;	m_9116932		m_9116932
@@ -505,16 +507,16 @@ c	net/minecraft/unmapped/C_0388903		net/minecraft/unmapped/C_0388903
 		p	1			p_1
 	m	(I)V	m_7286993		m_7286993
 		p	1			p_1
-c	net/minecraft/unmapped/C_1525636		net/minecraft/unmapped/C_1525636
-	f	Lnet/minecraft/unmapped/C_3020744;	f_7387990		f_7387990
-	f	Ljava/lang/String;	f_5633768		f_5633768
-	f	I	f_0563187		f_0563187
-	f	Ljava/lang/String;	f_0866064		f_0866064
-	f	I	f_2617005		f_2617005
+c	net/minecraft/unmapped/C_1525636		net/minecraft/client/gui/screen/world/EnterWorldNameScreen
+	f	Lnet/minecraft/unmapped/C_3020744;	f_7387990		parent
+	f	Ljava/lang/String;	f_5633768		title
+	f	I	f_0563187		slot
+	f	Ljava/lang/String;	f_0866064		name
+	f	I	f_2617005		ticks
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;I)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			parent
+		p	2			name
+		p	3			slot
 	m	()V	m_3593494		m_3593494
 	m	()V	m_8984281		m_8984281
 	m	()V	m_2450377		m_2450377
@@ -527,83 +529,83 @@ c	net/minecraft/unmapped/C_1525636		net/minecraft/unmapped/C_1525636
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_2411117		net/minecraft/unmapped/C_2411117
-	m	(Ljava/lang/String;)V	m_0983733		m_0983733
-		p	1			p_1
-	m	(Ljava/lang/String;)V	m_1154571		m_1154571
-		p	1			p_1
-c	net/minecraft/unmapped/C_2842414		net/minecraft/unmapped/C_2842414
+c	net/minecraft/unmapped/C_2411117		net/minecraft/client/ProgressListener
+	m	(Ljava/lang/String;)V	m_0983733		progressStart
+		p	1			title
+	m	(Ljava/lang/String;)V	m_1154571		progressStage
+		p	1			stage
+c	net/minecraft/unmapped/C_2842414		net/minecraft/world/gen/feature/TreeFeature
 	m	()V	<init>		<init>
-c	net/minecraft/unmapped/C_4393193		net/minecraft/unmapped/C_4393193
-	f	Lnet/minecraft/unmapped/C_3020744;	f_4216179		f_4216179
-	f	[Ljava/lang/String;	f_9025279		f_9025279
-	f	[Ljava/lang/String;	f_1773455		f_1773455
-	f	[Ljava/lang/String;	f_7141696		f_7141696
-	f	[Ljava/lang/String;	f_7764053		f_7764053
-	f	I	f_5745147		f_5745147
-	f	I	f_3692802		f_3692802
-	f	I	f_8065768		f_8065768
-	f	I	f_9959653		f_9959653
+c	net/minecraft/unmapped/C_4393193		net/minecraft/client/gui/screen/world/CreateWorldScreen
+	f	Lnet/minecraft/unmapped/C_3020744;	f_4216179		parent
+	f	[Ljava/lang/String;	f_9025279		types
+	f	[Ljava/lang/String;	f_1773455		shapes
+	f	[Ljava/lang/String;	f_7141696		sizes
+	f	[Ljava/lang/String;	f_7764053		themes
+	f	I	f_5745147		selectedType
+	f	I	f_3692802		selectedShape
+	f	I	f_8065768		selectedSize
+	f	I	f_9959653		selectedTheme
 	m	(Lnet/minecraft/unmapped/C_3020744;)V	<init>		<init>
-		p	1			p_1
+		p	1			parent
 	m	()V	m_3593494		m_3593494
-	m	()V	m_5312327		m_5312327
+	m	()V	m_5312327		addButtons
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793		m_7971793
 		p	1			p_1
 	m	(IIF)V	m_7261014		m_7261014
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_5540851		net/minecraft/unmapped/C_5540851
-	f	Lnet/minecraft/unmapped/C_3020744;	f_8404091		f_8404091
-	f	Z	f_1196307		f_1196307
-	f	Z	f_6250022		f_6250022
-	f	[Ljava/lang/String;	f_2151156		f_2151156
-	f	Ljava/lang/String;	f_5758365		f_5758365
-	f	Ljava/lang/String;	f_0810697		f_0810697
-	f	Z	f_3904739		f_3904739
-	f	Ljava/io/File;	f_7432212		f_7432212
+c	net/minecraft/unmapped/C_5540851		net/minecraft/client/gui/screen/world/LoadWorldScreen
+	f	Lnet/minecraft/unmapped/C_3020744;	f_8404091		parent
+	f	Z	f_1196307		worldListLoaded
+	f	Z	f_6250022		worldListHasNonEmptySlot
+	f	[Ljava/lang/String;	f_2151156		worldNames
+	f	Ljava/lang/String;	f_5758365		description
+	f	Ljava/lang/String;	f_0810697		title
+	f	Z	f_3904739		done
+	f	Ljava/io/File;	f_7432212		file
 	m	(Lnet/minecraft/unmapped/C_3020744;)V	<init>		<init>
-		p	1			p_1
+		p	1			parent
 	m	()V	m_2450377		m_2450377
 	m	()V	run		run
-	m	([Ljava/lang/String;)V	m_1871619		m_1871619
-		p	1			p_1
+	m	([Ljava/lang/String;)V	m_1871619		updateButtons
+		p	1			worldNames
 	m	()V	m_3593494		m_3593494
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793		m_7971793
 		p	1			p_1
-	m	()Ljava/awt/FileDialog;	m_9116932		m_9116932
-	m	(I)V	m_7286993		m_7286993
-		p	1			p_1
+	m	()Ljava/awt/FileDialog;	m_9116932		getFileDialog
+	m	(I)V	m_7286993		selectWorld
+		p	1			slot
 	m	(IIF)V	m_7261014		m_7261014
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Ljava/io/File;)V	m_4758986		m_4758986
-		p	1			p_1
+	m	(Ljava/io/File;)V	m_4758986		selectWorldFile
+		p	1			file
 	m	(Lnet/minecraft/unmapped/C_5540851;Ljava/io/File;)Ljava/io/File;	m_9093879		m_9093879
 		p	0			p_0
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_5540851;Z)Z	m_4005754		m_4005754
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/unmapped/C_5612112		net/minecraft/unmapped/C_5612112
-	f	Lnet/minecraft/unmapped/C_2411117;	f_1154694		f_1154694
+c	net/minecraft/unmapped/C_5612112		net/minecraft/world/WorldStorage
+	f	Lnet/minecraft/unmapped/C_2411117;	f_1154694		listener
 	m	(Lnet/minecraft/unmapped/C_2411117;)V	<init>		<init>
-		p	1			p_1
-	m	()V	m_1170247		m_1170247
-c	net/minecraft/unmapped/C_9087319		net/minecraft/unmapped/C_9087319
+		p	1			listener
+	m	()V	m_1170247		save
+c	net/minecraft/unmapped/C_9087319		net/minecraft/client/render/texture/SkinImageProcessor
 	m	()V	<init>		<init>
-c	net/minecraft/unmapped/C_9109415		net/minecraft/unmapped/C_9109415
+c	net/minecraft/unmapped/C_9109415		net/minecraft/client/gui/screen/world/LoadWorldScreen__63504884__9109415
 	m	(Lnet/minecraft/unmapped/C_9233105;)V	<init>		<init>
 		p	1			p_1
 	m	(Ljava/io/File;Ljava/lang/String;)Z	accept		accept
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_9233105		net/minecraft/unmapped/C_9233105
+c	net/minecraft/unmapped/C_9233105		net/minecraft/client/gui/screen/world/LoadWorldScreen__9233105
 	f	Lnet/minecraft/unmapped/C_5540851;	f_0386847		f_0386847
 	m	(Lnet/minecraft/unmapped/C_5540851;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/unmapped/C_9811916		net/minecraft/unmapped/C_9811916
+c	net/minecraft/unmapped/C_9811916		net/minecraft/nbt/NbtElement
 	m	()V	<init>		<init>

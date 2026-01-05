@@ -4,14 +4,14 @@ c	net/minecraft/unmapped/C_0539808
 	m	()D	m_7168636	getMountHeight	
 		c	Return the height at which other entities sit when riding this entity.	
 c	net/minecraft/unmapped/C_0557736
-	f	Ljava/util/List;	f_8620120	CACHE	
-	f	I	f_6547374	nextCacheIndex	
+	f	Ljava/util/List;	f_8620120	POOL	
+	f	I	f_6547374	poolIndex	
 	m	(DDD)Lnet/minecraft/unmapped/C_0557736;	m_7697424	of	
 		p	0		x	
 		p	2		y	
 		p	4		z	
-	m	()V	m_9009623	resetCache	
-	m	(DDD)Lnet/minecraft/unmapped/C_0557736;	m_4784226	ofCache	
+	m	()V	m_9009623	resetPool	
+	m	(DDD)Lnet/minecraft/unmapped/C_0557736;	m_4784226	fromPool	
 		p	0		x	
 		p	2		y	
 		p	4		z	
@@ -27,9 +27,9 @@ c	net/minecraft/unmapped/C_1023567
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_0313364	OAK_STAIRS	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_8996455	STONE_STAIRS	
-	m	(Lnet/minecraft/unmapped/C_4863209;)Lnet/minecraft/unmapped/C_1241852;	m_6693635	setSound	
-		c	Sets this block's sound type.\n\n<p>\nNOTE: this method should only be used during the block's creation before it is registered.	
-		p	1		sound	
+	m	(Lnet/minecraft/unmapped/C_4863209;)Lnet/minecraft/unmapped/C_1241852;	m_6693635	setSounds	
+		c	Sets this block's sound set.\n\n<p>\nNOTE: this method should only be used during the block's creation before it is registered.	
+		p	1		sounds	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_5577922;Ljava/util/ArrayList;)V	m_6210370	addCollisions	
 		p	1		world	
 		p	2		x	
@@ -47,18 +47,19 @@ c	net/minecraft/unmapped/C_1241852
 		p	4		z	
 		p	5		entity	
 		p	6		velocity	
-	m	()F	m_6175484		m_6175484
+	m	()F	m_6175484		getBlastResistance
+		c		Returns this block's blast resistance any entity.
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_0557736;)V	m_7940442		applyMaterialDrag
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			velocity
 c	net/minecraft/unmapped/C_1428858	net/minecraft/block/StairsBlock	
 	f	Lnet/minecraft/unmapped/C_1241852;	f_5211352	baseBlock	
 	m	(ILnet/minecraft/unmapped/C_1241852;)V	<init>	<init>	
 		p	1		id	
-		p	2		block	
+		p	2		baseBlock	
 	m	()Z	m_1635166	m_1635166	
 	m	()Z	m_6174711	m_6174711	
 	m	()I	m_2337713	m_2337713	
@@ -81,21 +82,21 @@ c	net/minecraft/unmapped/C_1428858	net/minecraft/block/StairsBlock
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8445920	m_8445920	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_3024659	m_3024659	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8445920	updateShape	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_3024659	isSolidBlock	
 		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2698599	m_2698599	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_2698599	isStairsBlock	
 		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		world	
+		p	2		x	
+		p	3		y	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILjava/util/Random;)V	m_9792685	m_9792685	
 		p	1		p_1	
 		p	2		p_2	
@@ -207,11 +208,11 @@ c	net/minecraft/unmapped/C_1428858	net/minecraft/block/StairsBlock
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_0915967	tessellateWithoutAmbientOcclusion	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)Z	m_0915967	tesselateWithoutAmbientOcclusion	
+		p	1		block	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 c	net/minecraft/unmapped/C_3622326
 	m	(DDD)D	m_8348378	squaredDistanceTo	
 		p	1		x	
@@ -241,11 +242,11 @@ c	net/minecraft/unmapped/C_5553933
 	f	Ljava/util/ArrayList;	f_4294659	collisions	
 	f	Ljava/util/List;	f_0019966	entitiesInArea	
 	m	()V	m_2755507	saveData	
-	m	(I)Z	m_3844335	clickSave	
-		p	1		button	
+	m	(I)Z	m_3844335	saveWhilePaused	
+		p	1		step	
 c	net/minecraft/unmapped/C_5577922
-	f	Ljava/util/List;	f_9858174	CACHE	
-	f	I	f_9054071	nextCacheIndex	
+	f	Ljava/util/List;	f_9858174	POOL	
+	f	I	f_9054071	poolIndex	
 	m	(DDDDDD)Lnet/minecraft/unmapped/C_5577922;	m_9058890	of	
 		p	0		minX	
 		p	2		minY	
@@ -253,8 +254,8 @@ c	net/minecraft/unmapped/C_5577922
 		p	6		maxX	
 		p	8		maxY	
 		p	10		maxZ	
-	m	()V	m_2542089	resetCache	
-	m	(DDDDDD)Lnet/minecraft/unmapped/C_5577922;	m_8513514	ofCache	
+	m	()V	m_2542089	resetPool	
+	m	(DDDDDD)Lnet/minecraft/unmapped/C_5577922;	m_8513514	fromPool	
 		p	0		minX	
 		p	2		minY	
 		p	4		minZ	
@@ -273,29 +274,29 @@ c	net/minecraft/unmapped/C_5577922
 		p	1		box	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_5664496
-	f	Lnet/minecraft/client/MinecraftApplet;	f_6777402	f_6777402	
-	f	Z	f_3516533		f_3516533
-	f	Ljava/lang/String;	f_4057030		f_4057030
-	f	I	f_3882850		f_3882850
+	f	Lnet/minecraft/client/MinecraftApplet;	f_6777402	applet	
+	f	Z	f_3516533		initialized
+	f	Ljava/lang/String;	f_4057030		loadmapUser
+	f	I	f_3882850		loadmapId
 c	net/minecraft/unmapped/C_6849228
 	f	J	f_2098170	lastSaveTime	
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;Ljava/util/List;)V	m_8657161		m_8657161
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;Ljava/util/List;)V	m_8657161		getEntities
+		p	1			exclude
+		p	2			bounds
+		p	3			entities
 c	net/minecraft/unmapped/C_7077203
-	f	I	f_4617958	optionsButtonId	
+	f	I	f_4617958	saveStep	
 	f	I	f_8073125	ticks	
 	m	()V	m_2450377	m_2450377	
 c	net/minecraft/unmapped/C_9029783
-	m	(Ljava/io/File;Ljava/lang/String;)V	m_9704077	m_9704077	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/unmapped/C_9236886	com/mojang/blaze3d/platform/MemoryTracker	
-	f	Ljava/util/List;	f_7576749	f_7576749	
+	m	(Ljava/io/File;Ljava/lang/String;)V	m_9704077	loadResources	
+		p	1		dir	
+		p	2		prefix	
+c	net/minecraft/unmapped/C_9236886	net/minecraft/client/render/platform/MemoryTracker	
+	f	Ljava/util/List;	f_7576749	LIST_RANGES	
 	f	Ljava/util/List;	f_2915687	f_2915687	
 	f	Ljava/util/List;	f_3953805	f_3953805	
-	f	Ljava/util/List;	f_2807585	f_2807585	
+	f	Ljava/util/List;	f_2807585	LISTS	
 	m	()V	<init>	<init>	
 	m	(I)I	m_9330556	getLists	
 		p	0		s	
@@ -310,5 +311,5 @@ c	net/minecraft/unmapped/C_9236886	com/mojang/blaze3d/platform/MemoryTracker
 		p	0		capacity	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_9482745
-	f	Z	f_7742916	yawFlipped	
+	f	Z	f_7742916	flipped	
 	m	()D	m_7168636	m_7168636	

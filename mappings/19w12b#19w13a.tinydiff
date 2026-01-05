@@ -8,7 +8,7 @@ c	net/minecraft/unmapped/C_0076140
 c	net/minecraft/unmapped/C_0083539
 	m	(Lnet/minecraft/unmapped/C_8252988;Lnet/minecraft/unmapped/C_0083539$C_6967555;Lnet/minecraft/unmapped/C_5503280$C_6055071;Lnet/minecraft/unmapped/C_9086953;)V	m_3683306	register	
 		p	0		type	
-		p	1		envType	
+		p	1		environment	
 		p	2		heightMap	
 		p	3		validBlocks	
 	m	(Lnet/minecraft/unmapped/C_8252988;Lnet/minecraft/unmapped/C_2441996;)Z	m_0972362	isValidBlock	
@@ -122,15 +122,15 @@ c	net/minecraft/unmapped/C_1014639
 c	net/minecraft/unmapped/C_1036307	net/minecraft/client/gui/widget/ServerListEntryWidget	
 	f	Lorg/apache/logging/log4j/Logger;	f_2718856	LOGGER	
 	f	Ljava/util/concurrent/ThreadPoolExecutor;	f_5319125	EXECUTOR	
-	f	Lnet/minecraft/unmapped/C_0561170;	f_7988648	UNKNOWN_SERVER_LOCATION
-	f	Lnet/minecraft/unmapped/C_0561170;	f_3265079	SERVER_SELECTION_LOCATION
+	f	Lnet/minecraft/unmapped/C_0561170;	f_7988648	UNKNOWN_SERVER_LOCATION	
+	f	Lnet/minecraft/unmapped/C_0561170;	f_3265079	SERVER_SELECTION_LOCATION	
 	f	Lnet/minecraft/unmapped/C_2160183;	f_2909179	screen	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_4310929	minecraft	
 	f	Lnet/minecraft/unmapped/C_1533205;	f_4955110	entry	
 	f	Lnet/minecraft/unmapped/C_0561170;	f_0099881	iconIdentifier	
 	f	Ljava/lang/String;	f_3327251	icon	
 	f	Lnet/minecraft/unmapped/C_3779718;	f_0608113	iconTexture	
-	f	J	f_0713251	f_0713251	
+	f	J	f_0713251	lastMouseClickedTime	
 	m	(Lnet/minecraft/unmapped/C_2160183;Lnet/minecraft/unmapped/C_1533205;)V	<init>	<init>	
 		p	1		screen	
 		p	2		entry	
@@ -141,10 +141,10 @@ c	net/minecraft/unmapped/C_1036307	net/minecraft/client/gui/widget/ServerListEnt
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-	m	(IILnet/minecraft/unmapped/C_0561170;)V	m_5818390	m_5818390	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(IILnet/minecraft/unmapped/C_0561170;)V	m_5818390	drawIcon	
+		p	1		x	
+		p	2		y	
+		p	3		id	
 	m	()Z	m_1489497	m_1489497	
 	m	()V	m_3239240	loadServerIcon	
 	m	(DDI)Z	mouseClicked	mouseClicked	
@@ -332,10 +332,10 @@ c	net/minecraft/unmapped/C_1577640	net/minecraft/client/gui/screen/multiplayer/M
 c	net/minecraft/unmapped/C_1577640$C_6890414	C_6890414	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_1630332
-	f	Lnet/minecraft/unmapped/C_8105098;	f_6478921		f_6478921
-	f	I	f_8553895		f_8553895
-	f	I	f_7600999		f_7600999
-	f	I	f_9973269		f_9973269
+	f	Lnet/minecraft/unmapped/C_8105098;	f_6478921		minecraft
+	f	I	f_8553895		itemHeight
+	f	I	f_7600999		width
+	f	I	f_9973269		height
 	f	I	f_4865225		minY
 	f	I	f_9287803		maxY
 	f	I	f_4259091		maxX
@@ -343,11 +343,11 @@ c	net/minecraft/unmapped/C_1630332
 	f	Z	f_1988699		f_1988699
 	f	I	f_0891150		f_0891150
 	f	D	f_2391400		f_2391400
-	f	Z	f_8885865		f_8885865
-	f	Z	f_9003124		f_9003124
-	f	I	f_9303777		f_9303777
+	f	Z	f_8885865		renderSelectionHighlight
+	f	Z	f_9003124		renderHeader
+	f	I	f_9303777		headerHeight
 	f	Z	f_1270941		f_1270941
-	f	Lnet/minecraft/unmapped/C_1630332$C_1775830;	f_6923079		f_6923079
+	f	Lnet/minecraft/unmapped/C_1630332$C_1775830;	f_6923079		selected
 	m	(IIDD)Z	selectItem	selectItem	
 		p	1		p_1	
 		p	2		p_2	
@@ -372,31 +372,31 @@ c	net/minecraft/unmapped/C_1630332
 	m	(Lnet/minecraft/unmapped/C_1630332$C_1775830;)V	m_2598063	m_2598063	
 		p	1		p_1	
 	m	()I	getItemCount	getItemCount	
-	m	(ZI)V	m_2495325		m_2495325
-		p	1			p_1
-		p	2			p_2
-	m	()I	m_4119602		m_4119602
-	m	()Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_2151241		m_2151241
-	m	(Lnet/minecraft/unmapped/C_1630332$C_1775830;)V	m_8784623		m_8784623
-		p	1			p_1
+	m	(ZI)V	m_2495325		setHeader
+		p	1			renderHeader
+		p	2			headerHeight
+	m	()I	m_4119602		getRowWidth
+	m	()Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_2151241		getSelected
+	m	(Lnet/minecraft/unmapped/C_1630332$C_1775830;)V	m_8784623		setSelected
+		p	1			selected
 	m	()Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_4186820		m_4186820
-	m	()I	m_7222269		m_7222269
+	m	()I	m_7222269		size
 	m	(ZZ)V	onFocusChanged		onFocusChanged
 		p	1			p_1
 		p	2			p_2
-	m	(I)Z	m_0867276		m_0867276
-		p	1			p_1
-	m	(DD)Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_4433076		m_4433076
-		p	1			p_1
-		p	3			p_3
-	m	(IIII)V	m_9976896		m_9976896
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(I)V	m_9605833		m_9605833
-		p	1			p_1
-	m	()I	m_9609164		m_9609164
+	m	(I)Z	m_0867276		isSelected
+		p	1			index
+	m	(DD)Lnet/minecraft/unmapped/C_1630332$C_1775830;	m_4433076		getEntryAt
+		p	1			x
+		p	3			y
+	m	(IIII)V	m_9976896		setBounds
+		p	1			width
+		p	2			height
+		p	3			minY
+		p	4			maxY
+	m	(I)V	m_9605833		setX
+		p	1			minX
+	m	()I	m_9609164		getHeight
 	m	(II)V	m_2776767		m_2776767
 		p	1			p_1
 		p	2			p_2
@@ -513,29 +513,29 @@ c	net/minecraft/unmapped/C_2131741
 	m	(Lnet/minecraft/unmapped/C_4077617$C_7180889;)Z	m_1621599		isApplied
 		p	1			p_1
 c	net/minecraft/unmapped/C_2160183
-	f	Lnet/minecraft/unmapped/C_1577640;	f_7058751	serverListWidget	
-	f	Lnet/minecraft/unmapped/C_2723876;	f_7058751		serverListWidget
+	f	Lnet/minecraft/unmapped/C_1577640;	f_7058751	serverList	
+	f	Lnet/minecraft/unmapped/C_2723876;	f_7058751		serverList
 	m	()V	m_2748458	addButtons	
 		c	Button Ids:\n    - 0: Cancel Button\n    - 1: Select Server Button\n    - 2: Delete Server Button\n    - 3: Add Server button\n    - 4: Select Server Directly\n    - 5:\n    - 6:\n    - 7: Edit Server Button\n    - 8: Refresh Server Button	
 	m	(I)V	m_2489610	moveToServer	
 		p	1		index	
 	m	(Lnet/minecraft/unmapped/C_1036307;I)Z	m_4974390	canMoveUp	
-		p	1		serverListEntryWidget	
+		p	1		entry	
 		p	2		index	
 	m	(Lnet/minecraft/unmapped/C_1036307;I)Z	m_9882346	canMoveDown	
-		p	1		serverListEntryWidget	
+		p	1		entry	
 		p	2		index	
 	m	(Lnet/minecraft/unmapped/C_1036307;IZ)V	m_3316350	moveUp	
-		p	1		serverListEntryWidget	
+		p	1		entry	
 		p	2		index	
 		p	3		moveToTop	
 	m	(Lnet/minecraft/unmapped/C_1036307;IZ)V	m_1435282	moveDown	
-		p	1		serverListEntryWidget	
+		p	1		entry	
 		p	2		index	
 		p	3		moveToBottom	
 	m	(I)V	m_8176405	m_8176405	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2723876$C_6890414;)V	m_3316350		moveUp
+	m	(Lnet/minecraft/unmapped/C_2723876$C_6890414;)V	m_3316350		m_3316350
 		p	1			p_1
 	m	()V	m_8725601		m_8725601
 c	net/minecraft/unmapped/C_2211410	net/minecraft/client/gui/screen/world/WorldSelectionEntry	
@@ -566,11 +566,11 @@ c	net/minecraft/unmapped/C_2211410	net/minecraft/client/gui/screen/world/WorldSe
 		p	1		p_1	
 		p	3		p_3	
 		p	5		p_5	
-	m	()V	m_0607707	join	
+	m	()V	m_0607707	select	
 	m	()V	m_6714061	delete	
 	m	()V	m_1525190	edit	
 	m	()V	m_9047887	recreate	
-	m	()V	m_4692379	load	
+	m	()V	m_4692379	join	
 	m	()Lnet/minecraft/unmapped/C_3779718;	m_3823971	loadIcon	
 	m	()V	close	close	
 	m	(F)V	m_1433237	m_1433237	
@@ -888,40 +888,40 @@ c	net/minecraft/unmapped/C_3108426
 c	net/minecraft/unmapped/C_3178861
 	m	()V	m_0497126		m_0497126
 c	net/minecraft/unmapped/C_3325952
-	f	Lnet/minecraft/unmapped/C_3755722;	f_9195965	f_9195965	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_7285793	f_7285793	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_7958688	f_7958688	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5597929	f_5597929	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_6546491	f_6546491	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_7789093	f_7789093	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_7399286	f_7399286	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_3673219	f_3673219	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_0237031	f_0237031	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_0345933	f_0345933	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_8971631	f_8971631	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_7541285	f_7541285	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_0322729	f_0322729	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_0313324	f_0313324	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_3929604	f_3929604	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_3083805	f_3083805	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5412550	f_5412550	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_9334782		f_9334782
-	f	Lnet/minecraft/unmapped/C_3755722;	f_2706473		f_2706473
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5240920		f_5240920
-	f	Lnet/minecraft/unmapped/C_3755722;	f_2087472		f_2087472
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5005228		f_5005228
-	f	Lnet/minecraft/unmapped/C_3755722;	f_6856300		f_6856300
-	f	Lnet/minecraft/unmapped/C_3755722;	f_2172256		f_2172256
-	f	Lnet/minecraft/unmapped/C_3755722;	f_2162918		f_2162918
-	f	Lnet/minecraft/unmapped/C_3755722;	f_3458947		f_3458947
-	f	Lnet/minecraft/unmapped/C_3755722;	f_9780738		f_9780738
-	f	Lnet/minecraft/unmapped/C_3755722;	f_9873846		f_9873846
-	f	Lnet/minecraft/unmapped/C_3755722;	f_8653793		f_8653793
-	f	Lnet/minecraft/unmapped/C_3755722;	f_2344407		f_2344407
-	f	Lnet/minecraft/unmapped/C_3755722;	f_4200684		f_4200684
-	f	Lnet/minecraft/unmapped/C_3755722;	f_1283932		f_1283932
-	f	Lnet/minecraft/unmapped/C_3755722;	f_1678286		f_1678286
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5110331		f_5110331
+	f	Lnet/minecraft/unmapped/C_3755722;	f_9195965	WHITE_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_7285793	ORANGE_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_7958688	MAGENTA_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5597929	LIGHT_BLUE_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_6546491	YELLOW_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_7789093	LIME_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_7399286	PINK_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_3673219	GRAY_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_0237031	LIGHT_GRAY_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_0345933	CYAN_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_8971631	PURPLE_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_7541285	BLUE_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_0322729	BROWN_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_0313324	GREEN_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_3929604	RED_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_3083805	BLACK_WOOL	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5412550	CLAY	
+	f	Lnet/minecraft/unmapped/C_3755722;	f_9334782		WHITE_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_2706473		ORANGE_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5240920		MAGENTA_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_2087472		LIGHT_BLUE_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5005228		YELLOW_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_6856300		LIME_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_2172256		PINK_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_2162918		GRAY_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_3458947		LIGHT_GRAY_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_9780738		CYAN_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_9873846		PURPLE_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_8653793		BLUE_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_2344407		BROWN_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_4200684		GREEN_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_1283932		RED_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_1678286		BLACK_WOOL
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5110331		CLAY
 c	net/minecraft/unmapped/C_3565515
 	m	(J)Ljava/util/Random;	m_0395189		m_0395189
 		p	0			p_0
@@ -1260,9 +1260,9 @@ c	net/minecraft/unmapped/C_5751893
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_5804592
-	m	(Ljava/util/function/BiConsumer;)V	m_3581075	m_3581075	
+	m	(Ljava/util/function/BiConsumer;)V	m_3581075	accept	
 		p	1		p_1	
-	m	(Ljava/util/function/BiConsumer;)V	m_3666828		m_3666828
+	m	(Ljava/util/function/BiConsumer;)V	m_3666828		accept
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_4080103		m_4080103
 		p	0			p_0
@@ -1625,7 +1625,7 @@ c	net/minecraft/unmapped/C_7283471
 		p	1		p_1	
 		p	3		p_3	
 	m	(Z)V	onFocusChanged	onFocusChanged	
-		p	1		p_1	
+		p	1		focused	
 	m	(Z)Z	m_5620210		m_5620210
 		p	1			p_1
 	m	(ZZ)V	onFocusChanged		onFocusChanged

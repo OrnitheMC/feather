@@ -22,7 +22,7 @@ c	net/minecraft/unmapped/C_1137800	net/minecraft/network/packet/SpawnPointPacket
 c	net/minecraft/unmapped/C_1241852
 	f	[Z	f_9316724	HAS_BLOCK_ENTITY	
 c	net/minecraft/unmapped/C_1250058
-	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_5910056	onBlockEntityChanged	
+	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_5910056	notifyBlockEntityChanged	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -30,23 +30,23 @@ c	net/minecraft/unmapped/C_1250058
 c	net/minecraft/unmapped/C_1567607
 	m	(Lnet/minecraft/unmapped/C_5509210;)V	m_3793497	m_3793497	
 		p	1		p_1	
-	m	()V	m_7651244	m_7651244	
+	m	()V	m_7651244	sendInventory	
 	m	(Lnet/minecraft/unmapped/C_3008505;)V	m_3308959	m_3308959	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_2454309
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_4190376	copy	
-c	net/minecraft/unmapped/C_3008505	net/minecraft/unmapped/C_3008505	
-	f	I	f_8265050	f_8265050	
-	f	I	f_5662502	f_5662502	
-	f	I	f_1917756	f_1917756	
-	f	[B	f_5895367	f_5895367	
-	f	Lnet/minecraft/unmapped/C_2018497;	f_6368533	f_6368533	
+c	net/minecraft/unmapped/C_3008505	net/minecraft/network/packet/BlockEntityUpdatePacket	
+	f	I	f_8265050	x	
+	f	I	f_5662502	y	
+	f	I	f_1917756	z	
+	f	[B	f_5895367	data	
+	f	Lnet/minecraft/unmapped/C_2018497;	f_6368533	nbt	
 	m	()V	<init>	<init>	
 	m	(IIILnet/minecraft/unmapped/C_3622326;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		blockEntity	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
@@ -59,17 +59,17 @@ c	net/minecraft/unmapped/C_3622326
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_9717794	COMPASS	
 c	net/minecraft/unmapped/C_3767424
-	m	(Lnet/minecraft/unmapped/C_5385258;III)V	m_8356431	m_8356431	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/unmapped/C_5385258;III)V	m_8356431	sendPacket	
+		p	1		packet	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 c	net/minecraft/unmapped/C_3865296
-	f	Z	f_9398150	f_9398150	
+	f	Z	f_9398150	spawnMonsters	
 	m	(Ljava/io/File;Ljava/lang/String;Z)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		dir	
+		p	2		saveName	
+		p	3		spawnMonsters	
 	m	(IIIIII)Ljava/util/List;	m_4160364	getBlockEntities	
 		p	1		minX	
 		p	2		minY	
@@ -91,13 +91,13 @@ c	net/minecraft/unmapped/C_3865296
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/unmapped/C_5509210	net/minecraft/network/packet/EntityEquipmentPacket	
-	f	I	f_0515401	id	
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_5097692	f_5097692	
+c	net/minecraft/unmapped/C_5509210	net/minecraft/network/packet/PlayerInventoryPacket	
+	f	I	f_0515401	type	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_5097692	items	
 	m	()V	<init>	<init>	
 	m	(I[Lnet/minecraft/unmapped/C_2454309;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		type	
+		p	2		items	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_6110406	m_6110406	
@@ -113,9 +113,9 @@ c	net/minecraft/unmapped/C_5553933
 		p	3		z	
 		p	4		blockEntity	
 	m	(III)V	m_0572533		notifyBlockEntityChanged
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_6886891
 	m	(IIILnet/minecraft/unmapped/C_3622326;)V	m_5910056	m_5910056	
 		p	1		p_1	
@@ -123,10 +123,10 @@ c	net/minecraft/unmapped/C_6886891
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_5509210;)V	m_3793497	handleEntityEquipment	
+	m	(Lnet/minecraft/unmapped/C_5509210;)V	m_3793497	handlePlayerInventory	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_3008505;)V	m_3308959	m_3308959	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_3008505;)V	m_3308959	handleBlockEntityUpdate	
+		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_1137800;)V	m_0455939	handleSpawnPoint	
 		p	1		packet	
 c	net/minecraft/unmapped/C_7400754
@@ -136,20 +136,20 @@ c	net/minecraft/unmapped/C_7400754
 	m	(Lnet/minecraft/unmapped/C_5693434;)V	m_9407328	readNbt	
 		p	1		list	
 c	net/minecraft/unmapped/C_7729027	net/minecraft/world/storage/PlayerDataStorage	
-	f	Ljava/util/logging/Logger;	f_9852982	f_9852982	
-	f	Ljava/io/File;	f_4540863	f_4540863	
+	f	Ljava/util/logging/Logger;	f_9852982	LOGGER	
+	f	Ljava/io/File;	f_4540863	dir	
 	m	(Ljava/io/File;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		dir	
 	m	(Lnet/minecraft/unmapped/C_3292284;)V	m_2120928	savePlayerData	
-		p	1		p_1	
+		p	1		player	
 	m	(Lnet/minecraft/unmapped/C_3292284;)V	m_9301204	loadPlayerData	
-		p	1		p_1	
+		p	1		player	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_7887747
-	m	([B)Lnet/minecraft/unmapped/C_2018497;	m_8615025	m_8615025	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_2018497;)[B	m_5403321	m_5403321	
-		p	0		p_0	
+	m	([B)Lnet/minecraft/unmapped/C_2018497;	m_8615025	readCompressed	
+		p	0		data	
+	m	(Lnet/minecraft/unmapped/C_2018497;)[B	m_5403321	writeCompressed	
+		p	0		nbt	
 c	net/minecraft/unmapped/C_9992501
 	f	Lnet/minecraft/unmapped/C_7729027;	f_9085408	dataStorage	
 	m	(Lnet/minecraft/unmapped/C_3865296;)V	m_3157836	setWorld	

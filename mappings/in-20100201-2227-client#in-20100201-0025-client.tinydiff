@@ -16,17 +16,17 @@ c	net/minecraft/unmapped/C_1241852
 		p	2		sprite	
 		p	3		material	
 	m	(I)V	<init>		<init>
-		p	1			p_1
+		p	1			id
 	m	(II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-	m	()Lnet/minecraft/unmapped/C_8048208;	m_5824613		m_5824613
+		p	1			id
+		p	2			sprite
+	m	()Lnet/minecraft/unmapped/C_8048208;	m_5824613		getMaterial
 c	net/minecraft/unmapped/C_1250582
 	m	(IILnet/minecraft/unmapped/C_8048208;Z)V	<init>	<init>	
 		p	1		id	
 		p	2		sprite	
 		p	3		material	
-		p	4		sideVisible	
+		p	4		culling	
 	m	(IIZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -34,32 +34,34 @@ c	net/minecraft/unmapped/C_1250582
 c	net/minecraft/unmapped/C_2367183
 	f	Ljava/util/Random;	f_1610954		f_1610954
 c	net/minecraft/unmapped/C_2671832
-	f	I	f_9771922	f_9771922	
+	f	I	f_9771922	tier	
 	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4043156	m_4043156	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_3747079
 	f	Lnet/minecraft/unmapped/C_8048208;	f_1002492		f_1002492
 	m	()Lnet/minecraft/unmapped/C_8048208;	m_5824613		m_5824613
 c	net/minecraft/unmapped/C_3755722
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4043156	canEffectivelyMine	
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4043156	canMineBlock	
 		p	1		block	
 c	net/minecraft/unmapped/C_4722045	net/minecraft/block/material/PlantMaterial	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_5170040	net/minecraft/block/material/AirMaterial	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_5553933
-	m	(IIIII)I	m_2945921	m_2945921	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(IIIII)Z	m_2945921		m_2945921
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(IIIII)I	m_2945921	findLiquidLayerBoundaryType	
+		c	Searches through the layer of connected liquid blocks around the given position at the\ngiven height, and checks what kind of blocks are present in the boundary surrounding\nit. Based on that, it returns a boundary type:\n<br> 0: boundary contains air or given position is outside the world\n<br> 1: boundary contains only non-air blocks\n<br> 2: boundary is outside the world	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		flowingLiquid	
+		p	5		sourceLiquid	
+	m	(IIIII)Z	m_2945921		findLiquidLayerBoundaryType
+		c		Searches through the layer of connected liquid blocks around the given position at the\ngiven height, and checks what kind of blocks are present in the boundary surrounding\nit.\n@return whether the boundary contains air or is outside the world
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			flowingLiquid
+		p	5			sourceLiquid
 c	net/minecraft/unmapped/C_7051878
 	f	Lnet/minecraft/unmapped/C_8048208;	f_7706941		f_7706941
 	m	()Lnet/minecraft/unmapped/C_8048208;	m_5824613		m_5824613
@@ -74,7 +76,7 @@ c	net/minecraft/unmapped/C_7948993
 		p	1		id	
 		p	2		sprite	
 		p	3		material	
-		p	4		fancyGraphics	
+		p	4		culling	
 	m	(IIZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -92,11 +94,11 @@ c	net/minecraft/unmapped/C_8048208
 	f	Lnet/minecraft/unmapped/C_8048208;	f_1547691	DECORATION	
 	f	Lnet/minecraft/unmapped/C_8048208;	f_0636345	GLASS	
 	f	Lnet/minecraft/unmapped/C_8048208;	f_6176877	TNT	
-	f	[Lnet/minecraft/unmapped/C_8048208;	f_5419847		f_5419847
+	f	[Lnet/minecraft/unmapped/C_8048208;	f_5419847		BY_ID
 	m	()V	<init>	<init>	
 	m	()Z	m_8583295	isLiquid	
 	m	(I)V	<init>		<init>
-		p	1			p_1
+		p	1			id
 c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_6029124	m_6029124	
 		p	1		p_1	

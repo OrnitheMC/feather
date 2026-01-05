@@ -25,7 +25,7 @@ c	net/minecraft/unmapped/C_1350658
 c	net/minecraft/unmapped/C_1872000
 	f	Ljava/util/List;	f_9830992		delayedEvents
 	m	()V	m_0535471		tickDelayedEvents
-	m	(Ljava/lang/String;FFFFFI)V	m_9527440		play
+	m	(Ljava/lang/String;FFFFFI)V	m_9527440		playLater
 		p	1			id
 		p	2			x
 		p	3			y
@@ -75,13 +75,13 @@ c	net/minecraft/unmapped/C_5553933
 c	net/minecraft/unmapped/C_5722573
 	m	(Lnet/minecraft/unmapped/C_8915528;)V	m_5571191		m_5571191
 		p	1			p_1
-c	net/minecraft/unmapped/C_5916995	net/minecraft/client/entity/particle/ParticleManager__1	
+c	net/minecraft/unmapped/C_5916995	net/minecraft/client/ParticleManager__5916995	
 	f	Lnet/minecraft/unmapped/C_1350658;	f_8061010	f_8061010	
 	f	Lnet/minecraft/unmapped/C_6559556;	f_2072503	f_2072503	
 	m	(Lnet/minecraft/unmapped/C_6559556;Lnet/minecraft/unmapped/C_1350658;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Ljava/lang/String;	m_3143788	m_3143788	
+	m	()Ljava/lang/String;	m_3143788	call	
 	m	()Ljava/lang/Object;	call	call	
 c	net/minecraft/unmapped/C_6269816
 	f	I	f_7050941		fireballStrength
@@ -94,7 +94,7 @@ c	net/minecraft/unmapped/C_6299435
 		p	1			p_1
 c	net/minecraft/unmapped/C_6812394
 	m	()V	m_6675021		m_6675021
-c	net/minecraft/unmapped/C_6886603	net/minecraft/server/MinecraftServer__14	net/minecraft/server/MinecraftServer__15
+c	net/minecraft/unmapped/C_6886603
 	m	(Lnet/minecraft/unmapped/C_3335560;)V	m_7572345	m_7572345	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_7873567
@@ -139,8 +139,8 @@ c	net/minecraft/unmapped/C_9418545
 c	net/minecraft/unmapped/C_9639106
 	f	Lnet/minecraft/unmapped/C_2711798;	f_0639945		draggedInvSlot
 	f	J	f_3818722		touchDropTimer
-	m	(Lnet/minecraft/unmapped/C_2711798;)Z	m_7317504		m_7317504
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_2711798;)Z	m_7317504		canTouchDragItemToSlot
+		p	1			slot
 c	net/minecraft/unmapped/C_2938580		net/minecraft/item/FireworksItem
 	m	(I)V	<init>		<init>
 		p	1			p_1
@@ -173,7 +173,7 @@ c	net/minecraft/unmapped/C_3004499		net/minecraft/entity/FireworksEntity
 		p	2			x
 		p	4			y
 		p	6			z
-		p	8			stack
+		p	8			item
 	m	(DDD)V	m_4212338		m_4212338
 		p	1			p_1
 		p	3			p_3
@@ -232,7 +232,7 @@ c	net/minecraft/unmapped/C_3452033		net/minecraft/client/entity/particle/Firewor
 		p	1			p_1
 	m	(F)F	m_9376546		m_9376546
 		p	1			p_1
-c	net/minecraft/unmapped/C_5226639		net/minecraft/server/MinecraftServer__16
+c	net/minecraft/unmapped/C_5226639		net/minecraft/server/MinecraftServer__5226639
 	f	Lnet/minecraft/server/MinecraftServer;	f_8435155		f_8435155
 	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>		<init>
 		p	1			p_1
@@ -286,8 +286,8 @@ c	net/minecraft/unmapped/C_7735639		net/minecraft/item/EnchantedBookItem
 		p	4			p_4
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_0927368;)V	m_4355566		addEnchantment
 		p	1			stack
-		p	2			entry
-	m	(Lnet/minecraft/unmapped/C_0927368;)Lnet/minecraft/unmapped/C_2454309;	m_6048447		createStack
+		p	2			enchantment
+	m	(Lnet/minecraft/unmapped/C_0927368;)Lnet/minecraft/unmapped/C_2454309;	m_6048447		withEnchantment
 		p	1			enchantment
 	m	(Lnet/minecraft/unmapped/C_0230498;Ljava/util/List;)V	m_2335476		addToCreativeMenu
 		p	1			enchantment
@@ -359,7 +359,7 @@ c	net/minecraft/unmapped/C_8053644		net/minecraft/client/entity/particle/Firewor
 		p	3			trail
 		p	4			flicker
 	m	()I	m_5083751		m_5083751
-c	net/minecraft/unmapped/C_9597328		net/minecraft/client/sound/system/SoundEngine__DelayedEvent
+c	net/minecraft/unmapped/C_9597328		net/minecraft/client/sound/SoundEngine__DelayedEvent
 	f	Ljava/lang/String;	f_2091541		id
 	f	F	f_6294061		x
 	f	F	f_3096487		y
@@ -385,19 +385,3 @@ c	net/minecraft/unmapped/C_9918526		net/minecraft/crafting/recipe/FireworksRecip
 		p	1			p_1
 	m	()I	m_7285375		m_7285375
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_6900912		m_6900912
-c	net/minecraft/unmapped/C_0780899	net/minecraft/server/MinecraftServer__7	net/minecraft/server/MinecraftServer__8
-c	net/minecraft/unmapped/C_1323041	net/minecraft/server/MinecraftServer__6	net/minecraft/server/MinecraftServer__7
-c	net/minecraft/unmapped/C_2875522	net/minecraft/server/MinecraftServer__5	net/minecraft/server/MinecraftServer__6
-c	net/minecraft/unmapped/C_6199829	net/minecraft/server/MinecraftServer__9	net/minecraft/server/MinecraftServer__10
-c	net/minecraft/unmapped/C_8448859	net/minecraft/server/MinecraftServer__4	net/minecraft/server/MinecraftServer__5
-c	net/minecraft/unmapped/C_1370944	net/minecraft/server/MinecraftServer__3	net/minecraft/server/MinecraftServer__4
-c	net/minecraft/unmapped/C_1736773	net/minecraft/server/MinecraftServer__11	net/minecraft/server/MinecraftServer__12
-c	net/minecraft/unmapped/C_4440484	net/minecraft/server/MinecraftServer__10	net/minecraft/server/MinecraftServer__11
-c	net/minecraft/unmapped/C_4999413	net/minecraft/server/MinecraftServer__15	net/minecraft/server/MinecraftServer__17
-c	net/minecraft/unmapped/C_5121935	net/minecraft/server/MinecraftServer__2	net/minecraft/server/MinecraftServer__3
-c	net/minecraft/unmapped/C_5994497	net/minecraft/server/MinecraftServer__17	net/minecraft/server/MinecraftServer__2
-c	net/minecraft/unmapped/C_6289161	net/minecraft/server/MinecraftServer__12	net/minecraft/server/MinecraftServer__13
-c	net/minecraft/unmapped/C_7123234	net/minecraft/server/MinecraftServer__16	net/minecraft/server/MinecraftServer__18
-c	net/minecraft/unmapped/C_7525977	net/minecraft/server/MinecraftServer__13	net/minecraft/server/MinecraftServer__14
-c	net/minecraft/unmapped/C_9473488	net/minecraft/server/MinecraftServer__13__1	net/minecraft/server/MinecraftServer__14__1
-c	net/minecraft/unmapped/C_7989828	net/minecraft/server/MinecraftServer__8	net/minecraft/server/MinecraftServer__9

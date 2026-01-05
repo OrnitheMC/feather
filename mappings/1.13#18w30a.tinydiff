@@ -28,8 +28,8 @@ c	net/minecraft/unmapped/C_0114090
 		p	1			key
 		p	2			create
 c	net/minecraft/unmapped/C_0199874
-	f	Lnet/minecraft/unmapped/C_7345216;	f_1462851	f_1462851	
-	f	Ljava/util/List;	f_1462851		f_1462851
+	f	Lnet/minecraft/unmapped/C_7345216;	f_1462851	collisions	
+	f	Ljava/util/List;	f_1462851		collisions
 c	net/minecraft/unmapped/C_0225600
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_5128444		canHardenConcrete
 		p	0			state
@@ -50,10 +50,10 @@ c	net/minecraft/unmapped/C_0614482$C_4847718		IdentityStrategy
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;)I	hashCode		hashCode
-		p	1			obj
+		p	1			p_1
 	m	(Ljava/lang/Object;Ljava/lang/Object;)Z	equals		equals
-		p	1			obj1
-		p	2			obj2
+		p	1			p_1
+		p	2			p_2
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_0802816
 	f	Lnet/minecraft/unmapped/C_7674520;	f_5045413		UNSTABLE
@@ -76,12 +76,12 @@ c	net/minecraft/unmapped/C_1316134
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366	m_8872366	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_4129669	loadChunk	
-		c	Load the chunk at the given chunk coordinates from storage.	
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_4129669	loadChunkFromStorage	
+		c	Loads the world chunk at the given chunk coordinates from storage.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_6914180	getGeneratedChunk	
-		c	@return the world chunk at the given chunk coordinates,\nloading it from storage if needed, or {@code null} if it does not exist	
+		c	@return the world chunk at the given chunk coordinates,\nloading it from storage if needed, or {@code null} if it does not exist.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8714752	m_8714752	
@@ -148,7 +148,7 @@ c	net/minecraft/unmapped/C_1555023
 c	net/minecraft/unmapped/C_2137190
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;)Ljava/util/List;	m_9684691	getEntities	
 		p	1		exclude	
-		p	2		box	
+		p	2		bounds	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;DDD)Lnet/minecraft/unmapped/C_7345216;	m_7648319	getCollisions	
 		p	1		p_1	
 		p	2		p_2	
@@ -163,8 +163,8 @@ c	net/minecraft/unmapped/C_2137190
 		p	6		p_6	
 		p	8		p_8	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;)Lnet/minecraft/unmapped/C_7345216;	m_7342636	getCollisions	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		entity	
+		p	2		bounds	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_7345216;Lnet/minecraft/unmapped/C_7345216;Ljava/util/Set;Z)Lnet/minecraft/unmapped/C_7345216;	m_5878369	getCollisions	
 		p	1		p_1	
 		p	2		p_2	
@@ -265,17 +265,17 @@ c	net/minecraft/unmapped/C_3310179
 	m	()F	m_8530833	m_8530833	
 	m	()F	m_6194748	m_6194748	
 	m	()F	m_0831354	m_0831354	
-	m	(Lnet/minecraft/unmapped/C_0876962;ZFFLnet/minecraft/unmapped/C_8373595;FFFF)V	m_8715475	m_8715475	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
-	m	()Lnet/minecraft/unmapped/C_0561170;	m_6048751	m_6048751	
+	m	(Lnet/minecraft/unmapped/C_0876962;ZFFLnet/minecraft/unmapped/C_8373595;FFFF)V	m_8715475	render	
+		p	1		textureManager	
+		p	2		shadow	
+		p	3		x	
+		p	4		y	
+		p	5		bufferBuilder	
+		p	6		r	
+		p	7		g	
+		p	8		b	
+		p	9		a	
+	m	()Lnet/minecraft/unmapped/C_0561170;	m_6048751	getTextureLocation	
 	m	()F	getAdvance		getAdvance
 	m	(Z)F	getAdvance		getAdvance
 		p	1			bold
@@ -310,7 +310,7 @@ c	net/minecraft/unmapped/C_3492960
 	m	(Ljava/lang/Object;Z)Lnet/minecraft/unmapped/C_0114090$C_8296248;	m_6270166		m_6270166
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_3653861	net/minecraft/unmapped/C_3653861	
+c	net/minecraft/unmapped/C_3653861	net/minecraft/client/render/font/EmptyGlyph	
 	f	I	f_2477903	f_2477903	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -366,7 +366,8 @@ c	net/minecraft/unmapped/C_4241305
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366	m_8872366	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	generateChunk	
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_0804715	loadChunk	
+		c	Loads a new world chunk at the given chunk coordinates into memory.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8714752	m_8714752	
@@ -388,7 +389,7 @@ c	net/minecraft/unmapped/C_4241305
 		p	1			chunkX
 		p	2			chunkZ
 		p	3			buffer
-		p	4			sectionsWithData
+		p	4			sections
 		p	5			full
 	m	(Ljava/util/function/BooleanSupplier;)Z	m_0299043		m_0299043
 		p	1			p_1
@@ -441,9 +442,9 @@ c	net/minecraft/unmapped/C_4647073$C_4847718	C_4847718
 	m	(Ljava/lang/String;I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_8044421	m_8044421	
+	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_8044421	hashCode	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2441996;)Z	m_5400895	m_5400895	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_2441996;)Z	m_5400895	equals	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)Z	equals	equals	
@@ -563,6 +564,9 @@ c	net/minecraft/unmapped/C_5553933
 		p	5			p_5
 	m	()I	m_8408022		getEntityCount
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;Ljava/util/function/Predicate;)Ljava/util/List;	m_6863837	getEntities	m_6863837
+		p	1		exclude	p_1
+		p	2		bounds	p_2
+		p	3		filter	p_3
 c	net/minecraft/unmapped/C_5705147
 	f	Lnet/minecraft/unmapped/C_2925725;	f_8575388		f_8575388
 	m	()Lnet/minecraft/unmapped/C_7283471;	getFocused	getFocused	
@@ -695,24 +699,24 @@ c	net/minecraft/unmapped/C_6948337
 	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4399780;	m_5288803		m_5288803
 		p	1			key
 c	net/minecraft/unmapped/C_7059150
-	m	(Ljava/io/File;IILnet/minecraft/unmapped/C_5837633;)Lnet/minecraft/unmapped/C_9550253;	m_5040894	saveScreenshot	
-		p	0		parent	
-		p	1		textureWidth	
-		p	2		textureHeight	
-		p	3		buffer	
-	m	(Ljava/io/File;Ljava/lang/String;IILnet/minecraft/unmapped/C_5837633;)Lnet/minecraft/unmapped/C_9550253;	m_0146324	saveScreenshot	
-		p	0		parent	
+	m	(Ljava/io/File;IILnet/minecraft/unmapped/C_5837633;)Lnet/minecraft/unmapped/C_9550253;	m_5040894	take	
+		p	0		gameDir	
+		p	1		width	
+		p	2		height	
+		p	3		target	
+	m	(Ljava/io/File;Ljava/lang/String;IILnet/minecraft/unmapped/C_5837633;)Lnet/minecraft/unmapped/C_9550253;	m_0146324	take	
+		p	0		gameDir	
 		p	1		name	
-		p	2		textureWidth	
-		p	3		textureHeight	
-		p	4		buffer	
-	m	(Ljava/io/File;IILnet/minecraft/unmapped/C_5837633;Ljava/util/function/Consumer;)V	m_5040894		saveScreenshot
+		p	2		width	
+		p	3		height	
+		p	4		target	
+	m	(Ljava/io/File;IILnet/minecraft/unmapped/C_5837633;Ljava/util/function/Consumer;)V	m_5040894		take
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Ljava/io/File;Ljava/lang/String;IILnet/minecraft/unmapped/C_5837633;Ljava/util/function/Consumer;)V	m_0146324		saveScreenshot
+	m	(Ljava/io/File;Ljava/lang/String;IILnet/minecraft/unmapped/C_5837633;Ljava/util/function/Consumer;)V	m_0146324		take
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -838,14 +842,25 @@ c	net/minecraft/unmapped/C_7846162
 		p	7			right
 		p	8			up
 		p	9			down
+	m	(Lnet/minecraft/unmapped/C_0876962;ZFFLnet/minecraft/unmapped/C_8373595;FFFF)V	m_8715475	m_8715475	render
+		p	1		p_1	textureManager
+		p	2		p_2	shadow
+		p	3		p_3	x
+		p	4		p_4	y
+		p	5		p_5	bufferBuilder
+		p	6		p_6	r
+		p	7		p_7	g
+		p	8		p_8	b
+		p	9		p_9	a
+	m	()Lnet/minecraft/unmapped/C_0561170;	m_6048751	m_6048751	getTextureLocation
 c	net/minecraft/unmapped/C_7873567
-	m	()V	m_0812377	tick	
+	m	()V	m_0812377	m_0812377	
 	m	(IIZ)V	m_2201017	updateChunk	
 		p	1		chunkX	
 		p	2		chunkZ	
 		p	3		load	
-	m	(Ljava/util/function/BooleanSupplier;)V	m_0812377		tick
-		p	1			hasTimeLeft
+	m	(Ljava/util/function/BooleanSupplier;)V	m_0812377		m_0812377
+		p	1			p_1
 c	net/minecraft/unmapped/C_7931345
 	m	(Lnet/minecraft/unmapped/C_3544601$C_7482212;Lnet/minecraft/unmapped/C_5577922;Lnet/minecraft/unmapped/C_7345216;D)D	m_8409842	m_8409842	
 		p	0		p_0	
@@ -916,7 +931,7 @@ c	net/minecraft/unmapped/C_8463458
 	m	()F	m_4192644	m_4192644	
 	m	()F	m_1020198	m_1020198	
 	m	()F	m_7032718	m_7032718	
-	m	()F	m_6732963	m_6732963	
+	m	()F	m_6732963	getBearingY	
 	m	()F	getBearingY		getBearingY
 c	net/minecraft/unmapped/C_8651652
 	m	(F)V	m_8176642	renderVignette	
@@ -998,9 +1013,9 @@ c	net/minecraft/unmapped/C_9134020
 	m	()F	m_7423871	m_7423871	
 	m	()F	getAdvance		getAdvance
 c	net/minecraft/unmapped/C_9139005
-	m	(Lnet/minecraft/unmapped/C_7106153;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2313930$C_7881752;	m_8684649		m_8684649
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_7106153;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2313930$C_7881752;	m_8684649		getArmPose
+		p	1			player
+		p	2			itemInHand
 c	net/minecraft/unmapped/C_9252894
 	m	(Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;	listSuggestions	listSuggestions	
 		p	1		p_1	
@@ -1009,11 +1024,11 @@ c	net/minecraft/unmapped/C_9441491
 	f	Lnet/minecraft/unmapped/C_7400754;	f_0267460		f_0267460
 c	net/minecraft/unmapped/C_9848147
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8872366	getLoadedChunk	
-		c	@return the world chunk at the given chunk coordinates, or {@code null} if it does not exist	
+		c	@return the world chunk at the given chunk coordinates, or {@code null} if it is not loaded.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_8714752	getChunk	
-		c	@return the world chunk at the given chunk coordinates, loading or generating it if needed	
+		c	@return the world chunk at the given chunk coordinates, loading or generating it if needed.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(II)Lnet/minecraft/unmapped/C_0636026;	m_6525570	getChunkForWorldGen	
@@ -1026,7 +1041,7 @@ c	net/minecraft/unmapped/C_9848147
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(IIZZ)Lnet/minecraft/unmapped/C_6849228;	m_8872366		getChunk
-		c		@return the world chunk at the given chunk coordinates, loading or generating it if needed if requested
+		c		@return the world chunk at the given chunk coordinates, loading or generating it if needed if requested.
 		p	1			chunkX
 		p	2			chunkZ
 		p	3			load

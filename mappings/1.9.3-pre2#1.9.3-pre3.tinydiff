@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_3747079
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)I	m_7726651	getLevel	
-		c	Returns the level of this fluid. The first 3 bits encode the distance to a source\nfluid, while the 4th bit encodes whether this fluid is falling.	
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)I	m_7726651	getLiquidState	
+		c	Returns the depth and falling state of the liquid at the given position, encoded in a 4 bit number,\nor {@code -1} if the given position is not occupied by this liquid.\n<p>\nThe 3 least significant bits encode the depth of this liquid - that is to say, how shallow it lies within this block.\nA value of {@code 0} denotes a source block, while the values {@code 1} to {@code 7} denote increasingly shallow depth values.\n<br>\nIf this liquid is falling, the depth applies not to this liquid, but to the liquid above it.\nIf the liquid above is also falling, the depth is always 0.\n<p>\nThe 4th least significant bit encodes whether the liquid is falling (i.e. there is liquid flowing in from above).	
 		p	1		world	
 		p	2		pos	
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)I	m_3610891	getDistanceToSource	
-		c	Returns the distance to a source fluid. A falling fluid acts as a source.	
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)I	m_3610891	getLiquidDepth	
+		c	@return the depth of the liquid at the given position - that is to say, how shallow it lies within this block -\nor {@code -1} if the given position is not occupied by this liquid.	
 		p	1		world	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_0557736;	m_2923681	getFlow	
@@ -15,11 +15,12 @@ c	net/minecraft/unmapped/C_3747079
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_7726651		getLevel
+	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_7726651		getLiquidState
+		c		Returns the depth and falling state of the liquid at the given position, encoded in a 4 bit number,\nor {@code -1} if the given position is not occupied by this liquid.\n<p>\nThe 3 least significant bits encode the depth of this liquid - that is to say, how shallow it lies within this block.\nA value of {@code 0} denotes a source block, while the values {@code 1} to {@code 7} denote increasingly shallow depth values.\n<br>\nIf this liquid is falling, the depth applies not to this liquid, but to the liquid above it.\nIf the liquid above is also falling, the depth is always 0.\n<p>\nThe 4th least significant bit encodes whether the liquid is falling (i.e. there is liquid flowing in from above).
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_3610891		getDistanceToSource
-		c		Returns the distance to a source fluid. A falling fluid acts as a source.
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_2441996;)I	m_3610891		getLiquidDepth
+		c		@return the depth of the liquid at the given position - that is to say, how shallow it lies within this block -\nor {@code -1} if the given position is not occupied by this liquid.
+		p	1			state
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Lnet/minecraft/unmapped/C_0557736;	m_2923681		getFlow
 		p	1			world
 		p	2			pos
@@ -93,7 +94,7 @@ c	net/minecraft/unmapped/C_8105098$11
 	f	Lnet/minecraft/unmapped/C_8105098;	f_9081964		f_9081964
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_3744395	m_3744395	
 		p	1		p_1	
-	m	()Ljava/lang/String;	m_2473095		m_2473095
+	m	()Ljava/lang/String;	m_2473095		call
 	m	()Ljava/lang/Object;	call		call
 c	net/minecraft/unmapped/C_8105098$12
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0519636	f_0519636	
@@ -104,73 +105,73 @@ c	net/minecraft/unmapped/C_8105098$12
 	m	()V	run	run	
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>		<init>
 		p	1			p_1
-	m	()Ljava/lang/String;	m_0789350		m_0789350
+	m	()Ljava/lang/String;	m_0789350		call
 	m	()Ljava/lang/Object;	call		call
 c	net/minecraft/unmapped/C_8105098$13
 	f	Lnet/minecraft/unmapped/C_8105098;	f_9081964	f_9081964	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_2048459		f_2048459
-	m	()Ljava/lang/String;	m_2473095	m_2473095	
-	m	()Ljava/lang/String;	m_8418756		m_8418756
+	m	()Ljava/lang/String;	m_2473095	call	
+	m	()Ljava/lang/String;	m_8418756		call
 c	net/minecraft/unmapped/C_8105098$14
 	f	Lnet/minecraft/unmapped/C_8105098;	f_5393104	f_5393104	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_5345822		f_5345822
-	m	()Ljava/lang/String;	m_0789350	m_0789350	
-	m	()Ljava/lang/String;	m_2029182		m_2029182
+	m	()Ljava/lang/String;	m_0789350	call	
+	m	()Ljava/lang/String;	m_2029182		call
 c	net/minecraft/unmapped/C_8105098$15
 	f	Lnet/minecraft/unmapped/C_8105098;	f_2048459	f_2048459	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0886493		f_0886493
-	m	()Ljava/lang/String;	m_8418756	m_8418756	
-	m	()Ljava/lang/String;	m_3863477		m_3863477
+	m	()Ljava/lang/String;	m_8418756	call	
+	m	()Ljava/lang/String;	m_3863477		call
 c	net/minecraft/unmapped/C_8105098$16
 	f	Lnet/minecraft/unmapped/C_8105098;	f_5345822	f_5345822	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_7466146		f_7466146
-	m	()Ljava/lang/String;	m_2029182	m_2029182	
-	m	()Ljava/lang/String;	m_0284574		m_0284574
+	m	()Ljava/lang/String;	m_2029182	call	
+	m	()Ljava/lang/String;	m_0284574		call
 c	net/minecraft/unmapped/C_8105098$17
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0886493	f_0886493	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0199112		f_0199112
-	m	()Ljava/lang/String;	m_3863477	m_3863477	
-	m	()Ljava/lang/String;	m_5374894		m_5374894
+	m	()Ljava/lang/String;	m_3863477	call	
+	m	()Ljava/lang/String;	m_5374894		call
 c	net/minecraft/unmapped/C_8105098$18	18	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_7466146	f_7466146	
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>	<init>	
 		p	1		p_1	
-	m	()Ljava/lang/String;	m_0284574	m_0284574	
+	m	()Ljava/lang/String;	m_0284574	call	
 	m	()Ljava/lang/Object;	call	call	
 c	net/minecraft/unmapped/C_8105098$2
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0199112	f_0199112	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_7165591		f_7165591
-	m	()Ljava/lang/String;	m_5374894	m_5374894	
-	m	()Ljava/lang/String;	m_8252660		m_8252660
+	m	()Ljava/lang/String;	m_5374894	call	
+	m	()Ljava/lang/String;	m_8252660		call
 c	net/minecraft/unmapped/C_8105098$3
 	f	Lnet/minecraft/unmapped/C_8105098;	f_7165591	f_7165591	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_9093702		f_9093702
-	m	()Ljava/lang/String;	m_8252660	m_8252660	
-	m	()Ljava/lang/String;	m_3026083		m_3026083
+	m	()Ljava/lang/String;	m_8252660	call	
+	m	()Ljava/lang/String;	m_3026083		call
 c	net/minecraft/unmapped/C_8105098$4
 	f	Lnet/minecraft/unmapped/C_8105098;	f_9093702	f_9093702	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_6229147		f_6229147
-	m	()Ljava/lang/String;	m_3026083	m_3026083	
-	m	()Ljava/lang/String;	m_7375447		m_7375447
+	m	()Ljava/lang/String;	m_3026083	call	
+	m	()Ljava/lang/String;	m_7375447		call
 c	net/minecraft/unmapped/C_8105098$5
 	f	Lnet/minecraft/unmapped/C_8105098;	f_6229147	f_6229147	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_3385690		f_3385690
-	m	()Ljava/lang/String;	m_7375447	m_7375447	
-	m	()Ljava/lang/String;	m_3001296		m_3001296
+	m	()Ljava/lang/String;	m_7375447	call	
+	m	()Ljava/lang/String;	m_3001296		call
 c	net/minecraft/unmapped/C_8105098$6
 	f	Lnet/minecraft/unmapped/C_8105098;	f_3385690	f_3385690	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0902528		f_0902528
-	m	()Ljava/lang/String;	m_3001296	m_3001296	
-	m	()Ljava/lang/String;	m_5150530		m_5150530
+	m	()Ljava/lang/String;	m_3001296	call	
+	m	()Ljava/lang/String;	m_5150530		call
 c	net/minecraft/unmapped/C_8105098$7
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0902528	f_0902528	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_5649614		f_5649614
-	m	()Ljava/lang/String;	m_5150530	m_5150530	
-	m	()Ljava/lang/String;	m_7549177		m_7549177
+	m	()Ljava/lang/String;	m_5150530	call	
+	m	()Ljava/lang/String;	m_7549177		call
 c	net/minecraft/unmapped/C_8105098$8
 	f	Lnet/minecraft/unmapped/C_8105098;	f_5649614	f_5649614	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_4966088		f_4966088
-	m	()Ljava/lang/String;	m_7549177	m_7549177	
+	m	()Ljava/lang/String;	m_7549177	call	
 	m	()Ljava/lang/Object;	call	call	
 	m	()V	run		run
 c	net/minecraft/unmapped/C_8105098$9

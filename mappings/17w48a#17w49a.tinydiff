@@ -1,6 +1,6 @@
 tiny	2	0
 c	net/minecraft/client/main/Main
-	f	Lorg/apache/logging/log4j/Logger;	f_7402711		f_7402711
+	f	Lorg/apache/logging/log4j/Logger;	f_7402711		LOGGER
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_9651480		m_9651480
 		p	0			p_0
 		p	1			p_1
@@ -31,11 +31,11 @@ c	net/minecraft/unmapped/C_0191817
 c	net/minecraft/unmapped/C_0241772
 	f	[Lnet/minecraft/unmapped/C_0241772$C_9077630;	f_1841762		values
 	m	([Lnet/minecraft/unmapped/C_2454309;)V	<init>	<init>	
-		p	1		stacks	
+		p	1		items	
 	m	([Lnet/minecraft/unmapped/C_3755722;)Lnet/minecraft/unmapped/C_0241772;	m_6662223	of	
 		p	0		items	
-	m	([Lnet/minecraft/unmapped/C_1241852;)Lnet/minecraft/unmapped/C_0241772;	m_3218892	m_3218892	
-		p	0		p_0	
+	m	([Lnet/minecraft/unmapped/C_1241852;)Lnet/minecraft/unmapped/C_0241772;	m_3218892	of	
+		p	0		blocks	
 	m	([Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_0241772$1;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -59,9 +59,9 @@ c	net/minecraft/unmapped/C_0241772$1
 	m	([Lnet/minecraft/unmapped/C_0241772$C_9077630;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_0241772$C_3915562		ItemValue
-	f	Lnet/minecraft/unmapped/C_2454309;	f_2572069		stack
+	f	Lnet/minecraft/unmapped/C_2454309;	f_2572069		item
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	<init>		<init>
-		p	1			stack
+		p	1			item
 	m	()Ljava/util/Collection;	m_2807488		m_2807488
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_0241772$1;)V	<init>		<init>
 		p	1			p_1
@@ -89,7 +89,7 @@ c	net/minecraft/unmapped/C_0539808
 	m	(Lnet/minecraft/unmapped/C_3755722;IF)Lnet/minecraft/unmapped/C_8300121;	m_5571148	dropItem	
 		p	1		item	
 		p	2		count	
-		p	3		yOffset	
+		p	3		offsetY	
 	m	(Lnet/minecraft/unmapped/C_1511890;)Lnet/minecraft/unmapped/C_8300121;	m_6397813		dropItem
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_1511890;I)Lnet/minecraft/unmapped/C_8300121;	m_5571148		dropItem
@@ -171,8 +171,8 @@ c	net/minecraft/unmapped/C_1203332
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_1234758
-	f	Lnet/minecraft/unmapped/C_1028001$C_5097378;	f_8747375		f_8747375
-	m	()Lnet/minecraft/unmapped/C_1028001$C_5097378;	m_7966903		m_7966903
+	f	Lnet/minecraft/unmapped/C_1028001$C_5097378;	f_8747375		renderType
+	m	()Lnet/minecraft/unmapped/C_1028001$C_5097378;	m_7966903		getRenderType
 c	net/minecraft/unmapped/C_1241852
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)Z	m_0597873	shouldNotRender	
 		p	1		state	
@@ -239,8 +239,8 @@ c	net/minecraft/unmapped/C_1292677
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_1316134
-	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_3438503	loadChunk	
-		c	Load the chunk at the given chunk coordinates from storage.	
+	m	(II)Lnet/minecraft/unmapped/C_6849228;	m_3438503	loadChunkFromStorage	
+		c	Loads the world chunk at the given chunk coordinates from storage.	
 		p	1		chunkX	
 		p	2		chunkZ	
 	m	(IILnet/minecraft/unmapped/C_6849228;)V	m_1805884		m_1805884
@@ -609,16 +609,16 @@ c	net/minecraft/unmapped/C_3115568
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_3121632
-	m	(Lnet/minecraft/unmapped/C_7240405;Lnet/minecraft/unmapped/C_4701530;)Lnet/minecraft/unmapped/C_1821693;	m_0499888		m_0499888
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_7240405;Lnet/minecraft/unmapped/C_4701530;)Lnet/minecraft/unmapped/C_1821693;	m_0499888		readOptions
+		p	1			buffer
+		p	2			type
 c	net/minecraft/unmapped/C_3155795
-	m	(Lnet/minecraft/unmapped/C_3137818;[Lnet/minecraft/unmapped/C_1241852;)V	m_3388958	m_3388958	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_3137818;[Lnet/minecraft/unmapped/C_1241852;)V	m_3388958	register	
+		p	1		color	
+		p	2		blocks	
 	m	(Lnet/minecraft/unmapped/C_3137818;[Lnet/minecraft/unmapped/C_3755722;)V	m_7710722	register	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		color	
+		p	2		items	
 	m	(Lnet/minecraft/unmapped/C_3137818;[Lnet/minecraft/unmapped/C_1511890;)V	m_7710722		register
 		p	1			color
 		p	2			items
@@ -677,7 +677,7 @@ c	net/minecraft/unmapped/C_3544601$C_7482212
 		p	0			p_0
 c	net/minecraft/unmapped/C_3721081
 	m	(Lnet/minecraft/unmapped/C_0160011;)V	m_8668622		setInventory
-		p	1			stacks
+		p	1			items
 c	net/minecraft/unmapped/C_3747079
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)Z	m_0597873	m_0597873	
 		p	1		p_1	
@@ -1088,11 +1088,11 @@ c	net/minecraft/unmapped/C_7431851
 		p	4			p_4
 c	net/minecraft/unmapped/C_7563699
 	m	(Lnet/minecraft/unmapped/C_1023567;Lnet/minecraft/unmapped/C_1241852;)Z	m_4845127	wasPreviouslyCompleted	
-		p	0		p_0	
-		p	1		p_1	
+		p	0		player	
+		p	1		block	
 	m	(Lnet/minecraft/unmapped/C_1023567;Lnet/minecraft/unmapped/C_9086953;)Z	m_4845127		wasPreviouslyCompleted
-		p	0			p_0
-		p	1			p_1
+		p	0			player
+		p	1			items
 c	net/minecraft/unmapped/C_7639596
 	m	()Lnet/minecraft/unmapped/C_3779718;	m_4535483		m_4535483
 c	net/minecraft/unmapped/C_7669754
@@ -1232,7 +1232,7 @@ c	net/minecraft/unmapped/C_8620458
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_8639317
-	f	Lorg/apache/logging/log4j/Logger;	f_8207830		f_8207830
+	f	Lorg/apache/logging/log4j/Logger;	f_8207830		LOGGER
 c	net/minecraft/unmapped/C_8643842
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_7670664		m_7670664
 		p	0			p_0
@@ -1302,7 +1302,7 @@ c	net/minecraft/unmapped/C_8814877$C_7306513
 		p	1			item
 		p	2			cost
 c	net/minecraft/unmapped/C_8881785
-	f	Ljava/util/Map;	f_8038531	f_8038531	
+	f	Ljava/util/Map;	f_8038531	KEYS_BY_NAME	
 	m	()Ljava/util/Map;	m_1734575	m_1734575	
 c	net/minecraft/unmapped/C_8881785$C_5424057
 	f	Ljava/util/Map;	f_4329012		NAME_MAP
@@ -1482,7 +1482,7 @@ c	net/minecraft/unmapped/C_3307010		net/minecraft/command/argument/BlockPredicat
 	f	Lcom/mojang/brigadier/exceptions/ParameterizedCommandExceptionType;	f_8404165		UNKNOWN_TAG_EXCEPTION
 	m	()V	<init>		<init>
 	m	()Lnet/minecraft/unmapped/C_3307010;	m_0295246		blockPredicate
-	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Lnet/minecraft/unmapped/C_3307010$C_2729231;	m_5708411		m_5708411
+	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Lnet/minecraft/unmapped/C_3307010$C_2729231;	m_5708411		parse
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/function/Predicate;	m_9580196		getBlockPredicate
@@ -1513,20 +1513,20 @@ c	net/minecraft/unmapped/C_3307010$C_5680461		BlockPredicate
 		p	1			state
 		p	2			properties
 		p	3			nbt
-	m	(Lnet/minecraft/unmapped/C_7772848;)Z	m_8947204		m_8947204
+	m	(Lnet/minecraft/unmapped/C_7772848;)Z	m_8947204		test
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	test		test
-		p	1			block
+		p	1			ptr
 c	net/minecraft/unmapped/C_3307010$C_8127325		TagPredicate
 	f	Lnet/minecraft/unmapped/C_9086953;	f_3065678		tag
 	f	Lnet/minecraft/unmapped/C_2018497;	f_0676091		nbt
 	m	(Lnet/minecraft/unmapped/C_9086953;Lnet/minecraft/unmapped/C_2018497;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_7772848;)Z	m_6331187		m_6331187
+	m	(Lnet/minecraft/unmapped/C_7772848;)Z	m_6331187		test
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	test		test
-		p	1			block
+		p	1			ptr
 	m	(Lnet/minecraft/unmapped/C_9086953;Lnet/minecraft/unmapped/C_2018497;Lnet/minecraft/unmapped/C_3307010$1;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1535,7 +1535,7 @@ c	net/minecraft/unmapped/C_4720748		net/minecraft/command/argument/ItemPredicate
 	f	Lcom/mojang/brigadier/exceptions/ParameterizedCommandExceptionType;	f_8711229		UNKNOWN_TAG_EXCEPTION
 	m	()V	<init>		<init>
 	m	()Lnet/minecraft/unmapped/C_4720748;	m_1953404		itemPredicate
-	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Lnet/minecraft/unmapped/C_4720748$C_5813061;	m_3792670		m_3792670
+	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Lnet/minecraft/unmapped/C_4720748$C_5813061;	m_3792670		parse
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/function/Predicate;	m_8800971		getItemPredicate
@@ -1560,10 +1560,10 @@ c	net/minecraft/unmapped/C_4720748$C_4763489		ItemPredicate
 	m	(Lnet/minecraft/unmapped/C_3755722;Lnet/minecraft/unmapped/C_2018497;)V	<init>		<init>
 		p	1			item
 		p	2			nbt
-	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_7950514		m_7950514
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_7950514		test
+		p	1			item
 	m	(Ljava/lang/Object;)Z	test		test
-		p	1			stack
+		p	1			p_1
 c	net/minecraft/unmapped/C_4720748$C_5813061		Result
 	m	(Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/function/Predicate;	create		create
 		p	1			ctx
@@ -1573,10 +1573,10 @@ c	net/minecraft/unmapped/C_4720748$C_5903339		TagPredicate
 	m	(Lnet/minecraft/unmapped/C_9086953;Lnet/minecraft/unmapped/C_2018497;)V	<init>		<init>
 		p	1			tag
 		p	2			nbt
-	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_4600079		m_4600079
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_4600079		test
+		p	1			item
 	m	(Ljava/lang/Object;)Z	test		test
-		p	1			stack
+		p	1			p_1
 c	net/minecraft/unmapped/C_5001493		net/minecraft/tag/TagManager
 	f	Lnet/minecraft/unmapped/C_8528326;	f_6867576		blockTags
 	f	Lnet/minecraft/unmapped/C_8528326;	f_4659793		itemTags
@@ -1596,9 +1596,9 @@ c	net/minecraft/unmapped/C_5503733		net/minecraft/advancement/RequirementsStrate
 	m	(Ljava/util/Collection;)[[Ljava/lang/String;	createRequirements		createRequirements
 		p	1			requirements
 	m	(Ljava/util/Collection;)[[Ljava/lang/String;	lambda$static$1		lambda$static$1
-		p	0			p_0
+		p	0			requirements
 	m	(Ljava/util/Collection;)[[Ljava/lang/String;	lambda$static$0		lambda$static$0
-		p	0			p_0
+		p	0			requirements
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_7011459		net/minecraft/tag/ItemTags
 	f	Lnet/minecraft/unmapped/C_8528326;	f_2520699		all

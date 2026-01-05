@@ -18,8 +18,8 @@ c	net/minecraft/unmapped/C_1331819
 c	net/minecraft/unmapped/C_1919259
 	m	()Lnet/minecraft/unmapped/C_5235460;	m_4192175		getErrorReason
 c	net/minecraft/unmapped/C_2920619
-	m	(Lcom/google/gson/JsonElement;)V	m_7872089		add
-		p	1			element
+	m	(Lcom/google/gson/JsonElement;)V	m_7872089		update
+		p	1			progress
 c	net/minecraft/unmapped/C_3059741
 	m	(ILnet/minecraft/unmapped/C_6607881;)F	m_3655478	m_3655478	
 		p	1		p_1	
@@ -164,12 +164,12 @@ c	net/minecraft/unmapped/C_5632627
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_8286907;Ljava/util/List;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			parent
+		p	2			reason
 		p	3			p_3
 c	net/minecraft/unmapped/C_6532238
 	f	Lnet/minecraft/unmapped/C_6607881;	f_9547011	entity	
-	f	Lnet/minecraft/unmapped/C_3244069;	f_4193703		entity
+	f	Lnet/minecraft/unmapped/C_3244069;	f_4193703		mobType
 c	net/minecraft/unmapped/C_7377641
 	f	Ljava/util/Map;	f_7793114		fixedData
 	f	Ljava/util/Map;	f_4079146	data	dynamicData
@@ -187,9 +187,9 @@ c	net/minecraft/unmapped/C_7521775
 	f	[I	f_4991838		f_4991838
 	f	[I	f_8662632		f_8662632
 c	net/minecraft/unmapped/C_8105098
-	f	Z	f_1224253	hasTakenScreenshot	
+	f	Z	f_1224253	screenshotKeyDown	
 	f	Lnet/minecraft/unmapped/C_0561170;	f_2252451		logoLocation
-	m	()V	m_6250170	tryTakeScreenshot	
+	m	()V	m_6250170	handleScreenshotKey	
 c	net/minecraft/unmapped/C_8286907
 	f	Lnet/minecraft/unmapped/C_8286907;	f_2887376	f_2887376	
 	f	Lnet/minecraft/unmapped/C_8286907;	f_8079596	f_8079596	
@@ -209,9 +209,9 @@ c	net/minecraft/unmapped/C_8785182
 		p	1			p_1
 c	net/minecraft/unmapped/C_9345641
 	m	()Lnet/minecraft/unmapped/C_5235460;	m_4192175		m_4192175
-c	net/minecraft/unmapped/C_5235460		net/minecraft/client/twitch/TwitchStream__C_5235460
-	f	Lnet/minecraft/unmapped/C_5235460;	f_2448537		f_2448537
-	f	Lnet/minecraft/unmapped/C_5235460;	f_4349601		f_4349601
+c	net/minecraft/unmapped/C_5235460		net/minecraft/client/twitch/TwitchStream__ErrorReason
+	f	Lnet/minecraft/unmapped/C_5235460;	f_2448537		ERROR
+	f	Lnet/minecraft/unmapped/C_5235460;	f_4349601		INVALID_TOKEN
 	f	[Lnet/minecraft/unmapped/C_5235460;	f_2957043		f_2957043
 	m	()[Lnet/minecraft/unmapped/C_5235460;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_5235460;	valueOf		valueOf
@@ -220,35 +220,9 @@ c	net/minecraft/unmapped/C_5235460		net/minecraft/client/twitch/TwitchStream__C_
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_8848365		net/minecraft/client/Minecraft__15
+c	net/minecraft/unmapped/C_8848365		net/minecraft/client/Minecraft__8848365
 	f	Lnet/minecraft/unmapped/C_8105098;	f_7466146		f_7466146
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>		<init>
 		p	1			p_1
-	m	()Ljava/lang/String;	m_0284574		m_0284574
+	m	()Ljava/lang/String;	m_0284574		call
 	m	()Ljava/lang/Object;	call		call
-c	net/minecraft/unmapped/C_0881518	net/minecraft/client/Minecraft__2	net/minecraft/client/Minecraft__3
-	m	()Ljava/lang/String;	m_7375447	call	m_7375447
-c	net/minecraft/unmapped/C_2619780	net/minecraft/client/Minecraft__14	net/minecraft/client/Minecraft__16
-	m	()Ljava/lang/String;	m_8252660	call	m_8252660
-c	net/minecraft/unmapped/C_4394019	net/minecraft/client/Minecraft__11	net/minecraft/client/Minecraft__12
-	m	()Ljava/lang/String;	m_8418756	call	m_8418756
-c	net/minecraft/unmapped/C_4563671	net/minecraft/client/Minecraft__9	net/minecraft/client/Minecraft__10
-	m	()Ljava/lang/String;	m_2473095	call	m_2473095
-c	net/minecraft/unmapped/C_5100772	net/minecraft/client/Minecraft__13	net/minecraft/client/Minecraft__14
-	m	()Ljava/lang/String;	m_3863477	call	m_3863477
-c	net/minecraft/unmapped/C_5160100	net/minecraft/client/Minecraft__10	net/minecraft/client/Minecraft__11
-	m	()Ljava/lang/String;	m_0789350	call	m_0789350
-c	net/minecraft/unmapped/C_5362986	net/minecraft/client/Minecraft__8	net/minecraft/client/Minecraft__9
-c	net/minecraft/unmapped/C_7145858	net/minecraft/client/Minecraft__4	net/minecraft/client/Minecraft__5
-	m	()Ljava/lang/String;	m_5150530	call	m_5150530
-c	net/minecraft/unmapped/C_8612369	net/minecraft/client/Minecraft__15	net/minecraft/client/Minecraft__2
-	m	()Ljava/lang/String;	m_3026083	call	m_3026083
-c	net/minecraft/unmapped/C_9216568	net/minecraft/client/Minecraft__12	net/minecraft/client/Minecraft__13
-	m	()Ljava/lang/String;	m_2029182	call	m_2029182
-c	net/minecraft/unmapped/C_9361497	net/minecraft/client/Minecraft__5	net/minecraft/client/Minecraft__6
-	m	()Ljava/lang/String;	m_7420333	call	m_7420333
-c	net/minecraft/unmapped/C_9830960	net/minecraft/client/Minecraft__3	net/minecraft/client/Minecraft__4
-	m	()Ljava/lang/String;	m_3001296	call	m_3001296
-c	net/minecraft/unmapped/C_2388842	net/minecraft/client/Minecraft__7	net/minecraft/client/Minecraft__8
-c	net/minecraft/unmapped/C_3525592	net/minecraft/client/Minecraft__6	net/minecraft/client/Minecraft__7
-	m	()Ljava/lang/String;	m_0186080	call	m_0186080

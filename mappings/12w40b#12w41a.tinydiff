@@ -40,10 +40,10 @@ c	net/minecraft/unmapped/C_1161898
 	f	Lnet/minecraft/unmapped/C_1161898;	f_6541511		ANVIL
 c	net/minecraft/unmapped/C_1197137
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/Map;	m_1526720		getEnchantments
-		p	0			stack
+		p	0			item
 	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_2454309;)V	m_5210052		setEnchantments
 		p	0			enchantments
-		p	1			stack
+		p	1			item
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_0256744		ANVIL
 c	net/minecraft/unmapped/C_1331819
@@ -74,13 +74,13 @@ c	net/minecraft/unmapped/C_2454309
 	m	(I)V	m_0006249		setRepairCost
 		p	1			cost
 c	net/minecraft/unmapped/C_2711798
-	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1468841	onStackRemovedByPlayer	
-		p	1		stack	
-	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_2454309;)V	m_1468841		onStackRemovedByPlayer
+	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_1468841	onItemRemoved	
+		p	1		item	
+	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_2454309;)V	m_1468841		onItemRemoved
 		p	1			player
-		p	2			stack
+		p	2			item
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_6187402		canPickUp
-		p	1			playerEntity
+		p	1			player
 c	net/minecraft/unmapped/C_2819405
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_1225782	m_1225782	
 		p	1		p_1	
@@ -98,19 +98,19 @@ c	net/minecraft/unmapped/C_2925725
 	m	(Z)V	m_2371464		setEditable
 		p	1			editable
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_7109321;III)Z	m_0676197		tessellateAnvil
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_7109321;IIIIZ)Z	m_2854734		tessellateAnvil
+	m	(Lnet/minecraft/unmapped/C_7109321;III)Z	m_0676197		tesselateAnvil
+		p	1			block
+		p	2			x
+		p	3			y
+		p	4			z
+	m	(Lnet/minecraft/unmapped/C_7109321;IIIIZ)Z	m_2854734		tesselateAnvil
 		p	1			block
 		p	2			x
 		p	3			y
 		p	4			z
 		p	5			metadata
 		p	6			item
-	m	(Lnet/minecraft/unmapped/C_7109321;IIIIFFFFZZI)F	m_3344308		tessellateAnvilPart
+	m	(Lnet/minecraft/unmapped/C_7109321;IIIIFFFFZZI)F	m_3344308		tesselateAnvilPart
 		p	1			block
 		p	2			x
 		p	3			y
@@ -159,11 +159,11 @@ c	net/minecraft/unmapped/C_5917668
 		p	2		p_2	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_6306298
-	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_1225782	quickMoveStack	
-		p	1		id	
-	m	(Lnet/minecraft/unmapped/C_9590849;I)Lnet/minecraft/unmapped/C_2454309;	m_1225782		quickMoveStack
+	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_1225782	quickMoveItem	
+		p	1		slot	
+	m	(Lnet/minecraft/unmapped/C_9590849;I)Lnet/minecraft/unmapped/C_2454309;	m_1225782		quickMoveItem
 		p	1			player
-		p	2			id
+		p	2			slot
 c	net/minecraft/unmapped/C_6773713
 	m	(I)Lnet/minecraft/unmapped/C_2454309;	m_1225782	m_1225782	
 		p	1		p_1	
@@ -239,7 +239,7 @@ c	net/minecraft/unmapped/C_0784534		net/minecraft/item/AnvilItem
 		p	1			p_1
 c	net/minecraft/unmapped/C_1651558		net/minecraft/inventory/menu/AnvilMenu
 	f	Lnet/minecraft/unmapped/C_5818647;	f_6125165		resultInventory
-	f	Lnet/minecraft/unmapped/C_5818647;	f_1573990		inputInventory
+	f	Lnet/minecraft/unmapped/C_5818647;	f_1573990		repairInventory
 	f	Lnet/minecraft/unmapped/C_5553933;	f_8690720		world
 	f	I	f_1346687		x
 	f	I	f_4972713		y
@@ -271,7 +271,7 @@ c	net/minecraft/unmapped/C_1651558		net/minecraft/inventory/menu/AnvilMenu
 		p	1			name
 	m	(Lnet/minecraft/unmapped/C_1651558;)Lnet/minecraft/unmapped/C_5818647;	m_9330164		m_9330164
 		p	0			p_0
-c	net/minecraft/unmapped/C_1877533		net/minecraft/inventory/menu/AnvilMenu__2
+c	net/minecraft/unmapped/C_1877533		net/minecraft/inventory/menu/AnvilMenu__1877533
 	f	Lnet/minecraft/unmapped/C_5553933;	f_0403116		f_0403116
 	f	I	f_1075101		f_1075101
 	f	I	f_2132896		f_2132896
@@ -330,7 +330,7 @@ c	net/minecraft/unmapped/C_7109321		net/minecraft/block/AnvilBlock
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_7201699		net/minecraft/inventory/menu/AnvilMenu__1
+c	net/minecraft/unmapped/C_7201699		net/minecraft/inventory/menu/AnvilMenu__7201699
 	f	Lnet/minecraft/unmapped/C_1651558;	f_7343730		f_7343730
 	m	(Lnet/minecraft/unmapped/C_1651558;Ljava/lang/String;I)V	<init>		<init>
 		p	1			p_1

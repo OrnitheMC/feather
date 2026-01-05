@@ -1,21 +1,21 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0024265
 	m	()Z	m_7010814	transferItems	
-	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_8300121;)Z	m_7351993	pickUpItems	
+	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_8300121;)Z	m_7351993	pickUpItem	
 		p	0		inventory	
 		p	1		hopper	
 		p	2		items	
-	m	(Lnet/minecraft/unmapped/C_5553933;DDD)Ljava/util/List;	m_0256747	getItems	
+	m	(Lnet/minecraft/unmapped/C_5553933;DDD)Ljava/util/List;	m_0256747	getItem	
 		p	0		world	
 		p	1		x	
 		p	3		y	
 		p	5		z	
 	m	(Ljava/util/function/Supplier;)Z	m_7010814		transferItems
 		p	1			pullItems
-	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_8300121;)Z	m_7351993		pickUpItems
+	m	(Lnet/minecraft/unmapped/C_5818647;Lnet/minecraft/unmapped/C_8300121;)Z	m_7351993		pickUpItem
 		p	0			inventory
 		p	1			items
-	m	(Lnet/minecraft/unmapped/C_3472905;)Ljava/util/List;	m_0256747		getItems
+	m	(Lnet/minecraft/unmapped/C_3472905;)Ljava/util/List;	m_0256747		getItem
 		p	0			hopper
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_1728184		onEntityCollision
 		p	1			entity
@@ -68,19 +68,19 @@ c	net/minecraft/unmapped/C_1241852
 		p	1		opacity	
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_0597873		hasAmbientOcclusion
 		p	1			state
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_7401958		propagateSkylight
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_7401958		propagatesSkyLight
+		p	1			state
+		p	2			world
+		p	3			pos
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_6199864		usesNeighborLight
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			state
+		p	2			world
+		p	3			pos
 c	net/minecraft/unmapped/C_1250582
-	f	Z	f_7867753	sideVisible	
+	f	Z	f_7867753	culling	
 	m	(Lnet/minecraft/unmapped/C_8048208;Z)V	<init>	<init>	
 		p	1		material	
-		p	2		sideVisible	
+		p	2		culling	
 	m	(Lnet/minecraft/unmapped/C_8048208;ZLnet/minecraft/unmapped/C_9335057;)V	<init>	<init>	
 		p	1		material	
 		p	2		sideVisible	
@@ -118,12 +118,12 @@ c	net/minecraft/unmapped/C_1428858
 		p	3			p_3
 c	net/minecraft/unmapped/C_1713479
 	m	()Z	m_6388929	usesNeighborLight	
-	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_1579307		m_1579307
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_1579307		propagatesSkyLight
+		p	1			world
+		p	2			pos
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Z	m_6388929		usesNeighborLight
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			pos
 c	net/minecraft/unmapped/C_2366695
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Ljava/util/Random;J)Ljava/util/List;	m_2421021	m_2421021	
 		p	1		p_1	
@@ -183,14 +183,14 @@ c	net/minecraft/unmapped/C_3472905
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_3504190
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Ljava/util/Random;J)Ljava/util/List;	m_2421021	getQuads	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		state	
+		p	2		face	
+		p	3		random	
+		p	4		seed	
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3544601;Ljava/util/Random;)Ljava/util/List;	m_2421021		getQuads
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			state
+		p	2			face
+		p	3			random
 c	net/minecraft/unmapped/C_3544601
 c	net/minecraft/unmapped/C_3544601$C_7482212
 	m	()Z	m_4278616		isVertical
@@ -338,7 +338,7 @@ c	net/minecraft/unmapped/C_6874919$C_3212789
 		p	1		p_1	
 	m	()Ljava/lang/String;	toString	toString	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		entry	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_6967011
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_4596341	m_4596341	
 		p	1		p_1	
@@ -478,7 +478,7 @@ c	net/minecraft/unmapped/C_0090483		net/minecraft/command/argument/LocalCoordina
 		p	0			reader
 		p	1			pos
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			obj
+		p	1			p_1
 	m	()I	hashCode		hashCode
 c	net/minecraft/unmapped/C_2830440		net/minecraft/item/DoubleBlockItem
 	m	(Lnet/minecraft/unmapped/C_1241852;)V	<init>		<init>

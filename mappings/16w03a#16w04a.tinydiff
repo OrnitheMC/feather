@@ -1,11 +1,16 @@
 tiny	2	0
 c	net/minecraft/realms/RealmsScreen
 	m	(Ljava/lang/String;IIIZ)V	drawString		drawString
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			s
+		p	2			x
+		p	3			y
+		p	4			color
+		p	5			shadow
+	m	(Ljava/lang/String;III)V	drawString
+		p	1		p_1	s
+		p	2		p_2	x
+		p	3		p_3	y
+		p	4		p_4	color
 c	net/minecraft/realms/RealmsServerPing	net/minecraft/realms/RealmsServerPing	
 	f	Ljava/lang/String;	nrOfPlayers	nrOfPlayers	
 	f	J	lastPingSnapshot	lastPingSnapshot	
@@ -16,8 +21,8 @@ c	net/minecraft/realms/RealmsServerStatusPinger	net/minecraft/realms/RealmsServe
 	f	Ljava/util/List;	connections	connections	
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;Lnet/minecraft/realms/RealmsServerPing;)V	pingServer	pingServer	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		ip	
+		p	2		serverPing	
 	m	()V	tick	tick	
 	m	()V	removeAll	removeAll	
 	m	()Lorg/apache/logging/log4j/Logger;	access$000	access$000	
@@ -95,7 +100,7 @@ c	net/minecraft/unmapped/C_0607826
 	m	()F	m_9989780		getWaterHeightBelow
 	m	()F	m_6157341		getNearbySlipperiness
 	m	()Z	m_7926481		checkBoatInWater
-	m	()Lnet/minecraft/unmapped/C_0607826$C_6184994;	m_5068395		getUnderWaterLocation
+	m	()Lnet/minecraft/unmapped/C_0607826$C_6184994;	m_5068395		getUnderwaterLocation
 	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)F	m_8612847		m_8612847
 		p	0			p_0
 		p	1			p_1
@@ -189,7 +194,7 @@ c	net/minecraft/unmapped/C_3310814
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_0294846		m_0294846
 		p	1			p_1
 c	net/minecraft/unmapped/C_3362006
-	m	(Lnet/minecraft/unmapped/C_0539808;F)Z	m_0072484	renderSecondPass	
+	m	(Lnet/minecraft/unmapped/C_0539808;F)Z	m_0072484	render	
 		p	1		entity	
 		p	2		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_0539808;FZ)Z	m_7883401	render	
@@ -211,12 +216,12 @@ c	net/minecraft/unmapped/C_3362006
 		p	8		yaw	
 		p	9		tickDelta	
 		p	10		skipHitbox	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0072484		renderSecondPass
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_0072484		shouldRenderSecondPass
 		p	1			entity
 	m	(Lnet/minecraft/unmapped/C_0539808;FZ)V	m_7883401		render
 		p	1			entity
 		p	2			tickDelta
-		p	3			hitbox
+		p	3			skipHitbox
 	m	(Lnet/minecraft/unmapped/C_0539808;DDDFFZ)V	m_0764937		render
 		p	1			entity
 		p	2			dx
@@ -224,7 +229,7 @@ c	net/minecraft/unmapped/C_3362006
 		p	6			dz
 		p	8			yaw
 		p	9			tickDelta
-		p	10			hitbox
+		p	10			skipHitbox
 	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_0115549		renderSecondPass
 		p	1			entity
 		p	2			tickDelta
@@ -282,9 +287,9 @@ c	net/minecraft/unmapped/C_7019121
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_0294846		m_0294846
 		p	1			p_1
 c	net/minecraft/unmapped/C_7639596
-	m	(Lnet/minecraft/unmapped/C_6607881;F)F	m_0461943		m_0461943
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_6607881;F)F	m_0461943		scale
+		p	1			entity
+		p	2			scale
 c	net/minecraft/unmapped/C_8099772
 	m	()Z	m_0294846	isTameable	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_0294846		isTameable

@@ -5,11 +5,11 @@ c	net/minecraft/unmapped/C_0539808
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_5377128	push	
 		p	1		entity	
 	m	(DDD)V	m_7239360	addVelocity	
-		p	1		velocityX	
-		p	3		velocityY	
-		p	5		velocityZ	
+		p	1		dx	
+		p	3		dy	
+		p	5		dz	
 	m	()Z	m_6281908	isPushable	
-	m	()F	m_9361724		m_9361724
+	m	()F	m_9361724		getHeightForBrightness
 c	net/minecraft/unmapped/C_0987157
 	m	()V	m_8749127		m_8749127
 c	net/minecraft/unmapped/C_1023567
@@ -22,44 +22,44 @@ c	net/minecraft/unmapped/C_2363721
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;DDDDD)V	m_7752244	tessellateTorch	
+	m	(Lnet/minecraft/unmapped/C_1241852;DDDDD)V	m_7752244	tesselateTorch	
 		p	1		block	
 		p	2		x	
 		p	4		y	
 		p	6		z	
 		p	8		dx	
 		p	10		dz	
-	m	(Lnet/minecraft/unmapped/C_1241852;IDDD)V	m_8971930	tessellateCross	
+	m	(Lnet/minecraft/unmapped/C_1241852;IDDD)V	m_8971930	tesselateCross	
 		p	1		block	
 		p	2		metadata	
 		p	3		x	
 		p	5		y	
 		p	7		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;IDDD)V	m_5041871	tessellatePlant	
+	m	(Lnet/minecraft/unmapped/C_1241852;IDDD)V	m_5041871	tesselatePlant	
 		p	1		block	
 		p	2		metadata	
 		p	3		x	
 		p	5		y	
 		p	7		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;FFFFF)V	m_7752244		tessellateTorch
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(Lnet/minecraft/unmapped/C_1241852;IFFF)V	m_8971930		tessellateCross
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_1241852;IFFF)V	m_5041871		tessellatePlant
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(Lnet/minecraft/unmapped/C_1241852;FFFFF)V	m_7752244		tesselateTorch
+		p	1			block
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			dx
+		p	6			dz
+	m	(Lnet/minecraft/unmapped/C_1241852;IFFF)V	m_8971930		tesselateCross
+		p	1			block
+		p	2			metadata
+		p	3			x
+		p	4			y
+		p	5			z
+	m	(Lnet/minecraft/unmapped/C_1241852;IFFF)V	m_5041871		tesselatePlant
+		p	1			block
+		p	2			metadata
+		p	3			x
+		p	4			y
+		p	5			z
 c	net/minecraft/unmapped/C_3242141
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
@@ -77,18 +77,18 @@ c	net/minecraft/unmapped/C_4116648
 c	net/minecraft/unmapped/C_4316830
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_5201828	net/minecraft/entity/particle/EntityPickupParticle	
+c	net/minecraft/unmapped/C_5201828	net/minecraft/client/entity/particle/EntityPickupParticle	
 	f	Lnet/minecraft/unmapped/C_0539808;	f_1104968	entity	
 		c	The entity being picked up - this could be an item, arrow, or xp.	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_9761907	collector	
 	f	I	f_3145004	age	
-	f	I	f_8140468	maxAge	
-	f	F	f_8923438	yOffset	
+	f	I	f_8140468	lifetime	
+	f	F	f_8923438	offsetY	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_6607881;F)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		world	
+		p	2		entity	
+		p	3		collector	
+		p	4		offsetY	
 	m	(Lnet/minecraft/unmapped/C_5786166;FFFFFF)V	m_2192689	m_2192689	
 		p	1		p_1	
 		p	2		p_2	
@@ -101,33 +101,33 @@ c	net/minecraft/unmapped/C_5201828	net/minecraft/entity/particle/EntityPickupPar
 	m	()I	m_5083751	m_5083751	
 c	net/minecraft/unmapped/C_5553933
 	f	Ljava/util/List;	f_5094163	entities	
-	f	Lnet/minecraft/unmapped/C_4838406;	f_6886584		f_6886584
-	m	(IIII)V	m_8569742	checkLight	
+	f	Lnet/minecraft/unmapped/C_4838406;	f_6886584		blockMap
+	m	(IIII)V	m_8569742	onHeightMapChanged	
 		p	1		x	
 		p	2		z	
-		p	3		minY	
-		p	4		maxY	
+		p	3		newHeight	
+		p	4		oldHeight	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_1727586	addEntity	
-		p	1		p_1	
+		p	1		entity	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_0323249	removeEntity	
-		p	0		p_0	
+		p	0		entity	
 	m	()V	m_8024290	tickEntities	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;)Ljava/util/List;	m_6863837	getEntities	
 		p	1		exclude	
-		p	2		box	
+		p	2		bounds	
 	m	()Ljava/util/List;	m_2559966	getEntities	
-	m	(IIII)V	m_7664607		m_7664607
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(IIIIII)V	m_8569742		checkLight
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+	m	(IIII)V	m_7664607		onHeightMapChanged
+		p	1			x
+		p	2			z
+		p	3			newHeight
+		p	4			oldHeight
+	m	(IIIIII)V	m_8569742		notifyRegionChanged
+		p	1			minX
+		p	2			minY
+		p	3			mminZ
+		p	4			maxX
+		p	5			maxY
+		p	6			maxZ
 c	net/minecraft/unmapped/C_6057159
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
@@ -135,45 +135,45 @@ c	net/minecraft/unmapped/C_6607881
 	m	()Z	m_6281908	m_6281908	
 c	net/minecraft/unmapped/C_6849228
 	f	Z	f_1655030	hasSkyLight	
-	m	(III)V	m_9722426	checkSkylight	
+	m	(III)V	m_9722426	lightGap	
 		p	1		x	
 		p	2		z	
-		p	3		maxY	
-	m	()V	m_3072812		m_3072812
+		p	3		y	
+	m	()V	m_3072812		isAt
 c	net/minecraft/unmapped/C_7028449
 	f	Z	f_2481638	hasSkyLight	
 c	net/minecraft/unmapped/C_7400754
 	m	()I	m_5178097	getEmptySlot	
-	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_4327429	insertStack	
-		p	1		stack	
+	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_4327429	addItem	
+		p	1		item	
 c	net/minecraft/unmapped/C_8300121
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	m_0908069	m_0908069	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8398976
 	m	()V	m_0340972	m_0340972	
 c	net/minecraft/unmapped/C_9232749
-	m	()V	m_0340972	m_0340972	
+	m	()V	m_0340972	notifyAmbientDarknessChanged	
 c	net/minecraft/unmapped/C_9304189
 	m	()F	m_9361724		m_9361724
 c	net/minecraft/unmapped/C_9590849
-	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_6464361	sendPickup	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_6464361	pickUp	
+		p	1		entity	
 c	net/minecraft/unmapped/C_9608041
 	m	()V	m_8749127		m_8749127
 c	net/minecraft/unmapped/C_9848147
-	m	()V	m_8749127		m_8749127
-c	net/minecraft/unmapped/C_2072059		net/minecraft/unmapped/C_2072059
-	f	I	f_5609989		f_5609989
-	f	I	f_0579241		f_0579241
-	f	I	f_9357387		f_9357387
+	m	()V	m_8749127		onAmbientDarknessChanged
+c	net/minecraft/unmapped/C_2072059		net/minecraft/world/BlockMap__Slot
+	f	I	f_5609989		slotX
+	f	I	f_0579241		slotY
+	f	I	f_9357387		slotZ
 	f	Lnet/minecraft/unmapped/C_4838406;	f_3119793		f_3119793
 	m	(Lnet/minecraft/unmapped/C_4838406;B)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-	m	(DDD)Lnet/minecraft/unmapped/C_2072059;	m_3495049		m_3495049
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
+	m	(DDD)Lnet/minecraft/unmapped/C_2072059;	m_3495049		init
+		p	1			x
+		p	3			y
+		p	5			z
 	m	(Lnet/minecraft/unmapped/C_4838406;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_2072059;)I	m_8216822		m_8216822
@@ -182,18 +182,18 @@ c	net/minecraft/unmapped/C_2072059		net/minecraft/unmapped/C_2072059
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_2072059;)I	m_4526749		m_4526749
 		p	0			p_0
-c	net/minecraft/unmapped/C_4838406		net/minecraft/unmapped/C_4838406
-	f	I	f_8576289		f_8576289
-	f	I	f_8277311		f_8277311
-	f	I	f_7001699		f_7001699
-	f	Lnet/minecraft/unmapped/C_2072059;	f_2657781		f_2657781
-	f	Lnet/minecraft/unmapped/C_2072059;	f_1292325		f_1292325
-	f	[Ljava/util/List;	f_3779159		f_3779159
-	f	Ljava/util/List;	f_7897603		f_7897603
+c	net/minecraft/unmapped/C_4838406		net/minecraft/world/BlockMap
+	f	I	f_8576289		sizeX
+	f	I	f_8277311		sizeY
+	f	I	f_7001699		sizeZ
+	f	Lnet/minecraft/unmapped/C_2072059;	f_2657781		slot
+	f	Lnet/minecraft/unmapped/C_2072059;	f_1292325		slot2
+	f	[Ljava/util/List;	f_3779159		entityGrid
+	f	Ljava/util/List;	f_7897603		tmp
 	m	(III)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;)Ljava/util/List;	m_8158213		m_8158213
-		p	1			p_1
-		p	2			p_2
+		p	1			sizeX
+		p	2			sizeY
+		p	3			sizeZ
+	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;)Ljava/util/List;	m_8158213		getEntities
+		p	1			exclude
+		p	2			bounds

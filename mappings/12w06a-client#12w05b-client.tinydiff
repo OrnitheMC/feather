@@ -1,7 +1,7 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0218708
-	f	Z	f_8478228		f_8478228
-	f	I	f_5483402		f_5483402
+	f	Z	f_8478228		shouldCloseDoor
+	f	I	f_5483402		ticksLeft
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_6607881;Z)V	<init>		<init>
@@ -29,14 +29,14 @@ c	net/minecraft/unmapped/C_0975786
 c	net/minecraft/unmapped/C_1197137
 	m	(Ljava/util/Random;Lnet/minecraft/unmapped/C_2454309;I)V	m_3380905	addRandomEnchantment	
 		p	0		random	
-		p	1		stack	
+		p	1		item	
 		p	2		xpLevel	
 c	net/minecraft/unmapped/C_1407939	net/minecraft/entity/ai/goal/LongDoorInteractGoal	
 	f	Z	f_3759212	shouldCloseDoor	
 	f	I	f_8850352	ticksLeft	
 	m	(Lnet/minecraft/unmapped/C_6607881;Z)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		mob	
+		p	2		shouldCloseDoor	
 	m	()Z	m_4540487	m_4540487	
 	m	()V	m_3836415	m_3836415	
 	m	()V	m_7242457	m_7242457	
@@ -45,7 +45,7 @@ c	net/minecraft/unmapped/C_2221425
 	f	Lnet/minecraft/unmapped/C_0539808;	f_7527439	targetEntity	
 	f	F	f_0017646	chance	
 	f	Ljava/lang/Class;	f_7265860	tagetType	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_2971681		f_2971681
+	f	Lnet/minecraft/unmapped/C_6607881;	f_2971681		targetEntity
 	f	Lnet/minecraft/unmapped/C_5553933;	f_3386072		f_3386072
 	m	(Lnet/minecraft/unmapped/C_6607881;Ljava/lang/Class;F)V	<init>	<init>	
 		p	1		p_1	
@@ -157,9 +157,9 @@ c	net/minecraft/unmapped/C_5360996	net/minecraft/network/packet/BlockEntityUpdat
 	f	I	f_1359085	y	
 	f	I	f_8398170	z	
 	f	I	f_2109797	type	
-	f	I	f_8845966	f_8845966	
-	f	I	f_3550813	f_3550813	
-	f	I	f_4888536	f_4888536	
+	f	I	f_8845966	data1	
+	f	I	f_3550813	data2	
+	f	I	f_4888536	data3	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
 		p	1		p_1	
@@ -180,7 +180,7 @@ c	net/minecraft/unmapped/C_5487998
 	m	()V	m_7242457		m_7242457
 	m	()Z	m_9478616		m_9478616
 c	net/minecraft/unmapped/C_5553933
-	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_5577922;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_0539808;	m_9893435	getClosestEntity	
+	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_5577922;Lnet/minecraft/unmapped/C_0539808;)Lnet/minecraft/unmapped/C_0539808;	m_9893435	getNearestEntity	
 		p	1		type	
 		p	2		bounds	
 		p	3		entity	
@@ -234,14 +234,14 @@ c	net/minecraft/unmapped/C_6436002
 	m	()Z	m_9478616		m_9478616
 c	net/minecraft/unmapped/C_6607881
 	f	Lnet/minecraft/unmapped/C_3120382;	f_2775499	targetGoals	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_6553682	target	
-	f	Lnet/minecraft/unmapped/C_5888774;	f_6027247		f_6027247
-	m	()Lnet/minecraft/unmapped/C_6607881;	m_5132113	getTarget	
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_6246724	setTarget	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_6553682	attackTarget	
+	f	Lnet/minecraft/unmapped/C_5888774;	f_6027247		attackTarget
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_5132113	getAttackTarget	
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_6246724	setAttackTarget	
 		p	1		target	
 	m	(I)V	m_4110070	dropRareItem	
 		p	1		id	
-	m	()Lnet/minecraft/unmapped/C_5888774;	m_5132113		getTarget
+	m	()Lnet/minecraft/unmapped/C_5888774;	m_5132113		getAttackTarget
 c	net/minecraft/unmapped/C_7019121
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_6246724	m_6246724	
 		p	1		p_1	
@@ -291,20 +291,22 @@ c	net/minecraft/unmapped/C_7842113
 	m	(II)I	m_8325719		m_8325719
 		p	1			p_1
 		p	2			p_2
-	m	(I)I	m_2622302		setOpen
+	m	(I)I	m_2622302		getFacing
 		p	1			metadata
-	m	(I)Z	m_0678657		getOpenFromMetadata
+	m	(I)Z	m_0678657		getOpen
 		p	0			metadata
+	m	(I)V	m_1694933
+		p	1		metadata	facing
 c	net/minecraft/unmapped/C_7985395	net/minecraft/entity/ai/goal/ActiveTargetGoal	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_6730133	target	
 	f	Ljava/lang/Class;	f_7236377	targetType	
 	f	I	f_7570320	chanceToStartGoal	
 	m	(Lnet/minecraft/unmapped/C_6607881;Ljava/lang/Class;FIZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		mob	
+		p	2		targetType	
+		p	3		range	
+		p	4		chanceToStartGoal	
+		p	5		checkVisibility	
 	m	()Z	m_9549250	m_9549250	
 	m	()V	m_3836415	m_3836415	
 c	net/minecraft/unmapped/C_8114740
@@ -313,13 +315,13 @@ c	net/minecraft/unmapped/C_8114740
 		p	1			p_1
 	m	()Z	m_9478616		m_9478616
 c	net/minecraft/unmapped/C_8159814	net/minecraft/entity/ai/goal/TrackTargetGoal	
-	f	Lnet/minecraft/unmapped/C_6607881;	f_7808799	entity	
-	f	F	f_9431206	f_9431206	
+	f	Lnet/minecraft/unmapped/C_6607881;	f_7808799	mob	
+	f	F	f_9431206	range	
 	f	Z	f_8809098	checkVisibility	
 	m	(Lnet/minecraft/unmapped/C_6607881;FZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		mob	
+		p	2		range	
+		p	3		checkVisibility	
 	m	()Z	m_4540487	m_4540487	
 	m	()V	m_7242457	m_7242457	
 	m	(Lnet/minecraft/unmapped/C_6607881;Z)Z	m_5432201	canTarget	
@@ -373,39 +375,39 @@ c	net/minecraft/unmapped/C_9549896
 		p	1		x	
 		p	2		y	
 		p	3		z	
-c	net/minecraft/unmapped/C_2892539		net/minecraft/unmapped/C_2892539
-	f	Lnet/minecraft/unmapped/C_5553933;	f_4943865		f_4943865
-	f	Lnet/minecraft/unmapped/C_7019121;	f_2162442		f_2162442
+c	net/minecraft/unmapped/C_2892539		net/minecraft/entity/ai/goal/AttackWithOwnerGoal
+	f	Lnet/minecraft/unmapped/C_5553933;	f_4943865		world
+	f	Lnet/minecraft/unmapped/C_7019121;	f_2162442		wolf
 	m	(Lnet/minecraft/unmapped/C_7019121;)V	<init>		<init>
-		p	1			p_1
+		p	1			wolf
 	m	()V	m_6054577		m_6054577
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_9090249		m_9090249
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_1580888		m_1580888
 		p	1			p_1
 	m	()V	m_9271503		m_9271503
-c	net/minecraft/unmapped/C_3307156		net/minecraft/unmapped/C_3307156
-	f	Lnet/minecraft/unmapped/C_5553933;	f_8833585		f_8833585
-	f	Lnet/minecraft/unmapped/C_1549236;	f_0753210		f_0753210
+c	net/minecraft/unmapped/C_3307156		net/minecraft/entity/ai/goal/OcelotAttackChickenGoal
+	f	Lnet/minecraft/unmapped/C_5553933;	f_8833585		world
+	f	Lnet/minecraft/unmapped/C_1549236;	f_0753210		ocelot
 	m	(Lnet/minecraft/unmapped/C_1549236;)V	<init>		<init>
-		p	1			p_1
+		p	1			ocelot
 	m	()V	m_6054577		m_6054577
-c	net/minecraft/unmapped/C_5888774		net/minecraft/unmapped/C_5888774
-	f	Lnet/minecraft/unmapped/C_6607881;	f_2800024		f_2800024
+c	net/minecraft/unmapped/C_5888774		net/minecraft/entity/ai/goal/TrackTargetGoal
+	f	Lnet/minecraft/unmapped/C_6607881;	f_2800024		mob
 	m	()V	<init>		<init>
-	m	()V	m_6054577		m_6054577
-	m	()Lnet/minecraft/unmapped/C_6607881;	m_6896494		m_6896494
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_9090249		m_9090249
-		p	1			p_1
-c	net/minecraft/unmapped/C_8818528		net/minecraft/unmapped/C_8818528
-	f	Lnet/minecraft/unmapped/C_6607881;	f_4425223		f_4425223
-	f	F	f_9312002		f_9312002
+	m	()V	m_6054577		tick
+	m	()Lnet/minecraft/unmapped/C_6607881;	m_6896494		getMob
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_9090249		setMob
+		p	1			mob
+c	net/minecraft/unmapped/C_8818528		net/minecraft/entity/ai/goal/ActiveTargetGoal
+	f	Lnet/minecraft/unmapped/C_6607881;	f_4425223		target
+	f	F	f_9312002		range
 	f	I	f_8020744		f_8020744
-	f	I	f_4923092		f_4923092
+	f	I	f_4923092		chanceToStartGoal
 	m	(Lnet/minecraft/unmapped/C_6607881;FI)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			target
+		p	2			range
+		p	3			chanceToStartGoal
 	m	()V	m_6054577		m_6054577
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_9090249		m_9090249
 		p	1			p_1

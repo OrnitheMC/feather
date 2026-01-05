@@ -1,26 +1,26 @@
 tiny	2	0
 c	net/minecraft/client/C_1331819
-	f	Z	f_3094045	f_3094045	
+	f	Z	f_3094045	perspective	
 c	net/minecraft/unmapped/C_2018497
-	m	(Ljava/lang/String;)Z	m_2372229	m_2372229	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Z	m_2372229	contains	
+		p	1		key	
 c	net/minecraft/unmapped/C_2313930
 	m	(FF)V	<init>	<init>	
 		p	1		reduction	
 		p	2		pivotPoint	
 c	net/minecraft/unmapped/C_2711798
-	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3397298	canSetStack	
-		p	1		stack	
+	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3397298	isItemAllowed	
+		p	1		item	
 	m	()I	m_4637113	getTexture	
-	m	()Z	m_3397298		canSetStack
+	m	()Z	m_3397298		isItemAllowed
 c	net/minecraft/unmapped/C_3716663
 	f	Lnet/minecraft/unmapped/C_9620653;	f_3556553	frustum	
 	f	[Lnet/minecraft/unmapped/C_2283777;	f_7814686		f_7814686
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_6607881;FF)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			camera
+		p	2			renderDistance
+		p	3			tickDelta
 c	net/minecraft/unmapped/C_4065940
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3397298	m_3397298	
 		p	1		p_1	
@@ -30,7 +30,7 @@ c	net/minecraft/unmapped/C_5502075	net/minecraft/item/ArmorItem
 	f	[I	f_8744331	BASE_DURABILITY	
 	f	I	f_3944942	slot	
 	f	I	f_7010937	protection	
-	f	I	f_6133844	materialId	
+	f	I	f_6133844	material	
 	m	(IIII)V	<init>	<init>	
 		p	1		id	
 		p	2		durability	
@@ -38,28 +38,28 @@ c	net/minecraft/unmapped/C_5502075	net/minecraft/item/ArmorItem
 		p	4		slot	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_5553933
-	m	(III[B[B)V	m_2817546	m_2817546	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(III[B)V	m_2817546		m_2817546
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(III[B[B)V	m_3920572		m_3920572
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(II)I	m_2328495		m_2328495
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_6626902	net/minecraft/inventory/menu/PlayerMenu__1	
-	f	I	f_6911632	parentCurrentInt	
+	m	(III[B[B)V	m_2817546	assemble	
+		p	1		sizeX	
+		p	2		sizeY	
+		p	3		sizeZ	
+		p	4		blocks	
+		p	5		blockData	
+	m	(III[B)V	m_2817546		assemble
+		p	1			sizeX
+		p	2			sizeY
+		p	3			sizeZ
+		p	4			blocks
+	m	(III[B[B)V	m_3920572		load
+		p	1			sizeX
+		p	2			sizeY
+		p	3			sizeZ
+		p	4			blocks
+		p	5			blockData
+	m	(II)I	m_2328495		getHeight
+		p	1			x
+		p	2			z
+c	net/minecraft/unmapped/C_6626902	net/minecraft/client/gui/screen/inventory/menu/SurvivalInventoryScreen__6626902	
+	f	I	f_6911632	f_6911632	
 	m	(Lnet/minecraft/unmapped/C_3342272;Lnet/minecraft/unmapped/C_9639106;Lnet/minecraft/unmapped/C_5818647;IIII)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -72,14 +72,14 @@ c	net/minecraft/unmapped/C_6626902	net/minecraft/inventory/menu/PlayerMenu__1
 		p	1		p_1	
 	m	()I	m_4637113	m_4637113	
 c	net/minecraft/unmapped/C_7400754
-	f	[Lnet/minecraft/unmapped/C_2454309;	f_5527103	armorSlots	
+	f	[Lnet/minecraft/unmapped/C_2454309;	f_5527103	armor	
 	f	Lnet/minecraft/unmapped/C_9590849;	f_9685560	player	
 	m	(Lnet/minecraft/unmapped/C_9590849;)V	<init>	<init>	
 		p	1		player	
-	m	()I	m_7807951	getArmorProtectionValue	
+	m	()I	m_7807951	getArmorProtection	
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_7639596
-	m	(Lnet/minecraft/unmapped/C_6607881;FFFFF)V	m_3743106	render	
+	m	(Lnet/minecraft/unmapped/C_6607881;FFFFF)V	m_3743106	m_3743106	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -105,16 +105,16 @@ c	net/minecraft/unmapped/C_8620458
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_9139005
-	f	Lnet/minecraft/unmapped/C_2313930;	f_0686977	model1	
-	f	Lnet/minecraft/unmapped/C_2313930;	f_7118743	model2	
+	f	Lnet/minecraft/unmapped/C_2313930;	f_0686977	armor1	
+	f	Lnet/minecraft/unmapped/C_2313930;	f_7118743	armor2	
 	f	[Ljava/lang/String;	f_5581673	ARMOR_VARIANTS	
-	m	(Lnet/minecraft/unmapped/C_9590849;FFFFF)V	m_2872248	render	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+	m	(Lnet/minecraft/unmapped/C_9590849;FFFFF)V	m_2872248	m_2872248	
+		p	1		player	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		yaw	
+		p	6		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_6607881;FFFFF)V	m_3743106	m_3743106	
 		p	1		p_1	
 		p	2		p_2	
@@ -131,7 +131,7 @@ c	net/minecraft/unmapped/C_9139005
 		p	6		p_6	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_9590849
-	f	I	f_0531708	f_0531708	
+	f	I	f_0531708	damageSpill	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_2992256	m_2992256	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_9620653	net/minecraft/client/render/FrustumData	

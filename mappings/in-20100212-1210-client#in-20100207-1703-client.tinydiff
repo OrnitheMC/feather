@@ -21,10 +21,10 @@ c	net/minecraft/unmapped/C_0259655
 	f	F	f_4122154		f_4122154
 c	net/minecraft/unmapped/C_0490004
 	m	(IIILnet/minecraft/unmapped/C_8180393;)I	m_6557843	getBlockingType	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		bounds	
 	m	(IIILnet/minecraft/unmapped/C_8180393;)Z	m_6557843		getBlockingType
 		p	1			p_1
 		p	2			p_2
@@ -34,40 +34,40 @@ c	net/minecraft/unmapped/C_0539808
 	f	Ljava/lang/String;	f_0929868	skin	
 	m	()Ljava/lang/String;	m_6274448	getTexture	
 	m	(II)Lnet/minecraft/unmapped/C_8300121;	m_6397813	dropItem	
-		p	1		id	
+		p	1		item	
 		p	2		amount	
 	m	(IIF)Lnet/minecraft/unmapped/C_8300121;	m_6388648	dropItem	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(II)V	m_3280004		m_3280004
-		p	1			p_1
+		p	1		item	
+		p	2		amount	
+		p	3		offsetY	
+	m	(II)V	m_3280004		dropItems
+		p	1			item
 		p	2			p_2
 c	net/minecraft/unmapped/C_0774916
 	m	()I	m_9474325	m_9474325	
 c	net/minecraft/unmapped/C_0876962
 	f	Ljava/util/Map;	f_9776761	httpTextures	
-	m	(Ljava/lang/String;Ljava/lang/String;)I	m_1185982	bindHttpTexture	
-		p	1		path	
-		p	2		defaultPath	
-	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_3738802;)Lnet/minecraft/unmapped/C_1812290;	m_4173240	m_4173240	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;)V	m_0137573	m_0137573	
-		p	1		p_1	
+	m	(Ljava/lang/String;Ljava/lang/String;)I	m_1185982	loadHttpTexture	
+		p	1		url	
+		p	2		backup	
+	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_3738802;)Lnet/minecraft/unmapped/C_1812290;	m_4173240	addHttpTexture	
+		p	1		url	
+		p	2		processor	
+	m	(Ljava/lang/String;)V	m_0137573	removeHttpTexture	
+		p	1		url	
 	m	(I)V	m_1620317	bind	
-		p	0		p_0	
-	m	(Z)V	m_9982901		m_9982901
-		p	1			p_1
+		p	0		id	
+	m	(Z)V	m_9982901		setBlur
+		p	1			blur
 c	net/minecraft/unmapped/C_1051907
-	m	(ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_2411117;)I	m_6963744		m_6963744
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(ILnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_2411117;)I	m_6963744		run
+		p	1			attempts
+		p	2			center
+		p	3			listener
 c	net/minecraft/unmapped/C_1241852
-	f	Lnet/minecraft/unmapped/C_4863209;	f_5695601	GLASS_SOUND	
-	f	Lnet/minecraft/unmapped/C_4863209;	f_0201833	CLOTH_SOUND	
-	f	Lnet/minecraft/unmapped/C_4863209;	f_6520792	SAND_SOUND	
+	f	Lnet/minecraft/unmapped/C_4863209;	f_5695601	GLASS_SOUNDS	
+	f	Lnet/minecraft/unmapped/C_4863209;	f_0201833	CLOTH_SOUNDS	
+	f	Lnet/minecraft/unmapped/C_4863209;	f_6520792	SAND_SOUNDS	
 	f	Lnet/minecraft/unmapped/C_2501864;	f_1523314	GRASS	
 	f	Lnet/minecraft/unmapped/C_5445172;	f_6839465	YELLOW_FLOWER	
 	f	Lnet/minecraft/unmapped/C_5445172;	f_2862297	RED_FLOWER	
@@ -83,21 +83,21 @@ c	net/minecraft/unmapped/C_1241852
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		metadata	
-c	net/minecraft/unmapped/C_1812290	net/minecraft/unmapped/C_1812290	
-	f	Ljava/awt/image/BufferedImage;	f_0926982	f_0926982	
-	f	I	f_0708736	f_0708736	
-	f	I	f_7896602	f_7896602	
-	f	Z	f_1660532	f_1660532	
+		p	5		face	
+c	net/minecraft/unmapped/C_1812290	net/minecraft/client/render/texture/HttpTexture	
+	f	Ljava/awt/image/BufferedImage;	f_0926982	image	
+	f	I	f_0708736	count	
+	f	I	f_7896602	id	
+	f	Z	f_1660532	uploaded	
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_3738802;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		url	
+		p	2		processor	
 c	net/minecraft/unmapped/C_2018497
-	m	(Ljava/lang/String;Z)V	m_4320568	m_4320568	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;)Z	m_0395945	m_0395945	
-		p	1		p_1	
+	m	(Ljava/lang/String;Z)V	m_4320568	putBoolean	
+		p	1		key	
+		p	2		value	
+	m	(Ljava/lang/String;)Z	m_0395945	getBoolean	
+		p	1		key	
 c	net/minecraft/unmapped/C_2159296	net/minecraft/crafting/ArmorRecipes	
 	f	[[Ljava/lang/String;	f_8762180	patterns	
 	f	[[Ljava/lang/Object;	f_2634557	recipes	
@@ -110,13 +110,13 @@ c	net/minecraft/unmapped/C_2194240	net/minecraft/unmapped/C_2194240
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_2531801
-	f	F	f_6319530	baseScale	
+	f	F	f_6319530	initialSize	
 	m	(Lnet/minecraft/unmapped/C_5553933;FFFF)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		scale	
 c	net/minecraft/unmapped/C_2968238
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6532724	m_6532724	
 		p	1		p_1	
@@ -129,30 +129,30 @@ c	net/minecraft/unmapped/C_2968238
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_3242141
-	f	Z	f_4976759	f_4976759	
+	f	Z	f_4976759	sheared	
 	m	(Lnet/minecraft/unmapped/C_0539808;I)Z	m_8726131	m_8726131	
 		p	1		p_1	
 		p	2		p_2	
 	m	()Ljava/lang/String;	m_4151868	m_4151868	
 	m	()Ljava/lang/String;	m_5045007	m_5045007	
 	m	()Ljava/lang/String;	m_1699770	m_1699770	
-c	net/minecraft/unmapped/C_3738802	net/minecraft/unmapped/C_3738802	
-	f	[I	f_2409439	f_2409439	
-	f	I	f_3068049	f_3068049	
-	f	I	f_0873984	f_0873984	
-	m	(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;	m_6933932	m_6933932	
-		p	1		p_1	
+c	net/minecraft/unmapped/C_3738802	net/minecraft/client/render/texture/SkinImageProcessor	
+	f	[I	f_2409439	data	
+	f	I	f_3068049	width	
+	f	I	f_0873984	height	
+	m	(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;	m_6933932	process	
+		p	1		image	
 	m	()V	<init>	<init>	
-	m	(IIII)V	m_4367110	m_4367110	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(IIII)V	m_4599040	m_4599040	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(IIII)V	m_4367110	setTransparent	
+		p	1		u1	
+		p	2		v1	
+		p	3		u2	
+		p	4		v2	
+	m	(IIII)V	m_4599040	setOpaque	
+		p	1		u1	
+		p	2		v1	
+		p	3		u2	
+		p	4		v2	
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_1825665	LEATHER_HELMET	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_2686491	LEATHER_CHESTPLATE	
@@ -175,98 +175,98 @@ c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_8528629	GOLDEN_LEGGINGS	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_6724609	GOLDEN_BOOTS	
 c	net/minecraft/unmapped/C_4863209
-	m	()Ljava/lang/String;	m_1801633	getDigSound	
-	m	()Ljava/lang/String;	m_4200443	getStepSound	
+	m	()Ljava/lang/String;	m_1801633	getBreaking	
+	m	()Ljava/lang/String;	m_4200443	getStepping	
 c	net/minecraft/unmapped/C_5049997
 	m	(Lnet/minecraft/unmapped/C_6607881;)F	m_8081418	m_8081418	
 		p	1		p_1	
 	m	()F	m_8119463		m_8119463
 c	net/minecraft/unmapped/C_5376418
-	f	I	f_6894446	f_6894446	
-	f	I	f_8664228	f_8664228	
+	f	I	f_6894446	phase	
+	f	I	f_8664228	phaseCount	
 	f	F	f_1231443	f_1231443	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_5445172;I)V	m_4779864	m_4779864	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(IIII)I	m_8354142	m_8354142	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	()V	m_1407652	m_1407652	
-	m	(F)V	m_8611747	m_8611747	
-		p	1		p_1	
-	m	([I)V	m_7857109		m_7857109
-		p	1			p_1
-	m	([I)V	m_6681430		m_6681430
-		p	1			p_1
-	m	([I)V	m_9961605		m_9961605
-		p	1			p_1
-	m	(IIIIII)I	m_8354142		m_8354142
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_5445172;I)V	m_4779864	placePlant	
+		p	1		world	
+		p	2		plant	
+		p	3		chance	
+	m	(IIII)I	m_8354142	placeOre	
+		p	1		ore	
+		p	2		chance	
+		p	3		minY	
+		p	4		maxY	
+	m	()V	m_1407652	nextPhase	
+	m	(F)V	m_8611747	phaseProgress	
+		p	1		progress	
+	m	([I)V	m_7857109		placeSurface
+		p	1			heightMap
+	m	([I)V	m_6681430		placeFlowers
+		p	1			heightMap
+	m	([I)V	m_9961605		placeMushrooms
+		p	1			heightMap
+	m	(IIIIII)I	m_8354142		placeOre
+		p	1			ore
+		p	2			chance
+		p	3			minY
 		p	4			p_4
 		p	5			p_5
-		p	6			p_6
-	m	(I)V	m_8611747		m_8611747
-		p	1			p_1
-	m	()V	m_9060872		m_9060872
+		p	6			maxY
+	m	(I)V	m_8611747		phaseProgress
+		p	1			percentage
+	m	()V	m_9060872		placeUndergroundLakes
 c	net/minecraft/unmapped/C_5445172
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6532724	m_6532724	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_6532724	canSurvive	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 c	net/minecraft/unmapped/C_5487116	net/minecraft/client/render/model/entity/CowModel	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_5553933
-	f	I	f_6732352	f_6732352	
-	f	I	f_5627840	f_5627840	
-	f	Lnet/minecraft/unmapped/C_7079324;	f_4330482	f_4330482	
-	f	I	f_6512025	f_6512025	
+	f	I	f_6732352	skyBrightness	
+	f	I	f_5627840	sunLight	
+	f	Lnet/minecraft/unmapped/C_7079324;	f_4330482	lightEngine	
+	f	I	f_6512025	timeOfDay	
 	f	I	f_4754574	f_4754574	
-	f	F	f_6732352		f_6732352
-	m	()V	m_4237443	m_4237443	
-	m	(F)F	m_2705875	m_2705875	
-		p	1		p_1	
-	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_2284587	getCloudColor	
-		p	1		p_1	
-	m	(F)F	m_2724250	m_2724250	
-		p	1		p_1	
-	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_0577956	m_0577956	
-		p	1		p_1	
-	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_3993231	getSkyColor	
-		p	1		p_1	
-	m	()I	m_1560346	m_1560346	
-	m	()V	m_8798715	m_8798715	
-	m	(I)V	m_9809636	m_9809636	
-		p	1		p_1	
-	m	(III)Z	m_2029997	m_2029997	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(IIII)V	m_8815383		m_8815383
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(IIIIII)V	m_7893255		m_7893255
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(III)Z	m_8512276		m_8512276
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(III)Z	m_5677809		m_5677809
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	f	F	f_6732352		skyBrightness
+	m	()V	m_4237443	updateLight	
+	m	(F)F	m_2705875	getSkyAngle	
+		p	1		tickDelta	
+	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_2284587	getSkyColor	
+		p	1		tickDelta	
+	m	(F)F	m_2724250	getTimeOfDay	
+		p	1		tickDelta	
+	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_0577956	getFogColor	
+		p	1		tickDelta	
+	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_3993231	getCloudColor	
+		p	1		tickDelta	
+	m	()I	m_1560346	getSunLight	
+	m	()V	m_8798715	close	
+	m	(I)V	m_9809636	notifySunLightChanged	
+		p	1		sunLight	
+	m	(III)Z	m_2029997	hasSkyAccess	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(IIII)V	m_8815383		updateHeightMap
+		p	1			x
+		p	2			z
+		p	3			rangeX
+		p	4			rangeZ
+	m	(IIIIII)V	m_7893255		updateLight
+		p	1			minX
+		p	2			minY
+		p	3			minZ
+		p	4			maxX
+		p	5			maxY
+		p	6			maxZ
+	m	(III)Z	m_8512276		isBrightEnoughForPassiveMobs
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(III)Z	m_5677809		isDarkEnoughForMushrooms
+		p	1			x
+		p	2			y
+		p	3			z
 c	net/minecraft/unmapped/C_5577922
 	m	()Lnet/minecraft/unmapped/C_0557736;	m_9537830		m_9537830
 c	net/minecraft/unmapped/C_5699383	net/minecraft/block/GlassBlock	
@@ -288,72 +288,79 @@ c	net/minecraft/unmapped/C_6057159
 	m	()Ljava/lang/String;	m_5045007	m_5045007	
 	m	()Ljava/lang/String;	m_1699770	m_1699770	
 c	net/minecraft/unmapped/C_6607881
-	f	I	f_0053459	produceSoundProbability	
+	f	I	f_0053459	ambientSoundTimer	
 		c	The number is initially set to -soundInterval, after this interval each tick the probability of making a sound will go up with 1 promille	
 	m	()Ljava/lang/String;	m_6274448	m_6274448	
-	m	()Ljava/lang/String;	m_4151868	getSound	
+	m	()Ljava/lang/String;	m_4151868	getAmbientSound	
 	m	()Ljava/lang/String;	m_5045007	getHurtSound	
 	m	()Ljava/lang/String;	m_1699770	getDeathSound	
-c	net/minecraft/unmapped/C_7079324	net/minecraft/unmapped/C_7079324	
-	f	I	f_1773705	f_1773705	
-	f	Ljava/util/List;	f_4303376	f_4303376	
-	f	[I	f_5882030	f_5882030	
-	f	Lnet/minecraft/unmapped/C_5553933;	f_5385225	f_5385225	
-	f	I	f_1592440	f_1592440	
-	f	I	f_8834387	f_8834387	
-	f	I	f_6808223	f_6808223	
-	f	[B	f_2498169	f_2498169	
-	f	[B	f_4192636	f_4192636	
-	f	[I	f_7568118	f_7568118	
+c	net/minecraft/unmapped/C_7079324	net/minecraft/world/LightEngine	
+	f	I	f_1773705	dirtyPositionsRemaining	
+	f	Ljava/util/List;	f_4303376	pendingPositions	
+		c	A queue of position arrays, where each position is marked dirty.\nThese arrays are used to limit the number of light changes that can happen at once.	
+	f	[I	f_5882030	dirtyPositions	
+		c	Array of ositions that are marked dirty, i.e. needing a re-calculation of the light value.\n<p>\nThis array is limited to 2^15 (~32k) positions. If any more needed, this array is added\nto the {@link pendingPositions} queue, and a new array is created. This limits the number\nof light calculations that can happen at once.	
+	f	Lnet/minecraft/unmapped/C_5553933;	f_5385225	world	
+	f	I	f_1592440	sizeX	
+	f	I	f_8834387	sizeZ	
+	f	I	f_6808223	sizeY	
+	f	[B	f_2498169	blocks	
+	f	[B	f_4192636	blockData	
+		c	Contains light in the 4 least significant bits and block metadata in the next 4 least significant bits.	
+	f	[I	f_7568118	heightMap	
 	f	Ljava/util/List;	f_6458992	f_6458992	
 	f	Ljava/util/List;	f_8250784	f_8250784	
 	f	Ljava/util/List;	f_7800333	f_7800333	
-	f	Lnet/minecraft/unmapped/C_8401487;	f_4421655	f_4421655	
+	f	Lnet/minecraft/unmapped/C_8401487;	f_4421655	sunLightUpdate	
+		c	The remaining region that requires light updates after a change in sun light.	
 	f	I	f_9134686	f_9134686	
-	f	I	f_6849912	f_6849912	
+	f	I	f_6849912	prevSunLightChange	
+		c	The change in the sun light value due to the last change in sun light.	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
-		p	1		p_1	
-	m	(IIII)V	m_0087345	m_0087345	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(I)V	m_4616966	m_4616966	
-		p	1		p_1	
-	m	(IIIIII)V	m_8976691	m_8976691	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	(IIIIII)V	m_2928521	m_2928521	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-	m	()V	m_4706545	m_4706545	
-	m	()Ljava/lang/String;	m_3359335	m_3359335	
+		p	1		world	
+	m	(IIII)V	m_0087345	updateHeightMap	
+		p	1		x	
+		p	2		z	
+		p	3		rangeX	
+		p	4		rangeZ	
+	m	(I)V	m_4616966	onSunLightChanged	
+		p	1		sunLight	
+	m	(IIIIII)V	m_8976691	updateLight	
+		p	1		minX	
+		p	2		minY	
+		p	3		minZ	
+		p	4		maxX	
+		p	5		maxY	
+		p	6		maxZ	
+	m	(IIIIII)V	m_2928521	markDirty	
+		c	Mark all positions in the given region as dirty, i.e. requiring a re-calculation of the light value.	
+		p	1		minX	
+		p	2		minY	
+		p	3		minZ	
+		p	4		maxX	
+		p	5		maxY	
+		p	6		maxZ	
+	m	()V	m_4706545	update	
+		c	Work through the next batch of light calculations.\n<p>\nFirst, the light engine handles any pending regionChanged updates. These are queued\nafter light values have changed.\n<p>\nIf there is a pending sun light update, that will be handled next. Otherwise, the\nnext pending light update region is marked as dirty. The positions in this region will\nbe queued for light calculations later on in the method.\n<br> Then, the height map will be re-calculated for the next pending height map update\nregion. If the height for any column changes, the entire column will be marked dirty.\n<p>\nThen, the light engine will work through up to 1024 passes over the {@link dirtyPositions}\nand {@link pendingPositions} queues. If the {@link dirtyPositions} queue is empty,\nit will be replaced by the next queue in {@link pendingPositions}.\n<br> For each position in the {@link dirtyPositions} queue, the light value at that\nposition is recalculated based on the sun light, neighboring light values, and the\nopacity and light emission of the block at the position.\n<br> If the light value at the position changed, each of the 6 neighboring positions\nchecks if its light value needs updating, and if so, is marked dirty.\n<p>\nLastly, the region containing all positions where the light value changed is added\nto the {@link regionChangedUpdates} queue.	
+	m	()Ljava/lang/String;	m_3359335	getDebugInfo	
 c	net/minecraft/unmapped/C_7639596
 	f	Lnet/minecraft/unmapped/C_7503776;	f_3411804	decorationModel	
 	m	(Lnet/minecraft/unmapped/C_7503776;)V	m_1881231	setDecorationModel	
 		p	1		decorationModel	
 	m	(Lnet/minecraft/unmapped/C_6607881;I)Z	m_6142922	bindTexture	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_6607881;)F	m_8081418	getYawWhileDead	
+		p	1		mob	
+		p	2		layer	
+	m	(Lnet/minecraft/unmapped/C_6607881;)F	m_8081418	getDeathYaw	
 		p	1		entity	
 	m	(Lnet/minecraft/unmapped/C_6607881;FF)I	m_0175108	getOverlayColor	
 		p	1		entity	
-		p	2		f	
+		p	2		brightness	
 		p	3		timeDelta	
 	m	()F	m_8119463		m_8119463
 	m	(Lnet/minecraft/unmapped/C_6607881;F)I	m_0175108		getOverlayColor
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_7759597	net/minecraft/unmapped/C_7759597	
+c	net/minecraft/unmapped/C_7759597	net/minecraft/client/render/texture/HttpTexture__7759597	
 	f	Ljava/lang/String;	f_2566715	f_2566715	
 	f	Lnet/minecraft/unmapped/C_3738802;	f_8477267	f_8477267	
 	f	Lnet/minecraft/unmapped/C_1812290;	f_2701465	f_2701465	
@@ -362,7 +369,7 @@ c	net/minecraft/unmapped/C_7759597	net/minecraft/unmapped/C_7759597
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	run	run	
-c	net/minecraft/unmapped/C_7961705	net/minecraft/block/Block__1	
+c	net/minecraft/unmapped/C_7961705	net/minecraft/block/Block__7961705	
 	m	(Ljava/lang/String;FF)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -391,26 +398,26 @@ c	net/minecraft/unmapped/C_8398976
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_5011830	m_5011830	
 		p	1		p_1	
 	m	()V	m_5371592	m_5371592	
-c	net/minecraft/unmapped/C_8401487	net/minecraft/unmapped/C_8401487	
-	f	I	f_9889018	f_9889018	
-	f	I	f_9201346	f_9201346	
-	f	I	f_8633789	f_8633789	
-	f	I	f_4863784	f_4863784	
-	f	I	f_8552877	f_8552877	
-	f	I	f_4086433	f_4086433	
+c	net/minecraft/unmapped/C_8401487	net/minecraft/world/LightEngine__LightUpdate	
+	f	I	f_9889018	minX	
+	f	I	f_9201346	minY	
+	f	I	f_8633789	minZ	
+	f	I	f_4863784	maxX	
+	f	I	f_8552877	maxY	
+	f	I	f_4086433	maxZ	
 	m	(Lnet/minecraft/unmapped/C_7079324;IIIIII)V	<init>	<init>	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
+		p	2		minX	
+		p	3		minY	
+		p	4		minZ	
+		p	5		maxX	
+		p	6		maxY	
+		p	7		maxZ	
 c	net/minecraft/unmapped/C_8980628
 	m	(Ljava/lang/String;Ljava/lang/String;)V	m_5786061	bindHttpTexture	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/unmapped/C_9139005	net/minecraft/client/render/entity/PlayerEntityRenderer	
+		p	1		url	
+		p	2		backup	
+c	net/minecraft/unmapped/C_9139005	net/minecraft/client/render/entity/PlayerRenderer	
 	f	Lnet/minecraft/unmapped/C_2313930;	f_4448103	f_4448103	
 	f	Lnet/minecraft/unmapped/C_2313930;	f_9975077	f_9975077	
 	m	()V	<init>	<init>	
@@ -418,17 +425,17 @@ c	net/minecraft/unmapped/C_9139005	net/minecraft/client/render/entity/PlayerEnti
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_9232749
-	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_8280864	m_8280864	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_5011830	m_5011830	
-		p	1		p_1	
-	m	()V	m_5371592	m_5371592	
+	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_8280864	notifyEntityAdded	
+		p	1		entity	
+	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_5011830	notifyEntityRemoved	
+		p	1		entity	
+	m	()V	m_5371592	notifySunLightChanged	
 c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2045457	dropItem	
-		p	1		p_1	
+		p	1		item	
 	m	(Lnet/minecraft/unmapped/C_2454309;Z)V	m_2211846	dropItem	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		item	
+		p	2		dead	
 	m	(Lnet/minecraft/unmapped/C_2454309;)V	m_2211846		dropItem
 		p	1			p_1
 c	net/minecraft/unmapped/C_9761743
@@ -454,18 +461,18 @@ c	net/minecraft/unmapped/C_9761743
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_1081514	m_1081514	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-c	net/minecraft/unmapped/C_9895803	net/minecraft/block/Block__2	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_1081514	canSurviveOrBreak	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+c	net/minecraft/unmapped/C_9895803	net/minecraft/block/Block__9895803	
 	m	(Ljava/lang/String;FF)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	()Ljava/lang/String;	m_1801633	m_1801633	
-c	net/minecraft/client/C_7759597		net/minecraft/client/C_7759597
+c	net/minecraft/client/C_7759597		net/minecraft/client/Minecraft__7759597
 	f	Lnet/minecraft/client/C_5664496;	f_0270155		f_0270155
 	m	(Lnet/minecraft/client/C_5664496;)V	<init>		<init>
 		p	1			p_1

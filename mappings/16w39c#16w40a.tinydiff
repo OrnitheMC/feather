@@ -1,11 +1,12 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0539808
-	f	I	f_6659111	fireResistance	
+	f	I	f_6659111	safeOnFireTime	
+		c	The number of ticks an entity can stay in a fire and step out without staying on fire.	
 	m	()I	m_8965970		getImmuneToFireTime
 c	net/minecraft/unmapped/C_1400833
 	m	()Lnet/minecraft/unmapped/C_0557736;	m_2196993	offset	
 c	net/minecraft/unmapped/C_1846829	net/minecraft/client/render/block/entity/EndGatewayRenderer	net/minecraft/client/render/block/entity/EndPortalRenderer
-	f	Lnet/minecraft/unmapped/C_0561170;	f_8660299	f_8660299	
+	f	Lnet/minecraft/unmapped/C_0561170;	f_8660299	END_GATEWAY_BEAM_LOCATION	
 	m	(Lnet/minecraft/unmapped/C_8331024;DDDFI)V	m_8437148	m_8437148	
 		p	1		p_1	
 		p	2		p_2	
@@ -27,13 +28,18 @@ c	net/minecraft/unmapped/C_1846829	net/minecraft/client/render/block/entity/EndG
 	m	(D)I	m_5945063		m_5945063
 		p	1			p_1
 	m	()F	m_2221734		m_2221734
+	m	(FFFF)Ljava/nio/FloatBuffer;	m_5818599	m_5818599	getBuffer
+		p	1		p_1	f1
+		p	2		p_2	f2
+		p	3		p_3	f3
+		p	4		p_4	f4
 c	net/minecraft/unmapped/C_1951812
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_9590849;)V	m_3274896	tryEatCake	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_9590849;)V	m_3274896	eat	
 		p	1		world	
 		p	2		pos	
 		p	3		state	
 		p	4		player	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_9590849;)Z	m_3274896		tryEatCake
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_9590849;)Z	m_3274896		eat
 		p	1			world
 		p	2			pos
 		p	3			state
@@ -90,7 +96,7 @@ c	net/minecraft/unmapped/C_3366538
 	f	I	f_3305497	blockX	
 	f	I	f_8257549	blockY	
 	f	I	f_1275318	blockZ	
-	f	Lnet/minecraft/unmapped/C_1241852;	f_2549439	inBlock	
+	f	Lnet/minecraft/unmapped/C_1241852;	f_2549439	block	
 	f	Z	f_4840193	inGround	
 c	net/minecraft/unmapped/C_4116648
 	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5424842		applyEnchantmentEffects
@@ -174,17 +180,17 @@ c	net/minecraft/unmapped/C_7956549
 c	net/minecraft/unmapped/C_8124234
 	m	()Z	m_8740684		m_8740684
 c	net/minecraft/unmapped/C_8159814
-	m	(I)V	m_0543260	m_0543260	
+	m	(I)V	m_0543260	setMaxTimeWithoutVisibility	
 		p	1		p_1	
-	m	(I)Lnet/minecraft/unmapped/C_8159814;	m_0543260		m_0543260
-		p	1			p_1
+	m	(I)Lnet/minecraft/unmapped/C_8159814;	m_0543260		setMaxTimeWithoutVisibility
+		p	1			ticks
 c	net/minecraft/unmapped/C_8203440	net/minecraft/client/render/block/entity/EndPortalRenderer	
 	f	Lnet/minecraft/unmapped/C_0561170;	f_3849917	END_SKY_LOCATION	
 	f	Lnet/minecraft/unmapped/C_0561170;	f_7655492	END_PORTAL_LOCATION	
 	f	Ljava/util/Random;	f_2247209	RANDOM	
-	f	Ljava/nio/FloatBuffer;	f_3303923	glFloatBuffer	
+	f	Ljava/nio/FloatBuffer;	f_3303923	buffer	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_8792738;DDDFI)V	m_0582492	render	
+	m	(Lnet/minecraft/unmapped/C_8792738;DDDFI)V	m_0582492	m_0582492	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
@@ -192,10 +198,10 @@ c	net/minecraft/unmapped/C_8203440	net/minecraft/client/render/block/entity/EndP
 		p	8		p_8	
 		p	9		p_9	
 	m	(FFFF)Ljava/nio/FloatBuffer;	m_5898335	getBuffer	
-		p	1		r	
-		p	2		g	
-		p	3		b	
-		p	4		a	
+		p	1		f1	
+		p	2		f2	
+		p	3		f3	
+		p	4		f4	
 	m	(Lnet/minecraft/unmapped/C_3622326;DDDFI)V	m_2494919	m_2494919	
 		p	1		p_1	
 		p	2		p_2	
@@ -214,8 +220,8 @@ c	net/minecraft/unmapped/C_9590849
 	m	(Z)V	m_5524048		disableShield
 		p	1			always
 c	net/minecraft/unmapped/C_9751000
-	m	(Lnet/minecraft/unmapped/C_6912424;)V	m_2136320		m_2136320
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_6912424;)V	m_2136320		translateArm
+		p	1			arm
 c	net/minecraft/unmapped/C_0199874		net/minecraft/client/render/debug/CollisionRenderer
 	f	Lnet/minecraft/unmapped/C_8105098;	f_8177959		minecraft
 	f	Lnet/minecraft/unmapped/C_9590849;	f_1445255		player
@@ -248,3 +254,8 @@ c	net/minecraft/unmapped/C_4522306		net/minecraft/client/render/block/entity/End
 		p	8			p_8
 		p	9			p_9
 	m	()V	<clinit>		<clinit>
+c	net/minecraft/unmapped/C_3628668
+	f	Lnet/minecraft/unmapped/C_1241852;	f_4590230	SHULKER_BOX	WHITE_SHULKER_BOX
+c	net/minecraft/unmapped/C_8331024
+	m	(Lnet/minecraft/unmapped/C_3544601;)Z	m_5623564	shouldRenderFace	m_5623564
+		p	1		face	p_1

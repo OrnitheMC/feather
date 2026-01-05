@@ -21,7 +21,7 @@ c	net/minecraft/server/MinecraftServer
 	m	()Ljava/util/concurrent/Executor;	m_5516089		m_5516089
 c	net/minecraft/server/MinecraftServer$1
 	f	Lnet/minecraft/server/MinecraftServer;	f_0869331	f_0869331	
-	f	J	f_4113554		f_4113554
+	f	J	f_4113554		lastLogTime
 	f	Lnet/minecraft/server/MinecraftServer;	f_6096116		f_6096116
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/ForkJoinPool;)V	<init>	<init>	
 		p	1		p_1	
@@ -38,7 +38,7 @@ c	net/minecraft/server/MinecraftServer$1
 	m	(Lnet/minecraft/unmapped/C_9550253;)V	m_9292931		m_9292931
 		p	1			p_1
 c	net/minecraft/server/MinecraftServer$2
-	f	J	f_4113554	f_4113554	
+	f	J	f_4113554	lastLogTime	
 	f	Lnet/minecraft/server/MinecraftServer;	f_6096116	f_6096116	
 	f	Lnet/minecraft/unmapped/C_1555023;	f_5439840		f_5439840
 	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>	
@@ -103,25 +103,25 @@ c	net/minecraft/unmapped/C_0640744
 		p	0			p_0
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_0640744$C_1442067
-	m	(Ljava/util/List;)V	m_9599999	appendTexturesToList	
-		p	1		list	
-	m	(Ljava/util/function/Consumer;)V	m_9599999		appendTexturesToList
+	m	(Ljava/util/List;)V	m_9599999	collectRegions	
+		p	1		regions	
+	m	(Ljava/util/function/Consumer;)V	m_9599999		collectRegions
 		p	1			p_1
 c	net/minecraft/unmapped/C_0640744$C_6869909
-	f	I	f_4361494	maxSize	
-	f	Z	f_3568751	tallTexture	
+	f	I	f_4361494	mipLevel	
+	f	Z	f_3568751	rotated	
 	f	F	f_9509296	size	
 	m	()Lnet/minecraft/unmapped/C_4257480;	m_0939230	getSprite	
-	m	()I	m_3997617	mainTextureSideSizeCalculatons	
-	m	()I	m_1939906	secondaryTextureSideSizeCalculatons	
-	m	()V	m_0707392	swapMainTextureSideSize	
-	m	()Z	m_7029547	getTallTexture	
+	m	()I	m_3997617	getWidth	
+	m	()I	m_1939906	getHeight	
+	m	()V	m_0707392	toggleRotated	
+	m	()Z	m_7029547	isRotated	
 	m	(I)V	m_8602652	setSize	
 		p	1		size	
 	m	(Lnet/minecraft/unmapped/C_0640744$C_6869909;)I	m_4974555	compareTo	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		holder	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_0876962
 	m	(Lnet/minecraft/unmapped/C_0561170;)Ljava/util/concurrent/CompletableFuture;	m_1459817	m_1459817	
 		p	1		p_1	
@@ -177,8 +177,8 @@ c	net/minecraft/unmapped/C_1321581
 		p	1		painting	
 		p	2		width	
 		p	3		height	
-		p	4		widthOffset	
-		p	5		heightOffset	
+		p	4		u	
+		p	5		v	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_6435650;IILnet/minecraft/unmapped/C_4257480;Lnet/minecraft/unmapped/C_4257480;)V	m_7948484		renderPainting
 		p	1			p_1
@@ -187,10 +187,10 @@ c	net/minecraft/unmapped/C_1321581
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_1353256
-	m	(FFF)F	m_3381082	m_3381082	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(FFF)F	m_3381082	lerpAngle	
+		p	1		angle	
+		p	2		min	
+		p	3		max	
 c	net/minecraft/unmapped/C_1549236
 c	net/minecraft/unmapped/C_1549236$C_7249856
 	f	Lnet/minecraft/unmapped/C_1549236;	f_4934664		f_4934664
@@ -267,19 +267,20 @@ c	net/minecraft/unmapped/C_2248454$C_4125937		C_4125937
 		p	1			p_1
 c	net/minecraft/unmapped/C_2348249
 	f	J	f_4644638		f_4644638
-	m	(IIF)V	m_7905474		m_7905474
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(IIF)V	m_7905474		render
+		p	1			mouseX
+		p	2			mouseY
+		p	3			tickDelta
 	m	()V	m_2674875		m_2674875
 	m	()Ljava/lang/String;	m_2303829		m_2303829
 	m	(IIZ)V	m_0034878		m_0034878
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Ljava/lang/String;)V	m_3290795		m_3290795
-		p	1			p_1
-	m	()Ljava/lang/String;	m_6692220		m_6692220
+	m	(Ljava/lang/String;)V	m_3290795		setMessage
+		p	1			message
+	m	()Ljava/lang/String;	m_6692220		getMessage
+	m	(IIF)V	m_5350167	render	renderButton
 c	net/minecraft/unmapped/C_2528621
 	f	Z	f_0908226		f_0908226
 	m	(Ljava/util/concurrent/CompletableFuture;)Ljava/lang/Object;	m_4223467		m_4223467
@@ -520,11 +521,11 @@ c	net/minecraft/unmapped/C_3176637$C_5046762		C_5046762
 		p	5			p_5
 		p	6			p_6
 c	net/minecraft/unmapped/C_3325952
-	f	Lnet/minecraft/unmapped/C_3755722;	f_0590420		f_0590420
+	f	Lnet/minecraft/unmapped/C_3755722;	f_0590420		FOX_SPAWN_EGG
 c	net/minecraft/unmapped/C_3478281
-	f	Lnet/minecraft/unmapped/C_0640744$C_6869909;	f_1600165	stitchHolder	
+	f	Lnet/minecraft/unmapped/C_0640744$C_6869909;	f_1600165	sprite	
 	m	(Lnet/minecraft/unmapped/C_0640744$C_6869909;Ljava/lang/String;)V	<init>	<init>	
-		p	1		stitchHolder	
+		p	1		sprite	
 		p	2		reason	
 	m	(Lnet/minecraft/unmapped/C_4257480;)V	<init>		<init>
 		p	1			p_1
@@ -677,7 +678,7 @@ c	net/minecraft/unmapped/C_4594583
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_4624793
-	f	Lnet/minecraft/unmapped/C_7674520;	f_2824279		f_2824279
+	f	Lnet/minecraft/unmapped/C_7674520;	f_2824279		OPEN
 c	net/minecraft/unmapped/C_4645060
 	m	(Lnet/minecraft/unmapped/C_6577431;Lnet/minecraft/unmapped/C_5142493;)Ljava/util/concurrent/CompletableFuture;	m_4229852	m_4229852	
 		p	1		p_1	
@@ -816,17 +817,17 @@ c	net/minecraft/unmapped/C_5571887
 	f	D	f_8335754	max	
 	f	Lnet/minecraft/unmapped/C_8105098;	f_1826988		f_1826988
 	m	(IIILnet/minecraft/unmapped/C_1331819$C_9500154;)V	<init>	<init>	
-		p	1		x	
-		p	2		y	
-		p	3		id	
+		p	1		id	
+		p	2		x	
+		p	3		y	
 		p	4		option	
 	m	(IIILnet/minecraft/unmapped/C_1331819$C_9500154;DD)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	7		p_7	
+		p	1		id	
+		p	2		x	
+		p	3		y	
+		p	4		option	
+		p	5		min	
+		p	7		max	
 	m	(IIIIILnet/minecraft/unmapped/C_1331819$C_9500154;DD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -854,7 +855,7 @@ c	net/minecraft/unmapped/C_5571887
 		p	7			p_7
 	m	(Lnet/minecraft/unmapped/C_5819357;)V	m_1301911		m_1301911
 		p	1			p_1
-	m	()V	m_7531467		m_7531467
+	m	()V	m_7531467		update
 	m	()V	m_8748433		m_8748433
 c	net/minecraft/unmapped/C_5819357
 	m	(Lnet/minecraft/unmapped/C_6577431;Lnet/minecraft/unmapped/C_5142493;)Ljava/util/concurrent/CompletableFuture;	m_4229852	m_4229852	
@@ -1020,9 +1021,9 @@ c	net/minecraft/unmapped/C_6981630$C_2633700	SoundSliderWidget
 	f	Lnet/minecraft/unmapped/C_6981630;	f_7915614	soundScreen	
 	m	(Lnet/minecraft/unmapped/C_6981630;IIILnet/minecraft/unmapped/C_7541710;Z)V	<init>	<init>	
 		p	1		p_1	
-		p	2		x	
-		p	3		y	
-		p	4		id	
+		p	2		id	
+		p	3		x	
+		p	4		y	
 		p	5		category	
 		p	6		doubleSlider	
 	m	(Z)I	m_8274414	m_8274414	
@@ -1226,13 +1227,13 @@ c	net/minecraft/unmapped/C_9913447$3	3
 		p	0		p_0	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_9913447$4	4	
-	f	Lnet/minecraft/unmapped/C_2673437;	f_0065883	delegate	
+	f	Lnet/minecraft/unmapped/C_2673437;	f_0065883	fallback	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_3335560;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2454309;	m_3792046	m_3792046	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_9913447$5	5	
-	f	Lnet/minecraft/unmapped/C_2673437;	f_5781542	delegate	
+	f	Lnet/minecraft/unmapped/C_2673437;	f_5781542	fallback	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_3335560;Lnet/minecraft/unmapped/C_2454309;)Lnet/minecraft/unmapped/C_2454309;	m_3792046	m_3792046	
 		p	1		p_1	
@@ -1269,14 +1270,14 @@ c	net/minecraft/unmapped/C_9913447$C_5267093	DispenseShulkerBoxBehavior
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_9913447$1;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_9913447$C_6708506	C_6708506	
-	f	Lnet/minecraft/unmapped/C_3544601;	f_7422862	f_7422862	
+c	net/minecraft/unmapped/C_9913447$C_6708506	ShulkerBoxPlaceContext	
+	f	Lnet/minecraft/unmapped/C_3544601;	f_7422862	facing	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_3544601;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		world	
+		p	2		pos	
+		p	3		facing	
+		p	4		item	
+		p	5		face	
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_4809133	m_4809133	
 	m	()Z	m_5064120	m_5064120	
 	m	()Z	m_3595134	m_3595134	
@@ -1373,8 +1374,8 @@ c	net/minecraft/unmapped/C_5310124		net/minecraft/unmapped/C_5310124
 		p	6			p_6
 		p	7			p_7
 		p	8			p_8
-c	net/minecraft/unmapped/C_5919495		net/minecraft/unmapped/C_5919495
-	f	Lnet/minecraft/unmapped/C_1331819$C_9500154;	f_4310241		f_4310241
+c	net/minecraft/unmapped/C_5919495		net/minecraft/client/gui/widget/DoubleOptionSliderWidget
+	f	Lnet/minecraft/unmapped/C_1331819$C_9500154;	f_4310241		option
 	m	(Lnet/minecraft/unmapped/C_8105098;IIILnet/minecraft/unmapped/C_1331819$C_9500154;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1584,7 +1585,7 @@ c	net/minecraft/unmapped/C_6710431$C_1081953		C_1081953
 	f	Lnet/minecraft/unmapped/C_6710431;	f_3274156		f_3274156
 	m	(Lnet/minecraft/unmapped/C_6710431;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_9878685		m_9878685
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_9878685		test
 		p	1			p_1
 	m	(Ljava/util/UUID;)Z	m_7831859		m_7831859
 		p	1			p_1
@@ -1854,8 +1855,8 @@ c	net/minecraft/unmapped/C_9183063		net/minecraft/unmapped/C_9183063
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-c	net/minecraft/unmapped/C_9553536		net/minecraft/unmapped/C_9553536
-	f	Lnet/minecraft/unmapped/C_3544601;	f_7422862		f_7422862
+c	net/minecraft/unmapped/C_9553536		net/minecraft/unmapped/ShulkerBoxPlaceContext
+	f	Lnet/minecraft/unmapped/C_3544601;	f_7422862		facing
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_3544601;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2

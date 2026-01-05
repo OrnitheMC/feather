@@ -1,9 +1,9 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
 	f	Lnet/minecraft/unmapped/C_1780451;	f_5977907	f_5977907	
-	m	(Ljava/lang/String;)V	m_5040639	m_5040639	
-		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_9693816;	m_3821531		m_3821531
+	m	(Ljava/lang/String;)V	m_5040639	removeWorld	
+		p	1		message	
+	m	()Lnet/minecraft/unmapped/C_9693816;	m_3821531		getOpenGlCapabilities
 c	net/minecraft/unmapped/C_0096633
 	m	()Z	m_8707482	m_8707482	
 c	net/minecraft/unmapped/C_0124899
@@ -47,17 +47,18 @@ c	net/minecraft/unmapped/C_1161898
 c	net/minecraft/unmapped/C_1189578
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_1331819
-	f	I	f_3094045	debugEnabled	
-	f	Z	f_3094045		debugEnabled
+	f	I	f_3094045	perspective	
+		c	Camera perspective (0 = first person, 1 = second person, 2 = third person)	
+	f	Z	f_3094045		perspective
 c	net/minecraft/unmapped/C_1498011
 	m	()I	m_2548208	m_2548208	
 c	net/minecraft/unmapped/C_1753171
 	m	()I	m_2548208	m_2548208	
-c	net/minecraft/unmapped/C_1780451	net/minecraft/unmapped/C_1780451	
-	f	[F	f_9588025	f_9588025	
-	f	[F	f_7703886	f_7703886	
-	f	[F	f_0150761	f_0150761	
-	f	[F	f_2384782	f_2384782	
+c	net/minecraft/unmapped/C_1780451	net/minecraft/client/render/texture/MissingSprite	
+	f	[F	f_9588025	current	
+	f	[F	f_7703886	next	
+	f	[F	f_0150761	heat	
+	f	[F	f_2384782	heatDelta	
 	m	()V	<init>	<init>	
 	m	()V	m_5407865	m_5407865	
 c	net/minecraft/unmapped/C_1925128
@@ -65,7 +66,7 @@ c	net/minecraft/unmapped/C_1925128
 		p	1		p_1	
 c	net/minecraft/unmapped/C_2018497
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
-c	net/minecraft/unmapped/C_2082251	net/minecraft/entity/thrown/ThrownEntity	
+c	net/minecraft/unmapped/C_2082251	net/minecraft/entity/projectile/EnderPearlEntity	
 	f	I	f_6099129	blockX	
 	f	I	f_8168265	blockY	
 	f	I	f_8682074	blockZ	
@@ -88,12 +89,12 @@ c	net/minecraft/unmapped/C_2082251	net/minecraft/entity/thrown/ThrownEntity
 		p	2		x	
 		p	4		y	
 		p	6		z	
-	m	(DDDFF)V	m_3686906	m_3686906	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
+	m	(DDDFF)V	m_3686906	thrown	
+		p	1		velocityX	
+		p	3		velocityY	
+		p	5		velocityZ	
+		p	7		power	
+		p	8		variance	
 	m	(DDD)V	m_4212338	m_4212338	
 		p	1		p_1	
 		p	3		p_3	
@@ -113,7 +114,7 @@ c	net/minecraft/unmapped/C_2363721
 c	net/minecraft/unmapped/C_2454309
 	f	Lnet/minecraft/unmapped/C_2018497;	f_5114106	nbt	
 	m	()Z	m_9612890	hasNbt	
-	m	()Lnet/minecraft/unmapped/C_2018497;	m_0522829	getRarity	
+	m	()Lnet/minecraft/unmapped/C_2018497;	m_0522829	getNbt	
 	m	()Ljava/util/List;	m_7795211	getTooltip	
 	m	()Z	m_5258145	hasEnchantmentGlint	
 	m	()Ljava/lang/String;	m_7696981		getTranslationKey
@@ -122,19 +123,19 @@ c	net/minecraft/unmapped/C_2670477
 	m	(JIZZ)V	<init>	<init>	
 		p	1		seed	
 		p	3		gameMode	
-		p	4		allowStructures	
+		p	4		generateStructures	
 		p	5		hardcore	
 	m	()Z	m_5408639	isHardcore	
 	m	(JIZ)V	<init>		<init>
-		p	1			p_1
-		p	3			p_3
-		p	4			p_4
+		p	1			seed
+		p	3			gameMode
+		p	4			generateStructures
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_3241855;III)Z	m_5531917	tessellateCauldron	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(Lnet/minecraft/unmapped/C_3241855;III)Z	m_5531917	tesselateCauldron	
+		p	1		block	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 c	net/minecraft/unmapped/C_3225627
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	copy	
 c	net/minecraft/unmapped/C_3241855	net/minecraft/block/CauldronBlock	
@@ -158,7 +159,7 @@ c	net/minecraft/unmapped/C_3242141
 c	net/minecraft/unmapped/C_3325732
 	m	()I	m_2548208	m_2548208	
 c	net/minecraft/unmapped/C_3342272
-	m	()V	m_7816704	m_7816704	
+	m	()V	m_7816704	renderStatusEffects	
 c	net/minecraft/unmapped/C_3481595
 	f	Z	f_3744408	hasDrops	
 	m	(IIILnet/minecraft/unmapped/C_8048208;Z)V	<init>	<init>	
@@ -183,11 +184,11 @@ c	net/minecraft/unmapped/C_3488550
 		p	2		row	
 	m	()I	m_8279418	getId	
 	m	()Z	m_8707482	isInstant	
-	m	()Ljava/lang/String;	m_8870654	m_8870654	
+	m	()Ljava/lang/String;	m_8870654	getTranslationKey	
 	m	()Z	m_3615604	hasIcon	
 	m	()I	m_8688083	getIconIndex	
 	m	()Z	m_1740831	isUsable	
-	m	()Lnet/minecraft/unmapped/C_3488550;	m_4673345	m_4673345	
+	m	()Lnet/minecraft/unmapped/C_3488550;	m_4673345	setUsable	
 	m	(Lnet/minecraft/unmapped/C_0658987;)Ljava/lang/String;	m_6897358	getDurationString	
 		p	0		instance	
 c	net/minecraft/unmapped/C_3755722
@@ -206,13 +207,13 @@ c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_9975817	RECORD_STRAD	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_6144939	RECORD_WARD	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_1852205	RECORD_11	
-	f	Ljava/lang/String;	f_6062983	brewingRecipe	
+	f	Ljava/lang/String;	f_6062983	potionIngredient	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/lang/String;	m_4128647	getDescription	
 		p	1		stack	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3755722;	m_0875621	setBrewingRecipe	
-		p	1		recipe	
-	m	()Ljava/lang/String;	m_7871327	getBrewingRecipe	
-	m	()Z	m_1042816	hasBrewingRecipe	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_3755722;	m_0875621	setPotionIngredient	
+		p	1		ingredient	
+	m	()Ljava/lang/String;	m_7871327	asPotionIngredient	
+	m	()Z	m_1042816	isPotionIngredient	
 	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/util/List;)V	m_5450964	addHoverText	
 		p	1		stack	
 		p	2		tooltip	
@@ -241,12 +242,12 @@ c	net/minecraft/unmapped/C_4405393
 		p	9		p_9	
 	m	()Z	m_1314353	isHardcore	
 	m	(Ljava/lang/String;Ljava/lang/String;JJIZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-		p	8			p_8
+		p	1			saveName
+		p	2			name
+		p	3			lastPlayed
+		p	5			size
+		p	7			gameMode
+		p	8			sameVersion
 c	net/minecraft/unmapped/C_4725355	net/minecraft/block/entity/CauldronBlockEntity	
 	f	I	f_5327088	liquidLevel	
 	f	I	f_4737460	liquidId	
@@ -290,15 +291,15 @@ c	net/minecraft/unmapped/C_5318159
 c	net/minecraft/unmapped/C_5362195
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_5385258
-	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2454309;	m_5940976	readItemStack	
+	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2454309;	m_5940976	readItem	
 		p	1		input	
-	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/io/DataOutputStream;)V	m_1303332	writeItemStack	
-		p	1		output	
+	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/io/DataOutputStream;)V	m_1303332	writeItem	
+		p	1		item	
 		p	2		output	
 	m	(Ljava/io/DataInputStream;)Lnet/minecraft/unmapped/C_2018497;	m_7758725	readCompound	
 		p	1		input	
 	m	(Lnet/minecraft/unmapped/C_2018497;Ljava/io/DataOutputStream;)V	m_4581587	writeCompound	
-		p	1		output	
+		p	1		nbt	
 		p	2		output	
 c	net/minecraft/unmapped/C_5528202
 	m	()Ljava/lang/String;	m_6172366	getName	
@@ -340,13 +341,13 @@ c	net/minecraft/unmapped/C_6607881
 	m	(Lnet/minecraft/unmapped/C_1161898;I)I	m_6227307	damageAfterEffectsAndEnchantments	
 		p	1		source	
 		p	2		amount	
-	m	(Lnet/minecraft/unmapped/C_2454309;I)I	m_7366244	getIconSprite	
-		p	1		stack	
-		p	2		id	
+	m	(Lnet/minecraft/unmapped/C_2454309;I)I	m_7366244	getItemSprite	
+		p	1		item	
+		p	2		layer	
 	m	()V	m_5387118	clearStatusEffects	
 	m	()Ljava/util/Collection;	m_5724290	getStatusEffects	
-	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_7366244		getIconSprite
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_7366244		getItemSprite
+		p	1			item
 c	net/minecraft/unmapped/C_6684392
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_6815022
@@ -384,12 +385,12 @@ c	net/minecraft/unmapped/C_7159708
 		p	4			p_4
 c	net/minecraft/unmapped/C_7203066
 	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_2454309;I)V	m_6454881	render	
-		p	1		entity	
-		p	2		stack	
-		p	3		stage	
+		p	1		mob	
+		p	2		itemInHand	
+		p	3		layer	
 	m	(Lnet/minecraft/unmapped/C_6607881;Lnet/minecraft/unmapped/C_2454309;)V	m_6454881		render
-		p	1			p_1
-		p	2			p_2
+		p	1			mob
+		p	2			itemInHand
 c	net/minecraft/unmapped/C_7450921
 	f	Z	f_9583246	allowCommands	
 c	net/minecraft/unmapped/C_7887747
@@ -401,7 +402,7 @@ c	net/minecraft/unmapped/C_8052742
 	m	()Lnet/minecraft/unmapped/C_3225627;	m_8718046	m_8718046	
 c	net/minecraft/unmapped/C_8253973
 	f	I	f_4077939	f_4077939	
-	f	I	f_1109299	loveTicks	
+	f	I	f_1109299	inLoveTimer	
 	f	I	f_0739074	breedingTicks	
 	m	()V	m_0095412	m_0095412	
 	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_3419281	m_3419281	
@@ -409,7 +410,7 @@ c	net/minecraft/unmapped/C_8253973
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_8253973;)V	m_6743426	breed	
 		c	Breed with the other animal and create heart particles.	
-		p	1		other	
+		p	1		mate	
 	m	(Lnet/minecraft/unmapped/C_8253973;)Lnet/minecraft/unmapped/C_8253973;	m_4865538	makeChild	
 		p	1		other	
 	m	(Lnet/minecraft/unmapped/C_0539808;F)V	m_6174133	m_6174133	
@@ -417,14 +418,14 @@ c	net/minecraft/unmapped/C_8253973
 		p	2		p_2	
 	m	()Lnet/minecraft/unmapped/C_0539808;	m_4575743	m_4575743	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_5991226	isBreedingItem	
-		p	1		stack	
+		p	1		item	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_4185556	m_4185556	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8492283
 	m	()I	m_2548208	m_2548208	
 	m	(Lnet/minecraft/unmapped/C_8253973;)Lnet/minecraft/unmapped/C_8253973;	m_4865538	m_4865538	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_8523418	net/minecraft/item/AppleItem	
+c	net/minecraft/unmapped/C_8523418	net/minecraft/item/GoldenAppleItem	
 	m	(IIFZ)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -433,11 +434,11 @@ c	net/minecraft/unmapped/C_8523418	net/minecraft/item/AppleItem
 	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_7513964	m_7513964	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8574306	net/minecraft/item/PotionItem	
-	f	Ljava/util/HashMap;	f_1306318	potionEffectCache	
+	f	Ljava/util/HashMap;	f_1306318	potionEffectsByMetadataCache	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2454309;)Ljava/util/List;	m_9386117	getPotionEffects	
-		p	1		item	
+		p	1		stack	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_9590849;)Lnet/minecraft/unmapped/C_2454309;	m_2771990	m_2771990	
 		p	1		p_1	
 		p	2		p_2	
@@ -465,15 +466,15 @@ c	net/minecraft/unmapped/C_8574306	net/minecraft/item/PotionItem
 	m	(Lnet/minecraft/unmapped/C_2454309;Ljava/util/List;)V	m_5450964	m_5450964	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_8595425	net/minecraft/entity/living/effect/PotionHelper	
-	f	Ljava/util/HashMap;	f_2450676	RECIPES	
-	f	Ljava/util/HashMap;	f_7265311	EFFECT_CACHE	
-	f	[Ljava/lang/String;	f_4669772	NAMES	
+c	net/minecraft/unmapped/C_8595425	net/minecraft/entity/mob/effect/PotionHelper	
+	f	Ljava/util/HashMap;	f_2450676	DURATION_RECIPES	
+	f	Ljava/util/HashMap;	f_7265311	AMPLIFIER_RECIPES	
+	f	[Ljava/lang/String;	f_4669772	PREFIXES	
 	m	()V	<init>	<init>	
 	m	(II)Z	m_0968859	m_0968859	
 		p	0		p_0	
 		p	1		p_1	
-	m	(II)Z	m_9871096	hasFlag	
+	m	(II)Z	m_9871096	isFlagEnabled	
 		p	0		metadata	
 		p	1		flag	
 	m	(II)I	m_6432419	getFlag	
@@ -482,44 +483,46 @@ c	net/minecraft/unmapped/C_8595425	net/minecraft/entity/living/effect/PotionHelp
 	m	(II)I	m_8565685	getFlagInverse	
 		p	0		metadata	
 		p	1		flag	
-	m	(I)I	m_0351358	getId	
+	m	(I)I	m_0351358	getPrefixIndex	
 		p	0		metadata	
 	m	(I)I	m_7657095	m_7657095	
 		p	0		p_0	
-	m	(I)Ljava/lang/String;	m_1850031	getName	
+	m	(I)Ljava/lang/String;	m_1850031	getPrefix	
 		p	0		metadata	
-	m	(ZZZIIII)I	m_5337533	updatePotionEffectMetadata	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		flag	
-		p	5		p_5	
+	m	(ZZZIIII)I	m_5337533	evaluateMetadata	
+		p	0		invert	
+		p	1		multiply	
+		p	2		negate	
+		p	3		operator	
+		p	4		operand	
+		p	5		multiplier	
 		p	6		metadata	
-	m	(I)I	m_0348258	getAmountOfOnes	
-		p	0		p_0	
-	m	(Ljava/lang/String;III)I	m_7277715	getEffectAmplifier	
+	m	(I)I	m_0348258	countSetFlags	
+		p	0		metadata	
+	m	(Ljava/lang/String;III)I	m_7277715	parseRecipe	
+		c	Parses the given potion using the given recipe between the given bounds, then returns\na number based on which conditions of the recipe are met.\n<p>\nThe recipe string encodes how to parse the potion by reading specific "flags" on the\nitem metadata. A flag {@code n} represents the {@code n}th least significant bit in\nthe item metadata.\n<p>\nThe recipe string reads like an expression: a series of sub-expressions and '|' (OR)\nand '&' (AND) operators. It is evaluated from left to right, and the operators act\nsimilarly to their boolean operator equivalents.\n<br>- '|': evaluates to the preceding expression if that evaluates to more than\n{@code 0}, otherwise evaluates to the succeeding expression\n<br>- '&': evaluates to {@code 0} if either the preceding or succeeding expression\nevaluates to {@code 0}, otherwise evaluates to the largest between the two, picking\nthe second in case they are equal\n<p>\nThe sub-expressions are also evaluated from left to right, as a series of\nstatements, where each statement is an operator-number pair. Each statement is\nevaluated independently, and the values of all statements added together give the\nvalue of the entire sub-expression. Any operator without a number directly following\nit is ignored.\n<p>\nThere are three operators that interpret the following number as a flag:\n<br>- '+': evaluates to {@code 1} if the flag is set in the metadata, otherwise\n{@code 0} (can be implicit for the first statement of a sub-expression)\n<br>- '-': evaluates to {@code -1} if the flag is set in the metadata, otherwise\n{@code 0}\n<br>- '!': evaluates to {@code 0} if the flag is set in the metadata, otherwise\n{@code 1}\n<p>\nThere are three comparison operators:\n<br>- '=': evaluates to {@code 1} if the number of set flags in the metadata is\nequal to the operand, otherwise {@code 0}\n<br>- '>': evaluates to {@code 1} if the number of set flags in the metadata is\nlarger than the operand, otherwise {@code 0}\n<br>- '<': evaluates to {@code 1} if the number of set flags in the metadata is\nless than the operand, otherwise {@code 0}\n<p>\nLastly, there is the '*' operator, which multiplies the preceding statement by the\nfollowing number.\n<p>\nAs an example, let's parse the following recipe\n<br> {@code "0 & +1 & -2 & !3 & 0-1!2*3 & =2 & >3 | <4"}\n<br> on the following metadata {@code 0b0011} (truncated to four bits for\nreadability).\n<p>\nFirst we break the expression up into sub-expressions, and evaluate those.\n<p>\n{@code "0"} evaluates to {@code 1}, since the {@code 0} flag is set.\n<p>\n{@code "+1"} evaluates to {@code 1}, since the {@code 1} flag is set.\n<p>\n{@code "-2"} evaluates to {@code 0}, since the {@code 2} flag is not set.\n<p>\n{@code "!3"} evaluates to {@code 1}, since the {@code 3} flag is not set.\n<p>\n{@code "0-1!2*3"} breaks up into four statements:\n<br> {@code "0"} evaluates to {@code 1}, since the {@code 0} flag is set.\n<br> - {@code "-1"} evaluates to {@code -1}, since the {@code 1} flag is set.\n<br> - {@code "!2"} evaluates to {@code 1}, since the {@code 2} flag is not set.\n<br> - {@code "*3"} multiplies the previous statement by {@code 3}.\n<br> - {@code "0-1!2*3"} then evaluates to {@code 1 - 1 + 1*3 = 3}.\n<p>\n{@code "=2"} evaluates to {@code 1}, since exactly two flags are set.\n<p>\n{@code ">3"} evaluates to {@code 0}, since not more than three flags are set.\n<p>\n{@code "<4"} evaluates to {@code 1}, since less than four flags are set.\n<p>\nThen parsing the '|' and '&' operators, we can insert brackets to make clear how\nthe expression is evaluated:\n<br> {@code "0 & (+1 & (-2 & (!3 & (0-1!2*3 & (=2 & (>3 | <4))))))"}\n<br> Working through the brackets from inside out, expression evaluates like so:\n<p>\n{@code ">3 | <4"} evaluates to {@code "<4"}, since {@code ">3"} evaluates to {@code 0}.\n<p>\n{@code "=2 & <4"} evaluates to {@code <4}, since {@code "=2"} and {@code "<4"} both\nevaluate to {@code 1}.\n<p>\n{@code "0-1!2*3 & <4"} evaluates to {@code "0-1!2*3"}, since that evaluates to\n{@code 3}, whereas {@code "<4"} evaluates to {@code 1}. Neither result is {@code 0},\nand {@code 3 > 1}.\n<p>\n{@code "!3 & 0-1!2*3"} evaluates to {@code "0-1!2*3"}, since that evaluates to\n{@code 3}, whereas {@code "!3"} evaluates to {@code 1}. Neither result is {@code 0},\nand {@code 1 > 3}.\n<p>\n{@code "-2 & 0-1!2*3"} evaluates to {@code 0}, since {@code "-2"} evaluates to\n{@code 0}.\n<p> Since the remaining operations are all '&', the entire expression evaluates to\n{@code 0}.	
 		p	0		recipe	
-		p	1		start	
-		p	2		end	
+		p	1		from	
+		p	2		to	
 		p	3		metadata	
 	m	(I)Ljava/util/List;	m_4849770	getStatusEffects	
-		p	0		metadata	
+		p	0		p_0	
 	m	(I)I	m_5928467	m_5928467	
 		p	0		p_0	
 	m	(I)I	m_0662020	m_0662020	
 		p	0		p_0	
 	m	(I)I	m_0506938	m_0506938	
 		p	0		p_0	
-	m	(IIZZ)I	m_4331705	updateMetadata	
+	m	(IIZZ)I	m_4331705	modifyMetadata	
 		p	0		p_0	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(ILjava/lang/String;)I	m_7329318	updateMetadata	
+	m	(ILjava/lang/String;)I	m_7329318	applyIngredient	
+		c	Performs the next step in a brewing recipe by applying the given ingredient to the\ngiven potion item metadata.\n<p>\nThe ingredient string encodes how to modify the potion through operations on the item\nmetadata. This is mostly done through operations on specific "flags". A flag {@code n}\nrepresents the {@code n}th least significant bit in the item metadata.\n<p>\nThe ingredient string is evaluated from left to right, as a series of statements,\nwhere each statement is an operator-flag pair. Numbers represent flags, while non-\ndigit characters represent operators. Any operator without a number directly following\nit is ignored.\n<p>\nThere are four operators ingredients can use:\n<br>- '+': enables the flag\n<br>- '-': disables the flag\n<br>- '!': toggles the flag\n<br>- '&': requires the flag to be enabled, clears the entire item metadata otherwise\n<p>\nWhile the '+', '-', and '!' operators only modify single flags, the '&' operator can\nmodify the whole item metadata. This means an '&' operation can override any other\noperations preceding it.\n<p>\nAs an example, let's apply the following ingredient\n<br> {@code "+0-1!2&3+1-2!3"}\n<br> on the following metadata {@code 0b0011} (truncated to four bits for\nreadability).\n<p>\nWe break the expression into its component statements and apply them one by one.\n<p>\n{@code "+0"} enables the {@code 0} flag, metadata is now {@code 0b0011}.\n<p>\n{@code "-1"} disables the {@code 1} flag, metadata is now {@code 0b0001}.\n<p>\n{@code "!2"} toggles the {@code 2} flag, metadata is now {@code 0b0101}.\n<p>\n{@code "&3"} requires the {@code 3} flag, metadata is now {@code 0b0000}.\n<p>\n{@code "+1"} enables the {@code 1} flag, metadata is now {@code 0b0010}.\n<p>\n{@code "-2"} disables the {@code 2} flag, metadata is now {@code 0b0010}.\n<p>\n{@code "!3"} toggles the {@code 3} flag, metadata is now {@code 0b0110}.	
 		p	0		metadata	
-		p	1		recipe	
-	m	(IIIIII)I	m_0868073	remap	
+		p	1		ingredient	
+	m	(IIIIII)I	m_0868073	buildPotionId	
 		p	0		metadata	
 		p	1		flag1	
 		p	2		flag2	

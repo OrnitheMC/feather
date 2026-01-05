@@ -7,23 +7,23 @@ c	net/minecraft/unmapped/C_0512768
 	m	()Lnet/minecraft/unmapped/C_0512768;	m_3738936	m_3738936	
 	m	()Ljava/util/TreeMap;	m_4532853		m_4532853
 c	net/minecraft/unmapped/C_0567922
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Z	m_3450481	m_3450481	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)Z	m_3450481	isConditionMet	
+		p	0		world	
+		p	1		pos	
+		p	2		state	
 c	net/minecraft/unmapped/C_2361607
-	m	(Lnet/minecraft/unmapped/C_2361607;)I	m_1418302		m_1418302
+	m	(Lnet/minecraft/unmapped/C_2361607;)I	m_1418302		compareTo
 		p	1			p_1
 	m	(Ljava/lang/Object;)I	compareTo		compareTo
-		p	1			other
+		p	1			p_1
 c	net/minecraft/unmapped/C_2447160
 	f	Lnet/minecraft/unmapped/C_8938206;	f_5221969		ITEM_DURABILITY_CHANGED
 c	net/minecraft/unmapped/C_2454309
-	m	(ILjava/util/Random;)Z	m_4433411	damage	
+	m	(ILjava/util/Random;)Z	m_4433411	takeDamage	
 		c	Applies damage to this item stack and returns whether it is past the maximum damage value.	
 		p	1		amount	
 		p	2		random	
-	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_3292284;)Z	m_4433411		damage
+	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_3292284;)Z	m_4433411		takeDamage
 		c		Applies damage to this item stack and returns whether it is past the maximum damage value.
 		p	1			amount
 		p	2			random
@@ -31,11 +31,11 @@ c	net/minecraft/unmapped/C_2454309
 c	net/minecraft/unmapped/C_4246226
 	f	Lnet/minecraft/unmapped/C_9548941;	f_2114557		durability
 	m	(Lnet/minecraft/unmapped/C_3755722;Ljava/lang/Integer;Lnet/minecraft/unmapped/C_9548941;[Lnet/minecraft/unmapped/C_1335017;Lnet/minecraft/unmapped/C_8703287;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		item	
+		p	2		metadata	
+		p	3		count	
+		p	4		enchantments	
+		p	5		potion	
 	m	(Lnet/minecraft/unmapped/C_3755722;Ljava/lang/Integer;Lnet/minecraft/unmapped/C_9548941;Lnet/minecraft/unmapped/C_9548941;[Lnet/minecraft/unmapped/C_1335017;Lnet/minecraft/unmapped/C_8703287;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -58,7 +58,7 @@ c	net/minecraft/unmapped/C_6333845$1		1
 	f	Lnet/minecraft/unmapped/C_6333845;	f_2858076		f_2858076
 	m	(Lnet/minecraft/unmapped/C_6333845;)V	<init>		<init>
 		p	1			p_1
-	m	(Ljava/util/Map$Entry;Ljava/util/Map$Entry;)I	m_5209317		m_5209317
+	m	(Ljava/util/Map$Entry;Ljava/util/Map$Entry;)I	m_5209317		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare
@@ -75,9 +75,9 @@ c	net/minecraft/unmapped/C_7400754
 	m	(ILnet/minecraft/unmapped/C_2454309;)V	m_0133534	m_0133534	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_7460620	net/minecraft/C_93yfekgmf	
+c	net/minecraft/unmapped/C_7460620	net/minecraft/unmapped/C_7460620	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_2361607;Lnet/minecraft/unmapped/C_2361607;)I	m_5209317	m_5209317	
+	m	(Lnet/minecraft/unmapped/C_2361607;Lnet/minecraft/unmapped/C_2361607;)I	m_5209317	compare	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare	compare	
@@ -95,7 +95,7 @@ c	net/minecraft/unmapped/C_9008593
 	m	()Z	m_8535275		markConditionMet
 c	net/minecraft/unmapped/C_9399468
 	m	(Lcom/google/gson/JsonElement;)[Lnet/minecraft/unmapped/C_2454309;	m_0180378		ingredientFromJson
-		p	0			p_0
+		p	0			json
 c	net/minecraft/unmapped/C_8938206		net/minecraft/advancement/criterion/ItemDurabilityChangedTrigger
 	f	Lnet/minecraft/unmapped/C_0561170;	f_5442323		ID
 	f	Ljava/util/Map;	f_2494511		players
@@ -114,7 +114,7 @@ c	net/minecraft/unmapped/C_8938206		net/minecraft/advancement/criterion/ItemDura
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_3292284;Lnet/minecraft/unmapped/C_2454309;I)V	m_8428101		run
 		p	1			player
-		p	2			stack
+		p	2			item
 		p	3			durability
 	m	(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_1868871;	m_9246234		m_9246234
 		p	1			p_1
@@ -132,7 +132,7 @@ c	net/minecraft/unmapped/C_8938206$C_1685352		PlayerListeners
 	m	(Lnet/minecraft/unmapped/C_5438948$C_9972612;)V	m_7701143		remove
 		p	1			listener
 	m	(Lnet/minecraft/unmapped/C_2454309;I)V	m_3636852		run
-		p	1			stack
+		p	1			item
 		p	2			durability
 c	net/minecraft/unmapped/C_8938206$C_2528408		Instance
 	f	Lnet/minecraft/unmapped/C_4246226;	f_3239275		item
@@ -143,5 +143,5 @@ c	net/minecraft/unmapped/C_8938206$C_2528408		Instance
 		p	2			durability
 		p	3			delta
 	m	(Lnet/minecraft/unmapped/C_2454309;I)Z	m_8673606		run
-		p	1			stack
+		p	1			item
 		p	2			durability

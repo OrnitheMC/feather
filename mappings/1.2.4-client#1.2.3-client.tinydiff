@@ -8,7 +8,7 @@ c	net/minecraft/unmapped/C_0810534
 		p	4		x	
 		p	5		y	
 		p	6		z	
-c	net/minecraft/unmapped/C_0940100	net/minecraft/client/gui/screen/ChatScreen__1	
+c	net/minecraft/unmapped/C_0940100	net/minecraft/client/gui/screen/ChatScreen__0940100	
 	f	Lnet/minecraft/unmapped/C_4955046;	f_7754128	f_7754128	
 	f	Lnet/minecraft/unmapped/C_7669754;	f_3069636	f_3069636	
 	m	(Lnet/minecraft/unmapped/C_7669754;Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;ILnet/minecraft/unmapped/C_4955046;)V	<init>	<init>	
@@ -21,10 +21,10 @@ c	net/minecraft/unmapped/C_0940100	net/minecraft/client/gui/screen/ChatScreen__1
 c	net/minecraft/unmapped/C_1241852
 	m	()Z	m_2469260	hasSilkTouchDrops	
 c	net/minecraft/unmapped/C_1331819
-	f	Z	f_2631681	f_2631681	
+	f	Z	f_2631681	debugProfilerEnabled	
 c	net/minecraft/unmapped/C_1441789
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;Ljava/lang/String;I)V	<init>	<init>	
-		p	1		parent	
+		p	1		listener	
 		p	2		title	
 		p	3		description	
 		p	4		id	
@@ -35,11 +35,15 @@ c	net/minecraft/unmapped/C_1857222
 c	net/minecraft/unmapped/C_2018497
 	m	()I	hashCode	hashCode	
 c	net/minecraft/unmapped/C_2594473
-	f	[I	f_1327189		f_1327189
+	f	[I	f_1327189		creditTextHeights
 c	net/minecraft/unmapped/C_2691939
 	m	(IIIII)V	m_7865719
 		p	0		x1	
-		p	5			p_5
+		p	5			color
+		p	1		y1	x1
+		p	2		x2	y1
+		p	3		y2	x2
+		p	4		color	y2
 c	net/minecraft/unmapped/C_2925725
 	f	Z	f_9552700	hasBorder	
 	f	Z	f_4890970	focusUnlocked	
@@ -48,7 +52,7 @@ c	net/minecraft/unmapped/C_2925725
 	f	I	f_5916742	selectionEnd	
 	f	I	f_3529875	editableColor	
 	f	I	f_1211638	uneditableColor	
-	f	Lnet/minecraft/unmapped/C_3020744;	f_2151358		f_2151358
+	f	Lnet/minecraft/unmapped/C_3020744;	f_2151358		screen
 	m	(Lnet/minecraft/unmapped/C_3831727;IIII)V	<init>	<init>	
 		p	1		textRenderer	
 		p	2		x	
@@ -65,8 +69,8 @@ c	net/minecraft/unmapped/C_2925725
 	m	(I)I	m_4566222	getWordSkipPosition	
 		p	1		wordOffset	
 	m	(II)I	m_7878089	getWordSkipPosition	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		wordOffset	
+		p	2		cursorPosition	
 	m	(I)V	m_7715357	moveCursor	
 		p	1		offset	
 	m	(I)V	m_4212714	setCursor	
@@ -94,16 +98,16 @@ c	net/minecraft/unmapped/C_2925725
 	m	(Z)V	m_6713448	setFocusUnlocked	
 		p	1		focusUnlocked	
 	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_3831727;IIIILjava/lang/String;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+		p	1			screen
+		p	2			textRenderer
+		p	3			x
+		p	4			y
+		p	5			width
+		p	6			height
+		p	7			message
 	m	(CI)V	m_1973329		keyPressed
-		p	1			p_1
-		p	2			p_2
+		p	1			chr
+		p	2			key
 c	net/minecraft/unmapped/C_2968238
 	m	(Lnet/minecraft/unmapped/C_5553933;III)Z	m_4879729	m_4879729	
 		p	1		p_1	
@@ -115,7 +119,7 @@ c	net/minecraft/unmapped/C_3020744
 		p	0		text	
 	m	()Z	m_7566055	isControlDown	
 	m	()Z	m_5142737	isShiftDown	
-	m	()V	m_9533182		m_9533182
+	m	()V	m_9533182		cycleFocus
 c	net/minecraft/unmapped/C_3225627
 	m	()I	hashCode	hashCode	
 c	net/minecraft/unmapped/C_3543146
@@ -139,7 +143,7 @@ c	net/minecraft/unmapped/C_3831727
 		p	1		chr	
 		p	2		italic	
 	m	(Ljava/lang/String;III)I	m_1950885	drawWithShadow	
-		p	1		s	
+		p	1		text	
 		p	2		x	
 		p	3		y	
 		p	4		color	
@@ -148,7 +152,7 @@ c	net/minecraft/unmapped/C_3831727
 		p	2		x	
 		p	3		y	
 		p	4		color	
-		p	5		colored	
+		p	5		shadow	
 	m	(C)I	m_4462203	getWidth	
 		p	1		chr	
 	m	(Ljava/lang/String;I)Ljava/lang/String;	m_3198719	trim	
@@ -191,13 +195,13 @@ c	net/minecraft/unmapped/C_3831727
 		p	3			y
 		p	4			color
 		p	5			shadow
-	m	(Ljava/lang/String;IIIIZ)V	m_0184511		m_0184511
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+	m	(Ljava/lang/String;IIIIZ)V	m_0184511		splitAndDraw
+		p	1			text
+		p	2			x
+		p	3			y
+		p	4			width
+		p	5			color
+		p	6			shadow
 c	net/minecraft/unmapped/C_4955046	net/minecraft/client/gui/ChatMessageUri	
 	f	Ljava/util/regex/Pattern;	f_9202481	URI_PATTERN	
 	f	Lnet/minecraft/unmapped/C_3831727;	f_2481627	textRenderer	
@@ -207,10 +211,10 @@ c	net/minecraft/unmapped/C_4955046	net/minecraft/client/gui/ChatMessageUri
 	f	Ljava/lang/String;	f_1330886	trimmedMessage	
 	f	Ljava/lang/String;	f_9502004	rawUri	
 	m	(Lnet/minecraft/unmapped/C_3831727;Lnet/minecraft/unmapped/C_7225666;II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		textRenderer	
+		p	2		message	
+		p	3		width	
+		p	4		height	
 	m	()Ljava/lang/String;	m_0684464	getRawUri	
 	m	()Ljava/net/URI;	m_0808040	getUri	
 	m	()Ljava/lang/String;	m_6378681	findUri	
@@ -257,7 +261,7 @@ c	net/minecraft/unmapped/C_5537602
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		blockId	
+		p	5		block	
 c	net/minecraft/unmapped/C_5578771
 	m	()I	hashCode	hashCode	
 c	net/minecraft/unmapped/C_5636518
@@ -314,6 +318,7 @@ c	net/minecraft/unmapped/C_7669754
 	f	Ljava/net/URI;	f_7387884	uri	
 	f	Lnet/minecraft/unmapped/C_2925725;	f_6097131	chatField	
 	f	Ljava/lang/String;	f_6856129	initialChatText	
+	f	I	f_9605855	messageHistorySize	ticks
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		initialChatText	
 	m	()V	m_3356138	m_3356138	
@@ -364,7 +369,7 @@ c	net/minecraft/unmapped/C_8651652
 	m	()Z	m_1629466	m_1629466	
 c	net/minecraft/unmapped/C_8814877
 	m	()Ljava/lang/String;	m_6274448	m_6274448	
-	m	()V	m_3143157		m_3143157
+	m	()V	m_3143157		updateTexture
 c	net/minecraft/unmapped/C_9083739
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILjava/util/Random;)V	m_7197439	m_7197439	
 		p	1		p_1	
@@ -383,12 +388,12 @@ c	net/minecraft/unmapped/C_9468736	net/minecraft/client/gui/screen/ConfirmChatLi
 	f	Ljava/lang/String;	f_6051490	copy	
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;I)V	<init>	<init>	
 		p	1		parent	
-		p	2		p_2	
+		p	2		description	
 		p	3		id	
 	m	()V	m_3593494	m_3593494	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793	m_7971793	
 		p	1		p_1	
-	m	()V	m_2404638	m_2404638	
+	m	()V	m_2404638	copyChatLink	
 	m	(IIF)V	m_7261014	m_7261014	
 		p	1		p_1	
 		p	2		p_2	

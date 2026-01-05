@@ -1,35 +1,35 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_0200457
 	m	(Lnet/minecraft/unmapped/C_5553933;DDDDDDLnet/minecraft/unmapped/C_1241852;II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
-		p	8		p_8	
-		p	10		p_10	
-		p	12		p_12	
-		p	14		p_14	
-		p	15		p_15	
-		p	16		p_16	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
+		p	8		velocityX	
+		p	10		velocityY	
+		p	12		velocityZ	
+		p	14		block	
+		p	15		face	
+		p	16		metadata	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDDDDDLnet/minecraft/unmapped/C_1241852;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
-		p	10			p_10
-		p	12			p_12
-		p	14			p_14
+		p	1			world
+		p	2			x
+		p	4			y
+		p	6			z
+		p	8			velocityX
+		p	10			velocityY
+		p	12			velocityZ
+		p	14			block
 c	net/minecraft/unmapped/C_0539808
-	f	F	f_4350946	f_4350946	
+	f	F	f_4350946	minimumBrightness	
 c	net/minecraft/unmapped/C_1056918	net/minecraft/block/PistonHeadBlock	
-	f	I	f_6132145	pistonHeadSprite	
+	f	I	f_6132145	forcedSprite	
 	m	(II)V	<init>	<init>	
 		p	1		id	
 		p	2		sprite	
-	m	(I)V	m_2947013	setSprite	
+	m	(I)V	m_2947013	setForcedSprite	
 		p	1		sprite	
-	m	()V	m_1660031	clearSprite	
+	m	()V	m_1660031	clearForcedSprite	
 	m	(II)I	m_8325719	m_8325719	
 		p	1		p_1	
 		p	2		p_2	
@@ -72,7 +72,7 @@ c	net/minecraft/unmapped/C_1056918	net/minecraft/block/PistonHeadBlock
 c	net/minecraft/unmapped/C_1154893	net/minecraft/client/render/block/entity/MovingBlockRenderer	
 	f	Lnet/minecraft/unmapped/C_3216249;	f_1855500	blockRenderer	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_6100478;DDDF)V	m_4899443	render	
+	m	(Lnet/minecraft/unmapped/C_6100478;DDDF)V	m_4899443	m_4899443	
 		p	1		p_1	
 		p	2		p_2	
 		p	4		p_4	
@@ -91,19 +91,19 @@ c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_7400831	PISTON	
 	f	Lnet/minecraft/unmapped/C_1056918;	f_5923811	PISTON_HEAD	
 	f	Lnet/minecraft/unmapped/C_5243081;	f_3226243	MOVING_BLOCK	
-	f	Lnet/minecraft/unmapped/C_1241852;	f_8030546		f_8030546
-	f	Lnet/minecraft/unmapped/C_1241852;	f_0740223		f_0740223
-	f	Lnet/minecraft/unmapped/C_1241852;	f_2057632		f_2057632
-	f	Lnet/minecraft/unmapped/C_1241852;	f_9100376		f_9100376
+	f	Lnet/minecraft/unmapped/C_1241852;	f_8030546		STICKY_PISTON
+	f	Lnet/minecraft/unmapped/C_1241852;	f_0740223		PISTON
+	f	Lnet/minecraft/unmapped/C_1241852;	f_2057632		PISTON_HEAD
+	f	Lnet/minecraft/unmapped/C_1241852;	f_9100376		MOVING_BLOCK
 	m	()Lnet/minecraft/unmapped/C_1241852;	m_2676859	setUnbreakable	
 		c	Sets this block as unbreakable by setting its strength to -1. Note that this changes both\nthe block's mining speed and its blast resistance.\n\n<p>\nNOTE: this method should only be used during the block's creation before it is registered.	
-	m	()F	m_7303643	getMiningSpeed	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_2454309;)V	m_6793083	dropItems	
+	m	()F	m_7303643	getMiningTime	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIILnet/minecraft/unmapped/C_2454309;)V	m_6793083	dropItem	
 		p	1		world	
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		stack	
+		p	5		item	
 	m	(I)I	m_7915393	getColor	
 		p	1		metadata	
 	m	()I	m_1582100	getPistonMoveBehavior	
@@ -133,7 +133,7 @@ c	net/minecraft/unmapped/C_3216249
 	f	I	f_8059290	eastFaceRotation	
 	f	I	f_8440552	topFaceRotation	
 	f	I	f_9338183	bottomFaceRotation	
-	m	(Lnet/minecraft/unmapped/C_1241852;III)V	m_5656513	renderBlock	
+	m	(Lnet/minecraft/unmapped/C_1241852;III)V	m_5656513	renderMovingBlock	
 		p	1		block	
 		p	2		x	
 		p	3		y	
@@ -143,13 +143,13 @@ c	net/minecraft/unmapped/C_3216249
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_1241852;IIIZ)Z	m_3547500	tessellatePistonBase	
+	m	(Lnet/minecraft/unmapped/C_1241852;IIIZ)Z	m_3547500	tesselatePistonBase	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
 		p	5		extended	
-	m	(DDDDDDFD)V	m_6892966	tessellatePistonSideX	
+	m	(DDDDDDFD)V	m_6892966	tesselatePistonSideX	
 		p	1		minX	
 		p	3		maxX	
 		p	5		minY	
@@ -158,7 +158,7 @@ c	net/minecraft/unmapped/C_3216249
 		p	11		maxZ	
 		p	13		color	
 		p	14		length	
-	m	(DDDDDDFD)V	m_8214798	tessellatePistonSideY	
+	m	(DDDDDDFD)V	m_8214798	tesselatePistonSideY	
 		p	1		minX	
 		p	3		maxX	
 		p	5		minY	
@@ -167,7 +167,7 @@ c	net/minecraft/unmapped/C_3216249
 		p	11		maxZ	
 		p	13		color	
 		p	14		length	
-	m	(DDDDDDFD)V	m_9015520	tessellatePistonSideZ	
+	m	(DDDDDDFD)V	m_9015520	tesselatePistonSideZ	
 		p	1		minX	
 		p	3		maxX	
 		p	5		minY	
@@ -182,19 +182,19 @@ c	net/minecraft/unmapped/C_3216249
 		p	3		y	
 		p	4		z	
 		p	5		isShort	
-	m	(Lnet/minecraft/unmapped/C_1241852;IIIZ)Z	m_3893842	tessellatePistonHead	
+	m	(Lnet/minecraft/unmapped/C_1241852;IIIZ)Z	m_3893842	tesselatePistonHead	
 		p	1		block	
 		p	2		x	
 		p	3		y	
 		p	4		z	
 		p	5		isShort	
-	m	(Lnet/minecraft/unmapped/C_1241852;IF)V	m_7777797	render	
+	m	(Lnet/minecraft/unmapped/C_1241852;IF)V	m_7777797	renderAsItem	
 		p	1		block	
 		p	2		metadata	
 		p	3		brightness	
-	m	(Lnet/minecraft/unmapped/C_1241852;I)V	m_7777797		render
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_1241852;I)V	m_7777797		renderAsItem
+		p	1			block
+		p	2			metadata
 c	net/minecraft/unmapped/C_3242141
 	m	()V	m_9519027	m_9519027	
 	m	()I	m_0469364	m_0469364	
@@ -286,7 +286,7 @@ c	net/minecraft/unmapped/C_5243081	net/minecraft/block/MovingBlock
 		p	4		p_4	
 		p	5		p_5	
 	m	(IIIZZ)Lnet/minecraft/unmapped/C_3622326;	m_5915640	createMovingBlockEntity	
-		p	0		movedBlockId	
+		p	0		movedBlock	
 		p	1		movedMetadata	
 		p	2		facing	
 		p	3		extending	
@@ -306,7 +306,7 @@ c	net/minecraft/unmapped/C_5243081	net/minecraft/block/MovingBlock
 		p	2		x	
 		p	3		y	
 		p	4		z	
-		p	5		movedBlockId	
+		p	5		movedBlock	
 		p	6		progress	
 		p	7		facing	
 	m	(Lnet/minecraft/unmapped/C_8030141;III)Lnet/minecraft/unmapped/C_6100478;	m_4572390	getMovingBlockEntity	
@@ -338,9 +338,9 @@ c	net/minecraft/unmapped/C_5553933
 	m	(Ljava/util/Collection;)V	m_0320445	loadBlockEntities	
 		p	1		blockEntities	
 c	net/minecraft/unmapped/C_5622853
-	m	()V	m_7580829	setNewWanderingPath	
+	m	()V	m_7580829	updateWanderingPath	
 c	net/minecraft/unmapped/C_6100478	net/minecraft/block/entity/MovingBlockEntity	
-	f	I	f_5939301	movedBlockId	
+	f	I	f_5939301	movedBlock	
 	f	I	f_2511264	movedMetadata	
 	f	I	f_0072895	facing	
 	f	Z	f_8342559	extending	
@@ -350,12 +350,12 @@ c	net/minecraft/unmapped/C_6100478	net/minecraft/block/entity/MovingBlockEntity
 	f	Ljava/util/List;	f_5280913	movedEntities	
 	m	()V	<init>	<init>	
 	m	(IIIZZ)V	<init>	<init>	
-		p	1		movedBlockId	
+		p	1		movedBlock	
 		p	2		movedMetadata	
 		p	3		facing	
 		p	4		extending	
 		p	5		source	
-	m	()I	m_4343063	getMovedBlockId	
+	m	()I	m_4343063	getMovedBlock	
 	m	()I	m_1210226	m_1210226	
 	m	()Z	m_8561473	isExtending	
 	m	()I	m_4671615	getFacing	
@@ -472,13 +472,13 @@ c	net/minecraft/unmapped/C_8124234	net/minecraft/block/PistonBaseBlock
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		entity	
+		p	4		player	
 	m	(ILnet/minecraft/unmapped/C_5553933;III)Z	m_1680891	canMoveBlock	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	0		block	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)Z	m_9775312	canExtend	
 		p	0		world	
 		p	1		x	
@@ -524,7 +524,3 @@ c	net/minecraft/unmapped/C_9761743
 		p	2		x	
 		p	3		y	
 		p	4		z	
-c	net/minecraft/unmapped/C_5767905	net/minecraft/client/Minecraft__4	net/minecraft/client/Minecraft__5
-c	net/minecraft/unmapped/C_8053256	net/minecraft/client/Minecraft__5	net/minecraft/client/Minecraft__6
-c	net/minecraft/unmapped/C_2611543	net/minecraft/client/Minecraft__3	net/minecraft/client/Minecraft__4
-c	net/minecraft/unmapped/C_9690984	net/minecraft/unmapped/C_9690984	net/minecraft/client/Minecraft__3

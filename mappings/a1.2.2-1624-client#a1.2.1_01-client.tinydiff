@@ -4,21 +4,21 @@ c	net/minecraft/client/Minecraft
 c	net/minecraft/unmapped/C_0188227
 	f	D	f_4252030		f_4252030
 c	net/minecraft/unmapped/C_0539808
-	f	Z	f_7785281	f_7785281	
-	m	(DDD)V	m_4212338	setVelocity	
+	f	Z	f_7785281	hasVehicle	
+	m	(DDD)V	m_4212338	lerpVelocity	
 		p	1		velocityX	
 		p	3		velocityY	
 		p	5		velocityZ	
 c	net/minecraft/unmapped/C_0607826
-	f	I	f_3587166	velocity	
-	f	D	f_5825262	boatX	
-	f	D	f_2174062	boatY	
-	f	D	f_9523855	boatZ	
-	f	D	f_7238197	boatYaw	
-	f	D	f_8847298	boatPitch	
-	f	D	f_5038938	boatVelocityX	
-	f	D	f_0817662	boatVelocityY	
-	f	D	f_1495656	boatVelocityZ	
+	f	I	f_3587166	lerpSteps	
+	f	D	f_5825262	lerpX	
+	f	D	f_2174062	lerpY	
+	f	D	f_9523855	lerpZ	
+	f	D	f_7238197	lerpYaw	
+	f	D	f_8847298	lerpPitch	
+	f	D	f_5038938	lerpVelocityX	
+	f	D	f_0817662	lerpVelocityY	
+	f	D	f_1495656	lerpVelocityZ	
 	m	(DDDFFI)V	m_2943996	m_2943996	
 		p	1		p_1	
 		p	3		p_3	
@@ -33,15 +33,15 @@ c	net/minecraft/unmapped/C_0607826
 c	net/minecraft/unmapped/C_0876962
 	f	Lnet/minecraft/unmapped/C_7105334;	f_5607366	texturePacks	
 	m	(Lnet/minecraft/unmapped/C_7105334;Lnet/minecraft/unmapped/C_1331819;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		texturePacks	
+		p	2		options	
 	m	(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;	m_9639646	readImage	
 		p	1		is	
 	m	(Lnet/minecraft/unmapped/C_1331819;)V	<init>		<init>
-		p	1			p_1
+		p	1			options
 c	net/minecraft/unmapped/C_1023567
-	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_5027852		m_5027852
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_5027852		attack
+		p	1			target
 c	net/minecraft/unmapped/C_1331819
 	f	Ljava/lang/String;	f_4654431	skin	
 c	net/minecraft/unmapped/C_1428858
@@ -69,18 +69,18 @@ c	net/minecraft/unmapped/C_2076519	net/minecraft/network/packet/PlayerInteractEn
 	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_7216666	m_7216666	
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
-c	net/minecraft/unmapped/C_2131741	net/minecraft/client/gui/screen/TexturePackScreen	
+c	net/minecraft/unmapped/C_2131741	net/minecraft/client/gui/screen/TexturePacksScreen	
 	f	Lnet/minecraft/unmapped/C_3020744;	f_1657567	parent	
-	f	I	f_6937333	f_6937333	
-	f	I	f_6660084	f_6660084	
-	f	I	f_4427564	f_4427564	
-	f	I	f_1385039	f_1385039	
-	f	I	f_4064823	f_4064823	
-	f	I	f_2912781	f_2912781	
+	f	I	f_6937333	lastY	
+	f	I	f_6660084	minY	
+	f	I	f_4427564	maxY	
+	f	I	f_1385039	minX	
+	f	I	f_4064823	maxX	
+	f	I	f_2912781	draggingY	
 	f	I	f_5813785	cooldown	
 	f	Ljava/lang/String;	f_1103060	texturePacksDir	
 	m	(Lnet/minecraft/unmapped/C_3020744;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		parent	
 	m	()V	m_3593494	m_3593494	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793	m_7971793	
 		p	1		p_1	
@@ -97,29 +97,29 @@ c	net/minecraft/unmapped/C_2131741	net/minecraft/client/gui/screen/TexturePackSc
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	m_2450377	m_2450377	
-	m	(IIII)V	m_9591241	m_9591241	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(IIII)V	m_9591241	renderHoleBackground	
+		p	1		minY	
+		p	2		maxY	
+		p	3		bottomAlpha	
+		p	4		topAlpha	
 c	net/minecraft/unmapped/C_3198459
 	f	Z	f_6656194	yeetsWater	
-	f	Z	f_1711371	isDark	
+	f	Z	f_1711371	noSky	
 c	net/minecraft/unmapped/C_3422238
-	f	I	f_7977112	steps	
-	f	D	f_7333561	fishingBobberX	
-	f	D	f_1604282	fishingBobberY	
-	f	D	f_5409995	fishingBobberZ	
-	f	D	f_1560214	fishingBobberYaw	
-	f	D	f_5007424	fishingBobberPitch	
-	f	D	f_0620428	clientVelocityX	
-	f	D	f_7305859	clientVelocityY	
-	f	D	f_4007600	clientVelocityZ	
+	f	I	f_7977112	lerpSteps	
+	f	D	f_7333561	lerpX	
+	f	D	f_1604282	lerpY	
+	f	D	f_5409995	lerpZ	
+	f	D	f_1560214	lerpYaw	
+	f	D	f_5007424	lerpPitch	
+	f	D	f_0620428	lerpVelocityX	
+	f	D	f_7305859	lerpVelocityY	
+	f	D	f_4007600	lerpVelocityZ	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
 	m	(DDDFFI)V	m_2943996	m_2943996	
 		p	1		p_1	
 		p	3		p_3	
@@ -132,7 +132,7 @@ c	net/minecraft/unmapped/C_3422238
 		p	3		p_3	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_3747079
-	f	I	f_8954212		f_8954212
+	f	I	f_8954212		decay
 c	net/minecraft/unmapped/C_3885889
 	f	D	f_7089455		f_7089455
 	f	D	f_9420327		f_9420327
@@ -161,11 +161,11 @@ c	net/minecraft/unmapped/C_5949355	net/minecraft/client/resource/pack/TexturePac
 	f	Ljava/lang/String;	f_4908297	descriptionLine2	
 	f	Ljava/lang/String;	f_7343720	key	
 	m	()V	<init>	<init>	
-	m	()V	m_7090372	removeIcon	
+	m	()V	m_7090372	open	
 	m	()V	m_0026020	close	
-	m	(Lnet/minecraft/client/Minecraft;)V	m_7839028	readMetadata	
+	m	(Lnet/minecraft/client/Minecraft;)V	m_7839028	load	
 		p	1		minecraft	
-	m	(Lnet/minecraft/client/Minecraft;)V	m_5232624	removeIcon	
+	m	(Lnet/minecraft/client/Minecraft;)V	m_5232624	unload	
 		p	1		minecraft	
 	m	(Lnet/minecraft/client/Minecraft;)V	m_0593473	bindIcon	
 		p	1		minecraft	
@@ -176,7 +176,7 @@ c	net/minecraft/unmapped/C_5956487
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_0539808;)V	m_3025334	interactEntity	
+	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_0539808;)V	m_3025334	m_3025334	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_5977019	net/minecraft/network/packet/EntityVelocityPacket	
@@ -199,8 +199,8 @@ c	net/minecraft/unmapped/C_6187096	net/minecraft/client/resource/pack/ZippedText
 	f	Ljava/io/File;	f_4240157	file	
 	m	(Ljava/io/File;)V	<init>	<init>	
 		p	1		file	
-	m	(Ljava/lang/String;)Ljava/lang/String;	m_4879830	m_4879830	
-		p	1		p_1	
+	m	(Ljava/lang/String;)Ljava/lang/String;	m_4879830	trim	
+		p	1		line	
 	m	(Lnet/minecraft/client/Minecraft;)V	m_7839028	m_7839028	
 		p	1		p_1	
 	m	(Lnet/minecraft/client/Minecraft;)V	m_5232624	m_5232624	
@@ -217,18 +217,18 @@ c	net/minecraft/unmapped/C_7105334	net/minecraft/client/resource/pack/TexturePac
 	f	Lnet/minecraft/unmapped/C_5949355;	f_4848967	selected	
 	f	Ljava/util/Map;	f_8016608	availablePacksByKey	
 	f	Lnet/minecraft/client/Minecraft;	f_2779377	minecraft	
-	f	Ljava/io/File;	f_8861575	texturePacksDir	
+	f	Ljava/io/File;	f_8861575	dir	
 	f	Ljava/lang/String;	f_4104493	selectedName	
 	m	(Lnet/minecraft/client/Minecraft;Ljava/io/File;)V	<init>	<init>	
 		p	1		minecraft	
-		p	2		dir	
+		p	2		gameDir	
 	m	(Lnet/minecraft/unmapped/C_5949355;)Z	m_2927908	select	
 		p	1		pack	
 	m	()V	m_9175857	reload	
 	m	()Ljava/util/List;	m_3829926	getAvailable	
-c	net/minecraft/unmapped/C_7197771	net/minecraft/network/packet/EntityAttachPacket	
+c	net/minecraft/unmapped/C_7197771	net/minecraft/network/packet/RideEntityPacket	
 	f	I	f_3417677	id	
-	f	I	f_9006236	holderId	
+	f	I	f_9006236	mountId	
 	m	()V	<init>	<init>	
 	m	()I	m_4040470	m_4040470	
 	m	(Ljava/io/DataInputStream;)V	m_4792371	m_4792371	
@@ -240,7 +240,7 @@ c	net/minecraft/unmapped/C_7197771	net/minecraft/network/packet/EntityAttachPack
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_5977019;)V	m_0516322	handleEntityVelocity	
 		p	1		packet	
-	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_3926084	handleEntityAttach	
+	m	(Lnet/minecraft/unmapped/C_7197771;)V	m_3926084	handleRideEntity	
 		p	1		packet	
 	m	(Lnet/minecraft/unmapped/C_2076519;)V	m_9185796	handleInteractEntity	
 		p	1		packet	
@@ -248,7 +248,7 @@ c	net/minecraft/unmapped/C_7952195
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_2454309;)Z	m_1220212	useItem	
 		p	1		player	
 		p	2		world	
-		p	3		stack	
+		p	3		itemInHand	
 	m	(Lnet/minecraft/unmapped/C_9590849;Lnet/minecraft/unmapped/C_0539808;)V	m_3025334	interactEntity	
 		p	1		player	
 		p	2		target	
@@ -264,23 +264,23 @@ c	net/minecraft/unmapped/C_8283103	net/minecraft/client/resource/pack/BuiltInTex
 	m	(Lnet/minecraft/client/Minecraft;)V	m_0593473	m_0593473	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8620458
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3403964	m_3403964	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8049436	m_8049436	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_4897786	m_4897786	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_3403964	updateNeighborLogProximity	
+		p	1		world	
+		p	2		neighborX	
+		p	3		neighborY	
+		p	4		neighborZ	
+		p	5		proximity	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_8049436	updateLogProximity	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_4897786	getLogProximity	
+		p	1		world	
+		p	2		neighborX	
+		p	3		neighborY	
+		p	4		neighborZ	
+		p	5		proximity	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIILjava/util/Random;)V	m_7197439	m_7197439	
 		p	1		p_1	
 		p	2		p_2	
@@ -292,15 +292,15 @@ c	net/minecraft/unmapped/C_8620458
 		p	2		x	
 		p	3		y	
 		p	4		z	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_2440137		m_2440137
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_2440137		breakLeaves
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_9482745
-	f	D	f_6144433	clientXVelocity	
-	f	D	f_8249551	clientYVelocity	
-	f	D	f_6117045	clientZVelocity	
+	f	D	f_6144433	lerpVelocityX	
+	f	D	f_8249551	lerpVelocityY	
+	f	D	f_6117045	lerpVelocityZ	
 	m	(DDD)V	m_4212338	m_4212338	
 		p	1		p_1	
 		p	3		p_3	

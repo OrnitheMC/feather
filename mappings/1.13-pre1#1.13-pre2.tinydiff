@@ -16,8 +16,9 @@ c	net/minecraft/unmapped/C_0008241
 c	net/minecraft/unmapped/C_0029341
 	m	(Ljava/util/HashMap;)V	m_2751232		m_2751232
 		p	0			p_0
-c	net/minecraft/unmapped/C_0083539	net/minecraft/entity/living/mob/MobEnvironment	net/minecraft/entity/living/mob/SpawnEnvironment
-	m	(Lnet/minecraft/unmapped/C_8252988;)Lnet/minecraft/unmapped/C_8099772$C_6967555;	m_5360691	get	
+c	net/minecraft/unmapped/C_0083539
+	f	Ljava/util/Map;	f_7854069	ENVIRONMENTS	CONDITIONS
+	m	(Lnet/minecraft/unmapped/C_8252988;)Lnet/minecraft/unmapped/C_8099772$C_6967555;	m_5360691	getEnvironment	
 		p	0		type	
 	m	(Lnet/minecraft/unmapped/C_8252988;Lnet/minecraft/unmapped/C_0083539$C_6967555;Lnet/minecraft/unmapped/C_5503280$C_6055071;)V	m_0899733		register
 		p	0			type
@@ -25,17 +26,17 @@ c	net/minecraft/unmapped/C_0083539	net/minecraft/entity/living/mob/MobEnvironmen
 		p	2			heightMap
 	m	(Lnet/minecraft/unmapped/C_8252988;Lnet/minecraft/unmapped/C_0083539$C_6967555;Lnet/minecraft/unmapped/C_5503280$C_6055071;Lnet/minecraft/unmapped/C_9086953;)V	m_3683306		register
 		p	0			type
-		p	1			envType
+		p	1			environment
 		p	2			heightMap
 		p	3			validBlocks
-	m	(Lnet/minecraft/unmapped/C_8252988;)Lnet/minecraft/unmapped/C_0083539$C_6967555;	m_5360691		get
+	m	(Lnet/minecraft/unmapped/C_8252988;)Lnet/minecraft/unmapped/C_0083539$C_6967555;	m_5360691		getEnvironment
 		p	0			type
 	m	(Lnet/minecraft/unmapped/C_8252988;)Lnet/minecraft/unmapped/C_5503280$C_6055071;	m_4599184		getHeightMap
 		p	0			type
 	m	(Lnet/minecraft/unmapped/C_8252988;Lnet/minecraft/unmapped/C_2441996;)Z	m_0972362		isValidBlock
 		p	0			type
 		p	1			state
-c	net/minecraft/unmapped/C_0083539$C_0214701		Conditions
+c	net/minecraft/unmapped/C_0083539$C_0214701		SpawnConditions
 	f	Lnet/minecraft/unmapped/C_5503280$C_6055071;	f_0952802		heightMap
 	f	Lnet/minecraft/unmapped/C_0083539$C_6967555;	f_7966446		environment
 	f	Lnet/minecraft/unmapped/C_9086953;	f_6318284		validBlocks
@@ -49,7 +50,7 @@ c	net/minecraft/unmapped/C_0083539$C_0214701		Conditions
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_0083539$C_0214701;)Lnet/minecraft/unmapped/C_9086953;	m_9346389		m_9346389
 		p	0			p_0
-c	net/minecraft/unmapped/C_0083539$C_6967555		Type
+c	net/minecraft/unmapped/C_0083539$C_6967555		SpawnEnvironment
 	f	Lnet/minecraft/unmapped/C_0083539$C_6967555;	f_1380201		ON_GROUND
 	f	Lnet/minecraft/unmapped/C_0083539$C_6967555;	f_4119568		IN_WATER
 	f	[Lnet/minecraft/unmapped/C_0083539$C_6967555;	f_9623436		f_9623436
@@ -106,19 +107,19 @@ c	net/minecraft/unmapped/C_0636026
 	m	()Ljava/util/Map;	m_6340457		getStructureStarts
 	m	()Ljava/util/Map;	m_9358366		getStructureReferences
 c	net/minecraft/unmapped/C_0899004
-	f	Ljava/io/File;	f_0897867	f_0897867	
-	f	Ljava/nio/file/Path;	f_0897867		f_0897867
-	m	(Lnet/minecraft/unmapped/C_0561170;)Z	m_1477907	loadFromResource	
+	f	Ljava/io/File;	f_0897867	generatedDir	
+	f	Ljava/nio/file/Path;	f_0897867		generatedDir
+	m	(Lnet/minecraft/unmapped/C_0561170;)Z	m_1477907	loadGeneratedStructure	
 		p	1		location	
 	m	(Lnet/minecraft/unmapped/C_0561170;Ljava/io/InputStream;)V	m_6275360	loadStructure	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_8712924		m_8712924
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_1477907		loadFromResource
-		p	1			p_1
+		p	1		location	
+		p	2		in	
+	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_8712924		get
+		p	1			location
+	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_1477907		loadGeneratedStructure
+		p	1			location
 	m	(Ljava/io/InputStream;)Lnet/minecraft/unmapped/C_4879372;	m_6275360		loadStructure
-		p	1			p_1
+		p	1			in
 	m	(Ljava/nio/file/Path;)V	m_0743765		m_0743765
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_0561170;)Lnet/minecraft/unmapped/C_4879372;	m_4768242		m_4768242
@@ -142,6 +143,9 @@ c	net/minecraft/unmapped/C_0960638
 	m	()J	m_2252476		getInhabitedTime
 	m	(Z)V	m_6644991		setUpdateHeightMaps
 		p	1			updateHeightMaps
+	m	(I)V	m_8239653	m_8239653	addRunningWorldGenTasks
+		p	1		p_1	amount
+	m	()Z	m_2821223	m_2821223	hasRunningWorldGenTasks
 c	net/minecraft/unmapped/C_0971705
 	m	(Lnet/minecraft/unmapped/C_8105098;II)V	m_9268390		m_9268390
 		p	1			p_1
@@ -213,7 +217,7 @@ c	net/minecraft/unmapped/C_1585647
 	m	(Ljava/util/HashMap;)V	m_3134422		m_3134422
 		p	0			p_0
 c	net/minecraft/unmapped/C_1591034
-	f	[Lnet/minecraft/unmapped/C_6697291;	f_2513540		f_2513540
+	f	[Lnet/minecraft/unmapped/C_6697291;	f_2513540		riding
 c	net/minecraft/unmapped/C_1955777
 	m	(Ljava/nio/file/Path;)V	m_5359878	clean	
 		p	1		p_1	
@@ -336,10 +340,10 @@ c	net/minecraft/unmapped/C_3015107
 		p	3		p_3	
 		p	4		p_4	
 	m	(Lnet/minecraft/unmapped/C_9844932;IILnet/minecraft/unmapped/C_2018497;)Lnet/minecraft/unmapped/C_0636026;	m_1881249	loadProtoChunk	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		world	
+		p	2		chunkX	
+		p	3		chunkZ	
+		p	4		nbt	
 	m	(Lnet/minecraft/unmapped/C_9844932;IILjava/util/function/Consumer;)Lnet/minecraft/unmapped/C_0960638;	m_0018649		m_0018649
 		p	1			p_1
 		p	2			p_2
@@ -352,10 +356,10 @@ c	net/minecraft/unmapped/C_3015107
 		p	4			nbt
 c	net/minecraft/unmapped/C_3015672
 	m	(Lnet/minecraft/unmapped/C_9844932;IILjava/util/function/Consumer;)Lnet/minecraft/unmapped/C_0636026;	m_0018649	loadProtoChunk	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		world	
+		p	2		chunkX	
+		p	3		chunkZ	
+		p	4		callback	
 	m	(Lnet/minecraft/unmapped/C_9844932;IILjava/util/function/Consumer;)Lnet/minecraft/unmapped/C_0960638;	m_0018649		loadProtoChunk
 		p	1			world
 		p	2			chunkX
@@ -526,12 +530,12 @@ c	net/minecraft/unmapped/C_3820473
 	f	[Lnet/minecraft/unmapped/C_0636026;	f_9402997	cache	
 	f	[Lnet/minecraft/unmapped/C_0960638;	f_9402997		cache
 	m	([Lnet/minecraft/unmapped/C_0636026;IIIILnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+		p	1		cache	
+		p	2		sizeX	
+		p	3		sizeZ	
+		p	4		chunkX	
+		p	5		chunkZ	
+		p	6		world	
 	m	(Lnet/minecraft/unmapped/C_5503280$C_6055071;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_3674802;	m_6991921	m_6991921	
 		p	1		p_1	
 		p	2		p_2	
@@ -591,12 +595,12 @@ c	net/minecraft/unmapped/C_4255955
 	m	(Ljava/util/HashMap;)V	m_4316775		m_4316775
 		p	0			shapes
 c	net/minecraft/unmapped/C_4393403
-	m	()V	m_2679713		m_2679713
+	m	()V	m_2679713		stopPlaying
 c	net/minecraft/unmapped/C_4434994
 	m	(Ljava/util/HashMap;)V	m_0188189		m_0188189
 		p	0			p_0
 c	net/minecraft/unmapped/C_4517657
-	m	()V	m_0512289		m_0512289
+	m	()V	m_0512289		tickBreathAboveWater
 c	net/minecraft/unmapped/C_4676145
 	m	(Ljava/util/HashMap;)V	m_3253838		m_3253838
 		p	0			p_0
@@ -767,13 +771,13 @@ c	net/minecraft/unmapped/C_6797747
 		p	0			p_0
 c	net/minecraft/unmapped/C_6849228
 	m	(Lnet/minecraft/unmapped/C_5553933;II[Lnet/minecraft/unmapped/C_6928498;Lnet/minecraft/unmapped/C_0992231;Lnet/minecraft/unmapped/C_5280919;Lnet/minecraft/unmapped/C_5280919;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
+		p	1		world	
+		p	2		chunkX	
+		p	3		chunkZ	
+		p	4		biomes	
+		p	5		upgradeData	
+		p	6		blockTicks	
+		p	7		fluidTicks	
 	m	(I)V	m_8239653	m_8239653	
 		p	1		p_1	
 	m	()Z	m_2821223	m_2821223	
@@ -789,6 +793,8 @@ c	net/minecraft/unmapped/C_6849228
 		p	8			inhabitedTime
 	m	(Z)V	m_1530040	m_1530040	setDirty
 		p	1		p_1	dirty
+	m	()Ljava/util/Map;	m_6340457	getStructureStarts	m_6340457
+	m	()Ljava/util/Map;	m_9358366	getStructureReferences	m_9358366
 c	net/minecraft/unmapped/C_6894203
 	m	(Ljava/lang/String;IIIZ)I	m_6114989		m_6114989
 		p	1			p_1
@@ -803,34 +809,34 @@ c	net/minecraft/unmapped/C_7056743
 		p	3			p_3
 c	net/minecraft/unmapped/C_7131921
 	f	Ljava/util/Set;	f_9490663		OPEN_OPTIONS
-	m	(Ljava/lang/String;)V	m_7384155	m_7384155	
+	m	(Ljava/lang/String;)V	m_7384155	write	
 		p	1		p_1	
-	m	(Ljava/io/File;)V	m_4128431		m_4128431
-		p	1			p_1
-	m	(Ljava/nio/file/Path;)V	m_7384155		m_7384155
-		p	1			p_1
+	m	(Ljava/io/File;)V	m_4128431		write
+		p	1			file
+	m	(Ljava/nio/file/Path;)V	m_7384155		write
+		p	1			path
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_7131921$1		1
-c	net/minecraft/unmapped/C_7131921$C_4772938		C_4772938
-	f	Ljava/nio/channels/WritableByteChannel;	f_7091548		f_7091548
-	f	Ljava/io/IOException;	f_7257544		f_7257544
+c	net/minecraft/unmapped/C_7131921$C_4772938		WriteCallback
+	f	Ljava/nio/channels/WritableByteChannel;	f_7091548		output
+	f	Ljava/io/IOException;	f_7257544		exception
 	m	(Ljava/nio/channels/WritableByteChannel;)V	<init>		<init>
-		p	1			p_1
+		p	1			output
 	m	(JJI)V	invoke		invoke
 		p	1			p_1
 		p	3			p_3
 		p	5			p_5
-	m	()V	m_0545727		m_0545727
+	m	()V	m_0545727		throwIfException
 	m	(Ljava/nio/channels/WritableByteChannel;Lnet/minecraft/unmapped/C_7131921$1;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_7574603
 	m	(Ljava/util/HashMap;)V	m_2349792		m_2349792
-		p	0			p_0
+		p	0			structures
 	m	(Ljava/util/HashMap;)V	m_9052518		m_9052518
-		p	0			p_0
+		p	0			structures
 	m	(Ljava/util/HashMap;)V	m_9693933		m_9693933
-		p	0			p_0
+		p	0			structures
 c	net/minecraft/unmapped/C_7797577
 	m	(Ljava/util/HashMap;)V	m_3859737		m_3859737
 		p	0			p_0
@@ -902,7 +908,7 @@ c	net/minecraft/unmapped/C_8275823
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_8370969
-	m	()Lnet/minecraft/unmapped/C_9507262;	m_5664868		m_5664868
+	m	()Lnet/minecraft/unmapped/C_9507262;	m_5664868		createArmorLayer
 c	net/minecraft/unmapped/C_8474433
 	m	()Z	m_6133114	m_6133114	
 c	net/minecraft/unmapped/C_8620458

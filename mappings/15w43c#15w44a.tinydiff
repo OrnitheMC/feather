@@ -1,21 +1,21 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_1427941
-	f	Lnet/minecraft/unmapped/C_7503776;	f_8451674		f_8451674
+	f	Lnet/minecraft/unmapped/C_7503776;	f_8451674		modelWithBase
 c	net/minecraft/unmapped/C_2454309
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_0394496;Lnet/minecraft/unmapped/C_7278838;)V	m_6633455		addAttributeModifier
 		p	1			attribute
 		p	2			modifier
 		p	3			slot
 c	net/minecraft/unmapped/C_2755677
-	f	Lnet/minecraft/unmapped/C_2322437;	f_4411891	f_4411891	
-	m	()Lnet/minecraft/unmapped/C_2322437;	m_0963378	m_0963378	
+	f	Lnet/minecraft/unmapped/C_2322437;	f_4411891	dragonRespawnPattern	
+	m	()Lnet/minecraft/unmapped/C_2322437;	m_0963378	getDragonRespawnPattern	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2441996;)V	m_2420716	m_2420716	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)V	m_4605792	m_4605792	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;)V	m_4605792	checkDragonRespawn	
+		p	1		world	
+		p	2		pos	
 c	net/minecraft/unmapped/C_3325952
 	f	Lnet/minecraft/unmapped/C_3755722;	f_3491249		END_CRYSTAL
 c	net/minecraft/unmapped/C_3605284
@@ -28,7 +28,7 @@ c	net/minecraft/unmapped/C_3605284
 		p	2			p_2
 		p	3			p_3
 	m	(Ljava/util/List;ILjava/util/Random;)V	m_3952025		shuffleItems
-		p	1			stacks
+		p	1			items
 		p	2			slotCount
 		p	3			random
 	m	(Lnet/minecraft/unmapped/C_5818647;Ljava/util/Random;)Ljava/util/List;	m_0150241		getSlotCount
@@ -43,10 +43,10 @@ c	net/minecraft/unmapped/C_3961659
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_4495978
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)Z	m_0615576	m_0615576	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)Z	m_0615576	isSupported	
+		p	1		world	
+		p	2		pos	
+		p	3		facing	
 c	net/minecraft/unmapped/C_5365355
 	m	(DDD)V	m_4956544		m_4956544
 		p	1			p_1
@@ -94,7 +94,7 @@ c	net/minecraft/unmapped/C_7121928
 	f	Ljava/util/List;	f_9363868		respawnCrystals
 		c		Crystals placed around the exit portal to respawn the dragon.
 	m	()V	m_4077429	respawn	
-	m	()V	m_2975345		tryRespawn
+	m	()V	m_2975345		respawnDragon
 	m	(Ljava/util/List;)V	m_4077429		respawn
 		p	1			respawnCrystals
 c	net/minecraft/unmapped/C_7278838
@@ -102,8 +102,8 @@ c	net/minecraft/unmapped/C_7278838
 		p	0			key
 c	net/minecraft/unmapped/C_8853985
 c	net/minecraft/unmapped/C_8853985$C_8614818
-	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3113046		isValidFuel
-		p	0			stack
+	m	(Lnet/minecraft/unmapped/C_2454309;)Z	m_3113046		isFuel
+		p	0			item
 c	net/minecraft/unmapped/C_8869969
 	f	Lnet/minecraft/unmapped/C_6101761;	f_9630445		SHOW_BOTTOM
 	m	(Z)V	m_1581799		setShowBottom
@@ -114,8 +114,8 @@ c	net/minecraft/unmapped/C_9590849
 		p	1			p_1
 c	net/minecraft/unmapped/C_9639106
 	m	(Lnet/minecraft/unmapped/C_2711798;III)V	m_6632952	clickSlot	
-		p	1		invSlot	
-		p	2		slotId	
+		p	1		actualSlot	
+		p	2		slot	
 		p	3		clickData	
 		p	4		actionType	
 	m	(Lnet/minecraft/unmapped/C_2711798;IILnet/minecraft/unmapped/C_1421936;)V	m_6632952		clickSlot
@@ -131,16 +131,16 @@ c	net/minecraft/unmapped/C_9663005
 		p	2		slotId	
 		p	3		clickData	
 		p	4		action	
-		p	5		stack	
-		p	6		actionId	
+		p	5		item	
+		p	6		interactionId	
 	m	()I	m_9225732	getAction	
 	m	(IIILnet/minecraft/unmapped/C_1421936;Lnet/minecraft/unmapped/C_2454309;S)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			menuId
+		p	2			slot
+		p	3			clickData
+		p	4			action
+		p	5			item
+		p	6			interactionId
 	m	()Lnet/minecraft/unmapped/C_1421936;	m_9225732		getAction
 c	net/minecraft/unmapped/C_1421936		net/minecraft/inventory/menu/ActionType
 	f	Lnet/minecraft/unmapped/C_1421936;	f_7559360		PICKUP
@@ -174,12 +174,12 @@ c	net/minecraft/unmapped/C_4508436		net/minecraft/item/EndCrystalItem
 		p	1			p_1
 c	net/minecraft/unmapped/C_4840589		net/minecraft/inventory/InventoryHelper
 	m	([Lnet/minecraft/unmapped/C_2454309;II)Lnet/minecraft/unmapped/C_2454309;	m_3189792		split
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
+		p	0			items
+		p	1			slot
+		p	2			amount
 	m	([Lnet/minecraft/unmapped/C_2454309;I)Lnet/minecraft/unmapped/C_2454309;	m_7453796		remove
-		p	0			p_0
-		p	1			p_1
+		p	0			items
+		p	1			slot
 c	net/minecraft/unmapped/C_6658463		net/minecraft/world/gen/loot/functions/EnchantRandomlyFunction
 	f	Lorg/apache/logging/log4j/Logger;	f_9902870		LOGGER
 	f	Ljava/util/List;	f_5354690		enchantments

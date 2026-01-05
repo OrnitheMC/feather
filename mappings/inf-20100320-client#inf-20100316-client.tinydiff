@@ -42,18 +42,19 @@ c	net/minecraft/unmapped/C_1241852
 		p	4		z	
 		p	5		metadata	
 		p	6		luck	
-	m	()F	m_6175484	m_6175484	
+	m	()F	m_6175484	getBlastResistance	
+		c	Returns this block's blast resistance any entity.	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_2698089	onExploded	
 		p	1		world	
 		p	2		x	
 		p	3		y	
 		p	4		z	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)V	m_7925717		dropItems
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
+		p	5			metadata
 c	net/minecraft/unmapped/C_1582062	net/minecraft/block/entity/ChestBlockEntity	
 	f	[Lnet/minecraft/unmapped/C_2454309;	f_4196531	inventory	
 	m	()V	<init>	<init>	
@@ -77,9 +78,9 @@ c	net/minecraft/unmapped/C_1842758	net/minecraft/util/math/Vec3i
 		p	2		y	
 		p	3		z	
 	m	(Ljava/lang/Object;)Z	equals	equals	
-		p	1		obj	
+		p	1		p_1	
 	m	()I	hashCode	hashCode	
-c	net/minecraft/unmapped/C_2006351	net/minecraft/unmapped/C_2006351	
+c	net/minecraft/unmapped/C_2006351	net/minecraft/world/explosion/Explosion	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_2910311
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_2420716	m_2420716	
@@ -87,11 +88,11 @@ c	net/minecraft/unmapped/C_2910311
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/unmapped/C_3586288	net/minecraft/unmapped/C_3586288	
-	f	I	f_1567307	f_1567307	
+c	net/minecraft/unmapped/C_3586288	net/minecraft/block/LegacyLiquidSourceBlock	
+	f	I	f_1567307	flowingBlock	
 	m	(II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		id	
+		p	2		flowingBlock	
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_2420716	m_2420716	
 		p	1		p_1	
 		p	2		p_2	
@@ -127,38 +128,38 @@ c	net/minecraft/unmapped/C_5553933
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		blockId	
+		p	4		block	
 	m	(IIII)V	m_3681598	setBlockMetadata	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		metadata	
-	m	(IIII)Z	m_6769014	setBlockWithMetadataQuietly	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(IIIIII)V	m_4352851	m_4352851	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
+	m	(IIII)Z	m_6769014	setBlockMetadataQuietly	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		metadata	
+	m	(IIIIII)V	m_4352851	swapBlocks	
+		p	1		x1	
+		p	2		y1	
+		p	3		z1	
+		p	4		x2	
+		p	5		y2	
+		p	6		z2	
 	m	(Lnet/minecraft/unmapped/C_0539808;DDDF)V	m_5936587	explode	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
-		p	8		p_8	
+		p	1		source	
+		p	2		x	
+		p	4		y	
+		p	6		z	
+		p	8		power	
 	m	(Lnet/minecraft/unmapped/C_0557736;Lnet/minecraft/unmapped/C_5577922;)F	m_7968481	getBlockDensity	
 		p	1		pos	
 		p	2		bounds	
 	m	(IIII)V	m_3890586	extinguishFire	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		face	
 	m	(III)Lnet/minecraft/unmapped/C_3622326;	m_8048103	getBlockEntity	
 		p	1		x	
 		p	2		y	
@@ -173,13 +174,13 @@ c	net/minecraft/unmapped/C_5553933
 		p	2		p_2	
 		p	3		p_3	
 	m	(II)Z	m_2479214		isChunkLoaded
-		p	1			p_1
-		p	2			p_2
-	m	(IIII)V	m_6769014		setBlockWithMetadataQuietly
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			x
+		p	2			z
+	m	(IIII)V	m_6769014		setBlockMetadataQuietly
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			block
 c	net/minecraft/unmapped/C_5577922
 	m	(Lnet/minecraft/unmapped/C_5577922;)Z	m_8247760	intersects	
 		p	1		box	
@@ -189,20 +190,20 @@ c	net/minecraft/unmapped/C_5615103
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_9766400	m_9766400	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_9766400	updateFacing	
+		p	0		world	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	()Lnet/minecraft/unmapped/C_3622326;	m_9359758	m_9359758	
 c	net/minecraft/unmapped/C_6849228
 	f	Ljava/util/Map;	f_9853033	blockEntities	
 	f	Ljava/util/List;	f_1327421	f_1327421	
-	m	(IIII)Z	m_4332228	m_4332228	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(IIII)Z	m_4332228	setBlockAt	
+		p	1		localX	
+		p	2		y	
+		p	3		localZ	
+		p	4		block	
 	m	(III)Lnet/minecraft/unmapped/C_3622326;	m_1451349	getBlockEntityAt	
 		p	1		localX	
 		p	2		y	
@@ -212,11 +213,11 @@ c	net/minecraft/unmapped/C_6849228
 		p	2		y	
 		p	3		localZ	
 		p	4		blockEntity	
-	m	(IIII)V	m_4332228		m_4332228
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(IIII)V	m_4332228		setBlockAt
+		p	1			localX
+		p	2			y
+		p	3			localZ
+		p	4			block
 c	net/minecraft/unmapped/C_7051878
 	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_2420716	m_2420716	
 		p	1		p_1	
@@ -245,7 +246,7 @@ c	net/minecraft/unmapped/C_9761743
 		p	4		p_4	
 c	net/minecraft/unmapped/C_9848147
 	m	(Lnet/minecraft/unmapped/C_9848147;II)V	m_4129669	populateChunk	
-		c	Populates the chunk at the given chunk coordinates, placing features and spawning mobs.	
+		c	Populates the world chunk at the given chunk coordinates, placing features and spawning mobs.	
 		p	1		source	
 		p	2		chunkX	
 		p	3		chunkZ	

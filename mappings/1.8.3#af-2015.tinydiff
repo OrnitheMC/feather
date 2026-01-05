@@ -8,11 +8,11 @@ c	net/minecraft/unmapped/C_0022186
 		p	7		velocityZ	
 c	net/minecraft/unmapped/C_0254692
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;DDD)V	<init>	<init>	
-		p	1		world	
-		p	2		owner	
-		p	3		x	
-		p	5		y	
-		p	7		z	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+		p	5		p_5	
+		p	7		p_7	
 c	net/minecraft/unmapped/C_0259655
 	m	()V	m_9802273	disableShader	
 c	net/minecraft/unmapped/C_0268929
@@ -73,7 +73,7 @@ c	net/minecraft/unmapped/C_2381425
 		p	8		entries	
 		p	9		amount	
 c	net/minecraft/unmapped/C_2485529
-	m	()Ljava/util/List;	m_9173182	getLootChestContent	
+	m	()Ljava/util/List;	m_9173182	m_9173182	
 c	net/minecraft/unmapped/C_2788918	net/minecraft/client/gui/screen/FatalErrorScreen	
 	f	Ljava/lang/String;	f_2446021	title	
 	f	Ljava/lang/String;	f_6552640	description	
@@ -117,15 +117,15 @@ c	net/minecraft/unmapped/C_3828683$C_2663385
 		p	1		rabbit	
 		p	2		targetType	
 		p	3		distance	
-		p	4		slowSpeed	
-		p	6		fastSpeed	
+		p	4		speedWhenFar	
+		p	6		speedWhenClose	
 c	net/minecraft/unmapped/C_4015822
 	m	(Z)V	m_1772134	setFireActive	
 		p	1		active	
 c	net/minecraft/unmapped/C_4015822$C_0391336	AttackGoal	
 	f	Lnet/minecraft/unmapped/C_4015822;	f_7163011	blaze	
 	f	I	f_3161876	step	
-	f	I	f_8151479	time	
+	f	I	f_8151479	ticks	
 	m	(Lnet/minecraft/unmapped/C_4015822;)V	<init>	<init>	
 		p	1		blaze	
 	m	()Z	m_9549250	m_9549250	
@@ -136,13 +136,13 @@ c	net/minecraft/unmapped/C_4281786
 	m	(Lnet/minecraft/unmapped/C_4281786;Lnet/minecraft/unmapped/C_0539808;)V	m_9398442	m_9398442	
 		p	0		p_0	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_4281786$C_0887818	PigmanTargetPlayerGoal	
+c	net/minecraft/unmapped/C_4281786$C_0887818	TargetPlayerGoal	
 	m	(Lnet/minecraft/unmapped/C_4281786;)V	<init>	<init>	
-		p	1		zombiePigman	
+		p	1		pigman	
 	m	()Z	m_9549250	m_9549250	
-c	net/minecraft/unmapped/C_4281786$C_4562461	TargetAggressorGoal	
+c	net/minecraft/unmapped/C_4281786$C_4562461	RevengeGoal	
 	m	(Lnet/minecraft/unmapped/C_4281786;)V	<init>	<init>	
-		p	1		zombiePigman	
+		p	1		pigman	
 	m	(Lnet/minecraft/unmapped/C_5622853;Lnet/minecraft/unmapped/C_6607881;)V	m_3281506	m_3281506	
 		p	1		p_1	
 		p	2		p_2	
@@ -160,14 +160,14 @@ c	net/minecraft/unmapped/C_5303533
 c	net/minecraft/unmapped/C_5571887
 	f	Z	f_2357749		f_2357749
 	m	(IIILnet/minecraft/unmapped/C_1331819$C_9500154;)V	<init>	<init>	
-		p	1		x	
-		p	2		y	
-		p	3		id	
+		p	1		id	
+		p	2		x	
+		p	3		y	
 		p	4		option	
 	m	(IIILnet/minecraft/unmapped/C_1331819$C_9500154;FF)V	<init>	<init>	
-		p	1		x	
-		p	2		y	
-		p	3		id	
+		p	1		id	
+		p	2		x	
+		p	3		y	
 		p	4		option	
 		p	5		min	
 		p	6		max	
@@ -186,9 +186,9 @@ c	net/minecraft/unmapped/C_5571887
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/unmapped/C_5587144
-	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_8914611	canGetAngryAt	
-		p	1		target	
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_2897894	tryTeleportTo	
+	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_8914611	isLookedAtBy	
+		p	1		player	
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_2897894	teleportTo	
 		p	1		target	
 	m	()Lnet/minecraft/unmapped/C_0394496;	m_8147179	m_8147179	
 	m	(Lnet/minecraft/unmapped/C_5587144;Lnet/minecraft/unmapped/C_9590849;)Z	m_1519139	m_1519139	
@@ -204,11 +204,13 @@ c	net/minecraft/unmapped/C_5587144$1	1
 	m	(Lnet/minecraft/unmapped/C_4649460;)Z	m_0595670	apply	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	apply	apply	
-		p	1		p_1	
+		p	1		entity	
 c	net/minecraft/unmapped/C_5587144$C_7709656	LookAtPlayerGoal	
-	f	Lnet/minecraft/unmapped/C_9590849;	f_7144667	target	
-	f	I	f_3895227	lookAtPlayerWarmup	
-	f	I	f_5329889	ticksSinceUnseenTeleport	
+	f	Lnet/minecraft/unmapped/C_9590849;	f_7144667	pendingTarget	
+	f	I	f_3895227	creepySoundTimer	
+		c	A timer that counts down while the enderman has a target, after which a creepy sound will be played.	
+	f	I	f_5329889	targetFarAwayTicks	
+		c	A counter that increments each tick where its target is more than 16 blocks away from this enderman.	
 	f	Lnet/minecraft/unmapped/C_5587144;	f_7292859	enderman	
 	m	(Lnet/minecraft/unmapped/C_5587144;)V	<init>	<init>	
 		p	1		enderman	
@@ -222,9 +224,9 @@ c	net/minecraft/unmapped/C_5705147
 c	net/minecraft/unmapped/C_5705147$C_4610092
 	m	(Lnet/minecraft/unmapped/C_5705147;Lnet/minecraft/unmapped/C_8105098;)V	<init>	<init>	
 		p	1		p_1	
-		p	2		p_2	
+		p	2		minecraft	
 c	net/minecraft/unmapped/C_5708472
-	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_9549896;	m_9980400	getClosestTickingDoor	
+	m	(Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_9549896;	m_9980400	getNearestTickingDoor	
 		p	1		pos	
 c	net/minecraft/unmapped/C_5722573
 	m	(Lnet/minecraft/unmapped/C_1005994;)V	m_9727633		m_9727633
@@ -249,7 +251,7 @@ c	net/minecraft/unmapped/C_6269816
 	m	()D	m_7168636		m_7168636
 c	net/minecraft/unmapped/C_6269816$C_3640041	ShootFireballGoal	
 	f	Lnet/minecraft/unmapped/C_6269816;	f_8800133	ghast	
-	f	I	f_2934639	ticks	
+	f	I	f_2934639	chargeTicks	
 	m	(Lnet/minecraft/unmapped/C_6269816;)V	<init>	<init>	
 		p	1		ghast	
 	m	()Z	m_9549250	m_9549250	
@@ -283,7 +285,7 @@ c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_1005994;)V	m_9727633		m_9727633
 		p	1			p_1
 c	net/minecraft/unmapped/C_7592368
-c	net/minecraft/unmapped/C_7592368$C_7533076	GolemActiveTargetGoal	
+c	net/minecraft/unmapped/C_7592368$C_7533076	ActiveTargetGoal	
 	m	(Lnet/minecraft/unmapped/C_5622853;Ljava/lang/Class;IZZLcom/google/common/base/Predicate;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -308,7 +310,7 @@ c	net/minecraft/unmapped/C_7592368$C_7533076$1	1
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_8580167	apply	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	apply	apply	
-		p	1		entity	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_8354080	net/minecraft/entity/ai/goal/StayIndoorsGoal	
 	f	Lnet/minecraft/unmapped/C_5622853;	f_5293357	entity	
 	f	Lnet/minecraft/unmapped/C_9549896;	f_7048279	door	
@@ -328,7 +330,7 @@ c	net/minecraft/unmapped/C_8365102$C_9394384	GuardianTargetValidator
 	m	(Lnet/minecraft/unmapped/C_6607881;)Z	m_1585206	apply	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	apply	apply	
-		p	1		targetEntity	
+		p	1		p_1	
 c	net/minecraft/unmapped/C_8634284
 	f	Lnet/minecraft/unmapped/C_6607881;	f_1718927		f_1718927
 	m	(Lnet/minecraft/unmapped/C_8099772;Ljava/lang/Class;)V	<init>	<init>	
@@ -384,7 +386,7 @@ c	net/minecraft/unmapped/C_9590849
 	m	(I)V	m_1405666		m_1405666
 		p	1			p_1
 	m	()I	m_0125198		m_0125198
-c	net/minecraft/unmapped/C_1005994		net/minecraft/C_12lrfxfow
+c	net/minecraft/unmapped/C_1005994		net/minecraft/unmapped/C_1005994
 	f	I	f_7527017		f_7527017
 	m	()V	<init>		<init>
 	m	(I)V	<init>		<init>
@@ -398,7 +400,7 @@ c	net/minecraft/unmapped/C_1005994		net/minecraft/C_12lrfxfow
 	m	()I	m_4308529		m_4308529
 	m	(Lnet/minecraft/unmapped/C_5444260;)V	m_7216666		m_7216666
 		p	1			p_1
-c	net/minecraft/unmapped/C_5880211		net/minecraft/C_64ecmwwyz
+c	net/minecraft/unmapped/C_5880211		net/minecraft/unmapped/C_5880211
 	f	Lorg/apache/logging/log4j/Logger;	f_0764208		f_0764208
 	f	Lnet/minecraft/unmapped/C_8099772;	f_0196636		f_0196636
 	f	Lcom/google/common/base/Predicate;	f_4345478		f_4345478
@@ -418,11 +420,11 @@ c	net/minecraft/unmapped/C_5880211$1		1
 	f	Lnet/minecraft/unmapped/C_5880211;	f_1094521		f_1094521
 	m	(Lnet/minecraft/unmapped/C_5880211;)V	<init>		<init>
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_9962082		m_9962082
+	m	(Lnet/minecraft/unmapped/C_0539808;)Z	m_9962082		apply
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
 		p	1			p_1
-c	net/minecraft/unmapped/C_9132103		net/minecraft/C_56dsqhgjs
+c	net/minecraft/unmapped/C_9132103		net/minecraft/unmapped/C_9132103
 	f	Lnet/minecraft/unmapped/C_0561170;	f_1501622		f_1501622
 	f	[Lnet/minecraft/unmapped/C_1945050;	f_1916311		f_1916311
 	f	Lnet/minecraft/unmapped/C_0561170;	f_5543190		f_5543190
@@ -484,3 +486,7 @@ c	net/minecraft/unmapped/C_9132103$C_0217194		C_0217194
 		p	1			p_1
 	m	()I	m_2084235		m_2084235
 	m	()Z	m_8042671		m_8042671
+c	net/minecraft/unmapped/C_6607881
+	m	(Lnet/minecraft/unmapped/C_1161898;F)V	m_9413880	applyDamage	m_9413880
+		p	1		source	p_1
+		p	2		damage	p_2

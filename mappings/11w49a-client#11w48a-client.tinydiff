@@ -1,7 +1,7 @@
 tiny	2	0
-c	net/minecraft/unmapped/C_0664896	net/minecraft/unmapped/C_0664896	
-	f	Ljava/util/ArrayList;	f_9852612	f_9852612	
-	f	Ljava/util/TreeMap;	f_8792260	f_8792260	
+c	net/minecraft/unmapped/C_0664896	net/minecraft/client/gui/screen/options/LanguageOptionsScreen__LanguageSelectionListWidget	
+	f	Ljava/util/ArrayList;	f_9852612	languageCodes	
+	f	Ljava/util/TreeMap;	f_8792260	languages	
 	f	Lnet/minecraft/unmapped/C_6022032;	f_5285468	f_5285468	
 	m	(Lnet/minecraft/unmapped/C_6022032;)V	<init>	<init>	
 		p	1		p_1	
@@ -21,15 +21,15 @@ c	net/minecraft/unmapped/C_0664896	net/minecraft/unmapped/C_0664896
 		p	5		p_5	
 c	net/minecraft/unmapped/C_0759248
 	f	Ljava/util/TreeMap;	f_8452266	languageNames	
-	f	Ljava/lang/String;	f_2809028	currentLanguage	
+	f	Ljava/lang/String;	f_2809028	currentCode	
 	m	()V	m_1195152	load	
 	m	()Ljava/util/TreeMap;	m_3746409	getLanguageNames	
 	m	(Ljava/util/Properties;Ljava/lang/String;)V	m_2304208	loadTranslations	
 		p	1		translations	
 		p	2		language	
-	m	(Ljava/lang/String;)V	m_1454478	setLanguage	
+	m	(Ljava/lang/String;)V	m_1454478	loadLanguage	
 		p	1		language	
-	m	()Ljava/lang/String;	m_2823481	getCurrentLanguage	
+	m	()Ljava/lang/String;	m_2823481	getCurrentCode	
 c	net/minecraft/unmapped/C_1008454	net/minecraft/network/packet/CustomPayloadPacket	
 	f	Ljava/lang/String;	f_1880592	channel	
 	f	I	f_5294570	size	
@@ -61,7 +61,7 @@ c	net/minecraft/unmapped/C_2523250
 		p	5		p_5	
 		p	6		p_6	
 c	net/minecraft/unmapped/C_2609740
-	m	()Ljava/lang/String;	m_1797188	getName	
+	m	()Ljava/lang/String;	m_1797188	getKey	
 c	net/minecraft/unmapped/C_3242141
 	f	I	f_1093209	eatGrassTimer	
 	m	()V	m_0095412	m_0095412	
@@ -91,7 +91,7 @@ c	net/minecraft/unmapped/C_3831727
 	f	[I	f_3993462	colors	
 	f	Lnet/minecraft/unmapped/C_0876962;	f_2411985	textureManager	
 	f	Z	f_6847841	unicode	
-	f	Ljava/nio/IntBuffer;	f_1398395		f_1398395
+	f	Ljava/nio/IntBuffer;	f_1398395		pageBuffer
 	m	(Lnet/minecraft/unmapped/C_1331819;Ljava/lang/String;Lnet/minecraft/unmapped/C_0876962;Z)V	<init>	<init>	
 		p	1		options	
 		p	2		fontPath	
@@ -113,7 +113,7 @@ c	net/minecraft/unmapped/C_3831727
 		p	2			fontPath
 		p	3			textureManager
 c	net/minecraft/unmapped/C_5297983
-	f	F	f_2359618	tickdelta	
+	f	F	f_2359618	headAngle	
 	m	(Lnet/minecraft/unmapped/C_6607881;FFF)V	m_3922927	m_3922927	
 		p	1		p_1	
 		p	2		p_2	
@@ -128,12 +128,12 @@ c	net/minecraft/unmapped/C_5297983
 		p	6		p_6	
 c	net/minecraft/unmapped/C_6022032	net/minecraft/client/gui/screen/options/LanguageOptionsScreen	
 	f	Lnet/minecraft/unmapped/C_3020744;	f_0263396	parent	
-	f	I	f_3776593	f_3776593	
+	f	I	f_3776593	reloadTimer	
 	f	Lnet/minecraft/unmapped/C_0664896;	f_3668373	languageSelectionListWidget	
-	f	Lnet/minecraft/unmapped/C_1331819;	f_9430888	gameOptions	
+	f	Lnet/minecraft/unmapped/C_1331819;	f_9430888	options	
 	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_1331819;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		parent	
+		p	2		options	
 	m	()V	m_3593494	m_3593494	
 	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_7971793	m_7971793	
 		p	1		p_1	
@@ -150,10 +150,10 @@ c	net/minecraft/unmapped/C_6022032	net/minecraft/client/gui/screen/options/Langu
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	m_2450377	m_2450377	
-	m	(Lnet/minecraft/unmapped/C_6022032;)Lnet/minecraft/unmapped/C_1331819;	m_3452067	getGameOptions	
+	m	(Lnet/minecraft/unmapped/C_6022032;)Lnet/minecraft/unmapped/C_1331819;	m_3452067	m_3452067	
 		p	0		p_0	
 c	net/minecraft/unmapped/C_6607881
-	f	Z	f_9300433		f_9300433
+	f	Z	f_9300433		interpolateOnly
 	m	()Z	m_1451667	isLocallyControlled	
 		c	@return Whether the entity is "locally controlled".\nA locally controlled entity will tick AI and movement.\nA non-locally controlled entity does not have collision and will not move.\nNo entities on the client are locally controlled, except for the local player entity.	
 c	net/minecraft/unmapped/C_7250084
@@ -175,12 +175,12 @@ c	net/minecraft/unmapped/C_7901749	net/minecraft/item/SpawnEggItem
 		p	6		p_6	
 		p	7		p_7	
 c	net/minecraft/unmapped/C_8252988
-	f	Ljava/util/List;	f_7269667	f_7269667	
+	f	Ljava/util/List;	f_7269667	SPAWN_EGG_DATA	
 	m	(Ljava/lang/Class;Ljava/lang/String;IZ)V	m_0930588	register	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	0		type	
+		p	1		key	
+		p	2		id	
+		p	3		addSpawnEgg	
 	m	(I)Ljava/lang/String;	m_9619307	getKey	
 		p	0		id	
 	m	(Ljava/lang/Class;Ljava/lang/String;I)V	m_0930588		register

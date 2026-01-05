@@ -1,8 +1,8 @@
 tiny	2	0
-c	net/minecraft/unmapped/C_0759248	net/minecraft/locale/LanguageManager	net/minecraft/locale/Language
+c	net/minecraft/unmapped/C_0759248
 	f	Ljava/util/TreeMap;	f_8452266	languageNames	
 	f	Ljava/util/TreeMap;	f_5999659	languageFilePaths	
-	f	Ljava/lang/String;	f_2809028	currentLanguage	
+	f	Ljava/lang/String;	f_2809028	currentCode	
 	f	Z	f_6833655	unicode	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		defaultLanguage	
@@ -11,15 +11,15 @@ c	net/minecraft/unmapped/C_0759248	net/minecraft/locale/LanguageManager	net/mine
 	m	(Ljava/util/Properties;Ljava/lang/String;)V	m_2304208	loadTranslations	
 		p	1		translations	
 		p	2		language	
-	m	(Ljava/lang/String;Z)V	m_1454478	setLanguage	
-		p	1		language	
-		p	2		p_2	
-	m	()Ljava/lang/String;	m_2823481	getCurrentLanguage	
+	m	(Ljava/lang/String;Z)V	m_1454478	loadLanguage	
+		p	1		code	
+		p	2		forceUpdate	
+	m	()Ljava/lang/String;	m_2823481	getCurrentCode	
 	m	()Z	m_4481166	isUnicode	
 	m	(Ljava/lang/String;)Z	m_6003710	isRightToLeft	
 		p	0		language	
-	m	(Ljava/lang/String;Ljava/io/File;)V	m_5876773	loadTranslations	
-		p	1		language	
+	m	(Ljava/lang/String;Ljava/io/File;)V	m_5876773	loadLanguageFromResource	
+		p	1		code	
 		p	2		file	
 	m	()V	<init>		<init>
 	m	(Ljava/util/Map;)V	m_8177165		setTranslations
@@ -40,14 +40,14 @@ c	net/minecraft/unmapped/C_3292284
 	f	Lnet/minecraft/unmapped/C_0759248;	f_1837564	lang	
 	f	Ljava/lang/String;	f_0656555		language
 	m	()Lnet/minecraft/unmapped/C_0759248;	m_7248813	m_7248813	
-c	net/minecraft/unmapped/C_3390001
-	f	Lnet/minecraft/unmapped/C_0759248;	f_7140292	translations	
-	f	Lnet/minecraft/unmapped/C_8639317;	f_7140292		translations
+c	net/minecraft/unmapped/C_3390001	net/minecraft/locale/I18n	net/minecraft/client/resource/language/I18n
+	f	Lnet/minecraft/unmapped/C_0759248;	f_7140292	LANGUAGE	
+	f	Lnet/minecraft/unmapped/C_8639317;	f_7140292		locale
 	m	(Ljava/lang/String;)Z	m_9084832	hasTranslation	
 		p	0		key	
 	m	()V	<clinit>	<clinit>	
-	m	(Lnet/minecraft/unmapped/C_8639317;)V	m_9035475		setTranslations
-		p	0			translations
+	m	(Lnet/minecraft/unmapped/C_8639317;)V	m_9035475		setLocale
+		p	0			locale
 c	net/minecraft/unmapped/C_3432058
 	m	(Lnet/minecraft/unmapped/C_1296613;)Lnet/minecraft/unmapped/C_9632344;	m_7748239	m_7748239	
 		p	1		p_1	
@@ -62,22 +62,22 @@ c	net/minecraft/unmapped/C_3432058
 		p	1			file
 		p	2			name
 c	net/minecraft/unmapped/C_3830328
-	f	Ljava/util/ArrayList;	f_3849511	languages	
-	f	Ljava/util/TreeMap;	f_0245350	defenitionByLanguage	
-	f	Ljava/util/List;	f_3849511		languages
-	f	Ljava/util/Map;	f_0245350		defenitionByLanguage
+	f	Ljava/util/ArrayList;	f_3849511	languageCodes	
+	f	Ljava/util/TreeMap;	f_0245350	languages	
+	f	Ljava/util/List;	f_3849511		languageCodes
+	f	Ljava/util/Map;	f_0245350		languages
 c	net/minecraft/unmapped/C_3865296
 	f	Lnet/minecraft/unmapped/C_2144954;	f_3297817		naturalSpawner
 c	net/minecraft/unmapped/C_4764902
 	m	(Lnet/minecraft/unmapped/C_5553933;DDDDDDLnet/minecraft/unmapped/C_3755722;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
-		p	8		p_8	
-		p	10		p_10	
-		p	12		p_12	
-		p	14		p_14	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
+		p	8		velocityX	
+		p	10		velocityY	
+		p	12		velocityZ	
+		p	14		item	
 	m	(Lnet/minecraft/unmapped/C_5553933;DDDLnet/minecraft/unmapped/C_3755722;I)V	<init>		<init>
 		p	1			world
 		p	2			x
@@ -98,8 +98,8 @@ c	net/minecraft/unmapped/C_4764902
 c	net/minecraft/unmapped/C_6022032
 	f	Lnet/minecraft/unmapped/C_6176478;	f_0109502		languageManager
 	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_1331819;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		parent	
+		p	2		options	
 	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_1331819;Lnet/minecraft/unmapped/C_6176478;)V	<init>		<init>
 		p	1			parent
 		p	2			options
@@ -123,7 +123,7 @@ c	net/minecraft/unmapped/C_6815022
 	m	()Z	m_7750295		m_7750295
 c	net/minecraft/unmapped/C_7532262
 	m	(Lnet/minecraft/unmapped/C_1296613;)Lnet/minecraft/unmapped/C_9632344;	m_7748239	getMetadataSection	
-		p	1		p_1	
+		p	1		metadataSerializers	
 	m	(Lnet/minecraft/unmapped/C_1296613;Ljava/lang/String;)Lnet/minecraft/unmapped/C_0731481;	m_7748239		getMetadataSection
 		p	1			metadataSerializers
 		p	2			name
@@ -131,9 +131,9 @@ c	net/minecraft/unmapped/C_7853185
 	m	()V	m_4494344		sendRenameUpdates
 c	net/minecraft/unmapped/C_8105098
 	f	Lnet/minecraft/unmapped/C_6176478;	f_3809222		languageManager
-	m	()V	m_2219615	m_2219615	
-	m	(Ljava/io/File;)V	m_1922003	m_1922003	
-		p	1		p_1	
+	m	()V	m_2219615	loadAssets	
+	m	(Ljava/io/File;)V	m_1922003	loadResource	
+		p	1		file	
 	m	()Lnet/minecraft/unmapped/C_6176478;	m_3854375		getLanguageManager
 c	net/minecraft/unmapped/C_8858101
 	m	(Lnet/minecraft/unmapped/C_1296613;)Lnet/minecraft/unmapped/C_9632344;	m_7748239	m_7748239	
@@ -143,7 +143,7 @@ c	net/minecraft/unmapped/C_8858101
 		p	2			p_2
 c	net/minecraft/unmapped/C_9590849
 	m	()Lnet/minecraft/unmapped/C_0759248;	m_7248813	getLanguage	
-c	net/minecraft/unmapped/C_0486542		net/minecraft/client/resource/language/LanguageDefinition
+c	net/minecraft/unmapped/C_0486542		net/minecraft/client/resource/language/Language
 	f	Ljava/lang/String;	f_4007094		code
 	f	Ljava/lang/String;	f_0030302		name
 	f	Ljava/lang/String;	f_0257842		region
@@ -157,12 +157,12 @@ c	net/minecraft/unmapped/C_0486542		net/minecraft/client/resource/language/Langu
 	m	()Z	m_3578587		isBidirectional
 	m	()Ljava/lang/String;	toString		toString
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			object
+		p	1			p_1
 	m	()I	hashCode		hashCode
 	m	(Lnet/minecraft/unmapped/C_0486542;)I	m_4057632		compareTo
 		p	1			p_1
 	m	(Ljava/lang/Object;)I	compareTo		compareTo
-		p	1			language
+		p	1			o
 c	net/minecraft/unmapped/C_4576025		net/minecraft/locale/I18n
 	f	Lnet/minecraft/unmapped/C_0759248;	f_3729295		LANGUAGE
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_3547652		translate
@@ -175,8 +175,8 @@ c	net/minecraft/unmapped/C_4576025		net/minecraft/locale/I18n
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_6176478		net/minecraft/client/resource/language/LanguageManager
 	f	Lnet/minecraft/unmapped/C_1296613;	f_2966562		metadataSerializers
-	f	Ljava/lang/String;	f_1329850		currentLanguage
-	f	Lnet/minecraft/unmapped/C_8639317;	f_5378916		TRANSLATIONS
+	f	Ljava/lang/String;	f_1329850		currentCode
+	f	Lnet/minecraft/unmapped/C_8639317;	f_5378916		LOCALE
 	f	Ljava/util/Map;	f_5082285		languages
 	m	(Lnet/minecraft/unmapped/C_1296613;Ljava/lang/String;)V	<init>		<init>
 		p	1			metadataSerializers
@@ -200,17 +200,17 @@ c	net/minecraft/unmapped/C_6414867		net/minecraft/client/resource/metadata/seria
 		p	3			p_3
 	m	()Ljava/lang/String;	m_2384264		m_2384264
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			jsonElement
+		p	1			json
 		p	2			type
-		p	3			jsonDeserializationContext
+		p	3			context
 c	net/minecraft/unmapped/C_8239170		net/minecraft/client/resource/metadata/LanguageMetadata
-	f	Ljava/util/Collection;	f_4928946		languageDefinitions
+	f	Ljava/util/Collection;	f_4928946		languages
 	m	(Ljava/util/Collection;)V	<init>		<init>
-		p	1			languageDefinitions
-	m	()Ljava/util/Collection;	m_9264295		getLanguageDefinitions
-c	net/minecraft/unmapped/C_8639317		net/minecraft/client/resource/language/TranslationStorage
+		p	1			languages
+	m	()Ljava/util/Collection;	m_9264295		getLanguages
+c	net/minecraft/unmapped/C_8639317		net/minecraft/client/resource/language/Locale
 	f	Lcom/google/common/base/Splitter;	f_0097888		SPLITTER
-	f	Ljava/util/regex/Pattern;	f_6793942		PATTERN
+	f	Ljava/util/regex/Pattern;	f_6793942		ILLEGAL_CHARACTERS_PATTERN
 	f	Ljava/util/Map;	f_5267515		translations
 	f	Z	f_8763890		unicode
 	m	()V	<init>		<init>
@@ -223,7 +223,7 @@ c	net/minecraft/unmapped/C_8639317		net/minecraft/client/resource/language/Trans
 		p	1			resources
 	m	(Ljava/io/InputStream;)V	m_2999162		load
 		p	1			is
-	m	(Ljava/lang/String;)Ljava/lang/String;	m_7114739		translateKey
+	m	(Ljava/lang/String;)Ljava/lang/String;	m_7114739		getTranslationOrKey
 		p	1			key
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_5121899		translate
 		p	1			key

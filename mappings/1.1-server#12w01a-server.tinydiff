@@ -97,18 +97,18 @@ c	net/minecraft/unmapped/C_3901562
 		p	4		chunkZ	
 		p	5		size	
 	m	(Lnet/minecraft/unmapped/C_5553933;Ljava/util/Random;II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			random
+		p	3			chunkX
+		p	4			chunkZ
 c	net/minecraft/unmapped/C_3980755
 	f	I	f_9737366	controls	
-	f	Ljava/util/ArrayList;	f_8372626		f_8372626
+	f	Ljava/util/ArrayList;	f_8372626		controls
 	m	(I)V	m_1135505	setControls	
 		p	1		controls	
 	m	()I	m_5043911	getControls	
-	m	(Lnet/minecraft/unmapped/C_0905826;)V	m_1587970		m_1587970
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_0905826;)V	m_1587970		addControl
+		p	1			control
 	m	()Ljava/util/ArrayList;	m_5043911		getControls
 c	net/minecraft/unmapped/C_4073764	net/minecraft/entity/ai/goal/SwimGoal	
 	f	Lnet/minecraft/unmapped/C_6607881;	f_4194442	entity	
@@ -146,9 +146,9 @@ c	net/minecraft/unmapped/C_5352679	net/minecraft/enchantment/FlameEnchantment
 		p	1		p_1	
 	m	()I	m_5897549	m_5897549	
 c	net/minecraft/unmapped/C_5366629
-	f	I	f_0979349	f_0979349	
+	f	I	f_0979349	size	
 	m	(I)V	<init>	<init>	
-		p	1		p_1	
+		p	1		size	
 	m	()V	<init>		<init>
 c	net/minecraft/unmapped/C_5487998
 	m	()I	m_5043911	m_5043911	
@@ -182,12 +182,12 @@ c	net/minecraft/unmapped/C_6385582
 		p	1			p_1
 c	net/minecraft/unmapped/C_6607881
 	f	F	f_7005130	headYaw	
-	f	F	f_3228610	prevHeadYaw	
+	f	F	f_3228610	lastHeadYaw	
 	f	Lnet/minecraft/unmapped/C_6145927;	f_1338095	jumpControl	
 	m	()Lnet/minecraft/unmapped/C_6145927;	m_9649615	getJumpControl	
 	m	()Z	m_6682221	aiEnabled	
 c	net/minecraft/unmapped/C_7250084
-	m	(Lnet/minecraft/unmapped/C_0433100;)V	m_5970610		handlerPlayerInput
+	m	(Lnet/minecraft/unmapped/C_0433100;)V	m_5970610		handlePlayerInput
 		p	1			packet
 c	net/minecraft/unmapped/C_8173586
 	m	()I	m_5043911	m_5043911	
@@ -211,6 +211,21 @@ c	net/minecraft/unmapped/C_8891094
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_9086492
+	m	(DDDF)V	m_6026864	moveTo	
+		p	1		p_1	
+		p	3		p_3	
+		p	5		p_5	
+		p	7		p_7	
+	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5771439	moveTo	
+		p	1		p_1	
+		p	2		p_2	
+	m	(DDD)V	m_6026864		moveTo
+		p	1			p_1
+		p	3			p_3
+		p	5			p_5
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439		moveTo
+		p	1			p_1
+c	net/minecraft/unmapped/C_9229053
 	m	(DDDF)V	m_6026864	m_6026864	
 		p	1		p_1	
 		p	3		p_3	
@@ -224,21 +239,6 @@ c	net/minecraft/unmapped/C_9086492
 		p	3			p_3
 		p	5			p_5
 	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439		m_5771439
-		p	1			p_1
-c	net/minecraft/unmapped/C_9229053
-	m	(DDDF)V	m_6026864	moveTo	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-	m	(Lnet/minecraft/unmapped/C_6607881;F)V	m_5771439	findPath	
-		p	1		p_1	
-		p	2		p_2	
-	m	(DDD)V	m_6026864		moveTo
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_5771439		findPath
 		p	1			p_1
 c	net/minecraft/unmapped/C_9491517
 	f	Lnet/minecraft/unmapped/C_9491517;	f_2699625	BOW	
@@ -271,4 +271,4 @@ c	net/minecraft/unmapped/C_0433100		net/minecraft/network/packet/PlayerInputPack
 	m	()F	m_3176608		getYaw
 	m	()Z	m_7239049		getJumping
 	m	()Z	m_7038298		getSneaking
-c	net/minecraft/unmapped/C_0905826		net/minecraft/unmapped/C_0905826
+c	net/minecraft/unmapped/C_0905826		net/minecraft/entity/ai/control/MobControl

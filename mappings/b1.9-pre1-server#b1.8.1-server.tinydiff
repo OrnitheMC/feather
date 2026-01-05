@@ -3,15 +3,15 @@ c	net/minecraft/unmapped/C_0124899	net/minecraft/world/chunk/storage/io/ChunkIo
 	f	Lnet/minecraft/unmapped/C_0124899;	f_2205711	INSTANCE	
 	f	Ljava/lang/Object;	f_3760132	f_3760132	
 	f	Ljava/util/Set;	f_6021447	f_6021447	
-	f	Ljava/util/List;	f_8497098	callbacks	
+	f	Ljava/util/List;	f_8497098	tasks	
 	f	Z	f_7568416	f_7568416	
 	m	()V	<init>	<init>	
 	m	()V	run	run	
-	m	()V	m_9491019	runCallbacks	
-	m	(Lnet/minecraft/unmapped/C_0795795;)V	m_0761210	registerCallback	
-		p	1		callback	
+	m	()V	m_9491019	runTasks	
+	m	(Lnet/minecraft/unmapped/C_0795795;)V	m_0761210	registerTask	
+		p	1		task	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_0137330	net/minecraft/entity/living/mob/MagmaCubeEntity	
+c	net/minecraft/unmapped/C_0137330	net/minecraft/entity/mob/monster/MagmaCubeEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	m_8724935	m_8724935	
@@ -40,13 +40,13 @@ c	net/minecraft/unmapped/C_0239894	net/minecraft/world/gen/structure/FortressStr
 		p	4		chunkZ	
 c	net/minecraft/unmapped/C_0254692	net/minecraft/entity/projectile/SmallFireballEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
-		p	1		world	
+		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;DDD)V	<init>	<init>	
-		p	1		world	
-		p	2		owner	
-		p	3		x	
-		p	5		y	
-		p	7		z	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+		p	5		p_5	
+		p	7		p_7	
 	m	(Lnet/minecraft/unmapped/C_7794883;)V	m_6334540	m_6334540	
 		p	1		p_1	
 	m	()Z	m_3104437	m_3104437	
@@ -65,9 +65,9 @@ c	net/minecraft/unmapped/C_0330124
 		p	3		p_3	
 		p	4		p_4	
 c	net/minecraft/unmapped/C_0348167
-	m	(II)F	m_7200371	m_7200371	
-		p	1		p_1	
-		p	2		p_2	
+	m	(II)F	m_7200371	getTemperature	
+		p	1		x	
+		p	2		z	
 c	net/minecraft/unmapped/C_0487112
 	f	Lnet/minecraft/unmapped/C_4387363;	f_9509021	fortress	
 	m	(Lnet/minecraft/unmapped/C_0902334;III)Ljava/util/List;	m_6970926	m_6970926	
@@ -93,7 +93,7 @@ c	net/minecraft/unmapped/C_0783999	net/minecraft/world/chunk/storage/RegionChunk
 	m	(Lnet/minecraft/unmapped/C_7141926;Lnet/minecraft/unmapped/C_2018497;)V	<init>	<init>	
 		p	1		pos	
 		p	2		data	
-c	net/minecraft/unmapped/C_0795795	net/minecraft/world/chunk/storage/io/ChunkIoCallback	
+c	net/minecraft/unmapped/C_0795795	net/minecraft/world/chunk/storage/io/ChunkIoTask	
 	m	()Z	m_4993113	run	
 c	net/minecraft/unmapped/C_0815568	net/minecraft/world/biome/layer/AddIslandLayer	
 	m	(JLnet/minecraft/unmapped/C_5540234;)V	<init>	<init>	
@@ -108,7 +108,7 @@ c	net/minecraft/unmapped/C_0821854	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -141,7 +141,7 @@ c	net/minecraft/unmapped/C_1202026
 		p	4		y	
 		p	5		z	
 		p	6		max	
-	m	(I)I	m_5642727	getVillagerType	
+	m	(I)I	m_5642727	getVillagerProfession	
 		p	1		index	
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_9539123;	f_1754425	MYCELIUM	
@@ -160,7 +160,7 @@ c	net/minecraft/unmapped/C_1338002	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -179,10 +179,10 @@ c	net/minecraft/unmapped/C_1338002	net/minecraft/world/gen/structure/FortressPie
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_1712153
-	m	(II)F	m_2271398	m_2271398	
-		p	1		p_1	
-		p	2		p_2	
-c	net/minecraft/unmapped/C_1925128	net/minecraft/entity/living/mob/passive/animal/MooshroomEntity	
+	m	(II)F	m_2271398	getTemperature	
+		p	1		x	
+		p	2		z	
+c	net/minecraft/unmapped/C_1925128	net/minecraft/entity/mob/animal/MooshroomEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_9590849;)Z	m_4185556	m_4185556	
@@ -203,7 +203,7 @@ c	net/minecraft/unmapped/C_2948979	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -232,14 +232,14 @@ c	net/minecraft/unmapped/C_3015107
 	m	(Lnet/minecraft/unmapped/C_0783999;)V	m_6788773	saveChunk	
 		p	1		chunkNbt	
 c	net/minecraft/unmapped/C_3338851
-	m	(Ljava/io/File;II)I	m_4426374		m_4426374
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
+	m	(Ljava/io/File;II)I	m_4426374		getChunkSize
+		p	0			worldDir
+		p	1			chunkX
+		p	2			chunkZ
 c	net/minecraft/unmapped/C_3366538
-	f	I	f_6065900		f_6065900
+	f	I	f_6065900		shake
 	m	(Lnet/minecraft/unmapped/C_7794883;)V	m_6334540	onHit	
-		p	1		hitResult	
+		p	1		hit	
 	m	(F)F	m_9376546	m_9376546	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_3466810
@@ -249,14 +249,14 @@ c	net/minecraft/unmapped/C_3466810
 		p	2		p_2	
 		p	3		p_3	
 	m	(II)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			item
+		p	2			plantBlock
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_1608210	BLAZE_ROD	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_6113022	GHAST_TEAR	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_2274170	GOLD_NUGGET	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_1714698	NETHER_WART	
-c	net/minecraft/unmapped/C_3955113	net/minecraft/world/biome/layer/SmoothLayer	
+c	net/minecraft/unmapped/C_3955113	net/minecraft/world/biome/layer/ShoreLayer	
 	m	(JLnet/minecraft/unmapped/C_5540234;)V	<init>	<init>	
 		p	1		seed	
 		p	3		parent	
@@ -265,7 +265,7 @@ c	net/minecraft/unmapped/C_3955113	net/minecraft/world/biome/layer/SmoothLayer
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-c	net/minecraft/unmapped/C_4015822	net/minecraft/entity/living/mob/hostile/BlazeEntity	
+c	net/minecraft/unmapped/C_4015822	net/minecraft/entity/mob/monster/BlazeEntity	
 	f	F	f_6316624	eyeOffset	
 	f	I	f_3276102	eyeOffsetCooldown	
 	f	I	f_8153039	fireActivation	
@@ -303,7 +303,7 @@ c	net/minecraft/unmapped/C_4100759	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		seed	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -326,7 +326,7 @@ c	net/minecraft/unmapped/C_4258913	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -378,26 +378,26 @@ c	net/minecraft/unmapped/C_4525887	net/minecraft/world/gen/structure/FortressPie
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_8746815;Ljava/util/List;Ljava/util/Random;IIIII)Lnet/minecraft/unmapped/C_4988758;	m_6987413	createPiece	
 		p	0		weight	
-		p	1		entries	
+		p	1		pieces	
 		p	2		random	
 		p	3		x	
 		p	4		y	
 		p	5		z	
 		p	6		facing	
 		p	7		generationDepth	
-	m	(Lnet/minecraft/unmapped/C_8746815;Ljava/util/List;Ljava/util/Random;IIIII)Lnet/minecraft/unmapped/C_4988758;	m_6970194	getAFortressPiece	
-		p	0		fortressPieceData	
-		p	1		piecesList	
-		p	2		random	
-		p	3		x	
-		p	4		y	
-		p	5		z	
-		p	6		direction	
-		p	7		type	
-	m	()[Lnet/minecraft/unmapped/C_8746815;	m_9117737	getPrimaryFortressPieces	
-	m	()[Lnet/minecraft/unmapped/C_8746815;	m_0785628	getSecondaryFortressFeatures	
+	m	(Lnet/minecraft/unmapped/C_8746815;Ljava/util/List;Ljava/util/Random;IIIII)Lnet/minecraft/unmapped/C_4988758;	m_6970194	m_6970194	
+		p	0		p_0	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+		p	4		p_4	
+		p	5		p_5	
+		p	6		p_6	
+		p	7		p_7	
+	m	()[Lnet/minecraft/unmapped/C_8746815;	m_9117737	m_9117737	
+	m	()[Lnet/minecraft/unmapped/C_8746815;	m_0785628	m_0785628	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_4680316	net/minecraft/item/ArmorItem__Material	
+c	net/minecraft/unmapped/C_4680316	net/minecraft/item/ArmorItem__Tier	
 	f	Lnet/minecraft/unmapped/C_4680316;	f_2426734	CLOTH	
 	f	Lnet/minecraft/unmapped/C_4680316;	f_4811416	CHAIN	
 	f	Lnet/minecraft/unmapped/C_4680316;	f_0296974	IRON	
@@ -412,8 +412,8 @@ c	net/minecraft/unmapped/C_4680316	net/minecraft/item/ArmorItem__Material
 	m	(Ljava/lang/String;II[I)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	3		durability	
+		p	4		protection	
 	m	(I)I	m_9639136	getDurability	
 		p	1		slot	
 	m	(I)I	m_0243663	getProtection	
@@ -472,7 +472,7 @@ c	net/minecraft/unmapped/C_4988758	net/minecraft/world/gen/structure/FortressPie
 		p	4		yOffset	
 		p	5		offset	
 		p	6		pickCastlePiece	
-	m	(Lnet/minecraft/unmapped/C_7492943;)Z	m_1703009	isValidStructureBounds	
+	m	(Lnet/minecraft/unmapped/C_7492943;)Z	m_1703009	isValidBounds	
 		p	0		bounds	
 c	net/minecraft/unmapped/C_5253250
 	f	F	f_2292294		f_2292294
@@ -480,7 +480,7 @@ c	net/minecraft/unmapped/C_5295592	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Ljava/util/Random;II)V	<init>	<init>	
 		p	1		random	
@@ -507,9 +507,9 @@ c	net/minecraft/unmapped/C_5502075
 	f	I	f_1904434		durability
 	m	(ILnet/minecraft/unmapped/C_4680316;II)V	<init>	<init>	
 		p	1		id	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	2		tier	
+		p	3		material	
+		p	4		slot	
 	m	()[I	m_2851939	getBaseDurability	
 	m	(IIII)V	<init>		<init>
 		p	1			id
@@ -543,7 +543,7 @@ c	net/minecraft/unmapped/C_5843405	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -572,7 +572,7 @@ c	net/minecraft/unmapped/C_6227914	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -593,7 +593,7 @@ c	net/minecraft/unmapped/C_6227914	net/minecraft/world/gen/structure/FortressPie
 c	net/minecraft/unmapped/C_6269816
 	m	(Z)V	m_9519027	m_9519027	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_6370208	net/minecraft/world/biome/layer/RemoveTooMuchOceanLayer	
+c	net/minecraft/unmapped/C_6370208	net/minecraft/world/biome/layer/AddSnowyBiomesLayer	
 	m	(JLnet/minecraft/unmapped/C_5540234;)V	<init>	<init>	
 		p	1		seed	
 		p	3		parent	
@@ -605,7 +605,7 @@ c	net/minecraft/unmapped/C_6370208	net/minecraft/world/biome/layer/RemoveTooMuch
 c	net/minecraft/unmapped/C_6607881
 	f	I	f_1592651	residualDamage	
 		c	The minecraft health bar only displays in chunks of half hearts. The damage calculations often results in values not being exactly this (e.g. 1.25 hears of damge). If this is the case, 1 heart of damge is being dealt and .25 hears of damge is being stored and is then used in the next step or next damage calculation.	
-	f	Z	f_4766713	f_4766713	
+	f	Z	f_4766713	jumpingCooldown	
 	m	()I	m_2352236	getArmorProtection	
 	m	(I)V	m_8993607	damageArmor	
 		p	1		amount	
@@ -619,7 +619,7 @@ c	net/minecraft/unmapped/C_6679761	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -641,7 +641,7 @@ c	net/minecraft/unmapped/C_6761814	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -668,28 +668,28 @@ c	net/minecraft/unmapped/C_6928498
 	f	Lnet/minecraft/unmapped/C_6928498;	f_1477586	ICE_MOUNTAINS	
 	f	Lnet/minecraft/unmapped/C_6928498;	f_7595930	MUSHROOM_ISLAND	
 	f	Lnet/minecraft/unmapped/C_6928498;	f_3515191	MUSHROOM_ISLAND_SHORE	
-	f	I	f_3729425	waterColor	
+	f	I	f_3729425	waterFogColor	
 c	net/minecraft/unmapped/C_7141926
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/unmapped/C_7235516
-	f	[F	f_5421335	f_5421335	
-	m	(III)F	m_5107425	m_5107425	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(FI)F	m_2878616	m_2878616	
-		p	1		p_1	
-		p	2		p_2	
-	m	(IIII)[F	m_5808933	m_5808933	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	f	[F	f_5421335	temperaturesBuffer	
+	m	(III)F	m_5107425	getTemperature	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+	m	(FI)F	m_2878616	adjustTemperatureForHeight	
+		p	1		temperature	
+		p	2		height	
+	m	(IIII)[F	m_5808933	getTemperatures	
+		p	1		x	
+		p	2		z	
+		p	3		sizeX	
+		p	4		sizeZ	
 c	net/minecraft/unmapped/C_7291679	net/minecraft/world/gen/structure/FortressPieces__SmallCorridorCrossing	
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -707,7 +707,7 @@ c	net/minecraft/unmapped/C_7291679	net/minecraft/world/gen/structure/FortressPie
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_7358631	net/minecraft/entity/living/mob/passive/Tradable	
+c	net/minecraft/unmapped/C_7358631	net/minecraft/entity/mob/Npc	
 c	net/minecraft/unmapped/C_7522998
 	m	(I)I	m_5642727	m_5642727	
 		p	1		p_1	
@@ -715,7 +715,7 @@ c	net/minecraft/unmapped/C_7587089	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -734,7 +734,7 @@ c	net/minecraft/unmapped/C_7587089	net/minecraft/world/gen/structure/FortressPie
 		p	2		p_2	
 		p	3		p_3	
 c	net/minecraft/unmapped/C_7809327
-	m	()I	m_0906813		m_0906813
+	m	()I	m_0906813		resetBytesWritten
 c	net/minecraft/unmapped/C_8469009
 	m	(I)I	m_5642727	m_5642727	
 		p	1		p_1	
@@ -742,7 +742,7 @@ c	net/minecraft/unmapped/C_8618025	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -781,8 +781,8 @@ c	net/minecraft/unmapped/C_8746815	net/minecraft/world/gen/structure/FortressPie
 	m	(I)Z	m_2870207	isValid	
 		p	1		generationDepth	
 	m	()Z	m_2818086	isValid	
-c	net/minecraft/unmapped/C_8814877	net/minecraft/entity/living/mob/passive/VillagerEntity	
-	f	I	f_8075173	updateVillageCooldown	
+c	net/minecraft/unmapped/C_8814877	net/minecraft/entity/mob/VillagerEntity	
+	f	I	f_8075173	profession	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		world	
 	m	(Lnet/minecraft/unmapped/C_5553933;I)V	<init>	<init>	
@@ -793,12 +793,12 @@ c	net/minecraft/unmapped/C_8814877	net/minecraft/entity/living/mob/passive/Villa
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_7694759	m_7694759	
 		p	1		p_1	
-	m	()V	m_3305529	m_3305529	
+	m	()V	m_3305529	updateTexture	
 	m	()Z	m_8702053	m_8702053	
 	m	()Ljava/lang/String;	m_4151868	m_4151868	
 	m	()Ljava/lang/String;	m_5045007	m_5045007	
 	m	()Ljava/lang/String;	m_1699770	m_1699770	
-c	net/minecraft/unmapped/C_8883923	net/minecraft/entity/living/mob/SnowGolemEntity	
+c	net/minecraft/unmapped/C_8883923	net/minecraft/entity/mob/SnowGolemEntity	
 	m	(Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	m_0095412	m_0095412	
@@ -883,7 +883,7 @@ c	net/minecraft/unmapped/C_9429829	net/minecraft/world/gen/feature/LilyPadFeatur
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_9470286
-	m	(III)Z	m_0193043	isInsideStructure	
+	m	(III)Z	m_0193043	isInside	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -891,7 +891,7 @@ c	net/minecraft/unmapped/C_9494583	net/minecraft/world/gen/structure/FortressPie
 	m	(ILjava/util/Random;Lnet/minecraft/unmapped/C_7492943;I)V	<init>	<init>	
 		p	1		generationDepth	
 		p	2		random	
-		p	3		box	
+		p	3		bounds	
 		p	4		facing	
 	m	(Lnet/minecraft/unmapped/C_2381425;Ljava/util/List;Ljava/util/Random;)V	m_5961758	m_5961758	
 		p	1		p_1	
@@ -925,7 +925,7 @@ c	net/minecraft/unmapped/C_9539123	net/minecraft/block/MyceliumBlock
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_9590849
-	f	I	f_1703793		f_1703793
+	f	I	f_1703793		damageSpill
 	m	(I)V	m_8993607	m_8993607	
 		p	1		p_1	
 	m	()I	m_2352236	m_2352236	
@@ -938,3 +938,4 @@ c	net/minecraft/unmapped/C_9848147
 c	net/minecraft/unmapped/C_9917583	net/minecraft/world/biome/IceBiome	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
+c	net/minecraft/unmapped/C_6297535	net/minecraft/world/biome/layer/AddMushroomIslandLayer	net/minecraft/world/biome/layer/AddIslandLayer

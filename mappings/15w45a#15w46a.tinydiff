@@ -26,18 +26,18 @@ c	net/minecraft/unmapped/C_1444189$C_1967591		DescendAtHalfHealthGoal
 		p	1			p_1
 	m	()Z	m_9549250		m_9549250
 c	net/minecraft/unmapped/C_1572627
-	f	[Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_2026707		f_2026707
-	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_3969948		f_3969948
-	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_7688263		f_7688263
-	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_7588226		f_7588226
-	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_1186374		f_1186374
-	m	(Lnet/minecraft/unmapped/C_2334768;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_1572627$C_2478639;)V	m_2312187		m_2312187
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_2334768;Lnet/minecraft/unmapped/C_3544601;)I	m_0687027		m_0687027
-		p	0			p_0
-		p	1			p_1
+	f	[Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_2026707		FIXUPS
+	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_3969948		ROTATE_0
+	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_7688263		ROTATE_90
+	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_7588226		ROTATE_180
+	f	Lnet/minecraft/unmapped/C_1572627$C_2478639;	f_1186374		ROTATE_270
+	m	(Lnet/minecraft/unmapped/C_2334768;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_1572627$C_2478639;)V	m_2312187		setupFixup
+		p	0			rotation
+		p	1			face
+		p	2			fixup
+	m	(Lnet/minecraft/unmapped/C_2334768;Lnet/minecraft/unmapped/C_3544601;)I	m_0687027		calcFixupIndex
+		p	0			rotation
+		p	1			face
 c	net/minecraft/unmapped/C_1572627$1
 	f	[I	f_3925016	f_3925016	
 	f	[I	f_1687543	f_1687543	
@@ -74,20 +74,20 @@ c	net/minecraft/unmapped/C_1572627$5		5
 	f	[I	f_1687543		f_1687543
 	f	[I	f_6289283		f_6289283
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_1572627$C_2478639		C_2478639
+c	net/minecraft/unmapped/C_1572627$C_2478639		CoordinateFixup
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_2831109;)Lnet/minecraft/unmapped/C_2831109;	m_6571376		m_6571376
-		p	1			p_1
-	m	(FFFF)Lnet/minecraft/unmapped/C_2831109;	m_2460981		m_2460981
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_2831109;)Lnet/minecraft/unmapped/C_2831109;	m_6571376		apply
+		p	1			texCoords
+	m	(FFFF)Lnet/minecraft/unmapped/C_2831109;	m_2460981		apply
+		p	1			u0
+		p	2			v0
+		p	3			u1
+		p	4			v1
 	m	(Lnet/minecraft/unmapped/C_1572627$1;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_1712153
 c	net/minecraft/unmapped/C_1712153$C_8764295
-	f	[F	f_0191549	downfall	
+	f	[F	f_0191549	downfalls	
 c	net/minecraft/unmapped/C_2144954
 	m	(Lnet/minecraft/unmapped/C_2441996;)Z	m_2904831		canSpawnInside
 		p	0			state
@@ -98,7 +98,7 @@ c	net/minecraft/unmapped/C_3828683
 	f	Lnet/minecraft/unmapped/C_3828683$C_2663385;	f_4749973	fleeWolfGoal	
 	f	Z	f_9099429	jumping	
 	f	Lnet/minecraft/unmapped/C_3828683$C_7077359;	f_0685702	action	
-	f	Lnet/minecraft/unmapped/C_9590849;	f_5797499	f_5797499	
+	f	Lnet/minecraft/unmapped/C_9590849;	f_5797499	attackTarget	
 	m	(Lnet/minecraft/unmapped/C_3828683$C_7077359;)V	m_1389165	setAction	
 		p	1		action	
 	m	(ZLnet/minecraft/unmapped/C_3828683$C_7077359;)V	m_8379744	startAction	
@@ -150,7 +150,7 @@ c	net/minecraft/unmapped/C_3828683$C_7077359	Action
 		p	4		jumpStrength	
 		p	5		jumpDelay	
 		p	6		jumpDuration	
-	m	()F	m_8472985	getSpeedModifier	
+	m	()F	m_8472985	getSpeed	
 	m	()F	m_2504092	getJumpStrength	
 	m	()I	m_9371373	getJumpDelay	
 	m	()I	m_4599952	getJumpDuration	
@@ -216,7 +216,7 @@ c	net/minecraft/unmapped/C_6447889	net/minecraft/network/packet/s2c/play/Compres
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_7240405;)V	m_6110406	m_6110406	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_4637169	apply	
+	m	(Lnet/minecraft/unmapped/C_7250084;)V	m_4637169	m_4637169	
 		p	1		p_1	
 	m	()I	m_3862217	getCompressionThreshold	
 	m	(Lnet/minecraft/unmapped/C_5444260;)V	m_7216666	m_7216666	
@@ -224,12 +224,12 @@ c	net/minecraft/unmapped/C_6447889	net/minecraft/network/packet/s2c/play/Compres
 c	net/minecraft/unmapped/C_6928498
 	m	()I	m_4496526	getScaledDownfall	
 c	net/minecraft/unmapped/C_7235516
-	m	([FIIII)[F	m_9972444	getDownfall	
-		p	1		downfall	
+	m	([FIIII)[F	m_9972444	getDownfalls	
+		p	1		downfalls	
 		p	2		x	
 		p	3		z	
-		p	4		width	
-		p	5		length	
+		p	4		sizeX	
+		p	5		sizeZ	
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_6447889;)V	m_3803478	handleCompressionThreshold	
 		p	1		packet	

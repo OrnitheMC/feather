@@ -16,10 +16,10 @@ c	net/minecraft/unmapped/C_0330124
 c	net/minecraft/unmapped/C_0415052
 	m	()Lnet/minecraft/unmapped/C_2454309;	m_6715993		m_6715993
 c	net/minecraft/unmapped/C_0529894
-	f	Lnet/minecraft/unmapped/C_0529894;	f_0409512		f_0409512
+	f	Lnet/minecraft/unmapped/C_0529894;	f_0409512		LANTERN
 c	net/minecraft/unmapped/C_0539808
-	f	I	f_7990365	networkIdCounter	
-	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_7990365		networkIdCounter
+	f	I	f_7990365	nextNetworkId	
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_7990365		nextNetworkId
 	m	(DDD)Z	m_0119053	pushAwayFrom	
 		p	1		x	
 		p	3		y	
@@ -79,8 +79,8 @@ c	net/minecraft/unmapped/C_1023567
 c	net/minecraft/unmapped/C_1119254
 	f	Lnet/minecraft/unmapped/C_3865296;	f_8289625	world	
 	f	Lnet/minecraft/unmapped/C_5553933;	f_8289625		world
-	m	(D)J	m_8389335	getPosition	
-		p	0		value	
+	m	(D)J	m_8389335	packCoordinate	
+		p	0		coord	
 	m	(Lnet/minecraft/unmapped/C_0539808;DDD)V	m_4020521	updatePosition	
 		p	0		entity	
 		p	1		x	
@@ -142,7 +142,7 @@ c	net/minecraft/unmapped/C_2011750
 c	net/minecraft/unmapped/C_2082251
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_6528338		m_6528338
 c	net/minecraft/unmapped/C_2137190
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_8903054	isUnobstructed	
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;)Z	m_8903054	canBuildIn	
 		p	1		state	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_5577922;)Z	m_1527550	isUnobstructed	
@@ -173,7 +173,7 @@ c	net/minecraft/unmapped/C_2137190
 	m	(Lnet/minecraft/unmapped/C_0539808;Lnet/minecraft/unmapped/C_7345216;)Z	m_2450148	m_2450148	
 		p	0		p_0	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2273071;)Z	m_8903054		isUnobstructed
+	m	(Lnet/minecraft/unmapped/C_2441996;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_2273071;)Z	m_8903054		canBuildIn
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -206,8 +206,8 @@ c	net/minecraft/unmapped/C_3004499
 c	net/minecraft/unmapped/C_3292284
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_6528338		m_6528338
 c	net/minecraft/unmapped/C_3325952
-	f	Lnet/minecraft/unmapped/C_3755722;	f_1232381		f_1232381
-	f	Lnet/minecraft/unmapped/C_3755722;	f_5646566		f_5646566
+	f	Lnet/minecraft/unmapped/C_3755722;	f_1232381		TRADER_LLAMA_SPAWN_EGG
+	f	Lnet/minecraft/unmapped/C_3755722;	f_5646566		WANDERING_TRADER_SPAWN_EGG
 c	net/minecraft/unmapped/C_3366538
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_6528338		m_6528338
 c	net/minecraft/unmapped/C_3422238
@@ -273,7 +273,7 @@ c	net/minecraft/unmapped/C_3930157
 	m	()D	m_2291019		getVelocityY
 	m	()D	m_1511505		getVelocityZ
 	m	()Lnet/minecraft/unmapped/C_8252988;	m_0022225		getType
-c	net/minecraft/unmapped/C_3957092	net/minecraft/entity/weather/GlobalEntity	
+c	net/minecraft/unmapped/C_3957092	net/minecraft/entity/global/GlobalEntity	
 	m	(Lnet/minecraft/unmapped/C_8252988;Lnet/minecraft/unmapped/C_5553933;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -332,7 +332,7 @@ c	net/minecraft/unmapped/C_5365355
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_6528338		m_6528338
 c	net/minecraft/unmapped/C_5438730
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_8177195	createAddEntityPacket	
-	m	(Lnet/minecraft/unmapped/C_3292284;)V	m_8265947	removeListener	
+	m	(Lnet/minecraft/unmapped/C_3292284;)V	m_8265947	onPlayerRespawn	
 		p	1		player	
 c	net/minecraft/unmapped/C_5553933
 	f	Lnet/minecraft/unmapped/C_3452584;	f_2900304		f_2900304
@@ -368,7 +368,8 @@ c	net/minecraft/unmapped/C_5938267
 c	net/minecraft/unmapped/C_5981136
 	m	(D)J	m_9899140		m_9899140
 		p	0			p_0
-c	net/minecraft/unmapped/C_6055429	net/minecraft/entity/EntityCategoryProvider	
+c	net/minecraft/unmapped/C_6055429	net/minecraft/entity/SpawnableEntity	
+	c	An entity that spawns naturally.	
 c	net/minecraft/unmapped/C_6152184
 	f	I	f_1197131		f_1197131
 	f	I	f_5090793		f_5090793
@@ -382,7 +383,7 @@ c	net/minecraft/unmapped/C_6152184
 	m	(Ljava/util/UUID;)V	m_5042967		m_5042967
 		p	1			p_1
 c	net/minecraft/unmapped/C_6287493
-	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Z)V	m_2690280		m_2690280
+	m	(Lnet/minecraft/unmapped/C_9844932;Lnet/minecraft/unmapped/C_3674802;Z)V	m_2690280		onCompost
 		p	0			p_0
 		p	1			p_1
 		p	2			p_2
@@ -556,14 +557,15 @@ c	net/minecraft/unmapped/C_8814877
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_0415052;)V	m_5390423		m_5390423
 		p	1			p_1
+	m	()V	m_5773335	levelUp	m_5773335
 c	net/minecraft/unmapped/C_8869969
 	m	()Lnet/minecraft/unmapped/C_5385258;	m_6528338		m_6528338
 c	net/minecraft/unmapped/C_9221482
-	f	Lnet/minecraft/unmapped/C_7721249;	f_0894601		f_0894601
-	f	Lnet/minecraft/unmapped/C_7721249;	f_9366406		f_9366406
-	f	Lnet/minecraft/unmapped/C_7721249;	f_8384443		f_8384443
-	f	Lnet/minecraft/unmapped/C_7721249;	f_2410105		f_2410105
-	f	Lnet/minecraft/unmapped/C_7721249;	f_9354672		f_9354672
+	f	Lnet/minecraft/unmapped/C_7721249;	f_0894601		BLOCK_LANTERN_BREAK
+	f	Lnet/minecraft/unmapped/C_7721249;	f_9366406		BLOCK_LANTERN_FALL
+	f	Lnet/minecraft/unmapped/C_7721249;	f_8384443		BLOCK_LANTERN_HIT
+	f	Lnet/minecraft/unmapped/C_7721249;	f_2410105		BLOCK_LANTERN_PLACE
+	f	Lnet/minecraft/unmapped/C_7721249;	f_9354672		BLOCK_LANTERN_STEP
 	f	Lnet/minecraft/unmapped/C_7721249;	f_3830947		f_3830947
 	f	Lnet/minecraft/unmapped/C_7721249;	f_1200243		f_1200243
 	f	Lnet/minecraft/unmapped/C_7721249;	f_5409720		f_5409720
@@ -695,7 +697,7 @@ c	net/minecraft/unmapped/C_3178861		net/minecraft/unmapped/C_3178861
 		p	2			p_2
 	m	()Lnet/minecraft/unmapped/C_5553933;	m_4574467		m_4574467
 	m	()Lnet/minecraft/unmapped/C_3674802;	m_5713322		m_5713322
-	m	()V	m_5773335		m_5773335
+	m	()V	m_5773335		levelUp
 c	net/minecraft/unmapped/C_3452584		net/minecraft/unmapped/C_3452584
 	f	Ljava/util/Random;	f_8516940		f_8516940
 	f	Lnet/minecraft/unmapped/C_5553933;	f_7561990		f_7561990

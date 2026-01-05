@@ -9,7 +9,7 @@ c	net/minecraft/server/MinecraftServer
 	m	()Lnet/minecraft/unmapped/C_7143605;	m_6495676		getGameProfileCache
 c	net/minecraft/unmapped/C_0281639
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_2018497;	m_4745173	loadPlayerData	
-		p	1		name	
+		p	1		playerName	
 c	net/minecraft/unmapped/C_0349999
 	f	Lnet/minecraft/unmapped/C_2609740;	f_3453920		TIME_SINCE_DEATH
 	f	Lnet/minecraft/unmapped/C_2609740;	f_8874356		CROUCH_ONE_CM
@@ -39,7 +39,7 @@ c	net/minecraft/unmapped/C_0969327
 	f	Z	f_1564509		f_1564509
 	f	Z	f_4001227		f_4001227
 	f	Ltv/twitch/broadcast/IStreamCallbacks;	f_8417941		f_8417941
-	f	Ltv/twitch/broadcast/IStatCallbacks;	f_7735211		f_7735211
+	f	Ltv/twitch/broadcast/IStatCallbacks;	f_7735211		statCallbacks
 	m	(Ltv/twitch/ErrorCode;Ltv/twitch/AuthToken;)V	requestAuthTokenCallback	requestAuthTokenCallback	
 		p	1		p_1	
 		p	2		p_2	
@@ -81,6 +81,10 @@ c	net/minecraft/unmapped/C_0969327
 		p	1		p_1	
 		p	2		p_2	
 	m	()V	finalize	finalize	
+	m	(Lnet/minecraft/unmapped/C_7352375;)V	m_2558207
+		p	1		p_1	state
+	m	(Lnet/minecraft/unmapped/C_0867341;)V	m_1153236
+		p	1		p_1	listener
 c	net/minecraft/unmapped/C_1014639
 	f	Ljava/util/List;	f_6221258		MODEL_VARIANTS
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)I	m_3537838	m_3537838	
@@ -102,7 +106,7 @@ c	net/minecraft/unmapped/C_1247513	net/minecraft/client/render/block/CauldronRen
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_9932820;Lnet/minecraft/unmapped/C_3674802;)Z	m_5551751	tessellateCauldron	
+	m	(Lnet/minecraft/unmapped/C_9932820;Lnet/minecraft/unmapped/C_3674802;)Z	m_5551751	tesselateCauldron	
 		p	1		cauldron	
 		p	2		pos	
 c	net/minecraft/unmapped/C_1264786
@@ -114,13 +118,13 @@ c	net/minecraft/unmapped/C_1264786
 		p	0			world
 		p	1			pos
 		p	2			stack
-c	net/minecraft/unmapped/C_1418834	net/minecraft/client/twitch/BroadcastController__C_1223319__1	net/minecraft/client/twitch/TwitchChat__2
+c	net/minecraft/unmapped/C_1418834
 	f	[I	f_4917479		f_4917479
-c	net/minecraft/unmapped/C_1426399
+c	net/minecraft/unmapped/C_1426399	net/minecraft/client/resource/model/BakedModel__Quad	net/minecraft/client/resource/model/BakedQuad
 	f	Lnet/minecraft/unmapped/C_7184938;	f_5921310	f_5921310	
 	f	Ljavax/vecmath/Vector3f;	f_1367044		from
 	f	Ljavax/vecmath/Vector3f;	f_1452480		to
-	f	Lnet/minecraft/unmapped/C_3544601;	f_1257786		f_1257786
+	f	Lnet/minecraft/unmapped/C_3544601;	f_1257786		blockFace
 	m	(Lnet/minecraft/unmapped/C_7184938;Lnet/minecraft/unmapped/C_3544601;Lcom/google/gson/JsonArray;Ljavax/vecmath/Vector3f;Ljavax/vecmath/Vector3f;F)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -163,29 +167,30 @@ c	net/minecraft/unmapped/C_1426399
 		p	3			p_3
 	m	(Ljavax/vecmath/Vector3f;)Lnet/minecraft/unmapped/C_1426399;	m_2773182		m_2773182
 		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_3544601;	m_5873831		m_5873831
+	m	()Lnet/minecraft/unmapped/C_3544601;	m_5873831		getBlockFace
 	m	()Ljavax/vecmath/Vector3f;	m_5581024		getFrom
 	m	()Ljavax/vecmath/Vector3f;	m_7993008		getTo
+	m	()Z	m_0967755	m_0967755	isOverlay
 c	net/minecraft/unmapped/C_1440477
 	f	Ljava/util/List;	f_6814044		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
 c	net/minecraft/unmapped/C_1441789
-	f	Lnet/minecraft/unmapped/C_3020744;	f_1860582	parent	
-	f	Lnet/minecraft/unmapped/C_3268052;	f_1860582		parent
+	f	Lnet/minecraft/unmapped/C_3020744;	f_1860582	listener	
+	f	Lnet/minecraft/unmapped/C_3268052;	f_1860582		listener
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;Ljava/lang/String;I)V	<init>	<init>	
-		p	1		parent	
+		p	1		listener	
 		p	2		title	
 		p	3		description	
 		p	4		id	
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V	<init>	<init>	
-		p	1		parent	
+		p	1		listener	
 		p	2		title	
 		p	3		description	
 		p	4		confirmText	
 		p	5		abortText	
 		p	6		id	
 	m	(Lnet/minecraft/unmapped/C_3268052;Ljava/lang/String;Ljava/lang/String;I)V	<init>		<init>
-		p	1			parent
+		p	1			listener
 		p	2			title
 		p	3			description
 		p	4			id
@@ -224,16 +229,15 @@ c	net/minecraft/unmapped/C_1718367
 c	net/minecraft/unmapped/C_1789828
 	f	Lorg/apache/logging/log4j/Logger;	f_8484072	LOGGER	
 	f	Ljava/lang/String;	f_1527394	user	
-	f	Ljava/lang/String;	f_7636884	operator	source
 	m	(Ljava/lang/String;)V	<init>	<init>	
-		p	1		playerName	
-	m	()Ljava/lang/String;	m_8076411	getPlayerName	
+		p	1		user	
+	m	()Ljava/lang/String;	m_8076411	getUser	
 	m	()Ljava/util/Date;	m_7067268	getStartDate	
 	m	(Ljava/util/Date;)V	m_2421038	setStartDate	
 		p	1		date	
-	m	()Ljava/lang/String;	m_5202735	getOperator	
-	m	(Ljava/lang/String;)V	m_1592671	setOperator	
-		p	1		name	
+	m	()Ljava/lang/String;	m_5202735	getSource	
+	m	(Ljava/lang/String;)V	m_1592671	setSource	
+		p	1		source	
 	m	(Ljava/util/Date;)V	m_8645792	setExpirationDate	
 		p	1		date	
 	m	(Ljava/lang/String;)V	m_8832819	setReason	
@@ -252,14 +256,14 @@ c	net/minecraft/unmapped/C_1789828
 		p	2			p_2
 	m	(Lcom/google/gson/JsonObject;)V	m_3705333		m_3705333
 		p	1			p_1
-	m	()Z	m_0228100	isExpired	m_0228100
+	m	()Z	m_0228100	hasExpired	m_0228100
 c	net/minecraft/unmapped/C_1951812
 	f	Ljava/util/List;	f_6134369		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
 	m	()I	m_2337713		m_2337713
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_2019151
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFFZ)V	m_3088040	tessellateFaceWithAmbientOcclusion	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFFZ)V	m_3088040	tesselateFaceWithAmbientOcclusion	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -268,7 +272,7 @@ c	net/minecraft/unmapped/C_2019151
 		p	6		p_6	
 		p	7		p_7	
 		p	8		p_8	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFFI)V	m_7128555	tessellateFaceWithoutAmbientOcclusion	
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_3544601;FFFI)V	m_7128555	tesselateFaceWithoutAmbientOcclusion	
 		p	1		block	
 		p	2		pos	
 		p	3		sprite	
@@ -277,7 +281,7 @@ c	net/minecraft/unmapped/C_2019151
 		p	6		g	
 		p	7		b	
 		p	8		lightColor	
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;FFFZ)V	m_3088040		tessellateFaceWithAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;FFFZ)V	m_3088040		tesselateFaceWithAmbientOcclusion
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -285,7 +289,7 @@ c	net/minecraft/unmapped/C_2019151
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;FFFI)V	m_7128555		tessellateFaceWithoutAmbientOcclusion
+	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;FFFI)V	m_7128555		tesselateFaceWithoutAmbientOcclusion
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -338,11 +342,11 @@ c	net/minecraft/unmapped/C_2591218
 		p	3			defaultValue
 	m	()Lnet/minecraft/unmapped/C_3661275;	m_3432484		m_3432484
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			obj
+		p	1			p_1
 c	net/minecraft/unmapped/C_2669673
 	f	Ljava/util/List;	f_7447878		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
-c	net/minecraft/unmapped/C_2750097	net/minecraft/client/render/block/HopperRenderer__1	
+c	net/minecraft/unmapped/C_2750097	net/minecraft/client/render/block/HopperRenderer__2750097	
 	f	[I	f_3713201	f_3713201	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_2791959
@@ -364,7 +368,7 @@ c	net/minecraft/unmapped/C_3177907
 	m	()Ljava/util/Collection;	m_2721025		getMembers
 	m	()Lnet/minecraft/unmapped/C_5078254;	m_0422342		getDeathMessageVisibility
 c	net/minecraft/unmapped/C_3216249
-	m	(Lnet/minecraft/unmapped/C_1241852;DDDDDI)V	m_7752244	tessellateTorch	
+	m	(Lnet/minecraft/unmapped/C_1241852;DDDDDI)V	m_7752244	tesselateTorch	
 		p	1		block	
 		p	2		x	
 		p	4		y	
@@ -409,7 +413,7 @@ c	net/minecraft/unmapped/C_3499107
 c	net/minecraft/unmapped/C_3544601
 	m	(Lnet/minecraft/unmapped/C_8357359;)Lnet/minecraft/unmapped/C_3544601;	m_8114319		clockwise
 		p	1			axis
-	m	()Lnet/minecraft/unmapped/C_3544601;	m_5717938		clockwiseX
+	m	()Lnet/minecraft/unmapped/C_3544601;	m_5717938		counterClockwiseX
 	m	()Lnet/minecraft/unmapped/C_3544601;	m_8523332		clockwiseZ
 c	net/minecraft/unmapped/C_3661275
 	m	()Lnet/minecraft/unmapped/C_3661275;	m_3432484		getParent
@@ -466,15 +470,15 @@ c	net/minecraft/unmapped/C_3840438
 	f	Ljava/util/LinkedList;	f_4740035	f_4740035	
 	f	Z	f_4535017	f_4535017	
 	f	Z	f_5187920	f_5187920	
-	f	Ltv/twitch/Core;	f_0369458		f_0369458
-	f	Lnet/minecraft/unmapped/C_7180996;	f_3706637		status
-	f	Ljava/util/HashMap;	f_4368137		f_4368137
+	f	Ltv/twitch/Core;	f_0369458		core
+	f	Lnet/minecraft/unmapped/C_7180996;	f_3706637		state
+	f	Ljava/util/HashMap;	f_4368137		channelListeners
 	f	Lnet/minecraft/unmapped/C_5918553;	f_2510962		f_2510962
-	f	Lnet/minecraft/unmapped/C_5918553;	f_5146021		f_5146021
-	f	Ltv/twitch/chat/ChatEmoticonData;	f_9441756		f_9441756
+	f	Lnet/minecraft/unmapped/C_5918553;	f_5146021		tokenization
+	f	Ltv/twitch/chat/ChatEmoticonData;	f_9441756		emoticonData
 	f	I	f_2954995		f_2954995
 	f	I	f_6131852		f_6131852
-	f	Ltv/twitch/chat/IChatAPIListener;	f_1152035		f_1152035
+	f	Ltv/twitch/chat/IChatAPIListener;	f_1152035		apiListener
 	m	(Ltv/twitch/ErrorCode;)V	chatStatusCallback	chatStatusCallback	
 		p	1		p_1	
 	m	(Ltv/twitch/chat/ChatEvent;Ltv/twitch/chat/ChatChannelInfo;)V	chatChannelMembershipCallback	chatChannelMembershipCallback	
@@ -495,7 +499,7 @@ c	net/minecraft/unmapped/C_3840438
 	m	([Ltv/twitch/chat/ChatTokenizedMessage;)V	chatChannelTokenizedMessageCallback	chatChannelTokenizedMessageCallback	
 		p	1		p_1	
 	m	()Z	m_6205318	m_6205318	
-	m	()Lnet/minecraft/unmapped/C_6111922;	m_6703479	m_6703479	
+	m	()Lnet/minecraft/unmapped/C_6111922;	m_6703479	getChannelState	
 	m	()Z	m_0340763	m_0340763	
 	m	(Ljava/lang/String;)Z	m_8915250	m_8915250	
 		p	1		p_1	
@@ -508,25 +512,27 @@ c	net/minecraft/unmapped/C_3840438
 	m	()V	m_4173772	m_4173772	
 	m	()V	m_9573757	m_9573757	
 	m	()Lnet/minecraft/unmapped/C_7180996;	m_7177443		getState
-	m	(Ljava/lang/String;)Z	m_3827077		m_3827077
-		p	1			p_1
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_6111922;	m_6703479		m_6703479
-		p	1			p_1
+	m	(Ljava/lang/String;)Z	m_3827077		isChannelConnected
+		p	1			channel
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_6111922;	m_6703479		getChannelState
+		p	1			channel
 	m	()Z	m_0094708		m_0094708
-	m	(Ljava/lang/String;Z)Z	m_6359142		m_6359142
-		p	1			p_1
+	m	(Ljava/lang/String;Z)Z	m_6359142		connectChannel
+		p	1			channel
 		p	2			p_2
-	m	(Ljava/lang/String;)Z	m_2409484		m_2409484
-		p	1			p_1
+	m	(Ljava/lang/String;)Z	m_2409484		disconnectChannel
+		p	1			channel
 	m	()V	m_3006458		shutdown
 	m	(Ljava/lang/String;Ljava/lang/String;)Z	m_3680703		m_3680703
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_7180996;)V	m_9673441		m_9673441
-		p	1			p_1
-	m	()V	m_1517448		m_1517448
-	m	()V	m_1874049		m_1874049
-	m	()V	m_0029531		m_0029531
+	m	(Lnet/minecraft/unmapped/C_7180996;)V	m_9673441		setState
+		p	1			state
+	m	()V	m_1517448		downloadEmoticonData
+	m	()V	m_1874049		prepareEmoticonData
+	m	()V	m_0029531		clearEmoticonData
+	m	(Lnet/minecraft/unmapped/C_5569288;)V	m_6291728
+		p	1		p_1	listener
 c	net/minecraft/unmapped/C_3961659
 	m	()V	m_2164418		updateShape
 	m	(DDD)V	m_4956544		m_4956544
@@ -538,7 +544,7 @@ c	net/minecraft/unmapped/C_3999398	net/minecraft/client/render/block/RepeaterRen
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_8922447;Lnet/minecraft/unmapped/C_3674802;)Z	m_5073446	tessellateRepeater	
+	m	(Lnet/minecraft/unmapped/C_8922447;Lnet/minecraft/unmapped/C_3674802;)Z	m_5073446	tesselateRepeater	
 		p	1		repeater	
 		p	2		pos	
 c	net/minecraft/unmapped/C_4018501
@@ -558,10 +564,10 @@ c	net/minecraft/unmapped/C_4429800	net/minecraft/client/render/block/DiodeRender
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_5374641;Lnet/minecraft/unmapped/C_3674802;)Z	m_7638367	tessellateDiode	
+	m	(Lnet/minecraft/unmapped/C_5374641;Lnet/minecraft/unmapped/C_3674802;)Z	m_7638367	tesselateDiode	
 		p	1		diode	
 		p	2		pos	
-	m	(Lnet/minecraft/unmapped/C_5374641;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)V	m_4882343	tessellateDiodeBase	
+	m	(Lnet/minecraft/unmapped/C_5374641;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3544601;)V	m_4882343	tesselateDiodeBase	
 		p	1		diode	
 		p	2		pos	
 		p	3		facing	
@@ -580,7 +586,7 @@ c	net/minecraft/unmapped/C_4747732	net/minecraft/client/render/block/WallRendere
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_5601492;Lnet/minecraft/unmapped/C_3674802;)Z	m_9896540	tessellateWall	
+	m	(Lnet/minecraft/unmapped/C_5601492;Lnet/minecraft/unmapped/C_3674802;)Z	m_9896540	tesselateWall	
 		p	1		wall	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_1241852;IF)V	m_5915080	m_5915080	
@@ -592,7 +598,7 @@ c	net/minecraft/unmapped/C_4881633	net/minecraft/client/render/block/LilyPadRend
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_9375022;Lnet/minecraft/unmapped/C_3674802;)Z	m_3647708	tessellateLilyPad	
+	m	(Lnet/minecraft/unmapped/C_9375022;Lnet/minecraft/unmapped/C_3674802;)Z	m_3647708	tesselateLilyPad	
 		p	1		lilyPad	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_1241852;IF)V	m_5915080	m_5915080	
@@ -622,17 +628,17 @@ c	net/minecraft/unmapped/C_5030414	net/minecraft/client/render/block/AnvilRender
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;I)Z	m_9538167	tessellateAnvil	
+	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_8030141;I)Z	m_9538167	tesselateAnvil	
 		p	1		anvil	
 		p	2		pos	
 		p	3		world	
 		p	4		metadata	
-	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;IZ)Z	m_8577765	tessellateAnvil	
+	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;IZ)Z	m_8577765	tesselateAnvil	
 		p	1		anvil	
 		p	2		pos	
 		p	3		metadata	
 		p	4		item	
-	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;IFFFFZZI)F	m_2456913	tessellateAnvilPart	
+	m	(Lnet/minecraft/unmapped/C_7109321;Lnet/minecraft/unmapped/C_3674802;IFFFFZZI)F	m_2456913	tesselateAnvilPart	
 		p	1		anvil	
 		p	2		pos	
 		p	3		part	
@@ -661,7 +667,7 @@ c	net/minecraft/unmapped/C_5306184	net/minecraft/client/render/block/FenceRender
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_6028829;Lnet/minecraft/unmapped/C_3674802;)Z	m_3202558	tessellateFence	
+	m	(Lnet/minecraft/unmapped/C_6028829;Lnet/minecraft/unmapped/C_3674802;)Z	m_3202558	tesselateFence	
 		p	1		fence	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_1241852;IF)V	m_5915080	m_5915080	
@@ -686,7 +692,10 @@ c	net/minecraft/unmapped/C_5420841
 c	net/minecraft/unmapped/C_5553933
 	m	(Ljava/util/UUID;)Lnet/minecraft/unmapped/C_9590849;	m_3265636		getPlayer
 		p	1			uuid
-c	net/minecraft/unmapped/C_5569288	net/minecraft/client/twitch/BroadcastController__C_1223319__C_5569288	net/minecraft/unmapped/C_5569288
+	m	()I	m_8568350	m_8568350	getHeight
+	m	(Lnet/minecraft/unmapped/C_3674802;)Z	m_6918486	m_6918486	isAir
+		p	1		p_1	pos
+c	net/minecraft/unmapped/C_5569288
 	m	([Ltv/twitch/chat/ChatMessage;)V	m_4514519	m_4514519	
 		p	1		p_1	
 	m	([Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;)V	m_3369385	m_3369385	
@@ -696,30 +705,30 @@ c	net/minecraft/unmapped/C_5569288	net/minecraft/client/twitch/BroadcastControll
 	m	()V	m_3048532	m_3048532	
 	m	()V	m_6864119	m_6864119	
 	m	()V	m_6242895	m_6242895	
-	m	(Ltv/twitch/ErrorCode;)V	m_1293165		m_1293165
-		p	1			p_1
-	m	(Ltv/twitch/ErrorCode;)V	m_5899252		m_5899252
-		p	1			p_1
-	m	()V	m_7077500		m_7077500
+	m	(Ltv/twitch/ErrorCode;)V	m_1293165		chatInitializationCallback
+		p	1			errorCode
+	m	(Ltv/twitch/ErrorCode;)V	m_5899252		chatShutdownCallback
+		p	1			errorCode
+	m	()V	m_7077500		prepareChatEmoticonDataCallback
 	m	()V	m_2003643		m_2003643
-	m	(Lnet/minecraft/unmapped/C_7180996;)V	m_8890830		m_8890830
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_7180996;)V	m_8890830		chatStateChanged
+		p	1			state
 	m	(Ljava/lang/String;[Ltv/twitch/chat/ChatTokenizedMessage;)V	m_2764991		m_2764991
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/String;[Ltv/twitch/chat/ChatRawMessage;)V	m_1947729		m_1947729
 		p	1			p_1
 		p	2			p_2
-	m	(Ljava/lang/String;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;)V	m_3369385		m_3369385
+	m	(Ljava/lang/String;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;)V	m_3369385		chatChannelUserChangeCallback
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Ljava/lang/String;)V	m_9836339		m_9836339
+	m	(Ljava/lang/String;)V	m_9836339		joinedChannel
 		p	1			p_1
-	m	(Ljava/lang/String;)V	m_7038043		m_7038043
+	m	(Ljava/lang/String;)V	m_7038043		leftChannel
 		p	1			p_1
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_0729974		m_0729974
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_0729974		chatCleared
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/String;)V	m_6004964		m_6004964
@@ -733,7 +742,7 @@ c	net/minecraft/unmapped/C_5615103
 	f	Ljava/util/List;	f_7071793		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_5689998
+c	net/minecraft/unmapped/C_5689998	net/minecraft/client/resource/model/BakedModel__BlockFace__Vertex	net/minecraft/client/resource/model/BakedQuad__BlockFace__Vertex
 	m	(Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_3544601;Lnet/minecraft/unmapped/C_2615367;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -768,10 +777,10 @@ c	net/minecraft/unmapped/C_5820522	net/minecraft/client/render/block/HopperRende
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_4018501;Lnet/minecraft/unmapped/C_3674802;)Z	m_9950815	tessellateHopper	
+	m	(Lnet/minecraft/unmapped/C_4018501;Lnet/minecraft/unmapped/C_3674802;)Z	m_9950815	tesselateHopper	
 		p	1		hopper	
 		p	2		pos	
-	m	(Lnet/minecraft/unmapped/C_4018501;Lnet/minecraft/unmapped/C_3674802;IZ)Z	m_0764034	tessellateHopper	
+	m	(Lnet/minecraft/unmapped/C_4018501;Lnet/minecraft/unmapped/C_3674802;IZ)Z	m_0764034	tesselateHopper	
 		p	1		hopper	
 		p	2		pos	
 		p	3		metadata	
@@ -798,11 +807,11 @@ c	net/minecraft/unmapped/C_6033747	net/minecraft/client/render/block/StainedGlas
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-c	net/minecraft/unmapped/C_6111922	net/minecraft/client/twitch/BroadcastController__C_1223319__C_6111922	net/minecraft/client/twitch/TwitchChat__C_6111922
+c	net/minecraft/unmapped/C_6111922
 	f	Lnet/minecraft/unmapped/C_6111922;	f_2779556	f_2779556	
 	f	Lnet/minecraft/unmapped/C_6111922;	f_2517828	f_2517828	
-	f	Lnet/minecraft/unmapped/C_6111922;	f_3007919		f_3007919
-	f	Lnet/minecraft/unmapped/C_6111922;	f_5557355		f_5557355
+	f	Lnet/minecraft/unmapped/C_6111922;	f_3007919		CREATED
+	f	Lnet/minecraft/unmapped/C_6111922;	f_5557355		DISCONNECTING
 c	net/minecraft/unmapped/C_6122773
 	m	(Lnet/minecraft/unmapped/C_1591214;)V	m_0486254	m_0486254	
 		p	1		p_1	
@@ -820,7 +829,7 @@ c	net/minecraft/unmapped/C_6265506
 c	net/minecraft/unmapped/C_6296773
 	f	Ljava/util/List;	f_5382741		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
-c	net/minecraft/unmapped/C_6435316	net/minecraft/client/render/block/RepeaterRenderer__1	
+c	net/minecraft/unmapped/C_6435316	net/minecraft/client/render/block/RepeaterRenderer__6435316	
 	f	[I	f_1407821	f_1407821	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_6435650
@@ -876,7 +885,7 @@ c	net/minecraft/unmapped/C_6509480	net/minecraft/server/BanList	net/minecraft/se
 	m	()V	m_3771307		save
 	m	()V	m_4022270		load
 	m	()V	m_6999739	removeExpiredBans	removeExpiredEntries
-c	net/minecraft/unmapped/C_6583562	net/minecraft/client/render/block/BedRenderer__1	
+c	net/minecraft/unmapped/C_6583562	net/minecraft/client/render/block/BedRenderer__6583562	
 	f	[I	f_2485602	f_2485602	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_6695579
@@ -914,7 +923,6 @@ c	net/minecraft/unmapped/C_6695579
 	m	(Lnet/minecraft/unmapped/C_1241852;I)Lnet/minecraft/unmapped/C_3216249;	m_5607640		getRenderer
 		p	1			block
 		p	2			metadata
-	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_5307437;Lnet/minecraft/unmapped/C_8030141;)V	m_9691004	renderWithSprite	tessellateMining
 c	net/minecraft/unmapped/C_6804573
 	f	Ljava/util/List;	f_4561166		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
@@ -995,18 +1003,18 @@ c	net/minecraft/unmapped/C_7247280	net/minecraft/client/render/ComparatorRendere
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_0547482;Lnet/minecraft/unmapped/C_3674802;)Z	m_5574348	tessellateComparator	
+	m	(Lnet/minecraft/unmapped/C_0547482;Lnet/minecraft/unmapped/C_3674802;)Z	m_5574348	tesselateComparator	
 		p	1		comparator	
 		p	2		pos	
 c	net/minecraft/unmapped/C_7284070
 	f	Ljava/util/List;	f_3964229		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_7322446	net/minecraft/client/render/block/AnvilRenderer__1	
+c	net/minecraft/unmapped/C_7322446	net/minecraft/client/render/block/AnvilRenderer__7322446	
 	f	[I	f_9619057	f_9619057	
 	m	()V	<clinit>	<clinit>	
-c	net/minecraft/unmapped/C_7352375	net/minecraft/client/twitch/BroadcastController__C_1223319__C_5569288__C_7352375	net/minecraft/client/twitch/IngestTester__C_7352375
-	f	Lnet/minecraft/unmapped/C_7352375;	f_7068579		f_7068579
+c	net/minecraft/unmapped/C_7352375
+	f	Lnet/minecraft/unmapped/C_7352375;	f_7068579		CANCELLING
 c	net/minecraft/unmapped/C_7431851
 	f	Ljava/util/List;	f_4885731		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
@@ -1019,7 +1027,7 @@ c	net/minecraft/unmapped/C_7469858	net/minecraft/client/render/block/LeverRender
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_9739154;Lnet/minecraft/unmapped/C_3674802;)Z	m_5660248	tessellateLever	
+	m	(Lnet/minecraft/unmapped/C_9739154;Lnet/minecraft/unmapped/C_3674802;)Z	m_5660248	tesselateLever	
 		p	1		lever	
 		p	2		pos	
 c	net/minecraft/unmapped/C_7581108
@@ -1037,7 +1045,7 @@ c	net/minecraft/unmapped/C_7840546	net/minecraft/client/render/block/PaneBlockRe
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_3481595;Lnet/minecraft/unmapped/C_3674802;)Z	m_5668334	tessellatePaneBlock	
+	m	(Lnet/minecraft/unmapped/C_3481595;Lnet/minecraft/unmapped/C_3674802;)Z	m_5668334	tesselatePaneBlock	
 		p	1		pane	
 		p	2		pos	
 c	net/minecraft/unmapped/C_7842113
@@ -1055,7 +1063,7 @@ c	net/minecraft/unmapped/C_8105098
 	f	Lnet/minecraft/unmapped/C_8081088;	f_0364260		modelManager
 	f	Lnet/minecraft/unmapped/C_6695579;	f_3313138		blockRenderer
 	m	()Lnet/minecraft/unmapped/C_6695579;	m_4054350		getBlockRenderDispatcher
-c	net/minecraft/unmapped/C_8208920	net/minecraft/client/render/ComparatorRenderer__1	
+c	net/minecraft/unmapped/C_8208920	net/minecraft/client/render/ComparatorRenderer__8208920	
 	f	[I	f_7160278	f_7160278	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_8275823
@@ -1069,7 +1077,7 @@ c	net/minecraft/unmapped/C_8587835	net/minecraft/client/render/block/BedRenderer
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_4594583;Lnet/minecraft/unmapped/C_3674802;)Z	m_9099305	tessellateBed	
+	m	(Lnet/minecraft/unmapped/C_4594583;Lnet/minecraft/unmapped/C_3674802;)Z	m_9099305	tesselateBed	
 		p	1		bed	
 		p	2		pos	
 c	net/minecraft/unmapped/C_8648813	net/minecraft/client/render/block/StemRenderer	
@@ -1077,17 +1085,17 @@ c	net/minecraft/unmapped/C_8648813	net/minecraft/client/render/block/StemRendere
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_3060676;Lnet/minecraft/unmapped/C_3674802;)Z	m_5400900	tessellateStem	
+	m	(Lnet/minecraft/unmapped/C_3060676;Lnet/minecraft/unmapped/C_3674802;)Z	m_5400900	tesselateStem	
 		p	1		stem	
 		p	2		pos	
-	m	(Lnet/minecraft/unmapped/C_1241852;IDDDD)V	m_3427482	tessellateStem	
+	m	(Lnet/minecraft/unmapped/C_1241852;IDDDD)V	m_3427482	tesselateStem	
 		p	1		block	
 		p	2		metadata	
 		p	3		height	
 		p	5		x	
 		p	7		y	
 		p	9		z	
-	m	(Lnet/minecraft/unmapped/C_3060676;IIDDDD)V	m_9255095	tessellateConnectedStem	
+	m	(Lnet/minecraft/unmapped/C_3060676;IIDDDD)V	m_9255095	tesselateConnectedStem	
 		p	1		stem	
 		p	2		metadata	
 		p	3		dir	
@@ -1108,7 +1116,7 @@ c	net/minecraft/unmapped/C_8718968
 	f	Ljava/util/List;	f_5951443		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
 c	net/minecraft/unmapped/C_8785182
-	f	Ljava/lang/String;	f_8852720		f_8852720
+	f	Ljava/lang/String;	f_8852720		channel
 	m	([Ltv/twitch/chat/ChatMessage;)V	m_4514519	m_4514519	
 		p	1		p_1	
 	m	(Ljava/lang/String;Ltv/twitch/chat/ChatMessage;)V	m_7782418	m_7782418	
@@ -1162,7 +1170,7 @@ c	net/minecraft/unmapped/C_9033402	net/minecraft/client/render/block/RailRendere
 	m	(Lnet/minecraft/unmapped/C_1241852;Lnet/minecraft/unmapped/C_3674802;)Z	m_3073155	m_3073155	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_4311389;Lnet/minecraft/unmapped/C_3674802;)Z	m_6671766	tessellateRail	
+	m	(Lnet/minecraft/unmapped/C_4311389;Lnet/minecraft/unmapped/C_3674802;)Z	m_6671766	tesselateRail	
 		p	1		rail	
 		p	2		pos	
 c	net/minecraft/unmapped/C_9184792
@@ -1171,18 +1179,19 @@ c	net/minecraft/unmapped/C_9184792
 	m	(Lnet/minecraft/unmapped/C_1161898;)V	m_8067433		m_8067433
 		p	1			p_1
 c	net/minecraft/unmapped/C_9347495
-	f	Lnet/minecraft/unmapped/C_3674802;	f_1175602	nbt	
+	f	Lnet/minecraft/unmapped/C_3674802;	f_1175602	dstPos	
 	f	Lnet/minecraft/unmapped/C_2018497;	f_9673076		nbt
+	f	Lnet/minecraft/unmapped/C_3674802;	f_3769933	srcPos	dstPos
 	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_1241852;I)V	<init>	<init>	
-		p	1		pos	
-		p	2		nbt	
+		p	1		srcPos	
+		p	2		dstPos	
 		p	3		block	
 		p	4		metadata	
 	m	(Lnet/minecraft/unmapped/C_3674802;Lnet/minecraft/unmapped/C_1241852;ILnet/minecraft/unmapped/C_2018497;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			dstPos
+		p	2			block
+		p	3			metadata
+		p	4			nbt
 c	net/minecraft/unmapped/C_9375022
 	f	Ljava/util/List;	f_4845763		MODEL_VARIANTS
 	m	()Ljava/util/List;	m_8746735		m_8746735
@@ -1336,7 +1345,7 @@ c	net/minecraft/unmapped/C_0300086		net/minecraft/client/render/model/block/Bloc
 	m	()Ljava/lang/String;	m_7560288		getParent
 	m	()Lnet/minecraft/unmapped/C_2334768;	m_2352047		getRotation
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			o
+		p	1			p_1
 	m	()I	hashCode		hashCode
 	m	(Lnet/minecraft/unmapped/C_0300086;)Ljava/lang/String;	m_9386794		m_9386794
 		p	0			p_0
@@ -1346,7 +1355,7 @@ c	net/minecraft/unmapped/C_0411092		net/minecraft/server/Ops
 	m	(Lcom/google/gson/JsonObject;)Lnet/minecraft/unmapped/C_6088542;	m_1133826		m_1133826
 		p	1			p_1
 	m	()[Ljava/lang/String;	m_5013837		m_5013837
-	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_8489225		getKey
+	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_8489225		m_8489225
 		p	1			p_1
 	m	(Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	m_9347633		getProfile
 		p	1			name
@@ -1354,7 +1363,7 @@ c	net/minecraft/unmapped/C_0411092		net/minecraft/server/Ops
 		p	1			p_1
 c	net/minecraft/unmapped/C_0604133		net/minecraft/client/render/model/block/BlockElement__Serializer
 	m	()V	<init>		<init>
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_8655923;	m_7511595		m_7511595
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_8655923;	m_7511595		deserialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -1375,10 +1384,10 @@ c	net/minecraft/unmapped/C_0604133		net/minecraft/client/render/model/block/Bloc
 		p	6			p_6
 		p	7			p_7
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
-		p	2			type
-		p	3			context
-c	net/minecraft/unmapped/C_0725254		net/minecraft/server/UserConverter__4
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
+c	net/minecraft/unmapped/C_0725254		net/minecraft/server/UserConverter__0725254
 	f	Lnet/minecraft/server/MinecraftServer;	f_8832177		f_8832177
 	f	Ljava/util/List;	f_1851899		f_1851899
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/util/List;)V	<init>		<init>
@@ -1394,16 +1403,16 @@ c	net/minecraft/unmapped/C_0912844		net/minecraft/client/render/model/block/Bloc
 	f	Ljavax/vecmath/Vector3f;	f_3329059		DEFAULT_ORIGIN
 	f	Ljavax/vecmath/Vector3f;	f_3310133		DEFAULT_ROTATION
 	m	()V	<init>		<init>
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_9077418;	m_8618624		m_8618624
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_9077418;	m_8618624		deserialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_0984412		net/minecraft/client/Minecraft__7
+c	net/minecraft/unmapped/C_0984412		net/minecraft/client/Minecraft__0984412
 	f	Lnet/minecraft/unmapped/C_8105098;	f_0964659		f_0964659
 	m	(Lnet/minecraft/unmapped/C_8105098;)V	<init>		<init>
 		p	1			p_1
@@ -1416,13 +1425,13 @@ c	net/minecraft/unmapped/C_1318090		net/minecraft/client/render/block/BlockRende
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6390485;	m_5784337		m_5784337
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_1540420		net/minecraft/client/twitch/BroadcastController__1
+c	net/minecraft/unmapped/C_1540420		net/minecraft/client/twitch/BroadcastController__1540420
 	f	Lnet/minecraft/unmapped/C_3723758;	f_3392983		f_3392983
 	m	(Lnet/minecraft/unmapped/C_3723758;)V	<init>		<init>
 		p	1			p_1
 	m	(Ltv/twitch/ErrorCode;Ltv/twitch/AuthToken;)V	requestAuthTokenCallback		requestAuthTokenCallback
-		p	1			p_1
-		p	2			p_2
+		p	1			error
+		p	2			authToken
 	m	(Ltv/twitch/ErrorCode;Ltv/twitch/broadcast/ChannelInfo;)V	loginCallback		loginCallback
 		p	1			p_1
 		p	2			p_2
@@ -1477,14 +1486,14 @@ c	net/minecraft/unmapped/C_1965587		net/minecraft/client/render/model/block/Cube
 	m	(Lnet/minecraft/unmapped/C_7184938;Lnet/minecraft/unmapped/C_2334768;)V	m_6003827		m_6003827
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_1997660		net/minecraft/client/twitch/IngestTester__2
+c	net/minecraft/unmapped/C_1997660		net/minecraft/client/twitch/IngestTester__1997660
 	f	Lnet/minecraft/unmapped/C_0969327;	f_2127018		f_2127018
 	m	(Lnet/minecraft/unmapped/C_0969327;)V	<init>		<init>
 		p	1			p_1
 	m	(Ltv/twitch/broadcast/StatType;J)V	statCallback		statCallback
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_2013487		net/minecraft/C_61dtjmqkq__C_1426399__1
+c	net/minecraft/unmapped/C_2013487		net/minecraft/client/resource/model/BakedQuad__2013487
 c	net/minecraft/unmapped/C_2068095		net/minecraft/client/render/block/BlockRenderDispatcher__PaneModelProvider
 	f	Ljava/util/List;	f_4086849		models
 	m	(Lnet/minecraft/unmapped/C_1241852;)V	<init>		<init>
@@ -1526,7 +1535,7 @@ c	net/minecraft/unmapped/C_2334768		net/minecraft/client/resource/model/ModelRot
 		p	2			p_2
 		p	3			x
 		p	4			y
-	m	()Ljavax/vecmath/Matrix4f;	m_5573919		getRotation
+	m	()Ljavax/vecmath/Matrix4f;	m_5573919		getRotationVector
 	m	(Lnet/minecraft/unmapped/C_3544601;)Lnet/minecraft/unmapped/C_3544601;	m_6644010		clockwise
 		p	1			dir
 	m	(II)Lnet/minecraft/unmapped/C_2334768;	m_3818333		by
@@ -1546,17 +1555,17 @@ c	net/minecraft/unmapped/C_2493958		net/minecraft/server/StoredUserList__Seriali
 		p	2			p_2
 		p	3			p_3
 	m	(Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	serialize		serialize
-		p	1			entry
+		p	1			value
 		p	2			type
-		p	3			context
+		p	3			ctx
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
+		p	1			element
 		p	2			type
-		p	3			context
+		p	3			ctx
 	m	(Lnet/minecraft/unmapped/C_6509480;Lnet/minecraft/unmapped/C_5084338;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_2617738		net/minecraft/server/UserConverter__3
+c	net/minecraft/unmapped/C_2617738		net/minecraft/server/UserConverter__2617738
 	f	Lnet/minecraft/server/MinecraftServer;	f_4946064		f_4946064
 	f	Lnet/minecraft/unmapped/C_8127368;	f_0441390		f_0441390
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_8127368;)V	<init>		<init>
@@ -1567,41 +1576,41 @@ c	net/minecraft/unmapped/C_2617738		net/minecraft/server/UserConverter__3
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
 		p	1			profile
 		p	2			e
-c	net/minecraft/unmapped/C_2997118		net/minecraft/client/twitch/TwitchChat__C_2997118
-	f	Ljava/lang/String;	f_1017539		f_1017539
+c	net/minecraft/unmapped/C_2997118		net/minecraft/client/twitch/TwitchChat__ChannelListener
+	f	Ljava/lang/String;	f_1017539		channel
 	f	Z	f_8322107		f_8322107
-	f	Lnet/minecraft/unmapped/C_6111922;	f_6338315		f_6338315
+	f	Lnet/minecraft/unmapped/C_6111922;	f_6338315		channelState
 	f	Ljava/util/List;	f_6950962		f_6950962
-	f	Ljava/util/LinkedList;	f_4081498		f_4081498
-	f	Ljava/util/LinkedList;	f_9889542		f_9889542
-	f	Ltv/twitch/chat/ChatBadgeData;	f_2530520		f_2530520
+	f	Ljava/util/LinkedList;	f_4081498		rawMessages
+	f	Ljava/util/LinkedList;	f_9889542		tokenizedMessages
+	f	Ltv/twitch/chat/ChatBadgeData;	f_2530520		badgeData
 	f	Lnet/minecraft/unmapped/C_3840438;	f_5576621		f_5576621
 	m	(Lnet/minecraft/unmapped/C_3840438;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
-		p	2			p_2
-	m	()Lnet/minecraft/unmapped/C_6111922;	m_4462062		m_4462062
-	m	(Z)Z	m_8172501		m_8172501
+		p	2			channel
+	m	()Lnet/minecraft/unmapped/C_6111922;	m_4462062		getState
+	m	(Z)Z	m_8172501		connect
 		p	1			p_1
-	m	()Z	m_9828388		m_9828388
-	m	(Lnet/minecraft/unmapped/C_6111922;)V	m_7400636		m_7400636
-		p	1			p_1
-	m	(Ljava/lang/String;)V	m_2999463		m_2999463
-		p	1			p_1
-	m	(Ljava/lang/String;)Z	m_2687577		m_2687577
-		p	1			p_1
-	m	()V	m_9324617		m_9324617
-	m	()V	m_0369950		m_0369950
-	m	()V	m_3229682		m_3229682
-	m	(Ljava/lang/String;)V	m_5113653		m_5113653
-		p	1			p_1
-	m	(Ljava/lang/String;)V	m_4140280		m_4140280
-		p	1			p_1
-	m	()V	m_2521374		m_2521374
+	m	()Z	m_9828388		disconnect
+	m	(Lnet/minecraft/unmapped/C_6111922;)V	m_7400636		setChannelState
+		p	1			state
+	m	(Ljava/lang/String;)V	m_2999463		clearChat
+		p	1			userName
+	m	(Ljava/lang/String;)Z	m_2687577		sendMessage
+		p	1			message
+	m	()V	m_9324617		downloadBadgeData
+	m	()V	m_0369950		prepareBadgeData
+	m	()V	m_3229682		clearBadgeData
+	m	(Ljava/lang/String;)V	m_5113653		joinedChannelCallback
+		p	1			channel
+	m	(Ljava/lang/String;)V	m_4140280		leftChannelCallback
+		p	1			channel
+	m	()V	m_2521374		leftChannelCallback
 	m	(Ljava/lang/String;Ltv/twitch/ErrorCode;)V	chatStatusCallback		chatStatusCallback
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/String;Ltv/twitch/chat/ChatEvent;Ltv/twitch/chat/ChatChannelInfo;)V	chatChannelMembershipCallback		chatChannelMembershipCallback
-		p	1			p_1
+		p	1			channel
 		p	2			p_2
 		p	3			p_3
 	m	(Ljava/lang/String;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;[Ltv/twitch/chat/ChatUserInfo;)V	chatChannelUserChangeCallback		chatChannelUserChangeCallback
@@ -1621,7 +1630,7 @@ c	net/minecraft/unmapped/C_2997118		net/minecraft/client/twitch/TwitchChat__C_29
 	m	(Ljava/lang/String;Ltv/twitch/ErrorCode;)V	chatBadgeDataDownloadCallback		chatBadgeDataDownloadCallback
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_3022970		net/minecraft/server/GameProfileCache__1
+c	net/minecraft/unmapped/C_3022970		net/minecraft/server/GameProfileCache__3022970
 	f	[Lcom/mojang/authlib/GameProfile;	f_8729578		f_8729578
 	m	([Lcom/mojang/authlib/GameProfile;)V	<init>		<init>
 		p	1			p_1
@@ -1629,7 +1638,7 @@ c	net/minecraft/unmapped/C_3022970		net/minecraft/server/GameProfileCache__1
 		p	1			profile
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
 		p	1			profile
-		p	2			exception
+		p	2			e
 c	net/minecraft/unmapped/C_3070413		net/minecraft/client/render/block/BlockRenderDispatcher__VineModelProvider
 	f	Ljava/util/List;	f_1243051		models
 	m	()V	<init>		<init>
@@ -1691,13 +1700,13 @@ c	net/minecraft/unmapped/C_4340063		net/minecraft/server/PlayerBans
 	m	(Lcom/mojang/authlib/GameProfile;)Z	m_9400987		isBanned
 		p	1			profile
 	m	()[Ljava/lang/String;	m_5013837		m_5013837
-	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_6378158		getKey
+	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_6378158		m_6378158
 		p	1			p_1
 	m	(Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	m_5895496		getProfile
 		p	1			name
 	m	(Ljava/lang/Object;)Ljava/lang/String;	m_2365501		m_2365501
 		p	1			p_1
-c	net/minecraft/unmapped/C_4614389		net/minecraft/client/twitch/BroadcastController__2
+c	net/minecraft/unmapped/C_4614389		net/minecraft/client/twitch/BroadcastController__4614389
 	f	Lnet/minecraft/unmapped/C_3723758;	f_6905974		f_6905974
 	m	(Lnet/minecraft/unmapped/C_3723758;)V	<init>		<init>
 		p	1			p_1
@@ -1711,7 +1720,7 @@ c	net/minecraft/unmapped/C_4643035		net/minecraft/client/render/block/BlockRende
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6390485;	m_5784337		m_5784337
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_4957429		net/minecraft/client/twitch/IngestTester__1
+c	net/minecraft/unmapped/C_4957429		net/minecraft/client/twitch/IngestTester__4957429
 	f	Lnet/minecraft/unmapped/C_0969327;	f_0399893		f_0399893
 	m	(Lnet/minecraft/unmapped/C_0969327;)V	<init>		<init>
 		p	1			p_1
@@ -1752,7 +1761,7 @@ c	net/minecraft/unmapped/C_4957429		net/minecraft/client/twitch/IngestTester__1
 		p	1			p_1
 	m	(Ltv/twitch/ErrorCode;)V	sendEndSpanMetaDataCallback		sendEndSpanMetaDataCallback
 		p	1			p_1
-c	net/minecraft/unmapped/C_5084338		net/minecraft/server/StoredUserList__1
+c	net/minecraft/unmapped/C_5084338		net/minecraft/server/StoredUserList__5084338
 	m	()V	<init>		<init>
 	m	()[Ljava/lang/reflect/Type;	getActualTypeArguments		getActualTypeArguments
 	m	()Ljava/lang/reflect/Type;	getRawType		getRawType
@@ -1762,11 +1771,11 @@ c	net/minecraft/unmapped/C_5277920		net/minecraft/client/render/model/block/Bloc
 	m	(Ljava/util/Collection;)V	<init>		<init>
 		p	1			variants
 	m	(Ljava/util/List;)V	<init>		<init>
-		p	1			stack
+		p	1			models
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_0300086;	m_0894915		getVariant
 		p	1			name
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			o
+		p	1			p_1
 	m	()I	hashCode		hashCode
 c	net/minecraft/unmapped/C_5282180		net/minecraft/client/render/model/block/TextureCoordinates
 	f	[F	f_6014577		u
@@ -1783,7 +1792,7 @@ c	net/minecraft/unmapped/C_5282180		net/minecraft/client/render/model/block/Text
 		p	1			vertex
 	m	()Lnet/minecraft/unmapped/C_3544601;	m_6033401		getFacing
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			o
+		p	1			p_1
 	m	()I	hashCode		hashCode
 c	net/minecraft/unmapped/C_5371005		net/minecraft/client/render/block/BlockRenderDispatcher__LilyPadModelProvider
 	f	Ljava/util/List;	f_0441287		models
@@ -1791,10 +1800,10 @@ c	net/minecraft/unmapped/C_5371005		net/minecraft/client/render/block/BlockRende
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6390485;	m_5784337		m_5784337
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_5918553		net/minecraft/client/twitch/TwitchChat__C_5918553
-	f	Lnet/minecraft/unmapped/C_5918553;	f_2610766		f_2610766
-	f	Lnet/minecraft/unmapped/C_5918553;	f_7317716		f_7317716
-	f	Lnet/minecraft/unmapped/C_5918553;	f_9448250		f_9448250
+c	net/minecraft/unmapped/C_5918553		net/minecraft/client/twitch/TwitchChat__Tokenization
+	f	Lnet/minecraft/unmapped/C_5918553;	f_2610766		NONE
+	f	Lnet/minecraft/unmapped/C_5918553;	f_7317716		URL
+	f	Lnet/minecraft/unmapped/C_5918553;	f_9448250		TEXTURE_ATLAS
 	f	[Lnet/minecraft/unmapped/C_5918553;	f_1672588		f_1672588
 	m	()[Lnet/minecraft/unmapped/C_5918553;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_5918553;	valueOf		valueOf
@@ -1863,7 +1872,7 @@ c	net/minecraft/unmapped/C_6552685		net/minecraft/client/render/block/BlockRende
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6390485;	m_5784337		m_5784337
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_6656922		net/minecraft/server/UserConverter__1
+c	net/minecraft/unmapped/C_6656922		net/minecraft/server/UserConverter__6656922
 	f	Lnet/minecraft/server/MinecraftServer;	f_8454284		f_8454284
 	f	Ljava/util/Map;	f_9749436		f_9749436
 	f	Lnet/minecraft/unmapped/C_4340063;	f_8661777		f_8661777
@@ -1882,14 +1891,14 @@ c	net/minecraft/unmapped/C_6864184		net/minecraft/client/resource/model/BlockMod
 		p	2			pos
 c	net/minecraft/unmapped/C_7080402		net/minecraft/client/render/model/block/BlockModelDefinition__Serializer
 	m	()V	<init>		<init>
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_5277920;	m_5233120		m_5233120
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_5277920;	m_5233120		deserialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 c	net/minecraft/unmapped/C_7143605		net/minecraft/server/GameProfileCache
 	f	Ljava/text/SimpleDateFormat;	f_5178125		DATE_FORMAT
 	f	Ljava/util/Map;	f_3076492		profilesByName
@@ -1920,11 +1929,11 @@ c	net/minecraft/unmapped/C_7143605		net/minecraft/server/GameProfileCache
 	m	(I)Ljava/util/List;	m_1770653		getSaveQueue
 		p	1			amount
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_7180996		net/minecraft/client/twitch/TwitchChat__C_7180996
-	f	Lnet/minecraft/unmapped/C_7180996;	f_0586669		f_0586669
-	f	Lnet/minecraft/unmapped/C_7180996;	f_6797290		f_6797290
-	f	Lnet/minecraft/unmapped/C_7180996;	f_5897427		f_5897427
-	f	Lnet/minecraft/unmapped/C_7180996;	f_2749225		f_2749225
+c	net/minecraft/unmapped/C_7180996		net/minecraft/client/twitch/TwitchChat__State
+	f	Lnet/minecraft/unmapped/C_7180996;	f_0586669		UNINITIALIZED
+	f	Lnet/minecraft/unmapped/C_7180996;	f_6797290		INITIALIZING
+	f	Lnet/minecraft/unmapped/C_7180996;	f_5897427		INITIALIZED
+	f	Lnet/minecraft/unmapped/C_7180996;	f_2749225		SHUTTING_DOWN
 	f	[Lnet/minecraft/unmapped/C_7180996;	f_1345495		f_1345495
 	m	()[Lnet/minecraft/unmapped/C_7180996;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_7180996;	valueOf		valueOf
@@ -1933,7 +1942,7 @@ c	net/minecraft/unmapped/C_7180996		net/minecraft/client/twitch/TwitchChat__C_71
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_7184979		net/minecraft/server/GameProfileCache__2
+c	net/minecraft/unmapped/C_7184979		net/minecraft/server/GameProfileCache__7184979
 	m	()V	<init>		<init>
 	m	()[Ljava/lang/reflect/Type;	getActualTypeArguments		getActualTypeArguments
 	m	()Ljava/lang/reflect/Type;	getRawType		getRawType
@@ -1951,13 +1960,13 @@ c	net/minecraft/unmapped/C_7326232		net/minecraft/server/GameProfileCache__Seria
 		p	2			p_2
 		p	3			p_3
 	m	(Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;	serialize		serialize
-		p	1			entry
+		p	1			value
 		p	2			type
-		p	3			context
+		p	3			ctx
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
+		p	1			element
 		p	2			type
-		p	3			context
+		p	3			ctx
 	m	(Lnet/minecraft/unmapped/C_7143605;Lnet/minecraft/unmapped/C_3022970;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -1993,7 +2002,7 @@ c	net/minecraft/unmapped/C_8127368		net/minecraft/server/Whitelist
 	m	(Lcom/mojang/authlib/GameProfile;)Z	m_6003630		isWhitelisted
 		p	1			profile
 	m	()[Ljava/lang/String;	m_5013837		m_5013837
-	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_7643154		getKey
+	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_7643154		m_7643154
 		p	1			p_1
 	m	(Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;	m_7538639		getProfile
 		p	1			name
@@ -2017,7 +2026,7 @@ c	net/minecraft/unmapped/C_8191764		net/minecraft/client/render/model/block/Bloc
 	m	()Z	m_8889024		getOverlay
 	m	()Z	m_5710035		getTintOverlay
 	m	(Ljava/lang/Object;)Z	equals		equals
-		p	1			o
+		p	1			p_1
 	m	()I	hashCode		hashCode
 c	net/minecraft/unmapped/C_8284973		net/minecraft/server/UserConverter__ConversionException
 	m	(Ljava/lang/String;Ljava/lang/Throwable;)V	<init>		<init>
@@ -2032,7 +2041,7 @@ c	net/minecraft/unmapped/C_8284973		net/minecraft/server/UserConverter__Conversi
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_8494773		net/minecraft/server/UserConverter__2
+c	net/minecraft/unmapped/C_8494773		net/minecraft/server/UserConverter__8494773
 	f	Lnet/minecraft/server/MinecraftServer;	f_3957924		f_3957924
 	f	Lnet/minecraft/unmapped/C_0411092;	f_3561987		f_3561987
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_0411092;)V	<init>		<init>
@@ -2043,7 +2052,7 @@ c	net/minecraft/unmapped/C_8494773		net/minecraft/server/UserConverter__2
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
 		p	1			profile
 		p	2			e
-c	net/minecraft/unmapped/C_8504831		net/minecraft/client/twitch/TwitchChat__1
+c	net/minecraft/unmapped/C_8504831		net/minecraft/client/twitch/TwitchChat__8504831
 	f	Lnet/minecraft/unmapped/C_3840438;	f_8950553		f_8950553
 	m	(Lnet/minecraft/unmapped/C_3840438;)V	<init>		<init>
 		p	1			p_1
@@ -2192,14 +2201,14 @@ c	net/minecraft/unmapped/C_9156763		net/minecraft/server/UserConverter
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_9574499		net/minecraft/client/render/model/block/BlockElementFace__Serializer
 	m	()V	<init>		<init>
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_8191764;	m_2106450		m_2106450
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/unmapped/C_8191764;	m_2106450		deserialize
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;	deserialize		deserialize
-		p	1			json
-		p	2			type
-		p	3			context
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
 c	net/minecraft/unmapped/C_9613143		net/minecraft/client/render/block/BlockRenderDispatcher__DiodeModelProvider
 	f	Ljava/util/List;	f_5203023		models
 	m	(Lnet/minecraft/unmapped/C_1241852;)V	<init>		<init>
@@ -2207,7 +2216,7 @@ c	net/minecraft/unmapped/C_9613143		net/minecraft/client/render/block/BlockRende
 	m	(Lnet/minecraft/unmapped/C_8030141;Lnet/minecraft/unmapped/C_3674802;)Lnet/minecraft/unmapped/C_6390485;	m_5784337		m_5784337
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_9795744		net/minecraft/server/UserConverter__5
+c	net/minecraft/unmapped/C_9795744		net/minecraft/server/UserConverter__9795744
 	f	Lnet/minecraft/unmapped/C_1555023;	f_3030994		f_3030994
 	f	Ljava/io/File;	f_9418380		f_9418380
 	f	Ljava/io/File;	f_0020287		f_0020287
@@ -2224,23 +2233,15 @@ c	net/minecraft/unmapped/C_9795744		net/minecraft/server/UserConverter__5
 	m	(Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V	onProfileLookupFailed		onProfileLookupFailed
 		p	1			profile
 		p	2			e
-	m	(Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)V	m_9557492		m_9557492
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_3163623		m_3163623
-		p	1			p_1
-c	net/minecraft/unmapped/C_2619780	net/minecraft/client/Minecraft__15	net/minecraft/client/Minecraft__16
-c	net/minecraft/unmapped/C_4394019	net/minecraft/client/Minecraft__11	net/minecraft/client/Minecraft__12
-c	net/minecraft/unmapped/C_4563671	net/minecraft/client/Minecraft__9	net/minecraft/client/Minecraft__10
-c	net/minecraft/unmapped/C_5100772	net/minecraft/client/Minecraft__13	net/minecraft/client/Minecraft__14
-c	net/minecraft/unmapped/C_5160100	net/minecraft/client/Minecraft__10	net/minecraft/client/Minecraft__11
-c	net/minecraft/unmapped/C_5362986	net/minecraft/client/Minecraft__8	net/minecraft/client/Minecraft__9
-c	net/minecraft/unmapped/C_9216568	net/minecraft/client/Minecraft__12	net/minecraft/client/Minecraft__13
-c	net/minecraft/unmapped/C_2388842	net/minecraft/client/Minecraft__7	net/minecraft/client/Minecraft__8
-c	net/minecraft/unmapped/C_1422976	net/minecraft/client/twitch/BroadcastController__C_1223319__C_5569288__1	net/minecraft/client/twitch/IngestTester__3
-c	net/minecraft/unmapped/C_6442626	net/minecraft/client/twitch/BroadcastController__1	net/minecraft/client/twitch/BroadcastController__3
-c	net/minecraft/unmapped/C_8848365	net/minecraft/client/Minecraft__14	net/minecraft/client/Minecraft__15
-c	net/minecraft/unmapped/C_2449985	net/minecraft/client/resource/model/BakedModel__C_2449985	net/minecraft/C_61dtjmqkq__C_1426399__C_2449985
-c	net/minecraft/unmapped/C_2615367	net/minecraft/client/resource/model/BakedModel__1	net/minecraft/client/render/model/block/BlockElement__Serializer__1
-c	net/minecraft/unmapped/C_1223319	net/minecraft/client/twitch/BroadcastController__C_1223319	net/minecraft/unmapped/C_1223319
+	m	(Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)V	m_9557492		convertPlayerFile
+		p	1			dir
+		p	2			fileName
+		p	3			uuid
+	m	(Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;	m_3163623		getPlayerFileName
+		p	1			profile
+c	net/minecraft/unmapped/C_2449985	net/minecraft/client/resource/model/BakedModel__BlockFace	net/minecraft/client/resource/model/BakedQuad__BlockFace
+c	net/minecraft/unmapped/C_2615367	net/minecraft/client/resource/model/BakedModel__2615367	net/minecraft/client/render/model/block/BlockElement__Serializer__2615367
+c	net/minecraft/unmapped/C_0867341
+	m	(Lnet/minecraft/unmapped/C_0969327;Lnet/minecraft/unmapped/C_7352375;)V	m_6945775	m_6945775	ingestStateChanged
+		p	1		p_1	ingestTester
+		p	2		p_2	state

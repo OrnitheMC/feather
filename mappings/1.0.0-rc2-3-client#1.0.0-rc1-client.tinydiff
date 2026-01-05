@@ -7,30 +7,30 @@ c	net/minecraft/unmapped/C_1023567
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_1400833	net/minecraft/unmapped/C_1400833	
-	f	F	f_8046728	f_8046728	
-	f	F	f_0058618	f_0058618	
-	f	F	f_1106616	f_1106616	
-	f	Ljava/nio/IntBuffer;	f_8000679	f_8000679	
-	f	Ljava/nio/FloatBuffer;	f_0495147	f_0495147	
-	f	Ljava/nio/FloatBuffer;	f_6254537	f_6254537	
-	f	Ljava/nio/FloatBuffer;	f_3646361	f_3646361	
-	f	F	f_0018166	f_0018166	
-	f	F	f_1307550	f_1307550	
-	f	F	f_3910304	f_3910304	
-	f	F	f_1850844	f_1850844	
-	f	F	f_6711828	f_6711828	
+c	net/minecraft/unmapped/C_1400833	net/minecraft/client/render/Camera	
+	f	F	f_8046728	x	
+	f	F	f_0058618	y	
+	f	F	f_1106616	z	
+	f	Ljava/nio/IntBuffer;	f_8000679	glIntBuffer	
+	f	Ljava/nio/FloatBuffer;	f_0495147	glFloatBuffer1	
+	f	Ljava/nio/FloatBuffer;	f_6254537	glFloatBuffer2	
+	f	Ljava/nio/FloatBuffer;	f_3646361	POSITION_BUFFER	
+	f	F	f_0018166	dx	
+	f	F	f_1307550	dy	
+	f	F	f_3910304	dz	
+	f	F	f_1850844	forwards	
+	f	F	f_6711828	sideways	
 	m	()V	<init>	<init>	
-	m	(Lnet/minecraft/unmapped/C_9590849;Z)V	m_3748870	m_3748870	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_6607881;D)Lnet/minecraft/unmapped/C_0557736;	m_7549074	m_7549074	
-		p	0		p_0	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;F)I	m_7179989	m_7179989	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_9590849;Z)V	m_3748870	setup	
+		p	0		camera	
+		p	1		thirdPerson	
+	m	(Lnet/minecraft/unmapped/C_6607881;D)Lnet/minecraft/unmapped/C_0557736;	m_7549074	getEntityPosVec3d	
+		p	0		entity	
+		p	1		tickDelta	
+	m	(Lnet/minecraft/unmapped/C_5553933;Lnet/minecraft/unmapped/C_6607881;F)I	m_7179989	getLiquidInside	
+		p	0		world	
+		p	1		entity	
+		p	2		tickDelta	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_1842758
 	m	(Lnet/minecraft/unmapped/C_0557736;)V	<init>	<init>	
@@ -48,3 +48,16 @@ c	net/minecraft/unmapped/C_3940616
 	f	F	f_7911603		f_7911603
 c	net/minecraft/unmapped/C_5353187
 	f	J	f_1796566		f_1796566
+c	net/minecraft/unmapped/C_1316134
+	f	Ljava/util/Set;	f_3272393
+		c		Queue for chunks to unload.
+	f	Lnet/minecraft/unmapped/C_9848147;	f_0416976
+		c		Generator for new chunks.
+	f	Lnet/minecraft/unmapped/C_3015672;	f_5109721
+		c		Storage for all existing chunks.
+	f	Lnet/minecraft/unmapped/C_1431328;	f_9552996
+		c		All loaded chunks, by chunk position.
+	f	Ljava/util/List;	f_5073208
+		c		All loaded chunks.
+	m	(II)V	m_9772073
+		c		Queue the chunk at the given chunk coordinates to be unloaded.\nThis will happen the next time this chunk source is ticked.

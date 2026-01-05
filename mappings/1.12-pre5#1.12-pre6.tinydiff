@@ -59,10 +59,10 @@ c	net/minecraft/unmapped/C_0512768
 	f	Ljava/util/List;	f_7605822	f_7605822	
 	f	I	f_2683559	f_2683559	
 	f	Ljava/util/List;	f_1914437		recipes
-	f	Ljava/util/BitSet;	f_4488370		f_4488370
-	f	Ljava/util/BitSet;	f_5590603		f_5590603
-	f	Ljava/util/BitSet;	f_8255131		f_8255131
-	f	Z	f_2148356		f_2148356
+	f	Ljava/util/BitSet;	f_4488370		craftable
+	f	Ljava/util/BitSet;	f_5590603		fitting
+	f	Ljava/util/BitSet;	f_8255131		known
+	f	Z	f_2148356		singleResultItem
 	m	()Ljava/util/List;	m_3119197	m_3119197	
 	m	()I	m_4537944	m_4537944	
 	m	(Lnet/minecraft/unmapped/C_2361607;)V	m_8245161	m_8245161	
@@ -78,26 +78,26 @@ c	net/minecraft/unmapped/C_0512768
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_8814194;)V	m_4553054	m_4553054	
 		p	1		p_1	
-	m	()Z	m_3856902		m_3856902
-	m	(Lnet/minecraft/unmapped/C_6188183;)V	m_3345083		m_3345083
+	m	()Z	m_3856902		hasKnownRecipes
+	m	(Lnet/minecraft/unmapped/C_6188183;)V	m_3345083		updateKnownRecipes
 		p	1			recipeBook
-	m	(Lnet/minecraft/unmapped/C_8814194;IILnet/minecraft/unmapped/C_6188183;)V	m_4807274		m_4807274
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_8814194;IILnet/minecraft/unmapped/C_6188183;)V	m_4807274		updateCraftableAndFittingRecipes
+		p	1			contents
+		p	2			width
+		p	3			height
 		p	4			recipeBook
-	m	(Lnet/minecraft/unmapped/C_2361607;)Z	m_6180894		m_6180894
+	m	(Lnet/minecraft/unmapped/C_2361607;)Z	m_6180894		isCraftable
 		p	1			recipe
-	m	()Z	m_0723060		hasCraftable
-	m	()Z	m_2659767		m_2659767
+	m	()Z	m_0723060		hasCraftableRecipes
+	m	()Z	m_2659767		hasFittingRecipes
 	m	()Ljava/util/List;	m_3916292		getRecipes
 	m	(Z)Ljava/util/List;	m_4657892		getRecipes
-		p	1			p_1
+		p	1			craftable
 	m	(Z)Ljava/util/List;	m_8672816		getDisplayRecipes
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_2361607;)V	m_0017685		m_0017685
+		p	1			craftable
+	m	(Lnet/minecraft/unmapped/C_2361607;)V	m_0017685		add
 		p	1			recipe
-	m	()Z	m_5507231		m_5507231
+	m	()Z	m_5507231		hasSingleResultItem
 c	net/minecraft/unmapped/C_0697703
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_9590849;Ljava/util/List;Z)V	m_5450964	m_5450964	
 		p	1		p_1	
@@ -132,7 +132,7 @@ c	net/minecraft/unmapped/C_1241852
 		p	3		p_3	
 		p	4		p_4	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_5553933;Ljava/util/List;Lnet/minecraft/unmapped/C_2204683;)V	m_4675708		addHoverText
-		p	1			stack
+		p	1			item
 		p	2			world
 		p	3			tooltip
 		p	4			flag
@@ -153,8 +153,8 @@ c	net/minecraft/unmapped/C_1567607
 	m	(Lnet/minecraft/unmapped/C_9550253;)V	m_6519688		sendDisconnect
 		p	1			reason
 c	net/minecraft/unmapped/C_1567607$1
-	f	Lnet/minecraft/unmapped/C_1716360;	f_0416840	reason	
-	f	Lnet/minecraft/unmapped/C_9550253;	f_0416840		reason
+	f	Lnet/minecraft/unmapped/C_1716360;	f_0416840	f_0416840	
+	f	Lnet/minecraft/unmapped/C_9550253;	f_0416840		f_0416840
 	m	(Lnet/minecraft/unmapped/C_1567607;Lnet/minecraft/unmapped/C_1716360;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -164,7 +164,7 @@ c	net/minecraft/unmapped/C_1567607$1
 c	net/minecraft/unmapped/C_1606480
 	f	F	f_4806883		time
 	m	(Lnet/minecraft/unmapped/C_1606480$C_4786456;)V	m_7596138	addIngredient	
-		p	1		p_1	
+		p	1		ingredient	
 	m	(Lnet/minecraft/unmapped/C_0241772;II)V	m_7596138		addIngredient
 		p	1			ingredient
 		p	2			x
@@ -180,7 +180,7 @@ c	net/minecraft/unmapped/C_1606480
 c	net/minecraft/unmapped/C_1606480$C_4786456
 	f	Ljava/util/List;	f_6677153	f_6677153	
 	f	Ljava/util/Iterator;	f_4699753	f_4699753	
-	f	Lnet/minecraft/unmapped/C_2454309;	f_3344057	f_3344057	
+	f	Lnet/minecraft/unmapped/C_2454309;	f_3344057	stack	
 	f	Z	f_5435281	f_5435281	
 	f	F	f_7965833	f_7965833	
 	f	Lnet/minecraft/unmapped/C_0241772;	f_3447457		ingredient
@@ -211,11 +211,11 @@ c	net/minecraft/unmapped/C_2361607
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		group	
-	m	()I	m_7285375	getRequiredSize	
-	m	(Lnet/minecraft/unmapped/C_2361607;)I	m_1418302	m_1418302	
+	m	()I	m_7285375	size	
+	m	(Lnet/minecraft/unmapped/C_2361607;)I	m_1418302	compareTo	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)I	compareTo	compareTo	
-		p	1		other	
+		p	1		p_1	
 	m	(II)Z	m_7108992		fits
 		p	1			width
 		p	2			height
@@ -576,8 +576,8 @@ c	net/minecraft/unmapped/C_5890040
 		p	1			mouseX
 		p	2			mouseY
 		p	3			button
-		p	4			p_4
-		p	5			p_5
+		p	4			pageWidth
+		p	5			pageHeight
 		p	6			p_6
 		p	7			p_7
 	m	(Ljava/util/List;)V	m_3682460		recipesShown
@@ -685,8 +685,8 @@ c	net/minecraft/unmapped/C_6989017$C_7536438
 	m	(Lnet/minecraft/unmapped/C_0561170;)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_7400754
-	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_0048561		indexOf
-		p	1			stack
+	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_0048561		getMatchingSlot
+		p	1			item
 c	net/minecraft/unmapped/C_7585705
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_2454309;)Z	m_9667013	m_9667013	
 		p	0		p_0	
@@ -750,7 +750,7 @@ c	net/minecraft/unmapped/C_8020906
 		p	2			p_2
 c	net/minecraft/unmapped/C_8105098
 	f	Lnet/minecraft/unmapped/C_4164818;	f_3767961		searchRegistry
-	f	F	f_9101272		f_9101272
+	f	F	f_9101272		pauseTickDelta
 	m	()V	m_1888443		initSearchRegistry
 	m	(Lnet/minecraft/unmapped/C_4164818$C_8669312;)Lnet/minecraft/unmapped/C_0897006;	m_4797786		getSearchTree
 		p	1			key
@@ -807,9 +807,9 @@ c	net/minecraft/unmapped/C_8915635	net/minecraft/unmapped/C_8915635
 		p	1		p_1	
 c	net/minecraft/unmapped/C_8938952
 	f	I	f_3896022	time	
-	f	F	f_0461809		f_0461809
+	f	F	f_0461809		renderTicks
 	f	I	f_5881304		copyrightTextWidth
-	f	I	f_2511622		f_2511622
+	f	I	f_2511622		copyrightTextX
 	m	(F)V	m_8297854	drawBackgroundImage	
 		p	1		tickDelta	
 	m	()V	m_8297854		drawBackgroundImage
@@ -861,15 +861,15 @@ c	net/minecraft/unmapped/C_0897006		net/minecraft/client/search/SearchTree
 	m	(Ljava/lang/String;)Ljava/util/List;	m_1452832		search
 		p	1			key
 c	net/minecraft/unmapped/C_0899618		net/minecraft/client/search/ReloadableIdSearchTree
-	f	Lnet/minecraft/unmapped/C_2940457;	f_9097764		namespaceTree
-	f	Lnet/minecraft/unmapped/C_2940457;	f_4227712		pathTree
+	f	Lnet/minecraft/unmapped/C_2940457;	f_9097764		tooltipTree
+	f	Lnet/minecraft/unmapped/C_2940457;	f_4227712		idTree
 	f	Ljava/util/function/Function;	f_1444885		valueToTooltips
-	f	Ljava/util/function/Function;	f_6922410		valueToKeys
+	f	Ljava/util/function/Function;	f_6922410		valueToIds
 	f	Ljava/util/List;	f_0603359		contents
 	f	Lit/unimi/dsi/fastutil/objects/Object2IntMap;	f_5223814		ordered
 	m	(Ljava/util/function/Function;Ljava/util/function/Function;)V	<init>		<init>
 		p	1			valueToTooltips
-		p	2			valueToKeys
+		p	2			valueToIds
 	m	()V	m_2857734		reload
 	m	(Ljava/lang/Object;)V	m_3061948		add
 		p	1			value
@@ -883,7 +883,7 @@ c	net/minecraft/unmapped/C_0899618		net/minecraft/client/search/ReloadableIdSear
 	m	(Ljava/lang/Object;Lnet/minecraft/unmapped/C_0561170;)V	m_0889397		m_0889397
 		p	1			p_1
 		p	2			key
-c	net/minecraft/unmapped/C_0899618$C_1407395		IntersectionIterator
+c	net/minecraft/unmapped/C_0899618$C_1407395		Iterator
 	f	Ljava/util/Iterator;	f_0357554		first
 	f	Ljava/util/Iterator;	f_7925394		second
 	f	Lit/unimi/dsi/fastutil/objects/Object2IntMap;	f_8045246		ordered
@@ -951,7 +951,7 @@ c	net/minecraft/unmapped/C_2940457$1		1
 	m	(II)I	compare		compare
 		p	1			p_1
 		p	2			p_2
-	m	(Ljava/lang/Integer;Ljava/lang/Integer;)I	m_3313420		m_3313420
+	m	(Ljava/lang/Integer;Ljava/lang/Integer;)I	m_3313420		compare
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare		compare

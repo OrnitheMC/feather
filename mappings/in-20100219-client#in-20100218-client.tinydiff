@@ -16,17 +16,17 @@ c	net/minecraft/unmapped/C_1184371
 		p	1			p_1
 c	net/minecraft/unmapped/C_1241852
 	f	Lnet/minecraft/unmapped/C_1241852;	f_7040557	FURNACE	
-	f	Lnet/minecraft/unmapped/C_1241852;	f_6179977	f_6179977	
+	f	Lnet/minecraft/unmapped/C_1241852;	f_6179977	LIT_FURNACE	
 	m	(ILjava/util/Random;)I	m_7534654	getDropItem	
 		p	1		metadata	
 		p	2		random	
 	m	(I)I	m_7534654		getDropItem
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_5553933;FFF)Z	m_2728530		m_2728530
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			metadata
+	m	(Lnet/minecraft/unmapped/C_5553933;FFF)Z	m_2728530		takeFireDamage
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_1264786
 	m	(Lnet/minecraft/unmapped/C_5553933;FFF)Z	m_1359852		m_1359852
 		p	1			p_1
@@ -61,7 +61,7 @@ c	net/minecraft/unmapped/C_2590170
 	m	(I)I	m_7534654		m_7534654
 		p	1			p_1
 c	net/minecraft/unmapped/C_2910311
-	f	Ljava/util/Random;	f_7095322		f_7095322
+	f	Ljava/util/Random;	f_7095322		random
 	m	(Lnet/minecraft/unmapped/C_5553933;FFF)Z	m_2728530		m_2728530
 		p	1			p_1
 		p	2			p_2
@@ -77,20 +77,20 @@ c	net/minecraft/unmapped/C_2998483	net/minecraft/block/GravelBlock
 c	net/minecraft/unmapped/C_3325732
 	m	()I	m_0469364	m_0469364	
 c	net/minecraft/unmapped/C_3622326
-	f	Lnet/minecraft/unmapped/C_5553933;	f_3796532	f_3796532	
-	f	I	f_4378143	f_4378143	
-	f	I	f_0734318	f_0734318	
-	f	I	f_6596512	f_6596512	
-	m	()V	m_0895893	m_0895893	
+	f	Lnet/minecraft/unmapped/C_5553933;	f_3796532	world	
+	f	I	f_4378143	x	
+	f	I	f_0734318	y	
+	f	I	f_6596512	z	
+	m	()V	m_0895893	tick	
 c	net/minecraft/unmapped/C_3755722
 	f	Lnet/minecraft/unmapped/C_3755722;	f_7093581	FLINT_AND_STEEL	
 	f	Lnet/minecraft/unmapped/C_3755722;	f_9472232	FLINT	
-	f	Lnet/minecraft/unmapped/C_3755722;	f_4605471	GOLDEN_APPLE	
-	m	(Lnet/minecraft/unmapped/C_5553933;FFF)Z	m_1359852		m_1359852
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	f	Lnet/minecraft/unmapped/C_3755722;	f_4605471	COOKED_PORKCHOP	
+	m	(Lnet/minecraft/unmapped/C_5553933;FFF)Z	m_1359852		takeFireDamage
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_4316830
 	m	()I	m_0469364	m_0469364	
 c	net/minecraft/unmapped/C_4808571	net/minecraft/block/entity/FurnaceBlockEntity	
@@ -114,19 +114,19 @@ c	net/minecraft/unmapped/C_4808571	net/minecraft/block/entity/FurnaceBlockEntity
 	m	(Lnet/minecraft/unmapped/C_2018497;)V	m_8325224	m_8325224	
 		p	1		p_1	
 	m	()I	m_7072579	m_7072579	
-	m	(I)I	m_8126462	m_8126462	
-		p	1		p_1	
-	m	(I)I	m_1796029	m_1796029	
-		p	1		p_1	
-	m	()Z	m_1509372	m_1509372	
+	m	(I)I	m_8126462	getCookProgress	
+		p	1		range	
+	m	(I)I	m_1796029	getLitProgress	
+		p	1		range	
+	m	()Z	m_1509372	hasFuel	
 	m	()V	m_0895893	m_0895893	
-	m	()Z	m_1563497	m_1563497	
-	m	(I)I	m_2596204	m_2596204	
-		p	0		p_0	
-	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_1450722	m_1450722	
-		p	0		p_0	
+	m	()Z	m_1563497	canCook	
+	m	(I)I	m_2596204	getResult	
+		p	0		input	
+	m	(Lnet/minecraft/unmapped/C_2454309;)I	m_1450722	getFuelTime	
+		p	0		fuel	
 c	net/minecraft/unmapped/C_5553933
-	f	Ljava/util/List;	f_6240257	eventListeners	
+	f	Ljava/util/List;	f_6240257	blockEntities	
 c	net/minecraft/unmapped/C_5615103	net/minecraft/block/FurnaceBlock	
 	f	Z	f_9621589	lit	
 	m	(IZ)V	<init>	<init>	
@@ -137,11 +137,11 @@ c	net/minecraft/unmapped/C_5615103	net/minecraft/block/FurnaceBlock
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_6016440	m_6016440	
-		p	0		p_0	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_5553933;III)V	m_6016440	updateFacing	
+		p	0		world	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 	m	(Lnet/minecraft/unmapped/C_5553933;IIII)I	m_7679343	m_7679343	
 		p	1		p_1	
 		p	2		p_2	
@@ -166,14 +166,14 @@ c	net/minecraft/unmapped/C_5615103	net/minecraft/block/FurnaceBlock
 c	net/minecraft/unmapped/C_5903539	net/minecraft/client/gui/screen/inventory/menu/FurnaceScreen	
 	f	Lnet/minecraft/unmapped/C_4808571;	f_2900872	furnace	
 	m	(Lnet/minecraft/unmapped/C_7400754;Lnet/minecraft/unmapped/C_4808571;)V	<init>	<init>	
-		p	1		inventory	
-		p	2		parentBlockEntity	
+		p	1		playerInventory	
+		p	2		furnace	
 	m	()V	m_5696373	m_5696373	
 	m	()V	m_5246765	m_5246765	
 c	net/minecraft/unmapped/C_6057159
 	m	()I	m_0469364	m_0469364	
 c	net/minecraft/unmapped/C_6607881
-	m	()I	m_0469364	getDroppedItem	
+	m	()I	m_0469364	getDropItem	
 c	net/minecraft/unmapped/C_6982053
 	m	(ILjava/util/Random;)I	m_7534654	m_7534654	
 		p	1		p_1	
@@ -193,7 +193,7 @@ c	net/minecraft/unmapped/C_8620458
 	m	(I)I	m_7534654		m_7534654
 		p	1			p_1
 c	net/minecraft/unmapped/C_9590849
-	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4097013	canBreakBlock	
+	m	(Lnet/minecraft/unmapped/C_1241852;)Z	m_4097013	canMineBlock	
 		p	1		block	
 	m	(Lnet/minecraft/unmapped/C_4808571;)V	m_8252645	openFurnaceMenu	
 		p	1		furnace	

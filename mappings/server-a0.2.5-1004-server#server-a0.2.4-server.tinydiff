@@ -17,10 +17,10 @@ c	net/minecraft/unmapped/C_0047895	net/minecraft/network/packet/EntityEventPacke
 	m	()I	m_4040470	m_4040470	
 c	net/minecraft/unmapped/C_0539808
 	f	Z	f_3157390	damaged	
-	m	(DZ)V	m_9963967	onFall	
+	m	(DZ)V	m_9963967	checkFallDamage	
 		p	1		dy	
 		p	3		onGround	
-	m	()V	m_3234653	onDamaged	
+	m	()V	m_3234653	markDamaged	
 c	net/minecraft/unmapped/C_1024668	net/minecraft/network/packet/PlayerHealthPacket	
 	f	I	f_8928145	health	
 	m	()V	<init>	<init>	
@@ -49,8 +49,8 @@ c	net/minecraft/unmapped/C_2167183	net/minecraft/network/packet/PlayerRespawnPac
 		p	1		p_1	
 	m	()I	m_4040470	m_4040470	
 c	net/minecraft/unmapped/C_2454309
-	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_3467965	attackEntity	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_6607881;)V	m_3467965	attack	
+		p	1		entity	
 	m	(Lnet/minecraft/unmapped/C_0539808;)I	m_3234294	getAttackDamage	
 		p	1		target	
 c	net/minecraft/unmapped/C_3292284
@@ -63,9 +63,9 @@ c	net/minecraft/unmapped/C_3292284
 		p	1		distance	
 		p	3		onGround	
 c	net/minecraft/unmapped/C_3755722
-	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)V	m_8441103	attackEntity	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)V	m_8441103	attack	
+		p	1		stack	
+		p	2		target	
 	m	(Lnet/minecraft/unmapped/C_0539808;)I	m_2129728	getAttackDamage	
 		p	1		target	
 	m	(Lnet/minecraft/unmapped/C_2454309;Lnet/minecraft/unmapped/C_6607881;)V	m_4911788	interact	
@@ -83,7 +83,7 @@ c	net/minecraft/unmapped/C_3944207
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_5438730
-	f	Z	f_6959927	f_6959927	
+	f	Z	f_6959927	burning	
 c	net/minecraft/unmapped/C_5553933
 	m	(Lnet/minecraft/unmapped/C_0539808;B)V	m_4567085	doEntityEvent	
 		p	1		entity	
@@ -95,11 +95,11 @@ c	net/minecraft/unmapped/C_6386154
 	m	(Lnet/minecraft/unmapped/C_0539808;)I	m_2129728	m_2129728	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_6607881
-	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_8317958		m_8317958
-		p	1			p_1
-	m	(DF)Lnet/minecraft/unmapped/C_7794883;	m_6712369		m_6712369
-		p	1			p_1
-		p	3			p_3
+	m	(F)Lnet/minecraft/unmapped/C_0557736;	m_8317958		getPosition
+		p	1			tickDelta
+	m	(DF)Lnet/minecraft/unmapped/C_7794883;	m_6712369		rayTrace
+		p	1			distance
+		p	3			tickDelta
 c	net/minecraft/unmapped/C_7250084
 	m	(Lnet/minecraft/unmapped/C_0047895;)V	m_4575807	handleEntityEvent	
 		p	1		packet	
@@ -118,18 +118,18 @@ c	net/minecraft/unmapped/C_8456884
 		p	1		p_1	
 c	net/minecraft/unmapped/C_9304189
 	m	(Lnet/minecraft/unmapped/C_5553933;DDD)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	4		p_4	
-		p	6		p_6	
+		p	1		world	
+		p	2		x	
+		p	4		y	
+		p	6		z	
 	m	(Lnet/minecraft/unmapped/C_5553933;FFF)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			world
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_9590849
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_0415468	interact	
-		p	1		p_1	
+		p	1		target	
 	m	(Lnet/minecraft/unmapped/C_0539808;)V	m_8082504	attack	
 		p	1		target	
-	m	()V	m_2258453	m_2258453	
+	m	()V	m_2258453	respawn	

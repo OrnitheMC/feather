@@ -1,20 +1,20 @@
 tiny	2	0
 c	net/minecraft/server/MinecraftServer
-	f	Z	f_5774812		f_5774812
-	m	(Z)V	m_8587989		m_8587989
-		p	1			p_1
-	m	()Z	m_4412151		m_4412151
+	f	Z	f_5774812		forceGameMode
+	m	(Z)V	m_8587989		setForceGameMode
+		p	1			forceGameMode
+	m	()Z	m_4412151		shouldForceGameMode
 c	net/minecraft/unmapped/C_0027843
-	m	(Ljava/lang/String;Ljava/lang/String;II)Lnet/minecraft/unmapped/C_0027843;	m_9337552		m_9337552
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Ljava/lang/String;Ljava/lang/String;II)Lnet/minecraft/unmapped/C_0027843;	m_9337552		post
+		p	0			url
+		p	1			data
+		p	2			connectTimeout
+		p	3			readTimeout
 c	net/minecraft/unmapped/C_0330124
 	m	()V	m_8976600		m_8976600
 c	net/minecraft/unmapped/C_0487112
 	m	()V	m_8976600		m_8976600
-c	net/minecraft/unmapped/C_0843507	net/minecraft/client/realms/gui/screen/CreateRealmsServerScreen__1	
+c	net/minecraft/unmapped/C_0843507	net/minecraft/client/realms/gui/screen/CreateRealmsServerScreen__0843507	
 	f	Lnet/minecraft/unmapped/C_5024060;	f_8612975	f_8612975	
 	m	(Lnet/minecraft/unmapped/C_5024060;)V	<init>	<init>	
 		p	1		p_1	
@@ -60,11 +60,11 @@ c	net/minecraft/unmapped/C_2686552
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_3865296
-	m	()V	m_2159703		saveChunks
+	m	()V	m_2159703		flushChunks
 c	net/minecraft/unmapped/C_4241305
 	m	()V	m_8976600		m_8976600
 c	net/minecraft/unmapped/C_4311580
-	f	Ljava/lang/String;	f_0876191		f_0876191
+	f	Ljava/lang/String;	f_0876191		serverName
 	m	(Lnet/minecraft/unmapped/C_2121150;J)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -73,7 +73,7 @@ c	net/minecraft/unmapped/C_4311580
 		p	2			p_2
 		p	4			p_4
 c	net/minecraft/unmapped/C_4707822
-	m	()Ljava/lang/String;	m_9375566		m_9375566
+	m	()Ljava/lang/String;	m_9375566		getServerState
 c	net/minecraft/unmapped/C_5024060
 	f	I	f_7356020	chooseWorldButtonId	
 	f	Ljava/util/List;	f_8908747	f_8908747	
@@ -97,12 +97,12 @@ c	net/minecraft/unmapped/C_5024060
 	m	(Lnet/minecraft/unmapped/C_5024060;)Ljava/util/List;	m_2853341	m_2853341	
 		p	0		p_0	
 c	net/minecraft/unmapped/C_5553746
-	f	I	f_1582227		f_1582227
-	f	I	f_8221826		f_8221826
-	f	I	f_6665289		f_6665289
-	f	Lnet/minecraft/unmapped/C_2945726;	f_8929717		f_8929717
+	f	I	f_1582227		width
+	f	I	f_8221826		buttonLeft
+	f	I	f_6665289		buttonRight
+	f	Lnet/minecraft/unmapped/C_2945726;	f_8929717		editWorldScreenHelper
 c	net/minecraft/unmapped/C_5587144
-	f	Z	f_9402010		f_9402010
+	f	Z	f_9402010		attackedByPlayer
 c	net/minecraft/unmapped/C_5615103
 	m	(Lnet/minecraft/unmapped/C_5553933;III)I	m_1896376		m_1896376
 		p	1			p_1
@@ -111,13 +111,13 @@ c	net/minecraft/unmapped/C_5615103
 		p	4			p_4
 c	net/minecraft/unmapped/C_5681355
 	f	Ljava/lang/String;	f_3196228	f_3196228	
-	f	I	f_3407807		f_3407807
-	m	(IIIII)V	m_8116334		m_8116334
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	f	I	f_3407807		tick
+	m	(IIIII)V	m_8116334		renderServerExpiresSoonPrompt
+		p	1			width
+		p	2			height
+		p	3			mouseX
+		p	4			mouseY
+		p	5			daysLeft
 	m	(Lnet/minecraft/unmapped/C_5681355;)Lnet/minecraft/client/Minecraft;	m_4836590		m_4836590
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_5681355;)Lnet/minecraft/client/Minecraft;	m_8996661		m_8996661
@@ -129,16 +129,8 @@ c	net/minecraft/unmapped/C_5681355
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_5681355;)Lnet/minecraft/unmapped/C_3831727;	m_9645723	getTextRenderer	getTextRenderer1
-		p	0		mainScreen	screen
-	m	(Lnet/minecraft/unmapped/C_5681355;)Lnet/minecraft/unmapped/C_3831727;	m_4250226	getTextRenderer1	getTextRenderer
-		p	0		screen	mainScreen
-	m	(Lnet/minecraft/unmapped/C_5681355;)Lnet/minecraft/unmapped/C_3831727;	m_2961949	getTextRenderer4	m_2961949
-		p	0		screen	p_0
-	m	(Lnet/minecraft/unmapped/C_5681355;)Lnet/minecraft/unmapped/C_3831727;	m_4305609	m_4305609	getTextRenderer4
-		p	0		p_0	screen
 c	net/minecraft/unmapped/C_5794148
-	f	I	f_1173703		f_1173703
+	f	I	f_1173703		daysLeft
 c	net/minecraft/unmapped/C_5886128	net/minecraft/client/realms/dto/RealmsWorldLocationValueObject	
 	f	Ljava/lang/String;	f_3489142	id	
 	f	Ljava/lang/String;	f_4912745	name	
@@ -201,22 +193,22 @@ c	net/minecraft/unmapped/C_7628181
 		p	1		seed	
 	m	()Lnet/minecraft/unmapped/C_9504922;	m_4513608	getWorldsLocation	
 	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	m_3757623		getWorldByTemplate
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			name
+		p	2			motd
+		p	3			seed
+		p	4			template
 	m	(JLjava/lang/String;Ljava/lang/String;II)V	m_0132225		setServerInfo
-		p	1			p_1
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			serverId
+		p	3			serverName
+		p	4			motd
+		p	5			difficulty
+		p	6			gameMode
 	m	(JLjava/lang/String;)Ljava/lang/Boolean;	m_4539651		setSeed
-		p	1			p_1
-		p	3			p_3
+		p	1			serverId
+		p	3			seed
 c	net/minecraft/unmapped/C_8643842
-	m	(Ljava/net/URL;)Ljava/lang/String;	m_5304422		m_5304422
-		p	0			p_0
+	m	(Ljava/net/URL;)Ljava/lang/String;	m_5304422		get
+		p	0			url
 c	net/minecraft/unmapped/C_8779132
 	f	Ljava/lang/String;	f_6089067		f_6089067
 	m	(Lnet/minecraft/unmapped/C_5024060;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	<init>	<init>	
@@ -233,8 +225,8 @@ c	net/minecraft/unmapped/C_8779132
 c	net/minecraft/unmapped/C_8891094
 	m	()V	m_8976600		m_8976600
 c	net/minecraft/unmapped/C_8938952
-	f	Ljava/lang/Object;	f_3874714		f_3874714
-	f	Ljava/lang/String;	f_6021289		f_6021289
+	f	Ljava/lang/Object;	f_3874714		threadedLock
+	f	Ljava/lang/String;	f_6021289		warningInfoLink
 	m	(Lnet/minecraft/unmapped/C_8938952;)Ljava/lang/Object;	m_3706296		m_3706296
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_8938952;Ljava/lang/String;)Ljava/lang/String;	m_5213098		m_5213098
@@ -280,13 +272,13 @@ c	net/minecraft/unmapped/C_8938952
 c	net/minecraft/unmapped/C_9468736
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;I)V	<init>	<init>	
 		p	1		parent	
-		p	2		p_2	
+		p	2		description	
 		p	3		id	
 	m	(Lnet/minecraft/unmapped/C_3020744;Ljava/lang/String;IZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			parent
+		p	2			link
+		p	3			id
+		p	4			trusted
 c	net/minecraft/unmapped/C_9504922	net/minecraft/client/realms/dto/RealmsWorldLocationsValueObject	
 	f	Ljava/util/List;	f_1913563	locations	
 	f	Lnet/minecraft/unmapped/C_5886128;	f_1641329	suggestion	
@@ -294,7 +286,7 @@ c	net/minecraft/unmapped/C_9504922	net/minecraft/client/realms/dto/RealmsWorldLo
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_9504922;	m_9588921	parse	
 		p	0		json	
 c	net/minecraft/unmapped/C_9848147
-	m	()V	m_8976600		save
+	m	()V	m_8976600		flush
 c	net/minecraft/unmapped/C_9929193	net/minecraft/client/realms/gui/screen/CreateRealmsWorldScreen__WorldList	
 	f	Lnet/minecraft/unmapped/C_7388530;	f_6945176	f_6945176	
 	m	(Lnet/minecraft/unmapped/C_7388530;)V	<init>	<init>	
@@ -313,107 +305,106 @@ c	net/minecraft/unmapped/C_9929193	net/minecraft/client/realms/gui/screen/Create
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-c	net/minecraft/unmapped/C_2945726		net/minecraft/unmapped/C_2945726
-	f	I	f_5434155		f_5434155
-	f	I	f_9497658		f_9497658
-	f	I	f_7312822		f_7312822
-	f	I	f_0679456		f_0679456
-	f	Ljava/util/List;	f_5132939		f_5132939
-	f	[Ljava/lang/String;	f_3868184		f_3868184
-	f	[Ljava/lang/String;	f_0792935		f_0792935
-	f	[[Ljava/lang/String;	f_1835851		f_1835851
-	f	I	f_4608197		f_4608197
-	f	I	f_4651106		f_4651106
+c	net/minecraft/unmapped/C_2945726		net/minecraft/client/realms/gui/screen/EditWorldScreenHelper
+	f	I	f_5434155		width
+	f	I	f_9497658		height
+	f	I	f_7312822		x
+	f	I	f_0679456		y
+	f	Ljava/util/List;	f_5132939		buttonList
+	f	[Ljava/lang/String;	f_3868184		difficultyNameTranslations
+	f	[Ljava/lang/String;	f_0792935		gamemodeNameTranslations
+	f	[[Ljava/lang/String;	f_1835851		gamemodeDescriptionTranslations
+	f	I	f_4608197		difficulty
+	f	I	f_4651106		gameMode
 	m	(IIII)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	()V	m_1007464		m_1007464
-	m	()V	m_2140738		m_2140738
-	m	()Ljava/lang/String;	m_7131643		m_7131643
-	m	()Ljava/lang/String;	m_7234263		m_7234263
-	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_5319282		m_5319282
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_3831727;)V	m_8255692		m_8255692
-		p	1			p_1
-		p	2			p_2
-c	net/minecraft/unmapped/C_4355676		net/minecraft/unmapped/C_4355676
-	f	Lnet/minecraft/client/Minecraft;	f_8859603		f_8859603
-	f	I	f_7194791		f_7194791
-	f	I	f_8644577		f_8644577
-	f	I	f_7956647		f_7956647
-	f	I	f_1535633		f_1535633
-	f	I	f_8066292		f_8066292
-	f	I	f_8565862		f_8565862
-	f	I	f_0756070		f_0756070
-	f	I	f_8867620		f_8867620
-	f	I	f_6069374		f_6069374
-	f	I	f_1787964		f_1787964
-	f	I	f_4544632		f_4544632
-	f	F	f_3464348		f_3464348
-	f	F	f_5444416		f_5444416
-	f	F	f_6506015		f_6506015
-	f	I	f_5838812		f_5838812
-	f	J	f_4906184		f_4906184
-	f	Z	f_0939399		f_0939399
-	f	Z	f_4208431		f_4208431
-	f	I	f_8735534		f_8735534
+	m	()V	m_1007464		createButtons
+	m	()V	m_2140738		populateTranslationArrays
+	m	()Ljava/lang/String;	m_7131643		getTranslatedDifficulty
+	m	()Ljava/lang/String;	m_7234263		getTranslatedGameMode
+	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_5319282		buttonClicked
+		p	1			button
+	m	(Lnet/minecraft/unmapped/C_3020744;Lnet/minecraft/unmapped/C_3831727;)V	m_8255692		drawGamemodeDescription
+		p	1			screen
+		p	2			textRenderer
+c	net/minecraft/unmapped/C_4355676		net/minecraft/client/realms/gui/screen/RealmsListWidget
+	f	Lnet/minecraft/client/Minecraft;	f_8859603		minecraft
+	f	I	f_7194791		width
+	f	I	f_8644577		height
+	f	I	f_7956647		yStart
+	f	I	f_1535633		yEnd
+	f	I	f_8066292		xEnd
+	f	I	f_8565862		xStart
+	f	I	f_0756070		entryHeight
+	f	I	f_8867620		homeButtonId
+	f	I	f_6069374		endButtonId
+	f	I	f_1787964		mouseX
+	f	I	f_4544632		mouseY
+	f	F	f_3464348		upButtonId
+	f	F	f_5444416		downButtonId
+	f	F	f_6506015		scrollAmount
+	f	I	f_5838812		selectedWidget
+	f	J	f_4906184		clickTimestamp
+	f	Z	f_0939399		renderSelection
+	f	Z	f_4208431		renderHeader
+	f	I	f_8735534		headerHeight
 	m	(Lnet/minecraft/client/Minecraft;IIIII)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(IIII)V	m_6377254		m_6377254
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	()I	m_9411444		m_9411444
+		p	1			minecraft
+		p	2			width
+		p	3			height
+		p	4			yStart
+		p	5			yEnd
+		p	6			entryHeight
+	m	(IIII)V	m_6377254		updateBounds
+		p	1			width
+		p	2			height
+		p	3			yStart
+		p	4			yEnd
+	m	()I	m_9411444		getInviteListSize
 	m	(IZ)V	m_6363676		m_6363676
-		p	1			p_1
+		p	1			index
 		p	2			p_2
 	m	(I)Z	m_3941075		m_3941075
 		p	1			p_1
 	m	(I)Z	m_8458417		m_8458417
 		p	1			p_1
-	m	()I	m_1088110		m_1088110
-	m	()V	m_6579389		m_6579389
+	m	()I	m_1088110		getListSize
+	m	()V	m_6579389		renderBackground
 	m	(IIIILnet/minecraft/unmapped/C_5786166;)V	m_7712742		m_7712742
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-		p	5			p_5
-	m	(IILnet/minecraft/unmapped/C_5786166;)V	m_4583981		m_4583981
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(II)V	m_6330065		m_6330065
-		p	1			p_1
-		p	2			p_2
-	m	(II)V	m_3009175		m_3009175
-		p	1			p_1
-		p	2			p_2
-	m	()V	m_5282846		m_5282846
-	m	()I	m_9745272		m_9745272
-	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_3117530		m_3117530
-		p	1			p_1
-	m	(IIF)V	m_7574089		m_7574089
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()I	m_3448983		m_3448983
-	m	(IIII)V	m_6039583		m_6039583
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-c	net/minecraft/unmapped/C_9144445		net/minecraft/client/gui/screen/TitleScreen__1
+		p	5			bufferBuilder
+	m	(IILnet/minecraft/unmapped/C_5786166;)V	m_4583981		renderHeader
+		p	1			x
+		p	2			y
+		p	3			bufferBuilder
+	m	(II)V	m_6330065		method_11005
+		p	1			x
+		p	2			y
+	m	(II)V	m_3009175		method_11014
+		p	1			x
+		p	2			y
+	m	()V	m_5282846		setScrollAmount
+	m	()I	m_9745272		getMaxScroll
+	m	(Lnet/minecraft/unmapped/C_2348249;)V	m_3117530		buttonClicked
+		p	1			buttonWidget
+	m	(IIF)V	m_7574089		render
+		p	1			mouseX
+		p	2			mouseY
+		p	3			tickDelta
+	m	()I	m_3448983		getScrollbarPosition
+	m	(IIII)V	m_6039583		method_11015
+		p	1			top
+		p	2			bottom
+		p	3			topAlpha
+		p	4			bottomAlpha
+c	net/minecraft/unmapped/C_9144445		net/minecraft/client/gui/screen/TitleScreen__9144445
 	f	Lnet/minecraft/unmapped/C_8938952;	f_1262021		f_1262021
 	m	(Lnet/minecraft/unmapped/C_8938952;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	net/minecraft/unmapped/C_0660843	net/minecraft/client/gui/screen/TitleScreen__1	net/minecraft/client/gui/screen/TitleScreen__2
