@@ -1,11 +1,11 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_10918870
-	m	(Lnet/minecraft/unmapped/C_36877109;)V	m_20559398	m_20559398	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_98608386;)V	m_54140863	m_54140863	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_92666871;)V	m_24912760	m_24912760	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_36877109;)V	m_20559398	handleBlocksUpdate	
+		p	1		packet	
+	m	(Lnet/minecraft/unmapped/C_98608386;)V	m_54140863	handlePlayerHandAction	
+		p	1		packet	
+	m	(Lnet/minecraft/unmapped/C_92666871;)V	m_24912760	handleBlockUpdate	
+		p	1		packet	
 c	net/minecraft/unmapped/C_19265696
 	m	(Lnet/minecraft/unmapped/C_64041439;IIII)V	m_70532717	m_70532717	
 		p	1		p_1	
@@ -14,21 +14,21 @@ c	net/minecraft/unmapped/C_19265696
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_20099658
-	f	Z	f_21335956	f_21335956	
+	f	Z	f_21335956	onGround	
 	m	(DDDFFZ)V	<init>	<init>	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
-		p	9		p_9	
-c	net/minecraft/unmapped/C_36877109	net/minecraft/unmapped/C_36877109	
-	f	I	f_79481286	f_79481286	
-	f	I	f_86949888	f_86949888	
-	f	[S	f_04903120	f_04903120	
-	f	[B	f_36442815	f_36442815	
-	f	[B	f_91311726	f_91311726	
-	f	I	f_01960917	f_01960917	
+		p	1		x	
+		p	3		minY	
+		p	5		y	
+		p	7		yaw	
+		p	8		pitch	
+		p	9		onGround	
+c	net/minecraft/unmapped/C_36877109	net/minecraft/network/packet/BlocksUpdatePacket	
+	f	I	f_79481286	chunkX	
+	f	I	f_86949888	chunkZ	
+	f	[S	f_04903120	positions	
+	f	[B	f_36442815	blockIds	
+	f	[B	f_91311726	blockMetadata	
+	f	I	f_01960917	blockChangeCount	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	
@@ -38,56 +38,56 @@ c	net/minecraft/unmapped/C_36877109	net/minecraft/unmapped/C_36877109
 		p	1		p_1	
 	m	()I	m_71867606	m_71867606	
 c	net/minecraft/unmapped/C_40996800
-	m	()Lnet/minecraft/unmapped/C_88708284;	m_01577449	m_01577449	
-	m	()V	m_59400529	m_59400529	
+	m	()Lnet/minecraft/unmapped/C_88708284;	m_01577449	getItemInHand	
+	m	()V	m_59400529	clearItemInHand	
 	m	()D	m_03779218	m_03779218	
 c	net/minecraft/unmapped/C_42232651
-	m	(DDDFF)V	m_03000503	m_03000503	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-		p	8		p_8	
+	m	(DDDFF)V	m_03000503	updatePositionAndAngles	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		yaw	
+		p	8		pitch	
 c	net/minecraft/unmapped/C_45175654
-	f	Z	f_78492530	f_78492530	
-	f	Lnet/minecraft/unmapped/C_88014908;	f_52253923	f_52253923	
+	f	Z	f_78492530	isMiningBlock	
+	f	Lnet/minecraft/unmapped/C_88014908;	f_52253923	networkHandler	
 	m	(Lnet/minecraft/client/Minecraft;Lnet/minecraft/unmapped/C_88014908;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		minecraft	
+		p	2		networkHandler	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>		<init>
 		p	1			p_1
 c	net/minecraft/unmapped/C_57778754
-	m	()Lnet/minecraft/unmapped/C_88708284;	m_79037872		m_79037872
-	m	()V	m_20691231		m_20691231
+	m	()Lnet/minecraft/unmapped/C_88708284;	m_79037872		getSelectedItem
+	m	()V	m_20691231		clearSelectedSlot
 	m	()D	m_03779218		m_03779218
 c	net/minecraft/unmapped/C_64041439
-	m	(III)V	m_29536745	m_29536745	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(III)V	m_29536745	notifyBlockChanged	
+		p	1		x	
+		p	2		y	
+		p	3		z	
 c	net/minecraft/unmapped/C_75759956
 	m	(Lnet/minecraft/unmapped/C_81592558;)Z	m_06780144	m_06780144	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_81592558
-	m	(Lnet/minecraft/unmapped/C_64041439;IIII)V	m_70532717	m_70532717	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+	m	(Lnet/minecraft/unmapped/C_64041439;IIII)V	m_70532717	afterMinedByPlayer	
+		p	1		world	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		metadata	
 c	net/minecraft/unmapped/C_88014908
-	f	Z	f_43289950	f_43289950	
-	f	Ljava/util/Random;	f_13325848	f_13325848	
+	f	Z	f_43289950	started	
+	f	Ljava/util/Random;	f_13325848	random	
 	m	(Lnet/minecraft/unmapped/C_36877109;)V	m_20559398	m_20559398	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_92666871;)V	m_24912760	m_24912760	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_92666871	net/minecraft/unmapped/C_92666871	
-	f	I	f_33309623	f_33309623	
-	f	I	f_67860754	f_67860754	
-	f	I	f_09955199	f_09955199	
-	f	I	f_59934425	f_59934425	
-	f	I	f_47833273	f_47833273	
+c	net/minecraft/unmapped/C_92666871	net/minecraft/network/packet/BlockUpdatePacket	
+	f	I	f_33309623	x	
+	f	I	f_67860754	y	
+	f	I	f_09955199	z	
+	f	I	f_59934425	block	
+	f	I	f_47833273	metadata	
 	m	()V	<init>	<init>	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	
@@ -96,19 +96,21 @@ c	net/minecraft/unmapped/C_92666871	net/minecraft/unmapped/C_92666871
 	m	(Lnet/minecraft/unmapped/C_10918870;)V	m_04853589	m_04853589	
 		p	1		p_1	
 	m	()I	m_71867606	m_71867606	
-c	net/minecraft/unmapped/C_98608386	net/minecraft/unmapped/C_98608386	
-	f	I	f_25933383	f_25933383	
-	f	I	f_92348940	f_92348940	
-	f	I	f_18535985	f_18535985	
-	f	I	f_48239565	f_48239565	
-	f	I	f_91284961	f_91284961	
+c	net/minecraft/unmapped/C_98608386	net/minecraft/network/packet/PlayerHandActionPacket	
+	f	I	f_25933383	x	
+	f	I	f_92348940	y	
+	f	I	f_18535985	z	
+	f	I	f_48239565	face	
+		c	The face of the block on which the interaction takes place.	
+	f	I	f_91284961	action	
+		c	The type of interaction. This can be one of the following:\n<br> 0: start mining block\n<br> 1: continue mining block\n<br> 2: stop mining block\n<br> 3: finish mining block\n<br> 4: drop item	
 	m	()V	<init>	<init>	
 	m	(IIIII)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		action	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		face	
 	m	(Ljava/io/DataInputStream;)V	m_13296744	m_13296744	
 		p	1		p_1	
 	m	(Ljava/io/DataOutputStream;)V	m_17566769	m_17566769	

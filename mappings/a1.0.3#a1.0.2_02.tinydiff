@@ -1,60 +1,61 @@
 tiny	2	0
 c	net/minecraft/unmapped/C_03111506
-	f	Ljava/util/Random;	f_78774058	f_78774058	
-	f	I	f_15308194	f_15308194	
+	f	Ljava/util/Random;	f_78774058	random	
+	f	I	f_15308194	musicCooldown	
 c	net/minecraft/unmapped/C_04428890
 	m	()Ljava/lang/String;	m_96971201	m_96971201	
 	m	()Ljava/lang/String;	m_52063198	m_52063198	
 	m	()Ljava/lang/String;	m_64027168	m_64027168	
 c	net/minecraft/unmapped/C_25501528
-	f	Ljava/util/Set;	f_91245326	f_91245326	
-	m	(Lnet/minecraft/unmapped/C_64041439;ILnet/minecraft/unmapped/C_71803183;)I	m_48557180	m_48557180	
-		p	1		p_1	
+	f	Ljava/util/Set;	f_91245326	mobSpawningChunks	
+		c	This set keeps track of chunks that allow mob spawning. Mob spawning can occur within\na 15x15 grid of chunks around players. The ring of chunks around that are lazy chunks,\nwhich do not allow mob spawning, but to contribute to the mob cap.	
+	m	(Lnet/minecraft/unmapped/C_64041439;ILnet/minecraft/unmapped/C_71803183;)I	m_48557180	run	
+		p	1		world	
 		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_64041439;ILnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_71803183;)I	m_48557180		m_48557180
-		p	1			p_1
+		p	3		listener	
+	m	(Lnet/minecraft/unmapped/C_64041439;ILnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_71803183;)I	m_48557180		run
+		p	1			world
 		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	3			around
+		p	4			listener
 c	net/minecraft/unmapped/C_43112843
 	m	()Ljava/lang/String;	m_52063198	m_52063198	
 	m	()Ljava/lang/String;	m_64027168	m_64027168	
 c	net/minecraft/unmapped/C_64041439
-	f	Ljava/util/List;	f_51003174	f_51003174	
-	f	Ljava/util/Set;	f_37425664	f_37425664	
-	f	I	f_74097123	f_74097123	
-	f	Lnet/minecraft/unmapped/C_42232651;	f_09723424		f_09723424
-	m	(Lnet/minecraft/unmapped/C_40996800;)V	m_89971644	m_89971644	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_42232651;D)Lnet/minecraft/unmapped/C_40996800;	m_16246103	m_16246103	
-		p	1		p_1	
-		p	2		p_2	
-	m	(DDDD)Lnet/minecraft/unmapped/C_40996800;	m_54430116	m_54430116	
-		p	1		p_1	
-		p	3		p_3	
-		p	5		p_5	
-		p	7		p_7	
-	m	()V	m_89971644		m_89971644
-	m	(DDDLjava/lang/String;F)V	m_19675422		m_19675422
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-		p	8			p_8
-	m	()Lnet/minecraft/unmapped/C_42232651;	m_66338656		m_66338656
+	f	Ljava/util/List;	f_51003174	players	
+	f	Ljava/util/Set;	f_37425664	tickingChunks	
+	f	I	f_74097123	ambientSoundCooldown	
+	f	Lnet/minecraft/unmapped/C_42232651;	f_09723424		player
+	m	(Lnet/minecraft/unmapped/C_40996800;)V	m_89971644	loadPlayer	
+		p	1		player	
+	m	(Lnet/minecraft/unmapped/C_42232651;D)Lnet/minecraft/unmapped/C_40996800;	m_16246103	getNearestPlayer	
+		p	1		entity	
+		p	2		range	
+	m	(DDDD)Lnet/minecraft/unmapped/C_40996800;	m_54430116	getNearestPlayer	
+		p	1		x	
+		p	3		y	
+		p	5		z	
+		p	7		range	
+	m	()V	m_89971644		loadPlayer
+	m	(DDDLjava/lang/String;F)V	m_19675422		playSound
+		p	1			x
+		p	3			y
+		p	5			z
+		p	7			sound
+		p	8			volume
+	m	()Lnet/minecraft/unmapped/C_42232651;	m_66338656		getPlayers
 c	net/minecraft/unmapped/C_74425583
-	f	Lnet/minecraft/unmapped/C_42232651;	f_50057365	f_50057365	
-	f	I	f_56749419	f_56749419	
-	m	(Lnet/minecraft/unmapped/C_42232651;F)V	m_03694472	m_03694472	
-		p	1		p_1	
-		p	2		p_2	
-	m	(FFF)F	m_27585802	m_27585802	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	f	Lnet/minecraft/unmapped/C_42232651;	f_50057365	lookTarget	
+	f	I	f_56749419	lookTimer	
+	m	(Lnet/minecraft/unmapped/C_42232651;F)V	m_03694472	lookAt	
+		p	1		target	
+		p	2		maxRotationChange	
+	m	(FFF)F	m_27585802	lerpRotation	
+		p	1		from	
+		p	2		to	
+		p	3		maxChange	
 c	net/minecraft/unmapped/C_80563853
-	f	Ljava/util/List;	f_66011620	f_66011620	
+	f	Ljava/util/List;	f_66011620	sounds	
 c	net/minecraft/unmapped/C_83194342
 	m	()Ljava/lang/String;	m_96971201	m_96971201	
 	m	()Ljava/lang/String;	m_52063198	m_52063198	
@@ -63,12 +64,12 @@ c	net/minecraft/unmapped/C_95265987
 	m	()Ljava/lang/String;	m_96971201	m_96971201	
 	m	()Ljava/lang/String;	m_52063198	m_52063198	
 	m	()Ljava/lang/String;	m_64027168	m_64027168	
-c	net/minecraft/unmapped/C_97313606	net/minecraft/unmapped/C_97313606	
-	f	I	f_77181208	f_77181208	
-	f	I	f_93738510	f_93738510	
+c	net/minecraft/unmapped/C_97313606	net/minecraft/util/math/ChunkPos	
+	f	I	f_77181208	x	
+	f	I	f_93738510	z	
 	m	(II)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		x	
+		p	2		z	
 	m	()I	hashCode	hashCode	
 	m	(Ljava/lang/Object;)Z	equals	equals	
 		p	1		p_1	

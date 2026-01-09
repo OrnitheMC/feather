@@ -2,16 +2,16 @@ tiny	2	0
 c	net/minecraft/unmapped/C_28000924
 	m	()Lnet/minecraft/unmapped/C_39865197;	m_50662985		m_50662985
 c	net/minecraft/unmapped/C_34267874
-	m	(ILjava/util/List;Ljava/util/List;Lnet/minecraft/unmapped/C_40996800;)V	m_71586113	m_71586113	
+	m	(ILjava/util/List;Ljava/util/List;Lnet/minecraft/unmapped/C_40996800;)V	m_71586113	placeRecipe	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(ILnet/minecraft/unmapped/C_30892219;ZLnet/minecraft/unmapped/C_40996800;)V	m_71586113		m_71586113
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(ILnet/minecraft/unmapped/C_30892219;ZLnet/minecraft/unmapped/C_40996800;)V	m_71586113		placeRecipe
+		p	1			id
+		p	2			recipe
+		p	3			shift
+		p	4			player
 c	net/minecraft/unmapped/C_46053237
 	m	(ILnet/minecraft/unmapped/C_88708284;)V	m_68760478	m_68760478	
 		p	1		p_1	
@@ -22,21 +22,21 @@ c	net/minecraft/unmapped/C_88014908
 	m	(Lnet/minecraft/unmapped/C_28866618;)V	m_66716948		m_66716948
 		p	1			p_1
 c	net/minecraft/unmapped/C_99660737
-	f	Lnet/minecraft/unmapped/C_83463601;	f_64861019		f_64861019
+	f	Lnet/minecraft/unmapped/C_83463601;	f_64861019		recipeManager
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_88708284;)Z	m_91087859	m_91087859	
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_23730550
-	m	(Lnet/minecraft/unmapped/C_28866618;)V	m_66716948		m_66716948
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_28866618;)V	m_66716948		handlePlaceRecipe
+		p	1			packet
 c	net/minecraft/unmapped/C_35850798
-	m	()Lnet/minecraft/unmapped/C_39865197;	m_50662985		m_50662985
+	m	()Lnet/minecraft/unmapped/C_39865197;	m_50662985		getRecipeBookGui
 c	net/minecraft/unmapped/C_77883707
 	f	S	f_16263281	f_16263281	
 	f	Ljava/util/List;	f_21787021	f_21787021	
 	f	Ljava/util/List;	f_66283265	f_66283265	
-	f	Lnet/minecraft/unmapped/C_30892219;	f_44788112		f_44788112
-	f	Z	f_20602279		f_20602279
+	f	Lnet/minecraft/unmapped/C_30892219;	f_44788112		recipe
+	f	Z	f_20602279		shift
 	m	()S	m_22862438	m_22862438	
 	m	()Ljava/util/List;	m_12034906	m_12034906	
 	m	(ILjava/util/List;Ljava/util/List;S)V	<init>	<init>	
@@ -51,11 +51,11 @@ c	net/minecraft/unmapped/C_77883707
 		p	2		p_2	
 	m	()Ljava/util/List;	m_20015955	m_20015955	
 	m	(ILnet/minecraft/unmapped/C_30892219;Z)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()Lnet/minecraft/unmapped/C_30892219;	m_04975901		m_04975901
-	m	()Z	m_12752007		m_12752007
+		p	1			menuId
+		p	2			recipe
+		p	3			shift
+	m	()Lnet/minecraft/unmapped/C_30892219;	m_04975901		getRecipe
+	m	()Z	m_12752007		hasShiftDown
 c	net/minecraft/unmapped/C_77883707$C_29068163	C_29068163	
 	f	Lnet/minecraft/unmapped/C_88708284;	f_55916840	f_55916840	
 	f	I	f_34911092	f_34911092	
@@ -66,7 +66,7 @@ c	net/minecraft/unmapped/C_77883707$C_29068163	C_29068163
 		p	3		p_3	
 c	net/minecraft/unmapped/C_39865197
 	f	Lorg/apache/logging/log4j/Logger;	f_02224382	f_02224382	
-	f	Lnet/minecraft/unmapped/C_46053237;	f_29590995	f_29590995	
+	f	Lnet/minecraft/unmapped/C_46053237;	f_29590995	inventoryMenu	
 	m	(Lnet/minecraft/unmapped/C_30892219;Ljava/util/List;ILnet/minecraft/unmapped/C_45736618;)V	m_04729218	m_04729218	
 		p	1		p_1	
 		p	2		p_2	
@@ -88,7 +88,7 @@ c	net/minecraft/unmapped/C_39865197
 		p	2		p_2	
 		p	3		p_3	
 	m	()Z	m_44562626	m_44562626	
-	m	(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/unmapped/C_46053237;Lnet/minecraft/unmapped/C_11727459;)V	m_49609889	m_49609889	
+	m	(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/unmapped/C_46053237;Lnet/minecraft/unmapped/C_11727459;)V	m_49609889	init	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -98,21 +98,21 @@ c	net/minecraft/unmapped/C_39865197
 	m	(Lnet/minecraft/unmapped/C_30892219;Lnet/minecraft/unmapped/C_95317106;)V	m_11899004	m_11899004	
 		p	1		p_1	
 		p	2		p_2	
-	m	(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/unmapped/C_11727459;)V	m_49609889		m_49609889
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-c	net/minecraft/unmapped/C_28866618		net/minecraft/unmapped/C_28866618
-	f	I	f_34643254		f_34643254
-	f	Lnet/minecraft/unmapped/C_30892219;	f_01024759		f_01024759
+	m	(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/unmapped/C_11727459;)V	m_49609889		init
+		p	1			width
+		p	2			height
+		p	3			minecraft
+		p	4			offset
+		p	5			inventory
+c	net/minecraft/unmapped/C_28866618		net/minecraft/network/packet/s2c/play/PlaceRecipeS2CPacket
+	f	I	f_34643254		inventoryId
+	f	Lnet/minecraft/unmapped/C_30892219;	f_01024759		recipe
 	m	()V	<init>		<init>
 	m	(ILnet/minecraft/unmapped/C_30892219;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-	m	()Lnet/minecraft/unmapped/C_30892219;	m_55587883		m_55587883
-	m	()I	m_77370861		m_77370861
+		p	1			inventoryId
+		p	2			recipe
+	m	()Lnet/minecraft/unmapped/C_30892219;	m_55587883		getRecipe
+	m	()I	m_77370861		getInventoryId
 	m	(Lnet/minecraft/unmapped/C_04635774;)V	m_13296744		m_13296744
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_04635774;)V	m_17566769		m_17566769
@@ -121,29 +121,29 @@ c	net/minecraft/unmapped/C_28866618		net/minecraft/unmapped/C_28866618
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_10918870;)V	m_04853589		m_04853589
 		p	1			p_1
-c	net/minecraft/unmapped/C_83463601		net/minecraft/unmapped/C_83463601
-	f	Lorg/apache/logging/log4j/Logger;	f_79618999		f_79618999
-	f	Lnet/minecraft/unmapped/C_72437940;	f_27087583		f_27087583
-	f	Lnet/minecraft/unmapped/C_49202226;	f_29612931		f_29612931
-	f	Lnet/minecraft/unmapped/C_30892219;	f_66022010		f_66022010
-	f	Z	f_91090082		f_91090082
-	f	Lnet/minecraft/unmapped/C_45736618;	f_41007426		f_41007426
-	f	Lnet/minecraft/unmapped/C_11727459;	f_82168254		f_82168254
-	f	Ljava/util/List;	f_88771328		f_88771328
+c	net/minecraft/unmapped/C_83463601		net/minecraft/server/crafting/RecipePlacementHelper
+	f	Lorg/apache/logging/log4j/Logger;	f_79618999		logger
+	f	Lnet/minecraft/unmapped/C_72437940;	f_27087583		contents
+	f	Lnet/minecraft/unmapped/C_49202226;	f_29612931		player
+	f	Lnet/minecraft/unmapped/C_30892219;	f_66022010		recipe
+	f	Z	f_91090082		hasShiftDown
+	f	Lnet/minecraft/unmapped/C_45736618;	f_41007426		resultInventory
+	f	Lnet/minecraft/unmapped/C_11727459;	f_82168254		craftingInventory
+	f	Ljava/util/List;	f_88771328		playerInventory
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_49202226;Lnet/minecraft/unmapped/C_30892219;Z)V	m_38073561		m_38073561
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()V	m_62205524		m_62205524
-	m	()V	m_68429312		m_68429312
-	m	(IZ)I	m_01228464		m_01228464
-		p	1			p_1
-		p	2			p_2
-	m	(ILit/unimi/dsi/fastutil/ints/IntList;)V	m_18902814		m_18902814
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_12356698;Lnet/minecraft/unmapped/C_88708284;)V	m_47126185		m_47126185
-		p	1			p_1
-		p	2			p_2
-	m	()Z	m_25138497		m_25138497
+	m	(Lnet/minecraft/unmapped/C_49202226;Lnet/minecraft/unmapped/C_30892219;Z)V	m_38073561		clickRecipe
+		p	1			player
+		p	2			recipe
+		p	3			hasShiftDown
+	m	()V	m_62205524		takeBackIngredients
+	m	()V	m_68429312		clickRecipe
+	m	(IZ)I	m_01228464		getStackSize
+		p	1			max
+		p	2			matches
+	m	(ILit/unimi/dsi/fastutil/ints/IntList;)V	m_18902814		placeItemsFromItemIdList
+		p	1			limit
+		p	2			itemIdList
+	m	(Lnet/minecraft/unmapped/C_12356698;Lnet/minecraft/unmapped/C_88708284;)V	m_47126185		placeItem
+		p	1			slot
+		p	2			item
+	m	()Z	m_25138497		canTakeBackIngredients
