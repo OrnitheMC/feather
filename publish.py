@@ -161,7 +161,7 @@ class GradleProcess:
         env["MC_VERSION"] = self._version
         # shell=True, check=True, env=env
         self._process = subprocess.Popen(
-            f"{self._gradle_command} clean build publish --stacktrace",
+            f"{self._gradle_command} publish --stacktrace",
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
