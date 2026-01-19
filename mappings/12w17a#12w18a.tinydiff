@@ -8,7 +8,7 @@ c	net/minecraft/client/Minecraft
 	f	Lnet/minecraft/unmapped/C_40266271;	f_36071453		snooper
 	f	Lnet/minecraft/unmapped/C_34399650;	f_26407825		world
 	f	Lnet/minecraft/unmapped/C_97929192;	f_28396371		player
-	f	Lnet/minecraft/unmapped/C_13874281;	f_14057616		serverDownloader
+	f	Lnet/minecraft/unmapped/C_13874281;	f_14057616		localServer
 	f	I	f_78126936		currentFps
 	f	Z	f_02314736		reloadTextures
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	m_85741928	setWorld	
@@ -67,16 +67,16 @@ c	net/minecraft/client/Minecraft
 		p	0			username
 		p	1			sessionId
 		p	2			demo
-		p	3			serverPath
-		p	4			serverEntry
+		p	3			serverJar
+		p	4			serverClasspath
 	m	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;)V	m_45269355		startAndConnect
 		p	0			username
 		p	1			sessionId
 		p	2			server
 		p	3			demo
-		p	4			serverPath
-		p	5			serverEntry
-	m	()Lnet/minecraft/unmapped/C_13874281;	m_41950622		getServerDownloader
+		p	4			serverJar
+		p	5			serverClasspath
+	m	()Lnet/minecraft/unmapped/C_13874281;	m_41950622		getLocalServer
 	m	()V	m_96944929		markTexturesDirty
 	m	(Lnet/minecraft/unmapped/C_40266271;)V	m_97580428		m_97580428
 		p	1			p_1
@@ -1331,26 +1331,26 @@ c	net/minecraft/unmapped/C_05705211		net/minecraft/item/VariantBlockItem
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_88708284;)Ljava/lang/String;	m_81802680		m_81802680
 		p	1			p_1
-c	net/minecraft/unmapped/C_13874281		net/minecraft/client/ServerDownloader
-	f	Ljava/io/File;	f_32715607		serverPath
-	f	Ljava/io/File;	f_59315887		serverDir
+c	net/minecraft/unmapped/C_13874281		net/minecraft/client/server/LocalServer
+	f	Ljava/io/File;	f_32715607		serverJar
+	f	Ljava/io/File;	f_59315887		runDir
 	f	Lnet/minecraft/unmapped/C_43186187;	f_86984427		process
-	f	Ljava/lang/String;	f_27006407		serverEntry
+	f	Ljava/lang/String;	f_27006407		classpath
 	m	()V	<init>		<init>
 	m	(Ljava/io/File;Ljava/io/File;)V	<init>		<init>
-		p	1			serverPath
-		p	2			serverDir
-	m	(Ljava/lang/String;I)V	m_94986110		startLocalServer
+		p	1			serverJar
+		p	2			runDir
+	m	(Ljava/lang/String;I)V	m_94986110		start
 		p	1			worldSaveName
 		p	2			port
 	m	()Z	m_87507500		isRunning
-	m	()V	m_61325584		m_61325584
+	m	()V	m_61325584		destroy
 	m	()I	m_73407376		getLocalPort
-	m	()Ljava/io/File;	m_84362490		getServerPath
-	m	(Ljava/io/File;)V	m_28432578		setServerPath
+	m	()Ljava/io/File;	m_84362490		getServerJar
+	m	(Ljava/io/File;)V	m_28432578		setServerJar
 		p	1			path
-	m	(Ljava/lang/String;)V	m_07102914		setServerEntry
-		p	1			entry
+	m	(Ljava/lang/String;)V	m_07102914		setClasspath
+		p	1			classpath
 c	net/minecraft/unmapped/C_13874281$61307268		61307268
 	f	Lnet/minecraft/unmapped/C_13874281;	f_92624829		f_92624829
 	m	(Lnet/minecraft/unmapped/C_13874281;)V	<init>		<init>
@@ -1395,18 +1395,18 @@ c	net/minecraft/unmapped/C_36131925		net/minecraft/util/DownloadCallback
 	m	(Ljava/io/File;)V	m_79530350		fileAvailable
 		p	1			f
 c	net/minecraft/unmapped/C_38573177		net/minecraft/client/JavaProcessLauncher
-	f	Ljava/lang/String;	f_60858214		f_60858214
-	f	Ljava/lang/String;	f_63237625		JAVA
+	f	Ljava/lang/String;	f_60858214		FILE_SEPARATOR
+	f	Ljava/lang/String;	f_63237625		JAVA_HOME
 	f	Ljava/util/List;	f_23155018		commands
-	f	Ljava/io/File;	f_09755445		f_09755445
+	f	Ljava/io/File;	f_09755445		runDir
 	m	([Ljava/lang/String;)V	<init>		<init>
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_43186187;	m_44633646		m_44633646
-	m	()Ljava/util/List;	m_51648750		m_51648750
+		p	1			commands
+	m	()Lnet/minecraft/unmapped/C_43186187;	m_44633646		launch
+	m	()Ljava/util/List;	m_51648750		getLaunchCommands
 	m	([Ljava/lang/String;)V	m_36577451		addCommands
 		p	1			commands
-	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_38573177;	m_38133673		m_38133673
-		p	1			p_1
+	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_38573177;	m_38133673		setRunDirectory
+		p	1			dir
 	m	()Ljava/lang/String;	toString		toString
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_40180499		net/minecraft/item/PlanksItem
@@ -1420,28 +1420,28 @@ c	net/minecraft/unmapped/C_40180499		net/minecraft/item/PlanksItem
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_88708284;)Ljava/lang/String;	m_81802680		m_81802680
 		p	1			p_1
-c	net/minecraft/unmapped/C_43186187		net/minecraft/client/JavaProcess
+c	net/minecraft/unmapped/C_43186187		net/minecraft/client/server/JavaProcess
 	f	Ljava/util/List;	f_22495585		commands
 	f	Ljava/lang/Process;	f_50494069		process
-	f	Lnet/minecraft/unmapped/C_70684832;	f_21797842		f_21797842
-	f	Lnet/minecraft/unmapped/C_46773636;	f_77981303		f_77981303
+	f	Lnet/minecraft/unmapped/C_70684832;	f_21797842		listener
+	f	Lnet/minecraft/unmapped/C_46773636;	f_77981303		thread
 	m	(Ljava/util/List;Ljava/lang/Process;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-	m	()Ljava/lang/Process;	m_40991217		m_40991217
+		p	1			commands
+		p	2			process
+	m	()Ljava/lang/Process;	m_40991217		getProcess
 	m	()Z	m_67144278		isRunning
-	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_72478036		m_72478036
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_90364407		m_90364407
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_70684832;	m_79387085		m_79387085
-	m	()I	m_82806763		m_82806763
+	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_72478036		setListener
+		p	1			listener
+	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_90364407		setListenerAndCheckIsRunning
+		p	1			listener
+	m	()Lnet/minecraft/unmapped/C_70684832;	m_79387085		getListener
+	m	()I	m_82806763		exitValue
 	m	()Ljava/lang/String;	toString		toString
-	m	()V	m_11579478		m_11579478
-c	net/minecraft/unmapped/C_46773636		net/minecraft/unmapped/C_46773636
-	f	Lnet/minecraft/unmapped/C_43186187;	f_00607604		f_00607604
+	m	()V	m_11579478		destroy
+c	net/minecraft/unmapped/C_46773636		net/minecraft/client/server/JavaProcessThread
+	f	Lnet/minecraft/unmapped/C_43186187;	f_00607604		process
 	m	(Lnet/minecraft/unmapped/C_43186187;)V	<init>		<init>
-		p	1			p_1
+		p	1			process
 	m	()V	run		run
 c	net/minecraft/unmapped/C_48364209		net/minecraft/snooper/SnooperPopulator
 	m	(Lnet/minecraft/unmapped/C_40266271;)V	m_97580428		populateSnooper
@@ -1481,13 +1481,13 @@ c	net/minecraft/unmapped/C_57884255		net/minecraft/client/options/ServerList
 		p	2			server
 	m	(Lnet/minecraft/unmapped/C_91543234;)V	m_60350294		updateAndSave
 		p	0			server
-c	net/minecraft/unmapped/C_70684832		net/minecraft/unmapped/C_70684832
-	m	(Lnet/minecraft/unmapped/C_43186187;)V	m_61322049		m_61322049
-		p	1			p_1
-c	net/minecraft/unmapped/C_73189440		net/minecraft/unmapped/C_73189440
-	f	Ljava/lang/String;	f_19412808		f_19412808
+c	net/minecraft/unmapped/C_70684832		net/minecraft/client/server/JavaProcessListener
+	m	(Lnet/minecraft/unmapped/C_43186187;)V	m_61322049		processStopped
+		p	1			process
+c	net/minecraft/unmapped/C_73189440		net/minecraft/client/gui/screen/NoServerJarScreen
+	f	Ljava/lang/String;	f_19412808		saveName
 	m	(Ljava/lang/String;)V	<init>		<init>
-		p	1			p_1
+		p	1			saveName
 	m	()V	m_41805697		m_41805697
 	m	(Lnet/minecraft/unmapped/C_85125467;)V	m_30778170		m_30778170
 		p	1			p_1

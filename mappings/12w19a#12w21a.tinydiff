@@ -1126,9 +1126,9 @@ c	net/minecraft/unmapped/C_60248056
 c	net/minecraft/unmapped/C_96226159
 	m	()Ljava/util/Map;	m_20767768		getCommands
 c	net/minecraft/unmapped/C_13874281
-	m	()V	m_61325584	m_61325584	
+	m	()V	m_61325584	destroy	
 	m	()I	m_73407376	getLocalPort	
-	m	(Ljava/lang/String;ILnet/minecraft/unmapped/C_06007608;)V	m_94986110	startLocalServer	
+	m	(Ljava/lang/String;ILnet/minecraft/unmapped/C_06007608;)V	m_94986110	start	
 		p	1		worldSaveName	
 		p	2		port	
 		p	3		settings	
@@ -1139,42 +1139,42 @@ c	net/minecraft/unmapped/C_13874281$61307268	61307268
 	m	(Lnet/minecraft/unmapped/C_43186187;)V	m_61322049	m_61322049	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_38573177	net/minecraft/client/JavaProcessLauncher	
-	f	Ljava/lang/String;	f_60858214	f_60858214	
-	f	Ljava/lang/String;	f_63237625	JAVA	
+	f	Ljava/lang/String;	f_60858214	FILE_SEPARATOR	
+	f	Ljava/lang/String;	f_63237625	JAVA_HOME	
 	f	Ljava/util/List;	f_23155018	commands	
-	f	Ljava/io/File;	f_09755445	f_09755445	
+	f	Ljava/io/File;	f_09755445	runDir	
 	m	([Ljava/lang/String;)V	<init>	<init>	
-		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_43186187;	m_44633646	m_44633646	
-	m	()Ljava/util/List;	m_51648750	m_51648750	
+		p	1		commands	
+	m	()Lnet/minecraft/unmapped/C_43186187;	m_44633646	launch	
+	m	()Ljava/util/List;	m_51648750	getLaunchCommands	
 	m	([Ljava/lang/String;)V	m_36577451	addCommands	
 		p	1		commands	
-	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_38573177;	m_38133673	m_38133673	
-		p	1		p_1	
+	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_38573177;	m_38133673	setRunDirectory	
+		p	1		dir	
 	m	()Ljava/lang/String;	toString	toString	
 	m	()V	<clinit>	<clinit>	
 c	net/minecraft/unmapped/C_43186187
-	f	Lnet/minecraft/unmapped/C_70684832;	f_21797842	f_21797842	
-	f	Lnet/minecraft/unmapped/C_46773636;	f_77981303	f_77981303	
+	f	Lnet/minecraft/unmapped/C_70684832;	f_21797842	listener	
+	f	Lnet/minecraft/unmapped/C_46773636;	f_77981303	thread	
 	m	(Ljava/util/List;Ljava/lang/Process;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-	m	()Ljava/lang/Process;	m_40991217	m_40991217	
-	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_72478036	m_72478036	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_90364407	m_90364407	
-		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_70684832;	m_79387085	m_79387085	
-	m	()I	m_82806763	m_82806763	
-	m	()V	m_11579478	m_11579478	
-c	net/minecraft/unmapped/C_46773636	net/minecraft/unmapped/C_46773636	
-	f	Lnet/minecraft/unmapped/C_43186187;	f_00607604	f_00607604	
+		p	1		commands	
+		p	2		process	
+	m	()Ljava/lang/Process;	m_40991217	getProcess	
+	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_72478036	setListener	
+		p	1		listener	
+	m	(Lnet/minecraft/unmapped/C_70684832;)V	m_90364407	setListenerAndCheckIsRunning	
+		p	1		listener	
+	m	()Lnet/minecraft/unmapped/C_70684832;	m_79387085	getListener	
+	m	()I	m_82806763	exitValue	
+	m	()V	m_11579478	destroy	
+c	net/minecraft/unmapped/C_46773636	net/minecraft/client/server/JavaProcessThread	
+	f	Lnet/minecraft/unmapped/C_43186187;	f_00607604	process	
 	m	(Lnet/minecraft/unmapped/C_43186187;)V	<init>	<init>	
-		p	1		p_1	
+		p	1		process	
 	m	()V	run	run	
-c	net/minecraft/unmapped/C_70684832	net/minecraft/unmapped/C_70684832	
-	m	(Lnet/minecraft/unmapped/C_43186187;)V	m_61322049	m_61322049	
-		p	1		p_1	
+c	net/minecraft/unmapped/C_70684832	net/minecraft/client/server/JavaProcessListener	
+	m	(Lnet/minecraft/unmapped/C_43186187;)V	m_61322049	processStopped	
+		p	1		process	
 c	net/minecraft/unmapped/C_00755282
 	m	(Ljava/io/InputStream;Lnet/minecraft/unmapped/C_44825637;)V	<init>	<init>	
 		p	1		is	
