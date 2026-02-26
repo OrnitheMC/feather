@@ -6,7 +6,7 @@ c	net/minecraft/client/MinecraftApplet
 	m	()V	m_21152414		startThread
 c	net/minecraft/unmapped/C_02333628
 c	net/minecraft/unmapped/C_02333628$C_92241048
-	m	()V	m_16290620		m_16290620
+	m	()V	m_16290620		update
 c	net/minecraft/unmapped/C_03111506
 	m	(Lnet/minecraft/unmapped/C_76792751;)V	m_20737535		load
 		p	1			options
@@ -32,12 +32,12 @@ c	net/minecraft/unmapped/C_03670941
 		p	3			y
 		p	4			z
 		p	5			sprite
-	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_64041439;III)V	m_77097109		m_77097109
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_64041439;III)V	m_77097109		tesselateFallingBlock
+		p	1			block
+		p	2			world
+		p	3			x
+		p	4			y
+		p	5			z
 c	net/minecraft/unmapped/C_05049903
 	m	()V	m_61736815		m_61736815
 	m	()V	m_56509373		m_56509373
@@ -51,12 +51,12 @@ c	net/minecraft/unmapped/C_10493850
 		p	2			weight
 	m	()Z	m_42002126		isEmpty
 c	net/minecraft/unmapped/C_13709197
-	m	(Lnet/minecraft/unmapped/C_46108969;IIILnet/minecraft/unmapped/C_89604096;)D	m_32298234		m_32298234
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_46108969;IIILnet/minecraft/unmapped/C_89604096;)D	m_32298234		getFlowAngle
+		p	0			world
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			material
 c	net/minecraft/unmapped/C_14917579
 	m	(IIIII)Z	m_75581471		setBlockWithMetadata
 		p	1			localX
@@ -70,20 +70,20 @@ c	net/minecraft/unmapped/C_14917579
 		p	3			localZ
 		p	4			block
 c	net/minecraft/unmapped/C_15682602
-	m	(IIIDDD)V	m_50521069		m_50521069
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
-	m	(III)Z	m_61454692		m_61454692
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(I)V	m_97949835		m_97949835
-		p	1			p_1
-	m	()V	m_14706508		m_14706508
+	m	(IIIDDD)V	m_50521069		init
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			offsetX
+		p	6			offsetY
+		p	8			offsetZ
+	m	(III)Z	m_61454692		isAt
+		p	1			x
+		p	2			y
+		p	3			z
+	m	(I)V	m_97949835		addGlList
+		p	1			glId
+	m	()V	m_14706508		clear
 c	net/minecraft/unmapped/C_16190149
 	m	()V	m_64399484		tick
 	m	(Lnet/minecraft/unmapped/C_42232651;F)V	m_67974587		render
@@ -147,8 +147,8 @@ c	net/minecraft/unmapped/C_44627882
 		p	1		saveEntities	
 		p	2		listener	
 	m	(ZLnet/minecraft/unmapped/C_57299289;)Z	m_24222609		save
-		p	1			p_1
-		p	2			p_2
+		p	1			flush
+		p	2			listener
 c	net/minecraft/unmapped/C_48441102
 	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_42232651;F)Lnet/minecraft/unmapped/C_85604771;	m_71242830		findPath
 		p	1			entity
@@ -196,14 +196,14 @@ c	net/minecraft/unmapped/C_64041439
 	m	(Lnet/minecraft/unmapped/C_62408525;)V	m_09382204	forceSave	
 		p	1		listener	
 	m	(ZLnet/minecraft/unmapped/C_57299289;)V	m_70994780		save
-		p	1			p_1
-		p	2			p_2
+		p	1			flush
+		p	2			listener
 	m	(Lnet/minecraft/unmapped/C_04114264;)V	m_08775210		addEventListener
 		p	1			listener
 	m	(Lnet/minecraft/unmapped/C_04114264;)V	m_54486559		removeEventListener
 		p	1			listener
 	m	(Lnet/minecraft/unmapped/C_57299289;)V	m_09382204		forceSave
-		p	1			p_1
+		p	1			listener
 c	net/minecraft/unmapped/C_64070979
 	m	(DDD)D	m_10067525		noise
 		p	1			x

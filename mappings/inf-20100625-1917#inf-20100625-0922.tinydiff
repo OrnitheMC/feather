@@ -13,13 +13,13 @@ c	net/minecraft/unmapped/C_14917579
 		p	1		type	
 		p	2		bounds	
 		p	3		entities	
-	m	(Lnet/minecraft/unmapped/C_40735137;)V	m_81134894		m_81134894
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_40735137;)V	m_81134894		addBlockEntity
+		p	1			blockEntity
 c	net/minecraft/unmapped/C_21479319
 	m	(Lnet/minecraft/unmapped/C_40996800;)Z	m_18370723	m_18370723	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_18370723		m_18370723
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_18370723		setRider
+		p	1			rider
 c	net/minecraft/unmapped/C_27191077	net/minecraft/item/SaddleItem	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
@@ -164,12 +164,12 @@ c	net/minecraft/unmapped/C_93531514	net/minecraft/world/gen/feature/DungeonFeatu
 		p	4		p_4	
 		p	5		p_5	
 c	net/minecraft/unmapped/C_95807626
-	m	([B)Lnet/minecraft/unmapped/C_74087615;	m_63378090		m_63378090
-		p	0			p_0
-	m	(Lnet/minecraft/unmapped/C_74087615;)[B	m_21938295		m_21938295
-		p	0			p_0
-	m	(Ljava/io/DataInput;)Lnet/minecraft/unmapped/C_74087615;	m_00310855		m_00310855
-		p	0			p_0
+	m	([B)Lnet/minecraft/unmapped/C_74087615;	m_63378090		readCompressed
+		p	0			bytes
+	m	(Lnet/minecraft/unmapped/C_74087615;)[B	m_21938295		writeCompressed
+		p	0			nbt
+	m	(Ljava/io/DataInput;)Lnet/minecraft/unmapped/C_74087615;	m_00310855		readNbt
+		p	0			input
 c	net/minecraft/unmapped/C_98888256
 	f	Lnet/minecraft/unmapped/C_98888256;	f_07293363	SADDLE	
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_74425583;)V	m_00330830	attack	
@@ -181,11 +181,11 @@ c	net/minecraft/unmapped/C_98888256
 	m	(Lnet/minecraft/unmapped/C_88708284;)V	m_00330830		attack
 		p	1			stack
 c	net/minecraft/unmapped/C_99656780
-	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_14917579;)V	m_26552111		m_26552111
-		p	1			p_1
-		p	2			p_2
-	m	()V	m_10130261		m_10130261
-	m	()V	m_07220609		m_07220609
+	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_14917579;)V	m_26552111		saveEntities
+		p	1			world
+		p	2			chunk
+	m	()V	m_10130261		tick
+	m	()V	m_07220609		flush
 c	net/minecraft/unmapped/C_99795455	net/minecraft/block/entity/MobSpawnerBlockEntity	
 	f	I	f_72429179	delay	
 	f	Ljava/lang/String;	f_22358995	type	
@@ -198,27 +198,27 @@ c	net/minecraft/unmapped/C_99795455	net/minecraft/block/entity/MobSpawnerBlockEn
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_55164141	m_55164141	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_38505629		net/minecraft/unmapped/C_38505629
-	f	Ljava/nio/channels/FileChannel;	f_05210589		f_05210589
-	f	J	f_01520374		f_01520374
+c	net/minecraft/unmapped/C_38505629		net/minecraft/world/chunk/storage/zone/ZoneFile
+	f	Ljava/nio/channels/FileChannel;	f_05210589		file
+	f	J	f_01520374		pos
 	m	(Ljava/nio/channels/FileChannel;J)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-	m	([BI)V	m_80418125		m_80418125
-		p	1			p_1
-		p	2			p_2
-	m	(Ljava/nio/ByteBuffer;I)V	m_97734134		m_97734134
-		p	1			p_1
-		p	2			p_2
-	m	(I)Ljava/nio/ByteBuffer;	m_81345134		m_81345134
-		p	1			p_1
-	m	()V	m_90202034		m_90202034
-c	net/minecraft/unmapped/C_41150081		net/minecraft/unmapped/C_41150081
-	f	Lnet/minecraft/unmapped/C_99656780;	f_93079678		f_93079678
-	f	Lnet/minecraft/unmapped/C_99656780;	f_93538654		f_93538654
+		p	1			file
+		p	2			pos
+	m	([BI)V	m_80418125		writeBytes
+		p	1			bytes
+		p	2			length
+	m	(Ljava/nio/ByteBuffer;I)V	m_97734134		writeBytes
+		p	1			bytes
+		p	2			length
+	m	(I)Ljava/nio/ByteBuffer;	m_81345134		readBytes
+		p	1			length
+	m	()V	m_90202034		flush
+c	net/minecraft/unmapped/C_41150081		net/minecraft/world/chunk/storage/CompatibilityChunkStorage
+	f	Lnet/minecraft/unmapped/C_99656780;	f_93079678		newStorage
+	f	Lnet/minecraft/unmapped/C_99656780;	f_93538654		oldStorage
 	m	(Lnet/minecraft/unmapped/C_99656780;Lnet/minecraft/unmapped/C_99656780;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			newStorage
+		p	2			oldStorage
 	m	()V	m_07220609		m_07220609
 	m	(Lnet/minecraft/unmapped/C_64041439;II)Lnet/minecraft/unmapped/C_14917579;	m_46119045		m_46119045
 		p	1			p_1
@@ -231,24 +231,25 @@ c	net/minecraft/unmapped/C_41150081		net/minecraft/unmapped/C_41150081
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_14917579;)V	m_26552111		m_26552111
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_49226631		net/minecraft/unmapped/C_49226631
-	f	Ljava/nio/ByteOrder;	f_27391009		f_27391009
-	f	Ljava/io/File;	f_30728149		f_30728149
-	f	Ljava/util/Map;	f_10529754		f_10529754
-	f	J	f_79406199		f_79406199
+c	net/minecraft/unmapped/C_49226631		net/minecraft/world/chunk/storage/ZoneChunkStorage
+	f	Ljava/nio/ByteOrder;	f_27391009		BYTE_ORDER
+	f	Ljava/io/File;	f_30728149		dir
+	f	Ljava/util/Map;	f_10529754		zones
+	f	J	f_79406199		ticks
 	m	(Ljava/io/File;)V	<init>		<init>
-		p	1			p_1
-	m	(II)I	m_33710242		m_33710242
-		p	0			p_0
-		p	1			p_1
-	m	(IIZ)Lnet/minecraft/unmapped/C_60207501;	m_05015131		m_05015131
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(IIZ)Lnet/minecraft/unmapped/C_38505629;	m_00462241		m_00462241
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			gameDir
+	m	(II)I	m_33710242		getChunkSlot
+		p	0			chunkX
+		p	1			chunkZ
+			c		Each zone contains 32x32 (2^5 x 2^5) chunks.
+	m	(IIZ)Lnet/minecraft/unmapped/C_60207501;	m_05015131		getZone
+		p	1			chunkX
+		p	2			chunkZ
+		p	3			create
+	m	(IIZ)Lnet/minecraft/unmapped/C_38505629;	m_00462241		loadZone
+		p	1			chunkX
+		p	2			chunkZ
+		p	3			create
 	m	(Lnet/minecraft/unmapped/C_64041439;II)Lnet/minecraft/unmapped/C_14917579;	m_46119045		m_46119045
 		p	1			p_1
 		p	2			p_2
@@ -262,42 +263,42 @@ c	net/minecraft/unmapped/C_49226631		net/minecraft/unmapped/C_49226631
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_60207501		net/minecraft/unmapped/C_60207501
-	f	[S	f_63625907		f_63625907
-	f	S	f_28405671		f_28405671
-	f	J	f_06165435		f_06165435
-	f	Ljava/nio/channels/FileChannel;	f_86121472		f_86121472
-	f	Ljava/lang/Long;	f_38857320		f_38857320
-	f	Lnet/minecraft/unmapped/C_85463271;	f_06682319		f_06682319
+c	net/minecraft/unmapped/C_60207501		net/minecraft/world/chunk/storage/zone/Zone
+	f	[S	f_63625907		chunkCounts
+	f	S	f_28405671		chunkCount
+	f	J	f_06165435		lastUpdateTime
+	f	Ljava/nio/channels/FileChannel;	f_86121472		zoneFile
+	f	Ljava/lang/Long;	f_38857320		pos
+	f	Lnet/minecraft/unmapped/C_85463271;	f_06682319		entityFile
 	m	(Ljava/lang/Long;Ljava/io/File;Ljava/io/File;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()V	m_87949175		m_87949175
-	m	(I)Lnet/minecraft/unmapped/C_38505629;	m_35324024		m_35324024
-		p	1			p_1
-	m	(I)Z	m_15551696		m_15551696
-		p	1			p_1
-c	net/minecraft/unmapped/C_85463271		net/minecraft/unmapped/C_85463271
-	f	[B	f_17042518		f_17042518
-	f	Ljava/io/RandomAccessFile;	f_96153265		f_96153265
-	f	[Ljava/util/List;	f_47663627		f_47663627
-	f	Ljava/util/List;	f_14592864		f_14592864
-	f	I	f_06798704		f_06798704
-	f	J	f_63719198		f_63719198
-	f	Ljava/util/List;	f_52167066		f_52167066
+		p	1			pos
+		p	2			chunks
+		p	3			entities
+	m	()V	m_87949175		flush
+	m	(I)Lnet/minecraft/unmapped/C_38505629;	m_35324024		getChunk
+		p	1			slot
+	m	(I)Z	m_15551696		hasChunk
+		p	1			slot
+c	net/minecraft/unmapped/C_85463271		net/minecraft/world/chunk/storage/zone/EntityFile
+	f	[B	f_17042518		BUFFER
+	f	Ljava/io/RandomAccessFile;	f_96153265		file
+	f	[Ljava/util/List;	f_47663627		slots
+	f	Ljava/util/List;	f_14592864		savedSlots
+	f	I	f_06798704		entityCount
+	f	J	f_63719198		largestEntityData
+	f	Ljava/util/List;	f_52167066		pendingSlots
 	m	(Ljava/io/File;)V	<init>		<init>
-		p	1			p_1
-	m	()V	m_54195217		m_54195217
-	m	(I)V	m_28116790		m_28116790
-		p	1			p_1
-	m	(I)V	m_65988661		m_65988661
-		p	1			p_1
-	m	(I)Ljava/util/List;	m_56830499		m_56830499
-		p	1			p_1
-	m	()I	m_74926973		m_74926973
-	m	(ILjava/util/List;)V	m_76098933		m_76098933
-		p	1			p_1
-		p	2			p_2
-	m	()V	m_27860523		m_27860523
+		p	1			file
+	m	()V	m_54195217		writeHeader
+	m	(I)V	m_28116790		setPointerForSlot
+		p	1			slot
+	m	(I)V	m_65988661		setPointerForSlotData
+		p	1			slot
+	m	(I)Ljava/util/List;	m_56830499		getEntities
+		p	1			slot
+	m	()I	m_74926973		getNextSlot
+	m	(ILjava/util/List;)V	m_76098933		save
+		p	1			slot
+		p	2			entities
+	m	()V	m_27860523		flush
 	m	()V	<clinit>		<clinit>
