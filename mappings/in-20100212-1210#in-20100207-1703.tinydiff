@@ -151,7 +151,7 @@ c	net/minecraft/unmapped/C_64041439
 	f	I	f_12503429	sunLight	
 	f	Lnet/minecraft/unmapped/C_45530348;	f_77779732	lightEngine	
 	f	I	f_93425566	timeOfDay	
-	f	I	f_55791470	f_55791470	
+	f	I	f_55791470	ticksPerDay	
 	f	F	f_49392765		skyBrightness
 	m	()V	m_08726449	updateLight	
 	m	(F)F	m_78121701	getSkyAngle	
@@ -431,10 +431,14 @@ c	net/minecraft/unmapped/C_45530348	net/minecraft/world/LightEngine
 		c	The remaining region that requires light updates after a change in sun light.	
 	f	I	f_53638116	prevSunLightChange	
 		c	The change in the sun light value due to the last change in sun light.	
-	f	Ljava/util/List;	f_22071853	f_22071853	
-	f	Ljava/util/List;	f_65804620	f_65804620	
-	f	Ljava/util/List;	f_09122546	f_09122546	
-	f	I	f_16485284	f_16485284	
+	f	Ljava/util/List;	f_22071853	regionChangedUpdates	
+		c	Queue of regions that require calls to {@link WorldEventListener#notifyRegionChanged}.	
+	f	Ljava/util/List;	f_65804620	lightUpdates	
+		c	Queue of regions that require re-calculations of light values.	
+	f	Ljava/util/List;	f_09122546	heightMapUpdates	
+		c	Queue of regions that require re-calculations of height map values.	
+	f	I	f_16485284	prevSunLight	
+		c	The sun light value prior to the last change in sun light.	
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		world	
 	m	(IIII)V	m_10376166	updateHeightMap	

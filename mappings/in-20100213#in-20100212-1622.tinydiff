@@ -43,7 +43,7 @@ c	net/minecraft/unmapped/C_54765678
 		p	1			p_1
 c	net/minecraft/unmapped/C_64041439
 	f	I	f_49102927		maxBlockTicksPerTick
-	f	I	f_55791470		f_55791470
+	f	I	f_55791470		ticksPerDay
 c	net/minecraft/unmapped/C_80563853
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_58043465;	m_35267573	getRandom	
 		p	1		path	
@@ -64,10 +64,14 @@ c	net/minecraft/unmapped/C_45530348
 		c	This array holds information about whether each position is marked as dirty.\nEach bit is flipped if the corresponding position is marked dirty.\nChecking through this array is much quicker than iterating over the {@link dirtyPositions}\narray to check if a position is present in it.	
 	f	I	f_39289104	prevSunLight	
 		c	The sun light value prior to the last change in sun light.	
-	f	Ljava/util/List;	f_22071853		f_22071853
-	f	Ljava/util/List;	f_65804620		f_65804620
-	f	Ljava/util/List;	f_09122546		f_09122546
-	f	I	f_16485284		f_16485284
+	f	Ljava/util/List;	f_22071853		regionChangedUpdates
+		c		Queue of regions that require calls to {@link WorldEventListener#notifyRegionChanged}.
+	f	Ljava/util/List;	f_65804620		lightUpdates
+		c		Queue of regions that require re-calculations of light values.
+	f	Ljava/util/List;	f_09122546		heightMapUpdates
+		c		Queue of regions that require re-calculations of height map values.
+	f	I	f_16485284		prevSunLight
+		c		The sun light value prior to the last change in sun light.
 	m	()[I	m_42684546	newPositionsArray	
 		c	Grab a positions array from the cache or create a new one if the cache is empty.	
 	m	(I)V	m_66466168	updateSunLight	
