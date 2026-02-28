@@ -22,7 +22,7 @@ c	net/minecraft/unmapped/C_03498964	net/minecraft/entity/ai/pathing/PathNode
 	m	()Z	m_09564097	isInHeap	
 	m	()Ljava/lang/String;	toString	toString	
 c	net/minecraft/unmapped/C_03670941
-	f	Lnet/minecraft/unmapped/C_96603444;	f_38519854		f_38519854
+	f	Lnet/minecraft/unmapped/C_96603444;	f_38519854		tesselator
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		world	
@@ -39,15 +39,15 @@ c	net/minecraft/unmapped/C_03670941
 		p	4		y	
 		p	5		z	
 	m	(Lnet/minecraft/unmapped/C_96603444;Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			tesselator
+		p	2			world
 	m	(Lnet/minecraft/unmapped/C_96603444;)V	<init>		<init>
-		p	1			p_1
+		p	1			tesselator
 	m	(Lnet/minecraft/unmapped/C_81592558;FFF)V	m_89358041		tesselateCross
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			block
+		p	2			x
+		p	3			y
+		p	4			z
 c	net/minecraft/unmapped/C_04428890
 	m	(Lnet/minecraft/unmapped/C_42232651;F)V	m_35940307	m_35940307	
 		p	1		p_1	
@@ -228,11 +228,11 @@ c	net/minecraft/unmapped/C_40996800
 	m	(Lnet/minecraft/unmapped/C_42232651;I)Z	m_40469716	m_40469716	
 		p	1		p_1	
 		p	2		p_2	
-	m	()I	m_56169907		m_56169907
-	m	(Lnet/minecraft/unmapped/C_81592558;)F	m_63653931		m_63653931
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_81592558;)Z	m_05159761		m_05159761
-		p	1			p_1
+	m	()I	m_56169907		getScore
+	m	(Lnet/minecraft/unmapped/C_81592558;)F	m_63653931		getMiningSpeed
+		p	1			block
+	m	(Lnet/minecraft/unmapped/C_81592558;)Z	m_05159761		canMineBlock
+		p	1			block
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_42232651
 	m	(Lnet/minecraft/unmapped/C_42232651;I)Z	m_40469716	takeDamage	
@@ -242,8 +242,8 @@ c	net/minecraft/unmapped/C_42232651
 	m	(Lnet/minecraft/unmapped/C_42232651;)F	m_10588239	squaredDistanceTo	
 		p	1		entity	
 	m	(Lnet/minecraft/unmapped/C_42232651;I)V	m_40469716		takeDamage
-		p	1			p_1
-		p	2			p_2
+		p	1			source
+		p	2			amount
 c	net/minecraft/unmapped/C_43112843
 	f	I	f_17233341	fuse	
 	f	I	f_87264087	lastFuse	
@@ -479,7 +479,7 @@ c	net/minecraft/unmapped/C_64041439
 		p	4		blocks	
 		p	5		blockData	
 	m	()V	m_90232566	populateHeightMap	
-	m	()Ljava/lang/String;	m_90522208		m_90522208
+	m	()Ljava/lang/String;	m_90522208		getEntityDebugInfo
 c	net/minecraft/unmapped/C_65131087
 	m	(Lnet/minecraft/unmapped/C_64041439;IIIF)V	m_84670601		m_84670601
 		p	1			p_1
@@ -569,8 +569,8 @@ c	net/minecraft/unmapped/C_74425583
 	m	(Lnet/minecraft/unmapped/C_42232651;I)V	m_40469716		m_40469716
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_01342745;)V	m_74846670		m_74846670
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_01342745;)V	m_74846670		setAi
+		p	1			ai
 c	net/minecraft/unmapped/C_76558927
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_64041439;IIII)Z	m_93921076	m_93921076	
 		p	1		p_1	
@@ -643,7 +643,7 @@ c	net/minecraft/unmapped/C_81592558
 		p	4			z
 		p	5			luck
 c	net/minecraft/unmapped/C_82690114
-	m	()Lnet/minecraft/unmapped/C_94584382;	m_66627355	m_66627355	
+	m	()Lnet/minecraft/unmapped/C_94584382;	m_66627355	getCenter	
 c	net/minecraft/unmapped/C_83194342
 	m	(Lnet/minecraft/unmapped/C_42232651;F)V	m_35940307	m_35940307	
 		p	1		p_1	
@@ -757,9 +757,9 @@ c	net/minecraft/unmapped/C_96603444
 		p	3		b	
 		p	4		a	
 	m	(III)V	m_72833996		color
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			r
+		p	2			g
+		p	3			b
 c	net/minecraft/unmapped/C_98888256
 	f	Lnet/minecraft/unmapped/C_98888256;	f_03688690	WOODEN_HOE	
 	f	Lnet/minecraft/unmapped/C_98888256;	f_98142733	STONE_HOE	
@@ -777,12 +777,12 @@ c	net/minecraft/unmapped/C_98888256
 		p	5		z	
 		p	6		face	
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_64041439;IIII)V	m_93921076		useOn
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			item
+		p	2			world
+		p	3			x
+		p	4			y
+		p	5			z
+		p	6			face
 c	net/minecraft/unmapped/C_99730074
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_21718759	m_21718759	
 		p	1		p_1	
