@@ -18,9 +18,9 @@ c	net/minecraft/unmapped/C_03670941
 c	net/minecraft/unmapped/C_06774341
 	f	I	f_48704434	health	
 	f	F	f_66400805	bobOffset	
-	f	F	f_47420674		f_47420674
-	f	F	f_44966914		f_44966914
-	f	F	f_38793053		f_38793053
+	f	F	f_47420674		velocityX
+	f	F	f_44966914		velocityY
+	f	F	f_38793053		velocityZ
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_21718759	m_21718759	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_64370961	m_64370961	
@@ -32,9 +32,9 @@ c	net/minecraft/unmapped/C_06774341
 		p	1		p_1	
 		p	2		p_2	
 c	net/minecraft/unmapped/C_09140510
-	f	F	f_93805835		f_93805835
-	f	F	f_68774631		f_68774631
-	f	F	f_73205693		f_73205693
+	f	F	f_93805835		velocityX
+	f	F	f_68774631		velocityY
+	f	F	f_73205693		velocityZ
 	m	()F	m_69271527	m_69271527	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_21718759	m_21718759	
 		p	1		p_1	
@@ -135,7 +135,7 @@ c	net/minecraft/unmapped/C_40735137	net/minecraft/block/entity/BlockEntity
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_81108127	writeNbt	
 		p	1		nbt	
 c	net/minecraft/unmapped/C_40996800
-	f	I	f_05585711		f_05585711
+	f	I	f_05585711		stuckArrows
 	m	(Lnet/minecraft/unmapped/C_43616774;)V	m_28772528	openChestMenu	
 		p	1		inventory	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_21718759	m_21718759	
@@ -144,7 +144,7 @@ c	net/minecraft/unmapped/C_40996800
 	m	(Lnet/minecraft/unmapped/C_88708284;)V	m_90783905	dropItem	
 		p	1		item	
 	m	(I)V	m_90783905		dropItem
-		p	1			p_1
+		p	1			item
 c	net/minecraft/unmapped/C_42232651
 	f	I	f_39448066	breathCapacity	
 	f	Z	f_81639144	inWater	
@@ -165,6 +165,7 @@ c	net/minecraft/unmapped/C_42232651
 		p	1		nbt	
 	m	([F)Lnet/minecraft/unmapped/C_81455782;	m_25814429	toNbtList	
 		p	0		values	
+	m	()Z	m_52586232	isSubmergedIn	isSubmergedInWater
 c	net/minecraft/unmapped/C_43616774	net/minecraft/inventory/Inventory	
 	m	()I	m_54518913	getSize	
 	m	(I)Lnet/minecraft/unmapped/C_88708284;	m_87969967	getItem	
@@ -522,10 +523,10 @@ c	net/minecraft/unmapped/C_74087615	net/minecraft/nbt/NbtCompound
 		p	1		key	
 	m	()Z	m_58116176	isEmpty	
 c	net/minecraft/unmapped/C_74425583
-	f	I	f_67295397		f_67295397
-	f	Z	f_21151676		f_21151676
-	f	I	f_42991559		f_42991559
-	f	I	f_13777307		f_13777307
+	f	I	f_67295397		breathCapacity
+	f	Z	f_21151676		inWater
+	f	I	f_42991559		prevInvulnerableTicks
+	f	I	f_13777307		breath
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_21718759	m_21718759	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_64370961	m_64370961	
@@ -639,9 +640,9 @@ c	net/minecraft/unmapped/C_87542771
 	m	(II)Lnet/minecraft/unmapped/C_88708284;	m_60972177	m_60972177	
 		p	1		p_1	
 		p	2		p_2	
-	m	(II)V	m_79622622		m_79622622
-		p	1			p_1
-		p	2			p_2
+	m	(II)V	m_79622622		swapItems
+		p	1			slot1
+		p	2			slot2
 c	net/minecraft/unmapped/C_87604186
 	f	Ljava/lang/String;	f_61577167	id	
 c	net/minecraft/unmapped/C_87711245
@@ -719,7 +720,7 @@ c	net/minecraft/unmapped/C_97866173
 	m	(F)V	m_94668477	render	
 		p	1		tickDelta	
 	m	(Lnet/minecraft/client/Minecraft;II)V	<init>		<init>
-		p	1			p_1
+		p	1			minecraft
 		p	2			width
 		p	3			height
 	m	()V	m_94668477		render
@@ -732,8 +733,8 @@ c	net/minecraft/unmapped/C_98888256
 		p	2		world	
 		p	3		player	
 	m	(Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_40996800;)Z	m_94551825		startUsing
-		p	1			p_1
-		p	2			p_2
+		p	1			item
+		p	2			player
 c	net/minecraft/unmapped/C_04114264
 	m	(Ljava/lang/String;FFFFFF)V	m_90456491	addParticle	
 		p	1		type	
