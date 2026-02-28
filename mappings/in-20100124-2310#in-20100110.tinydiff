@@ -2,7 +2,7 @@ tiny	2	0
 c	net/minecraft/client/Minecraft
 	f	I	f_34177036	initWidth	
 	f	I	f_35066023	initHeight	
-	f	Lnet/minecraft/client/MinecraftApplet;	f_78933641	f_78933641	
+	f	Lnet/minecraft/client/MinecraftApplet;	f_78933641	applet	
 	m	()V	m_24050938	unlockMouse	
 	m	()V	m_87006267	toggleFullscreen	
 	m	(II)V	m_60801884	resize	
@@ -173,9 +173,9 @@ c	net/minecraft/unmapped/C_43616774	net/minecraft/inventory/Inventory
 		p	1		slot	
 		p	2		item	
 	m	()Ljava/lang/String;	m_03432210	getInventoryName	
-	m	(II)Lnet/minecraft/unmapped/C_88708284;	m_60972177	m_60972177	
-		p	1		p_1	
-		p	2		p_2	
+	m	(II)Lnet/minecraft/unmapped/C_88708284;	m_60972177	removeItem	
+		p	1		slot	
+		p	2		amount	
 c	net/minecraft/unmapped/C_45510667
 	m	(F)I	m_44742066	floor	
 		p	0		x	
@@ -199,8 +199,9 @@ c	net/minecraft/unmapped/C_47540058
 c	net/minecraft/unmapped/C_53593123
 	f	Lnet/minecraft/unmapped/C_32232284;	f_93698334	dispatcher	
 	f	[Lnet/minecraft/unmapped/C_44010967;	f_43523250		models
-	f	Lnet/minecraft/unmapped/C_64041439;	f_93698334		dispatcher
-	f	Lnet/minecraft/unmapped/C_03670941;	f_52870805		f_52870805
+	f	Lnet/minecraft/unmapped/C_64041439;	f_93698334		world
+	f	Lnet/minecraft/unmapped/C_03670941;	f_52870805		blockRenderer
+	f	F	f_62491925	shadowSize	cameraYaw
 	m	(Ljava/lang/String;)V	m_60765443	bindTexture	
 		p	1		path	
 	m	(Lnet/minecraft/unmapped/C_32232284;)V	m_89209993	init	
@@ -218,24 +219,24 @@ c	net/minecraft/unmapped/C_53593123
 		p	3		y	
 		p	4		z	
 		p	5		tickDelta	
-	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_82920792;F)V	m_05442216		renderShadow
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_82920792;FFFFF)V	m_88107470		m_88107470
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
+	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_82920792;F)V	m_05442216		renderInWorld
+		p	1			entity
+		p	2			textureManager
+		p	3			tickDelta
+	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_82920792;FFFFF)V	m_88107470		render
+		p	1			entity
+		p	2			textureManager
+		p	3			x
+		p	4			y
+		p	5			z
+		p	6			yaw
+		p	7			tickDelta
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	m_89209993		init
-		p	1			p_1
-	m	(F)V	m_33465577		m_33465577
-		p	1			p_1
+		p	1			world
+	m	(F)V	m_33465577		updateCamera
+		p	1			tickDelta
 c	net/minecraft/unmapped/C_54765678
-	f	[Lnet/minecraft/unmapped/C_81592558;	f_52725650	f_52725650	
+	f	[Lnet/minecraft/unmapped/C_81592558;	f_52725650	startingBlocks	
 c	net/minecraft/unmapped/C_57247398	net/minecraft/block/ChestBlock	
 	f	Ljava/util/Random;	f_28790491	random	
 	m	(I)V	<init>	<init>	
@@ -642,25 +643,25 @@ c	net/minecraft/unmapped/C_87542771
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_87604186
-	f	Ljava/lang/String;	f_61577167	f_61577167	
+	f	Ljava/lang/String;	f_61577167	id	
 c	net/minecraft/unmapped/C_87711245
 	f	I	f_99871233	backgroundWidth	
 	f	I	f_73003637	backgroundHeight	
 	f	Lnet/minecraft/unmapped/C_87711245$C_12356698;	f_33150667	cursorItem	
-	f	I	f_30653178		f_30653178
+	f	I	f_30653178		cursorItem
 	m	()V	m_22745008	renderLabels	
 	m	()V	m_98661498	renderMenuBackground	
 	m	(Lnet/minecraft/unmapped/C_43616774;)V	<init>	<init>	
 		p	1		inventory	
 	m	(Lnet/minecraft/unmapped/C_43616774;III)V	m_12041920	renderItem	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		inventory	
+		p	2		slot	
+		p	3		x	
+		p	4		y	
 	m	(III)V	m_12041920		renderItem
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			slot
+		p	2			x
+		p	3			y
 c	net/minecraft/unmapped/C_87711245$C_12356698
 	f	Lnet/minecraft/unmapped/C_43616774;	f_76989145	inventory	
 	m	(Lnet/minecraft/unmapped/C_87711245;Lnet/minecraft/unmapped/C_43616774;III)V	<init>	<init>	
@@ -675,9 +676,9 @@ c	net/minecraft/unmapped/C_87711245$C_12356698
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_87711245;III)V	<init>		<init>
 		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	2			id
+		p	3			x
+		p	4			y
 c	net/minecraft/unmapped/C_88708284
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	<init>	<init>	
 		p	1		nbt	
