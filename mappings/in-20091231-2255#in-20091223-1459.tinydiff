@@ -101,16 +101,16 @@ c	net/minecraft/unmapped/C_36401657
 		p	4		p_4	
 c	net/minecraft/unmapped/C_40996800
 	f	Lnet/minecraft/unmapped/C_54206210;	f_43349231		input
-	f	I	f_58662024		f_58662024
-	f	Ljava/awt/image/BufferedImage;	f_58865055		f_58865055
+	f	I	f_58662024		skinId
+	f	Ljava/awt/image/BufferedImage;	f_58865055		skinImage
 	m	(I)V	m_90783905	dropItem	
 		p	1		item	
-	m	()V	m_70483604		m_70483604
-	m	(IZ)V	m_59204633		m_59204633
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_26505028		m_26505028
-		p	0			p_0
+	m	()V	m_70483604		releaseAllKeys
+	m	(IZ)V	m_59204633		handleKeyEvent
+		p	1			key
+		p	2			state
+	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_26505028		renderHand
+		p	0			textureManager
 c	net/minecraft/unmapped/C_40996800$00765877		00765877
 	f	Lnet/minecraft/unmapped/C_40996800;	f_50737256		f_50737256
 	m	(Lnet/minecraft/unmapped/C_40996800;)V	<init>		<init>
@@ -154,20 +154,20 @@ c	net/minecraft/unmapped/C_62408525
 	m	(Ljava/lang/String;)V	m_03194980	progressStart	
 		p	1		title	
 c	net/minecraft/unmapped/C_64041439
-	f	[B	f_75490906		f_75490906
-	f	[I	f_26570947		f_26570947
-	f	I	f_07342259		f_07342259
+	f	[B	f_75490906		replacedBlocks
+	f	[I	f_26570947		blocksToReplace
+	f	I	f_07342259		replaceLayerCalls
 	m	(Lnet/minecraft/unmapped/C_42232651;FFFF)V	m_27713923	explode	
 		p	1		source	
 		p	2		x	
 		p	3		y	
 		p	4		z	
 		p	5		power	
-	m	(IIII)Z	m_24003480		m_24003480
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(IIII)Z	m_24003480		replaceLayer
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			replacement
 c	net/minecraft/unmapped/C_68333747
 	m	(Lnet/minecraft/unmapped/C_74425583;)F	m_10836237	squaredDistanceToCenter	
 		p	1		camera	
@@ -212,16 +212,16 @@ c	net/minecraft/unmapped/C_85740840
 c	net/minecraft/unmapped/C_87542771
 	f	[Lnet/minecraft/unmapped/C_88708284;	f_35249023	items	
 	f	[I	f_35249023		items
-	f	[I	f_35345587		hotbarSlots
-	f	[I	f_89910422		armorSlots
+	f	[I	f_35345587		itemAmounts
+	f	[I	f_89910422		popAnimationTimes
 	m	()Lnet/minecraft/unmapped/C_88708284;	m_27760697	getSelectedItem	
 	m	()I	m_31419923	getEmptySlot	
 	m	(II)V	m_79622622	swapItems	
 		p	1		slot1	
 		p	2		slot2	
 	m	()I	m_27760697		getSelectedItem
-	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_40600577		m_40600577
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_40600577		selectItem
+		p	1			item
 	m	(I)Z	m_88360730		removeOne
 		p	1			item
 c	net/minecraft/unmapped/C_87711245
@@ -268,7 +268,7 @@ c	net/minecraft/unmapped/C_88708284	net/minecraft/item/ItemStack
 c	net/minecraft/unmapped/C_97866173
 	m	()V	m_94668477	render	
 	m	(F)V	m_94668477		render
-		p	1			p_1
+		p	1			tickDelta
 c	net/minecraft/unmapped/C_74448918
 	m	(Lnet/minecraft/unmapped/C_42232651;FFFFFFLjava/util/List;)Ljava/util/List;	m_45112680	getEntities	
 		p	1		exclude	

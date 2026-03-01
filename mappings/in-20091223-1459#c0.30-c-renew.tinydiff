@@ -572,8 +572,8 @@ c	net/minecraft/unmapped/C_40996800	net/minecraft/entity/mob/player/PlayerEntity
 	f	F	f_03780072	bob	
 	f	I	f_05585711	stuckArrows	
 	f	Lnet/minecraft/unmapped/C_54206210;	f_43349231	input	
-	f	I	f_58662024	f_58662024	
-	f	Ljava/awt/image/BufferedImage;	f_58865055	f_58865055	
+	f	I	f_58662024	skinId	
+	f	Ljava/awt/image/BufferedImage;	f_58865055	skinImage	
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	m_44455199	m_44455199	
@@ -583,12 +583,12 @@ c	net/minecraft/unmapped/C_40996800	net/minecraft/entity/mob/player/PlayerEntity
 	m	()V	m_28967524	m_28967524	
 	m	()I	m_56169907	getScore	
 	m	()V	<clinit>	<clinit>	
-	m	()V	m_70483604	m_70483604	
-	m	(IZ)V	m_59204633	m_59204633	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_26505028	m_26505028	
-		p	0		p_0	
+	m	()V	m_70483604	releaseAllKeys	
+	m	(IZ)V	m_59204633	handleKeyEvent	
+		p	1		key	
+		p	2		state	
+	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_26505028	renderHand	
+		p	0		textureManager	
 c	net/minecraft/unmapped/C_40996800$00765877	00765877	
 	f	Lnet/minecraft/unmapped/C_40996800;	f_50737256	f_50737256	
 	m	(Lnet/minecraft/unmapped/C_40996800;)V	<init>	<init>	
@@ -871,9 +871,9 @@ c	net/minecraft/unmapped/C_64041439	net/minecraft/world/World
 	f	Ljava/util/ArrayList;	f_95196734	scheduledTicks	
 	f	Z	f_52752026	growTrees	
 	f	[I	f_94341113	lightUpdates	
-	f	[B	f_75490906	f_75490906	
-	f	[I	f_26570947	f_26570947	
-	f	I	f_07342259	f_07342259	
+	f	[B	f_75490906	replacedBlocks	
+	f	[I	f_26570947	blocksToReplace	
+	f	I	f_07342259	replaceLayerCalls	
 	m	(III)Lnet/minecraft/unmapped/C_89604096;	m_24175966	getMaterial	
 		p	1		x	
 		p	2		y	
@@ -955,7 +955,7 @@ c	net/minecraft/unmapped/C_64041439	net/minecraft/world/World
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		p_4	
+		p	4		radius	
 	m	(FFF)Z	m_13752006	isSolidBlock	
 		p	1		x	
 		p	2		y	
@@ -1013,11 +1013,11 @@ c	net/minecraft/unmapped/C_64041439	net/minecraft/world/World
 		p	1		listener	
 	m	(Lnet/minecraft/unmapped/C_24384787;)V	m_54486559	removeEventListener	
 		p	1		listener	
-	m	(IIII)Z	m_24003480	m_24003480	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(IIII)Z	m_24003480	replaceLayer	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		replacement	
 c	net/minecraft/unmapped/C_65241348
 	f	Lnet/minecraft/unmapped/C_40996800;	f_09328661	camera	
 	f	Lcom/mojang/minecraft/player/Player;	f_09328661		camera
@@ -1469,14 +1469,14 @@ c	net/minecraft/unmapped/C_86833787
 c	net/minecraft/unmapped/C_87542771	net/minecraft/entity/mob/player/PlayerInventory	
 	f	I	f_13682807	selectedSlot	
 	f	[I	f_35249023	items	
-	f	[I	f_35345587	hotbarSlots	
-	f	[I	f_89910422	armorSlots	
+	f	[I	f_35345587	itemAmounts	
+	f	[I	f_89910422	popAnimationTimes	
 	m	(I)I	m_34478552	getSlot	
 		p	1		item	
 	m	()V	<init>	<init>	
 	m	()I	m_27760697	getSelectedItem	
-	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_40600577	m_40600577	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_40600577	selectItem	
+		p	1		item	
 	m	(I)Z	m_88360730	removeOne	
 		p	1		item	
 c	net/minecraft/unmapped/C_87604186
@@ -1583,7 +1583,7 @@ c	net/minecraft/unmapped/C_97866173
 	f	Lnet/minecraft/unmapped/C_03670941;	f_54845318	blockRenderer	
 	f	Ljava/lang/String;	f_00907811		highlightedPlayer
 	m	(F)V	m_94668477	render	
-		p	1		p_1	
+		p	1		tickDelta	
 	m	(FZII)V	m_32139256		render
 		p	1			tickDelta
 		p	2			screenOpen
