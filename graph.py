@@ -36,6 +36,8 @@ VERSIONS= [
 'a1.0.17_02&a0.1.4',
 'a1.0.16_02&a0.1.3',
 'a1.0.16_01&a0.1.2_01',
+'a1.0.16_01&a0.1.2',
+'a1.0.16_01&a0.1.2-1817',
 'a1.0.16&a0.1.1',
 'a1.0.16&a0.1.1-1707',
 'a1.0.15&a0.1.0'
@@ -139,16 +141,29 @@ VERSIONS= [
 'c0.0.14a_08',
 'c0.0.13a_03-launcher',
 'c0.0.13a_03',
-'c0.0.13a-launcher',
-'c0.0.12a_03','c0.0.12a_03-200018',
-'c0.0.11a-launcher'
+'c0.0.12a_03','c0.0.12a_03-200018'
 ],
 [
-'c0.0.11a-launcher',
-'rd-161348-launcher',
-'rd-160052-launcher',
-'rd-132328-launcher',
-'rd-132211-launcher'
+'c0.30-c',
+'c1.10.1',
+'c1.10',
+'c0.29|c1.10',
+'c1.9.1',
+'c0.28_01|c1.9.1',
+'c1.8.3',
+'c0.0.20a_01|c1.8.3',
+'c1.8.2',
+'c0.0.19a_04|c1.8.2',
+'c1.6',
+'c0.0.18a_02|c1.6',
+'c1.4.1',
+'c1.4',
+'c1.4-1422',
+'c1.4-1327',
+'c0.0.17a|c1.4-1327',
+'c1.3',
+'c0.0.16a_02|c1.3',
+'c1.2'
 ],
 [
 'b1.0',
@@ -188,6 +203,10 @@ VERSIONS= [
 'b1.3',
 'b1.3-1731',
 'b1.3-1647'
+],
+[
+'b1.3',
+'b1.3-demo'
 ],
 [
 'b1.3',
@@ -539,10 +558,10 @@ VERSIONS= [
 '1.7.5|1.7.4',
 '14w02a','14w02b','14w02c',
 '14w03a','14w03b',
-'14w03b|1.7.6','14w04a-1526','14w04a-1740'
+'14w03b|1.7.6','14w04a-1526','14w04a-1740','14w04a-1526|14w04a-1740','14w04a'
 ],
 [
-'14w04a-1526',
+'14w04a',
 '14w04b-1554','14w04b',
 '14w04b|1.7.5','14w05a','14w05b',
 '14w06a','14w06b',
@@ -754,6 +773,10 @@ VERSIONS= [
 '1.14.3',
 '1.14.4-pre1','1.14.4-pre2','1.14.4-pre3','1.14.4-pre4','1.14.4-pre5','1.14.4-pre6','1.14.4-pre7',
 '1.14.4'
+],
+[
+'19w13b',
+'3D Shareware v1.34'
 ]
 ]
 ROOT = VERSIONS[0][0]
@@ -787,7 +810,7 @@ def main():
 
 def generate(root, mc_versions):
 	os.environ['MC_VERSION'] = root
-	subprocess.run("./gradlew resetGraph --stacktrace", shell = True, check = True)
+	subprocess.run("./gradlew startGraph --stacktrace", shell = True, check = True)
 	
 	for versions in mc_versions:
 		for i in range(1, len(versions)):
