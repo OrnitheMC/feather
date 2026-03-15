@@ -66,31 +66,32 @@ c	com/mojang/minecraft/unmapped/C_94962583
 		p	1			p_1
 		p	2			p_2
 c	com/mojang/minecraft/server/MinecraftServer
-	f	Ljava/util/List;	f_47177481	f_47177481	
-	f	I	f_86608613	f_86608613	
-	m	(Lcom/mojang/minecraft/unmapped/C_55134128;Ljava/lang/String;)V	m_42964905	m_42964905	
-		p	1		p_1	
-		p	2		p_2	
+	f	Ljava/util/List;	f_47177481	pendingCommands	
+	f	I	f_86608613	maxConnections	
+	m	(Lcom/mojang/minecraft/unmapped/C_55134128;Ljava/lang/String;)V	m_42964905	runCommand	
+		p	1		player	
+		p	2		command	
 	m	(Lcom/mojang/minecraft/server/MinecraftServer;)Ljava/util/List;	m_53025241	m_53025241	
 		p	0		p_0	
-	m	(Ljava/lang/String;)V	m_97436253		m_97436253
-		p	1			p_1
+	m	(Ljava/lang/String;)V	m_97436253		unbanPlayer
+		p	1			playerName
 c	com/mojang/minecraft/server/MinecraftServer$87635351	87635351	
 	f	Lcom/mojang/minecraft/server/MinecraftServer;	f_48077565	f_48077565	
 	m	(Lcom/mojang/minecraft/server/MinecraftServer;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	run	run	
-c	com/mojang/minecraft/server/MinecraftServer$C_61671804	C_61671804	
+c	com/mojang/minecraft/server/MinecraftServer$C_61671804	LogHandler	
 	m	(Ljava/io/OutputStream;Ljava/util/logging/Formatter;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		out	
+		p	2		formatter	
 	m	(Ljava/util/logging/LogRecord;)V	publish	publish	
-		p	1		p_1	
+		p	1		record	
 c	com/mojang/minecraft/unmapped/C_55134128
-	f	Ljava/util/List;	f_12884274	f_12884274	
-	f	I	f_17823792	f_17823792	
-	f	Z	f_00282325	f_00282325	
-	f	I	f_20052649	f_20052649	
+	f	Ljava/util/List;	f_12884274	pendingClicks	
+	f	I	f_17823792	chatter	
+		c	A measure of how much this player has been sending in chat recently.\nWith each chat message send, the value increases proportionally by the length of the message.\nEach tick, the value is decreased by one.\n<p>\nIf the value is greater than 600, the player cannot send any chat messages.	
+	f	Z	f_00282325	disconnected	
+	f	I	f_20052649	clicks	
 	m	(IIIII)V	m_09553615		m_09553615
 		p	1			p_1
 		p	2			p_2
