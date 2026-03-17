@@ -1,10 +1,19 @@
 tiny	2	0
-c	com/mojang/minecraft/Minecraft
-c	com/mojang/minecraft/Minecraft$75010706	75010706	
-	f	Lcom/mojang/minecraft/Minecraft;	f_81488426	f_81488426	
-	m	(Lcom/mojang/minecraft/Minecraft;)V	<init>	<init>	
+c	net/minecraft/client/Minecraft
+c	net/minecraft/client/Minecraft$75010706	75010706	
+	f	Lnet/minecraft/client/Minecraft;	f_81488426	f_81488426	
+	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
 		p	1		p_1	
 	m	()V	run	run	
+c	net/minecraft/unmapped/C_49004282
+	m	(Lcom/mojang/minecraft/level/Level;)V	m_35280409		m_35280409
+		p	1			p_1
+c	net/minecraft/unmapped/C_82920792
+	m	(Ljava/awt/image/BufferedImage;)I	m_03899170	load	
+		p	1		image	
+c	com/mojang/minecraft/Entity
+	f	Lcom/mojang/minecraft/level/BlockMap;	blockMap	blockMap	
+	f	Lnet/minecraft/unmapped/C_12184306;	blockMap		blockMap
 c	com/mojang/minecraft/item/Arrow
 	f	J	serialVersionUID	serialVersionUID	
 	f	Lcom/mojang/minecraft/Entity;	owner	owner	
@@ -24,7 +33,7 @@ c	com/mojang/minecraft/item/Arrow
 	m	()Lcom/mojang/minecraft/Entity;	getOwner	getOwner	
 	m	(Lcom/mojang/minecraft/player/Player;)V	playerTouch	playerTouch	
 		p	1		p_1	
-	m	(Lcom/mojang/minecraft/Minecraft;Lcom/mojang/minecraft/player/Player;FFFFF)V	<init>		<init>
+	m	(Lnet/minecraft/client/Minecraft;Lcom/mojang/minecraft/player/Player;FFFFF)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -47,11 +56,23 @@ c	com/mojang/minecraft/item/TakeEntityAnim	com/mojang/minecraft/item/TakeEntityA
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	tick	tick	
-	m	(Lcom/mojang/minecraft/unmapped/C_82920792;F)V	render$2a8c5a	render$2a8c5a	
+	m	(Lnet/minecraft/unmapped/C_82920792;F)V	render$2a8c5a	render$2a8c5a	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/level/BlockMap
+c	com/mojang/minecraft/level/BlockMap	com/mojang/minecraft/level/BlockMap	
 	f	J	serialVersionUID	serialVersionUID	
+	f	I	width	width	
+	f	I	depth	depth	
+	f	I	height	height	
+	f	Lcom/mojang/minecraft/level/BlockMap$Slot;	slot	slot	
+	f	Lcom/mojang/minecraft/level/BlockMap$Slot;	slot2	slot2	
+	f	[Ljava/util/List;	entityGrid	entityGrid	
+	f	Ljava/util/List;	all	all	
+	f	Ljava/util/List;	tmp	tmp	
+	m	(III)V	<init>	<init>	
+		p	1		sizeX	
+		p	2		sizeY	
+		p	3		sizeZ	
 	m	(Lcom/mojang/minecraft/Entity;)V	insert	insert	
 		p	1		p_1	
 	m	(Lcom/mojang/minecraft/Entity;)V	remove	remove	
@@ -66,7 +87,19 @@ c	com/mojang/minecraft/level/BlockMap
 		p	5		p_5	
 		p	6		p_6	
 		p	7		p_7	
+	m	(Lcom/mojang/minecraft/Entity;FFFFFFLjava/util/List;)Ljava/util/List;	getEntities	getEntities	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+		p	4		p_4	
+		p	5		p_5	
+		p	6		p_6	
+		p	7		p_7	
+		p	8		p_8	
 	m	()V	clear	clear	
+	m	(Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List;	getEntities	getEntities	
+		p	1		p_1	
+		p	2		p_2	
 	m	(Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;Ljava/util/List;)Ljava/util/List;	getEntities	getEntities	
 		p	1		p_1	
 		p	2		p_2	
@@ -78,8 +111,30 @@ c	com/mojang/minecraft/level/BlockMap
 		p	0		p_0	
 	m	(Lcom/mojang/minecraft/level/BlockMap;)I	access$200	access$200	
 		p	0		p_0	
-c	com/mojang/minecraft/level/BlockMap$Slot
+	m	(Lnet/minecraft/unmapped/C_01716682;Lnet/minecraft/unmapped/C_82920792;F)V	render$59cf05f6	render$59cf05f6	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+c	com/mojang/minecraft/level/BlockMap$15180163	15180163	
+c	com/mojang/minecraft/level/BlockMap$Slot	Slot	
 	f	J	serialVersionUID	serialVersionUID	
+	f	I	xSlot	xSlot	
+	f	I	ySlot	ySlot	
+	f	I	zSlot	zSlot	
+	f	Lcom/mojang/minecraft/level/BlockMap;	this$0	this$0	
+	m	(Lcom/mojang/minecraft/level/BlockMap;)V	<init>	<init>	
+		p	1		p_1	
+	m	(FFF)Lcom/mojang/minecraft/level/BlockMap$Slot;	init	init	
+		p	1		p_1	
+		p	2		p_2	
+		p	3		p_3	
+	m	(Lcom/mojang/minecraft/Entity;)V	add	add	
+		p	1		p_1	
+	m	(Lcom/mojang/minecraft/Entity;)V	remove	remove	
+		p	1		p_1	
+	m	(Lcom/mojang/minecraft/level/BlockMap;Lcom/mojang/minecraft/level/BlockMap$15180163;)V	<init>	<init>	
+		p	1		p_1	
+		p	2		p_2	
 	m	(Lcom/mojang/minecraft/level/BlockMap$Slot;)I	access$400	access$400	
 		p	0		p_0	
 	m	(Lcom/mojang/minecraft/level/BlockMap$Slot;)I	access$500	access$500	
@@ -87,41 +142,54 @@ c	com/mojang/minecraft/level/BlockMap$Slot
 	m	(Lcom/mojang/minecraft/level/BlockMap$Slot;)I	access$600	access$600	
 		p	0		p_0	
 c	com/mojang/minecraft/level/Level
-	f	Lcom/mojang/minecraft/unmapped/C_23014920;	font	font	
-	m	(ILcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/unmapped/C_62408525;)I	maybeSpawnMobs$583659a3	maybeSpawnMobs$583659a3	
+	f	Lcom/mojang/minecraft/level/BlockMap;	blockMap	blockMap	
+	f	Lnet/minecraft/unmapped/C_23014920;	font	font	
+	f	Lnet/minecraft/unmapped/C_12184306;	blockMap		blockMap
+	m	(ILcom/mojang/minecraft/Entity;Lnet/minecraft/unmapped/C_62408525;)I	maybeSpawnMobs$583659a3	maybeSpawnMobs$583659a3	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	()Lcom/mojang/minecraft/player/Player;	findPlayer	findPlayer	
 c	com/mojang/minecraft/mob/Creeper
 	f	J	serialVersionUID	serialVersionUID	
-	f	Lcom/mojang/minecraft/unmapped/C_36076665;	f_52396980		f_52396980
+	f	Lnet/minecraft/unmapped/C_36076665;	f_52396980		f_52396980
 	m	()V	<clinit>		<clinit>
-c	com/mojang/minecraft/mob/Creeper$1
+c	com/mojang/minecraft/mob/Creeper$1	1	
+	f	Lcom/mojang/minecraft/mob/Creeper;	this$0	this$0	
+	m	(Lcom/mojang/minecraft/mob/Creeper;)V	<init>	<init>	
+		p	1		p_1	
 	m	(Lcom/mojang/minecraft/Entity;)Z	attack	attack	
 		p	1		p_1	
-	m	(Lcom/mojang/minecraft/Entity;)V	attack		attack
+	m	()V	beforeRemove	beforeRemove	
+c	com/mojang/minecraft/mob/Creeper$02927421		02927421
+	f	Lcom/mojang/minecraft/mob/Creeper;	f_58325462		f_58325462
+	m	(Lcom/mojang/minecraft/mob/Creeper;)V	<init>		<init>
 		p	1			p_1
+	m	(Lcom/mojang/minecraft/Entity;)V	m_38189334		m_38189334
+		p	1			p_1
+	m	()V	m_60084186		m_60084186
 c	com/mojang/minecraft/mob/HumanoidMob
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_84984652		f_84984652
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_92434460		f_92434460
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	humanoidModel		humanoidModel
+	f	Lnet/minecraft/unmapped/C_81384252;	f_84984652		f_84984652
+	f	Lnet/minecraft/unmapped/C_81384252;	f_92434460		f_92434460
+	f	Lnet/minecraft/unmapped/C_81384252;	humanoidModel		humanoidModel
 	m	()V	<clinit>		<clinit>
 c	com/mojang/minecraft/mob/Mob
 	f	J	serialVersionUID	serialVersionUID	
-	f	Lcom/mojang/minecraft/unmapped/C_28548178;	modelCache	modelCache	
+	f	Lnet/minecraft/unmapped/C_70803938;	modelCache	modelCache	
 	f	Ljava/lang/String;	modelName	modelName	
-	f	Lcom/mojang/minecraft/unmapped/C_36076665;	model		model
+	f	Lcom/mojang/minecraft/mob/ai/AI;	ai	ai	
+	f	Lnet/minecraft/unmapped/C_36076665;	model		model
+	f	Lnet/minecraft/unmapped/C_27924344;	ai		ai
 c	com/mojang/minecraft/mob/Pig
-	f	Lcom/mojang/minecraft/unmapped/C_94906307;	f_73624210		f_73624210
+	f	Lnet/minecraft/unmapped/C_13732860;	f_73624210		f_73624210
 	m	()V	<clinit>		<clinit>
 c	com/mojang/minecraft/mob/QuadrupedMob
 	f	J	serialVersionUID	serialVersionUID	
-	f	Lcom/mojang/minecraft/unmapped/C_94906307;	f_02882930		f_02882930
+	f	Lnet/minecraft/unmapped/C_13732860;	f_02882930		f_02882930
 	m	()V	<clinit>		<clinit>
 c	com/mojang/minecraft/mob/Skeleton
 	f	J	serialVersionUID	serialVersionUID	
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_09951230		f_09951230
+	f	Lnet/minecraft/unmapped/C_81384252;	f_09951230		f_09951230
 	m	(Lcom/mojang/minecraft/level/Level;)V	shootArrow	shootArrow	
 		p	1		p_1	
 	m	(Lcom/mojang/minecraft/mob/Skeleton;)V	access$000	access$000	
@@ -137,95 +205,124 @@ c	com/mojang/minecraft/mob/Skeleton$1	1
 	m	()V	beforeRemove	beforeRemove	
 c	com/mojang/minecraft/mob/Zombie
 	f	J	serialVersionUID	serialVersionUID	
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_38045383		f_38045383
+	f	Lnet/minecraft/unmapped/C_81384252;	f_38045383		f_38045383
 	m	()V	<clinit>		<clinit>
-c	com/mojang/minecraft/mob/ai/AI
+c	com/mojang/minecraft/mob/ai/AI	com/mojang/minecraft/mob/ai/AI	
 	f	J	serialVersionUID	serialVersionUID	
+	f	I	defaultLookAngle	defaultLookAngle	
+	m	()V	<init>	<init>	
+	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/mob/Mob;)V	tick	tick	
+		p	1		p_1	
+		p	2		p_2	
+	m	()V	beforeRemove	beforeRemove	
 	m	(Lcom/mojang/minecraft/Entity;I)V	hurt	hurt	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/mob/ai/BasicAI
+c	com/mojang/minecraft/mob/ai/BasicAI	com/mojang/minecraft/mob/ai/BasicAI	
 	f	J	serialVersionUID	serialVersionUID	
+	f	Ljava/util/Random;	random	random	
+	f	F	xxa	xxa	
+	f	F	yya	yya	
+	f	F	yRotA	yRotA	
+	f	Lcom/mojang/minecraft/level/Level;	level	level	
+	f	Lcom/mojang/minecraft/mob/Mob;	mob	mob	
+	f	Z	jumping	jumping	
 	f	I	attackDelay	attackDelay	
 	f	F	runSpeed	runSpeed	
+	f	I	noActionTime	noActionTime	
 	f	Lcom/mojang/minecraft/Entity;	attackTarget	attackTarget	
+	m	()V	<init>	<init>	
+	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/mob/Mob;)V	tick	tick	
+		p	1		p_1	
+		p	2		p_2	
+	m	()V	update	update	
+	m	()V	beforeRemove	beforeRemove	
 	m	(Lcom/mojang/minecraft/Entity;I)V	hurt	hurt	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/minecraft/Entity;)V	m_21734090		m_21734090
-		p	1			p_1
-	m	(Lcom/mojang/minecraft/Entity;)V	attack		attack
-		p	1			p_1
-c	com/mojang/minecraft/mob/ai/BasicAttackAI
+c	com/mojang/minecraft/mob/ai/BasicAttackAI	com/mojang/minecraft/mob/ai/BasicAttackAI	
 	f	J	serialVersionUID	serialVersionUID	
 	f	I	damage	damage	
+	m	()V	<init>	<init>	
+	m	()V	update	update	
 	m	()V	doAttack	doAttack	
 	m	(Lcom/mojang/minecraft/Entity;)Z	attack	attack	
 		p	1		p_1	
 	m	(Lcom/mojang/minecraft/Entity;I)V	hurt	hurt	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/player/Inventory
+c	com/mojang/minecraft/player/Inventory	com/mojang/minecraft/player/Inventory	
 	f	J	serialVersionUID	serialVersionUID	
 	f	I	POP_TIME_DURATION	POP_TIME_DURATION	
+	f	[I	slots	slots	
+	f	[I	count	count	
+	f	[I	popTime	popTime	
+	f	I	selected	selected	
+	m	()V	<init>	<init>	
+	m	()I	getSelected	getSelected	
+	m	(I)I	m_37008451	m_37008451	
+		p	1		p_1	
+	m	(I)V	swapPaint	swapPaint	
+		p	1		p_1	
 	m	(I)V	replaceSlot	replaceSlot	
 		p	1		p_1	
-	m	(Lcom/mojang/minecraft/unmapped/C_81592558;)V	replaceSlot	replaceSlot	
+	m	(Lnet/minecraft/unmapped/C_81592558;)V	replaceSlot	replaceSlot	
 		p	1		p_1	
 	m	(I)Z	addResource	addResource	
 		p	1		p_1	
 	m	()V	tick	tick	
+	m	(I)Z	removeResource	removeResource	
+		p	1		p_1	
 	m	(I)V	grabTexture	grabTexture	
 		p	1		p_1	
 c	com/mojang/minecraft/player/Player
 	f	J	serialVersionUID	serialVersionUID	
 	f	I	MAX_ARROWS	MAX_ARROWS	
+	f	Lcom/mojang/minecraft/player/Inventory;	inventory	inventory	
 	f	I	arrows	arrows	
 	f	I	f_58662024	f_58662024	
 	f	Ljava/awt/image/BufferedImage;	newTexture	newTexture	
+	f	Lnet/minecraft/unmapped/C_80373897;	inventory		inventory
 	m	(Lcom/mojang/minecraft/level/Level;)V	<init>	<init>	
 		p	1		p_1	
 	m	()Z	isShootable	isShootable	
-	m	(Lcom/mojang/minecraft/unmapped/C_82920792;)V	bindTexture$4211e026	bindTexture$4211e026	
+	m	(Lnet/minecraft/unmapped/C_82920792;)V	bindTexture$4211e026	bindTexture$4211e026	
 		p	1		p_1	
 	m	()V	<clinit>	<clinit>	
-	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/unmapped/C_54206210;)V	<init>		<init>
+	m	(Lcom/mojang/minecraft/level/Level;Lnet/minecraft/unmapped/C_54206210;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/player/Player$1
+c	com/mojang/minecraft/player/Player$1	1	
 	f	Lcom/mojang/minecraft/player/Player;	this$0	this$0	
-	f	Lcom/mojang/minecraft/unmapped/C_54206210;	f_63584257		f_63584257
 	m	(Lcom/mojang/minecraft/player/Player;)V	<init>	<init>	
 		p	1		p_1	
-	m	(Lcom/mojang/minecraft/player/Player;Lcom/mojang/minecraft/unmapped/C_54206210;)V	<init>		<init>
+	m	()V	update	update	
+c	com/mojang/minecraft/player/Player$51356849		51356849
+	f	Lnet/minecraft/unmapped/C_54206210;	f_63584257		f_63584257
+	m	(Lcom/mojang/minecraft/player/Player;Lnet/minecraft/unmapped/C_54206210;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_28548178	net/minecraft/client/render/model/ModelCache	
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_86553133	humanoid	
-	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_58791191	humanoidArmor	
-	f	Lcom/mojang/minecraft/unmapped/C_28718426;	f_11546949	creeper	
-	f	Lcom/mojang/minecraft/unmapped/C_07878706;	f_60034003	skeleton	
-	f	Lcom/mojang/minecraft/unmapped/C_37649976;	f_74214373	zombie	
-	f	Lcom/mojang/minecraft/unmapped/C_94906307;	f_63186371	pig	
+	m	()V	m_53240402		m_53240402
+c	net/minecraft/unmapped/C_70803938	net/minecraft/client/render/model/ModelCache	
+	f	Lnet/minecraft/unmapped/C_81384252;	f_50062074	humanoid	
+	f	Lnet/minecraft/unmapped/C_81384252;	f_90227456	humanoidArmor	
+	f	Lnet/minecraft/unmapped/C_82280655;	f_58208685	creeper	
+	f	Lnet/minecraft/unmapped/C_79816116;	f_53155039	skeleton	
+	f	Lnet/minecraft/unmapped/C_86331235;	f_22553019	zombie	
+	f	Lnet/minecraft/unmapped/C_13732860;	f_04466524	pig	
 	m	()V	<init>	<init>	
-	m	(Ljava/lang/String;)Lcom/mojang/minecraft/unmapped/C_36076665;	m_31418411	get	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_36076665;	m_98926962	get	
 		p	1		id	
-c	com/mojang/minecraft/unmapped/C_49004282
-	m	(Lcom/mojang/minecraft/level/Level;)V	m_35280409		m_35280409
-		p	1			p_1
-c	com/mojang/minecraft/unmapped/C_82920792
-	m	(Ljava/awt/image/BufferedImage;)I	m_16489160	load	
-		p	1		image	
 c	com/mojang/minecraft/item/Sign
 	f	J	serialVersionUID	serialVersionUID	
-	f	Lcom/mojang/minecraft/unmapped/C_23014920;	font		font
+	f	Lnet/minecraft/unmapped/C_23014920;	font		font
 	m	(Lcom/mojang/minecraft/level/Level;FFFF)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
 		p	5		p_5	
-	m	(Lcom/mojang/minecraft/Minecraft;FFFF)V	<init>		<init>
+	m	(Lnet/minecraft/client/Minecraft;FFFF)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -243,10 +340,100 @@ c	com/mojang/minecraft/item/TakeItemAnim		com/mojang/minecraft/item/TakeItemAnim
 		p	2			p_2
 		p	3			p_3
 	m	()V	tick		tick
-	m	(Lcom/mojang/minecraft/unmapped/C_82920792;F)V	render$2a8c5a		render$2a8c5a
+	m	(Lnet/minecraft/unmapped/C_82920792;F)V	render$2a8c5a		render$2a8c5a
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_83886766		com/mojang/minecraft/unmapped/C_83886766
+c	net/minecraft/unmapped/C_12184306		net/minecraft/world/EntityTracker
+	f	I	f_48074324		f_48074324
+	f	I	f_40802079		f_40802079
+	f	I	f_74977237		f_74977237
+	f	Lnet/minecraft/unmapped/C_12184306$C_43748714;	f_17183808		f_17183808
+	f	Lnet/minecraft/unmapped/C_12184306$C_43748714;	f_31127385		f_31127385
+	f	[Ljava/util/List;	f_11382608		entitiesByBlock
+	f	Ljava/util/List;	f_56488415		entities
+	f	Ljava/util/List;	f_70168008		entitiesInArea
+	m	(III)V	<init>		<init>
+		p	1			sizeX
+		p	2			sizeY
+		p	3			sizeZ
+	m	(Lcom/mojang/minecraft/Entity;FFFFFFLjava/util/List;)Ljava/util/List;	m_11311088		m_11311088
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
+		p	4			p_4
+		p	5			p_5
+		p	6			p_6
+		p	7			p_7
+		p	8			p_8
+	m	(Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List;	m_06641650		m_06641650
+		p	1			p_1
+		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_01716682;Lnet/minecraft/unmapped/C_82920792;F)V	m_52556842		m_52556842
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
+c	net/minecraft/unmapped/C_12184306$15180163		15180163
+c	net/minecraft/unmapped/C_12184306$C_43748714		WorldSection
+	f	I	f_50714453		f_50714453
+	f	I	f_98478662		f_98478662
+	f	I	f_19942195		f_19942195
+	f	Lnet/minecraft/unmapped/C_12184306;	f_68086702		f_68086702
+	m	(Lnet/minecraft/unmapped/C_12184306;)V	<init>		<init>
+		p	1			p_1
+	m	(FFF)Lnet/minecraft/unmapped/C_12184306$C_43748714;	m_20041454		m_20041454
+		p	1			p_1
+		p	2			p_2
+		p	3			p_3
+	m	(Lcom/mojang/minecraft/Entity;)V	m_61820430		m_61820430
+		p	1			p_1
+	m	(Lcom/mojang/minecraft/Entity;)V	m_55779221		m_55779221
+		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_12184306;Lnet/minecraft/unmapped/C_12184306$15180163;)V	<init>		<init>
+		p	1			p_1
+		p	2			p_2
+c	net/minecraft/unmapped/C_27924344		net/minecraft/unmapped/C_27924344
+	f	I	f_20103418		f_20103418
+	m	()V	<init>		<init>
+	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/mob/Mob;)V	m_30833826		m_30833826
+		p	1			p_1
+		p	2			p_2
+	m	()V	m_60084186		m_60084186
+c	net/minecraft/unmapped/C_53776685		net/minecraft/unmapped/C_53776685
+	m	()V	<init>		<init>
+	m	()V	m_53240402		m_53240402
+c	net/minecraft/unmapped/C_80373897		net/minecraft/unmapped/C_80373897
+	f	[I	f_37387144		f_37387144
+	f	[I	f_56614395		f_56614395
+	f	[I	f_56438668		f_56438668
+	f	I	f_49444814		f_49444814
+	m	()V	<init>		<init>
+	m	()I	m_46979893		m_46979893
+	m	(I)I	m_37008451		m_37008451
+		p	1			p_1
+	m	(I)V	m_94580838		m_94580838
+		p	1			p_1
+	m	(I)Z	m_51924494		m_51924494
+		p	1			p_1
+c	net/minecraft/unmapped/C_83886766		net/minecraft/unmapped/C_83886766
 	m	()V	<init>		<init>
 	m	(F)V	<init>		<init>
 		p	1			p_1
+c	net/minecraft/unmapped/C_87540878		net/minecraft/unmapped/C_87540878
+	f	Ljava/util/Random;	f_45524715		f_45524715
+	f	F	f_85281942		f_85281942
+	f	F	f_45781246		f_45781246
+	f	F	f_46271057		f_46271057
+	f	Lcom/mojang/minecraft/level/Level;	f_10083893		f_10083893
+	f	Lcom/mojang/minecraft/mob/Mob;	f_46776821		f_46776821
+	f	Z	f_07734723		f_07734723
+	f	I	f_04457261		f_04457261
+	m	()V	<init>		<init>
+	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/mob/Mob;)V	m_30833826		m_30833826
+		p	1			p_1
+		p	2			p_2
+	m	()V	m_53240402		m_53240402
+	m	(Lcom/mojang/minecraft/Entity;)V	m_21734090		m_21734090
+		p	1			p_1
+	m	(Lcom/mojang/minecraft/Entity;)V	m_38189334		m_38189334
+		p	1			p_1
+	m	()V	m_60084186		m_60084186
