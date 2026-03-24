@@ -5245,9 +5245,9 @@ c	net/minecraft/unmapped/C_80821451
 c	net/minecraft/unmapped/C_80955943	net/minecraft/client/gui/screen/ResourcePacksScreen	
 	f	Lnet/minecraft/unmapped/C_85740840;	f_12761844	parent	
 	f	Ljava/util/List;	f_32006177	availablePacks	
-	f	Ljava/util/List;	f_45146303	appliedPacks	
+	f	Ljava/util/List;	f_45146303	selectedPacks	
 	f	Lnet/minecraft/unmapped/C_02188442;	f_62225587	availablePacksWidget	
-	f	Lnet/minecraft/unmapped/C_84456216;	f_04400130	appliedPacksWidget	
+	f	Lnet/minecraft/unmapped/C_84456216;	f_04400130	selectedPacksWidget	
 	f	Z	f_27018994	changed	
 	m	()V	m_41805697	m_41805697	
 	m	(Lnet/minecraft/unmapped/C_85125467;)V	m_30778170	m_30778170	
@@ -5266,12 +5266,12 @@ c	net/minecraft/unmapped/C_80955943	net/minecraft/client/gui/screen/ResourcePack
 		p	3		p_3	
 	m	(Lnet/minecraft/unmapped/C_85740840;)V	<init>	<init>	
 		p	1		parent	
-	m	(Lnet/minecraft/unmapped/C_81076805;)Z	m_60887513	isApplied	
+	m	(Lnet/minecraft/unmapped/C_81076805;)Z	m_60887513	isSelected	
 		p	1		pack	
 	m	(Lnet/minecraft/unmapped/C_81076805;)Ljava/util/List;	m_20463292	getSiblingPacks	
 		p	1		pack	
 	m	()Ljava/util/List;	m_58993800	getAvailablePacks	
-	m	()Ljava/util/List;	m_29464347	getAppliedPacks	
+	m	()Ljava/util/List;	m_29464347	getSelectedPacks	
 	m	()V	m_29921564	m_29921564	
 	m	()V	m_22148179	setChanged	
 c	net/minecraft/unmapped/C_81227335
@@ -13324,7 +13324,7 @@ c	net/minecraft/unmapped/C_02398648	net/minecraft/client/resource/pack/ResourceP
 	f	Lnet/minecraft/unmapped/C_81137139;	f_03305748	defaultPack	
 	f	Lnet/minecraft/unmapped/C_97766904;	f_97268967	metadataSerializers	
 	f	Ljava/util/List;	f_12187650	availablePacks	
-	f	Ljava/util/List;	f_99546701	appliedPacks	
+	f	Ljava/util/List;	f_99546701	selectedPacks	
 	f	Ljava/io/File;	f_75460354	serverPackDir	
 	f	Lnet/minecraft/unmapped/C_81137139;	f_08732984	serverPack	
 	f	Lorg/apache/logging/log4j/Logger;	f_29636954	LOGGER	
@@ -13333,10 +13333,10 @@ c	net/minecraft/unmapped/C_02398648	net/minecraft/client/resource/pack/ResourceP
 	f	Ljava/util/regex/Pattern;	f_54657068	SHA1	
 	f	Lnet/minecraft/unmapped/C_22168528;	f_19323576	UNKNOWN_PACK_ICON_ID	
 	m	()V	m_03988101	mkdirs	
-	m	()Ljava/util/List;	m_30972366	collectAvailablePackFiles	
-	m	()V	m_62580839	load	
-	m	()Ljava/util/List;	m_08797075	getAvailable	
-	m	()Ljava/util/List;	m_23972443	getApplied	
+	m	()Ljava/util/List;	m_30972366	discoverAvailablePacks	
+	m	()V	m_62580839	reload	
+	m	()Ljava/util/List;	m_08797075	getAvailablePacks	
+	m	()Ljava/util/List;	m_23972443	getSelectedPacks	
 	m	()Ljava/io/File;	m_08141491	getDirectory	
 	m	()V	<clinit>	<clinit>	
 	m	(Ljava/io/File;Ljava/io/File;Lnet/minecraft/unmapped/C_81137139;Lnet/minecraft/unmapped/C_97766904;Lnet/minecraft/unmapped/C_76792751;)V	<init>	<init>	
@@ -13345,9 +13345,9 @@ c	net/minecraft/unmapped/C_02398648	net/minecraft/client/resource/pack/ResourceP
 		p	3		defaultPack	
 		p	4		metadataSerializers	
 		p	5		options	
-	m	(Ljava/util/List;)V	m_59621098	apply	
+	m	(Ljava/util/List;)V	m_59621098	setSelectedPacks	
 		p	1		packs	
-	m	()Lnet/minecraft/unmapped/C_81137139;	m_62006757	getServerPack	
+	m	()Lnet/minecraft/unmapped/C_81137139;	m_62006757	getServerResourcePack	
 	m	()V	m_81003102	removeServerPack	
 	m	(Ljava/lang/String;Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture;	m_91194342	downloadServerPack	
 		p	1		url	
@@ -13355,7 +13355,7 @@ c	net/minecraft/unmapped/C_02398648	net/minecraft/client/resource/pack/ResourceP
 	m	(Ljava/io/File;)Lcom/google/common/util/concurrent/ListenableFuture;	m_38583404	applyServerPack	
 		p	1		file	
 	m	()V	m_19286003	clearOldDownloads	
-	m	()Lnet/minecraft/unmapped/C_02398648$C_53553981;	m_29504122	getServerResourcePack	
+	m	()Lnet/minecraft/unmapped/C_02398648$C_53553981;	m_29504122	getServerPack	
 	m	()Ljava/util/Map;	m_01099258	getDownloadHeaders	
 	m	(Ljava/lang/String;Ljava/io/File;)Z	m_58869196	checkHash	
 		p	1		hash	
@@ -13367,7 +13367,7 @@ c	net/minecraft/unmapped/C_02398648	net/minecraft/client/resource/pack/ResourceP
 		p	1		p_1	
 		p	2		p_2	
 	m	()Lorg/apache/logging/log4j/Logger;	m_82410568	m_82410568	
-	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_81137139;	m_06307954	loadPack	
+	m	(Ljava/io/File;)Lnet/minecraft/unmapped/C_81137139;	m_06307954	constructPack	
 		p	1		file	
 	m	(Lnet/minecraft/unmapped/C_02398648;Ljava/io/File;)Lnet/minecraft/unmapped/C_81137139;	m_00292565	m_00292565	
 		p	0		p_0	
@@ -14102,7 +14102,7 @@ c	net/minecraft/unmapped/C_81076805	net/minecraft/client/gui/screen/resourcepack
 		p	5		p_5	
 		p	6		p_6	
 	m	()I	m_17363313	getFormat	
-	m	()Z	m_42427629	m_42427629	
+	m	()Z	m_42427629	isAlwaysOnTop	
 	m	(IIIIIIIZF)V	m_79286027	m_79286027	
 		p	1		p_1	
 		p	2		p_2	
@@ -14131,7 +14131,7 @@ c	net/minecraft/unmapped/C_82203826	net/minecraft/client/gui/screen/menu/StatsLi
 	f	[Ljava/lang/String;	f_49924005	PROGRESS_BAR_STAGES	
 	m	()V	<clinit>	<clinit>	
 	m	()V	m_43339247	createGui	
-c	net/minecraft/unmapped/C_84456216	net/minecraft/client/gui/screen/resourcepack/AppliedResourcePackListWidget	
+c	net/minecraft/unmapped/C_84456216	net/minecraft/client/gui/screen/resourcepack/SelectedResourcePackListWidget	
 	m	(Lnet/minecraft/client/Minecraft;IILjava/util/List;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	

@@ -3820,7 +3820,7 @@ c	net/minecraft/unmapped/C_02398648		net/minecraft/client/resource/pack/Resource
 	f	Lnet/minecraft/unmapped/C_81137139;	f_08732984		serverPack
 	f	Z	f_18457299		awaitingServerResourcePack
 	f	Ljava/util/List;	f_12187650		availablePacks
-	f	Ljava/util/List;	f_99546701		appliedPacks
+	f	Ljava/util/List;	f_99546701		selectedPacks
 	m	(Ljava/io/File;Ljava/io/File;Lnet/minecraft/unmapped/C_81137139;Lnet/minecraft/unmapped/C_97766904;Lnet/minecraft/unmapped/C_76792751;)V	<init>		<init>
 		p	1			dir
 		p	2			serverPackDir
@@ -3828,11 +3828,11 @@ c	net/minecraft/unmapped/C_02398648		net/minecraft/client/resource/pack/Resource
 		p	4			metadataSerializers
 		p	5			options
 	m	()V	m_03988101		mkdirs
-	m	()Ljava/util/List;	m_30972366		collectAvailablePackFiles
-	m	()V	m_62580839		load
-	m	()Ljava/util/List;	m_08797075		getAvailable
-	m	()Ljava/util/List;	m_23972443		getApplied
-	m	(Ljava/util/List;)V	m_59621098		apply
+	m	()Ljava/util/List;	m_30972366		discoverAvailablePacks
+	m	()V	m_62580839		reload
+	m	()Ljava/util/List;	m_08797075		getAvailablePacks
+	m	()Ljava/util/List;	m_23972443		getSelectedPacks
+	m	(Ljava/util/List;)V	m_59621098		setSelectedPacks
 		p	1			packs
 	m	()Ljava/io/File;	m_08141491		getDirectory
 	m	(Ljava/lang/String;)V	m_98404718		downloadServerPack
@@ -3840,7 +3840,7 @@ c	net/minecraft/unmapped/C_02398648		net/minecraft/client/resource/pack/Resource
 	m	(Ljava/lang/String;Ljava/io/File;)V	m_55366227		downloadServerPack
 		p	1			url
 		p	2			dst
-	m	()Lnet/minecraft/unmapped/C_81137139;	m_62006757		getServerPack
+	m	()Lnet/minecraft/unmapped/C_81137139;	m_62006757		getServerResourcePack
 	m	()V	m_81003102		removeServerPack
 	m	(Lnet/minecraft/unmapped/C_02398648;)Z	m_49445432		isSet
 		p	0			resourcePackLoader
@@ -14976,18 +14976,18 @@ c	net/minecraft/unmapped/C_80955943		net/minecraft/client/gui/screen/ResourcePac
 	f	Lorg/apache/logging/log4j/Logger;	f_32930697		LOGGER
 	f	Lnet/minecraft/unmapped/C_85740840;	f_12761844		parent
 	f	Ljava/util/List;	f_32006177		availablePacks
-	f	Ljava/util/List;	f_45146303		appliedPacks
+	f	Ljava/util/List;	f_45146303		selectedPacks
 	f	Lnet/minecraft/unmapped/C_02188442;	f_62225587		availablePacksWidget
-	f	Lnet/minecraft/unmapped/C_84456216;	f_04400130		appliedPacksWidget
+	f	Lnet/minecraft/unmapped/C_84456216;	f_04400130		selectedPacksWidget
 	m	(Lnet/minecraft/unmapped/C_85740840;)V	<init>		<init>
 		p	1			parent
 	m	()V	m_41805697		m_41805697
-	m	(Lnet/minecraft/unmapped/C_81076805;)Z	m_60887513		isApplied
+	m	(Lnet/minecraft/unmapped/C_81076805;)Z	m_60887513		isSelected
 		p	1			pack
 	m	(Lnet/minecraft/unmapped/C_81076805;)Ljava/util/List;	m_20463292		getSiblingPacks
 		p	1			pack
 	m	()Ljava/util/List;	m_58993800		getAvailablePacks
-	m	()Ljava/util/List;	m_29464347		getAppliedPacks
+	m	()Ljava/util/List;	m_29464347		getSelectedPacks
 	m	(Lnet/minecraft/unmapped/C_85125467;)V	m_30778170		m_30778170
 		p	1			p_1
 	m	(III)V	m_23755539		m_23755539
@@ -15875,7 +15875,7 @@ c	net/minecraft/unmapped/C_84401788$64990657		64990657
 		p	1			p_1
 		p	2			p_2
 	m	()V	m_66095279		m_66095279
-c	net/minecraft/unmapped/C_84456216		net/minecraft/client/gui/screen/resourcepack/AppliedResourcePackListWidget
+c	net/minecraft/unmapped/C_84456216		net/minecraft/client/gui/screen/resourcepack/SelectedResourcePackListWidget
 	m	(Lnet/minecraft/client/Minecraft;IILjava/util/List;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
