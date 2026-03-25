@@ -561,14 +561,14 @@ c	net/minecraft/unmapped/C_21461336
 		p	3		p_3	
 		p	4		p_4	
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_31453009;)Z	m_07818064		canSpawn
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			reason
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_31453009;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_75624064;	m_71460703		initialize
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			world
+		p	2			difficulty
+		p	3			reason
+		p	4			data
+		p	5			nbt
 c	net/minecraft/unmapped/C_44722841
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_75624064;	m_71460703	m_71460703	
 		p	1		p_1	
@@ -590,9 +590,9 @@ c	net/minecraft/unmapped/C_05113611
 	m	(Ljava/lang/Runnable;)Ljava/lang/Runnable;	m_97575049		wrapTask
 		p	1			task
 c	net/minecraft/unmapped/C_15815210
-	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_76113457;)Lnet/minecraft/unmapped/C_05357615;	m_97764628		m_97764628
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_76113457;)Lnet/minecraft/unmapped/C_05357615;	m_97764628		getCollisionShape
+		p	1			world
+		p	2			pos
 		p	3			p_3
 c	net/minecraft/unmapped/C_46421858
 	m	(Lnet/minecraft/unmapped/C_49764715;Z)Z	m_07818064	m_07818064	
@@ -2015,7 +2015,7 @@ c	net/minecraft/unmapped/C_25705189		net/minecraft/block/ScaffoldingBlock
 	m	(Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_41470581;	m_41172137		m_41172137
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_31453009		net/minecraft/unmapped/C_31453009
+c	net/minecraft/unmapped/C_31453009		net/minecraft/entity/SpawnReason
 	f	Lnet/minecraft/unmapped/C_31453009;	f_82951292		f_82951292
 	f	Lnet/minecraft/unmapped/C_31453009;	f_23159281		f_23159281
 	f	Lnet/minecraft/unmapped/C_31453009;	f_52885042		f_52885042
@@ -2074,10 +2074,10 @@ c	net/minecraft/unmapped/C_76113457		net/minecraft/unmapped/C_76113457
 		p	1			p_1
 		p	2			p_2
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_83927892		net/minecraft/unmapped/C_83927892
-	f	Lnet/minecraft/unmapped/C_32594356;	f_29283287		f_29283287
-	f	Z	f_54051829		f_54051829
-	f	Z	f_05199531		f_05199531
+c	net/minecraft/unmapped/C_83927892		net/minecraft/entity/living/mob/monster/PatrolEntity
+	f	Lnet/minecraft/unmapped/C_32594356;	f_29283287		patrolTarget
+	f	Z	f_54051829		patrolLeader
+	f	Z	f_05199531		patrolling
 	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -2094,20 +2094,20 @@ c	net/minecraft/unmapped/C_83927892		net/minecraft/unmapped/C_83927892
 		p	4			p_4
 		p	5			p_5
 	m	()Z	m_78239271		m_78239271
-	m	(Lnet/minecraft/unmapped/C_32594356;)V	m_84937317		m_84937317
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_32594356;	m_07892902		m_07892902
-	m	()Z	m_21469609		m_21469609
-	m	(Z)V	m_03458285		m_03458285
-		p	1			p_1
-	m	()Z	m_02004831		m_02004831
+	m	(Lnet/minecraft/unmapped/C_32594356;)V	m_84937317		setPatrolTarget
+		p	1			pos
+	m	()Lnet/minecraft/unmapped/C_32594356;	m_07892902		getPatrolTarget
+	m	()Z	m_21469609		hasPatrolTarget
+	m	(Z)V	m_03458285		setPatrolLeader
+		p	1			value
+	m	()Z	m_02004831		isPatrolLeader
 	m	()V	m_42342149		m_42342149
 	m	()Lnet/minecraft/unmapped/C_88708284;	m_96820195		m_96820195
 	m	(Lnet/minecraft/unmapped/C_83927892;Lnet/minecraft/unmapped/C_32594356;)V	m_13273229		m_13273229
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/unmapped/C_83927892$C_97246172		C_97246172
-	f	Lnet/minecraft/unmapped/C_83927892;	f_92459570		f_92459570
+c	net/minecraft/unmapped/C_83927892$C_97246172		PatrolGoal
+	f	Lnet/minecraft/unmapped/C_83927892;	f_92459570		actor
 	f	D	f_28202251		f_28202251
 	m	(Lnet/minecraft/unmapped/C_83927892;D)V	<init>		<init>
 		p	1			p_1
@@ -2116,7 +2116,7 @@ c	net/minecraft/unmapped/C_83927892$C_97246172		C_97246172
 	m	()V	m_38932409		m_38932409
 	m	()V	m_77320506		m_77320506
 	m	()V	m_58078449		m_58078449
-	m	()V	m_09422960		m_09422960
+	m	()V	m_09422960		wander
 	m	(Lnet/minecraft/unmapped/C_45915938;)Z	m_18526775		m_18526775
 		p	0			p_0
 c	net/minecraft/unmapped/C_91054669		net/minecraft/unmapped/C_91054669

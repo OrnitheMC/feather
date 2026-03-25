@@ -446,7 +446,7 @@ c	net/minecraft/unmapped/C_64041439
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	()Lnet/minecraft/unmapped/C_74621486;	m_29372137		m_29372137
+	m	()Lnet/minecraft/unmapped/C_74621486;	m_29372137		getProfiler
 c	net/minecraft/unmapped/C_70668269
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_08489468;Lnet/minecraft/unmapped/C_24388424;Lnet/minecraft/unmapped/C_64676926;Lnet/minecraft/unmapped/C_10632057;Lnet/minecraft/unmapped/C_27154081;)V	<init>	<init>	
 		p	1		server	
@@ -4480,8 +4480,8 @@ c	net/minecraft/unmapped/C_27243214		net/minecraft/unmapped/C_27243214
 		p	7			p_7
 		p	8			p_8
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_29808977		net/minecraft/unmapped/C_29808977
-	f	Lnet/minecraft/unmapped/C_29808977;	f_31927116		f_31927116
+c	net/minecraft/unmapped/C_29808977		net/minecraft/util/profiler/DummyProfilerResult
+	f	Lnet/minecraft/unmapped/C_29808977;	f_31927116		INSTANCE
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)Ljava/util/List;	m_83593755		m_83593755
 		p	1			p_1
@@ -4689,13 +4689,13 @@ c	net/minecraft/unmapped/C_37371427		net/minecraft/block/BarrelBlock
 	m	(Lnet/minecraft/unmapped/C_46212859;)Lnet/minecraft/unmapped/C_15815210;	m_05287994		m_05287994
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_39154336		net/minecraft/unmapped/C_39154336
-	f	Lorg/apache/logging/log4j/Logger;	f_28932394		f_28932394
-	f	Ljava/util/Map;	f_76652646		f_76652646
-	f	J	f_17567422		f_17567422
-	f	I	f_01271666		f_01271666
-	f	J	f_86865331		f_86865331
-	f	I	f_05638642		f_05638642
+c	net/minecraft/unmapped/C_39154336		net/minecraft/util/profiler/ProfilerResultsImpl
+	f	Lorg/apache/logging/log4j/Logger;	f_28932394		LOGGER
+	f	Ljava/util/Map;	f_76652646		timings
+	f	J	f_17567422		startMicros
+	f	I	f_01271666		startTicks
+	f	J	f_86865331		endMicros
+	f	I	f_05638642		endTicks
 	m	(Ljava/util/Map;JIJI)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -4710,14 +4710,14 @@ c	net/minecraft/unmapped/C_39154336		net/minecraft/unmapped/C_39154336
 	m	()I	m_44448188		m_44448188
 	m	(Ljava/io/File;)Z	m_78896463		m_78896463
 		p	1			p_1
-	m	(JI)Ljava/lang/String;	m_83035421		m_83035421
-		p	1			p_1
-		p	3			p_3
-	m	(ILjava/lang/String;Ljava/lang/StringBuilder;)V	m_50257404		m_50257404
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()Ljava/lang/String;	m_20021401		m_20021401
+	m	(JI)Ljava/lang/String;	m_83035421		writeToStringWithHeader
+		p	1			micros
+		p	3			ticks
+	m	(ILjava/lang/String;Ljava/lang/StringBuilder;)V	m_50257404		serialize
+		p	1			depth
+		p	2			path
+		p	3			builder
+	m	()Ljava/lang/String;	m_20021401		getWittyComment
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_42894060		net/minecraft/block/entity/BarrelBlockEntity
 	f	Lnet/minecraft/unmapped/C_50196446;	f_47965485		inventory
@@ -4845,8 +4845,8 @@ c	net/minecraft/unmapped/C_45492595$C_23165747		C_23165747
 		p	4			p_4
 		p	5			p_5
 	m	()Z	m_21349728		m_21349728
-c	net/minecraft/unmapped/C_45729948		net/minecraft/unmapped/C_45729948
-	f	Lnet/minecraft/unmapped/C_45729948;	f_29046737		f_29046737
+c	net/minecraft/unmapped/C_45729948		net/minecraft/util/profiler/DummyProfiler
+	f	Lnet/minecraft/unmapped/C_45729948;	f_29046737		INSTANCE
 	m	()V	<init>		<init>
 	m	()V	m_10254355		m_10254355
 	m	()V	m_00790200		m_00790200
@@ -4927,17 +4927,17 @@ c	net/minecraft/unmapped/C_58596497		net/minecraft/unmapped/C_58596497
 		p	2			p_2
 c	net/minecraft/unmapped/C_59659657		net/minecraft/block/entity/LecternBlockEntity
 	m	()V	<init>		<init>
-c	net/minecraft/unmapped/C_63290426		net/minecraft/unmapped/C_63290426
-	m	(Ljava/lang/String;)Ljava/util/List;	m_83593755		m_83593755
-		p	1			p_1
-	m	(Ljava/io/File;)Z	m_78896463		m_78896463
-		p	1			p_1
-	m	()J	m_35160572		m_35160572
-	m	()I	m_34478304		m_34478304
-	m	()J	m_42939321		m_42939321
-	m	()I	m_44448188		m_44448188
-	m	()J	m_63357556		m_63357556
-	m	()I	m_99509726		m_99509726
+c	net/minecraft/unmapped/C_63290426		net/minecraft/util/profiler/ProfilerResult
+	m	(Ljava/lang/String;)Ljava/util/List;	m_83593755		getDataPoints
+		p	1			path
+	m	(Ljava/io/File;)Z	m_78896463		saveToFile
+		p	1			file
+	m	()J	m_35160572		getStartMicros
+	m	()I	m_34478304		getStartTicks
+	m	()J	m_42939321		getEndMicros
+	m	()I	m_44448188		getEndTicks
+	m	()J	m_63357556		getMicros
+	m	()I	m_99509726		getTicks
 c	net/minecraft/unmapped/C_63455388		com/mojang/blaze3d/platform/WindowOptions
 	f	I	f_57472450		windowWidth
 	f	I	f_06406560		windowHeight
@@ -5004,7 +5004,7 @@ c	net/minecraft/unmapped/C_73237870		net/minecraft/unmapped/C_73237870
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_22168528;)[I	m_91547354		m_91547354
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/unmapped/C_74621486		net/minecraft/unmapped/C_74621486
+c	net/minecraft/unmapped/C_74621486		net/minecraft/util/profiler/Profiler
 	m	()V	m_10254355		start
 	m	()V	m_00790200		stop
 	m	(Ljava/lang/String;)V	m_31706472		push
@@ -5136,19 +5136,19 @@ c	net/minecraft/unmapped/C_85402711		net/minecraft/unmapped/C_85402711
 	m	(Lnet/minecraft/unmapped/C_87542771;Lnet/minecraft/unmapped/C_43616774;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_85689233		net/minecraft/unmapped/C_85689233
+c	net/minecraft/unmapped/C_85689233		net/minecraft/util/profiler/DataPoint
 	f	D	f_72924365		f_72924365
 	f	D	f_35958236		f_35958236
-	f	Ljava/lang/String;	f_40174212		f_40174212
+	f	Ljava/lang/String;	f_40174212		key
 	m	(Ljava/lang/String;DD)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
 	m	(Lnet/minecraft/unmapped/C_85689233;)I	compareTo		compareTo
 		p	1			p_1
-	m	()I	m_63772912		m_63772912
+	m	()I	m_63772912		getColor
 	m	(Ljava/lang/Object;)I	compareTo		compareTo
-		p	1			p_1
+		p	1			other
 c	net/minecraft/unmapped/C_88146380		net/minecraft/unmapped/C_88146380
 	f	Lorg/apache/logging/log4j/Logger;	f_45980805		f_45980805
 	f	Lnet/minecraft/unmapped/C_22168528;	f_87815917		f_87815917
@@ -5174,7 +5174,7 @@ c	net/minecraft/unmapped/C_88999172		net/minecraft/unmapped/C_88999172
 	m	()V	m_14056717		markDirty
 	m	()Lnet/minecraft/unmapped/C_74224721;	m_57584201		getVertexProgram
 	m	()Lnet/minecraft/unmapped/C_74224721;	m_97403744		getFragmentProgram
-c	net/minecraft/unmapped/C_91661102		net/minecraft/unmapped/C_91661102
+c	net/minecraft/unmapped/C_91661102		net/minecraft/util/profiler/ReadableProfiler
 	m	(Ljava/lang/String;)V	m_31706472		m_31706472
 		p	1			p_1
 	m	(Ljava/util/function/Supplier;)V	m_62715249		m_62715249
@@ -5184,7 +5184,7 @@ c	net/minecraft/unmapped/C_91661102		net/minecraft/unmapped/C_91661102
 		p	1			p_1
 	m	(Ljava/util/function/Supplier;)V	m_65535486		m_65535486
 		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_63290426;	m_58755692		m_58755692
+	m	()Lnet/minecraft/unmapped/C_63290426;	m_58755692		getResult
 c	net/minecraft/unmapped/C_92856905		net/minecraft/unmapped/C_92856905
 	f	F	f_58301850		f_58301850
 	f	F	f_90355123		f_90355123
