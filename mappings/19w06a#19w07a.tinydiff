@@ -639,10 +639,10 @@ c	net/minecraft/unmapped/C_17874795
 		p	1			p_1
 c	net/minecraft/unmapped/C_11429682
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_51311762		f_51311762
-	f	Ljava/util/concurrent/ExecutorService;	f_36252375		f_36252375
-	m	()Ljava/util/concurrent/ExecutorService;	m_54604955		m_54604955
-	m	()Ljava/util/concurrent/Executor;	m_82786589		m_82786589
-	m	()V	m_29048105		m_29048105
+	f	Ljava/util/concurrent/ExecutorService;	f_36252375		BACKGROUND_EXECUTOR
+	m	()Ljava/util/concurrent/ExecutorService;	m_54604955		createBackgroundExecutor
+	m	()Ljava/util/concurrent/Executor;	m_82786589		getBackgroundExecutor
+	m	()V	m_29048105		stopBackgroundExecutor
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_78672736		m_78672736
 		p	0			p_0
 		p	1			p_1
@@ -672,66 +672,66 @@ c	net/minecraft/unmapped/C_65241354
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_65593626
-	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393	m_24588393	
+	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393	reload	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572	m_40864572	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;Lnet/minecraft/unmapped/C_74621486;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_24588393		m_24588393
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-c	net/minecraft/unmapped/C_65593626$C_61012229		C_61012229
-	m	(Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;	m_66684198		m_66684198
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;Lnet/minecraft/unmapped/C_74621486;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_24588393		reload
+		p	1			previousStep
+		p	2			manager
+		p	3			prepareProfiler
+		p	4			applyProfiler
+		p	5			prepareExecutor
+		p	6			applyExecutor
+c	net/minecraft/unmapped/C_65593626$C_61012229		ReloadStep
+	m	(Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;	m_66684198		await
+		p	1			t
 c	net/minecraft/unmapped/C_67935091
 	m	(Ljava/util/List;)V	m_96293894	reload	
 		p	1		packs	
-	m	()Lnet/minecraft/unmapped/C_17695012;	m_66218603	m_66218603	
-	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863	m_24284863	
-		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_17695012;	m_24496797	m_24496797	
-	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589	m_73356589	
-		p	1		p_1	
+	m	()Lnet/minecraft/unmapped/C_17695012;	m_66218603	createQueuedReload	
+	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863	createQueuedReloadWithInitialTask	
+		p	1		initialTask	
+	m	()Lnet/minecraft/unmapped/C_17695012;	m_24496797	createFullReload	
+	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589	createFullReloadWithInitialTask	
+		p	1		initialTask	
 	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;	m_96293894		reload
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		m_24284863
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			backgroundExecutor
+		p	2			mainThreadExecutor
+		p	3			packs
+		p	4			initialTask
+	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		createQueuedReload
+		p	1			backgroundExecutor
+		p	2			mainThreadExecutor
+		p	3			initialTask
 c	net/minecraft/unmapped/C_79160967
 	m	(Ljava/util/List;)V	m_96293894	m_96293894	
 		p	1		p_1	
-	m	(Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_19156312	m_19156312	
+	m	(Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_19156312	createReload	
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863	m_24284863	
 		p	1		p_1	
-	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589	m_73356589	
+	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589	createFullReload	
 		p	1		p_1	
 	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;	m_96293894		m_96293894
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_19156312		m_19156312
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_19156312		createReload
+		p	1			backgroundExecutor
+		p	2			mainThreadExecutor
+		p	3			listeners
+		p	4			initialTask
 	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		m_24284863
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589		m_73356589
+	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589		createFullReload
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -1031,15 +1031,15 @@ c	net/minecraft/unmapped/C_13267755
 		p	4			p_4
 c	net/minecraft/unmapped/C_17695012
 	m	()V	m_31076974	m_31076974	
-	m	()Lnet/minecraft/unmapped/C_34489637;	m_26364994	m_26364994	
+	m	()Lnet/minecraft/unmapped/C_34489637;	m_26364994	getStatus	
 	m	()I	m_41260802	m_41260802	
-	m	()I	m_98266169	m_98266169	
-	m	()Ljava/util/concurrent/CompletableFuture;	m_58614058		m_58614058
-	m	()F	m_98266169		m_98266169
-c	net/minecraft/unmapped/C_34489637	net/minecraft/unmapped/C_34489637	
-	f	Lnet/minecraft/unmapped/C_34489637;	f_09270236	f_09270236	
-	f	Lnet/minecraft/unmapped/C_34489637;	f_16421434	f_16421434	
-	f	Lnet/minecraft/unmapped/C_34489637;	f_42234759	f_42234759	
+	m	()I	m_98266169	getProgress	
+	m	()Ljava/util/concurrent/CompletableFuture;	m_58614058		getResult
+	m	()F	m_98266169		getProgress
+c	net/minecraft/unmapped/C_34489637	net/minecraft/resource/manager/ReloadStatus	
+	f	Lnet/minecraft/unmapped/C_34489637;	f_09270236	PREPARING	
+	f	Lnet/minecraft/unmapped/C_34489637;	f_16421434	APPLYING	
+	f	Lnet/minecraft/unmapped/C_34489637;	f_42234759	DONE	
 	f	[Lnet/minecraft/unmapped/C_34489637;	f_08659529	f_08659529	
 	m	()[Lnet/minecraft/unmapped/C_34489637;	values	values	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_34489637;	valueOf	valueOf	
@@ -1057,27 +1057,27 @@ c	net/minecraft/unmapped/C_40459927
 		p	2		p_2	
 		p	3		p_3	
 	m	()V	m_26202771	m_26202771	
-	m	()V	m_05085979	m_05085979	
+	m	()V	m_05085979	finish	
 	m	()Z	m_36943135	m_36943135	
 	m	(Lnet/minecraft/unmapped/C_65593626;Ljava/util/concurrent/CompletableFuture;I)V	m_90364949	m_90364949	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(Ljava/util/List;)V	m_05085979		m_05085979
-		p	1			p_1
+		p	1			resourceManager
+		p	2			listeners
+		p	3			backgroundExecutor
+		p	4			mainThreadExecutor
+		p	5			initialTask
+	m	(Ljava/util/List;)V	m_05085979		finish
+		p	1			results
 	m	(Ljava/util/concurrent/Executor;Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_65593626;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_14338272		m_14338272
 		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			previousStep
+		p	2			manager
+		p	3			listener
+		p	4			prepareExecutor
+		p	5			applyExecutor
 	m	(Lnet/minecraft/unmapped/C_65593626;Lnet/minecraft/unmapped/C_27154081;Lnet/minecraft/unmapped/C_27154081;Ljava/util/concurrent/atomic/AtomicLong;Ljava/util/concurrent/atomic/AtomicLong;Ljava/lang/Void;)Lnet/minecraft/unmapped/C_40459927$C_72749620;	m_72696644		m_72696644
 		p	0			p_0
 		p	1			p_1
@@ -1100,18 +1100,18 @@ c	net/minecraft/unmapped/C_40459927
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_40459927$67423183		67423183
-c	net/minecraft/unmapped/C_40459927$C_72749620		C_72749620
-	f	Ljava/lang/String;	f_32478210		f_32478210
-	f	Lnet/minecraft/unmapped/C_63290426;	f_41133229		f_41133229
-	f	Lnet/minecraft/unmapped/C_63290426;	f_08130150		f_08130150
-	f	Ljava/util/concurrent/atomic/AtomicLong;	f_17765754		f_17765754
-	f	Ljava/util/concurrent/atomic/AtomicLong;	f_54826000		f_54826000
+c	net/minecraft/unmapped/C_40459927$C_72749620		State
+	f	Ljava/lang/String;	f_32478210		name
+	f	Lnet/minecraft/unmapped/C_63290426;	f_41133229		reloadResult
+	f	Lnet/minecraft/unmapped/C_63290426;	f_08130150		applyResult
+	f	Ljava/util/concurrent/atomic/AtomicLong;	f_17765754		reloadTime
+	f	Ljava/util/concurrent/atomic/AtomicLong;	f_54826000		applyTime
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_63290426;Lnet/minecraft/unmapped/C_63290426;Ljava/util/concurrent/atomic/AtomicLong;Ljava/util/concurrent/atomic/AtomicLong;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			name
+		p	2			reloadResult
+		p	3			applyResult
+		p	4			reloadTime
+		p	5			applyTime
 	m	(Lnet/minecraft/unmapped/C_40459927$C_72749620;)Lnet/minecraft/unmapped/C_63290426;	m_55380645		m_55380645
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_40459927$C_72749620;)Lnet/minecraft/unmapped/C_63290426;	m_37650163		m_37650163
@@ -1172,26 +1172,26 @@ c	net/minecraft/unmapped/C_75610005
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94649675		m_94649675
 		p	1			p_1
 c	net/minecraft/unmapped/C_77204483
-	f	[Ljava/util/concurrent/CompletableFuture;	f_54158673	f_54158673	
-	f	Ljava/util/concurrent/CompletableFuture;	f_18656977	f_18656977	
-	f	Ljava/util/List;	f_19845317	f_19845317	
-	f	Lnet/minecraft/unmapped/C_34489637;	f_54435642	f_54435642	
-	f	Z	f_21337317	f_21337317	
+	f	[Ljava/util/concurrent/CompletableFuture;	f_54158673	results	
+	f	Ljava/util/concurrent/CompletableFuture;	f_18656977	initialTask	
+	f	Ljava/util/List;	f_19845317	listeners	
+	f	Lnet/minecraft/unmapped/C_34489637;	f_54435642	status	
+	f	Z	f_21337317	reloadStarted	
 	f	I	f_08498590	f_08498590	
-	f	Z	f_42776647	f_42776647	
-	f	Ljava/util/concurrent/CompletableFuture;	f_44139102		f_44139102
-	f	Ljava/util/concurrent/CompletableFuture;	f_09468671		f_09468671
-	f	Ljava/util/Set;	f_05853916		f_05853916
-	f	I	f_63727840		f_63727840
-	f	I	f_93395906		f_93395906
-	f	I	f_67752813		f_67752813
-	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_92271983		f_92271983
-	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_05231862		f_05231862
+	f	Z	f_42776647	initialTaskDone	
+	f	Ljava/util/concurrent/CompletableFuture;	f_44139102		preparations
+	f	Ljava/util/concurrent/CompletableFuture;	f_09468671		result
+	f	Ljava/util/Set;	f_05853916		preparingListeners
+	f	I	f_63727840		listenerCount
+	f	I	f_93395906		applicationsStarted
+	f	I	f_67752813		applicationsFinished
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_92271983		preparationsStarted
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_05231862		preparationsFinished
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	()V	m_26202771	m_26202771	
+		p	1		resourceManager	
+		p	2		listeners	
+		p	3		initialTask	
+	m	()V	m_26202771	startReload	
 	m	()V	m_31076974	m_31076974	
 	m	()Lnet/minecraft/unmapped/C_34489637;	m_26364994	m_26364994	
 	m	()V	m_05085979	m_05085979	
@@ -1202,40 +1202,40 @@ c	net/minecraft/unmapped/C_77204483
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_77204483;	m_37427665		m_37427665
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_77204483;	m_37427665		of
+		p	0			resourceManager
+		p	1			listeners
+		p	2			backgroundExecutor
+		p	3			mainThreadExecutor
+		p	4			initialTask
 	m	(Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Lnet/minecraft/unmapped/C_52500310;Ljava/util/List;Lnet/minecraft/unmapped/C_77204483$C_12410409;Ljava/util/concurrent/CompletableFuture;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
+		p	1			backgroundExecutor
+		p	2			mainThreadExecutor
+		p	3			resourceManager
+		p	4			listeners
+		p	5			factory
+		p	6			initialTask
 	m	()Ljava/util/concurrent/CompletableFuture;	m_58614058		m_58614058
 	m	()F	m_98266169		m_98266169
 	m	(Ljava/util/List;)Lnet/minecraft/unmapped/C_75765617;	m_72904276		m_72904276
-		p	0			p_0
+		p	0			results
 	m	(Ljava/util/concurrent/Executor;Ljava/lang/Runnable;)V	m_58820388		m_58820388
 		p	1			p_1
-		p	2			p_2
+		p	2			task
 	m	(Ljava/lang/Runnable;)V	m_25318523		m_25318523
 		p	1			p_1
 	m	(Ljava/util/concurrent/Executor;Ljava/lang/Runnable;)V	m_38460666		m_38460666
 		p	1			p_1
-		p	2			p_2
+		p	2			task
 	m	(Ljava/lang/Runnable;)V	m_26712156		m_26712156
 		p	1			p_1
 	m	(Ljava/util/concurrent/Executor;Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_65593626;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_14302460		m_14302460
 		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			previousStep
+		p	2			manager
+		p	3			listener
+		p	4			prepareExecutor
+		p	5			applyExecutor
 	m	(Lnet/minecraft/unmapped/C_77204483;)Ljava/util/Set;	m_14617373		m_14617373
 		p	0			p_0
 c	net/minecraft/unmapped/C_77204483$19230793		19230793
@@ -1256,13 +1256,13 @@ c	net/minecraft/unmapped/C_77204483$19230793		19230793
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_65593626;)V	m_40852077		m_40852077
 		p	1			p_1
-c	net/minecraft/unmapped/C_77204483$C_12410409		C_12410409
-	m	(Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_65593626;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_15782421		m_15782421
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+c	net/minecraft/unmapped/C_77204483$C_12410409		StateFactory
+	m	(Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_65593626;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_15782421		create
+		p	1			previousStep
+		p	2			manager
+		p	3			listener
+		p	4			prepareExecutor
+		p	5			applyExecutor
 c	net/minecraft/unmapped/C_18643940		net/minecraft/client/gui/widget/DoubleOptionSliderWidget
 	f	Lnet/minecraft/unmapped/C_76792751$C_92207510;	f_64364717		option
 	m	(Lnet/minecraft/client/Minecraft;IIILnet/minecraft/unmapped/C_76792751$C_92207510;)V	<init>		<init>

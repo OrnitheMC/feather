@@ -1877,12 +1877,12 @@ c	net/minecraft/unmapped/C_65241354
 c	net/minecraft/unmapped/C_34530577
 	m	()Z	m_71215293	hasMetadata	
 c	net/minecraft/unmapped/C_52500310
-	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_12351820		m_12351820
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_12351820		hasResource
+		p	1			location
 c	net/minecraft/unmapped/C_65593626
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94505059	reload	
 		p	1		resourceManager	
-	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393		m_24588393
+	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393		reload
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572		m_40864572
@@ -1890,16 +1890,16 @@ c	net/minecraft/unmapped/C_65593626
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_67935091
-	m	()Lnet/minecraft/unmapped/C_17695012;	m_66218603		m_66218603
-	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		m_24284863
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_17695012;	m_24496797		m_24496797
-	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589		m_73356589
-		p	1			p_1
+	m	()Lnet/minecraft/unmapped/C_17695012;	m_66218603		createQueuedReload
+	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		createQueuedReloadWithInitialTask
+		p	1			initialTask
+	m	()Lnet/minecraft/unmapped/C_17695012;	m_24496797		createFullReload
+	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589		createFullReloadWithInitialTask
+		p	1			initialTask
 c	net/minecraft/unmapped/C_79160967
 	f	Ljava/util/List;	f_97270563	listeners	
-	f	Ljava/util/List;	f_36205670		f_36205670
-	f	Ljava/util/List;	f_38329839		f_38329839
+	f	Ljava/util/List;	f_36205670		listeners
+	f	Ljava/util/List;	f_38329839		recentlyRegisteredListeners
 	f	Ljava/lang/Thread;	f_53786901		thread
 	m	()V	m_16773464	reloadListeners	
 	m	(Lnet/minecraft/unmapped/C_65303486;)V	<init>	<init>	
@@ -1912,18 +1912,18 @@ c	net/minecraft/unmapped/C_79160967
 		p	2			thread
 	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_12351820		m_12351820
 		p	1			p_1
-	m	(Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_19156312		m_19156312
+	m	(Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_19156312		createReload
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		m_24284863
 		p	1			p_1
-	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589		m_73356589
+	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_73356589		createFullReload
 		p	1			p_1
 c	net/minecraft/unmapped/C_87906107
 	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_12351820		m_12351820
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_78389733		m_78389733
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_78389733		isValidLocation
+		p	1			location
 c	net/minecraft/unmapped/C_00611943
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94505059	m_94505059	
 		p	1		p_1	
@@ -2624,7 +2624,7 @@ c	net/minecraft/unmapped/C_64403476
 	m	()Lnet/minecraft/unmapped/C_64403476;	m_50333666	m_50333666	
 	m	()Lnet/minecraft/unmapped/C_19308569;	m_50333666		m_50333666
 c	net/minecraft/unmapped/C_81285871
-	f	Ljava/util/Map;	f_17153883		f_17153883
+	f	Ljava/util/Map;	f_17153883		DEFAULT_FILESYSTEMS
 	m	(Ljava/util/HashMap;)V	m_94350958		m_94350958
 		p	0			p_0
 c	net/minecraft/unmapped/C_43624480
@@ -3028,11 +3028,11 @@ c	net/minecraft/unmapped/C_13267755		net/minecraft/unmapped/C_13267755
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_45915694$C_87673425;	m_45448306		m_45448306
 		p	0			p_0
 		p	1			p_1
-c	net/minecraft/unmapped/C_17695012		net/minecraft/unmapped/C_17695012
+c	net/minecraft/unmapped/C_17695012		net/minecraft/resource/manager/ResourceReload
 	m	()V	m_31076974		m_31076974
-	m	()Lnet/minecraft/unmapped/C_34489637;	m_26364994		m_26364994
+	m	()Lnet/minecraft/unmapped/C_34489637;	m_26364994		getStatus
 	m	()I	m_41260802		m_41260802
-	m	()I	m_98266169		m_98266169
+	m	()I	m_98266169		getProgress
 c	net/minecraft/unmapped/C_27478844		net/minecraft/unmapped/C_27478844
 	f	Lnet/minecraft/unmapped/C_22168528;	f_73931051		f_73931051
 	f	Lnet/minecraft/unmapped/C_22168528;	f_18295686		f_18295686
@@ -3064,10 +3064,10 @@ c	net/minecraft/unmapped/C_27478844		net/minecraft/unmapped/C_27478844
 	f	Ljava/util/List;	f_26394097		f_26394097
 	f	Ljava/util/List;	f_24838539		f_24838539
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_34489637		net/minecraft/unmapped/C_34489637
-	f	Lnet/minecraft/unmapped/C_34489637;	f_09270236		f_09270236
-	f	Lnet/minecraft/unmapped/C_34489637;	f_16421434		f_16421434
-	f	Lnet/minecraft/unmapped/C_34489637;	f_42234759		f_42234759
+c	net/minecraft/unmapped/C_34489637		net/minecraft/resource/manager/ReloadStatus
+	f	Lnet/minecraft/unmapped/C_34489637;	f_09270236		PREPARING
+	f	Lnet/minecraft/unmapped/C_34489637;	f_16421434		APPLYING
+	f	Lnet/minecraft/unmapped/C_34489637;	f_42234759		DONE
 	f	[Lnet/minecraft/unmapped/C_34489637;	f_08659529		f_08659529
 	m	()[Lnet/minecraft/unmapped/C_34489637;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_34489637;	valueOf		valueOf
@@ -3101,9 +3101,9 @@ c	net/minecraft/unmapped/C_36462708		net/minecraft/unmapped/C_36462708
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_89347655;)V	m_74392424		m_74392424
 		p	1			p_1
-c	net/minecraft/unmapped/C_40459927		net/minecraft/unmapped/C_40459927
-	f	Lorg/apache/logging/log4j/Logger;	f_30918458		f_30918458
-	f	Lcom/google/common/base/Stopwatch;	f_25019106		f_25019106
+c	net/minecraft/unmapped/C_40459927		net/minecraft/resource/manager/ProfiledResourceReload
+	f	Lorg/apache/logging/log4j/Logger;	f_30918458		LOGGER
+	f	Lcom/google/common/base/Stopwatch;	f_25019106		stopwatch
 	f	[Lnet/minecraft/unmapped/C_27154081;	f_36208792		f_36208792
 	f	[Lnet/minecraft/unmapped/C_63290426;	f_26483875		f_26483875
 	f	[Lnet/minecraft/unmapped/C_63290426;	f_92231570		f_92231570
@@ -3112,7 +3112,7 @@ c	net/minecraft/unmapped/C_40459927		net/minecraft/unmapped/C_40459927
 		p	2			p_2
 		p	3			p_3
 	m	()V	m_26202771		m_26202771
-	m	()V	m_05085979		m_05085979
+	m	()V	m_05085979		finish
 	m	()Z	m_36943135		m_36943135
 	m	(Lnet/minecraft/unmapped/C_65593626;Ljava/util/concurrent/CompletableFuture;I)V	m_90364949		m_90364949
 		p	1			p_1
@@ -3251,20 +3251,20 @@ c	net/minecraft/unmapped/C_75610005		net/minecraft/unmapped/C_75610005
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_77204483		net/minecraft/unmapped/C_77204483
-	f	Lnet/minecraft/unmapped/C_52500310;	f_19112275		f_19112275
-	f	[Ljava/util/concurrent/CompletableFuture;	f_54158673		f_54158673
-	f	Ljava/util/concurrent/CompletableFuture;	f_18656977		f_18656977
-	f	Ljava/util/List;	f_19845317		f_19845317
-	f	Lnet/minecraft/unmapped/C_34489637;	f_54435642		f_54435642
-	f	Z	f_21337317		f_21337317
+c	net/minecraft/unmapped/C_77204483		net/minecraft/resource/manager/SimpleResourceReload
+	f	Lnet/minecraft/unmapped/C_52500310;	f_19112275		resourceManager
+	f	[Ljava/util/concurrent/CompletableFuture;	f_54158673		results
+	f	Ljava/util/concurrent/CompletableFuture;	f_18656977		initialTask
+	f	Ljava/util/List;	f_19845317		listeners
+	f	Lnet/minecraft/unmapped/C_34489637;	f_54435642		status
+	f	Z	f_21337317		reloadStarted
 	f	I	f_08498590		f_08498590
-	f	Z	f_42776647		f_42776647
+	f	Z	f_42776647		initialTaskDone
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/List;Ljava/util/concurrent/CompletableFuture;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()V	m_26202771		m_26202771
+		p	1			resourceManager
+		p	2			listeners
+		p	3			initialTask
+	m	()V	m_26202771		startReload
 	m	()V	m_31076974		m_31076974
 	m	()Lnet/minecraft/unmapped/C_34489637;	m_26364994		m_26364994
 	m	()V	m_05085979		m_05085979
