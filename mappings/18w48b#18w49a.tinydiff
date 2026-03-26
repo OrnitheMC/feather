@@ -199,37 +199,37 @@ c	net/minecraft/unmapped/C_95557247
 c	net/minecraft/unmapped/C_08779115
 	f	I	f_85199709	f_85199709	
 	m	()I	m_26140888	m_26140888	
-	m	(Lnet/minecraft/unmapped/C_53420757;)V	m_53871735	m_53871735	
+	m	(Lnet/minecraft/unmapped/C_53420757;)V	m_53871735	removeFromWave	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_64041439;)Lnet/minecraft/unmapped/C_32594356;	m_22539826	m_22539826	
 		p	1		p_1	
-	m	(ILnet/minecraft/unmapped/C_53420757;)V	m_41892822	m_41892822	
+	m	(ILnet/minecraft/unmapped/C_53420757;)V	m_41892822	addToWave	
 		p	1		p_1	
 		p	2		p_2	
-	m	(ILnet/minecraft/unmapped/C_53420757;Z)V	m_99647473	m_99647473	
+	m	(ILnet/minecraft/unmapped/C_53420757;Z)V	m_99647473	addToWave	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lnet/minecraft/unmapped/C_08779115$C_55819438;I)I	m_00070803	m_00070803	
 		p	0		p_0	
 		p	1		p_1	
-	m	()Lnet/minecraft/unmapped/C_64041439;	m_69684036		m_69684036
-	m	()Z	m_28392676		m_28392676
-	m	()Z	m_80207887		m_80207887
+	m	()Lnet/minecraft/unmapped/C_64041439;	m_69684036		getWorld
+	m	()Z	m_28392676		isFinished
+	m	()Z	m_80207887		shouldSpawnMoreGroups
 	m	()V	m_24043138		m_24043138
-	m	(Lnet/minecraft/unmapped/C_53420757;Z)V	m_53871735		m_53871735
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_53420757;Z)V	m_53871735		removeFromWave
+		p	1			entity
+		p	2			removeFromTotalhealth
 	m	(Lnet/minecraft/unmapped/C_64041439;I)Lnet/minecraft/unmapped/C_32594356;	m_22539826		m_22539826
 		p	1			p_1
 		p	2			p_2
-	m	(ILnet/minecraft/unmapped/C_53420757;)Z	m_41892822		m_41892822
+	m	(ILnet/minecraft/unmapped/C_53420757;)Z	m_41892822		addToWave
 		p	1			p_1
 		p	2			p_2
-	m	(ILnet/minecraft/unmapped/C_53420757;Z)Z	m_99647473		m_99647473
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(ILnet/minecraft/unmapped/C_53420757;Z)Z	m_99647473		addToWave
+		p	1			wave
+		p	2			entity
+		p	3			addToTotalHealth
 	m	(Lnet/minecraft/unmapped/C_08779115$C_55819438;Ljava/util/Random;I)I	m_00070803		m_00070803
 		p	0			p_0
 		p	1			p_1
@@ -253,23 +253,23 @@ c	net/minecraft/unmapped/C_21270082
 	m	(Lnet/minecraft/unmapped/C_06666740;Lnet/minecraft/unmapped/C_40996800;)Z	m_51465624	m_51465624	
 		p	0		p_0	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_53420757;Lnet/minecraft/unmapped/C_08779115;)Z	m_99861624		m_99861624
-		p	0			p_0
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_53420757;Lnet/minecraft/unmapped/C_08779115;)Z	m_99861624		isValidRaider
+		p	0			entity
+		p	1			raid
 	m	()Z	m_21159600		m_21159600
 	m	(Lnet/minecraft/unmapped/C_06666740;Lnet/minecraft/unmapped/C_74425583;)Z	m_51465624		m_51465624
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_53420757
-	f	I	f_29823092		f_29823092
+	f	I	f_29823092		outOfRaidTicks
 	m	()V	m_11642923		m_11642923
 	m	()V	m_76327181		m_76327181
 	m	()Lnet/minecraft/unmapped/C_08779115;	m_36995964		m_36995964
 	m	(D)Z	m_78239271		m_78239271
 		p	1			p_1
-	m	()I	m_01928800		m_01928800
-	m	(I)V	m_66663730		m_66663730
-		p	1			p_1
+	m	()I	m_01928800		getOutOfRaidTicks
+	m	(I)V	m_66663730		setOutOfRaidTicks
+		p	1			value
 c	net/minecraft/unmapped/C_75181162
 	m	(Lnet/minecraft/unmapped/C_53420757;)Z	m_75945483	m_75945483	
 		p	0		p_0	
@@ -590,6 +590,3 @@ c	net/minecraft/unmapped/C_70668269
 		p	1		uuid	p_1
 	m	(Lnet/minecraft/unmapped/C_49202226;Lnet/minecraft/unmapped/C_82419528;ZDDDIDDDD)Z	m_79430939
 		p	2		type	options
-c	net/minecraft/unmapped/C_02772894
-	m	(I)Ljava/lang/Object;	m_15378046
-		p	1		id	p_1
