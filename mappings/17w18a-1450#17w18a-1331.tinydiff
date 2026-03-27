@@ -59,7 +59,7 @@ c	net/minecraft/client/Minecraft	net/minecraft/client/Minecraft
 	f	Ljava/lang/String;	f_10347709	gameVersion	
 	f	Lnet/minecraft/unmapped/C_22168528;	f_60134500	MOJANG_LOGO_LOCATION	
 	f	Ljava/io/File;	f_80731241	assetsDir	
-	f	Lnet/minecraft/unmapped/C_97766904;	f_73714805	resourceMetadataSerializerRegistry	
+	f	Lnet/minecraft/unmapped/C_97766904;	f_73714805	resourceMetadataSerializers	
 	f	Lnet/minecraft/unmapped/C_60600521;	f_24859613	defaultResourcePack	
 	f	Lnet/minecraft/unmapped/C_02398648;	f_20964140	resourcePacks	
 	f	Ljava/io/File;	f_43969421	resourcePacksDir	
@@ -13320,18 +13320,18 @@ c	net/minecraft/unmapped/C_95231345
 	m	()Ljava/lang/String;	m_42269114	getFormattedString	
 c	net/minecraft/unmapped/C_02398648	net/minecraft/client/resource/pack/ResourcePacks	
 	f	Ljava/io/FileFilter;	f_60111273	FILE_FILTER	
-	f	Ljava/io/File;	f_30799771	dir	
+	f	Ljava/io/File;	f_30799771	directory	
 	f	Lnet/minecraft/unmapped/C_81137139;	f_03305748	defaultPack	
 	f	Lnet/minecraft/unmapped/C_97766904;	f_97268967	metadataSerializers	
 	f	Ljava/util/List;	f_12187650	availablePacks	
 	f	Ljava/util/List;	f_99546701	selectedPacks	
-	f	Ljava/io/File;	f_75460354	serverPackDir	
+	f	Ljava/io/File;	f_75460354	serverPackDirectory	
 	f	Lnet/minecraft/unmapped/C_81137139;	f_08732984	serverPack	
 	f	Lorg/apache/logging/log4j/Logger;	f_29636954	LOGGER	
 	f	Ljava/util/concurrent/locks/ReentrantLock;	f_36777184	lock	
 	f	Lcom/google/common/util/concurrent/ListenableFuture;	f_58691916	serverPackFuture	
 	f	Ljava/util/regex/Pattern;	f_54657068	SHA1	
-	f	Lnet/minecraft/unmapped/C_22168528;	f_19323576	UNKNOWN_PACK_ICON_ID	
+	f	Lnet/minecraft/unmapped/C_22168528;	f_19323576	UNKNOWN_PACK_ICON_LOCATION	
 	m	()V	m_03988101	mkdirs	
 	m	()Ljava/util/List;	m_30972366	discoverAvailablePacks	
 	m	()V	m_62580839	reload	
@@ -13377,7 +13377,7 @@ c	net/minecraft/unmapped/C_02398648$68040160	68040160
 	m	()V	<init>	<init>	
 	m	(Ljava/io/File;)Z	accept	accept	
 		p	1		file	
-c	net/minecraft/unmapped/C_02398648$C_53553981	Entry	
+c	net/minecraft/unmapped/C_02398648$C_53553981	UnopenedPack	
 	f	Lnet/minecraft/unmapped/C_81137139;	f_25950147	pack	
 	f	Lnet/minecraft/unmapped/C_75889634;	f_11567711	metadata	
 	f	Lnet/minecraft/unmapped/C_22168528;	f_14851712	iconLocation	
@@ -13386,10 +13386,10 @@ c	net/minecraft/unmapped/C_02398648$C_53553981	Entry
 		p	1		p_1	
 		p	2		file	
 	m	()V	m_43595052	load	
-	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_02283218	bindIconTexture	
+	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_02283218	bindIcon	
 		p	1		manager	
 	m	()V	m_85146665	close	
-	m	()Lnet/minecraft/unmapped/C_81137139;	m_76480089	get	
+	m	()Lnet/minecraft/unmapped/C_81137139;	m_76480089	open	
 	m	()Ljava/lang/String;	m_46157105	getName	
 	m	()Ljava/lang/String;	m_29195402	getDescription	
 	m	(Ljava/lang/Object;)Z	equals	equals	
@@ -13615,7 +13615,7 @@ c	net/minecraft/unmapped/C_89162048	net/minecraft/client/resource/metadata/seria
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_97766904	net/minecraft/client/resource/metadata/ResourceMetadataSerializerRegistry	
+c	net/minecraft/unmapped/C_97766904	net/minecraft/client/resource/metadata/ResourceMetadataSerializers	
 	f	Lnet/minecraft/unmapped/C_62513004;	f_85201974	registry	
 	f	Lcom/google/gson/GsonBuilder;	f_48494946	gsonBuilder	
 	f	Lcom/google/gson/Gson;	f_19806630	gson	
@@ -15386,9 +15386,9 @@ c	net/minecraft/unmapped/C_29240176	net/minecraft/client/resource/AssetIndex
 	m	()V	<clinit>	<clinit>	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_22168528;)Ljava/io/File;	m_13948725	getFile	
-		p	1		id	
+		p	1		location	
 	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_65809313	hasFile	
-		p	1		id	
+		p	1		location	
 	m	()Ljava/io/File;	m_62157167	getMetaFile	
 c	net/minecraft/unmapped/C_09211509
 c	net/minecraft/unmapped/C_09211509$98013550
@@ -23563,8 +23563,8 @@ c	net/minecraft/unmapped/C_55632762	net/minecraft/client/resource/pack/LegacyRes
 		p	1		pack	
 	m	(Lnet/minecraft/unmapped/C_22168528;)Ljava/io/InputStream;	m_53481189	m_53481189	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_92843514	fixId	
-		p	1		id	
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_92843514	fixLocation	
+		p	1		location	
 	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_07271527	m_07271527	
 		p	1		p_1	
 	m	()Ljava/util/Set;	m_04072986	m_04072986	
