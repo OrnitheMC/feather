@@ -1208,7 +1208,7 @@ c	net/minecraft/unmapped/C_63704535
 c	net/minecraft/unmapped/C_64041439
 	f	Ljava/util/List;	f_51003174	players	
 	f	Lnet/minecraft/unmapped/C_96951893;	f_83170283	f_83170283	
-	f	Ljava/util/List;	f_62923584		f_62923584
+	f	Ljava/util/List;	f_62923584		blockEntitiesToUnload
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_40996800;	m_78930415	getPlayer	
 		p	1		name	
 	m	()V	m_03149087	tickWeather	
@@ -1275,10 +1275,10 @@ c	net/minecraft/unmapped/C_64041439
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_45841536	m_45841536	
 		p	1		p_1	
-	m	()V	m_20838912		m_20838912
-	m	(Ljava/util/function/Consumer;Lnet/minecraft/unmapped/C_42232651;)V	m_99554621		m_99554621
-		p	1			p_1
-		p	2			p_2
+	m	()V	m_20838912		tickBlockEntities
+	m	(Ljava/util/function/Consumer;Lnet/minecraft/unmapped/C_42232651;)V	m_99554621		guardEntityTick
+		p	1			ticker
+		p	2			entity
 	m	(Lnet/minecraft/unmapped/C_40735137;)Ljava/lang/String;	m_61184767		m_61184767
 		p	0			p_0
 c	net/minecraft/unmapped/C_67645866
@@ -2241,9 +2241,9 @@ c	net/minecraft/unmapped/C_97027864
 		p	1		pos	
 		p	2		creationType	
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_32594356;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			from
+		p	3			to
 	m	(Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_66993538;	m_65544352		m_65544352
 		p	1			p_1
 c	net/minecraft/unmapped/C_97866173
@@ -5582,9 +5582,9 @@ c	net/minecraft/unmapped/C_52910124$93868560
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_66993538
-	m	(II)Z	m_90247949		m_90247949
-		p	1			p_1
-		p	2			p_2
+	m	(II)Z	m_90247949		areSectionsEmpty
+		p	1			minY
+		p	2			maxY
 c	net/minecraft/unmapped/C_08984814
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		p_1	
@@ -5882,52 +5882,52 @@ c	net/minecraft/unmapped/C_79141748$33588255
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_58460165
-	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_82690114;Ljava/util/function/Predicate;)Ljava/util/List;	m_07436051		m_07436051
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	()Ljava/util/List;	m_82008136		m_82008136
-	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_82690114;)Ljava/util/List;	m_64906942		m_64906942
-		p	1			p_1
-		p	2			p_2
-	m	(DDDDLjava/util/function/Predicate;)Lnet/minecraft/unmapped/C_40996800;	m_30458607		m_30458607
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-		p	9			p_9
-	m	(Lnet/minecraft/unmapped/C_42232651;D)Lnet/minecraft/unmapped/C_40996800;	m_82538550		m_82538550
-		p	1			p_1
-		p	2			p_2
-	m	(DDDDZ)Lnet/minecraft/unmapped/C_40996800;	m_60743717		m_60743717
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-		p	9			p_9
-	m	(DDD)Lnet/minecraft/unmapped/C_40996800;	m_19765104		m_19765104
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-	m	(DDDD)Z	m_33281895		m_33281895
-		p	1			p_1
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-	m	(Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;)Lnet/minecraft/unmapped/C_40996800;	m_92979777		m_92979777
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;DDD)Lnet/minecraft/unmapped/C_40996800;	m_36344344		m_36344344
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	5			p_5
-		p	7			p_7
-	m	(Lnet/minecraft/unmapped/C_33411697;DDD)Lnet/minecraft/unmapped/C_40996800;	m_74058616		m_74058616
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
+	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_82690114;Ljava/util/function/Predicate;)Ljava/util/List;	m_07436051		getEntities
+		p	1			type
+		p	2			bounds
+		p	3			filter
+	m	()Ljava/util/List;	m_82008136		getPlayers
+	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_82690114;)Ljava/util/List;	m_64906942		getEntities
+		p	1			type
+		p	2			bounds
+	m	(DDDDLjava/util/function/Predicate;)Lnet/minecraft/unmapped/C_40996800;	m_30458607		getNearestPlayer
+		p	1			x
+		p	3			y
+		p	5			z
+		p	7			range
+		p	9			filter
+	m	(Lnet/minecraft/unmapped/C_42232651;D)Lnet/minecraft/unmapped/C_40996800;	m_82538550		getNearestPlayer
+		p	1			entity
+		p	2			range
+	m	(DDDDZ)Lnet/minecraft/unmapped/C_40996800;	m_60743717		getNearestPlayer
+		p	1			x
+		p	3			y
+		p	5			z
+		p	7			range
+		p	9			excludeCreativeMode
+	m	(DDD)Lnet/minecraft/unmapped/C_40996800;	m_19765104		getNearestPlayer
+		p	1			x
+		p	3			z
+		p	5			range
+	m	(DDDD)Z	m_33281895		isPlayerNearby
+		p	1			x
+		p	3			y
+		p	5			z
+		p	7			range
+	m	(Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;)Lnet/minecraft/unmapped/C_40996800;	m_92979777		getNearestPlayer
+		p	1			conditions
+		p	2			entity
+	m	(Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;DDD)Lnet/minecraft/unmapped/C_40996800;	m_36344344		getNearestPlayer
+		p	1			conditions
+		p	2			entity
+		p	3			x
+		p	5			y
+		p	7			z
+	m	(Lnet/minecraft/unmapped/C_33411697;DDD)Lnet/minecraft/unmapped/C_40996800;	m_74058616		getNearestPlayer
+		p	1			conditions
+		p	2			x
+		p	4			y
+		p	6			z
 	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;DDDLnet/minecraft/unmapped/C_82690114;)Lnet/minecraft/unmapped/C_74425583;	m_51778944		m_51778944
 		p	1			p_1
 		p	2			p_2
@@ -5936,22 +5936,22 @@ c	net/minecraft/unmapped/C_58460165
 		p	6			p_6
 		p	8			p_8
 		p	10			p_10
-	m	(Ljava/util/List;Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;DDD)Lnet/minecraft/unmapped/C_74425583;	m_56704540		m_56704540
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
-	m	(Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;Lnet/minecraft/unmapped/C_82690114;)Ljava/util/List;	m_78124974		m_78124974
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;Lnet/minecraft/unmapped/C_82690114;)Ljava/util/List;	m_20074467		m_20074467
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/util/List;Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;DDD)Lnet/minecraft/unmapped/C_74425583;	m_56704540		getNearestEntity
+		p	1			entities
+		p	2			conditions
+		p	3			entity
+		p	4			x
+		p	6			y
+		p	8			z
+	m	(Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;Lnet/minecraft/unmapped/C_82690114;)Ljava/util/List;	m_78124974		getNearbyPlayers
+		p	1			conditions
+		p	2			entity
+		p	3			bounds
+	m	(Ljava/lang/Class;Lnet/minecraft/unmapped/C_33411697;Lnet/minecraft/unmapped/C_74425583;Lnet/minecraft/unmapped/C_82690114;)Ljava/util/List;	m_20074467		getNearbyEntities
+		p	1			type
+		p	2			conditions
+		p	3			entity
+		p	4			bounds
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_40996800;	m_47394522		getPlayer
 		p	1			name
 	m	(Ljava/util/UUID;)Lnet/minecraft/unmapped/C_40996800;	m_74248949		getPlayer
@@ -5989,14 +5989,14 @@ c	net/minecraft/unmapped/C_22685453
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_23010493
-	m	(Lnet/minecraft/unmapped/C_92766678;III)V	m_52243058	m_52243058	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_92766678;Lnet/minecraft/unmapped/C_57075909;)V	m_52243058		m_52243058
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_92766678;III)V	m_52243058	updateLight	
+		p	1		type	
+		p	2		sectionX	
+		p	3		sectionY	
+		p	4		sectionZ	
+	m	(Lnet/minecraft/unmapped/C_92766678;Lnet/minecraft/unmapped/C_57075909;)V	m_52243058		updateLight
+		p	1			type
+		p	2			chunkSection
 c	net/minecraft/unmapped/C_30229235
 	m	(III)Lnet/minecraft/unmapped/C_66617355;	m_51678358	m_51678358	
 		p	1		p_1	

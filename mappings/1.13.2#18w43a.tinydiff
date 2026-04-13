@@ -190,7 +190,7 @@ c	net/minecraft/unmapped/C_14917579
 	f	I	f_81799598	neighbors	
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_57287384	tasks	
 	f	Ljava/util/function/Supplier;	f_96991779		f_96991779
-	f	Ljava/util/function/Consumer;	f_91239202		f_91239202
+	f	Ljava/util/function/Consumer;	f_91239202		loadCallback
 	f	Z	f_80125038	hasTicked	updateHeightMaps
 	m	(II)Z	m_64564568	isAt	
 		p	1		chunkX	
@@ -346,7 +346,7 @@ c	net/minecraft/unmapped/C_17024976	net/minecraft/block/BookshelfBlock
 		p	4		p_4	
 	m	(Lnet/minecraft/unmapped/C_81592558$C_71630942;)V	<init>	<init>	
 		p	1		p_1	
-c	net/minecraft/unmapped/C_17889813
+c	net/minecraft/unmapped/C_17889813	net/minecraft/server/ChunkMap	net/minecraft/world/light/ThreadedLightEngine
 	f	Ljava/util/List;	f_36783807	players	
 		c	All players in this world.	
 	f	I	f_10031960	chunkViewDistance	
@@ -554,28 +554,28 @@ c	net/minecraft/unmapped/C_25501528
 		p	2		chunkZ	
 	m	(Lnet/minecraft/unmapped/C_70668269;ZZZ)I	m_95125644	tick	
 		p	1		world	
-		p	2		spawnAnimals	
-		p	3		spawnMonsters	
+		p	2		spawnMonsters	
+		p	3		spawnAnimals	
 		p	4		spawnRareMobs	
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_70943525;Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_14917579;Lnet/minecraft/unmapped/C_32594356;)V	m_95125644		tick
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_68896930;Lnet/minecraft/unmapped/C_70943525;Ljava/util/Random;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_28105876$C_74918097;	m_74958676		m_74958676
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_68896930;Lnet/minecraft/unmapped/C_70943525;Lnet/minecraft/unmapped/C_28105876$C_74918097;Lnet/minecraft/unmapped/C_32594356;)Z	m_07221808		m_07221808
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	0			category
+		p	1			world
+		p	2			chunk
+		p	3			pos
+	m	(Lnet/minecraft/unmapped/C_68896930;Lnet/minecraft/unmapped/C_70943525;Ljava/util/Random;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_28105876$C_74918097;	m_74958676		pickSpawnEntry
+		p	0			generator
+		p	1			category
+		p	2			random
+		p	3			pos
+	m	(Lnet/minecraft/unmapped/C_68896930;Lnet/minecraft/unmapped/C_70943525;Lnet/minecraft/unmapped/C_28105876$C_74918097;Lnet/minecraft/unmapped/C_32594356;)Z	m_07221808		isValidSpawnEntry
+		p	0			generator
+		p	1			category
+		p	2			entry
+		p	3			pos
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_14917579;)Lnet/minecraft/unmapped/C_32594356;	m_85855314		getRandomPosInChunk
-		p	0			p_0
-		p	1			p_1
+		p	0			world
+		p	1			chunk
 c	net/minecraft/unmapped/C_27018031
 	f	Lnet/minecraft/unmapped/C_70668269;	f_91324900	world	
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;	f_26576177	chunks	
@@ -590,7 +590,7 @@ c	net/minecraft/unmapped/C_27018031
 		c	The main event loop that is running this chunk cache.	
 	f	I	f_61101671		f_61101671
 	f	I	f_31875654		f_31875654
-	f	[Lnet/minecraft/unmapped/C_40221722;	f_04831459		f_04831459
+	f	[Lnet/minecraft/unmapped/C_40221722;	f_04831459		CHUNK_STATUSES
 	f	Ljava/util/function/BooleanSupplier;	f_89129074		f_89129074
 	f	Lnet/minecraft/unmapped/C_27018031$C_58751600;	f_08976720		f_08976720
 	f	Lnet/minecraft/unmapped/C_64041439;	f_91324900		world
@@ -601,18 +601,18 @@ c	net/minecraft/unmapped/C_27018031
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;	f_26576177		chunks
 	f	Z	f_08959423		f_08959423
 	f	I	f_26066649		f_26066649
-	f	J	f_86752768		f_86752768
+	f	J	f_86752768		lastInhabitedUpdate
 	f	Ljava/util/concurrent/ExecutorService;	f_36363284		f_36363284
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_43638814		f_43638814
 	f	Ljava/util/List;	f_72340793		f_72340793
 	f	I	f_90434733		f_90434733
-	f	Lnet/minecraft/unmapped/C_17889813;	f_30559579		f_30559579
+	f	Lnet/minecraft/unmapped/C_17889813;	f_30559579		lightEngine
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_67286209		f_67286209
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_06553450		f_06553450
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_77075628		f_77075628
 	f	I	f_17809605		f_17809605
-	f	Z	f_83678066		f_83678066
-	f	Z	f_11324694		f_11324694
+	f	Z	f_83678066		spawnMonsters
+	f	Z	f_11324694		spawnAnimals
 	m	()V	m_85726111	unloadAllChunks	
 		c	Queue all chunks to be unloaded.\nThis will happen the next time this chunk cache is ticked.	
 	m	(Lnet/minecraft/unmapped/C_70943525;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/List;	m_07648116	getSpawnEntries	
@@ -1329,10 +1329,10 @@ c	net/minecraft/unmapped/C_44627882
 	m	(Ljava/util/function/BooleanSupplier;)Z	m_06909447	tick	
 		p	1		hasTimeLeft	
 	m	()V	<init>		<init>
-	m	(IIZ)Lnet/minecraft/unmapped/C_14917579;	m_67323892		getWorldChunk
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(IIZ)Lnet/minecraft/unmapped/C_14917579;	m_67323892		getChunk
+		p	1			chunkX
+		p	2			chunkZ
+		p	3			load
 	m	(II)Lnet/minecraft/unmapped/C_56864221;	m_16648713		m_16648713
 		p	1			p_1
 		p	2			p_2
@@ -1343,18 +1343,18 @@ c	net/minecraft/unmapped/C_44627882
 		p	1			x
 		p	2			z
 		p	3			status
-		p	4			p_4
+		p	4			load
 	m	(Ljava/util/function/BooleanSupplier;)V	m_06909447		tick
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_04050123;	m_42492483		m_42492483
-	m	(ZZ)V	m_31486492		m_31486492
-		p	1			p_1
-		p	2			p_2
+		p	1			hasTimeLeft
+	m	()Lnet/minecraft/unmapped/C_04050123;	m_42492483		getLightEngine
+	m	(ZZ)V	m_31486492		setAllowedMobSpawns
+		p	1			spawnMonsters
+		p	2			spawnAnimals
 	m	(Lnet/minecraft/unmapped/C_97313606;Z)V	m_51642709		m_51642709
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_58065033		m_58065033
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_58065033		isEntityTickingChunk
+		p	1			entity
 c	net/minecraft/unmapped/C_44922783
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;I)V	m_30105172	dropAppleWithChance	
 		c	If leaf block has correct metadata, then drop an apple item with 1/chance probability	
@@ -1646,8 +1646,8 @@ c	net/minecraft/unmapped/C_62858513
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_64041439
-	f	Z	f_81977747	spawnAnimals	
-	f	Z	f_70482496	spawnMonsters	
+	f	Z	f_81977747	spawnMonsters	
+	f	Z	f_70482496	spawnAnimals	
 	f	[I	f_20833771	lightPropagation	
 	m	(IIII)V	m_37012105	onHeightMapChanged	
 		p	1		x	
@@ -1714,8 +1714,8 @@ c	net/minecraft/unmapped/C_64041439
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-	m	(I)Z	m_24420795		m_24420795
-		p	0			p_0
+	m	(I)Z	m_24420795		isOutsideWorldHeight
+		p	0			y
 	m	(IILnet/minecraft/unmapped/C_40221722;)Lnet/minecraft/unmapped/C_66993538;	m_62555072		m_62555072
 		p	1			p_1
 		p	2			p_2
@@ -2457,8 +2457,8 @@ c	net/minecraft/unmapped/C_25923450
 c	net/minecraft/unmapped/C_50240030
 	m	()V	m_69780808	m_69780808	
 c	net/minecraft/unmapped/C_64676926
-	f	Lnet/minecraft/unmapped/C_14861339;	f_27009027		f_27009027
-	m	()Lnet/minecraft/unmapped/C_14861339;	m_40744918		m_40744918
+	f	Lnet/minecraft/unmapped/C_14861339;	f_27009027		scheduledEvents
+	m	()Lnet/minecraft/unmapped/C_14861339;	m_40744918		getScheduledEvents
 c	net/minecraft/unmapped/C_68019318
 	m	()V	m_69780808	m_69780808	
 c	net/minecraft/unmapped/C_75957563
@@ -3222,22 +3222,22 @@ c	net/minecraft/unmapped/C_56057114
 		p	3		z	
 		p	4		state	
 	m	(I)V	<init>		<init>
-		p	1			p_1
+		p	1			offsetY
 	m	(ISSS)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			offsetY
+		p	2			nonAirBlockCount
+		p	3			randomTickingBlockCount
+		p	4			randomTickingFluidCount
 	m	(IIILnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_15815210;	m_30778245		setBlockState
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_04635774;)V	m_29406691		m_29406691
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_04635774;)V	m_66170254		m_66170254
-		p	1			p_1
-	m	()I	m_41053491		m_41053491
+	m	(Lnet/minecraft/unmapped/C_04635774;)V	m_29406691		read
+		p	1			buffer
+	m	(Lnet/minecraft/unmapped/C_04635774;)V	m_66170254		write
+		p	1			buffer
+	m	()I	m_41053491		getSerializedSize
 c	net/minecraft/unmapped/C_67412986
 	m	(ILnet/minecraft/unmapped/C_97075175;)V	m_61715232		m_61715232
 		p	1			p_1
@@ -6238,9 +6238,9 @@ c	net/minecraft/unmapped/C_17033716	net/minecraft/block/BedrockBlock
 	m	(Lnet/minecraft/unmapped/C_81592558$C_71630942;)V	<init>	<init>	
 		p	1		p_1	
 c	net/minecraft/unmapped/C_18361386
-	m	(II)I	m_00047664		m_00047664
-		p	1			p_1
-		p	2			p_2
+	m	(II)I	m_00047664		getAndSet
+		p	1			index
+		p	2			value
 c	net/minecraft/unmapped/C_23074452
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_40735137;Lnet/minecraft/unmapped/C_88708284;)V	m_70532717	m_70532717	
 		p	1		p_1	
@@ -6344,16 +6344,16 @@ c	net/minecraft/unmapped/C_30422090
 		p	2		paletteKey	
 		p	3		valuesKey	
 	m	(IIILjava/lang/Object;)Ljava/lang/Object;	m_69014162		set
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(ILjava/lang/Object;)Ljava/lang/Object;	m_87338198		m_87338198
-		p	1			p_1
-		p	2			p_2
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			value
+	m	(ILjava/lang/Object;)Ljava/lang/Object;	m_87338198		getAndSet
+		p	1			index
+		p	2			value
 	m	(Lnet/minecraft/unmapped/C_79370641;[J)V	m_05377166		read
-		p	1			p_1
-		p	2			p_2
+		p	1			nbt
+		p	2			data
 c	net/minecraft/unmapped/C_35667041
 	m	(Ljava/util/Random;Lnet/minecraft/unmapped/C_80158377;)Z	m_84833933	m_84833933	
 		p	1		p_1	
@@ -7034,13 +7034,13 @@ c	net/minecraft/unmapped/C_68896930
 	m	(Lnet/minecraft/unmapped/C_66993538;)V	m_64016995		m_64016995
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_64041439;ZZ)V	m_24100391		tickSpawners
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(IILnet/minecraft/unmapped/C_98339053$C_05933692;)Lnet/minecraft/unmapped/C_98339053;	m_07821243		m_07821243
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			spawnMonsters
+		p	3			spawnAnimals
+	m	(IILnet/minecraft/unmapped/C_98339053$C_05933692;)Lnet/minecraft/unmapped/C_98339053;	m_07821243		getHeightMap
+		p	1			chunkX
+		p	2			chunkZ
+		p	3			type
 c	net/minecraft/unmapped/C_69618054
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_75624064;	m_71460703	m_71460703	
 		p	1		p_1	
@@ -9639,8 +9639,8 @@ c	net/minecraft/unmapped/C_39990980$C_78730165		C_78730165
 c	net/minecraft/unmapped/C_40221722
 	f	Lnet/minecraft/unmapped/C_40221722;	f_09631387	POST_PROCESSED	
 	f	Lnet/minecraft/unmapped/C_47540903;	f_61545969	task	
-	f	Lnet/minecraft/unmapped/C_40221722;	f_76716117		f_76716117
-	f	Lnet/minecraft/unmapped/C_40221722;	f_83243831		f_83243831
+	f	Lnet/minecraft/unmapped/C_40221722;	f_76716117		BIOMES
+	f	Lnet/minecraft/unmapped/C_40221722;	f_83243831		NOISE
 	f	Ljava/util/List;	f_11662116		f_11662116
 	f	Lit/unimi/dsi/fastutil/ints/IntList;	f_20615483		f_20615483
 	f	Lnet/minecraft/unmapped/C_40221722$C_47540903;	f_61545969		task
@@ -10163,7 +10163,7 @@ c	net/minecraft/unmapped/C_66993538
 	m	()Ljava/util/List;	m_28874007	getLights	
 	m	()Ljava/util/Map;	m_83386128	getStructureReferences	
 	m	()Ljava/util/Set;	m_09627859		getBlockEntityPositions
-	m	()Lnet/minecraft/unmapped/C_04050123;	m_42073865		m_42073865
+	m	()Lnet/minecraft/unmapped/C_04050123;	m_42073865		getLightEngine
 	m	(Lnet/minecraft/unmapped/C_32594356;IZ)I	m_78488376		m_78488376
 		p	1			p_1
 		p	2			p_2
@@ -10191,8 +10191,8 @@ c	net/minecraft/unmapped/C_66993538
 		p	1			time
 	m	()J	m_90691793		getInhabitedTime
 	m	([Lit/unimi/dsi/fastutil/shorts/ShortList;I)Lit/unimi/dsi/fastutil/shorts/ShortList;	m_73015359		getOrAddShortList
-		p	0			p_0
-		p	1			p_1
+		p	0			list
+		p	1			index
 	m	()Z	m_64322977		updatesHeightMaps
 	m	(Z)V	m_24903676		setUpdateHeightMaps
 		p	1			updateHeightMaps
@@ -10395,7 +10395,7 @@ c	net/minecraft/unmapped/C_89810852
 		p	1			chunkX
 		p	2			chunkZ
 		p	3			chunk
-	m	(Lnet/minecraft/unmapped/C_70943525;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/List;	m_07648116		m_07648116
+	m	(Lnet/minecraft/unmapped/C_70943525;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/List;	m_07648116		getSpawnEntries
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_90538393
@@ -11269,7 +11269,7 @@ c	net/minecraft/unmapped/C_06621703
 		p	4		p_4	
 	m	()Ljava/util/List;	m_28874007	m_28874007	
 	m	(Lnet/minecraft/unmapped/C_14917579;)V	<init>		<init>
-		p	1			p_1
+		p	1			delegate
 	m	()Lnet/minecraft/unmapped/C_04050123;	m_42073865		m_42073865
 	m	(Lnet/minecraft/unmapped/C_98339053$C_05933692;[J)V	m_85056027		m_85056027
 		p	1			p_1
@@ -11284,7 +11284,7 @@ c	net/minecraft/unmapped/C_06621703
 	m	()Z	m_46373314		m_46373314
 	m	()Ljava/util/BitSet;	m_52241953		m_52241953
 	m	()V	m_07011399		m_07011399
-	m	()Lnet/minecraft/unmapped/C_14917579;	m_89760510		m_89760510
+	m	()Lnet/minecraft/unmapped/C_14917579;	m_89760510		getChunk
 	m	()Z	m_64322977		m_64322977
 c	net/minecraft/unmapped/C_15209761
 	f	Lnet/minecraft/unmapped/C_72103717;	f_25192967	type	
@@ -12044,7 +12044,7 @@ c	net/minecraft/unmapped/C_03883278		net/minecraft/unmapped/C_03883278
 		p	4			p_4
 		p	5			p_5
 	m	()V	m_65302345		m_65302345
-c	net/minecraft/unmapped/C_04050123		net/minecraft/unmapped/C_04050123
+c	net/minecraft/unmapped/C_04050123		net/minecraft/world/light/LightEngine
 	f	Lnet/minecraft/unmapped/C_71862855;	f_41914560		f_41914560
 	f	Lnet/minecraft/unmapped/C_71862855;	f_93597081		f_93597081
 	m	(Lnet/minecraft/unmapped/C_23010493;Z)V	<init>		<init>
@@ -12328,10 +12328,10 @@ c	net/minecraft/unmapped/C_14861339		net/minecraft/unmapped/C_14861339
 		p	1			p_1
 		p	2			p_2
 		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_88712978		m_88712978
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_79370641;)V	m_87348902		m_87348902
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_88712978		writeNbt
+		p	1			nbt
+	m	(Lnet/minecraft/unmapped/C_79370641;)V	m_87348902		readNbt
+		p	1			nbt
 	m	(Lnet/minecraft/unmapped/C_14861339$C_55298215;)Lnet/minecraft/unmapped/C_74087615;	m_56263406		m_56263406
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_79370641;	m_87115564		m_87115564
@@ -12765,15 +12765,15 @@ c	net/minecraft/unmapped/C_22685453$C_73630529		C_73630529
 		p	1			p_1
 		p	2			p_2
 	m	()Lnet/minecraft/unmapped/C_48441102;	m_83185087		m_83185087
-c	net/minecraft/unmapped/C_23010493		net/minecraft/unmapped/C_23010493
-	m	(II)Lnet/minecraft/unmapped/C_56864221;	m_16648713		m_16648713
-		p	1			x
-		p	2			z
-	m	(Lnet/minecraft/unmapped/C_92766678;III)V	m_52243058		m_52243058
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+c	net/minecraft/unmapped/C_23010493		net/minecraft/world/light/LightingChunkSource
+	m	(II)Lnet/minecraft/unmapped/C_56864221;	m_16648713		getChunkForLighting
+		p	1			chunkX
+		p	2			chunkZ
+	m	(Lnet/minecraft/unmapped/C_92766678;III)V	m_52243058		updateLight
+		p	1			type
+		p	2			sectionX
+		p	3			sectionY
+		p	4			sectionZ
 c	net/minecraft/unmapped/C_24054759		net/minecraft/unmapped/C_24054759
 	f	Lnet/minecraft/unmapped/C_17703117;	f_83653750		f_83653750
 	m	(Lnet/minecraft/unmapped/C_17703117;)V	<init>		<init>
@@ -13275,7 +13275,7 @@ c	net/minecraft/unmapped/C_41147915$C_72390847		C_72390847
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_41155727		net/minecraft/unmapped/C_41155727
+c	net/minecraft/unmapped/C_41155727		net/minecraft/server/world/chunk/DistanceManager
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;	f_21790652		f_21790652
 	f	Lnet/minecraft/unmapped/C_41155727$C_52629848;	f_44404161		f_44404161
 	f	J	f_16261393		f_16261393

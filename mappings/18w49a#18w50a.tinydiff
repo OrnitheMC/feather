@@ -295,9 +295,9 @@ c	net/minecraft/unmapped/C_27018031
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_77075628	f_77075628	
 	f	I	f_17809605	f_17809605	
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;	f_09837778	f_09837778	
-	f	Lnet/minecraft/unmapped/C_41155727;	f_68956462		f_68956462
-	f	Ljava/lang/Thread;	f_50264301		f_50264301
-	f	Lnet/minecraft/unmapped/C_60332046;	f_66201429		f_66201429
+	f	Lnet/minecraft/unmapped/C_41155727;	f_68956462		distanceManager
+	f	Ljava/lang/Thread;	f_50264301		mainThread
+	f	Lnet/minecraft/unmapped/C_60332046;	f_66201429		chunkMap
 	m	(Lnet/minecraft/unmapped/C_20174970;)Ljava/util/concurrent/CompletableFuture;	m_66779346	m_66779346	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_97313606;)Ljava/util/concurrent/CompletableFuture;	m_97798409	m_97798409	
@@ -772,20 +772,20 @@ c	net/minecraft/unmapped/C_46108969
 		p	11		p_11	
 		p	12		p_12	
 		p	13		p_13	
-	m	(IILnet/minecraft/unmapped/C_40221722;Z)Lnet/minecraft/unmapped/C_66993538;	m_62555072		m_62555072
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_66993538;	m_13730734		m_13730734
-		p	1			p_1
-	m	(II)Lnet/minecraft/unmapped/C_66993538;	m_94964779		m_94964779
-		p	1			p_1
-		p	2			p_2
-	m	(IILnet/minecraft/unmapped/C_40221722;)Lnet/minecraft/unmapped/C_66993538;	m_55663379		m_55663379
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(IILnet/minecraft/unmapped/C_40221722;Z)Lnet/minecraft/unmapped/C_66993538;	m_62555072		getChunk
+		p	1			chunkX
+		p	2			chunkZ
+		p	3			status
+		p	4			load
+	m	(Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_66993538;	m_13730734		getChunk
+		p	1			pos
+	m	(II)Lnet/minecraft/unmapped/C_66993538;	m_94964779		getChunk
+		p	1			chunkX
+		p	2			chunkZ
+	m	(IILnet/minecraft/unmapped/C_40221722;)Lnet/minecraft/unmapped/C_66993538;	m_55663379		getChunk
+		p	1			chunkX
+		p	2			chunkZ
+		p	3			status
 	m	(IIIIIILjava/util/concurrent/atomic/AtomicReference;Ljava/util/concurrent/atomic/AtomicReference;ZZLnet/minecraft/unmapped/C_28680650;Lnet/minecraft/unmapped/C_76113457;Lnet/minecraft/unmapped/C_05357615;Lnet/minecraft/unmapped/C_26038952;Lnet/minecraft/unmapped/C_32594356$C_55814880;)Lnet/minecraft/unmapped/C_05357615;	m_33539284		m_33539284
 		p	1			p_1
 		p	2			p_2
@@ -867,7 +867,7 @@ c	net/minecraft/unmapped/C_53593123
 	m	(Lnet/minecraft/unmapped/C_42232651;)V	m_66243494		setLightColor
 		p	1			p_1
 c	net/minecraft/unmapped/C_64041439
-	f	Ljava/lang/Thread;	f_97607622		f_97607622
+	f	Ljava/lang/Thread;	f_97607622		thread
 	m	(IILnet/minecraft/unmapped/C_40221722;)Lnet/minecraft/unmapped/C_66993538;	m_62555072	m_62555072	
 		p	1		p_1	
 		p	2		p_2	
@@ -4248,7 +4248,7 @@ c	net/minecraft/unmapped/C_17844470
 	m	()Ljava/util/Set;	m_43324387		m_43324387
 c	net/minecraft/unmapped/C_20174970
 	f	Lnet/minecraft/unmapped/C_44627882;	f_22474671	source	
-	f	Lnet/minecraft/unmapped/C_04050123;	f_37331315		f_37331315
+	f	Lnet/minecraft/unmapped/C_04050123;	f_37331315		lightEngine
 	m	(Lnet/minecraft/unmapped/C_44627882;)V	m_65474374	m_65474374	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_04050123;)V	m_29946706		m_29946706
@@ -4541,8 +4541,8 @@ c	net/minecraft/unmapped/C_53794684
 c	net/minecraft/unmapped/C_66993538
 	m	(Lnet/minecraft/unmapped/C_44627882;)V	m_65474374	setSource	
 		p	1		source	
-	m	(Lnet/minecraft/unmapped/C_04050123;)V	m_29946706		m_29946706
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_04050123;)V	m_29946706		setLightEngine
+		p	1			lightEngine
 c	net/minecraft/unmapped/C_36333667
 	m	(FFFFFFLnet/minecraft/unmapped/C_42232651;)V	m_42818616	m_42818616	
 		p	1		p_1	
@@ -6209,7 +6209,7 @@ c	net/minecraft/unmapped/C_57982389$C_59315290		C_59315290
 	m	()Lnet/minecraft/unmapped/C_22168528;	m_80989661		m_80989661
 	m	()Lcom/google/gson/JsonObject;	m_38911806		m_38911806
 	m	()Lnet/minecraft/unmapped/C_22168528;	m_66233363		m_66233363
-c	net/minecraft/unmapped/C_60332046		net/minecraft/unmapped/C_60332046
+c	net/minecraft/unmapped/C_60332046		net/minecraft/server/world/chunk/ChunkMap
 	f	Lorg/apache/logging/log4j/Logger;	f_13317690		f_13317690
 	f	Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;	f_81853488		f_81853488
 	f	Lnet/minecraft/unmapped/C_64041439;	f_90630102		f_90630102
@@ -6237,7 +6237,7 @@ c	net/minecraft/unmapped/C_60332046		net/minecraft/unmapped/C_60332046
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-	m	()Lnet/minecraft/unmapped/C_17889813;	m_77331163		m_77331163
+	m	()Lnet/minecraft/unmapped/C_17889813;	m_77331163		getLightEngine
 	m	(J)Lnet/minecraft/unmapped/C_38385548;	m_36961692		m_36961692
 		p	1			p_1
 	m	(J)Lnet/minecraft/unmapped/C_38385548;	m_85625761		m_85625761
@@ -6289,7 +6289,7 @@ c	net/minecraft/unmapped/C_60332046		net/minecraft/unmapped/C_60332046
 		p	4			p_4
 		p	5			p_5
 	m	()I	m_92923281		m_92923281
-	m	()Lnet/minecraft/unmapped/C_60332046$C_58751600;	m_64107165		m_64107165
+	m	()Lnet/minecraft/unmapped/C_60332046$C_58751600;	m_64107165		getDistanceManager
 	m	()Lit/unimi/dsi/fastutil/objects/ObjectBidirectionalIterator;	m_35163247		m_35163247
 	m	(Ljava/util/function/BooleanSupplier;)V	m_30536556		m_30536556
 		p	1			p_1

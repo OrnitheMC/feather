@@ -59,11 +59,11 @@ c	net/minecraft/unmapped/C_09140510
 c	net/minecraft/unmapped/C_13860305
 	m	()Lnet/minecraft/unmapped/C_03562565;	m_00781305		m_00781305
 c	net/minecraft/unmapped/C_14917579
-	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_82690114;Ljava/util/List;Ljava/util/function/Predicate;)V	m_68196289		m_68196289
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_82690114;Ljava/util/List;Ljava/util/function/Predicate;)V	m_68196289		getEntities
+		p	1			type
+		p	2			bounds
+		p	3			entities
+		p	4			filter
 c	net/minecraft/unmapped/C_21479319
 	m	()Lnet/minecraft/unmapped/C_03562565;	m_00781305		m_00781305
 c	net/minecraft/unmapped/C_21479319$65200581
@@ -152,23 +152,23 @@ c	net/minecraft/unmapped/C_46108969
 		p	10		p_10	
 		p	11		p_11	
 		p	12		p_12	
-	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_05357615;)Z	m_96742420	m_96742420	
+	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_05357615;)Z	m_96742420	hasNoCollisions	
 		p	0		p_0	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_76113457;)Z	m_71677284		canBuildIn
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			state
+		p	2			pos
+		p	3			context
 	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_46836692		isUnobstructed
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_82690114;)Z	m_66858147		m_66858147
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_96742420		m_96742420
-		p	1			p_1
+		p	1			entity
+	m	(Lnet/minecraft/unmapped/C_82690114;)Z	m_66858147		hasNoCollisions
+		p	1			shape
+	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_96742420		hasNoCollisions
+		p	1			entity
 	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_82690114;Ljava/util/Set;)Ljava/util/stream/Stream;	m_19681975		getCollisions
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			entity
+		p	2			shape
+		p	3			excludeEntities
 	m	(IIIIIILjava/util/concurrent/atomic/AtomicReference;Ljava/util/concurrent/atomic/AtomicReference;Lnet/minecraft/unmapped/C_76113457;Lnet/minecraft/unmapped/C_26038952;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_05357615;	m_33539284		m_33539284
 		p	1			p_1
 		p	2			p_2
@@ -214,10 +214,10 @@ c	net/minecraft/unmapped/C_64041439
 	m	(Lnet/minecraft/unmapped/C_72103717;Ljava/util/function/Predicate;)Ljava/util/List;	m_35180854		m_35180854
 		p	1			p_1
 		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_82690114;Ljava/util/function/Predicate;)Ljava/util/List;	m_01382251		m_01382251
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_82690114;Ljava/util/function/Predicate;)Ljava/util/List;	m_01382251		getEntities
+		p	1			type
+		p	2			bounds
+		p	3			filter
 	m	()Lnet/minecraft/unmapped/C_40996800;	m_30993959		m_30993959
 	m	(Lnet/minecraft/unmapped/C_40996800;)Z	m_87340840		m_87340840
 		p	0			p_0
@@ -302,17 +302,17 @@ c	net/minecraft/unmapped/C_94584382
 	m	(Lnet/minecraft/unmapped/C_28786548$C_08529626;)D	m_06705660		m_06705660
 		p	1			p_1
 c	net/minecraft/unmapped/C_64676926
-	f	I	f_19139525		f_19139525
-	f	I	f_24324910		f_24324910
-	f	Ljava/util/UUID;	f_38916391		f_38916391
-	m	()I	m_20995308		m_20995308
-	m	(I)V	m_01227482		m_01227482
-		p	1			p_1
-	m	()I	m_63092442		m_63092442
-	m	(I)V	m_61489389		m_61489389
-		p	1			p_1
-	m	(Ljava/util/UUID;)V	m_32641749		m_32641749
-		p	1			p_1
+	f	I	f_19139525		wanderingTraderSpawnDelay
+	f	I	f_24324910		wanderingTraderSpawnChance
+	f	Ljava/util/UUID;	f_38916391		wanderingTraderUuid
+	m	()I	m_20995308		getWanderingTraderSpawnDelay
+	m	(I)V	m_01227482		setWanderingTraderSpawnDelay
+		p	1			delay
+	m	()I	m_63092442		getWanderingTraderSpawnChance
+	m	(I)V	m_61489389		setWanderingTraderSpawnChance
+		p	1			chance
+	m	(Ljava/util/UUID;)V	m_32641749		setWanderingTraderUuid
+		p	1			uuid
 c	net/minecraft/unmapped/C_04095273	net/minecraft/entity/global/GlobalEntity	
 	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_64041439;)V	<init>	<init>	
 		p	1		p_1	
@@ -579,8 +579,8 @@ c	net/minecraft/unmapped/C_10835089
 		p	2			p_2
 c	net/minecraft/unmapped/C_58460165
 	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_05357615;)Z	m_65000545		isUnobstructed
-		p	1			p_1
-		p	2			p_2
+		p	1			exclude
+		p	2			shape
 	m	(Lnet/minecraft/unmapped/C_05357615;Lnet/minecraft/unmapped/C_42232651;)Z	m_19922384		m_19922384
 		p	0			p_0
 		p	1			p_1
