@@ -1352,12 +1352,12 @@ c	net/minecraft/unmapped/C_13412613$C_72850092
 		p	8			maxZ
 		p	9			state
 c	net/minecraft/unmapped/C_18779315
-	m	(Lnet/minecraft/unmapped/C_46108969;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_28560296;	m_50130655	provide	
+	m	(Lnet/minecraft/unmapped/C_46108969;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_28560296;	m_50130655	getModelLocations	
 		p	1		world	
 		p	2		pos	
 	m	(I)Lnet/minecraft/unmapped/C_28560296;	m_28411600	provide	
 		p	1		metadata	
-	m	(Lnet/minecraft/unmapped/C_81592558;)Ljava/util/Map;	m_50130655		provide
+	m	(Lnet/minecraft/unmapped/C_81592558;)Ljava/util/Map;	m_50130655		getModelLocations
 		p	1			block
 c	net/minecraft/unmapped/C_25664286
 	f	Ljava/util/List;	f_00278308	MODEL_DEFINITIONS	
@@ -1394,7 +1394,7 @@ c	net/minecraft/unmapped/C_41814532
 		p	1		resourceManager	
 		p	2		blockAtlas	
 	m	()V	m_01348361	loadModels	
-	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_77667033	registerVariants	
+	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_77667033	loadModelDefinitions	
 		p	1		block	
 	m	(Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_39151940;Ljava/lang/String;)V	m_83575756	loadVariant	
 		p	1		location	
@@ -1402,12 +1402,12 @@ c	net/minecraft/unmapped/C_41814532
 		p	3		name	
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_83717615;Lnet/minecraft/unmapped/C_97899968;)V	<init>		<init>
 		p	1			resourceManager
-		p	2			blockAtlas
+		p	2			blocksAtlas
 		p	3			modelShaper
-	m	(Ljava/util/Collection;)V	m_77667033		registerVariants
+	m	(Ljava/util/Collection;)V	m_77667033		loadModelDefinitions
 		p	1			locations
 	m	(Lnet/minecraft/unmapped/C_39151940;Lnet/minecraft/unmapped/C_28560296;)V	m_83575756		registerVariant
-		p	1			definition
+		p	1			modelDefinition
 		p	2			location
 	m	()V	m_25718605		registerItemVariants
 	m	(Lnet/minecraft/unmapped/C_98888256;)Ljava/util/List;	m_51139961		getItemVariants
@@ -1673,7 +1673,7 @@ c	net/minecraft/unmapped/C_97353163$C_06253687
 c	net/minecraft/unmapped/C_97899968
 	f	Ljava/util/Map;	f_72134272	models	
 	f	Ljava/util/Map;	f_10706911	providers	
-	f	Lnet/minecraft/unmapped/C_28062255;	f_43946488		models
+	f	Lnet/minecraft/unmapped/C_28062255;	f_43946488		modelDefinitions
 	m	(Lnet/minecraft/unmapped/C_81592558;ILnet/minecraft/unmapped/C_46108969;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_25236929;	m_50076884	getModel	
 		p	1		block	
 		p	2		metadata	
@@ -1689,15 +1689,15 @@ c	net/minecraft/unmapped/C_97899968
 	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_18779315;)V	m_06917920	register	
 		p	1		block	
 		p	2		provider	
-	m	()Lnet/minecraft/unmapped/C_28062255;	m_85253850		getModels
+	m	()Lnet/minecraft/unmapped/C_28062255;	m_85253850		getModelDefinitions
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_46108969;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_25236929;	m_50076884		getModel
 		p	1			state
 		p	2			world
 		p	3			pos
-	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_18779315;)V	m_71962986		register
+	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_18779315;)V	m_71962986		registerModelProvider
 		p	1			block
-		p	2			provider
-	m	([Lnet/minecraft/unmapped/C_81592558;)V	m_90701766		register
+		p	2			modelDefinitions
+	m	([Lnet/minecraft/unmapped/C_81592558;)V	m_90701766		registerInvisible
 		p	1			blocks
 	m	()V	m_80391558		init
 c	net/minecraft/unmapped/C_97899968$07095970		07095970
@@ -1747,16 +1747,16 @@ c	net/minecraft/unmapped/C_45693946
 		p	0			x
 		p	1		x	z
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_28062255		net/minecraft/client/resource/model/BlockModels
-	f	Ljava/util/Map;	f_95530403		providers
-	f	Ljava/util/Set;	f_18063445		custom
+c	net/minecraft/unmapped/C_28062255		net/minecraft/client/resource/model/BlockModelDefinitions
+	f	Ljava/util/Map;	f_95530403		modelProviders
+	f	Ljava/util/Set;	f_18063445		invisibleBlocks
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_18779315;)V	m_45787990		register
+	m	(Lnet/minecraft/unmapped/C_81592558;Lnet/minecraft/unmapped/C_18779315;)V	m_45787990		registerModelProvider
 		p	1			block
-		p	2			provider
-	m	([Lnet/minecraft/unmapped/C_81592558;)V	m_49095460		register
+		p	2			modelProvider
+	m	([Lnet/minecraft/unmapped/C_81592558;)V	m_49095460		registerInvisible
 		p	1			blocks
-	m	()Ljava/util/Map;	m_31642565		provide
+	m	()Ljava/util/Map;	m_31642565		getModelLocations
 c	net/minecraft/unmapped/C_29769638		net/minecraft/client/render/model/entity/RabbitModel
 	f	Lnet/minecraft/unmapped/C_94760802;	f_97544739		backLeftLeg
 	f	Lnet/minecraft/unmapped/C_94760802;	f_40299551		backRightLeg
@@ -1799,22 +1799,22 @@ c	net/minecraft/unmapped/C_29769638		net/minecraft/client/render/model/entity/Ra
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/unmapped/C_43826085		net/minecraft/client/resource/model/AbstractBlockModelProvider
-	f	Ljava/util/Map;	f_54176141		models
+c	net/minecraft/unmapped/C_43826085		net/minecraft/client/resource/model/SimpleModelLocationProvider
+	f	Ljava/util/Map;	f_54176141		modelLocations
 	m	()V	<init>		<init>
 	m	(Ljava/util/Map;)Ljava/lang/String;	m_34276252		propertiesAsString
 		p	1			properties
 	m	(Lnet/minecraft/unmapped/C_81592558;)Ljava/util/Map;	m_50130655		m_50130655
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_28560296;	m_07129046		provide
+	m	(Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_28560296;	m_07129046		getModelLocation
 		p	1			state
-c	net/minecraft/unmapped/C_47185330		net/minecraft/client/resource/model/VariantBlockModelProvider
+c	net/minecraft/unmapped/C_47185330		net/minecraft/client/resource/model/VariantModelLocationProvider
 	f	Lnet/minecraft/unmapped/C_35946071;	f_02027554		property
-	f	Ljava/lang/String;	f_25058906		variant
+	f	Ljava/lang/String;	f_25058906		suffix
 	f	Ljava/util/List;	f_35766178		unusedProperties
 	m	(Lnet/minecraft/unmapped/C_35946071;Ljava/lang/String;Ljava/util/List;)V	<init>		<init>
 		p	1			property
-		p	2			variant
+		p	2			suffix
 		p	3			unusedProperties
 	m	(Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_28560296;	m_07129046		m_07129046
 		p	1			p_1
@@ -1826,13 +1826,13 @@ c	net/minecraft/unmapped/C_47185330		net/minecraft/client/resource/model/Variant
 c	net/minecraft/unmapped/C_47185330$73590136		73590136
 c	net/minecraft/unmapped/C_47185330$C_65413718		Builder
 	f	Lnet/minecraft/unmapped/C_35946071;	f_10517916		property
-	f	Ljava/lang/String;	f_75492199		variant
+	f	Ljava/lang/String;	f_75492199		suffix
 	f	Ljava/util/List;	f_98790457		unusedProperties
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_35946071;)Lnet/minecraft/unmapped/C_47185330$C_65413718;	m_64860524		setProperty
 		p	1			property
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_47185330$C_65413718;	m_35686971		setVariant
-		p	1			variant
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_47185330$C_65413718;	m_35686971		setSuffix
+		p	1			suffix
 	m	([Lnet/minecraft/unmapped/C_35946071;)Lnet/minecraft/unmapped/C_47185330$C_65413718;	m_67461160		setUnusedProperties
 		p	1			properties
 	m	()Lnet/minecraft/unmapped/C_47185330;	m_67622227		build
@@ -2014,7 +2014,7 @@ c	net/minecraft/unmapped/C_48305057$C_92470498		RaidFarmGoal
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;)Z	m_48146326		m_48146326
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_65013482		net/minecraft/client/resource/model/SimpleBlockModelProvider
+c	net/minecraft/unmapped/C_65013482		net/minecraft/client/resource/model/DefaultModelLocationProvider
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_28560296;	m_07129046		m_07129046
 		p	1			p_1

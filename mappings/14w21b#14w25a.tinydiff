@@ -9811,17 +9811,17 @@ c	net/minecraft/unmapped/C_41814532
 	f	Lcom/google/common/base/Joiner;	f_46196388		PARENT_CHAIN_JOINER
 	f	Ljava/util/Map;	f_10338543		sprites
 	f	Ljava/util/Map;	f_43771887		variants
-	f	Lnet/minecraft/unmapped/C_83717615;	f_57257681		blockAtlas
+	f	Lnet/minecraft/unmapped/C_83717615;	f_57257681		blocksAtlas
 	f	Lnet/minecraft/unmapped/C_48507627;	f_27631210		faceBakery
 	f	Lnet/minecraft/unmapped/C_75128322;	f_35855031		itemModelGenerator
-	f	Lnet/minecraft/unmapped/C_39524089;	f_11845741		bakedRegistry
+	f	Lnet/minecraft/unmapped/C_39524089;	f_11845741		bakedModels
 	f	Lnet/minecraft/unmapped/C_68226429;	f_54656090		GENERATION_MARKER
 	f	Lnet/minecraft/unmapped/C_68226429;	f_92563401		COMPASS_GENERATION_MARKER
 	f	Lnet/minecraft/unmapped/C_68226429;	f_92209128		CLASS_GENERATION_MARKER
-	f	Ljava/util/Map;	f_97503753		itemModels
+	f	Ljava/util/Map;	f_97503753		itemModelLocations
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	<init>	<init>	
 		p	1		resourceManager	
-	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_39151940;	m_64858471	loadDefinition	
+	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_39151940;	m_64858471	loadModelDefinition	
 		p	1		id	
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_68226429;	m_03003755	getBlockModel	
 		p	1		id	
@@ -9839,54 +9839,54 @@ c	net/minecraft/unmapped/C_41814532
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_83717615;)V	<init>		<init>
 		p	1			resourceManager
 		p	2			blockAtlas
-	m	()Lnet/minecraft/unmapped/C_62513004;	m_66858233		getBakedModels
+	m	()Lnet/minecraft/unmapped/C_62513004;	m_66858233		bakeModels
 	m	()V	m_01348361		loadModels
-	m	()V	m_21847519		loadBuiltIn
-	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_77667033		registerVariants
+	m	()V	m_21847519		loadModels
+	m	(Lnet/minecraft/unmapped/C_81592558;)V	m_77667033		loadModelDefinitions
 		p	1			block
 	m	(Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_39151940;Ljava/lang/String;)V	m_83575756		loadVariant
 		p	1			location
 		p	2			definition
 		p	3			name
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_39151940;	m_64858471		loadDefinition
-		p	1			location
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_34331439		getBlockStatesJsonLocation
-		p	1			location
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_39151940;	m_64858471		loadModelDefinition
+		p	1			key
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_34331439		getModelDefinitionLocation
+		p	1			key
 	m	()V	m_79950272		loadBlockModels
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_68226429;	m_66530226		loadBlockModel
 		p	1			location
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_03573911		getModelsJsonLocation
-		p	1			location
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_03573911		getModelLocation
+		p	1			key
 	m	()V	m_64858695		loadItemModels
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_22168528;	m_32000787		getItemModelLocation
-		p	1			path
-	m	()V	m_27187443		bakeModels
+		p	1			variant
+	m	()V	m_27187443		bakeItemModels
 	m	()Ljava/util/Set;	m_70642993		getBlockTextures
-	m	(Lnet/minecraft/unmapped/C_68226429;Lnet/minecraft/unmapped/C_35838118;Z)Lnet/minecraft/unmapped/C_25236929;	m_53043527		bake
+	m	(Lnet/minecraft/unmapped/C_68226429;Lnet/minecraft/unmapped/C_35838118;Z)Lnet/minecraft/unmapped/C_25236929;	m_53043527		bakeModel
 		p	1			model
 		p	2			rotation
 		p	3			uvLock
-	m	(Lnet/minecraft/unmapped/C_82588014;Lnet/minecraft/unmapped/C_02019182;Lnet/minecraft/unmapped/C_74688326;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_35838118;Z)Lnet/minecraft/unmapped/C_85259637;	m_08201268		bakeFace
+	m	(Lnet/minecraft/unmapped/C_82588014;Lnet/minecraft/unmapped/C_02019182;Lnet/minecraft/unmapped/C_74688326;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_35838118;Z)Lnet/minecraft/unmapped/C_85259637;	m_08201268		bakeQuad
 		p	1			element
 		p	2			elementFace
 		p	3			blockSprite
 		p	4			face
 		p	5			rotation
 		p	6			uvLock
-	m	()V	m_72050919		finalizeBlockModels
-	m	()V	m_08088134		loadBlockModelDependencies
-	m	(Lnet/minecraft/unmapped/C_22168528;)Ljava/util/List;	m_83376071		getBlockModelDependencies
+	m	()V	m_72050919		finalizeModels
+	m	()V	m_08088134		loadModelDependencies
+	m	(Lnet/minecraft/unmapped/C_22168528;)Ljava/util/List;	m_83376071		getModelDependencyLocations
 		p	1			location
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_67488340		findParentBlockModel
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_67488340		findParentModelLocation
 		p	1			location
 	m	(Lnet/minecraft/unmapped/C_68226429;)Ljava/util/Set;	m_16816953		getTextures
 		p	1			model
 	m	()V	m_98927684		loadSprites
 	m	()Ljava/util/Set;	m_35476291		getItemTextures
-	m	(Lnet/minecraft/unmapped/C_68226429;)Z	m_44153403		isGeneration
+	m	(Lnet/minecraft/unmapped/C_68226429;)Z	m_44153403		hasItemModel
 		p	1			model
 	m	()V	m_21499134		generateItemModels
-	m	(Lnet/minecraft/unmapped/C_68226429;)Lnet/minecraft/unmapped/C_68226429;	m_32566512		generateItemModels
+	m	(Lnet/minecraft/unmapped/C_68226429;)Lnet/minecraft/unmapped/C_68226429;	m_32566512		generateItemModel
 		p	1			model
 	m	(Lnet/minecraft/unmapped/C_41814532;)Ljava/util/Map;	m_39788913		m_39788913
 		p	0			p_0
@@ -10497,12 +10497,12 @@ c	net/minecraft/unmapped/C_02338378		net/minecraft/world/gen/feature/FlowerFeatu
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_03832013		net/minecraft/client/render/item/ItemModelShaper
-	f	Ljava/util/Map;	f_61777906		models
-	f	Ljava/util/Map;	f_87538997		modelCache
+	f	Ljava/util/Map;	f_61777906		modelLocations
+	f	Ljava/util/Map;	f_87538997		bakedModels
 	f	Ljava/util/Map;	f_54491304		modelProviders
-	f	Lnet/minecraft/unmapped/C_04107818;	f_36444542		manager
+	f	Lnet/minecraft/unmapped/C_04107818;	f_36444542		modelManager
 	m	(Lnet/minecraft/unmapped/C_04107818;)V	<init>		<init>
-		p	1			manager
+		p	1			modelManager
 	m	(Lnet/minecraft/unmapped/C_98888256;I)Lnet/minecraft/unmapped/C_74688326;	m_61231758		getParticleIcon
 		p	1			item
 		p	2			metadata
@@ -11224,8 +11224,8 @@ c	net/minecraft/unmapped/C_64626110$57933502		57933502
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	apply		apply
 		p	1			p_1
-c	net/minecraft/unmapped/C_66437957		net/minecraft/client/resource/model/ItemModelProvider
-	m	(Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_28560296;	m_95275319		provide
+c	net/minecraft/unmapped/C_66437957		net/minecraft/client/resource/model/ItemModelLocationProvider
+	m	(Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_28560296;	m_95275319		getModelLocation
 		p	1			item
 c	net/minecraft/unmapped/C_67507395		net/minecraft/block/pattern/BlockPattern
 	f	[[[Lcom/google/common/base/Predicate;	f_09538758		pattern
@@ -11292,7 +11292,7 @@ c	net/minecraft/unmapped/C_69897416		net/minecraft/block/state/predicate/BlockSt
 		p	2			predicate
 	m	(Ljava/lang/Object;)Z	apply		apply
 		p	1			p_1
-c	net/minecraft/unmapped/C_71391129		net/minecraft/client/render/model/block/BlockElementRotation
+c	net/minecraft/unmapped/C_71391129		net/minecraft/client/resource/model/BlockElementRotation
 	f	Ljavax/vecmath/Vector3f;	f_83572996		origin
 	f	Lnet/minecraft/unmapped/C_28786548$C_08529626;	f_76063445		axis
 	f	F	f_95270666		angle
@@ -11305,7 +11305,7 @@ c	net/minecraft/unmapped/C_71391129		net/minecraft/client/render/model/block/Blo
 c	net/minecraft/unmapped/C_75128322		net/minecraft/client/render/model/block/ItemModelGenerator
 	f	Ljava/util/List;	f_34877360		LAYERS
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_83717615;Lnet/minecraft/unmapped/C_68226429;)Lnet/minecraft/unmapped/C_68226429;	m_74726167		generate
+	m	(Lnet/minecraft/unmapped/C_83717615;Lnet/minecraft/unmapped/C_68226429;)Lnet/minecraft/unmapped/C_68226429;	m_74726167		generateModel
 		p	1			blockAtlas
 		p	2			model
 	m	(ILjava/lang/String;Lnet/minecraft/unmapped/C_74688326;)Ljava/util/List;	m_00005228		processFrames
