@@ -725,18 +725,18 @@ c	net/minecraft/unmapped/C_81592558
 		p	1		state	
 	m	(Lnet/minecraft/unmapped/C_15815210;)Z	m_67905340	isViewBlocking	
 		p	1		state	
-	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_18288584		m_18288584
+	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_18288584		canSupportBase
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_64429939		isSolid
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			state
+		p	2			world
+		p	3			pos
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_20883305		isViewBlocking
 		p	1			state
-		p	2			p_2
-		p	3			p_3
+		p	2			world
+		p	3			pos
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_70034106		blocksAmbientLight
 		p	1			p_1
 		p	2			p_2
@@ -747,8 +747,8 @@ c	net/minecraft/unmapped/C_81592558
 		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)F	m_62524161		getAmbientOcclusionLightLevel
 		p	1			state
-		p	2			p_2
-		p	3			p_3
+		p	2			world
+		p	3			pos
 c	net/minecraft/unmapped/C_82280655
 	m	(FFF)F	m_16812839	lerp	
 		p	1		min	
@@ -2278,10 +2278,10 @@ c	net/minecraft/unmapped/C_15815210
 	m	()Z	m_15296194	isSolid	
 	m	()Z	m_67881819	isFullBlock	
 	m	()Z	m_08844507	isViewBlocking	
-	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_28786548;)Lnet/minecraft/unmapped/C_05357615;	m_54568982		m_54568982
+	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_28786548;)Lnet/minecraft/unmapped/C_05357615;	m_54568982		getFaceOcclusionShape
 		p	1			world
 		p	2			pos
-		p	3			direction
+		p	3			face
 	m	(Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_32594356;)I	m_60929363		m_60929363
 		p	1			p_1
 		p	2			p_2
@@ -2293,20 +2293,20 @@ c	net/minecraft/unmapped/C_15815210
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)F	m_17633797		getAmbientOcclusionLightLevel
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			pos
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_44796397		blocksAmbientLight
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_15296194		isSolid
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			pos
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_67881819		isFullBlock
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)Z	m_08844507		isViewBlocking
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			pos
 c	net/minecraft/unmapped/C_15815210$C_24890200	C_24890200	
 	f	Z	f_97208337	f_97208337	
 	f	Z	f_21334089	f_21334089	
@@ -2350,7 +2350,7 @@ c	net/minecraft/unmapped/C_15815210$C_12358297		Cache
 	f	Z	f_72890851		isSolidRender
 	f	Z	f_34329535		propagateSkyLight
 	f	I	f_88849139		opacity
-	f	[Lnet/minecraft/unmapped/C_05357615;	f_34311136		directedShapes
+	f	[Lnet/minecraft/unmapped/C_05357615;	f_34311136		occlusionShapes
 	m	(Lnet/minecraft/unmapped/C_15815210;)V	<init>		<init>
 		p	1			state
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_15815210$59956659;)V	<init>		<init>
@@ -2965,7 +2965,7 @@ c	net/minecraft/unmapped/C_54165119
 		p	4			p_4
 		p	5			p_5
 c	net/minecraft/unmapped/C_79262971
-	m	(Lnet/minecraft/unmapped/C_05357615;Lnet/minecraft/unmapped/C_28786548;)Lnet/minecraft/unmapped/C_05357615;	m_92916116		m_92916116
+	m	(Lnet/minecraft/unmapped/C_05357615;Lnet/minecraft/unmapped/C_28786548;)Lnet/minecraft/unmapped/C_05357615;	m_92916116		getFaceShape
 		p	0			p_0
 		p	1			p_1
 c	net/minecraft/unmapped/C_85242606
@@ -5796,7 +5796,7 @@ c	net/minecraft/unmapped/C_83417865		net/minecraft/unmapped/C_83417865
 	m	(Lnet/minecraft/unmapped/C_10918870;)V	m_04853589		m_04853589
 		p	1			p_1
 c	net/minecraft/unmapped/C_84658683		net/minecraft/world/DummyBlockView
-	f	Lnet/minecraft/unmapped/C_84658683;	f_08753208		f_08753208
+	f	Lnet/minecraft/unmapped/C_84658683;	f_08753208		INSTANCE
 	f	[Lnet/minecraft/unmapped/C_84658683;	f_40630548		f_40630548
 	m	()[Lnet/minecraft/unmapped/C_84658683;	values		values
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_84658683;	valueOf		valueOf
