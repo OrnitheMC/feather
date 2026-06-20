@@ -11,8 +11,8 @@ c	com/mojang/minecraft/Minecraft	com/mojang/minecraft/Minecraft
 	f	I	f_31800787	width	
 	f	I	f_74192110	height	
 	f	Lcom/mojang/minecraft/unmapped/C_82837181;	f_45385386	timer	
-	f	Lcom/mojang/minecraft/level/Level;	f_26407825	world	
-	f	Lcom/mojang/minecraft/unmapped/C_24384787;	f_48619021	worldRenderer	
+	f	Lcom/mojang/minecraft/level/Level;	f_26407825	level	
+	f	Lcom/mojang/minecraft/unmapped/C_24384787;	f_48619021	levelRenderer	
 	f	Lcom/mojang/minecraft/player/Player;	f_28396371	player	
 	f	Lcom/mojang/minecraft/unmapped/C_16190149;	f_49464910	particleManager	
 	f	Lcom/mojang/minecraft/unmapped/C_87604186;	f_69329575	session	
@@ -24,7 +24,7 @@ c	com/mojang/minecraft/Minecraft	com/mojang/minecraft/Minecraft
 	f	Lcom/mojang/minecraft/unmapped/C_82920792;	f_45465196	textureManager	
 	f	Lcom/mojang/minecraft/unmapped/C_23014920;	f_21497584	textRenderer	
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_70816363	screen	
-	f	Lcom/mojang/minecraft/unmapped/C_01953097;	f_76403675	worldStorage	
+	f	Lcom/mojang/minecraft/unmapped/C_01953097;	f_76403675	levelStorage	
 	f	I	f_51139858	ticks	
 	f	Ljava/lang/String;	f_54761474	loadmapUser	
 	f	I	f_42708324	loadmapId	
@@ -40,7 +40,7 @@ c	com/mojang/minecraft/Minecraft	com/mojang/minecraft/Minecraft
 	f	I	f_87531065	lastClickTicks	
 	f	I	f_25998330	targetMode	
 		c	0 = break, 1 = place	
-	f	Lcom/mojang/minecraft/unmapped/C_49004282;	f_87010853	worldGenerator	
+	f	Lcom/mojang/minecraft/unmapped/C_49004282;	f_87010853	levelGenerator	
 	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_64887911	f_64887911	
 	f	I	f_75985246	mouseYDirection	
 	f	Ljava/nio/FloatBuffer;	f_96846485	fogColor	
@@ -57,7 +57,7 @@ c	com/mojang/minecraft/Minecraft	com/mojang/minecraft/Minecraft
 	f	Ljava/lang/String;	f_12927917	f_12927917	
 	f	Ljava/nio/IntBuffer;	f_94303717	viewPort	
 	f	Ljava/nio/IntBuffer;	f_83876296	namesRecord	
-	f	I	f_98919544	selectedBlock	
+	f	I	f_98919544	selectedTile	
 	f	Ljava/util/List;	f_43494778	f_43494778	
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	m_52715402	openScreen	
 		p	1		screen	
@@ -69,13 +69,13 @@ c	com/mojang/minecraft/Minecraft	com/mojang/minecraft/Minecraft
 	m	()V	m_57085983	pauseGame	
 	m	()V	m_67975642	tick	
 	m	()Z	m_16918576	isRemote	
-	m	(I)V	m_16924879	createWorld	
+	m	(I)V	m_16924879	createLevel	
 		p	1		size	
-	m	(Ljava/lang/String;I)Z	m_71173280	loadWorld	
+	m	(Ljava/lang/String;I)Z	m_71173280	loadLevel	
 		p	1		username	
 		p	2		slot	
-	m	(Lcom/mojang/minecraft/level/Level;)V	m_75727284	setWorld	
-		p	1		world	
+	m	(Lcom/mojang/minecraft/level/Level;)V	m_75727284	setLevel	
+		p	1		level	
 	m	(Ljava/awt/Canvas;IIZ)V	<init>	<init>	
 		p	1		canvas	
 		p	2		width	
@@ -234,7 +234,7 @@ c	com/mojang/minecraft/unmapped/C_01953097
 	f	Lcom/mojang/minecraft/Minecraft;	f_71688092	listener	
 	f	Lcom/mojang/minecraft/server/MinecraftServer;	f_22739004		listener
 	m	(Lcom/mojang/minecraft/level/Level;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Z	m_22342627	save	
-		p	1		world	
+		p	1		level	
 		p	2		hostAddress	
 		p	3		username	
 		p	4		sessionId	
@@ -244,7 +244,7 @@ c	com/mojang/minecraft/unmapped/C_01953097
 		p	1		hostAddress	
 		p	2		username	
 		p	3		slot	
-	m	(Ljava/io/InputStream;)[B	m_81200078	readBlocks	
+	m	(Ljava/io/InputStream;)[B	m_81200078	readTiles	
 		p	0		input	
 	m	(Ljava/io/InputStream;)Lcom/mojang/minecraft/level/Level;	m_32100412	m_32100412	
 		p	1		p_1	
@@ -281,22 +281,22 @@ c	com/mojang/minecraft/unmapped/C_08381405	com/mojang/minecraft/client/entity/mo
 	m	()V	m_83565677	m_83565677	
 	m	()V	m_81342827	m_81342827	
 	m	()V	<init>	<init>	
-c	com/mojang/minecraft/unmapped/C_11443481	com/mojang/minecraft/client/gui/screen/world/LoadWorldScreen	
+c	com/mojang/minecraft/unmapped/C_11443481	com/mojang/minecraft/client/gui/screen/level/LoadLevelScreen	
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_58703230	parent	
-	f	Z	f_31927864	worldListLoaded	
-	f	Z	f_19830747	worldListHasNonEmptySlot	
-	f	[Ljava/lang/String;	f_80889912	worldNames	
+	f	Z	f_31927864	levelListLoaded	
+	f	Z	f_19830747	levelListHasNonEmptySlot	
+	f	[Ljava/lang/String;	f_80889912	levelNames	
 	f	Ljava/lang/String;	f_93041140	description	
 	f	Ljava/lang/String;	f_80925663	title	
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	<init>	<init>	
 		p	1		parent	
 	m	()V	run	run	
 	m	([Ljava/lang/String;)V	m_35428992	updateButtons	
-		p	1		worldNames	
+		p	1		levelNames	
 	m	()V	m_41805697	m_41805697	
 	m	(Lcom/mojang/minecraft/unmapped/C_85125467;)V	m_30778170	m_30778170	
 		p	1		p_1	
-	m	(I)V	m_19582291	selectWorld	
+	m	(I)V	m_19582291	selectLevel	
 		p	1		slot	
 	m	(II)V	m_93956703	m_93956703	
 		p	1		p_1	
@@ -348,7 +348,7 @@ c	com/mojang/minecraft/unmapped/C_16190149	com/mojang/minecraft/client/ParticleM
 	f	Lcom/mojang/minecraft/unmapped/C_82920792;	f_94050747	textureManager	
 	f	Ljava/util/List;	f_48436212	particles	
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/unmapped/C_82920792;)V	<init>	<init>	
-		p	1		world	
+		p	1		level	
 		p	2		textureManager	
 	m	(Lcom/mojang/minecraft/player/Player;F)V	m_27238650	render	
 		p	1		p_1	
@@ -383,8 +383,8 @@ c	com/mojang/minecraft/unmapped/C_23014920	com/mojang/minecraft/client/render/Te
 c	com/mojang/minecraft/unmapped/C_23330260
 	m	(I)I	m_79262324	m_79262324	
 		p	1		p_1	
-c	com/mojang/minecraft/unmapped/C_24384787	com/mojang/minecraft/client/render/world/WorldRenderer	
-	f	Lcom/mojang/minecraft/level/Level;	f_61719522	world	
+c	com/mojang/minecraft/unmapped/C_24384787	com/mojang/minecraft/client/render/level/LevelRenderer	
+	f	Lcom/mojang/minecraft/level/Level;	f_61719522	level	
 	f	Lcom/mojang/minecraft/unmapped/C_82920792;	f_38343582	textureManager	
 	f	I	f_20827757	environmentGlLists	
 	f	Ljava/nio/IntBuffer;	f_01226149	lastLayer	
@@ -422,7 +422,7 @@ c	com/mojang/minecraft/unmapped/C_24384787	com/mojang/minecraft/client/render/wo
 	m	(Lcom/mojang/minecraft/unmapped/C_59676445;F)V	m_72386130	m_72386130	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lcom/mojang/minecraft/player/Player;Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450	renderBlockOutline	
+	m	(Lcom/mojang/minecraft/player/Player;Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450	renderTileOutline	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
@@ -430,7 +430,7 @@ c	com/mojang/minecraft/unmapped/C_24384787	com/mojang/minecraft/client/render/wo
 	m	(Lcom/mojang/minecraft/unmapped/C_24654288;I)V	m_41930172	m_41930172	
 		p	0		p_0	
 		p	1		p_1	
-c	com/mojang/minecraft/unmapped/C_24654288	com/mojang/minecraft/world/HitResult	
+c	com/mojang/minecraft/unmapped/C_24654288	com/mojang/minecraft/level/HitResult	
 	f	I	f_79497105	x	
 	f	I	f_09533029	y	
 	f	I	f_04223298	z	
@@ -444,7 +444,7 @@ c	com/mojang/minecraft/unmapped/C_24654288	com/mojang/minecraft/world/HitResult
 	m	(Lcom/mojang/minecraft/player/Player;I)F	m_02676981	m_02676981	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/unmapped/C_29873255	com/mojang/minecraft/client/gui/screen/world/EnterWorldNameScreen	
+c	com/mojang/minecraft/unmapped/C_29873255	com/mojang/minecraft/client/gui/screen/level/EnterLevelNameScreen	
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_84731181	parent	
 	f	Ljava/lang/String;	f_97027081	title	
 	f	I	f_29538896	slot	
@@ -465,7 +465,7 @@ c	com/mojang/minecraft/unmapped/C_29873255	com/mojang/minecraft/client/gui/scree
 	m	(II)V	m_93956703	m_93956703	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/unmapped/C_35928469	com/mojang/minecraft/client/render/world/DirtyChunkSorter	
+c	com/mojang/minecraft/unmapped/C_35928469	com/mojang/minecraft/client/render/level/DirtyChunkSorter	
 	f	Lcom/mojang/minecraft/player/Player;	f_91616727	camera	
 	m	(Lcom/mojang/minecraft/player/Player;)V	<init>	<init>	
 		p	1		camera	
@@ -485,7 +485,7 @@ c	com/mojang/minecraft/unmapped/C_46155730	com/mojang/minecraft/client/gui/ChatM
 	f	I	f_36886963	age	
 	m	(Ljava/lang/String;)V	<init>	<init>	
 		p	1		p_1	
-c	com/mojang/minecraft/unmapped/C_48207600	com/mojang/minecraft/client/gui/screen/world/CreateWorldScreen	
+c	com/mojang/minecraft/unmapped/C_48207600	com/mojang/minecraft/client/gui/screen/level/CreateLevelScreen	
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_14795955	parent	
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	<init>	<init>	
 		p	1		parent	
@@ -523,7 +523,7 @@ c	com/mojang/minecraft/unmapped/C_55401126	com/mojang/minecraft/client/gui/scree
 	m	(II)V	m_93956703	m_93956703	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/unmapped/C_58526296	com/mojang/minecraft/client/gui/screen/world/SaveWorldScreen	
+c	com/mojang/minecraft/unmapped/C_58526296	com/mojang/minecraft/client/gui/screen/level/SaveLevelScreen	
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	<init>	<init>	
 		p	1		p_1	
 	m	([Ljava/lang/String;)V	m_35428992	m_35428992	
@@ -567,7 +567,7 @@ c	com/mojang/minecraft/unmapped/C_61342587	com/mojang/minecraft/client/gui/scree
 	m	(II)V	m_93956703	m_93956703	
 		p	1		p_1	
 		p	2		p_2	
-c	com/mojang/minecraft/unmapped/C_65241348	com/mojang/minecraft/client/render/world/DistanceChunkSorter	
+c	com/mojang/minecraft/unmapped/C_65241348	com/mojang/minecraft/client/render/level/DistanceChunkSorter	
 	f	Lcom/mojang/minecraft/player/Player;	f_09328661	camera	
 	m	(Lcom/mojang/minecraft/player/Player;)V	<init>	<init>	
 		p	1		camera	
@@ -586,12 +586,12 @@ c	com/mojang/minecraft/unmapped/C_65825638	com/mojang/minecraft/client/network/C
 		p	3		port	
 		p	4		username	
 		p	5		password	
-	m	(IIIII)V	m_79156205	setBlock	
+	m	(IIIII)V	m_79156205	setTile	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		mode	
-		p	5		block	
+		p	5		tile	
 	m	(Ljava/lang/Exception;)V	m_02979474	handleException	
 		p	1		exception	
 	m	()Z	m_32314695	isConnected	
@@ -610,8 +610,8 @@ c	com/mojang/minecraft/unmapped/C_65825638$58714522	58714522
 		p	5		p_5	
 		p	6		p_6	
 	m	()V	run	run	
-c	com/mojang/minecraft/unmapped/C_68333747	com/mojang/minecraft/client/render/world/RenderChunk	
-	f	Lcom/mojang/minecraft/level/Level;	f_34233742	world	
+c	com/mojang/minecraft/unmapped/C_68333747	com/mojang/minecraft/client/render/level/RenderChunk	
+	f	Lcom/mojang/minecraft/level/Level;	f_34233742	level	
 	f	I	f_02330620	glList	
 	f	Lcom/mojang/minecraft/unmapped/C_96603444;	f_89118127	TESSELATOR	
 	f	I	f_32530247	updateCounter	
@@ -624,7 +624,7 @@ c	com/mojang/minecraft/unmapped/C_68333747	com/mojang/minecraft/client/render/wo
 	f	Z	f_09460685	visible	
 	f	[Z	f_73431419	empty	
 	m	(Lcom/mojang/minecraft/level/Level;IIIII)V	<init>	<init>	
-		p	1		world	
+		p	1		level	
 		p	2		originX	
 		p	3		originY	
 		p	4		originZ	
@@ -658,8 +658,8 @@ c	com/mojang/minecraft/unmapped/C_81592558
 		p	5		maxY	
 		p	6		maxZ	
 	m	(Lcom/mojang/minecraft/level/Level;III)F	m_48092460	getBrightness	
-		p	1		world	
-		p	2		x	
+		p	1		level	
+		p	2		x
 		p	3		y	
 		p	4		z	
 	m	(I)I	m_79262324	getSprite	
@@ -671,14 +671,14 @@ c	com/mojang/minecraft/unmapped/C_81592558
 		p	4		z	
 		p	5		face	
 	m	(Lcom/mojang/minecraft/unmapped/C_96603444;IIII)V	m_83973402	renderFaceSmaller	
-		c	A variation of the {@linkplain renderFace} method that uses slightly lower texture UVs.\nUsed by liquid blocks.	
+		c	A variation of the {@linkplain renderFace} method that uses slightly lower texture UVs.\nUsed by liquid tiles.	
 		p	1		tesselator	
 		p	2		x	
 		p	3		y	
 		p	4		z	
 		p	5		face	
 	m	(Lcom/mojang/minecraft/level/Level;IIILcom/mojang/minecraft/unmapped/C_16190149;)V	m_73961906	addBreakParticles	
-		p	1		world	
+		p	1		level	
 		p	2		x	
 		p	3		y	
 		p	4		z	

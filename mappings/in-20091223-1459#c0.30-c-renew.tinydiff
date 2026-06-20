@@ -2083,7 +2083,7 @@ c	com/mojang/minecraft/Entity		com/mojang/minecraft/Entity
 	f	F	pushthrough		pushthrough
 	f	Z	hovered		hovered
 	m	(Lcom/mojang/minecraft/level/Level;)V	<init>		<init>
-		p	1			world
+		p	1			level
 	m	()V	resetPos		resetPos
 	m	()V	remove		remove
 	m	(FF)V	setSize		setSize
@@ -2192,8 +2192,8 @@ c	com/mojang/minecraft/Minecraft		com/mojang/minecraft/Minecraft
 	f	I	f_31800787		width
 	f	I	f_74192110		height
 	f	Lcom/mojang/minecraft/unmapped/C_82837181;	f_45385386		timer
-	f	Lcom/mojang/minecraft/level/Level;	f_26407825		world
-	f	Lcom/mojang/minecraft/unmapped/C_24384787;	f_48619021		worldRenderer
+	f	Lcom/mojang/minecraft/level/Level;	f_26407825		level
+	f	Lcom/mojang/minecraft/unmapped/C_24384787;	f_48619021		levelRenderer
 	f	Lcom/mojang/minecraft/player/Player;	f_28396371		player
 	f	Lcom/mojang/minecraft/unmapped/C_16190149;	f_49464910		particleManager
 	f	Lcom/mojang/minecraft/unmapped/C_87604186;	f_69329575		session
@@ -2207,7 +2207,7 @@ c	com/mojang/minecraft/Minecraft		com/mojang/minecraft/Minecraft
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_70816363		screen
 	f	Lcom/mojang/minecraft/unmapped/C_62408525;	f_06595342		progressRenderer
 	f	Lcom/mojang/minecraft/unmapped/C_03140863;	f_19113424		gameRenderer
-	f	Lcom/mojang/minecraft/unmapped/C_01953097;	f_76403675		worldStorage
+	f	Lcom/mojang/minecraft/unmapped/C_01953097;	f_76403675		levelStorage
 	f	Lcom/mojang/minecraft/unmapped/C_23370508;	f_47642590		sounds
 	f	Lcom/mojang/minecraft/unmapped/C_31574624;	f_86515636		resourceDownloader
 	f	I	f_51139858		ticks
@@ -2230,11 +2230,11 @@ c	com/mojang/minecraft/Minecraft		com/mojang/minecraft/Minecraft
 	f	I	f_87531065		lastClickTicks
 	f	Z	f_91957833		raining
 	m	(Ljava/awt/Canvas;Lcom/mojang/minecraft/MinecraftApplet;IIZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
+		p	1			canvas
+		p	2			applet
+		p	3			width
+		p	4			height
+		p	5			fullscreen
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	m_52715402		openScreen
 		p	1			screen
 	m	(Ljava/lang/String;)V	m_07535032		logGlError
@@ -2247,13 +2247,13 @@ c	com/mojang/minecraft/Minecraft		com/mojang/minecraft/Minecraft
 		p	1			button
 	m	()V	m_67975642		tick
 	m	()Z	m_16918576		isRemote
-	m	(I)V	m_16924879		createWorld
+	m	(I)V	m_16924879		createLevel
 		p	1			size
-	m	(Ljava/lang/String;I)Z	m_71173280		loadWorld
+	m	(Ljava/lang/String;I)Z	m_71173280		loadLevel
 		p	1			username
 		p	2			slot
-	m	(Lcom/mojang/minecraft/level/Level;)V	m_75727284		setWorld
-		p	1			world
+	m	(Lcom/mojang/minecraft/level/Level;)V	m_75727284		setLevel
+		p	1			level
 c	com/mojang/minecraft/Minecraft$32171470		32171470
 	m	(Lcom/mojang/minecraft/Minecraft;)V	<init>		<init>
 		p	1			p_1
@@ -2521,7 +2521,7 @@ c	com/mojang/minecraft/level/Level		com/mojang/minecraft/level/Level
 		p	1			sizeX
 		p	2			sizeZ
 		p	3			sizeY
-		p	4			blocks
+		p	4			tiles
 	m	()V	findSpawn		findSpawn
 	m	(IIII)V	calcLightDepths		calcLightDepths
 		p	1			p_1
@@ -2550,37 +2550,37 @@ c	com/mojang/minecraft/level/Level		com/mojang/minecraft/level/Level
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(IIII)Z	netSetTileNoNeighborChange		netSetTileNoNeighborChange
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(IIII)Z	setTile		setTile
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(IIII)Z	netSetTile		netSetTile
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(IIII)V	updateNeighborsAt		updateNeighborsAt
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(IIII)Z	setTileNoUpdate		setTileNoUpdate
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(IIII)V	m_73656961		neighborChanged
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			neighborBlock
+		p	4			neighborTile
 	m	(III)Z	isLit		isLit
 		p	1			p_1
 		p	2			p_2
@@ -2612,7 +2612,7 @@ c	com/mojang/minecraft/level/Level		com/mojang/minecraft/level/Level
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 	m	(Lcom/mojang/minecraft/phys/AABB;)Z	isFree		isFree
 		p	1			bounds
 	m	(Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List;	findEntities		findEntities
@@ -2623,7 +2623,7 @@ c	com/mojang/minecraft/level/Level		com/mojang/minecraft/level/Level
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-	m	(FFF)Z	m_13752006		isSolidBlock
+	m	(FFF)Z	m_13752006		isSolidTile
 		p	1			x
 		p	2			y
 		p	3			z
@@ -2631,10 +2631,10 @@ c	com/mojang/minecraft/level/Level		com/mojang/minecraft/level/Level
 		p	1			x
 		p	2			z
 	m	(IIIF)V	setSpawnPos		setSpawnPos
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			x
+		p	2			y
+		p	3			z
+		p	4			rot
 	m	(III)F	getBrightness		getBrightness
 		p	1			p_1
 		p	2			p_2
@@ -3214,17 +3214,17 @@ c	com/mojang/minecraft/player/Player$1		1
 	m	(Lcom/mojang/minecraft/player/Player;)V	<init>		<init>
 		p	1			p_1
 	m	()V	update		update
-c	com/mojang/minecraft/unmapped/C_01953097		com/mojang/minecraft/world/storage/WorldStorage
+c	com/mojang/minecraft/unmapped/C_01953097		com/mojang/minecraft/level/storage/LevelStorage
 	f	Lcom/mojang/minecraft/unmapped/C_62408525;	f_71688092		listener
 	m	(Lcom/mojang/minecraft/unmapped/C_62408525;)V	<init>		<init>
 		p	1			p_1
 	m	(Lcom/mojang/minecraft/level/Level;Ljava/io/File;)Z	m_80592762		save
-		p	1			world
+		p	1			level
 		p	2			file
 	m	(Ljava/io/File;)Lcom/mojang/minecraft/level/Level;	m_03072487		load
 		p	1			p_1
 	m	(Lcom/mojang/minecraft/level/Level;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Z	m_22342627		save
-		p	1			world
+		p	1			level
 		p	2			hostAddress
 		p	3			username
 		p	4			sessionId
@@ -3237,9 +3237,9 @@ c	com/mojang/minecraft/unmapped/C_01953097		com/mojang/minecraft/world/storage/W
 	m	(Ljava/io/InputStream;)Lcom/mojang/minecraft/level/Level;	m_47137514		load
 		p	1			input
 	m	(Lcom/mojang/minecraft/level/Level;Ljava/io/OutputStream;)V	m_16689239		save
-		p	0			world
+		p	0			level
 		p	1			output
-	m	(Ljava/io/InputStream;)[B	m_81200078		readBlocks
+	m	(Ljava/io/InputStream;)[B	m_81200078		readTiles
 		p	0			input
 c	com/mojang/minecraft/unmapped/C_02994991		com/mojang/minecraft/entity/mob/player/PlayerTransform
 	f	F	f_95864092		x
@@ -3294,7 +3294,7 @@ c	com/mojang/minecraft/unmapped/C_03140863		com/mojang/minecraft/client/render/G
 		p	2			f2
 		p	3			f3
 		p	4			f4
-c	com/mojang/minecraft/unmapped/C_05042406		com/mojang/minecraft/block/LiquidSourceBlock
+c	com/mojang/minecraft/unmapped/C_05042406		com/mojang/minecraft/tile/LiquidSourceTile
 	m	(ILcom/mojang/minecraft/unmapped/C_89604096;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -3344,7 +3344,7 @@ c	com/mojang/minecraft/unmapped/C_05436435		de/jarnbjo/vorbis/Residue
 	m	(Lcom/mojang/minecraft/unmapped/C_25881388;Lcom/mojang/minecraft/unmapped/C_14501006;)Lcom/mojang/minecraft/unmapped/C_55473620;	m_71644062		m_71644062
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_07874483		com/mojang/minecraft/block/StoneSlabBlock
+c	com/mojang/minecraft/unmapped/C_07874483		com/mojang/minecraft/tile/StoneSlabTile
 	f	Z	f_21992262		doubleSlab
 	m	(IZ)V	<init>		<init>
 		p	1			id
@@ -3418,15 +3418,15 @@ c	com/mojang/minecraft/unmapped/C_11164199		com/mojang/minecraft/client/gui/widg
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	com/mojang/minecraft/unmapped/C_11340426		com/mojang/minecraft/block/DirtBlock
+c	com/mojang/minecraft/unmapped/C_11340426		com/mojang/minecraft/tile/DirtTile
 	m	(II)V	<init>		<init>
 		p	1			id
 		p	2			sprite
-c	com/mojang/minecraft/unmapped/C_11443481		com/mojang/minecraft/client/gui/screen/world/LoadWorldScreen
+c	com/mojang/minecraft/unmapped/C_11443481		com/mojang/minecraft/client/gui/screen/level/LoadLevelScreen
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_58703230		parent
-	f	Z	f_31927864		worldListLoaded
-	f	Z	f_19830747		worldListHasNonEmptySlot
-	f	[Ljava/lang/String;	f_80889912		worldNames
+	f	Z	f_31927864		levelListLoaded
+	f	Z	f_19830747		levelListHasNonEmptySlot
+	f	[Ljava/lang/String;	f_80889912		levelNames
 	f	Ljava/lang/String;	f_93041140		description
 	f	Ljava/lang/String;	f_80925663		title
 	f	Z	f_57833139		selecting
@@ -3437,13 +3437,13 @@ c	com/mojang/minecraft/unmapped/C_11443481		com/mojang/minecraft/client/gui/scre
 		p	1			parent
 	m	()V	run		run
 	m	([Ljava/lang/String;)V	m_35428992		updateButtons
-		p	1			worldNames
+		p	1			levelNames
 	m	()V	m_41805697		m_41805697
 	m	(Lcom/mojang/minecraft/unmapped/C_85125467;)V	m_30778170		m_30778170
 		p	1			p_1
 	m	(Ljava/io/File;)V	m_24982949		handleSelection
-		p	1			p_1
-	m	(I)V	m_19582291		selectWorld
+		p	1			file
+	m	(I)V	m_19582291		selectLevel
 		p	1			slot
 	m	(II)V	m_93956703		m_93956703
 		p	1			p_1
@@ -3455,10 +3455,10 @@ c	com/mojang/minecraft/unmapped/C_11443481$42708253		42708253
 	m	(Lcom/mojang/minecraft/unmapped/C_11443481;)V	<init>		<init>
 		p	1			p_1
 	m	()V	run		run
-c	com/mojang/minecraft/unmapped/C_13709197		com/mojang/minecraft/block/LiquidBlock
+c	com/mojang/minecraft/unmapped/C_13709197		com/mojang/minecraft/tile/LiquidTile
 	f	Lcom/mojang/minecraft/unmapped/C_89604096;	f_65844499		material
-	f	I	f_21526176		sourceBlock
-	f	I	f_88641891		flowingBlock
+	f	I	f_21526176		sourceTile
+	f	I	f_88641891		flowingTile
 	m	(ILcom/mojang/minecraft/unmapped/C_89604096;)V	<init>		<init>
 		p	1			id
 		p	2			material
@@ -3584,7 +3584,7 @@ c	com/mojang/minecraft/unmapped/C_16190149		com/mojang/minecraft/client/Particle
 	f	[Ljava/util/List;	f_71918941		particles
 	f	Lcom/mojang/minecraft/unmapped/C_82920792;	f_94050747		textureManager
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/unmapped/C_82920792;)V	<init>		<init>
-		p	1			world
+		p	1			level
 		p	2			textureManager
 	m	(Lcom/mojang/minecraft/Entity;)V	m_20116138		add
 		p	1			particle
@@ -3596,14 +3596,14 @@ c	com/mojang/minecraft/unmapped/C_16962498		com/mojang/minecraft/client/sound/ef
 		p	2			listener
 	m	()F	m_33451158		m_33451158
 	m	()F	m_54415623		m_54415623
-c	com/mojang/minecraft/unmapped/C_17024976		com/mojang/minecraft/block/BookshelfBlock
+c	com/mojang/minecraft/unmapped/C_17024976		com/mojang/minecraft/tile/BookshelfTile
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	(I)I	m_79262324		m_79262324
 		p	1			p_1
 	m	()I	m_23574716		m_23574716
-c	com/mojang/minecraft/unmapped/C_18719811		com/mojang/minecraft/block/GrassBlock
+c	com/mojang/minecraft/unmapped/C_18719811		com/mojang/minecraft/tile/GrassTile
 	m	(I)V	<init>		<init>
 		p	1			p_1
 	m	(I)I	m_79262324		m_79262324
@@ -3615,7 +3615,7 @@ c	com/mojang/minecraft/unmapped/C_18719811		com/mojang/minecraft/block/GrassBloc
 		p	4			p_4
 		p	5			p_5
 	m	()I	m_78174230		m_78174230
-c	com/mojang/minecraft/unmapped/C_18811114		com/mojang/minecraft/block/SpongeBlock
+c	com/mojang/minecraft/unmapped/C_18811114		com/mojang/minecraft/tile/SpongeTile
 	m	(I)V	<init>		<init>
 		p	1			p_1
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_69334720		m_69334720
@@ -3702,7 +3702,7 @@ c	com/mojang/minecraft/unmapped/C_23014920		com/mojang/minecraft/client/render/T
 		p	1			text
 	m	(Ljava/lang/String;)Ljava/lang/String;	m_29824323		sanitize
 		p	0			text
-c	com/mojang/minecraft/unmapped/C_23330260		com/mojang/minecraft/block/LogBlock
+c	com/mojang/minecraft/unmapped/C_23330260		com/mojang/minecraft/tile/LogTile
 	m	(I)V	<init>		<init>
 		p	1			p_1
 	m	()I	m_23574716		m_23574716
@@ -3741,8 +3741,8 @@ c	com/mojang/minecraft/unmapped/C_23996630		com/mojang/minecraft/client/sound/bu
 	m	([SI)I	m_61520053		read
 		p	1			samples
 		p	2			sampleCount
-c	com/mojang/minecraft/unmapped/C_24384787		com/mojang/minecraft/client/render/world/WorldRenderer
-	f	Lcom/mojang/minecraft/level/Level;	f_61719522		world
+c	com/mojang/minecraft/unmapped/C_24384787		com/mojang/minecraft/client/render/level/LevelRenderer
+	f	Lcom/mojang/minecraft/level/Level;	f_61719522		level
 	f	Lcom/mojang/minecraft/unmapped/C_82920792;	f_38343582		textureManager
 	f	I	f_20827757		environmentGlLists
 	f	Ljava/nio/IntBuffer;	f_01226149		lastLayer
@@ -3774,14 +3774,14 @@ c	com/mojang/minecraft/unmapped/C_24384787		com/mojang/minecraft/client/render/w
 		p	4			maxX
 		p	5			maxY
 		p	6			maxZ
-c	com/mojang/minecraft/unmapped/C_24654288		com/mojang/minecraft/world/HitResult
+c	com/mojang/minecraft/unmapped/C_24654288		com/mojang/minecraft/level/HitResult
 	f	I	f_92820457		type
 	f	I	f_79497105		x
 	f	I	f_09533029		y
 	f	I	f_04223298		z
 	f	I	f_72698539		face
 	f	Lcom/mojang/minecraft/unmapped/C_94584382;	f_94083482		facePos
-		c		The hit's precise position on the face of the block or entity.
+		c		The hit's precise position on the face of the tile or entity.
 	f	Lcom/mojang/minecraft/Entity;	f_38514196		entity
 	m	(IIIILcom/mojang/minecraft/unmapped/C_94584382;)V	<init>		<init>
 		p	1			x
@@ -3791,12 +3791,12 @@ c	com/mojang/minecraft/unmapped/C_24654288		com/mojang/minecraft/world/HitResult
 		p	5			facePos
 	m	(Lcom/mojang/minecraft/Entity;)V	<init>		<init>
 		p	1			entity
-c	com/mojang/minecraft/unmapped/C_25501528		com/mojang/minecraft/world/NaturalSpawner
-	f	Lcom/mojang/minecraft/level/Level;	f_76431702		world
+c	com/mojang/minecraft/unmapped/C_25501528		com/mojang/minecraft/level/NaturalSpawner
+	f	Lcom/mojang/minecraft/level/Level;	f_76431702		level
 	m	(Lcom/mojang/minecraft/level/Level;)V	<init>		<init>
-		p	1			world
+		p	1			level
 	m	(ILcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/unmapped/C_62408525;)I	m_48557180		run
-		p	1			p_1
+		p	1			attempts
 		p	2			center
 		p	3			listener
 c	com/mojang/minecraft/unmapped/C_25881388		de/jarnbjo/vorbis/VorbisStream
@@ -3917,7 +3917,7 @@ c	com/mojang/minecraft/unmapped/C_29058632		com/mojang/minecraft/client/gui/GuiE
 		p	4			v
 		p	5			width
 		p	6			height
-c	com/mojang/minecraft/unmapped/C_29873255		com/mojang/minecraft/client/gui/screen/world/EnterWorldNameScreen
+c	com/mojang/minecraft/unmapped/C_29873255		com/mojang/minecraft/client/gui/screen/level/EnterLevelNameScreen
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_84731181		parent
 	f	Ljava/lang/String;	f_97027081		title
 	f	I	f_29538896		slot
@@ -3967,7 +3967,7 @@ c	com/mojang/minecraft/unmapped/C_32760905		de/jarnbjo/vorbis/Util
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	com/mojang/minecraft/unmapped/C_34225397		com/mojang/minecraft/block/SaplingBlock
+c	com/mojang/minecraft/unmapped/C_34225397		com/mojang/minecraft/tile/SaplingTile
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -3985,22 +3985,22 @@ c	com/mojang/minecraft/unmapped/C_34267874		com/mojang/minecraft/client/ClientPl
 	m	(Lcom/mojang/minecraft/level/Level;)V	m_89766546		initLevel
 		p	1			level
 	m	()V	m_60914393		build
-	m	(III)V	m_60676490		startMiningBlock
+	m	(III)V	m_60676490		startMiningTile
 		p	1			x
 		p	2			y
 		p	3			z
 	m	(I)Z	m_90153082		dropItem
 		p	1			item
-	m	(III)V	m_30410395		finishMiningBlock
+	m	(III)V	m_30410395		finishMiningTile
 		p	1			x
 		p	2			y
 		p	3			z
-	m	(IIII)V	m_16761237		tickBlockMining
+	m	(IIII)V	m_16761237		tickMining
 		p	1			x
 		p	2			y
 		p	3			z
 		p	4			face
-	m	()V	m_43278352		stopMiningBlock
+	m	()V	m_43278352		stopMiningTile
 	m	(F)V	m_40772983		render
 		p	1			tickDelta
 	m	()F	m_36718273		getReach
@@ -4053,7 +4053,7 @@ c	com/mojang/minecraft/unmapped/C_35412243		com/mojang/minecraft/client/render/I
 	f	Z	f_14025902		swingArm
 	m	(Lcom/mojang/minecraft/Minecraft;)V	<init>		<init>
 		p	1			minecraft
-c	com/mojang/minecraft/unmapped/C_35928469		com/mojang/minecraft/client/render/world/DirtyChunkSorter
+c	com/mojang/minecraft/unmapped/C_35928469		com/mojang/minecraft/client/render/level/DirtyChunkSorter
 	f	Lcom/mojang/minecraft/player/Player;	f_91616727		camera
 	m	(Lcom/mojang/minecraft/player/Player;)V	<init>		<init>
 		p	1			camera
@@ -4070,7 +4070,7 @@ c	com/mojang/minecraft/unmapped/C_36076665		com/mojang/minecraft/client/render/m
 		p	4			yaw
 		p	5			pitch
 		p	6			scale
-c	com/mojang/minecraft/unmapped/C_36401657		com/mojang/minecraft/block/TntBlock
+c	com/mojang/minecraft/unmapped/C_36401657		com/mojang/minecraft/tile/TntTile
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -4188,7 +4188,7 @@ c	com/mojang/minecraft/unmapped/C_43033811		com/mojang/minecraft/client/render/m
 		p	4			p_4
 		p	5			p_5
 		p	6			p_6
-c	com/mojang/minecraft/unmapped/C_43697299		com/mojang/minecraft/world/gen/noise/PerlinNoise
+c	com/mojang/minecraft/unmapped/C_43697299		com/mojang/minecraft/level/gen/noise/PerlinNoise
 	f	[Lcom/mojang/minecraft/unmapped/C_64070979;	f_41761733		noiseLevels
 	f	I	f_65414037		levels
 	m	(Ljava/util/Random;I)V	<init>		<init>
@@ -4207,13 +4207,13 @@ c	com/mojang/minecraft/unmapped/C_44302114		de/jarnbjo/vorbis/Floor0
 		p	2			p_2
 	m	([F)V	m_16055167		m_16055167
 		p	1			p_1
-c	com/mojang/minecraft/unmapped/C_44922783		com/mojang/minecraft/block/LeavesBlock
+c	com/mojang/minecraft/unmapped/C_44922783		com/mojang/minecraft/tile/LeavesTile
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()I	m_23574716		m_23574716
 	m	()I	m_78174230		m_78174230
-c	com/mojang/minecraft/unmapped/C_45448523		com/mojang/minecraft/block/PlantBlock
+c	com/mojang/minecraft/unmapped/C_45448523		com/mojang/minecraft/tile/PlantTile
 	m	(II)V	<init>		<init>
 		p	1			id
 		p	2			sprite
@@ -4262,7 +4262,7 @@ c	com/mojang/minecraft/unmapped/C_46155730		com/mojang/minecraft/client/gui/Chat
 		p	1			p_1
 c	com/mojang/minecraft/unmapped/C_47920325		com/mojang/minecraft/client/render/model/entity/SheepModel
 	m	()V	<init>		<init>
-c	com/mojang/minecraft/unmapped/C_48207600		com/mojang/minecraft/client/gui/screen/world/CreateWorldScreen
+c	com/mojang/minecraft/unmapped/C_48207600		com/mojang/minecraft/client/gui/screen/level/CreateLevelScreen
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_14795955		parent
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	<init>		<init>
 		p	1			parent
@@ -4272,24 +4272,24 @@ c	com/mojang/minecraft/unmapped/C_48207600		com/mojang/minecraft/client/gui/scre
 	m	(II)V	m_93956703		m_93956703
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_49004282		com/mojang/minecraft/world/WorldGenerator
+c	com/mojang/minecraft/unmapped/C_49004282		com/mojang/minecraft/level/LevelGenerator
 	f	Lcom/mojang/minecraft/unmapped/C_62408525;	f_76014930		listener
 	f	I	f_13190451		sizeX
 	f	I	f_89318109		sizeZ
 	f	I	f_24422497		sizeY
 	f	Ljava/util/Random;	f_35596902		random
-	f	[B	f_92788646		blocks
+	f	[B	f_92788646		tiles
 	f	I	f_50329258		f_50329258
 	f	[I	f_69652274		f_69652274
 	m	(Lcom/mojang/minecraft/unmapped/C_62408525;)V	<init>		<init>
-		p	1			p_1
+		p	1			listener
 	m	(Ljava/lang/String;III)Lcom/mojang/minecraft/level/Level;	m_45923732		generate
 		p	1			name
 		p	2			sizeX
 		p	3			sizeZ
 		p	4			sizeY
 	m	(IIII)V	m_59714535		placeOre
-		p	1			block
+		p	1			tile
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
@@ -4307,7 +4307,7 @@ c	com/mojang/minecraft/unmapped/C_50166431		de/jarnbjo/vorbis/CommentHeader
 		p	1			p_1
 	m	(Lcom/mojang/minecraft/unmapped/C_41449502;)Ljava/lang/String;	m_73165144		m_73165144
 		p	0			p_0
-c	com/mojang/minecraft/unmapped/C_51015902		com/mojang/minecraft/block/TransparentBlock
+c	com/mojang/minecraft/unmapped/C_51015902		com/mojang/minecraft/tile/TransparentTile
 	f	Z	f_72375495		culling
 	m	(IIZ)V	<init>		<init>
 		p	1			id
@@ -4339,9 +4339,9 @@ c	com/mojang/minecraft/unmapped/C_54686545		com/mojang/minecraft/client/render/t
 		p	1			sprite
 	m	()V	m_47598203		tick
 c	com/mojang/minecraft/unmapped/C_54765678		com/mojang/minecraft/client/SurvivalInteractionManager
-	f	I	f_56241299		targetBlockX
-	f	I	f_84902206		targetBlockY
-	f	I	f_83250694		targetBlockZ
+	f	I	f_56241299		targetTileX
+	f	I	f_84902206		targetTileY
+	f	I	f_83250694		targetTileZ
 	f	I	f_58101368		miningProgress
 	f	I	f_12442931		lastMiningProgress
 	f	I	f_47302183		miningCooldown
@@ -4410,7 +4410,7 @@ c	com/mojang/minecraft/unmapped/C_55623976		de/jarnbjo/ogg/OnDemandUrlStream
 	m	(Ljava/net/URL;)V	<init>		<init>
 		p	1			p_1
 	m	()Lcom/mojang/minecraft/unmapped/C_39061127;	m_67550808		m_67550808
-c	com/mojang/minecraft/unmapped/C_58526296		com/mojang/minecraft/client/gui/screen/world/SaveWorldScreen
+c	com/mojang/minecraft/unmapped/C_58526296		com/mojang/minecraft/client/gui/screen/level/SaveLevelScreen
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	<init>		<init>
 		p	1			p_1
 	m	()V	m_41805697		m_41805697
@@ -4434,7 +4434,7 @@ c	com/mojang/minecraft/unmapped/C_59676445		com/mojang/minecraft/client/render/F
 		p	0			p_0
 		p	1			frustum
 	m	()V	<clinit>		<clinit>
-c	com/mojang/minecraft/unmapped/C_60779176		com/mojang/minecraft/block/OreBlock
+c	com/mojang/minecraft/unmapped/C_60779176		com/mojang/minecraft/tile/OreTile
 	m	(II)V	<init>		<init>
 		p	1			id
 		p	2			sprite
@@ -4480,7 +4480,7 @@ c	com/mojang/minecraft/unmapped/C_63572037		de/jarnbjo/vorbis/Residue0
 		p	3			p_3
 		p	4			p_4
 		p	5			p_5
-c	com/mojang/minecraft/unmapped/C_64070979		com/mojang/minecraft/world/gen/noise/ImprovedNoise
+c	com/mojang/minecraft/unmapped/C_64070979		com/mojang/minecraft/level/gen/noise/ImprovedNoise
 	f	[I	f_53655487		permutations
 		c		A randomly generated permutation table used to determine\nthe gradient vector for each grid intersection.
 	m	()V	<init>		<init>
@@ -4501,7 +4501,7 @@ c	com/mojang/minecraft/unmapped/C_64070979		com/mojang/minecraft/world/gen/noise
 	m	(DD)D	m_99527025		getValue
 		p	1			x
 		p	3			y
-c	com/mojang/minecraft/unmapped/C_65241348		com/mojang/minecraft/client/render/world/DistanceChunkSorter
+c	com/mojang/minecraft/unmapped/C_65241348		com/mojang/minecraft/client/render/level/DistanceChunkSorter
 	f	Lcom/mojang/minecraft/player/Player;	f_09328661		camera
 	m	(Lcom/mojang/minecraft/player/Player;)V	<init>		<init>
 		p	1			camera
@@ -4521,12 +4521,12 @@ c	com/mojang/minecraft/unmapped/C_65825638		com/mojang/minecraft/client/network/
 		p	3			port
 		p	4			username
 		p	5			password
-	m	(IIIII)V	m_79156205		setBlock
+	m	(IIIII)V	m_79156205		setTile
 		p	1			x
 		p	2			y
 		p	3			z
 		p	4			mode
-		p	5			block
+		p	5			tile
 	m	(Ljava/lang/Exception;)V	m_02979474		handleException
 		p	1			exception
 	m	()Z	m_32314695		isConnected
@@ -4546,7 +4546,7 @@ c	com/mojang/minecraft/unmapped/C_65825638$58714522		58714522
 		p	5			p_5
 		p	6			p_6
 	m	()V	run		run
-c	com/mojang/minecraft/unmapped/C_67133180		com/mojang/minecraft/block/MineralBlock
+c	com/mojang/minecraft/unmapped/C_67133180		com/mojang/minecraft/tile/MineralTile
 	m	(II)V	<init>		<init>
 		p	1			id
 		p	2			sprite
@@ -4569,13 +4569,13 @@ c	com/mojang/minecraft/unmapped/C_67645866		com/mojang/minecraft/client/gui/scre
 	m	(II)V	m_93956703		m_93956703
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_68072741		com/mojang/minecraft/world/storage/EntityObjectInputStream
+c	com/mojang/minecraft/unmapped/C_68072741		com/mojang/minecraft/level/storage/EntityObjectInputStream
 	f	Ljava/util/Set;	f_45343544		types
 	m	(Ljava/io/InputStream;)V	<init>		<init>
 		p	1			p_1
 	m	()Ljava/io/ObjectStreamClass;	readClassDescriptor		readClassDescriptor
-c	com/mojang/minecraft/unmapped/C_68333747		com/mojang/minecraft/client/render/world/RenderChunk
-	f	Lcom/mojang/minecraft/level/Level;	f_34233742		world
+c	com/mojang/minecraft/unmapped/C_68333747		com/mojang/minecraft/client/render/level/RenderChunk
+	f	Lcom/mojang/minecraft/level/Level;	f_34233742		level
 	f	I	f_02330620		glList
 	f	Lcom/mojang/minecraft/unmapped/C_96603444;	f_89118127		TESSELATOR
 	f	I	f_32530247		updateCounter
@@ -4589,7 +4589,7 @@ c	com/mojang/minecraft/unmapped/C_68333747		com/mojang/minecraft/client/render/w
 	f	[Z	f_73431419		empty
 	f	Z	f_51933456		dirty
 	m	(Lcom/mojang/minecraft/level/Level;IIIII)V	<init>		<init>
-		p	1			world
+		p	1			level
 		p	2			originX
 		p	3			originY
 		p	4			originZ
@@ -4607,22 +4607,22 @@ c	com/mojang/minecraft/unmapped/C_68333747		com/mojang/minecraft/client/render/w
 	m	(Lcom/mojang/minecraft/unmapped/C_26019040;)V	m_57353452		cull
 		p	1			frustum
 	m	()V	<clinit>		<clinit>
-c	com/mojang/minecraft/unmapped/C_68680121		com/mojang/minecraft/block/StoneBlock
+c	com/mojang/minecraft/unmapped/C_68680121		com/mojang/minecraft/tile/StoneTile
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()I	m_78174230		m_78174230
-c	com/mojang/minecraft/unmapped/C_71226614		com/mojang/minecraft/world/ScheduledTick
+c	com/mojang/minecraft/unmapped/C_71226614		com/mojang/minecraft/level/ScheduledTick
 	f	I	f_56729292		x
 	f	I	f_21025042		y
 	f	I	f_92395359		z
-	f	I	f_09204826		block
+	f	I	f_09204826		tile
 	f	I	f_98309471		delay
 	m	(IIII)V	<init>		<init>
 		p	1			x
 		p	2			y
 		p	3			z
-		p	4			block
+		p	4			tile
 c	com/mojang/minecraft/unmapped/C_72377497		com/mojang/minecraft/client/gui/screen/DeathScreen
 	m	()V	<init>		<init>
 	m	()V	m_41805697		m_41805697
@@ -4631,7 +4631,7 @@ c	com/mojang/minecraft/unmapped/C_72377497		com/mojang/minecraft/client/gui/scre
 	m	(II)V	m_93956703		m_93956703
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_72769465		com/mojang/minecraft/world/gen/noise/Distort
+c	com/mojang/minecraft/unmapped/C_72769465		com/mojang/minecraft/level/gen/noise/Distort
 	f	Lcom/mojang/minecraft/unmapped/C_98456746;	f_82914404		source
 	f	Lcom/mojang/minecraft/unmapped/C_98456746;	f_25971830		distort
 	m	(Lcom/mojang/minecraft/unmapped/C_98456746;Lcom/mojang/minecraft/unmapped/C_98456746;)V	<init>		<init>
@@ -4680,7 +4680,7 @@ c	com/mojang/minecraft/unmapped/C_76792751		com/mojang/minecraft/client/options/
 	m	()V	m_70449379		load
 	m	()V	m_18664673		save
 	m	()V	<clinit>		<clinit>
-c	com/mojang/minecraft/unmapped/C_77418302		com/mojang/minecraft/block/FallingBlock
+c	com/mojang/minecraft/unmapped/C_77418302		com/mojang/minecraft/tile/FallingTile
 	m	(II)V	<init>		<init>
 		p	1			id
 		p	2			sprite
@@ -4696,11 +4696,11 @@ c	com/mojang/minecraft/unmapped/C_77418302		com/mojang/minecraft/block/FallingBl
 		p	4			p_4
 		p	5			p_5
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_10468001		tryFall
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
-c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
+c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/tile/Tile
 	f	Ljava/util/Random;	f_44993728		RANDOM
 	f	[Lcom/mojang/minecraft/unmapped/C_81592558;	f_44428008		BY_ID
 	f	[Z	f_08006312		TICKS_RANDOMLY
@@ -4748,8 +4748,8 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_72900486		RED_FLOWER
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_55254929		BROWN_MUSHROOM
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_30894038		RED_MUSHROOM
-	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_54760749		GOLD_BLOCK
-	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_41428926		IRON_BLOCK
+	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_54760749		GOLD_TILE
+	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_41428926		IRON_TILE
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_39350323		DOUBLE_STONE_SLAB
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_66929948		STONE_SLAB
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_73573195		BRICKS
@@ -4778,7 +4778,7 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 		p	3			weight
 		p	4			hardness
 	m	(Z)V	m_44795498		setTicksRandomly
-		c		Sets whether this block accepts random ticks. Random ticks are mostly used by plants\nand crops to update growth, but some other blocks are affected by random ticks as well,\nlike e.g. leaves (to update decay).\nNote that while this field might be set to true the block might not do anything with the random tick.\n\n<p>\nNOTE: this method should only be used during the block's creation before it is registered.
+		c		Sets whether this tile accepts random ticks. Random ticks are mostly used by plants\nand crops to update growth, but some other tiles are affected by random ticks as well,\nlike e.g. leaves (to update decay).\nNote that while this field might be set to true the tile might not do anything with the random tick.\n\n<p>\nNOTE: this method should only be used during the tile's creation before it is registered.
 		p	1			ticksRandomly
 	m	(FFFFFF)V	m_86422250		setShape
 		p	1			minX
@@ -4795,12 +4795,12 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 	m	(Lcom/mojang/minecraft/unmapped/C_96603444;)V	m_25385284		renderInGui
 		p	1			tesselator
 	m	(Lcom/mojang/minecraft/level/Level;III)F	m_48092460		getBrightness
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 	m	(Lcom/mojang/minecraft/level/Level;IIII)Z	m_28922194		shouldRenderFace
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
@@ -4821,7 +4821,7 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 		p	5			face
 		p	6			sprite
 	m	(Lcom/mojang/minecraft/unmapped/C_96603444;IIII)V	m_83973402		renderFaceSmaller
-		c		A variation of the {@linkplain renderFace} method that uses slightly lower texture UVs.\nUsed by liquid blocks.
+		c		A variation of the {@linkplain renderFace} method that uses slightly lower texture UVs.\nUsed by liquid tiles.
 		p	1			tesselator
 		p	2			x
 		p	3			y
@@ -4838,20 +4838,20 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 	m	()Z	m_91902994		isOpaque
 	m	()Z	m_57757663		isSolid
 	m	(Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V	m_56075420		tick
-		c		Performs a scheduled tick. Blocks that want to perform some action after a delay can\ntell the world to schedule the update, which is then executed by calling this method.
-		p	1			world
+		c		Performs a scheduled tick. Tiles that want to perform some action after a delay can\ntell the level to schedule the update, which is then executed by calling this method.
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 		p	5			random
 	m	(Lcom/mojang/minecraft/level/Level;IIILcom/mojang/minecraft/unmapped/C_16190149;)V	m_73961906		addBreakParticles
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 		p	5			particleManager
 	m	(Lcom/mojang/minecraft/level/Level;IIIILcom/mojang/minecraft/unmapped/C_16190149;)V	m_89162867		addDamageParticles
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
@@ -4859,26 +4859,26 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 		p	6			particleManager
 	m	()Lcom/mojang/minecraft/unmapped/C_89604096;	m_93090551		getMaterial
 	m	(Lcom/mojang/minecraft/level/Level;IIII)V	m_91032811		neighborChanged
-		c		Performs a block update. This method is called when a neighboring block has updated\n(i.e. placed, broken, or otherwise changed state).
-		p	1			world
+		c		Performs a tile update. This method is called when a neighboring tile has updated\n(i.e. placed, broken, or otherwise changed state).
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
-		p	5			neighborBlock
+		p	5			neighborTile
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_54926959		onPlaced
-		c		Called when this block is placed by an entity.
-		p	1			world
+		c		Called when this tile is placed by an entity.
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 	m	()I	m_79518977		getTickRate
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_69334720		onAdded
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_13356966		onRemoved
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
@@ -4891,7 +4891,7 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 		p	3			y
 		p	4			z
 	m	(Lcom/mojang/minecraft/level/Level;IIIF)V	m_86108397		dropItems
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
@@ -4912,20 +4912,20 @@ c	com/mojang/minecraft/unmapped/C_81592558		com/mojang/minecraft/block/Block
 	m	(Lcom/mojang/minecraft/unmapped/C_94584382;)Z	m_30095686		containsZ
 		p	1			pos
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_70317915		onBroken
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 	m	(Lcom/mojang/minecraft/level/Level;IIILcom/mojang/minecraft/unmapped/C_96603444;)Z	m_05882929		render
-		p	1			world
+		p	1			level
 		p	2			x
 		p	3			y
 		p	4			z
 		p	5			tesselator
 	m	()I	m_52943252		getRenderLayer
-		c		Returns this block's render layer. The possible values are as follows:\n<br>0: solid\n<br>1: mipped cutout\n<br>2: cutout\n<br>3: translucent
+		c		Returns this tile's render layer. The possible values are as follows:\n<br>0: solid\n<br>1: mipped cutout\n<br>2: cutout\n<br>3: translucent
 	m	()V	<clinit>		<clinit>
-c	com/mojang/minecraft/unmapped/C_81592558$C_01306377		BlockSound
+c	com/mojang/minecraft/unmapped/C_81592558$C_01306377		Sounds
 	f	Lcom/mojang/minecraft/unmapped/C_81592558$C_01306377;	f_19761633		NONE
 	f	Lcom/mojang/minecraft/unmapped/C_81592558$C_01306377;	f_83421033		GRASS
 	f	Lcom/mojang/minecraft/unmapped/C_81592558$C_01306377;	f_69031757		CLOTH
@@ -5048,7 +5048,7 @@ c	com/mojang/minecraft/unmapped/C_85125467		com/mojang/minecraft/client/gui/widg
 		p	4			p_4
 		p	5			height
 		p	6			p_6
-c	com/mojang/minecraft/unmapped/C_85416300		com/mojang/minecraft/client/render/model/BlockModel
+c	com/mojang/minecraft/unmapped/C_85416300		com/mojang/minecraft/client/render/model/TileModel
 	f	Lcom/mojang/minecraft/unmapped/C_94760802;	f_85656531		part
 	m	(I)V	<init>		<init>
 		p	1			sprite
@@ -5170,7 +5170,7 @@ c	com/mojang/minecraft/unmapped/C_88528069		com/mojang/minecraft/client/gui/scre
 	m	(II)V	m_93956703		m_93956703
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_89604096		com/mojang/minecraft/block/material/Material
+c	com/mojang/minecraft/unmapped/C_89604096		com/mojang/minecraft/tile/material/Material
 	f	[Lcom/mojang/minecraft/unmapped/C_89604096;	f_75203064		BY_ID
 	f	Lcom/mojang/minecraft/unmapped/C_89604096;	f_05818178		WOOD
 	f	Lcom/mojang/minecraft/unmapped/C_89604096;	f_99458234		WATER
@@ -5187,7 +5187,7 @@ c	com/mojang/minecraft/unmapped/C_89987276		de/jarnbjo/vorbis/SetupHeader
 	m	(Lcom/mojang/minecraft/unmapped/C_25881388;Lcom/mojang/minecraft/unmapped/C_41449502;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
-c	com/mojang/minecraft/unmapped/C_90574280		com/mojang/minecraft/block/MushroomPlantBlock
+c	com/mojang/minecraft/unmapped/C_90574280		com/mojang/minecraft/tile/MushroomPlantTile
 	m	(II)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -5220,10 +5220,10 @@ c	com/mojang/minecraft/unmapped/C_91602564		com/mojang/minecraft/network/Packet
 	f	[Lcom/mojang/minecraft/unmapped/C_91602564;	f_45259105		BY_ID
 	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_32959354		LOGIN
 	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_88688009		PING
-	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_00837453		WORLD_CHUNK
-	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_71390010		WORLD_SIZE
-	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_71538996		SET_BLOCK
-	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_93482789		BLOCK_UPDATE
+	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_00837453		LEVEL_CHUNK
+	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_71390010		LEVEL_SIZE
+	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_71538996		SET_TILE
+	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_93482789		TILE_UPDATE
 	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_83645953		ADD_PLAYER
 	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_44980194		PLAYER_TELEPORT
 	f	Lcom/mojang/minecraft/unmapped/C_91602564;	f_01275195		PLAYER_MOVE
@@ -5368,11 +5368,11 @@ c	com/mojang/minecraft/unmapped/C_94906307		com/mojang/minecraft/client/render/m
 		p	4			p_4
 		p	5			p_5
 		p	6			p_6
-c	com/mojang/minecraft/unmapped/C_94962583		com/mojang/minecraft/block/TranslucentBlock
+c	com/mojang/minecraft/unmapped/C_94962583		com/mojang/minecraft/tile/TranslucentTile
 	f	Z	f_09923353		culling
 	m	(IIZ)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			id
+		p	2			sprite
 		p	3			culling
 	m	()Z	m_57757663		m_57757663
 	m	(Lcom/mojang/minecraft/level/Level;IIII)Z	m_28922194		m_28922194
@@ -5472,7 +5472,7 @@ c	com/mojang/minecraft/unmapped/C_97866173		com/mojang/minecraft/client/gui/Game
 		p	4			mouseY
 	m	(Ljava/lang/String;)V	m_94546513		addMessage
 		p	1			content
-c	com/mojang/minecraft/unmapped/C_98456746		com/mojang/minecraft/world/gen/noise/Noise
+c	com/mojang/minecraft/unmapped/C_98456746		com/mojang/minecraft/level/gen/noise/Noise
 	m	()V	<init>		<init>
 	m	(DD)D	m_99527025		getValue
 		p	1			x

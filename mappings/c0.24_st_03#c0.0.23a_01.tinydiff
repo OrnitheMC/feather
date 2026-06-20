@@ -46,14 +46,14 @@ c	com/mojang/minecraft/Minecraft
 	f	Lcom/mojang/minecraft/MinecraftApplet;	f_18157346	f_18157346	
 	f	I	f_25998330		targetMode
 		c		0 = break, 1 = place
-	f	Lcom/mojang/minecraft/unmapped/C_49004282;	f_87010853		worldGenerator
+	f	Lcom/mojang/minecraft/unmapped/C_49004282;	f_87010853		levelGenerator
 	f	Lcom/mojang/minecraft/unmapped/C_82280655;	f_64887911		f_64887911
 	m	(Ljava/awt/Canvas;Lcom/mojang/minecraft/MinecraftApplet;IIZ)V	<init>	<init>	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		canvas	
+		p	2		applet	
+		p	3		width	
+		p	4		height	
+		p	5		fullscreen	
 	m	(I)V	m_61857590	handleMouseClick	
 		p	1		button	
 	m	(Ljava/awt/Canvas;IIZ)V	<init>		<init>
@@ -468,8 +468,8 @@ c	com/mojang/minecraft/unmapped/C_24384787
 	m	(Lcom/mojang/minecraft/Minecraft;Lcom/mojang/minecraft/unmapped/C_82920792;)V	<init>	<init>	
 		p	1		minecraft	
 		p	2		textureManager	
-	m	(Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450	renderBlockOutline	
-		p	1		p_1	
+	m	(Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450	renderTileOutline	
+		p	1		hit	
 		p	2		p_2	
 		p	3		p_3	
 	m	(Lcom/mojang/minecraft/unmapped/C_82920792;)V	<init>		<init>
@@ -477,7 +477,7 @@ c	com/mojang/minecraft/unmapped/C_24384787
 	m	(Lcom/mojang/minecraft/unmapped/C_59676445;F)V	m_72386130		m_72386130
 		p	1			p_1
 		p	2			p_2
-	m	(Lcom/mojang/minecraft/player/Player;Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450		renderBlockOutline
+	m	(Lcom/mojang/minecraft/player/Player;Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450		renderTileOutline
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -488,7 +488,7 @@ c	com/mojang/minecraft/unmapped/C_24384787
 c	com/mojang/minecraft/unmapped/C_24654288
 	f	I	f_92820457	type	
 	f	Lcom/mojang/minecraft/unmapped/C_94584382;	f_94083482	facePos	
-		c	The hit's precise position on the face of the block or entity.	
+		c	The hit's precise position on the face of the tile or entity.	
 	f	Lcom/mojang/minecraft/Entity;	f_38514196	entity	
 	m	(IIIILcom/mojang/minecraft/unmapped/C_94584382;)V	<init>	<init>	
 		p	1		x	
@@ -520,7 +520,7 @@ c	com/mojang/minecraft/unmapped/C_28718426	com/mojang/minecraft/client/render/mo
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-c	com/mojang/minecraft/unmapped/C_34225397	com/mojang/minecraft/block/SaplingBlock	
+c	com/mojang/minecraft/unmapped/C_34225397	com/mojang/minecraft/tile/SaplingTile	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -535,22 +535,22 @@ c	com/mojang/minecraft/unmapped/C_34267874	com/mojang/minecraft/client/ClientPla
 	f	Z	f_60621086	creativeMode	
 	m	(Lcom/mojang/minecraft/Minecraft;)V	<init>	<init>	
 		p	1		minecraft	
-	m	(III)V	m_60676490	startMiningBlock	
+	m	(III)V	m_60676490	startMiningTile	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 	m	(I)Z	m_90153082	dropItem	
 		p	1		item	
-	m	(III)V	m_30410395	finishMiningBlock	
+	m	(III)V	m_30410395	finishMiningTile	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-	m	(IIII)V	m_16761237	tickBlockMining	
+	m	(IIII)V	m_16761237	tickMining	
 		p	1		x	
 		p	2		y	
 		p	3		z	
 		p	4		face	
-	m	()V	m_43278352	stopMiningBlock	
+	m	()V	m_43278352	stopMiningTile	
 	m	(F)V	m_40772983	render	
 		p	1		tickDelta	
 	m	()F	m_36718273	getReach	
@@ -585,7 +585,7 @@ c	com/mojang/minecraft/unmapped/C_37649976	com/mojang/minecraft/client/render/mo
 		p	4		p_4	
 		p	5		p_5	
 		p	6		p_6	
-c	com/mojang/minecraft/unmapped/C_44922783	com/mojang/minecraft/block/LeavesBlock	
+c	com/mojang/minecraft/unmapped/C_44922783	com/mojang/minecraft/tile/LeavesTile	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -614,9 +614,9 @@ c	com/mojang/minecraft/unmapped/C_54206210
 c	com/mojang/minecraft/unmapped/C_54686545
 	f	Z	f_16027646	anaglyph	
 c	com/mojang/minecraft/unmapped/C_54765678	com/mojang/minecraft/client/SurvivalInteractionManager	
-	f	I	f_56241299	targetBlockX	
-	f	I	f_84902206	targetBlockY	
-	f	I	f_83250694	targetBlockZ	
+	f	I	f_56241299	targetTileX	
+	f	I	f_84902206	targetTileY	
+	f	I	f_83250694	targetTileZ	
 	f	I	f_58101368	miningProgress	
 	f	I	f_12442931	lastMiningProgress	
 	f	I	f_47302183	miningCooldown	
@@ -701,7 +701,7 @@ c	com/mojang/minecraft/unmapped/C_81592558
 		p	5		face	
 		p	6		sprite	
 	m	(Lcom/mojang/minecraft/level/Level;IIIILcom/mojang/minecraft/unmapped/C_16190149;)V	m_89162867	addDamageParticles	
-		p	1		world	
+		p	1		level	
 		p	2		x	
 		p	3		y	
 		p	4		z	
@@ -765,12 +765,12 @@ c	com/mojang/minecraft/unmapped/C_82920792
 	m	()V	<init>		<init>
 	m	(Ljava/awt/image/BufferedImage;)I	m_34657781		load
 		p	1			p_1
-c	com/mojang/minecraft/unmapped/C_85416300	com/mojang/minecraft/client/render/model/BlockModel	
+c	com/mojang/minecraft/unmapped/C_85416300	com/mojang/minecraft/client/render/model/TileModel	
 	f	Lcom/mojang/minecraft/unmapped/C_94760802;	f_85656531	part	
 	m	(I)V	<init>	<init>	
 		p	1		sprite	
 	m	()V	m_00121281	render	
-c	com/mojang/minecraft/unmapped/C_90574280	com/mojang/minecraft/block/MushroomPlantBlock	
+c	com/mojang/minecraft/unmapped/C_90574280	com/mojang/minecraft/tile/MushroomPlantTile	
 	m	(II)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	

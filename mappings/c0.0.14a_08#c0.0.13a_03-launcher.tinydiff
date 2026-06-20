@@ -38,10 +38,10 @@ c	com/mojang/minecraft/Minecraft
 	f	I	f_31188738	f_31188738	
 	f	[I	f_83349805	f_83349805	
 	f	Ljava/util/ArrayList;	f_91079080		entities
-	m	(I)V	m_16924879	createWorld	
+	m	(I)V	m_16924879	createLevel	
 		p	1		size	
-	m	(Lcom/mojang/minecraft/level/Level;)V	m_75727284	setWorld	
-		p	1		world	
+	m	(Lcom/mojang/minecraft/level/Level;)V	m_75727284	setLevel	
+		p	1		level	
 	m	()V	m_61857590	handleMouseClick	
 	m	()V	m_73794756	m_73794756	
 	m	(ILjava/lang/String;)Z	m_96182988	m_96182988	
@@ -49,7 +49,7 @@ c	com/mojang/minecraft/Minecraft
 		p	2		p_2	
 	m	()V	<clinit>	<clinit>	
 	m	()V	m_07488744		m_07488744
-	m	()V	m_16924879		createWorld
+	m	()V	m_16924879		createLevel
 c	com/mojang/minecraft/MinecraftApplet
 	m	()V	startGameThread	startGameThread	
 c	com/mojang/minecraft/level/Level
@@ -83,12 +83,12 @@ c	com/mojang/minecraft/level/Level
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		block	
+		p	4		tile	
 	m	(IIII)V	updateNeighborsAt	updateNeighborsAt	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		block	
+		p	4		tile	
 	m	(III)Z	isSolidTile	isSolidTile	
 		p	1		x	
 		p	2		y	
@@ -106,7 +106,7 @@ c	com/mojang/minecraft/level/Level
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		block	
+		p	4		tile	
 	m	(Lcom/mojang/minecraft/phys/AABB;)Z	isFree	isFree	
 		p	1		bounds	
 	m	(FFFF)Z	isSolid	isSolid	
@@ -114,7 +114,7 @@ c	com/mojang/minecraft/level/Level
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(FFF)Z	m_13752006	isSolidBlock	
+	m	(FFF)Z	m_13752006	isSolidTile	
 		p	1		x	
 		p	2		y	
 		p	3		z	
@@ -122,10 +122,10 @@ c	com/mojang/minecraft/level/Level
 		p	1		x	
 		p	2		z	
 	m	(IIIF)V	setSpawnPos	setSpawnPos	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+		p	1		x	
+		p	2		y	
+		p	3		z	
+		p	4		rot	
 	m	(III)F	getBrightness	getBrightness	
 		p	1		p_1	
 		p	2		p_2	
@@ -159,7 +159,7 @@ c	com/mojang/minecraft/particle/Particle
 		p	6		forwards	
 		p	7		sideways	
 	m	(Lcom/mojang/minecraft/level/Level;FFFFFFI)V	<init>
-		p	1		p_1	world
+		p	1		p_1	level
 		p	2		p_2	x
 		p	3		p_3	y
 		p	4		p_4	z
@@ -199,7 +199,7 @@ c	com/mojang/minecraft/player/Player
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/minecraft/level/Level;)V	<init>		<init>
-		p	1			world
+		p	1			level
 c	com/mojang/minecraft/unmapped/C_01953097
 	m	(Ljava/lang/String;Ljava/lang/String;I)Lcom/mojang/minecraft/level/Level;	m_33030028	load	
 		p	1		hostAddress	
@@ -221,14 +221,14 @@ c	com/mojang/minecraft/unmapped/C_01953097
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/minecraft/level/Level;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Z	m_22342627
-		p	1		world	p_1
+		p	1		level	p_1
 		p	2		hostAddress	p_2
 		p	3		username	p_3
 		p	4		sessionId	p_4
 		p	5		name	p_5
 		p	6		slot	p_6
 	m	(Lcom/mojang/minecraft/level/Level;Ljava/io/OutputStream;)V	m_16689239
-		p	0		world	p_0
+		p	0		level	p_0
 		p	1		output	p_1
 c	com/mojang/minecraft/unmapped/C_08381405	com/mojang/minecraft/client/entity/mob/player/KeyboardInput	
 	f	[Z	f_41423547	inputKeys	
@@ -270,7 +270,7 @@ c	com/mojang/minecraft/unmapped/C_16190149
 		p	1			camera
 		p	2			tickDelta
 		p	3			layer
-c	com/mojang/minecraft/unmapped/C_23330260	com/mojang/minecraft/block/LogBlock	
+c	com/mojang/minecraft/unmapped/C_23330260	com/mojang/minecraft/tile/LogTile	
 	m	(I)V	<init>	<init>	
 		p	1		p_1	
 	m	(I)I	m_79262324	m_79262324	
@@ -292,14 +292,14 @@ c	com/mojang/minecraft/unmapped/C_24384787
 	m	(Lcom/mojang/minecraft/level/Level;)V	m_89303267	m_89303267	
 		p	1		p_1	
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/unmapped/C_82920792;)V	<init>		<init>
-		p	1			world
+		p	1			level
 		p	2			textureManager
 	m	(Lcom/mojang/minecraft/player/Player;Lcom/mojang/minecraft/unmapped/C_24654288;II)V	m_85117450
-		p	4		p_4	block
+		p	4		p_4	tile
 	m	(Lcom/mojang/minecraft/player/Player;I)V	m_72725110
 		p	1		p_1	camera
 		p	2		p_2	layer
-c	com/mojang/minecraft/unmapped/C_48207600	com/mojang/minecraft/client/gui/screen/world/CreateWorldScreen	
+c	com/mojang/minecraft/unmapped/C_48207600	com/mojang/minecraft/client/gui/screen/level/CreateLevelScreen	
 	f	Lcom/mojang/minecraft/unmapped/C_85740840;	f_14795955	parent	
 	m	(Lcom/mojang/minecraft/unmapped/C_85740840;)V	<init>	<init>	
 		p	1		parent	
@@ -316,7 +316,7 @@ c	com/mojang/minecraft/unmapped/C_49004282
 		p	3		sizeZ	
 		p	4		sizeY	
 	m	(IIII)V	m_59714535	placeOre	
-		p	1		block	
+		p	1		tile	
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
@@ -378,13 +378,13 @@ c	com/mojang/minecraft/unmapped/C_68333747
 		p	1		buffer	
 		p	2		layer	
 	m	(Lcom/mojang/minecraft/level/Level;IIII)V	<init>	<init>	
-		p	1		world	
+		p	1		level	
 		p	2		originX	
 		p	3		originY	
 		p	4		originZ	
 		p	5		p_5	
 	m	(Lcom/mojang/minecraft/level/Level;IIIIII)V	<init>		<init>
-		p	1			world
+		p	1			level
 		p	2			originX
 		p	3			originY
 		p	4			originZ
@@ -397,17 +397,17 @@ c	com/mojang/minecraft/unmapped/C_68333747
 		p	1			layer
 	m	()V	m_89180230		markDirty
 	m	()Z	m_79879218		isDirty
-c	com/mojang/minecraft/unmapped/C_71226614	com/mojang/minecraft/world/ScheduledTick	
+c	com/mojang/minecraft/unmapped/C_71226614	com/mojang/minecraft/level/ScheduledTick	
 	f	I	f_56729292	x	
 	f	I	f_21025042	y	
 	f	I	f_92395359	z	
-	f	I	f_09204826	block	
+	f	I	f_09204826	tile	
 	m	(IIII)V	<init>	<init>	
 		p	1		x	
 		p	2		y	
 		p	3		z	
-		p	4		block	
-c	com/mojang/minecraft/unmapped/C_77418302	com/mojang/minecraft/block/FallingBlock	
+		p	4		tile	
+c	com/mojang/minecraft/unmapped/C_77418302	com/mojang/minecraft/tile/FallingTile	
 	m	(II)V	<init>	<init>	
 		p	1		id	
 		p	2		sprite	
@@ -423,7 +423,7 @@ c	com/mojang/minecraft/unmapped/C_77418302	com/mojang/minecraft/block/FallingBlo
 		p	4		p_4	
 		p	5		p_5	
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_10468001	tryFall	
-		p	1		world	
+		p	1		level	
 		p	2		x	
 		p	3		y	
 		p	0		p_0	
@@ -439,8 +439,8 @@ c	com/mojang/minecraft/unmapped/C_81592558
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_00276986	LEAVES	
 	f	Lcom/mojang/minecraft/unmapped/C_81592558;	f_91815060	COBBLESTONE	
 	m	(Lcom/mojang/minecraft/level/Level;III)V	m_54926959	onPlaced	
-		c	Called when this block is placed by an entity.	
-		p	1		world	
+		c	Called when this tile is placed by an entity.	
+		p	1		level	
 		p	2		x	
 		p	3		y	
 		p	4		z	
@@ -450,11 +450,7 @@ c	com/mojang/minecraft/unmapped/C_81592558
 		p	2		p_2	
 		p	3		p_3	
 		p	4		p_4	
-	m	(Lcom/mojang/minecraft/unmapped/C_96603444;Lcom/mojang/minecraft/level/Level;IIII)Z	m_25385284
-		p	2		level	world
-	m	(Lcom/mojang/minecraft/level/Level;IIIII)Z	m_28922194
-		p	1		level	world
-c	com/mojang/minecraft/unmapped/C_94962583	com/mojang/minecraft/block/TranslucentBlock	
+c	com/mojang/minecraft/unmapped/C_94962583	com/mojang/minecraft/tile/TranslucentTile	
 	m	()Z	m_57757663	m_57757663	
 	m	()Z	m_91902994	m_91902994	
 	m	(II)V	<init>	<init>	
@@ -481,7 +477,7 @@ c	com/mojang/minecraft/character/Zombie
 		p	1		p_1	
 		p	2		p_2	
 	m	(Lcom/mojang/minecraft/level/Level;Lcom/mojang/minecraft/unmapped/C_82920792;FFF)V	<init>		<init>
-		p	1			world
+		p	1			level
 		p	2			textureManager
 		p	3			x
 		p	4			y
