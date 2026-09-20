@@ -2085,12 +2085,6 @@ c	net/minecraft/unmapped/C_81592558
 		p	2			item
 	m	(Lnet/minecraft/unmapped/C_81592558;)Lnet/minecraft/unmapped/C_22168528;	m_92173797		m_92173797
 		p	0			p_0
-	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_94584382;Lnet/minecraft/unmapped/C_94584382;)Lnet/minecraft/unmapped/C_24654288;	m_18909995
-		p	1		state	world
-		p	2		world	pos
-		p	3		pos	from
-		p	4		from	to
-		p	0		p_0	state
 c	net/minecraft/unmapped/C_81592558$C_71630942
 	f	Lnet/minecraft/unmapped/C_22168528;	f_07556935		lootTable
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_81592558$C_71630942;	m_63105157		m_63105157
@@ -4568,9 +4562,9 @@ c	net/minecraft/unmapped/C_97448347
 		p	0			key
 		p	1			item
 c	net/minecraft/unmapped/C_67393525
-	m	(Lcom/google/gson/JsonObject;Ljava/lang/String;)B	m_22820545	m_22820545	
-		p	0		p_0	
-		p	1		p_1	
+	m	(Lcom/google/gson/JsonObject;Ljava/lang/String;)B	m_22820545	getByteOrDefault	
+		p	0		json	
+		p	1		key	
 	m	(Lcom/google/gson/JsonElement;Ljava/lang/String;)J	m_53608705		m_53608705
 		p	0			p_0
 		p	1			p_1
@@ -5080,9 +5074,9 @@ c	net/minecraft/unmapped/C_57503661
 		p	7		depth	
 		p	8		canOpenDoors	
 		p	9		canPassThroughDoors	
-		p	10		p_10	
-		p	11		p_11	
-		p	12		p_12	
+		p	10		evaluatedTypes	
+		p	11		type	
+		p	12		startPos	
 	m	(Lnet/minecraft/unmapped/C_56864221;IIIIIIZZLjava/util/EnumSet;Lnet/minecraft/unmapped/C_42110860;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_42110860;	m_85455948		m_85455948
 		p	1			p_1
 		p	2			p_2
@@ -5192,7 +5186,7 @@ c	net/minecraft/unmapped/C_72211503
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_85052451
-	m	()I	m_70567625	m_70567625	
+	m	()I	m_70567625	getHeightOffset	
 	m	()V	m_34812426		m_34812426
 c	net/minecraft/unmapped/C_92136382
 	m	(Lnet/minecraft/unmapped/C_30485881;Lnet/minecraft/unmapped/C_95231345;Lnet/minecraft/unmapped/C_42232651;)Lnet/minecraft/unmapped/C_95231345;	m_65975954	updateForEntity	
@@ -9422,35 +9416,35 @@ c	net/minecraft/unmapped/C_30307189	net/minecraft/world/gen/chunk/ChunkLighting
 		p	1		world	
 		p	2		pos	
 		p	3		light	
-	m	(Lnet/minecraft/unmapped/C_28786548;IIII)I	m_06185783	m_06185783	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(I)I	m_57843614	m_57843614	
-		p	1		p_1	
-	m	(I)I	m_94704590	m_94704590	
-		p	1		p_1	
-	m	(I)I	m_72618325	m_72618325	
-		p	1		p_1	
-	m	(I)I	m_77681212	m_77681212	
-		p	1		p_1	
-	m	(I)Lnet/minecraft/unmapped/C_28786548;	m_36836128	m_36836128	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_97313606;)V	m_61059285	m_61059285	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_97313606;IIII)V	m_07132541	m_07132541	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-	m	(Lnet/minecraft/unmapped/C_97313606;Lnet/minecraft/unmapped/C_32594356;I)V	m_90177824	m_90177824	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+	m	(Lnet/minecraft/unmapped/C_28786548;IIII)I	m_06185783	createTicket	
+		p	1		direction	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		value	
+	m	(I)I	m_57843614	getTicketX	
+		p	1		ticket	
+	m	(I)I	m_94704590	getTicketY	
+		p	1		ticket	
+	m	(I)I	m_72618325	getTicketZ	
+		p	1		ticket	
+	m	(I)I	m_77681212	getTicketValue	
+		p	1		ticket	
+	m	(I)Lnet/minecraft/unmapped/C_28786548;	m_36836128	getTicketDirection	
+		p	1		ticket	
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_97313606;)V	m_61059285	poll	
+		p	1		world	
+		p	2		chunkPos	
+	m	(Lnet/minecraft/unmapped/C_97313606;IIII)V	m_07132541	enqueue	
+		p	1		center	
+		p	2		x	
+		p	3		y	
+		p	4		z	
+		p	5		value	
+	m	(Lnet/minecraft/unmapped/C_97313606;Lnet/minecraft/unmapped/C_32594356;I)V	m_90177824	enqueue	
+		p	1		center	
+		p	2		pos	
+		p	3		value	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_56864221;Lnet/minecraft/unmapped/C_32594356;)I	m_22458518	getBlockOpacity	
 		p	1		world	
@@ -10211,22 +10205,22 @@ c	net/minecraft/unmapped/C_68317316	net/minecraft/util/Long2ObjectCache
 	m	(J)V	m_22188581	refresh	
 		p	1		key	
 	m	(JLjava/lang/Object;)Ljava/lang/Object;	put	put	
-		p	1		p_1	
-		p	3		p_3	
+		p	1		k	
+		p	3		v	
 	m	(Ljava/lang/Long;Ljava/lang/Object;)Ljava/lang/Object;	put	put	
 		p	1		p_1	
 		p	2		p_2	
 	m	(J)Ljava/lang/Object;	get	get	
-		p	1		p_1	
+		p	1		k	
 	m	(Ljava/util/Map;)V	putAll	putAll	
-		p	1		p_1	
+		p	1		m	
 	m	(J)Ljava/lang/Object;	remove	remove	
-		p	1		p_1	
+		p	1		k	
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	remove	remove	
-		p	1		p_1	
+		p	1		k	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;	put	put	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		k	
+		p	2		v	
 	m	(Ljava/lang/Object;)Z	m_56479120	expires	
 		p	1		tasks	
 c	net/minecraft/unmapped/C_69019755	net/minecraft/world/gen/structure/MansionConfiguration	

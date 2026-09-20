@@ -112,7 +112,7 @@ c	net/minecraft/unmapped/C_95265987
 	m	(I)V	m_30848701		setTicksUntilWaterConversion
 		p	1			ticksUntilWaterConversion
 	m	()V	m_82342872		convertInWater
-	m	()V	m_74676071		m_74676071
+	m	()V	m_74676071		damageAndDropEquipment
 	m	()Z	m_57706059		m_57706059
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_75624064;	m_71460703		m_71460703
 		p	1			p_1
@@ -169,9 +169,9 @@ c	net/minecraft/unmapped/C_38817772$C_76082063
 		p	4			p_4
 c	net/minecraft/unmapped/C_50874258
 	m	(Lnet/minecraft/unmapped/C_49764715;Ljava/util/Random;Lnet/minecraft/unmapped/C_61280729;)V	m_50739096	postProcess	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		world	
+		p	2		random	
+		p	3		bounds	
 	m	(Lnet/minecraft/unmapped/C_49764715;Ljava/util/Random;Lnet/minecraft/unmapped/C_61280729;Lnet/minecraft/unmapped/C_97313606;)V	m_50739096		postProcess
 		p	1			world
 		p	2			random
@@ -591,10 +591,10 @@ c	net/minecraft/unmapped/C_56964626
 		p	2			p_2
 		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_88708284;Z)Lnet/minecraft/unmapped/C_75624064;	m_87986213		initialize
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			localDifficulty
+		p	2			data
+		p	3			spawnItem
+		p	4			chooseProfession
 c	net/minecraft/unmapped/C_11963006
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;)Lnet/minecraft/unmapped/C_75624064;	m_09634721	m_09634721	
 		p	1		p_1	
@@ -620,7 +620,6 @@ c	net/minecraft/unmapped/C_21461336
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;)Lnet/minecraft/unmapped/C_75624064;	m_09634721	initialize	
 		p	1		localDifficulty	
 		p	2		data	
-	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_75624064;	m_71460703	m_71460703	initialize
 c	net/minecraft/unmapped/C_44722841
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;)Lnet/minecraft/unmapped/C_75624064;	m_09634721	m_09634721	
 		p	1		p_1	
@@ -816,9 +815,9 @@ c	net/minecraft/unmapped/C_37969439
 	f	Ljava/lang/Integer;	f_05835886		preferredPalette
 	f	I	f_37526699		palette
 	m	()Z	m_41515462		keepLiquids
-	m	(Ljava/util/List;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/List;	m_12334180		m_12334180
-		p	1			p_1
-		p	2			p_2
+	m	(Ljava/util/List;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/List;	m_12334180		selectPalette
+		p	1			palettes
+		p	2			pos
 c	net/minecraft/unmapped/C_44325438
 	f	Lnet/minecraft/unmapped/C_13152511;	f_49314633		ENTITY_DROWNED_AMBIENT
 	f	Lnet/minecraft/unmapped/C_13152511;	f_23022230		ENTITY_DROWNED_AMBIENT_WATER
@@ -960,8 +959,8 @@ c	net/minecraft/unmapped/C_39806895
 		p	1			pos
 		p	2			dropItems
 c	net/minecraft/unmapped/C_52849767
-	f	I	f_83180354	f_83180354	
-	m	()I	m_64104604		m_64104604
+	f	I	f_83180354	minDistance	
+	m	()I	m_64104604		getMinSpacing
 c	net/minecraft/unmapped/C_56918862
 	m	(Lnet/minecraft/unmapped/C_49764715;Ljava/util/Random;Lnet/minecraft/unmapped/C_61280729;)Z	m_06274008	m_06274008	
 		p	1		p_1	
@@ -1166,7 +1165,7 @@ c	net/minecraft/unmapped/C_42398662		net/minecraft/entity/living/mob/monster/Dro
 	f	Z	f_73040715		targetingUnderwater
 	f	Lnet/minecraft/unmapped/C_75354663;	f_32682393		waterNavigation
 	f	Lnet/minecraft/unmapped/C_85232361;	f_61231815		landNavigation
-	f	Lnet/minecraft/unmapped/C_63353360;	f_11474912		f_11474912
+	f	Lnet/minecraft/unmapped/C_63353360;	f_11474912		SWIMMING
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
 		p	1			p_1
 	m	()V	m_19615596		m_19615596
@@ -1177,7 +1176,7 @@ c	net/minecraft/unmapped/C_42398662		net/minecraft/entity/living/mob/monster/Dro
 	m	()Z	m_11534615		isValidSpawnDepth
 	m	()Lnet/minecraft/unmapped/C_22168528;	m_61071011		m_61071011
 	m	()Z	m_25069079		m_25069079
-	m	(Z)V	m_59632868		m_59632868
+	m	(Z)V	m_59632868		setSwimming
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_13152511;	m_96971201		m_96971201
 	m	(Lnet/minecraft/unmapped/C_83334639;)Lnet/minecraft/unmapped/C_13152511;	m_52063198		m_52063198
@@ -1269,7 +1268,7 @@ c	net/minecraft/unmapped/C_42398662$C_80692459		DrownedAttackPlayerGoal
 	m	(Lnet/minecraft/unmapped/C_40996800;)Z	test		test
 		p	1			p_1
 	m	(Ljava/lang/Object;)Z	test		test
-		p	1			p_1
+		p	1			target
 c	net/minecraft/unmapped/C_42398662$C_90310242		WanderAroundOnSurfaceGoal
 	f	Lnet/minecraft/unmapped/C_45915938;	f_21240619		mob
 	f	D	f_86281125		x

@@ -35,7 +35,7 @@ c	net/minecraft/unmapped/C_42232651
 	m	()Lnet/minecraft/unmapped/C_13152511;	m_58365821		getHighSpeedSplashSound
 c	net/minecraft/unmapped/C_57778754
 	f	Ljava/util/List;	f_28319760		ambientSoundHandlers
-	m	()Z	m_43503062		m_43503062
+	m	()Z	m_43503062		isSubmergedInWater
 	m	()Z	m_17464143		m_17464143
 c	net/minecraft/unmapped/C_64041439
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_32594356;Z)Lnet/minecraft/unmapped/C_32594356;	m_76388062	findNearestStructure	
@@ -43,10 +43,10 @@ c	net/minecraft/unmapped/C_64041439
 		p	2		pos	
 		p	3		reference	
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_32594356;ZI)Lnet/minecraft/unmapped/C_32594356;	m_76388062		findNearestStructure
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			name
+		p	2			pos
+		p	3			reference
+		p	4			count
 c	net/minecraft/unmapped/C_70668269
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_32594356;Z)Lnet/minecraft/unmapped/C_32594356;	m_76388062	m_76388062	
 		p	1		p_1	
@@ -84,20 +84,20 @@ c	net/minecraft/unmapped/C_88220120
 		p	6		z	
 		p	8		rotation	
 	m	(Lnet/minecraft/unmapped/C_31065883$C_07660422;Lnet/minecraft/unmapped/C_64041439;Ljava/lang/String;DDDLnet/minecraft/unmapped/C_95231345;)V	m_71452798		addDecoration
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
-		p	10			p_10
+		p	1			type
+		p	2			world
+		p	3			playerName
+		p	4			x
+		p	6			z
+		p	8			yaw
+		p	10			text
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;)V	m_24211978		toggleBanner
 		p	1			p_1
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_64041439;II)V	m_79928854		checkBanners
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			x
+		p	3			z
 c	net/minecraft/unmapped/C_20744923
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_68896930;Lnet/minecraft/unmapped/C_32594356;Z)Lnet/minecraft/unmapped/C_32594356;	m_32441508	m_32441508	
 		p	1		p_1	
@@ -129,10 +129,10 @@ c	net/minecraft/unmapped/C_50874258
 c	net/minecraft/unmapped/C_21461336
 	m	(I)Z	m_47978575		isAboveLimitPerChunk
 		p	1			packSize
-	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_75624064;	m_71460703		m_71460703
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_75624064;	m_71460703		initialize
+		p	1			localDifficulty
+		p	2			data
+		p	3			spawnItem
 c	net/minecraft/unmapped/C_53524147
 	f	Lnet/minecraft/unmapped/C_81592558;	f_35476761		TUBE_CORAL
 	f	Lnet/minecraft/unmapped/C_81592558;	f_41869506		BRAIN_CORAL
@@ -143,12 +143,12 @@ c	net/minecraft/unmapped/C_97448347
 	f	Lnet/minecraft/unmapped/C_98888256;	f_44227274		TROPICAL_FISH_BUCKET
 	f	Lnet/minecraft/unmapped/C_98888256;	f_71883562		TROPICAL_FISH_SPAWN_EGG
 c	net/minecraft/unmapped/C_67393525
-	m	(Lcom/google/gson/JsonElement;Ljava/lang/String;)B	m_59240335		m_59240335
-		p	0			p_0
-		p	1			p_1
-	m	(Lcom/google/gson/JsonObject;Ljava/lang/String;)B	m_22820545		m_22820545
-		p	0			p_0
-		p	1			p_1
+	m	(Lcom/google/gson/JsonElement;Ljava/lang/String;)B	m_59240335		getByte
+		p	0			json
+		p	1			key
+	m	(Lcom/google/gson/JsonObject;Ljava/lang/String;)B	m_22820545		getByteOrDefault
+		p	0			json
+		p	1			key
 c	net/minecraft/unmapped/C_53396390
 	m	()Z	m_79227408		isRelative
 c	net/minecraft/unmapped/C_75661129
@@ -290,20 +290,20 @@ c	net/minecraft/unmapped/C_58555521
 c	net/minecraft/unmapped/C_42105035
 	m	()V	m_64422344		m_64422344
 	m	()I	m_70209095		m_70209095
-	m	(Lnet/minecraft/unmapped/C_88708284;)V	m_67796538		m_67796538
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_88708284;)V	m_67796538		setItemHoverName
+		p	1			stack
 c	net/minecraft/unmapped/C_37863663
 	f	Ljava/util/List;	f_57557985		tabs
-	m	(Ljava/util/function/Consumer;)V	m_56564431	m_56564431	
-		p	1		p_1	
-	m	(Ljava/util/function/Consumer;)V	m_36608335	m_36608335	
-		p	1		p_1	
-	m	(Ljava/util/function/Consumer;)V	m_16181469	m_16181469	
-		p	1		p_1	
-	m	(Ljava/util/function/Consumer;)V	m_89404471	m_89404471	
-		p	1		p_1	
-	m	(Ljava/util/function/Consumer;)V	m_78690550	m_78690550	
-		p	1		p_1	
+	m	(Ljava/util/function/Consumer;)V	m_56564431	buildEndRoot	
+		p	1		consumer	
+	m	(Ljava/util/function/Consumer;)V	m_36608335	buildHusbandryRoot	
+		p	1		consumer	
+	m	(Ljava/util/function/Consumer;)V	m_16181469	buildStoryRoot	
+		p	1		consumer	
+	m	(Ljava/util/function/Consumer;)V	m_89404471	buildAdventureRoot	
+		p	1		consumer	
+	m	(Ljava/util/function/Consumer;)V	m_78690550	buildNetherRoot	
+		p	1		consumer	
 c	net/minecraft/unmapped/C_00383771		net/minecraft/world/map/MapBanner
 	f	Lnet/minecraft/unmapped/C_32594356;	f_36459471		pos
 	f	Lnet/minecraft/unmapped/C_62864401;	f_19207202		color
@@ -315,8 +315,8 @@ c	net/minecraft/unmapped/C_00383771		net/minecraft/world/map/MapBanner
 	m	(Lnet/minecraft/unmapped/C_74087615;)Lnet/minecraft/unmapped/C_00383771;	m_14735194		fromNbt
 		p	0			nbt
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_00383771;	m_63973165		fromWorld
-		p	0			p_0
-		p	1			p_1
+		p	0			world
+		p	1			pos
 	m	()Lnet/minecraft/unmapped/C_32594356;	m_19734459		getPos
 	m	()Lnet/minecraft/unmapped/C_31065883$C_07660422;	m_94351187		getType
 	m	()Lnet/minecraft/unmapped/C_95231345;	m_58225985		getName
@@ -358,9 +358,9 @@ c	net/minecraft/unmapped/C_10744477$C_80458775		BuriedTreasure
 		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_15815210;)Z	m_84051680		isLiquid
 		p	1			state
-c	net/minecraft/unmapped/C_15553557		net/minecraft/unmapped/C_15553557
-	f	Lnet/minecraft/unmapped/C_22168528;	f_16325707		f_16325707
-	f	Lnet/minecraft/unmapped/C_13198482;	f_99996981		f_99996981
+c	net/minecraft/unmapped/C_15553557		net/minecraft/client/render/entity/layer/PhantomEyesLayer
+	f	Lnet/minecraft/unmapped/C_22168528;	f_16325707		PHANTOM_EYES_LOCATION
+	f	Lnet/minecraft/unmapped/C_13198482;	f_99996981		parent
 	m	(Lnet/minecraft/unmapped/C_13198482;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_31091265;FFFFFFF)V	m_42829273		m_42829273
@@ -396,13 +396,13 @@ c	net/minecraft/unmapped/C_16572142		net/minecraft/data/advancement/BreedingAdva
 	m	(Ljava/lang/Object;)V	accept		accept
 		p	1			action
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_21188872		net/minecraft/unmapped/C_21188872
-	f	Lorg/apache/logging/log4j/Logger;	f_51592967		f_51592967
-	f	Ljava/lang/String;	f_06299815		f_06299815
-	f	Lnet/minecraft/unmapped/C_31065883$C_07660422;	f_90289455		f_90289455
-	f	B	f_09817782		f_09817782
-	f	I	f_01041764		f_01041764
-	f	Z	f_88634392		f_88634392
+c	net/minecraft/unmapped/C_21188872		net/minecraft/world/gen/loot/functions/MapDecorationLootItemFunction
+	f	Lorg/apache/logging/log4j/Logger;	f_51592967		LOGGER
+	f	Ljava/lang/String;	f_06299815		destination
+	f	Lnet/minecraft/unmapped/C_31065883$C_07660422;	f_90289455		decoration
+	f	B	f_09817782		scale
+	f	I	f_01041764		count
+	f	Z	f_88634392		reference
 	m	([Lnet/minecraft/unmapped/C_65690890;Ljava/lang/String;Lnet/minecraft/unmapped/C_31065883$C_07660422;BIZ)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
@@ -420,7 +420,7 @@ c	net/minecraft/unmapped/C_21188872		net/minecraft/unmapped/C_21188872
 		p	0			p_0
 	m	()Lorg/apache/logging/log4j/Logger;	m_52902071		m_52902071
 	m	()V	<clinit>		<clinit>
-c	net/minecraft/unmapped/C_21188872$C_43001445		C_43001445
+c	net/minecraft/unmapped/C_21188872$C_43001445		Serializer
 	m	()V	<init>		<init>
 	m	(Lcom/google/gson/JsonObject;Lnet/minecraft/unmapped/C_21188872;Lcom/google/gson/JsonSerializationContext;)V	m_42881860		m_42881860
 		p	1			p_1
@@ -485,18 +485,18 @@ c	net/minecraft/unmapped/C_32080791		net/minecraft/data/advancement/NetherAdvanc
 		p	1			action
 c	net/minecraft/unmapped/C_36966270		net/minecraft/entity/living/mob/water/TropicalFishEntity
 	f	Lnet/minecraft/unmapped/C_63353360;	f_36362531		VARIANT
-	f	[Lnet/minecraft/unmapped/C_22168528;	f_64919957		f_64919957
-	f	[Lnet/minecraft/unmapped/C_22168528;	f_56866839		f_56866839
-	f	[Lnet/minecraft/unmapped/C_22168528;	f_57791812		f_57791812
-	f	[I	f_85866863		f_85866863
-	f	Z	f_18774722		f_18774722
-	m	(IIII)I	m_05387608		m_05387608
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+	f	[Lnet/minecraft/unmapped/C_22168528;	f_64919957		VARIANT_BASE_LOCATIONS
+	f	[Lnet/minecraft/unmapped/C_22168528;	f_56866839		FIRST_VARIANT_PATTERN_LOCATIONS
+	f	[Lnet/minecraft/unmapped/C_22168528;	f_57791812		SECOND_VARIANT_PATTERN_LOCATIONS
+	f	[I	f_85866863		VARIANTS
+	f	Z	f_18774722		undefinedVariant
+	m	(IIII)I	m_05387608		createVariant
+		p	0			kind
+		p	1			pattern
+		p	2			baseColor
+		p	3			patternColor
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
-		p	1			p_1
+		p	1			world
 	m	()V	m_19615596		m_19615596
 	m	(Lnet/minecraft/unmapped/C_74087615;)V	m_61937125		m_61937125
 		p	1			p_1
@@ -513,25 +513,25 @@ c	net/minecraft/unmapped/C_36966270		net/minecraft/entity/living/mob/water/Tropi
 	m	()Lnet/minecraft/unmapped/C_88708284;	m_99192868		m_99192868
 	m	()Lnet/minecraft/unmapped/C_22168528;	m_61071011		m_61071011
 	m	()Lnet/minecraft/unmapped/C_13152511;	m_25305563		m_25305563
-	m	()I	m_86930848		m_86930848
-	m	()[F	m_99072952		m_99072952
-	m	()I	m_37641674		m_37641674
-	m	()[F	m_73893010		m_73893010
-	m	()I	m_35086981		m_35086981
-	m	()I	m_49061658		m_49061658
-	m	()Lnet/minecraft/unmapped/C_22168528;	m_37487871		m_37487871
-	m	()Lnet/minecraft/unmapped/C_22168528;	m_52418422		m_52418422
+	m	()I	m_86930848		getVariantBaseColor
+	m	()[F	m_99072952		getVariantBaseTint
+	m	()I	m_37641674		getVariantPatternColor
+	m	()[F	m_73893010		getVariantPatternTint
+	m	()I	m_35086981		getVariantKind
+	m	()I	m_49061658		getVariantPattern
+	m	()Lnet/minecraft/unmapped/C_22168528;	m_37487871		getVariantPatternLocation
+	m	()Lnet/minecraft/unmapped/C_22168528;	m_52418422		getVariantBaseLocation
 	m	(Lnet/minecraft/unmapped/C_55983527;Lnet/minecraft/unmapped/C_75624064;Lnet/minecraft/unmapped/C_88708284;)Lnet/minecraft/unmapped/C_75624064;	m_71460703		m_71460703
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_36966270$69373124		69373124
-c	net/minecraft/unmapped/C_36966270$C_39453776		C_39453776
-	f	I	f_92359934		f_92359934
-	f	I	f_97099141		f_97099141
-	f	I	f_26490677		f_26490677
-	f	I	f_69069854		f_69069854
+c	net/minecraft/unmapped/C_36966270$C_39453776		Data
+	f	I	f_92359934		kind
+	f	I	f_97099141		pattern
+	f	I	f_26490677		baseColor
+	f	I	f_69069854		patternColor
 	m	(IIII)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
