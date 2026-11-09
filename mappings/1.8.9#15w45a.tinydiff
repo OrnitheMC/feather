@@ -13158,11 +13158,11 @@ c	net/minecraft/unmapped/C_15587800	net/minecraft/client/gui/screen/menu/twitch/
 		p	3		p_3	
 	m	(Lnet/minecraft/unmapped/C_85125467;)V	m_30778170	m_30778170	
 		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_42386135	m_42386135	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_42386135	openLink	
+		p	1		link	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_85740840;)V	m_90754652	m_90754652	
-		p	0		p_0	
+		p	0		parent	
 	m	(Lnet/minecraft/unmapped/C_85740840;Lnet/minecraft/unmapped/C_15587800$C_94824997;Ljava/util/List;)V	<init>	<init>	
 		p	1		parent	
 		p	2		reason	
@@ -13218,8 +13218,8 @@ c	net/minecraft/unmapped/C_53777004	net/minecraft/client/twitch/TwitchChat
 	f	Lnet/minecraft/unmapped/C_53777004$C_48571580;	f_39074795	f_39074795	
 	f	Lnet/minecraft/unmapped/C_53777004$C_48571580;	f_08015605	tokenization	
 	f	Ltv/twitch/chat/ChatEmoticonData;	f_37279747	emoticonData	
-	f	I	f_93526027	f_93526027	
-	f	I	f_75330054	f_75330054	
+	f	I	f_93526027	messageFlushInterval	
+	f	I	f_75330054	userChangeEventInterval	
 	f	Ltv/twitch/chat/IChatAPIListener;	f_41639368	apiListener	
 	m	(Lnet/minecraft/unmapped/C_53777004$C_11621341;)V	m_18846472	setListener	
 		p	1		listener	
@@ -13232,7 +13232,7 @@ c	net/minecraft/unmapped/C_53777004	net/minecraft/client/twitch/TwitchChat
 	m	()V	<init>	<init>	
 	m	(Ljava/lang/String;)Z	m_34710919	connectChannel	
 		p	1		channel	
-	m	()Z	m_11176461	m_11176461	
+	m	()Z	m_11176461	startShutdown	
 	m	()V	m_56903790	update	
 	m	(Ljava/lang/String;)V	m_60210825	error	
 		p	1		error	
@@ -13249,9 +13249,9 @@ c	net/minecraft/unmapped/C_53777004	net/minecraft/client/twitch/TwitchChat
 	m	(Ljava/lang/String;)Z	m_79832007	disconnectChannel	
 		p	1		channel	
 	m	()V	m_74973967	shutdown	
-	m	(Ljava/lang/String;Ljava/lang/String;)Z	m_24166999	m_24166999	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;Ljava/lang/String;)Z	m_24166999	sendMessage	
+		p	1		channel	
+		p	2		message	
 	m	(Lnet/minecraft/unmapped/C_53777004$C_88252199;)V	m_67570712	setState	
 		p	1		state	
 	m	()V	m_99739701	downloadEmoticonData	
@@ -13283,11 +13283,11 @@ c	net/minecraft/unmapped/C_53777004$C_11621341	Listener
 		p	3		p_3	
 		p	4		p_4	
 	m	(Ljava/lang/String;)V	m_24360095	joinedChannel	
-		p	1		p_1	
+		p	1		channel	
 	m	(Ljava/lang/String;)V	m_51570762	leftChannel	
-		p	1		p_1	
+		p	1		channel	
 	m	(Ljava/lang/String;Ljava/lang/String;)V	m_81051277	chatCleared	
-		p	1		p_1	
+		p	1		channel	
 		p	2		p_2	
 	m	(Ljava/lang/String;)V	m_08632131	m_08632131	
 		p	1		p_1	
@@ -13409,9 +13409,9 @@ c	net/minecraft/unmapped/C_62111125	net/minecraft/client/gui/overlay/StreamOverl
 	m	(II)V	m_29163078	render	
 		p	1		x	
 		p	2		y	
-	m	(IIII)V	m_17429747	m_17429747	
-		p	1		p_1	
-		p	2		p_2	
+	m	(IIII)V	m_17429747	renderStreamIndicator	
+		p	1		x	
+		p	2		y	
 		p	3		p_3	
 		p	4		p_4	
 	m	()I	m_83289373	m_83289373	
@@ -13704,7 +13704,7 @@ c	net/minecraft/unmapped/C_97442416	net/minecraft/client/twitch/BroadcastControl
 	f	J	f_76356195	f_76356195	
 	f	Lnet/minecraft/unmapped/C_97845488;	f_91399632	ingestTester	
 	f	Ltv/twitch/ErrorCode;	f_86082444	initializationError	
-	f	Ljava/lang/String;	f_84390501	f_84390501	
+	f	Ljava/lang/String;	f_84390501	lastErrorMessage	
 	f	Lnet/minecraft/unmapped/C_31217045;	f_46587524	ERRORS	
 	f	Ltv/twitch/broadcast/IStreamCallbacks;	f_78309460	f_78309460	
 	f	Ltv/twitch/broadcast/IStatCallbacks;	f_32741957	f_32741957	
@@ -14080,16 +14080,16 @@ c	net/minecraft/unmapped/C_68458370	net/minecraft/client/twitch/TwitchStream
 	m	()I	m_24633606	getViewerCount	
 	m	()Z	m_78750311	m_78750311	
 	m	()Ljava/lang/String;	m_68272713	getChannel	
-	m	(Ljava/lang/String;)Ltv/twitch/chat/ChatUserInfo;	m_98822256	m_98822256	
+	m	(Ljava/lang/String;)Ltv/twitch/chat/ChatUserInfo;	m_98822256	getUserInfo	
 		p	1		p_1	
-	m	(Ljava/lang/String;)V	m_60493283	m_60493283	
-		p	1		p_1	
+	m	(Ljava/lang/String;)V	m_60493283	sendMessage	
+		p	1		message	
 	m	()Z	m_47846141	m_47846141	
 	m	()Ltv/twitch/ErrorCode;	m_95287937	m_95287937	
 	m	()Z	m_43446256	isLoggedIn	
 	m	(Z)V	m_81426620	m_81426620	
 		p	1		p_1	
-	m	()Z	m_45342130	m_45342130	
+	m	()Z	m_45342130	isMicMuted	
 	m	()Lnet/minecraft/unmapped/C_68458370$C_20062123;	m_79815175	getErrorReason	
 	m	(Lnet/minecraft/unmapped/C_72656699;JJ)V	m_12137797	sendSpanMetadata	
 		p	1		metadata	
@@ -15227,10 +15227,10 @@ c	net/minecraft/unmapped/C_43457881
 		p	4		color	
 		p	5		p_5	
 	m	(Ljava/lang/String;III)V	m_52457229		drawString
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			text
+		p	2			x
+		p	3			y
+		p	4			color
 c	net/minecraft/unmapped/C_44609773
 	f	Ljava/lang/String;	f_81427982	message	
 	f	Lnet/minecraft/unmapped/C_95231345;	f_81427982		message
