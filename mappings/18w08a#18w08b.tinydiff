@@ -32,15 +32,16 @@ c	net/minecraft/unmapped/C_90901456
 		p	1			stack
 		p	2			player
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_88708284;Lnet/minecraft/unmapped/C_32594356;)Z	m_58298408		afterPlacement
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			world
+		p	2			stack
+		p	3			pos
 	m	(Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;)V	m_45265141		playEmptySound
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			player
+		p	2			world
+		p	3			pos
 c	net/minecraft/unmapped/C_27021753
-	f	Ljava/util/function/Predicate;	f_64177404		f_64177404
+	f	Ljava/util/function/Predicate;	f_64177404		additionalTargetFilter
+		c		for when normal filter is not enough
 	m	(Lnet/minecraft/unmapped/C_45915938;Ljava/lang/Class;Ljava/util/function/Predicate;FDD)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -62,7 +63,7 @@ c	net/minecraft/unmapped/C_27021753
 		p	3			p_3
 		p	4			p_4
 		p	6			p_6
-		p	8			p_8
+		p	8			additionalTargetFilter
 	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_49854744		m_49854744
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_42232651;)Z	m_89454524		m_89454524
@@ -110,16 +111,16 @@ c	net/minecraft/unmapped/C_18588673
 		p	3			underwaterMaterial
 c	net/minecraft/unmapped/C_40258117
 	m	(Ljava/util/Random;Lnet/minecraft/unmapped/C_66993538;Lnet/minecraft/unmapped/C_28105876;IIIDLnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_15815210;I)V	m_21404082	build	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
-		p	6		p_6	
-		p	7		p_7	
-		p	9		p_9	
-		p	10		p_10	
-		p	11		p_11	
+		p	1		random	
+		p	2		chunk	
+		p	3		biome	
+		p	4		chunkX	
+		p	5		chunkZ	
+		p	6		y	
+		p	7		depth	
+		p	9		surfaceState	
+		p	10		subsurfaceState	
+		p	11		seaLevel	
 	m	(Ljava/util/Random;Lnet/minecraft/unmapped/C_66993538;Lnet/minecraft/unmapped/C_28105876;IIIDLnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_15815210;I)V	m_21404082		build
 		p	1			random
 		p	2			chunk
@@ -134,7 +135,7 @@ c	net/minecraft/unmapped/C_40258117
 		p	12			seaLevel
 c	net/minecraft/unmapped/C_00369959		net/minecraft/client/render/entity/CodRenderer
 	f	Lnet/minecraft/unmapped/C_22168528;	f_13536948		TEXTURE
-	f	I	f_93595146		f_93595146
+	f	I	f_93595146		version
 	m	(Lnet/minecraft/unmapped/C_32232284;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_14319219;)Lnet/minecraft/unmapped/C_22168528;	m_59216956		m_59216956
@@ -193,8 +194,8 @@ c	net/minecraft/unmapped/C_14319219		net/minecraft/entity/living/mob/water/CodEn
 	m	()Lnet/minecraft/unmapped/C_13152511;	m_25305563		m_25305563
 c	net/minecraft/unmapped/C_23315513		net/minecraft/entity/living/mob/water/PufferfishEntity
 	f	Lnet/minecraft/unmapped/C_63353360;	f_26948392		PUFF_STATE
-	f	I	f_73618368		f_73618368
-	f	I	f_09480562		f_09480562
+	f	I	f_73618368		puffStartTicks
+	f	I	f_09480562		puffTicks
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
 		p	1			world
 	m	()V	m_19615596		m_19615596
@@ -269,7 +270,7 @@ c	net/minecraft/unmapped/C_30096971		net/minecraft/client/render/model/entity/Sa
 	f	Lnet/minecraft/unmapped/C_94760802;	f_27012910		rearFin
 	f	Lnet/minecraft/unmapped/C_94760802;	f_66930619		leftSideFin
 	f	Lnet/minecraft/unmapped/C_94760802;	f_55096298		rightSideFin
-	m	()I	m_30288593		m_30288593
+	m	()I	m_30288593		getVersion
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_42232651;FFFFFF)V	m_61514729		m_61514729
 		p	1			p_1
@@ -287,15 +288,15 @@ c	net/minecraft/unmapped/C_30096971		net/minecraft/client/render/model/entity/Sa
 		p	5			p_5
 		p	6			p_6
 		p	7			p_7
-c	net/minecraft/unmapped/C_34112184		net/minecraft/unmapped/C_34112184
-	f	Lnet/minecraft/unmapped/C_94760802;	f_20478869		f_20478869
-	f	Lnet/minecraft/unmapped/C_94760802;	f_08430480		f_08430480
-	f	Lnet/minecraft/unmapped/C_94760802;	f_88745584		f_88745584
-	f	Lnet/minecraft/unmapped/C_94760802;	f_50483394		f_50483394
-	f	Lnet/minecraft/unmapped/C_94760802;	f_29668777		f_29668777
-	f	Lnet/minecraft/unmapped/C_94760802;	f_54198261		f_54198261
-	f	Lnet/minecraft/unmapped/C_94760802;	f_42623015		f_42623015
-	m	()I	m_26516369		m_26516369
+c	net/minecraft/unmapped/C_34112184		net/minecraft/client/render/model/entity/CodModel
+	f	Lnet/minecraft/unmapped/C_94760802;	f_20478869		body
+	f	Lnet/minecraft/unmapped/C_94760802;	f_08430480		topFin
+	f	Lnet/minecraft/unmapped/C_94760802;	f_88745584		head
+	f	Lnet/minecraft/unmapped/C_94760802;	f_50483394		frontHead
+	f	Lnet/minecraft/unmapped/C_94760802;	f_29668777		leftSideFin
+	f	Lnet/minecraft/unmapped/C_94760802;	f_54198261		rightSideFin
+	f	Lnet/minecraft/unmapped/C_94760802;	f_42623015		rearFin
+	m	()I	m_26516369		getVersion
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_42232651;FFFFFF)V	m_61514729		m_61514729
 		p	1			p_1
@@ -370,19 +371,19 @@ c	net/minecraft/unmapped/C_37404766		net/minecraft/client/render/model/entity/La
 		p	7			p_7
 c	net/minecraft/unmapped/C_42105035		net/minecraft/entity/living/mob/water/FishEntity
 	f	Lnet/minecraft/unmapped/C_63353360;	f_68256143		FROM_BUCKET
-	f	Z	f_95949213		f_95949213
-	f	I	f_41039430		f_41039430
-	f	Z	f_70052586		f_70052586
+	f	Z	f_95949213		leader
+	f	I	f_41039430		schoolSize
+	f	Z	f_70052586		schooling
 	m	(Lnet/minecraft/unmapped/C_72103717;Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
 		p	1			p_1
 		p	2			p_2
 	m	()Z	m_83348684		m_83348684
 	m	()Z	m_78239271		m_78239271
-	m	()Z	m_28473684		m_28473684
-	m	()I	m_08078421		m_08078421
-	m	(Z)V	m_12588829		m_12588829
-		p	1			p_1
-	m	()Z	m_87399932		m_87399932
+	m	()Z	m_28473684		canAcceptToSchool
+	m	()I	m_08078421		getMaxSchoolSize
+	m	(Z)V	m_12588829		setSchooling
+		p	1			schooling
+	m	()Z	m_87399932		isSchooling
 	m	()V	m_19615596		m_19615596
 	m	()Z	m_23172847		getFromBucket
 	m	(Z)V	m_33882748		setFromBucket
@@ -410,9 +411,9 @@ c	net/minecraft/unmapped/C_42105035		net/minecraft/entity/living/mob/water/FishE
 		p	1			p_1
 		p	2			p_2
 	m	()Lnet/minecraft/unmapped/C_88708284;	m_99192868		getBucketItem
-	m	(Z)V	m_96174273		m_96174273
-		p	1			p_1
-	m	()Z	m_86205123		m_86205123
+	m	(Z)V	m_96174273		setLeader
+		p	1			leader
+	m	()Z	m_86205123		isLeader
 	m	()Lnet/minecraft/unmapped/C_13152511;	m_25305563		getFlopSOund
 	m	()Lnet/minecraft/unmapped/C_13152511;	m_07022682		m_07022682
 	m	()V	<clinit>		<clinit>
@@ -430,7 +431,7 @@ c	net/minecraft/unmapped/C_42105035$C_75555551		RandomSwimGoal
 	m	()Z	m_13184927		m_13184927
 c	net/minecraft/unmapped/C_59393240		net/minecraft/client/render/entity/SalmonRenderer
 	f	Lnet/minecraft/unmapped/C_22168528;	f_16364465		TEXTURE_LOCATION
-	f	I	f_60648199		f_60648199
+	f	I	f_60648199		version
 	m	(Lnet/minecraft/unmapped/C_32232284;)V	<init>		<init>
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_76747316;)Lnet/minecraft/unmapped/C_22168528;	m_17961861		m_17961861
@@ -478,7 +479,7 @@ c	net/minecraft/unmapped/C_59393240		net/minecraft/client/render/entity/SalmonRe
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_76747316		net/minecraft/entity/living/mob/water/SalmonEntity
 	m	(Lnet/minecraft/unmapped/C_64041439;)V	<init>		<init>
-		p	1			p_1
+		p	1			world
 	m	()V	m_21202670		m_21202670
 	m	()I	m_08078421		m_08078421
 	m	()Lnet/minecraft/unmapped/C_22168528;	m_61071011		m_61071011
@@ -561,8 +562,8 @@ c	net/minecraft/unmapped/C_96830862		net/minecraft/item/FishBucketItem
 		p	2			p_2
 		p	3			p_3
 c	net/minecraft/unmapped/C_99847419		net/minecraft/entity/ai/goal/FollowSchoolLeaderGoal
-	f	Lnet/minecraft/unmapped/C_42105035;	f_83688990		leader
-	f	Lnet/minecraft/unmapped/C_42105035;	f_09946311		nextStartTime
+	f	Lnet/minecraft/unmapped/C_42105035;	f_83688990		fish
+	f	Lnet/minecraft/unmapped/C_42105035;	f_09946311		leader
 	f	I	f_54851920		cooldown
 	m	(Lnet/minecraft/unmapped/C_42105035;)V	<init>		<init>
 		p	1			p_1

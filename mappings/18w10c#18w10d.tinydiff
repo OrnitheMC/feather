@@ -23,25 +23,25 @@ c	net/minecraft/unmapped/C_22534799
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_24384787
-	f	I	f_11669729		f_11669729
-	f	Z	f_58898825		f_58898825
-	f	I	f_45646533		f_45646533
-	f	Lnet/minecraft/unmapped/C_54305154;	f_96971178		f_96971178
-	f	I	f_45415337		f_45415337
-	f	I	f_17236356		f_17236356
-	f	I	f_22044643		f_22044643
-	f	Lnet/minecraft/unmapped/C_94584382;	f_78495917		f_78495917
+	f	I	f_11669729		cloudsVertexStride
+	f	Z	f_58898825		cloudsDirty
+	f	I	f_45646533		cloudsGlList
+	f	Lnet/minecraft/unmapped/C_54305154;	f_96971178		cloudsBuffer
+	f	I	f_45415337		lastCloudsOriginX
+	f	I	f_17236356		lastCloudsOriginY
+	f	I	f_22044643		lastCloudsOriginZ
+	f	Lnet/minecraft/unmapped/C_94584382;	f_78495917		lastCloudsOriginPos
 	m	(FDDD)V	m_26560538	renderFancyClouds	
 		p	1		tickDelta	
 		p	2		cameraX	
 		p	4		cameraY	
 		p	6		cameraZ	
 	m	(Lnet/minecraft/unmapped/C_93396801;DDDLnet/minecraft/unmapped/C_94584382;)V	m_26560538		renderFancyClouds
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
+		p	1			bufferBuilder
+		p	2			offsetX
+		p	4			offsetY
+		p	6			offsetZ
+		p	8			color
 c	net/minecraft/unmapped/C_28105876
 	f	Lnet/minecraft/unmapped/C_80942713;	f_61887397		TOP_SOLID_HEIGHT_MAP_RANGE_DECORATOR
 	f	Lnet/minecraft/unmapped/C_80942713;	f_91414474		TOP_SOLID_HEIGHT_MAP_NOISE_BIASED_DECORATOR
@@ -158,8 +158,8 @@ c	net/minecraft/unmapped/C_21501024
 	m	(Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_41470581;	m_47578938		m_47578938
 		p	1			p_1
 c	net/minecraft/unmapped/C_99295357
-	m	(Lnet/minecraft/unmapped/C_15815210;)Z	m_67518163	m_67518163	
-		p	1		p_1	
+	m	(Lnet/minecraft/unmapped/C_15815210;)Z	m_67518163	isLiquid	
+		p	1		state	
 c	net/minecraft/unmapped/C_31091265
 	m	()V	m_78825932	m_78825932	
 	m	()V	m_11642923		m_11642923
@@ -171,8 +171,8 @@ c	net/minecraft/unmapped/C_13792885
 		p	4		p_4	
 		p	5		p_5	
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;)Z	m_54189166	canSurvive	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		world	
+		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_15815210;	m_05745985		m_05745985
 		p	1			p_1
 		p	2			p_2
@@ -181,8 +181,8 @@ c	net/minecraft/unmapped/C_13792885
 		p	5			p_5
 		p	6			p_6
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;)Z	m_54189166		canSurvive
-		p	1			p_1
-		p	2			p_2
+		p	1			world
+		p	2			pos
 c	net/minecraft/unmapped/C_46387315
 	m	(Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_46108969;Lnet/minecraft/unmapped/C_32594356;)Z	m_81619573	m_81619573	
 		p	1		p_1	
@@ -212,49 +212,49 @@ c	net/minecraft/unmapped/C_25912533
 	m	(Lnet/minecraft/unmapped/C_60377835;)Z	m_59272274		m_59272274
 		p	1			p_1
 c	net/minecraft/unmapped/C_41470581
-	m	(Z)Lnet/minecraft/unmapped/C_41470581;	m_83799543	m_83799543	
+	m	(Z)Lnet/minecraft/unmapped/C_41470581;	m_83799543	getVariant	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_41470581;	m_59516251	m_59516251	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;ILnet/minecraft/unmapped/C_28786548;)I	m_17430717	m_17430717	
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_41470581;	m_59516251	spread	
+		p	1		world	
+		p	2		pos	
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;ILnet/minecraft/unmapped/C_28786548;)I	m_17430717	getDistanceToGap	
+		p	1		world	
+		p	2		pos	
+		p	3		distance	
+		p	4		fromDirection	
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/Set;	m_43136620	getSpread	
+		p	1		world	
+		p	2		pos	
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_52051269	isFluidBlocking	
+		p	1		world	
+		p	2		pos	
+		p	3		blockState	
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_50112532	canSpreadTo	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-		p	4		p_4	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;)Ljava/util/Set;	m_43136620	m_43136620	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_52051269	m_52051269	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_50112532	m_50112532	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_41470581;	m_59516251		m_59516251
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;ILnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_15815210;)I	m_17430717		m_17430717
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Ljava/util/Set;	m_43136620		m_43136620
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_52051269		m_52051269
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_50112532		m_50112532
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Lnet/minecraft/unmapped/C_41470581;	m_59516251		spread
+		p	1			world
+		p	2			pos
+		p	3			blockState
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;ILnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_15815210;)I	m_17430717		getDistanceToGap
+		p	1			world
+		p	2			pos
+		p	3			distance
+		p	4			fromDirection
+		p	5			blockState
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Ljava/util/Set;	m_43136620		getSpread
+		p	1			world
+		p	2			pos
+		p	3			blockState
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_52051269		isFluidBlocking
+		p	1			world
+		p	2			fromPos
+		p	3			fromBlockState
+		p	4			toDirection
+		p	5			toPos
+		p	6			toBlockState
+	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;Lnet/minecraft/unmapped/C_28786548;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_15815210;)Z	m_50112532		canSpreadTo
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
@@ -263,7 +263,7 @@ c	net/minecraft/unmapped/C_41470581
 		p	6			p_6
 c	net/minecraft/unmapped/C_60377835
 	m	(Lnet/minecraft/unmapped/C_60377835;)Z	m_59272274		canBeReplaced
-		p	1			p_1
+		p	1			other
 c	net/minecraft/unmapped/C_03432886		net/minecraft/world/gen/feature/decorator/TopSolidHeightMapNoiseBiasedDecorator
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_68896930;Ljava/util/Random;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_67605256;Lnet/minecraft/unmapped/C_30339133;Lnet/minecraft/unmapped/C_96514341;)Z	m_95498479		m_95498479
@@ -351,8 +351,8 @@ c	net/minecraft/unmapped/C_82688774		net/minecraft/world/gen/feature/decorator/R
 	f	I	f_94656629		min
 	f	I	f_13520183		max
 c	net/minecraft/unmapped/C_84238683		net/minecraft/world/gen/feature/CoralFeature
-	f	[Lnet/minecraft/unmapped/C_15815210;	f_82700845		f_82700845
-	f	[Lnet/minecraft/unmapped/C_15815210;	f_55190912		f_55190912
+	f	[Lnet/minecraft/unmapped/C_15815210;	f_82700845		FULL_CORAL_BLOCKS
+	f	[Lnet/minecraft/unmapped/C_15815210;	f_55190912		CORAL_ATTACHMENT_BLOCKS
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_68896930;Ljava/util/Random;Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_13626278;)Z	m_22281187		m_22281187
 		p	1			p_1

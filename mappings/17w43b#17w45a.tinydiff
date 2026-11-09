@@ -2,13 +2,13 @@ tiny	2	0
 c	net/minecraft/client/Minecraft
 	f	Lnet/minecraft/unmapped/C_22168528;	f_60134500	MOJANG_LOGO_LOCATION	
 	f	Lnet/minecraft/unmapped/C_22168528;	f_54210029	logoLocation	
-	f	Lnet/minecraft/unmapped/C_22168528;	f_67578271		f_67578271
-	f	Lnet/minecraft/unmapped/C_66554568;	f_92689964		f_92689964
+	f	Lnet/minecraft/unmapped/C_22168528;	f_67578271		backgroundLocation
+	f	Lnet/minecraft/unmapped/C_66554568;	f_92689964		backgroundTexture
 	m	(Lnet/minecraft/unmapped/C_82920792;)V	m_13054060	renderLoadingScreen	
 		p	1		textureManager	
-	m	()V	m_37524083		m_37524083
+	m	()V	m_37524083		renderGuiFrame
 	m	()Lnet/minecraft/unmapped/C_04864323;	m_47978329		m_47978329
-	m	()Lnet/minecraft/unmapped/C_22168528;	m_12295563		m_12295563
+	m	()Lnet/minecraft/unmapped/C_22168528;	m_12295563		getBackgroundLocation
 c	net/minecraft/server/MinecraftServer
 	f	Lnet/minecraft/unmapped/C_79915627;	f_64434672	commandHandler	
 	f	Lnet/minecraft/unmapped/C_55781718;	f_64434672		commandHandler
@@ -98,7 +98,7 @@ c	net/minecraft/unmapped/C_03140863$04606502
 c	net/minecraft/unmapped/C_06229858
 	m	()Lnet/minecraft/unmapped/C_95231345;	m_50554523		m_50554523
 c	net/minecraft/unmapped/C_10350466
-	m	()V	m_00619294		m_00619294
+	m	()V	m_00619294		updateJoinButtonState
 c	net/minecraft/unmapped/C_11164199
 	m	(IIIIILnet/minecraft/unmapped/C_76792751$C_92207510;Ljava/lang/String;)V	<init>		<init>
 		p	1			p_1
@@ -468,9 +468,9 @@ c	net/minecraft/unmapped/C_47900077
 		p	2			p_2
 		p	4			p_4
 		p	6			p_6
-		p	8			p_8
-		p	10			p_10
-		p	12			p_12
+		p	8			velocityX
+		p	10			velocityY
+		p	12			velocityZ
 		p	14			p_14
 	m	(Lnet/minecraft/unmapped/C_64041439;DDDLnet/minecraft/unmapped/C_88708284;)V	<init>		<init>
 		p	1			p_1
@@ -713,8 +713,8 @@ c	net/minecraft/unmapped/C_63704535
 		p	2			text
 	m	()V	m_03412136		updateCommandInfo
 	m	(Ljava/lang/String;I)Ljava/lang/String;	m_27238685		formatChat
-		p	1			p_1
-		p	2			p_2
+		p	1			text
+		p	2			position
 	m	(Ljava/lang/String;)V	m_28493642		m_28493642
 		p	1			p_1
 c	net/minecraft/unmapped/C_63704535$C_65287936	CommandSuggestions	
@@ -763,13 +763,13 @@ c	net/minecraft/unmapped/C_64041439
 		p	12		velocityZ	
 		p	14		parameters	
 	m	(Lnet/minecraft/unmapped/C_82419528;DDDDDD)V	m_46764750		addParticle
-		p	1			p_1
-		p	2			p_2
-		p	4			p_4
-		p	6			p_6
-		p	8			p_8
-		p	10			p_10
-		p	12			p_12
+		p	1			options
+		p	2			x
+		p	4			y
+		p	6			z
+		p	8			velocityX
+		p	10			velocityY
+		p	12			velocityZ
 	m	(Lnet/minecraft/unmapped/C_82419528;ZDDDDDD)V	m_59203117		addParticle
 		p	1			options
 		p	2			ignoreDistance
@@ -1142,8 +1142,8 @@ c	net/minecraft/unmapped/C_97075175
 	f	Lnet/minecraft/unmapped/C_49122968;	f_16854099		SYNTAX_HIGHLIGHT_NUMBER_TYPE
 	m	()Lnet/minecraft/unmapped/C_95231345;	m_50554523		getDisplayText
 c	net/minecraft/unmapped/C_97866173
-	f	I	f_12095098		f_12095098
-	f	I	f_74935603		f_74935603
+	f	I	f_12095098		scaledWidth
+	f	I	f_74935603		scaledHeight
 	m	(Lnet/minecraft/unmapped/C_43718703;F)V	m_17482805	renderHotbar	
 		p	1		window	
 		p	2		tickDelta	
@@ -1178,14 +1178,14 @@ c	net/minecraft/unmapped/C_97866173
 	m	(Lnet/minecraft/unmapped/C_43718703;)V	m_72503746	renderVehicleHealth	
 		p	1		window	
 	m	(F)V	m_54933694		renderCrosshair
-		p	1			p_1
+		p	1			tickDelta
 	m	()V	m_26873626		renderStatusEffects
 	m	(F)V	m_17482805		renderHotbar
-		p	1			p_1
+		p	1			tickDelta
 	m	(I)V	m_99486747		renderJumpBar
-		p	1			p_1
+		p	1			x
 	m	(I)V	m_33306183		renderXpBar
-		p	1			p_1
+		p	1			x
 	m	()V	m_40186702		renderSelectedItemName
 	m	()V	m_63420783		renderDemoMessage
 	m	(Lnet/minecraft/unmapped/C_30593188;)V	m_68540463		renderScoreboardObjective
@@ -1194,9 +1194,9 @@ c	net/minecraft/unmapped/C_97866173
 	m	()V	m_72503746		renderVehicleHealth
 	m	()V	m_15423002		renderPumpkinOverlay
 	m	(F)V	m_77930904		renderVignette
-		p	1			p_1
+		p	1			brightness
 	m	(F)V	m_56920776		renderNauseaOverlay
-		p	1			p_1
+		p	1			time
 c	net/minecraft/unmapped/C_99660737
 	m	(Lnet/minecraft/unmapped/C_59311987;)V	m_29074489	m_29074489	
 		p	1		p_1	
@@ -1647,9 +1647,9 @@ c	net/minecraft/unmapped/C_70699216
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	(DD)Z	m_00909671		m_00909671
-		p	1			p_1
-		p	3			p_3
+	m	(DD)Z	m_00909671		isMouseOverScrollBar
+		p	1			mouseX
+		p	3			mouseY
 	m	(DDIDD)Z	m_52921597		m_52921597
 		p	1			p_1
 		p	3			p_3
@@ -1962,14 +1962,14 @@ c	net/minecraft/unmapped/C_93577926
 	f	Ljava/nio/FloatBuffer;	f_67310505	MODELVIEW_MATRIX_BUFFER	
 	f	Ljava/nio/FloatBuffer;	f_04121695	PROJECTION_MATRIX_BUFFER	
 	f	Ljava/nio/FloatBuffer;	f_17323686	POSITION_BUFFER	
-	f	Ljava/nio/FloatBuffer;	f_03468916		f_03468916
+	f	Ljava/nio/FloatBuffer;	f_03468916		MODELVIEW_MATRIX_BUFFER
 	m	(Lnet/minecraft/unmapped/C_40996800;Z)V	m_15661785	setup	
 		p	0		camera	
 		p	1		thirdPerson	
 	m	(Lnet/minecraft/unmapped/C_40996800;ZF)V	m_15661785		setup
-		p	0			player
-		p	1			p_1
-		p	2			p_2
+		p	0			camera
+		p	1			thirdPerson
+		p	2			renderDistance
 c	net/minecraft/unmapped/C_67412986
 	m	()Lnet/minecraft/unmapped/C_95231345;	m_50554523		m_50554523
 c	net/minecraft/unmapped/C_01039069	net/minecraft/server/command/exception/InvalidNumberException	
@@ -3320,7 +3320,7 @@ c	net/minecraft/unmapped/C_28707399$C_27959196
 		p	2			p_2
 		p	3			argument
 		p	4			value
-	m	()Lcom/mojang/brigadier/arguments/ArgumentType;	m_02013011		m_02013011
+	m	()Lcom/mojang/brigadier/arguments/ArgumentType;	m_02013011		getType
 	m	(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;Lnet/minecraft/unmapped/C_28707399$C_98021076;)V	m_52106533		set
 		p	1			ctx
 		p	2			arg
@@ -3962,11 +3962,11 @@ c	net/minecraft/unmapped/C_03735476
 		p	2			objective
 	m	(Lnet/minecraft/unmapped/C_30485881;Ljava/util/Collection;Lnet/minecraft/unmapped/C_30593188;Lnet/minecraft/unmapped/C_62693840$C_70886838;Ljava/util/Collection;Lnet/minecraft/unmapped/C_30593188;)I	m_85570120		operation
 		p	0			source
-		p	1			owners1
-		p	2			objective1
+		p	1			targets
+		p	2			targetObjective
 		p	3			operation
-		p	4			owners2
-		p	5			objective2
+		p	4			sources
+		p	5			sourceObjective
 	m	(Lnet/minecraft/unmapped/C_30485881;Ljava/util/Collection;Lnet/minecraft/unmapped/C_30593188;)I	m_26427855		enableTrigger
 		p	0			source
 		p	1			owners
@@ -4011,7 +4011,7 @@ c	net/minecraft/unmapped/C_03735476
 	m	(Lnet/minecraft/unmapped/C_30485881;Ljava/lang/String;Lnet/minecraft/unmapped/C_66561723;Ljava/lang/String;)I	m_38165772		addObjective
 		p	0			source
 		p	1			name
-		p	2			p_2
+		p	2			criterion
 		p	3			p_3
 	m	(Lnet/minecraft/unmapped/C_30485881;)I	m_91241087		listObjectives
 		p	0			source
@@ -4637,10 +4637,10 @@ c	net/minecraft/unmapped/C_39943829
 		p	4		option	
 	m	(Lnet/minecraft/client/Minecraft;IIILnet/minecraft/unmapped/C_76792751$C_92207510;)Lnet/minecraft/unmapped/C_85125467;	m_27093550		createWidget
 		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			x
+		p	2			y
+		p	3			width
+		p	4			option
 	m	(Lnet/minecraft/client/Minecraft;IIILnet/minecraft/unmapped/C_76792751$C_92207510;)Lnet/minecraft/unmapped/C_85125467;	m_25324722		m_25324722
 		p	0			p_0
 		p	1			p_1
@@ -4650,13 +4650,13 @@ c	net/minecraft/unmapped/C_39943829
 c	net/minecraft/unmapped/C_39943829$C_51567898
 	m	(Lnet/minecraft/unmapped/C_39943829;ILnet/minecraft/unmapped/C_76792751$C_92207510;)V	<init>		<init>
 		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	2			x
+		p	3			option
 	m	(Lnet/minecraft/unmapped/C_39943829;ILnet/minecraft/unmapped/C_76792751$C_92207510;Lnet/minecraft/unmapped/C_76792751$C_92207510;)V	<init>		<init>
 		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	2			x
+		p	3			left
+		p	4			right
 c	net/minecraft/unmapped/C_39943829$71589673
 	f	Lnet/minecraft/unmapped/C_39943829;	f_38254500	f_38254500	
 	f	Lnet/minecraft/unmapped/C_76792751$C_92207510;	f_53504367		f_53504367
@@ -4908,12 +4908,12 @@ c	net/minecraft/unmapped/C_05206503
 	m	(Lnet/minecraft/unmapped/C_43718703;)V	m_92645776	renderTooltip	
 		p	1		window	
 	m	(F)V	m_18022406		renderHotbar
-		p	1			p_1
+		p	1			tickDelta
 	m	(FIFLnet/minecraft/unmapped/C_69696062;)V	m_80826197		renderMenu
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			alpha
+		p	2			x
+		p	3			y
+		p	4			page
 	m	()V	m_92645776		renderTooltip
 c	net/minecraft/unmapped/C_05872983
 	f	Lorg/apache/logging/log4j/Logger;	f_16611186		LOGGER
@@ -5390,7 +5390,7 @@ c	net/minecraft/unmapped/C_67670960
 		p	0			source
 		p	1			owners
 		p	2			objective
-		p	3			override
+		p	3			useResult
 	m	(Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;Z)Lcom/mojang/brigadier/builder/ArgumentBuilder;	m_92415268		addConditionals
 		p	0			node
 		p	1			builder
@@ -6745,12 +6745,12 @@ c	net/minecraft/unmapped/C_40548179$C_69602644
 		p	2			value
 c	net/minecraft/unmapped/C_46221269
 	m	()V	m_24653180		reset
-	m	(F)V	m_76460600		m_76460600
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_65009617		m_65009617
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_89852454		m_89852454
-		p	1			p_1
+	m	(F)V	m_76460600		mul
+		p	1			scale
+	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_65009617		add
+		p	1			other
+	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_89852454		sub
+		p	1			other
 	m	()F	m_23542647		m_23542647
 c	net/minecraft/unmapped/C_62128555
 	m	(CI)V	m_08837864	m_08837864	
@@ -6815,8 +6815,8 @@ c	net/minecraft/unmapped/C_02977438		net/minecraft/command/argument/ParticleArgu
 	m	(Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/unmapped/C_82419528;	m_56343067		parseParticle
 		p	0			reader
 	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Ljava/lang/Object;	parse		parse
-		p	1			p_1
-		p	2			p_2
+		p	1			reader
+		p	2			context
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_06305467		net/minecraft/command/argument/Vec2fArgument
 	f	Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;	f_04448347		INCOMPLETE_EXCEPTION
@@ -6842,8 +6842,8 @@ c	net/minecraft/unmapped/C_12233361		net/minecraft/command/argument/StatusEffect
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Ljava/lang/Object;	parse		parse
-		p	1			p_1
-		p	2			p_2
+		p	1			reader
+		p	2			context
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_13868912		net/minecraft/server/command/TeamCommand
 	f	Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;	f_07070917		TEAM_ALREADY_EXISTS_EXCEPTION
@@ -7009,8 +7009,8 @@ c	net/minecraft/unmapped/C_20242125		net/minecraft/command/argument/ObjectiveArg
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Ljava/lang/Object;	parse		parse
-		p	1			p_1
-		p	2			p_2
+		p	1			reader
+		p	2			context
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_22430773		net/minecraft/command/argument/BlockArgument
 	m	()V	<init>		<init>
@@ -7264,9 +7264,9 @@ c	net/minecraft/unmapped/C_41317758		net/minecraft/command/argument/ColorArgumen
 		p	2			context
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_43624480		net/minecraft/client/gui/screen/ResourceReloadOverlay
-	f	Lorg/apache/logging/log4j/Logger;	f_98665376		f_98665376
+	f	Lorg/apache/logging/log4j/Logger;	f_98665376		LOGGER
 	f	Lnet/minecraft/unmapped/C_22168528;	f_41876077		TITLE_LOCATION
-	f	Lnet/minecraft/unmapped/C_22168528;	f_57176018		f_57176018
+	f	Lnet/minecraft/unmapped/C_22168528;	f_57176018		logoLocation
 	m	()V	<init>		<init>
 	m	()V	m_41805697		m_41805697
 	m	()V	m_47002234		m_47002234
@@ -7286,8 +7286,8 @@ c	net/minecraft/unmapped/C_45722518		net/minecraft/command/argument/ScoreboardCr
 		p	1			p_1
 		p	2			p_2
 	m	(Lcom/mojang/brigadier/StringReader;Lcom/mojang/brigadier/context/CommandContextBuilder;)Ljava/lang/Object;	parse		parse
-		p	1			p_1
-		p	2			p_2
+		p	1			reader
+		p	2			context
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_47034372		net/minecraft/command/argument/MessageArgument
 	m	()V	<init>		<init>
@@ -7531,10 +7531,10 @@ c	net/minecraft/unmapped/C_65570678		net/minecraft/command/SuggestionProvider
 	m	()Ljava/util/Collection;	m_38022272		getTeams
 	m	(Ljava/lang/Iterable;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;	m_38362563		suggestMatching
 		p	0			options
-		p	1			prefix
+		p	1			input
 	m	([Ljava/lang/String;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;	m_94195202		suggestMatching
 		p	0			options
-		p	1			prefix
+		p	1			input
 c	net/minecraft/unmapped/C_66491259		net/minecraft/command/argument/EntitySelectorParser
 	f	Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;	f_60377581		INVALID_EXCEPTION
 	f	Lcom/mojang/brigadier/exceptions/ParameterizedCommandExceptionType;	f_71907757		UNKNOWN_SELECTOR_EXCEPTION

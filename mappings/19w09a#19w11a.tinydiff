@@ -40,7 +40,7 @@ c	net/minecraft/unmapped/C_03140863
 	f	F	f_87636299	oldCamPos	
 	f	F	f_37818763	newCamPos	
 	f	F	f_35850235	skyDarkness	
-	f	F	f_02858652	f_02858652	
+	f	F	f_02858652	lastEyeHeight	
 	f	Lnet/minecraft/unmapped/C_37620400;	f_78952231		f_78952231
 	m	(F)V	m_30033001	transformCamera	
 		p	1		tickDelta	
@@ -314,11 +314,11 @@ c	net/minecraft/unmapped/C_24384787
 		p	2		tickDelta	
 		p	4		camera	
 	m	(Lnet/minecraft/unmapped/C_42232651;FLnet/minecraft/unmapped/C_93187338;IZ)V	m_72725110	setupRender	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
-		p	5		p_5	
+		p	1		camera	
+		p	2		tickDelta	
+		p	3		culler	
+		p	4		frame	
+		p	5		cullCaves	
 	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_24654288;IF)V	m_89199588	renderBlockOutline	
 		p	1		p_1	
 		p	2		p_2	
@@ -490,7 +490,7 @@ c	net/minecraft/unmapped/C_40996800$C_19041672	IsAngryAtPlayerPredicate
 	m	(Lnet/minecraft/unmapped/C_12192847;)Z	test	test	
 		p	1		p_1	
 	m	(Ljava/lang/Object;)Z	test	test	
-		p	1		p_1	
+		p	1		target	
 	m	(Lnet/minecraft/unmapped/C_40996800;Lnet/minecraft/unmapped/C_40996800$28691489;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1181,7 +1181,7 @@ c	net/minecraft/unmapped/C_97313606$36270289		36270289
 		p	1			p_1
 c	net/minecraft/unmapped/C_97866173
 	m	(F)V	m_54933694	renderCrosshair	
-		p	1		p_1	
+		p	1		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_23014920;II)V	m_49892951		m_49892951
 		p	1			p_1
 		p	2			p_2
@@ -1468,7 +1468,7 @@ c	net/minecraft/unmapped/C_66796240
 		p	0			p_0
 c	net/minecraft/unmapped/C_66796240$C_12979938	GeneralStatsListWidget	
 	f	Lnet/minecraft/unmapped/C_66796240;	f_53137500	f_53137500	
-	f	Ljava/util/Iterator;	f_41190645	f_41190645	
+	f	Ljava/util/Iterator;	f_41190645	stats	
 	m	()I	m_87897431	m_87897431	
 	m	(I)Z	m_62450030	m_62450030	
 		p	1		p_1	
@@ -1487,14 +1487,14 @@ c	net/minecraft/unmapped/C_66796240$C_12979938	GeneralStatsListWidget
 		p	2		p_2	
 c	net/minecraft/unmapped/C_66796240$C_53134182	ItemStatsListWidget	
 	f	Lnet/minecraft/unmapped/C_66796240;	f_51360214	f_51360214	
-	f	Ljava/util/List;	f_31278259	f_31278259	
-	f	Ljava/util/List;	f_40303765	f_40303765	
-	f	[I	f_70423008	f_70423008	
-	f	I	f_48536713	f_48536713	
-	f	Ljava/util/List;	f_18920701	f_18920701	
-	f	Ljava/util/Comparator;	f_88599341	f_88599341	
-	f	Lnet/minecraft/unmapped/C_17315906;	f_88023247	f_88023247	
-	f	I	f_84855980	f_84855980	
+	f	Ljava/util/List;	f_31278259	blockStats	
+	f	Ljava/util/List;	f_40303765	itemStats	
+	f	[I	f_70423008	slots	
+	f	I	f_48536713	clickedIconId	
+	f	Ljava/util/List;	f_18920701	entries	
+	f	Ljava/util/Comparator;	f_88599341	statComparator	
+	f	Lnet/minecraft/unmapped/C_17315906;	f_88023247	selectedTab	
+	f	I	f_84855980	statSortOrder	
 	m	(IILnet/minecraft/unmapped/C_96603444;)V	m_32293131	m_32293131	
 		p	1		p_1	
 		p	2		p_2	
@@ -1518,30 +1518,30 @@ c	net/minecraft/unmapped/C_66796240$C_53134182	ItemStatsListWidget
 	m	(II)V	m_79908931	m_79908931	
 		p	1		p_1	
 		p	2		p_2	
-	m	(I)Lnet/minecraft/unmapped/C_17315906;	m_83206077	m_83206077	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_17315906;)I	m_69691116	m_69691116	
-		p	1		p_1	
+	m	(I)Lnet/minecraft/unmapped/C_17315906;	m_83206077	getStat	
+		p	1		index	
+	m	(Lnet/minecraft/unmapped/C_17315906;)I	m_69691116	indexOf	
+		p	1		stat	
 	m	()I	m_87897431	m_87897431	
-	m	(I)Lnet/minecraft/unmapped/C_98888256;	m_47326345	m_47326345	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_62649600;IIZ)V	m_09650110	m_09650110	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-		p	4		p_4	
+	m	(I)Lnet/minecraft/unmapped/C_98888256;	m_47326345	getEntry	
+		p	1		index	
+	m	(Lnet/minecraft/unmapped/C_62649600;IIZ)V	m_09650110	renderStat	
+		p	1		stat	
+		p	2		x	
+		p	3		y	
+		p	4		isRowEven	
 	m	(II)V	m_62145593	m_62145593	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_17315906;)V	m_82031524	m_82031524	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_95231345;II)V	m_35581973	m_35581973	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
-	m	(Lnet/minecraft/unmapped/C_98888256;)Lnet/minecraft/unmapped/C_95231345;	m_80279886	m_80279886	
-		p	1		p_1	
-c	net/minecraft/unmapped/C_66796240$C_53134182$C_53458528	C_53458528	
+	m	(Lnet/minecraft/unmapped/C_17315906;)V	m_82031524	setSelectedTab	
+		p	1		tab	
+	m	(Lnet/minecraft/unmapped/C_95231345;II)V	m_35581973	drawTooltip	
+		p	1		text	
+		p	2		x	
+		p	3		y	
+	m	(Lnet/minecraft/unmapped/C_98888256;)Lnet/minecraft/unmapped/C_95231345;	m_80279886	getEntryMessage	
+		p	1		item	
+c	net/minecraft/unmapped/C_66796240$C_53134182$C_53458528	StatComparator	
 	f	Lnet/minecraft/unmapped/C_66796240$C_53134182;	f_51451600	f_51451600	
 	m	(Lnet/minecraft/unmapped/C_66796240$C_53134182;)V	<init>	<init>	
 		p	1		p_1	
@@ -1549,8 +1549,8 @@ c	net/minecraft/unmapped/C_66796240$C_53134182$C_53458528	C_53458528
 		p	1		p_1	
 		p	2		p_2	
 	m	(Ljava/lang/Object;Ljava/lang/Object;)I	compare	compare	
-		p	1		p_1	
-		p	2		p_2	
+		p	1		o1	
+		p	2		o2	
 	m	(Lnet/minecraft/unmapped/C_66796240$C_53134182;Lnet/minecraft/unmapped/C_66796240$42549587;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -1573,12 +1573,12 @@ c	net/minecraft/unmapped/C_66796240$C_92365365	EntityStatsListWidget
 	m	(Lnet/minecraft/unmapped/C_66796240;Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		minecraft	
-	m	(Ljava/lang/String;I)Ljava/lang/String;	m_91521691	m_91521691	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Ljava/lang/String;I)Ljava/lang/String;	m_29637757	m_29637757	
-		p	1		p_1	
-		p	2		p_2	
+	m	(Ljava/lang/String;I)Ljava/lang/String;	m_91521691	getKilledMessage	
+		p	1		name	
+		p	2		count	
+	m	(Ljava/lang/String;I)Ljava/lang/String;	m_29637757	getKilledByMessage	
+		p	1		name	
+		p	2		count	
 c	net/minecraft/unmapped/C_66796240$23040040
 	m	(DD)V	m_83430595	m_83430595	
 		p	1		p_1	
@@ -1656,7 +1656,7 @@ c	net/minecraft/unmapped/C_66796240$C_33123376		C_33123376
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_17315906;)V	m_29340981		m_29340981
 		p	1			p_1
-c	net/minecraft/unmapped/C_66796240$C_33123376$C_53458528		C_53458528
+c	net/minecraft/unmapped/C_66796240$C_33123376$C_53458528		StatComparator
 	f	Lnet/minecraft/unmapped/C_66796240$C_33123376;	f_51451600		f_51451600
 	m	(Lnet/minecraft/unmapped/C_66796240$C_33123376;)V	<init>		<init>
 		p	1			p_1
@@ -2329,7 +2329,7 @@ c	net/minecraft/unmapped/C_54284556	net/minecraft/world/village/SavedVillageData
 		p	1		state	
 		p	2		pos	
 	m	(Lnet/minecraft/unmapped/C_15815210;)Z	m_36606452	isWoodenDoor	
-		p	1		p_1	
+		p	1		state	
 	m	()V	m_39980271	m_39980271	
 c	net/minecraft/unmapped/C_60204766	net/minecraft/entity/ai/goal/StayIndoorsGoal	
 	f	Lnet/minecraft/unmapped/C_87762981;	f_24536234	door	
@@ -2344,10 +2344,10 @@ c	net/minecraft/unmapped/C_60204766	net/minecraft/entity/ai/goal/StayIndoorsGoal
 		p	1		entity	
 	m	()Z	m_10998187	m_10998187	
 c	net/minecraft/unmapped/C_71932222
-	m	(Z)V	m_47210185	m_47210185	
-		p	1		p_1	
+	m	(Z)V	m_47210185	setDoorOpen	
+		p	1		open	
 	m	(Lnet/minecraft/unmapped/C_32594356;)Z	m_10082664	getDoorBlock	
-		p	1		p_1	
+		p	1		pos	
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;)Z	m_10082664		getDoorBlock
 		p	0			p_0
 		p	1			p_1
@@ -2492,7 +2492,7 @@ c	net/minecraft/unmapped/C_98943036
 		p	2		verticalRange	
 		p	3		pos	
 		p	4		avoidWater	
-		p	5		p_5	
+		p	5		lookAngle	
 	m	(Lnet/minecraft/unmapped/C_45915938;IILjava/util/function/ToDoubleFunction;)Lnet/minecraft/unmapped/C_94584382;	m_98601697		m_98601697
 		p	0			p_0
 		p	1			p_1
@@ -3983,12 +3983,12 @@ c	net/minecraft/unmapped/C_46221269
 		p	1		other	
 	m	()V	m_13666136	m_13666136	
 	m	()V	m_24653180	reset	
-	m	(F)V	m_76460600	m_76460600	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_65009617	m_65009617	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_89852454	m_89852454	
-		p	1		p_1	
+	m	(F)V	m_76460600	mul	
+		p	1		scale	
+	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_65009617	add	
+		p	1		other	
+	m	(Lnet/minecraft/unmapped/C_46221269;)V	m_89852454	sub	
+		p	1		other	
 	m	()F	m_23542647	m_23542647	
 	m	([F)V	<init>	<init>	
 		p	1		p_1	
@@ -4319,7 +4319,7 @@ c	net/minecraft/unmapped/C_96937947
 		p	2		world	
 		p	3		tickDelta	
 	m	(IF)V	m_92059860	setupFog	
-		p	1		p_1	
+		p	1		mode	
 		p	2		tickDelta	
 	m	(Lnet/minecraft/unmapped/C_42232651;Lnet/minecraft/unmapped/C_46108969;F)V	m_36392581	updateColorForWater	
 		p	1		camera	
@@ -4339,10 +4339,10 @@ c	net/minecraft/unmapped/C_96937947
 		p	1			camera
 		p	2			p_2
 c	net/minecraft/unmapped/C_68193274
-	f	Lnet/minecraft/unmapped/C_68193274$C_87341273;	f_45529046	f_45529046	
-	f	Lnet/minecraft/unmapped/C_85125467;	f_07870089	f_07870089	
-	f	Lnet/minecraft/unmapped/C_68193274$C_52739975;	f_45529046		f_45529046
-	f	Lnet/minecraft/unmapped/C_01559903;	f_07870089		f_07870089
+	f	Lnet/minecraft/unmapped/C_68193274$C_87341273;	f_45529046	biomes	
+	f	Lnet/minecraft/unmapped/C_85125467;	f_07870089	doneButton	
+	f	Lnet/minecraft/unmapped/C_68193274$C_52739975;	f_45529046		biomes
+	f	Lnet/minecraft/unmapped/C_01559903;	f_07870089		doneButton
 	m	()Lnet/minecraft/unmapped/C_04864323;	m_47978329	m_47978329	
 c	net/minecraft/unmapped/C_68193274$36060169
 	m	(DD)V	m_83430595	m_83430595	
@@ -4359,7 +4359,7 @@ c	net/minecraft/unmapped/C_68193274$87920520
 		p	1		p_1	
 		p	3		p_3	
 	m	()V	m_83430595		m_83430595
-c	net/minecraft/unmapped/C_68193274$C_87341273	C_87341273	
+c	net/minecraft/unmapped/C_68193274$C_87341273	BiomeListWidget	
 	f	Lnet/minecraft/unmapped/C_68193274;	f_88694771	f_88694771	
 	m	(Lnet/minecraft/unmapped/C_68193274;)V	<init>	<init>	
 		p	1		p_1	
