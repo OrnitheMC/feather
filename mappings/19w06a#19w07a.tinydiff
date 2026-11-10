@@ -1,15 +1,15 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
 	f	Ljava/util/concurrent/CompletableFuture;	f_18070949		f_18070949
-	f	Lnet/minecraft/unmapped/C_52526630;	f_86430456		f_86430456
+	f	Lnet/minecraft/unmapped/C_52526630;	f_86430456		paintingAtlasManager
 	m	()V	close		close
 	m	()Lnet/minecraft/unmapped/C_52526630;	m_49147629		m_49147629
 c	net/minecraft/server/MinecraftServer
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	f_74635933	f_74635933	
-	f	Ljava/util/concurrent/ExecutorService;	f_24082877	f_24082877	
-	f	Ljava/util/concurrent/Executor;	f_24082877		f_24082877
+	f	Ljava/util/concurrent/ExecutorService;	f_24082877	backgroundExecutor	
+	f	Ljava/util/concurrent/Executor;	f_24082877		backgroundExecutor
 	f	Z	f_63266716		f_63266716
-	m	(I)Ljava/util/concurrent/ExecutorService;	m_83603477	m_83603477	
+	m	(I)Ljava/util/concurrent/ExecutorService;	m_83603477	getBackgroundExecutor	
 		p	1		p_1	
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_10013614	m_10013614	
 		p	0		p_0	
@@ -18,7 +18,7 @@ c	net/minecraft/server/MinecraftServer
 		p	1		p_1	
 	m	(Ljava/util/concurrent/CompletableFuture;)Ljava/lang/Object;	m_49526158		m_49526158
 		p	1			p_1
-	m	()Ljava/util/concurrent/Executor;	m_83603477		m_83603477
+	m	()Ljava/util/concurrent/Executor;	m_83603477		getBackgroundExecutor
 c	net/minecraft/server/MinecraftServer$19210619	19210619	
 	f	Lnet/minecraft/server/MinecraftServer;	f_27179253	f_27179253	
 	m	(Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/ForkJoinPool;)V	<init>	<init>	
@@ -434,7 +434,7 @@ c	net/minecraft/unmapped/C_74688326
 		p	3			p_3
 		p	4			p_4
 c	net/minecraft/unmapped/C_83717615
-	f	Lnet/minecraft/unmapped/C_22168528;	f_54509511		f_54509511
+	f	Lnet/minecraft/unmapped/C_22168528;	f_54509511		PAINTINGS
 c	net/minecraft/unmapped/C_32220415
 	m	()V	m_95917970	registerDispenseBehaviors	
 c	net/minecraft/unmapped/C_32220415$10164769	10164769	
@@ -673,12 +673,12 @@ c	net/minecraft/unmapped/C_65241354
 		p	4			p_4
 c	net/minecraft/unmapped/C_65593626
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393	reload	
-		p	1		p_1	
-		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572	m_40864572	
-		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	1		resourceManager	
+		p	2		profiler	
+	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572	apply	
+		p	1		resourceManager	
+		p	2		resources	
+		p	3		profiler	
 	m	(Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;Lnet/minecraft/unmapped/C_74621486;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_24588393		reload
 		p	1			previousStep
 		p	2			manager
@@ -882,11 +882,11 @@ c	net/minecraft/unmapped/C_06846120
 c	net/minecraft/unmapped/C_89725489
 	m	()V	close		close
 c	net/minecraft/unmapped/C_51625061
-	m	(Lnet/minecraft/unmapped/C_52500310;)Ljava/util/concurrent/CompletableFuture;	m_08978202	load	
-		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_08978202		load
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_52500310;)Ljava/util/concurrent/CompletableFuture;	m_08978202	prepare	
+		p	1		resourceManager	
+	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_08978202		prepare
+		p	1			resourceManager
+		p	2			executor
 c	net/minecraft/unmapped/C_92769945
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393	m_24588393	
 		p	1		p_1	
@@ -913,7 +913,7 @@ c	net/minecraft/unmapped/C_92769945
 		p	5			p_5
 		p	6			p_6
 	m	(Lnet/minecraft/unmapped/C_92769945$C_54933457;)V	m_19647523		m_19647523
-		p	1			p_1
+		p	1			prep
 	m	(Lcom/mojang/datafixers/util/Pair;Lcom/mojang/datafixers/util/Pair;)Lnet/minecraft/unmapped/C_92769945$C_54933457;	m_84285309		m_84285309
 		p	0			p_0
 		p	1			p_1
@@ -952,7 +952,7 @@ c	net/minecraft/unmapped/C_21878629
 		p	1			p_1
 		p	2			p_2
 c	net/minecraft/unmapped/C_37813934
-	f	Ljava/util/Set;	f_80627624		f_80627624
+	f	Ljava/util/Set;	f_80627624		glyphs
 	m	(Z)V	m_77458264	setForceUnicode	
 		p	1		forceUnicode	
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393	m_24588393	
@@ -974,9 +974,9 @@ c	net/minecraft/unmapped/C_37813934
 		p	5			p_5
 		p	6			p_6
 	m	(ZLjava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V	m_77458264		setForceUnicode
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			forceUnicode
+		p	2			backgroundExecutor
+		p	3			mainThreadExecutor
 	m	()V	close		close
 	m	(Lnet/minecraft/unmapped/C_74621486;Ljava/util/Map;)V	m_84664908		m_84664908
 		p	1			p_1
@@ -1692,11 +1692,11 @@ c	net/minecraft/unmapped/C_44668523		net/minecraft/unmapped/C_44668523
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_43480710;)V	m_27036594		m_27036594
 		p	1			p_1
-c	net/minecraft/unmapped/C_52526630		net/minecraft/unmapped/C_52526630
-	f	Lnet/minecraft/unmapped/C_22168528;	f_45146120		f_45146120
+c	net/minecraft/unmapped/C_52526630		net/minecraft/client/render/texture/PaintingAtlasManager
+	f	Lnet/minecraft/unmapped/C_22168528;	f_45146120		BACK_SPRITE_LOCATION
 	f	Lnet/minecraft/unmapped/C_83717615;	f_14516523		f_14516523
 	m	(Lnet/minecraft/unmapped/C_82920792;)V	<init>		<init>
-		p	1			p_1
+		p	1			textureManager
 	m	(Lnet/minecraft/unmapped/C_65593626$C_61012229;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;Lnet/minecraft/unmapped/C_74621486;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;	m_24588393		m_24588393
 		p	1			p_1
 		p	2			p_2
@@ -1704,9 +1704,9 @@ c	net/minecraft/unmapped/C_52526630		net/minecraft/unmapped/C_52526630
 		p	4			p_4
 		p	5			p_5
 		p	6			p_6
-	m	(Lnet/minecraft/unmapped/C_96621941;)Lnet/minecraft/unmapped/C_74688326;	m_61574738		m_61574738
-		p	1			p_1
-	m	()Lnet/minecraft/unmapped/C_74688326;	m_63092098		m_63092098
+	m	(Lnet/minecraft/unmapped/C_96621941;)Lnet/minecraft/unmapped/C_74688326;	m_61574738		getSprite
+		p	1			motive
+	m	()Lnet/minecraft/unmapped/C_74688326;	m_63092098		getBackSprite
 	m	(Lnet/minecraft/unmapped/C_74621486;Lnet/minecraft/unmapped/C_83717615$C_59162852;)V	m_80134964		m_80134964
 		p	1			p_1
 		p	2			p_2

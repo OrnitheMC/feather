@@ -30,6 +30,7 @@ c	net/minecraft/client/Minecraft
 	f	J	f_13023707		timeAtLastSecond
 		c		Time in miliseconds - only updates every second.
 	f	Z	f_95238821		focussed
+	f	Lnet/minecraft/unmapped/C_02398648;	f_20964140	resourcePacks	clientPackSource
 	m	(Ljava/lang/String;)V	m_76716821	logGlError	
 		p	1		location	
 	m	()V	m_57091929	lockMouse	
@@ -70,6 +71,7 @@ c	net/minecraft/client/Minecraft
 	m	(Ljava/util/List;Lnet/minecraft/unmapped/C_03555173;)V	m_48173027		m_48173027
 		p	0			p_0
 		p	1			pack
+	m	()Lnet/minecraft/unmapped/C_02398648;	m_21067396	getResourcePacks	getClientPackSource
 c	net/minecraft/client/Minecraft$32094868	32094868	
 	f	Lnet/minecraft/client/Minecraft;	f_38612278	f_38612278	
 	m	(Lnet/minecraft/client/Minecraft;)V	<init>	<init>	
@@ -3524,13 +3526,13 @@ c	net/minecraft/unmapped/C_83717615
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_74688326;	m_75854831	registerSprite	
 		p	1		location	
 	m	()Lnet/minecraft/unmapped/C_74688326;	m_01334668	getMissingSprite	
-	m	(Lnet/minecraft/unmapped/C_74688326;)Lnet/minecraft/unmapped/C_22168528;	m_58991035	getResourceId	
+	m	(Lnet/minecraft/unmapped/C_74688326;)Lnet/minecraft/unmapped/C_22168528;	m_58991035	getResourceLocation	
 		p	1		sprite	
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Iterable;)V	m_03308880		load
 		p	1			resourceManager
 		p	2			sprites
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_58991035		getResourceId
-		p	1			location
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_22168528;	m_58991035		getResourceLocation
+		p	1			name
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_22168528;)V	m_75854831		registerSprite
 		p	1			resourceManager
 		p	2			location
@@ -6326,12 +6328,12 @@ c	net/minecraft/unmapped/C_32484119
 		p	1		p_1	
 c	net/minecraft/unmapped/C_41540958
 	f	Lcom/google/common/cache/LoadingCache;	f_76436709	lootTables	
-	f	Ljava/io/File;	f_50446056	dir	
-	f	Ljava/util/Map;	f_21881449		tables
-	f	I	f_49115327		RESOURCE_PATH
-	f	I	f_13108393		EXTENSION
+	f	Ljava/io/File;	f_50446056	directory	
+	f	Ljava/util/Map;	f_21881449		lootTables
+	f	I	f_49115327		PATH_PREFIX_LENGTH
+	f	I	f_13108393		PATH_SUFFIX_LENGTH
 	m	(Ljava/io/File;)V	<init>	<init>	
-		p	1		dir	
+		p	1		directory	
 	m	()V	m_38122463	reload	
 	m	()Lorg/apache/logging/log4j/Logger;	m_15522554	m_15522554	
 	m	(Lnet/minecraft/unmapped/C_41540958;)Ljava/io/File;	m_38135173	m_38135173	
@@ -6348,10 +6350,10 @@ c	net/minecraft/unmapped/C_41540958$C_84618212	CacheLoader
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	load	load	
 		p	1		p_1	
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_48211855	loadFromDir	
-		p	1		id	
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_48211855	loadFromDirectory	
+		p	1		key	
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_19070257	loadFromAssets	
-		p	1		id	
+		p	1		key	
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	load	load	
 		p	1		key	
 	m	(Lnet/minecraft/unmapped/C_41540958;Lnet/minecraft/unmapped/C_41540958$95982984;)V	<init>	<init>	
@@ -6456,12 +6458,12 @@ c	net/minecraft/unmapped/C_60046810
 	f	Lorg/apache/logging/log4j/Logger;	f_51513725		LOGGER
 	f	Lnet/minecraft/server/MinecraftServer;	f_26355248		server
 	f	Ljava/io/File;	f_11727908		generatedDir
-	m	(Ljava/lang/String;Ljava/io/InputStream;)V	m_47396307	loadStructure	
-		p	1		path	
+	m	(Ljava/lang/String;Ljava/io/InputStream;)V	m_47396307	readStructure	
+		p	1		key	
 		p	2		is	
-	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Z	m_27687750	save	
+	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Z	m_27687750	saveStructure	
 		p	1		server	
-		p	2		location	
+		p	2		key	
 	m	(Ljava/lang/String;Lnet/minecraft/unmapped/C_81045817;)V	<init>	<init>	
 		p	1		dir	
 		p	2		dfu	
@@ -6471,12 +6473,13 @@ c	net/minecraft/unmapped/C_60046810
 		p	3			dfu
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94505059		m_94505059
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_22168528;Ljava/io/InputStream;)V	m_47396307		loadStructure
-		p	1			location
-		p	2			in
-	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_27687750		save
-		p	1			location
+	m	(Lnet/minecraft/unmapped/C_22168528;Ljava/io/InputStream;)V	m_47396307		readStructure
+		p	1			key
+		p	2			is
+	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_27687750		saveStructure
+		p	1			key
 	m	()V	<clinit>		<clinit>
+	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_49065769	loadFromAssets	loadFromGenerated
 c	net/minecraft/unmapped/C_62822570	net/minecraft/client/gui/screen/menu/resourcepacks/ServerResourcePackEntry	
 	f	Lorg/apache/logging/log4j/Logger;	f_12735361	LOGGER	
 	f	Lnet/minecraft/unmapped/C_81137139;	f_62961338	pack	

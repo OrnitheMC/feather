@@ -1,7 +1,7 @@
 tiny	2	0
 c	net/minecraft/client/Minecraft
 	f	I	f_34691537	joinPlayerCounter	
-	f	Lnet/minecraft/unmapped/C_55117267;	f_77560420		f_77560420
+	f	Lnet/minecraft/unmapped/C_55117267;	f_77560420		splashManager
 	m	(IIIIIIIIII)V	m_04086442	draw	
 		p	1		x	
 		p	2		y	
@@ -1791,8 +1791,8 @@ c	net/minecraft/unmapped/C_30201075
 	m	(I)V	m_96464311		m_96464311
 		p	1			p_1
 c	net/minecraft/unmapped/C_83717615
-	f	Lnet/minecraft/unmapped/C_22168528;	f_04249339		f_04249339
-	f	I	f_64663714		f_64663714
+	f	Lnet/minecraft/unmapped/C_22168528;	f_04249339		PARTICLES_LOCATION
+	f	I	f_64663714		maxTextureSize
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_46857130	loadAndStitch	
 		p	1		resourceManager	
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Iterable;)V	m_03308880	load	
@@ -1804,18 +1804,18 @@ c	net/minecraft/unmapped/C_83717615
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_22168528;)V	m_76515250	m_76515250	
 		p	1		p_1	
 		p	2		p_2	
-	m	(Lnet/minecraft/unmapped/C_83717615$C_59162852;)V	m_70235832		m_70235832
-		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Iterable;Lnet/minecraft/unmapped/C_74621486;)Lnet/minecraft/unmapped/C_83717615$C_59162852;	m_29655603		m_29655603
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/Set;)Ljava/util/Collection;	m_50970647		m_50970647
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_68412326;)Ljava/util/List;	m_97792833		m_97792833
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_83717615$C_59162852;)V	m_70235832		apply
+		p	1			preparations
+	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Iterable;Lnet/minecraft/unmapped/C_74621486;)Lnet/minecraft/unmapped/C_83717615$C_59162852;	m_29655603		prepare
+		p	1			resourceManager
+		p	2			spriteNames
+		p	3			profiler
+	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/util/Set;)Ljava/util/Collection;	m_50970647		loadSprites
+		p	1			resourceManager
+		p	2			names
+	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_68412326;)Ljava/util/List;	m_97792833		loadSprites
+		p	1			resourceManager
+		p	2			stitcher
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74688326;Ljava/util/concurrent/ConcurrentLinkedQueue;)V	m_61230791		m_61230791
 		p	1			p_1
 		p	2			p_2
@@ -1826,17 +1826,17 @@ c	net/minecraft/unmapped/C_83717615
 		p	3			p_3
 	m	(Ljava/util/Set;Lnet/minecraft/unmapped/C_22168528;)V	m_29914873		m_29914873
 		p	0			p_0
-		p	1			p_1
-c	net/minecraft/unmapped/C_83717615$C_59162852		C_59162852
-	f	Ljava/util/Set;	f_32692346		f_32692346
-	f	I	f_19485401		f_19485401
-	f	I	f_70918076		f_70918076
-	f	Ljava/util/List;	f_44006754		f_44006754
+		p	1			name
+c	net/minecraft/unmapped/C_83717615$C_59162852		Preparations
+	f	Ljava/util/Set;	f_32692346		names
+	f	I	f_19485401		width
+	f	I	f_70918076		height
+	f	Ljava/util/List;	f_44006754		sprites
 	m	(Ljava/util/Set;IILjava/util/List;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			names
+		p	2			width
+		p	3			height
+		p	4			sprites
 c	net/minecraft/unmapped/C_63441051
 	m	(Lnet/minecraft/unmapped/C_64041439;Lnet/minecraft/unmapped/C_32594356;)Lnet/minecraft/unmapped/C_63441051;	m_91469863	attatch	
 		p	0		world	
@@ -1883,12 +1883,12 @@ c	net/minecraft/unmapped/C_65593626
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94505059	reload	
 		p	1		resourceManager	
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393		reload
-		p	1			p_1
-		p	2			p_2
-	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572		m_40864572
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			resourceManager
+		p	2			profiler
+	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572		apply
+		p	1			resourceManager
+		p	2			resources
+		p	3			profiler
 c	net/minecraft/unmapped/C_67935091
 	m	()Lnet/minecraft/unmapped/C_17695012;	m_66218603		createQueuedReload
 	m	(Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/unmapped/C_17695012;	m_24284863		createQueuedReloadWithInitialTask
@@ -2058,16 +2058,16 @@ c	net/minecraft/unmapped/C_95503740$38726288	38726288
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-c	net/minecraft/unmapped/C_95503740$C_03531641		C_03531641
-	f	Ljava/util/Map;	f_76816211		f_76816211
+c	net/minecraft/unmapped/C_95503740$C_03531641		Preparations
+	f	Ljava/util/Map;	f_76816211		sounds
 	m	()V	<init>		<init>
-	m	(Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_33335014;Lnet/minecraft/unmapped/C_52500310;)V	m_39824902		m_39824902
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_03111506;)V	m_49915606		m_49915606
-		p	1			p_1
-		p	2			p_2
+	m	(Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_33335014;Lnet/minecraft/unmapped/C_52500310;)V	m_39824902		register
+		p	1			key
+		p	2			container
+		p	3			resourceManager
+	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_03111506;)V	m_49915606		apply
+		p	1			sounds
+		p	2			engine
 	m	(Lnet/minecraft/unmapped/C_95503740$C_03531641;)Ljava/util/Map;	m_00244210		m_00244210
 		p	0			p_0
 	m	(Lnet/minecraft/unmapped/C_95503740$C_03531641;Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_33335014;Lnet/minecraft/unmapped/C_52500310;)V	m_36310912		m_36310912
@@ -2651,14 +2651,14 @@ c	net/minecraft/unmapped/C_43624480
 	m	()Z	m_13451306		m_13451306
 	m	()Lnet/minecraft/unmapped/C_95787742;	m_68212926		m_68212926
 c	net/minecraft/unmapped/C_77152992
-	f	Lnet/minecraft/unmapped/C_88855644;	f_82306817		f_82306817
+	f	Lnet/minecraft/unmapped/C_88855644;	f_82306817		FLASH
 c	net/minecraft/unmapped/C_51625061
-	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_08978202	load	
+	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_08978202	prepare	
 		p	1		resourceManager	
-	m	(Lnet/minecraft/unmapped/C_52500310;)Ljava/util/concurrent/CompletableFuture;	m_08978202		load
-		p	1			p_1
-	m	(Ljava/util/Map;)V	m_13503122		m_13503122
-		p	1			p_1
+	m	(Lnet/minecraft/unmapped/C_52500310;)Ljava/util/concurrent/CompletableFuture;	m_08978202		prepare
+		p	1			resourceManager
+	m	(Ljava/util/Map;)V	m_13503122		load
+		p	1			builders
 	m	(Lnet/minecraft/unmapped/C_52500310;)Ljava/util/Map;	m_24122875		m_24122875
 		p	1			p_1
 c	net/minecraft/unmapped/C_92769945
@@ -2681,16 +2681,16 @@ c	net/minecraft/unmapped/C_92769945
 		p	2			p_2
 		p	3			p_3
 		p	4			p_4
-c	net/minecraft/unmapped/C_92769945$C_54933457		C_54933457
-	f	Ljava/util/Map;	f_94216360		f_94216360
-	f	Ljava/util/Map;	f_88280583		f_88280583
-	f	Ljava/util/Map;	f_71690049		f_71690049
-	f	Ljava/util/Map;	f_58931515		f_58931515
+c	net/minecraft/unmapped/C_92769945$C_54933457		Preparations
+	f	Ljava/util/Map;	f_94216360		blockTags
+	f	Ljava/util/Map;	f_88280583		itemTags
+	f	Ljava/util/Map;	f_71690049		fluidTags
+	f	Ljava/util/Map;	f_58931515		entityTypeTags
 	m	(Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+		p	1			blockTags
+		p	2			itemTags
+		p	3			fluidTags
+		p	4			entityTypeTags
 c	net/minecraft/unmapped/C_53794684
 	f	Lnet/minecraft/unmapped/C_53794684;	f_24069304		f_24069304
 	f	Lnet/minecraft/unmapped/C_53794684;	f_53137680		f_53137680
@@ -3218,10 +3218,10 @@ c	net/minecraft/unmapped/C_53306985		net/minecraft/unmapped/C_53306985
 		p	7			p_7
 		p	8			p_8
 	m	()Lnet/minecraft/unmapped/C_47379217;	m_14529142		m_14529142
-c	net/minecraft/unmapped/C_55117267		net/minecraft/unmapped/C_55117267
-	f	Lnet/minecraft/unmapped/C_22168528;	f_72074278		f_72074278
-	f	Ljava/util/Random;	f_06473354		f_06473354
-	f	Ljava/util/List;	f_67459411		f_67459411
+c	net/minecraft/unmapped/C_55117267		net/minecraft/client/SplashManager
+	f	Lnet/minecraft/unmapped/C_22168528;	f_72074278		SPLASHES_LOCATION
+	f	Ljava/util/Random;	f_06473354		RANDOM
+	f	Ljava/util/List;	f_67459411		splashes
 	m	()V	<init>		<init>
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/concurrent/CompletableFuture;	m_24588393		m_24588393
 		p	1			p_1
@@ -3230,7 +3230,7 @@ c	net/minecraft/unmapped/C_55117267		net/minecraft/unmapped/C_55117267
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	()Ljava/lang/String;	m_86580999		m_86580999
+	m	()Ljava/lang/String;	m_86580999		getSplash
 	m	(Lnet/minecraft/unmapped/C_52500310;Ljava/lang/Object;Lnet/minecraft/unmapped/C_74621486;)V	m_40864572		m_40864572
 		p	1			p_1
 		p	2			p_2

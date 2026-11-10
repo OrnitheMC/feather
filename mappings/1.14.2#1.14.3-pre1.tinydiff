@@ -152,9 +152,9 @@ c	net/minecraft/unmapped/C_70737137
 		p	1		recipe	
 	m	()V	m_34719359	clear	
 	m	(Ljava/lang/String;)Z	m_33361307	m_33361307	
-		p	0		p_0	
-	m	(Ljava/util/Map;)V	m_76800808	m_76800808	
-		p	0		p_0	
+		p	0		path	
+	m	(Ljava/util/Map;)V	m_76800808	reset	
+		p	0		recipes	
 	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)V	m_44072894		m_44072894
 		p	1			p_1
 		p	2			p_2
@@ -493,17 +493,17 @@ c	net/minecraft/unmapped/C_29571404
 c	net/minecraft/unmapped/C_38385548
 	m	()Ljava/util/concurrent/CompletableFuture;	m_76116656		m_76116656
 c	net/minecraft/unmapped/C_41540958
-	f	I	f_49115327	RESOURCE_PATH	
-	f	I	f_13108393	EXTENSION	
-	f	Ljava/util/Set;	f_57593554	f_57593554	
+	f	I	f_49115327	PATH_PREFIX_LENGTH	
+	f	I	f_13108393	PATH_SUFFIX_LENGTH	
+	f	Ljava/util/Set;	f_57593554	keys	
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94505059	m_94505059	
 		p	1		p_1	
 	m	(Ljava/lang/String;)Z	m_51720585	m_51720585	
-		p	0		p_0	
+		p	0		path	
 	m	(Lnet/minecraft/unmapped/C_16997094;Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_87749227;)V	m_86581963	m_86581963	
 		p	1		p_1	
-		p	2		p_2	
-		p	3		p_3	
+		p	2		key	
+		p	3		lootTable	
 	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)V	m_27269377		m_27269377
 		p	1			p_1
 		p	2			p_2
@@ -515,12 +515,12 @@ c	net/minecraft/unmapped/C_41540958
 	m	(Lnet/minecraft/unmapped/C_16997094;Lcom/google/common/collect/ImmutableMap;Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_87749227;)V	m_86581963		m_86581963
 		p	0			p_0
 		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	2			key
+		p	3			lootTable
 	m	(Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/unmapped/C_22168528;Lcom/google/gson/JsonObject;)V	m_69325010		m_69325010
 		p	0			p_0
-		p	1			p_1
-		p	2			p_2
+		p	1			key
+		p	2			json
 c	net/minecraft/unmapped/C_95069350
 	m	(Lnet/minecraft/unmapped/C_49764715;Lnet/minecraft/unmapped/C_31453009;)Z	m_07818064	m_07818064	
 		p	1		p_1	
@@ -560,7 +560,7 @@ c	net/minecraft/unmapped/C_60503015
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_94505059	m_94505059	
 		p	1		p_1	
 	m	(Ljava/lang/String;)Z	m_09426918	m_09426918	
-		p	0		p_0	
+		p	0		path	
 	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)V	m_55996770		m_55996770
 		p	1			p_1
 		p	2			p_2
@@ -608,15 +608,15 @@ c	net/minecraft/unmapped/C_51625061
 	m	(Lnet/minecraft/unmapped/C_31113477;)V	m_60262110	add	
 		p	1		tag	
 	m	()V	m_11241227	clear	
-	m	(Ljava/util/Map;)V	m_79337830		m_79337830
-		p	1			p_1
+	m	(Ljava/util/Map;)V	m_79337830		set
+		p	1			tags
 	m	(Ljava/util/Map;Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_31113477$C_71028841;)V	m_48270969		m_48270969
 		p	0			p_0
-		p	1			p_1
-		p	2			p_2
+		p	1			id
+		p	2			builder
 	m	(Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_31113477$C_71028841;)V	m_50895342		m_50895342
-		p	1			p_1
-		p	2			p_2
+		p	1			id
+		p	2			builder
 c	net/minecraft/unmapped/C_92769945
 	m	()V	m_90071711	clear	
 c	net/minecraft/unmapped/C_30218732
@@ -925,14 +925,14 @@ c	net/minecraft/unmapped/C_77327573
 	m	(Lnet/minecraft/unmapped/C_32594356;Lnet/minecraft/unmapped/C_70668269;)Z	m_60119219		m_60119219
 		p	1			p_1
 		p	2			p_2
-c	net/minecraft/unmapped/C_79338360		net/minecraft/unmapped/C_79338360
-	f	Lorg/apache/logging/log4j/Logger;	f_41477479		f_41477479
-	f	I	f_59579241		f_59579241
-	f	Lcom/google/gson/Gson;	f_08015164		f_08015164
-	f	Ljava/lang/String;	f_13998439		f_13998439
+c	net/minecraft/unmapped/C_79338360		net/minecraft/resource/manager/SimpleJsonResourceReloadListener
+	f	Lorg/apache/logging/log4j/Logger;	f_41477479		LOGGER
+	f	I	f_59579241		PATH_SUFFIX_LENGTH
+	f	Lcom/google/gson/Gson;	f_08015164		gson
+	f	Ljava/lang/String;	f_13998439		directory
 	m	(Lcom/google/gson/Gson;Ljava/lang/String;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
+		p	1			gson
+		p	2			directory
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74621486;)Ljava/util/Map;	m_65797704		m_65797704
 		p	1			p_1
 		p	2			p_2
@@ -940,7 +940,7 @@ c	net/minecraft/unmapped/C_79338360		net/minecraft/unmapped/C_79338360
 		p	1			p_1
 		p	2			p_2
 	m	(Ljava/lang/String;)Z	m_11000133		m_11000133
-		p	0			p_0
+		p	0			path
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_86456165		net/minecraft/unmapped/C_86456165
 	m	()V	<init>		<init>

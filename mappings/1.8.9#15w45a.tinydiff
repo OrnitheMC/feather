@@ -3440,17 +3440,17 @@ c	net/minecraft/unmapped/C_62858513$C_51190638	ChunkData
 	f	I	f_97434787	sections	
 	m	()V	<init>	<init>	
 c	net/minecraft/unmapped/C_63704535
-	f	Z	f_16072174	reset	
-	f	I	f_97198123	currentMessageId	
-	f	Ljava/util/List;	f_73116063	messageHistory	
-	f	Z	f_20847942	completed	
+	f	Z	f_16072174	commandSuggestionsValid	
+	f	I	f_97198123	currentCommandSuggestion	
+	f	Ljava/util/List;	f_73116063	commandSuggestions	
+	f	Z	f_20847942	commandSuggestionsPending	
 	f	Lnet/minecraft/unmapped/C_76849813;	f_78256451		commandSuggestions
-	m	()V	m_90567152	reset	
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_63691428	goThroughHistory	
-		p	1		text	
-		p	2		cursor	
-	m	([Ljava/lang/String;)V	m_61836526	setMessageHistory	
-		p	1		messages	
+	m	()V	m_90567152	useCommandSuggestion	
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_63691428	requestCommandSuggestions	
+		p	1		command	
+		p	2		remainder	
+	m	([Ljava/lang/String;)V	m_61836526	acceptCommandSuggestions	
+		p	1		suggestions	
 	m	([Ljava/lang/String;)V	m_08851012		m_08851012
 		p	1			p_1
 c	net/minecraft/unmapped/C_63704535$C_65287936		CommandSuggestions
@@ -11654,13 +11654,13 @@ c	net/minecraft/unmapped/C_74688326
 		p	1			resource
 		p	2			mipCount
 c	net/minecraft/unmapped/C_83717615
-	m	(Lnet/minecraft/unmapped/C_22168528;I)Lnet/minecraft/unmapped/C_22168528;	m_58991035	getResourceId	
-		p	1		textureId	
+	m	(Lnet/minecraft/unmapped/C_22168528;I)Lnet/minecraft/unmapped/C_22168528;	m_58991035	getResourceLocation	
+		p	1		name	
 		p	2		mipmaps	
 	m	(Lnet/minecraft/unmapped/C_52500310;Lnet/minecraft/unmapped/C_74688326;)Z	m_68069863		loadSprite
 		p	1			resourceManager
 		p	2			sprite
-	m	(Lnet/minecraft/unmapped/C_74688326;)Lnet/minecraft/unmapped/C_22168528;	m_58991035		getResourceId
+	m	(Lnet/minecraft/unmapped/C_74688326;)Lnet/minecraft/unmapped/C_22168528;	m_58991035		getResourceLocation
 		p	1			sprite
 c	net/minecraft/unmapped/C_32220415
 c	net/minecraft/unmapped/C_32220415$10164769
@@ -18719,15 +18719,15 @@ c	net/minecraft/unmapped/C_41475223		net/minecraft/server/network/ServerItemCool
 		p	2			p_2
 	m	(Lnet/minecraft/unmapped/C_98888256;)V	m_69787701		m_69787701
 		p	1			p_1
-c	net/minecraft/unmapped/C_41540958		net/minecraft/world/gen/loot/LootTables
+c	net/minecraft/unmapped/C_41540958		net/minecraft/world/gen/loot/LootTableManager
 	f	Lorg/apache/logging/log4j/Logger;	f_98171616		LOGGER
 	f	Lcom/google/gson/Gson;	f_56456101		GSON
 	f	Lcom/google/common/cache/LoadingCache;	f_76436709		lootTables
-	f	Ljava/io/File;	f_50446056		dir
+	f	Ljava/io/File;	f_50446056		directory
 	m	(Ljava/io/File;)V	<init>		<init>
-		p	1			dir
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_22591799		get
-		p	1			id
+		p	1			directory
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_22591799		getLootTable
+		p	1			key
 	m	()V	m_38122463		reload
 	m	()Lorg/apache/logging/log4j/Logger;	m_15522554		m_15522554
 	m	(Lnet/minecraft/unmapped/C_41540958;)Ljava/io/File;	m_38135173		m_38135173
@@ -18741,10 +18741,10 @@ c	net/minecraft/unmapped/C_41540958$C_84618212		CacheLoader
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	load		load
 		p	1			p_1
-	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_48211855		loadFromDir
-		p	1			id
+	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_48211855		loadFromDirectory
+		p	1			key
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_87749227;	m_19070257		loadFromAssets
-		p	1			id
+		p	1			key
 	m	(Ljava/lang/Object;)Ljava/lang/Object;	load		load
 		p	1			key
 	m	(Lnet/minecraft/unmapped/C_41540958;Lnet/minecraft/unmapped/C_41540958$95982984;)V	<init>		<init>
@@ -19856,25 +19856,25 @@ c	net/minecraft/unmapped/C_59410434		net/minecraft/util/datafix/fixes/MinecartId
 		p	1			p_1
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_60046810		net/minecraft/world/gen/structure/template/StructureManager
-	f	Ljava/util/Map;	f_24577850		templates
+	f	Ljava/util/Map;	f_24577850		structures
 	f	Ljava/lang/String;	f_25044055		dir
 	m	()V	<init>		<init>
 	m	(Ljava/lang/String;)V	<init>		<init>
 		p	1			dir
 	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_24005025;	m_38912998		getStructure
 		p	1			server
-		p	2			location
-	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Z	m_26243604		loadFromNbt
+		p	2			key
+	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Z	m_26243604		loadStructure
 		p	1			server
 		p	2			location
-	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_49065769		loadGeneratedStructure
-		p	1			location
-	m	(Ljava/lang/String;Ljava/io/InputStream;)V	m_47396307		loadStructure
-		p	1			path
+	m	(Lnet/minecraft/unmapped/C_22168528;)Z	m_49065769		loadFromAssets
+		p	1			key
+	m	(Ljava/lang/String;Ljava/io/InputStream;)V	m_47396307		readStructure
+		p	1			key
 		p	2			is
-	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Z	m_27687750		save
+	m	(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/unmapped/C_22168528;)Z	m_27687750		saveStructure
 		p	1			server
-		p	2			location
+		p	2			key
 c	net/minecraft/unmapped/C_60576299		net/minecraft/entity/living/mob/monster/boss/dragon/LandingApproachPhase
 	f	Lnet/minecraft/unmapped/C_85604771;	f_75345696		path
 	f	Lnet/minecraft/unmapped/C_94584382;	f_36657694		target
@@ -20695,7 +20695,7 @@ c	net/minecraft/unmapped/C_76115027		net/minecraft/network/packet/c2s/play/Vehic
 c	net/minecraft/unmapped/C_76849813		net/minecraft/client/command/CommandSuggestions
 	f	Lnet/minecraft/unmapped/C_16178213;	f_07802508		chatField
 	f	Z	f_17072542		requireLeadingSlash
-	f	Z	f_05547549		replace
+	f	Z	f_05547549		valid
 	f	Z	f_73010782		pending
 	f	I	f_33775163		current
 	f	Ljava/util/List;	f_53940698		suggestions

@@ -2635,7 +2635,7 @@ c	net/minecraft/unmapped/C_28545193
 c	net/minecraft/unmapped/C_87137557
 	m	()V	m_65001148		clearModifiers
 c	net/minecraft/unmapped/C_95231345
-	m	()Ljava/lang/String;	m_42269114		getFormattedString
+	m	()Ljava/lang/String;	m_42269114		buildFormattedString
 c	net/minecraft/unmapped/C_54246344
 	m	()Lnet/minecraft/unmapped/C_32594356;	m_45337747		getPos
 c	net/minecraft/unmapped/C_72624737
@@ -11920,10 +11920,10 @@ c	net/minecraft/unmapped/C_63704535		net/minecraft/client/gui/screen/game/ChatSc
 	f	Lorg/apache/logging/log4j/Logger;	f_51106526		LOGGER
 	f	Ljava/lang/String;	f_43448917		lastChatMessage
 	f	I	f_46505611		messageHistorySize
-	f	Z	f_16072174		reset
-	f	Z	f_20847942		completed
-	f	I	f_97198123		currentMessageId
-	f	Ljava/util/List;	f_73116063		messageHistory
+	f	Z	f_16072174		commandSuggestionsValid
+	f	Z	f_20847942		commandSuggestionsPending
+	f	I	f_97198123		currentCommandSuggestion
+	f	Ljava/util/List;	f_73116063		commandSuggestions
 	f	Ljava/net/URI;	f_99710893		uri
 	f	Lnet/minecraft/unmapped/C_16178213;	f_48091600		chatField
 	f	Ljava/lang/String;	f_16002242		initialChatText
@@ -11948,18 +11948,18 @@ c	net/minecraft/unmapped/C_63704535		net/minecraft/client/gui/screen/game/ChatSc
 		p	2			p_2
 	m	(Ljava/net/URI;)V	m_97683518		openLink
 		p	1			uri
-	m	()V	m_90567152		reset
-	m	(Ljava/lang/String;Ljava/lang/String;)V	m_63691428		goThroughHistory
-		p	1			text
-		p	2			cursor
+	m	()V	m_90567152		useCommandSuggestion
+	m	(Ljava/lang/String;Ljava/lang/String;)V	m_63691428		requestCommandSuggestions
+		p	1			command
+		p	2			remainder
 	m	(I)V	m_52645762		goThroughHistory
 		p	1			numberOfNewMessages
 	m	(IIF)V	m_93956703		m_93956703
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-	m	([Ljava/lang/String;)V	m_61836526		setMessageHistory
-		p	1			messages
+	m	([Ljava/lang/String;)V	m_61836526		acceptCommandSuggestions
+		p	1			suggestions
 	m	()Z	m_94022149		m_94022149
 	m	()V	<clinit>		<clinit>
 c	net/minecraft/unmapped/C_64187860		net/minecraft/unmapped/C_64187860
@@ -15748,8 +15748,8 @@ c	net/minecraft/unmapped/C_83717615		net/minecraft/client/render/texture/Texture
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_52500310;)V	m_46857130		loadAndStitch
 		p	1			resourceManager
-	m	(Lnet/minecraft/unmapped/C_22168528;I)Lnet/minecraft/unmapped/C_22168528;	m_58991035		getResourceId
-		p	1			textureId
+	m	(Lnet/minecraft/unmapped/C_22168528;I)Lnet/minecraft/unmapped/C_22168528;	m_58991035		getResourceLocation
+		p	1			name
 		p	2			mipmaps
 	m	()V	m_55279453		registerSprites
 	m	(Ljava/lang/String;)Lnet/minecraft/unmapped/C_74688326;	m_09307214		getSprite

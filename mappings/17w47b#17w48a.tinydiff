@@ -1,7 +1,7 @@
 tiny	2	0
 c	net/minecraft/server/MinecraftServer
-	f	Lnet/minecraft/unmapped/C_70737137;	f_35738807		craftingManager
-	m	()Lnet/minecraft/unmapped/C_70737137;	m_51025092		getCraftingManager
+	f	Lnet/minecraft/unmapped/C_70737137;	f_35738807		recipes
+	m	()Lnet/minecraft/unmapped/C_70737137;	m_51025092		getRecipes
 c	net/minecraft/unmapped/C_03111506
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_43413472		m_43413472
 		p	0			p_0
@@ -146,7 +146,7 @@ c	net/minecraft/unmapped/C_63704535$C_15245054
 		p	6			p_6
 		p	7			p_7
 c	net/minecraft/unmapped/C_64041439
-	m	()Lnet/minecraft/unmapped/C_70737137;	m_87740598		getCraftingManager
+	m	()Lnet/minecraft/unmapped/C_70737137;	m_87740598		getRecipes
 c	net/minecraft/unmapped/C_68775612
 	m	(Ljava/lang/Thread;Ljava/lang/Throwable;)V	m_23201854		m_23201854
 		p	0			p_0
@@ -173,7 +173,7 @@ c	net/minecraft/unmapped/C_70737137
 		p	1		world	inventory
 	m	(Lnet/minecraft/unmapped/C_22168528;)Lnet/minecraft/unmapped/C_30892219;	m_30778942
 		p	0		key	
-		p	1			location
+		p	1			key
 	m	(Lnet/minecraft/unmapped/C_30892219;)I	m_27571816	getId	
 		p	0		recipe	
 	m	(I)Lnet/minecraft/unmapped/C_30892219;	m_16167218	getRecipe	
@@ -194,10 +194,10 @@ c	net/minecraft/unmapped/C_70737137
 	m	(Lnet/minecraft/unmapped/C_30892219;)V	m_73850751		register
 		p	1			recipe
 	m	()Ljava/util/Collection;	m_94555214		getRecipes
-	m	()Ljava/util/Collection;	m_66283012		getLocations
+	m	()Ljava/util/Collection;	m_66283012		getKeys
 	m	()V	m_34719359		clear
 	m	(Ljava/lang/String;)Z	m_33361307		m_33361307
-		p	0			p_0
+		p	0			path
 c	net/minecraft/unmapped/C_71021207
 	m	()Z	m_16918677		m_16918677
 c	net/minecraft/unmapped/C_81592558
@@ -216,14 +216,14 @@ c	net/minecraft/unmapped/C_84651702
 	m	(Lnet/minecraft/unmapped/C_83334639;)V	m_07334720		setDamageSource
 		p	1			source
 c	net/minecraft/unmapped/C_88014908
-	f	Lnet/minecraft/unmapped/C_70737137;	f_52995391		craftingManager
+	f	Lnet/minecraft/unmapped/C_70737137;	f_52995391		recipes
 	m	(Lnet/minecraft/unmapped/C_47563248;Lnet/minecraft/unmapped/C_95317106;)V	m_11566538	m_11566538	
 		p	0		p_0	
 		p	1		p_1	
 	m	(Lnet/minecraft/unmapped/C_47563248;Lnet/minecraft/unmapped/C_30892219;)V	m_28831192	m_28831192	
 		p	1		p_1	
 		p	2		p_2	
-	m	()Lnet/minecraft/unmapped/C_70737137;	m_35649202		getCraftingManager
+	m	()Lnet/minecraft/unmapped/C_70737137;	m_35649202		getRecipes
 	m	(Lnet/minecraft/unmapped/C_21268828;)V	m_15891370		m_15891370
 		p	1			p_1
 	m	(Lnet/minecraft/unmapped/C_31247892;Lnet/minecraft/unmapped/C_95317106;)V	m_11566538		m_11566538
@@ -558,12 +558,12 @@ c	net/minecraft/unmapped/C_47563248
 	m	(Lnet/minecraft/unmapped/C_30892219;)I	m_11304805	getRecipeId	
 		p	0		recipe	
 c	net/minecraft/unmapped/C_64178449
-	f	Lnet/minecraft/unmapped/C_70737137;	f_68740659		craftingManager
+	f	Lnet/minecraft/unmapped/C_70737137;	f_68740659		recipes
 	m	()V	<init>	<init>	
 	m	()Ljava/util/List;	m_40210573	getRecipes	
 	m	()Ljava/util/List;	m_52363713	getHighlight	
 	m	(Lnet/minecraft/unmapped/C_70737137;)V	<init>		<init>
-		p	1			craftingManager
+		p	1			recipes
 c	net/minecraft/unmapped/C_77883707
 	f	Lnet/minecraft/unmapped/C_30892219;	f_44788112	recipe	
 	f	Lnet/minecraft/unmapped/C_22168528;	f_44788112		recipe
@@ -594,14 +594,14 @@ c	net/minecraft/unmapped/C_39865197
 	f	Lnet/minecraft/unmapped/C_47563248;	f_87758299	recipeBook	
 	f	Lnet/minecraft/unmapped/C_31247892;	f_87758299		recipeBook
 c	net/minecraft/unmapped/C_31247892
-	f	Lnet/minecraft/unmapped/C_70737137;	f_45372586		manager
+	f	Lnet/minecraft/unmapped/C_70737137;	f_45372586		recipes
 	m	()V	<init>	<init>	
 	m	(Lnet/minecraft/unmapped/C_87042217;)Lnet/minecraft/unmapped/C_95317106;	m_03556748
 		p	0		tab	
 		p	1			p_1
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_70737137;)V	<init>		<init>
-		p	1			manager
+		p	1			recipes
 	m	()V	m_92635724		reload
 	m	()Ljava/util/List;	m_70021173		getOrderedResults
 	m	(Lnet/minecraft/unmapped/C_87042217;)Ljava/util/List;	m_02305624		getResultsForGroup
@@ -627,7 +627,7 @@ c	net/minecraft/unmapped/C_57212056
 		p	2			builder
 c	net/minecraft/unmapped/C_65570678
 	m	()Ljava/util/Collection;	m_32642880		getAvailableRecipes
-	m	(Z)Ljava/util/Collection;	m_32378050		getCoordinates
+	m	(Z)Ljava/util/Collection;	m_32378050		getRelevantCoordinates
 		p	1			absolute
 c	net/minecraft/unmapped/C_02110237
 	m	()V	<init>	<init>	
