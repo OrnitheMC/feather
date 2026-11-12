@@ -2778,15 +2778,15 @@ c	net/minecraft/unmapped/C_12579355
 c	net/minecraft/unmapped/C_18607246
 	f	Lnet/minecraft/unmapped/C_31113477;	f_93510575		WOODEN_FENCES
 c	net/minecraft/unmapped/C_08690231
-	m	(Ljava/util/function/Consumer;Ljava/lang/String;I)V	m_41257398	m_41257398	
+	m	(Ljava/util/function/Consumer;Ljava/lang/String;I)V	m_41257398	buildMeatRoastingRecipes	
 		p	1		p_1	
 		p	2		p_2	
 		p	3		p_3	
-	m	(Ljava/util/function/Consumer;Ljava/lang/String;Lnet/minecraft/unmapped/C_66998788;I)V	m_41257398		m_41257398
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
+	m	(Ljava/util/function/Consumer;Ljava/lang/String;Lnet/minecraft/unmapped/C_66998788;I)V	m_41257398		buildMeatRoastingRecipes
+		p	1			consumer
+		p	2			suffix
+		p	3			type
+		p	4			cookingTime
 c	net/minecraft/unmapped/C_16925493
 c	net/minecraft/unmapped/C_16925493$C_40899150
 	m	()Lcom/google/gson/JsonObject;	m_13901626	m_13901626	
@@ -2798,7 +2798,7 @@ c	net/minecraft/unmapped/C_23159014
 	m	(Lcom/google/gson/JsonObject;)V	m_13901626		serialize
 		p	1			p_1
 	m	()Lcom/google/gson/JsonObject;	m_77277228		m_77277228
-	m	()Lnet/minecraft/unmapped/C_42695575;	m_03606002		m_03606002
+	m	()Lnet/minecraft/unmapped/C_42695575;	m_03606002		getType
 c	net/minecraft/unmapped/C_23676216
 c	net/minecraft/unmapped/C_23676216$C_62046076
 	m	()Lcom/google/gson/JsonObject;	m_13901626	m_13901626	
@@ -2859,7 +2859,7 @@ c	net/minecraft/unmapped/C_07501021
 		p	3			p_3
 c	net/minecraft/unmapped/C_23548635
 	f	Lorg/apache/logging/log4j/Logger;	f_35932192	LOGGER	
-	f	Lnet/minecraft/unmapped/C_66998788;	f_64976413		f_64976413
+	f	Lnet/minecraft/unmapped/C_66998788;	f_64976413		type
 	m	(Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_67044172;FI)V	<init>	<init>	
 		p	1		p_1	
 		p	2		result	
@@ -2867,24 +2867,24 @@ c	net/minecraft/unmapped/C_23548635
 		p	4		p_4	
 	m	()V	<clinit>	<clinit>	
 	m	(Lnet/minecraft/unmapped/C_67044172;Lnet/minecraft/unmapped/C_54623453;FILnet/minecraft/unmapped/C_66998788;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-	m	(Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_67044172;FILnet/minecraft/unmapped/C_66998788;)Lnet/minecraft/unmapped/C_23548635;	m_73289977		m_73289977
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-	m	(Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_67044172;FI)Lnet/minecraft/unmapped/C_23548635;	m_54784044		m_54784044
-		p	0			p_0
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
+		p	1			result
+		p	2			ingredient
+		p	3			experience
+		p	4			cookingTime
+		p	5			type
+	m	(Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_67044172;FILnet/minecraft/unmapped/C_66998788;)Lnet/minecraft/unmapped/C_23548635;	m_73289977		of
+		p	0			ingredient
+		p	1			result
+		p	2			experience
+		p	3			cookingTime
+		p	4			type
+	m	(Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_67044172;FI)Lnet/minecraft/unmapped/C_23548635;	m_54784044		smelting
+		p	0			ingredient
+		p	1			result
+		p	2			experience
+		p	3			cookingTime
 c	net/minecraft/unmapped/C_23548635$C_94055973
-	f	Lnet/minecraft/unmapped/C_42695575;	f_22074944		f_22074944
+	f	Lnet/minecraft/unmapped/C_42695575;	f_22074944		type
 	m	(Lnet/minecraft/unmapped/C_22168528;Ljava/lang/String;Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_98888256;FILnet/minecraft/unmapped/C_66692030$C_57275166;Lnet/minecraft/unmapped/C_22168528;)V	<init>	<init>	
 		p	1		p_1	
 		p	2		p_2	
@@ -2896,15 +2896,15 @@ c	net/minecraft/unmapped/C_23548635$C_94055973
 		p	8		p_8	
 	m	()Lcom/google/gson/JsonObject;	m_13901626	m_13901626	
 	m	(Lnet/minecraft/unmapped/C_22168528;Ljava/lang/String;Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_98888256;FILnet/minecraft/unmapped/C_66692030$C_57275166;Lnet/minecraft/unmapped/C_22168528;Lnet/minecraft/unmapped/C_42695575;)V	<init>		<init>
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-		p	7			p_7
-		p	8			p_8
-		p	9			p_9
+		p	1			location
+		p	2			group
+		p	3			ingredient
+		p	4			result
+		p	5			experience
+		p	6			cookingTime
+		p	7			advancement
+		p	8			advancementLocation
+		p	9			type
 	m	(Lcom/google/gson/JsonObject;)V	m_13901626		m_13901626
 		p	1			p_1
 	m	()Lnet/minecraft/unmapped/C_42695575;	m_03606002		m_03606002
@@ -4355,12 +4355,12 @@ c	net/minecraft/unmapped/C_63349086$C_51800157		EmptyInventory
 		p	1			p_1
 		p	2			p_2
 		p	3			p_3
-c	net/minecraft/unmapped/C_66998788		net/minecraft/unmapped/C_66998788
-	f	I	f_12777539		f_12777539
+c	net/minecraft/unmapped/C_66998788		net/minecraft/crafting/recipe/SmeltingRecipeSerializerType
+	f	I	f_12777539		defaultCookingTime
 	f	Lnet/minecraft/unmapped/C_66998788$C_37464780;	f_69955481		f_69955481
 	m	(Lnet/minecraft/unmapped/C_66998788$C_37464780;I)V	<init>		<init>
 		p	1			p_1
-		p	2			p_2
+		p	2			defaultCookingTime
 	m	(Lnet/minecraft/unmapped/C_22168528;Lcom/google/gson/JsonObject;)Lnet/minecraft/unmapped/C_45139586;	m_63721596		m_63721596
 		p	1			p_1
 		p	2			p_2
@@ -4381,13 +4381,13 @@ c	net/minecraft/unmapped/C_66998788		net/minecraft/unmapped/C_66998788
 		p	2			p_2
 c	net/minecraft/unmapped/C_66998788$C_37464780		C_37464780
 	m	(Lnet/minecraft/unmapped/C_22168528;Ljava/lang/String;Lnet/minecraft/unmapped/C_54623453;Lnet/minecraft/unmapped/C_88708284;FI)Lnet/minecraft/unmapped/C_45139586;	m_64491803		m_64491803
-		p	1			p_1
-		p	2			p_2
-		p	3			p_3
-		p	4			p_4
-		p	5			p_5
-		p	6			p_6
-c	net/minecraft/unmapped/C_72018056		net/minecraft/unmapped/C_72018056
+		p	1			location
+		p	2			group
+		p	3			ingredient
+		p	4			result
+		p	5			experience
+		p	6			cookingTime
+c	net/minecraft/unmapped/C_72018056		net/minecraft/crafting/recipe/SpecialRecipeSerializerType
 	f	Ljava/util/function/Function;	f_92259486		f_92259486
 	m	(Ljava/util/function/Function;)V	<init>		<init>
 		p	1			p_1
